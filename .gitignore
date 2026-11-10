@@ -1,0 +1,35 @@
+# Complete game images and save files
+*.gba
+*.gba.zip
+*.sav
+*.ss0
+*.ss1
+*.elf
+*.map
+
+# Release attachments and local archives
+/发布审阅.md
+*.bps
+*.ips
+*.ups
+*.xdelta
+*.zip
+*.7z
+*.rar
+
+# Build and local workspace outputs
+build/
+work/
+__pycache__/
+*.pyc
+*.o
+*.log
+*.bak
+*.orig
+*.bak_blk
+
+# Local configuration and credentials
+.env
+.env.*
+*.pem
+*.key
