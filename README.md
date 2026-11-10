@@ -4,9 +4,9 @@ Pokémon Elite Redux 的社区汉化项目。当前版本为 `2.65.5.2b`，使�
 
 本项目追踪[上游 Elite Redux 源码](https://github.com/Elite-Redux/eliteredux-source)，当前基线为 [`bd7acbdd`](https://github.com/Elite-Redux/eliteredux-source/commit/bd7acbdd355f3ee6fa0ac862add1f51933305b52)。上游基于 [pret/pokeemerald](https://github.com/pret/pokeemerald) 开发。
 
-## 📥 下载与使用指南
+## 下载与使用指南
 
-**📦 快速下载** [2.65.5.2b 中文 BPS 预览版](patches/ER-2.65.5.2b-CN_from-ER-515089fc.preview.bps)
+**快速下载** [2.65.5.2b 中文 BPS 预览版](patches/ER-2.65.5.2b-CN_from-ER-515089fc.preview.bps)
 
 > **打补丁顺序**　美版原版《宝可梦 绿宝石》 → 英文 Elite Redux → 中文 Elite Redux
 
@@ -27,7 +27,7 @@ Pokémon Elite Redux 的社区汉化项目。当前版本为 `2.65.5.2b`，使�
 
 已实测用上述英文 ROM 打补丁，生成的中文版与从源码编译的结果逐字节一致。当前为预览版，模拟器游玩测试待补。
 
-## 🛠️ 源码构建（开发者可选）
+## 源码构建（开发者可选）
 
 源码编译适用于开发者和维护者。Windows 下的构建方案使用 Docker、WSL 和相关编译工具链。
 
