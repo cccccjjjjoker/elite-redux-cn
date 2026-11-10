@@ -16,9 +16,14 @@
 
 ## 下载和应用汉化补丁
 
-- [下载 2.65.5.2b 中文 BPS 候选版](patches/ER-2.65.5.2b-CN_from-bd7acbdd.preview.bps)
-- 玩家自备**未汉化的英文 Elite Redux ROM**，输入文件应与 `bd7acbdd` 英文基线的 SHA-256 一致。
-- 如果手上是原版英文《宝可梦 绿宝石》，先用对应的 Elite Redux 英文补丁得到匹配的英文 ER，再应用这份中文 BPS。
+[下载 2.65.5.2b 中文 BPS 候选版](patches/ER-2.65.5.2b-CN_from-bd7acbdd.preview.bps)
+
+**打补丁顺序**：美版原版绿宝石 → 英文 Elite Redux → 中文 Elite Redux。
+
+1. **准备美版原版《宝可梦 绿宝石》ROM。** 在 [Elite Redux 官方补丁器](https://elite-redux.com/) 选中这份 `.gba`，应用与本汉化包对应的 **Elite Redux 英文补丁**，保存生成的英文 ER `.gba`。
+2. **核对英文 ER 的 SHA-256。** 与下方的 `bd7acbdd` 英文基线哈希逐字比较。若不一致，先换成匹配的英文 ER 构建。
+3. **应用中文 BPS。** 在支持 BPS 的补丁器里，把第 1 步生成、且校验一致的**英文 ER** 选作 ROM 输入，把 [中文 BPS](patches/ER-2.65.5.2b-CN_from-bd7acbdd.preview.bps) 选作补丁。点击应用，将结果另存为汉化版 `.gba`。
+4. **检查汉化结果。** 对照 [校验记录](SHA256SUMS.txt) 中「汉化结果」的 SHA-256。核对后用 GBA 模拟器打开生成的汉化版。
 
 英文 ER 输入 SHA-256
 
