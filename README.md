@@ -24,6 +24,6 @@
 
 感谢 Elite Redux 和 pokeemerald 项目的贡献者。
 
-感谢汉化群的商尊、竖起flag迎风飘扬、提督是只猫、salted fish，以及贴吧网友 eeee5555 对项目的支持。
+感谢 Elite Redux 汉化组完成源码汉化工程，也感谢贴吧网友 eeee5555 提供源码汉化的思路。
 
 字库素材署名待核实后补齐。
