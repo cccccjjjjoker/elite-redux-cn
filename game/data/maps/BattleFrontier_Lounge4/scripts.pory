@@ -1,0 +1,32 @@
+raw `
+BattleFrontier_Lounge4_MapScripts:: @ 826358C
+	.byte 0
+
+BattleFrontier_Lounge4_EventScript_Woman:: @ 826358D
+	msgbox BattleFrontier_Lounge4_Text_WonderIfInterviewsAiring, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge4_EventScript_Cook:: @ 8263596
+	msgbox BattleFrontier_Lounge4_Text_IfIOpenedRestaurantHere, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge4_EventScript_Man:: @ 826359F
+	msgbox BattleFrontier_Lounge4_Text_NeedBreatherAfterBattles, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge4_Text_WonderIfInterviewsAiring: @ 82635A8
+	.string "不知道今天会不会播出\n"
+	.string "强手的访谈？$"
+
+BattleFrontier_Lounge4_Text_IfIOpenedRestaurantHere: @ 82635EC
+	.string "我要是在这儿开家餐厅，\n"
+	.string "肯定能赚钱。$"
+
+BattleFrontier_Lounge4_Text_NeedBreatherAfterBattles: @ 8263625
+	.string "呼……\n"
+	.string "激烈对战之后，\p"
+	.string "我得喘口气……\n"
+	.string "可就算现在，我也从没停下\p"
+	.string "琢磨战术和连招。$"
+
+`

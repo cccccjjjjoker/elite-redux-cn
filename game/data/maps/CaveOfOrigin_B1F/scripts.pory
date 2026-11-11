@@ -1,0 +1,118 @@
+raw `
+.set LOCALID_WALLACE, 1
+
+CaveOfOrigin_B1F_MapScripts:: @ 82357A8
+	.byte 0
+
+CaveOfOrigin_B1F_EventScript_Wallace:: @ 82357A9
+	lock
+	faceplayer
+	msgbox CaveOfOrigin_B1F_Text_WallaceStory, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_WALLACE, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	delay 60
+	playse SE_PIN
+	applymovement LOCALID_WALLACE, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_WALLACE, Common_Movement_Delay48
+	waitmovement 0
+	delay 30
+	applymovement LOCALID_WALLACE, Common_Movement_FacePlayer
+	waitmovement 0
+	message CaveOfOrigin_B1F_Text_WhereIsRayquaza
+	waitmessage
+	goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+
+CaveOfOrigin_B1F_EventScript_WheresRayquaza:: @ 82357F0
+	multichoice 0, 0, MULTI_WHERES_RAYQUAZA, FALSE
+	switch VAR_RESULT
+	case 0, CaveOfOrigin_B1F_EventScript_AtCaveOfOrigin
+	case 1, CaveOfOrigin_B1F_EventScript_AtMtPyre
+	case 2, CaveOfOrigin_B1F_EventScript_AtSkyPillar
+	case 3, CaveOfOrigin_B1F_EventScript_DontRemember
+	goto CaveOfOrigin_B1F_EventScript_DontRemember
+	end
+
+CaveOfOrigin_B1F_EventScript_AtCaveOfOrigin:: @ 823582C
+	message CaveOfOrigin_B1F_Text_ButWereInCaveOfOrigin
+	waitmessage
+	goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+
+CaveOfOrigin_B1F_EventScript_AtMtPyre:: @ 8235837
+	message CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat
+	waitmessage
+	goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+
+CaveOfOrigin_B1F_EventScript_DontRemember:: @ 8235842
+	message CaveOfOrigin_B1F_Text_CantYouRememberSomehow
+	waitmessage
+	goto CaveOfOrigin_B1F_EventScript_WheresRayquaza
+
+CaveOfOrigin_B1F_EventScript_AtSkyPillar:: @ 823584D
+	msgbox CaveOfOrigin_B1F_Text_WellHeadToSkyPillar, MSGBOX_DEFAULT
+	closemessage
+	playse SE_EXIT
+	fadescreenspeed FADE_TO_BLACK, 4
+	setflag FLAG_WALLACE_GOES_TO_SKY_PILLAR
+	setvar VAR_SOOTOPOLIS_CITY_STATE, 3
+	removeobject LOCALID_WALLACE
+	clearflag FLAG_HIDE_SKY_PILLAR_WALLACE
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+CaveOfOrigin_B1F_Text_WallaceStory: @ 823586E
+	.string "啊，你就是{PLAYER}{KUN}？\n"
+	.string "我听过你的事迹。\p"
+	.string "我叫米可利。\n"
+	.string "我曾是琉璃市的道馆馆主，\p"
+	.string "但后来出了些事。\n"
+	.string "所以现在，我把道馆的运营\p"
+	.string "托付给了我的师父亚当。\n"
+	.string "…… …… …… ……\p"
+	.string "…… …… …… ……\n"
+	.string "在这里大肆破坏的固拉多和盖欧卡，\p"
+	.string "被认为是超古代宝可梦。\n"
+	.string "但超古代宝可梦并不只有两只。\p"
+	.string "还有一只在某个地方。\n"
+	.string "在某个地方，有一只叫烈空坐的\p"
+	.string "超古代宝可梦。\n"
+	.string "据说在遥远的过去，\p"
+	.string "正是烈空坐让那两个对手平静下来。\n"
+	.string "但连我也不知道烈空坐在哪里……$"
+
+CaveOfOrigin_B1F_Text_WhereIsRayquaza: @ 8235ACE
+	.string "米可利：{PLAYER}{KUN}，\n"
+	.string "你也许知道烈空坐现在在哪儿？\p"
+	.string "如果知道，请告诉我。$"
+
+CaveOfOrigin_B1F_Text_ButWereInCaveOfOrigin: @ 8235B23
+	.string "米可利：觉醒祠堂？\n"
+	.string "可那就在这里啊！\p"
+	.string "这答案可不行！\n"
+	.string "拜托，请你想想烈空坐现在\p"
+	.string "可能在什么地方。$"
+
+CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat: @ 8235BBF
+	.string "米可利：送神火山？\n"
+	.string "可是我早前在那里见到那位老妇人时\p"
+	.string "，\n"
+	.string "她完全没提到。\p"
+	.string "我很怀疑那位老妇人会对我隐瞒什么\n"
+	.string "……\p"
+	.string "{PLAYER}{KUN}，能再仔细想想吗？$"
+
+CaveOfOrigin_B1F_Text_CantYouRememberSomehow: @ 8235C99
+	.string "米可利：咦？你不记得了？\n"
+	.string "嗯……这可麻烦了……\p"
+	.string "你就不能想起来吗？$"
+
+CaveOfOrigin_B1F_Text_WellHeadToSkyPillar: @ 8235CEE
+	.string "米可利：天空之柱？\n"
+	.string "就是那里！\p"
+	.string "一定是天空之柱！\n"
+	.string "{PLAYER}{KUN}，一刻也不能耽误！\p"
+	.string "我们马上出发去天空之柱！$"
+
+`

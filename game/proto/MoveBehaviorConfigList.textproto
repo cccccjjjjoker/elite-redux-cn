@@ -1,0 +1,2316 @@
+# proto-file: MoveBehaviorConfigList.proto
+# proto-message: er.MoveBehaviorConfigList
+
+config {
+  id: EFFECT_HIT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_SLEEP
+  legacy_config: "BattleScript_EffectSleep"
+}
+config {
+  id: EFFECT_POISON_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_POISON
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_ABSORB
+  legacy_config: "BattleScript_EffectAbsorb"
+}
+config {
+  id: EFFECT_BURN_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_BURN
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_PARALYZE_HIT
+  legacy_config: "BattleScript_EffectParalyzeHit"
+}
+config {
+  id: EFFECT_EXPLOSION
+  legacy_config: "BattleScript_EffectExplosion"
+}
+config {
+  id: EFFECT_DREAM_EATER
+  legacy_config: "BattleScript_EffectDreamEater"
+}
+config {
+  id: EFFECT_MIRROR_MOVE
+  legacy_config: "BattleScript_EffectMirrorMove"
+}
+config {
+  id: EFFECT_ATTACK_UP
+  legacy_config: "BattleScript_EffectAttackUp"
+}
+config {
+  id: EFFECT_DEFENSE_UP
+  legacy_config: "BattleScript_EffectDefenseUp"
+}
+config {
+  id: EFFECT_SPEED_UP
+  legacy_config: "BattleScript_EffectSpeedUp"
+}
+config {
+  id: EFFECT_SPECIAL_ATTACK_UP
+  legacy_config: "BattleScript_EffectSpecialAttackUp"
+}
+config {
+  id: EFFECT_SPECIAL_DEFENSE_UP
+  legacy_config: "BattleScript_EffectSpecialDefenseUp"
+}
+config {
+  id: EFFECT_ACCURACY_UP
+  legacy_config: "BattleScript_EffectAccuracyUp"
+}
+config {
+  id: EFFECT_EVASION_UP
+  legacy_config: "BattleScript_EffectEvasionUp"
+}
+config {
+  id: EFFECT_SPECIAL_ATTACK_UP_3
+  legacy_config: "BattleScript_EffectSpecialAttackUp3"
+}
+config {
+  id: EFFECT_ATTACK_DOWN
+  legacy_config: "BattleScript_EffectAttackDown"
+}
+config {
+  id: EFFECT_DEFENSE_DOWN
+  legacy_config: "BattleScript_EffectDefenseDown"
+}
+config {
+  id: EFFECT_SPEED_DOWN
+  legacy_config: "BattleScript_EffectSpeedDown"
+}
+config {
+  id: EFFECT_SPECIAL_ATTACK_DOWN
+  legacy_config: "BattleScript_EffectSpecialAttackDown"
+}
+config {
+  id: EFFECT_SPECIAL_DEFENSE_DOWN
+  legacy_config: "BattleScript_EffectSpecialDefenseDown"
+}
+config {
+  id: EFFECT_ACCURACY_DOWN
+  legacy_config: "BattleScript_EffectAccuracyDown"
+}
+config {
+  id: EFFECT_EVASION_DOWN
+  legacy_config: "BattleScript_EffectEvasionDown"
+}
+config {
+  id: EFFECT_HAZE
+  legacy_config: "BattleScript_EffectHaze"
+}
+config {
+  id: EFFECT_BIDE
+  legacy_config: "BattleScript_EffectBide"
+}
+config {
+  id: EFFECT_RAMPAGE
+  legacy_config: "BattleScript_EffectRampage"
+}
+config {
+  id: EFFECT_ROAR
+  legacy_config: "BattleScript_EffectRoar"
+}
+config {
+  id: EFFECT_MULTI_HIT
+  legacy_config: "BattleScript_EffectArgumentHit"
+}
+config {
+  id: EFFECT_CONVERSION
+  legacy_config: "BattleScript_EffectConversion"
+}
+config {
+  id: EFFECT_FLINCH_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_FLINCH
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_RESTORE_HP
+  legacy_config: "BattleScript_EffectRestoreHp"
+}
+config {
+  id: EFFECT_TOXIC
+  legacy_config: "BattleScript_EffectToxic"
+}
+config {
+  id: EFFECT_PAY_DAY
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_PAYDAY
+      }
+    }
+    damage {
+      condition {
+        species {
+          species: SPECIES_MEOWTH_PARTNER_MEGA
+          species: SPECIES_MEOWTH_PARTNER
+          battler: BATTLER_ATTACKER
+          exact: true
+        }
+      }
+      condition {
+        item {
+          item: ITEM_AMULET_COIN
+          battler: BATTLER_ATTACKER
+        }
+      }
+      set: 120
+    }
+  }
+}
+config {
+  id: EFFECT_LIGHT_SCREEN
+  legacy_config: "BattleScript_EffectLightScreen"
+}
+config {
+  id: EFFECT_TRI_ATTACK
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_TRI_ATTACK
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_REST
+  legacy_config: "BattleScript_EffectRest"
+}
+config {
+  id: EFFECT_OHKO
+  legacy_config: "BattleScript_EffectOHKO"
+}
+config {
+  id: EFFECT_FUSION_COMBO
+  attack {
+    damage {
+      condition {
+        custom: true
+      }
+      multiply: 2.0
+    }
+  }
+}
+config {
+  id: EFFECT_SUPER_FANG
+  legacy_config: "BattleScript_EffectSuperFang"
+}
+config {
+  id: EFFECT_DRAGON_RAGE
+  legacy_config: "BattleScript_EffectDragonRage"
+}
+config {
+  id: EFFECT_TRAP
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_WRAP
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_HEAL_BLOCK
+  legacy_config: "BattleScript_EffectHealBlock"
+}
+config {
+  id: EFFECT_DOUBLE_HIT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_RECOIL_IF_MISS
+  legacy_config: "BattleScript_EffectRecoilIfMiss"
+}
+config {
+  id: EFFECT_MIST
+  legacy_config: "BattleScript_EffectMist"
+}
+config {
+  id: EFFECT_FOCUS_ENERGY
+  legacy_config: "BattleScript_EffectFocusEnergy"
+}
+config {
+  id: EFFECT_RECOIL_25
+  attack {
+    recoil_fraction: 4
+  }
+}
+config {
+  id: EFFECT_CONFUSE
+  legacy_config: "BattleScript_EffectConfuse"
+}
+config {
+  id: EFFECT_ATTACK_UP_2
+  legacy_config: "BattleScript_EffectAttackUp2"
+}
+config {
+  id: EFFECT_DEFENSE_UP_2
+  legacy_config: "BattleScript_EffectDefenseUp2"
+}
+config {
+  id: EFFECT_SPEED_UP_2
+  legacy_config: "BattleScript_EffectSpeedUp2"
+}
+config {
+  id: EFFECT_SPECIAL_ATTACK_UP_2
+  legacy_config: "BattleScript_EffectSpecialAttackUp2"
+}
+config {
+  id: EFFECT_SPECIAL_DEFENSE_UP_2
+  legacy_config: "BattleScript_EffectSpecialDefenseUp2"
+}
+config {
+  id: EFFECT_ACCURACY_UP_2
+  legacy_config: "BattleScript_EffectAccuracyUp2"
+}
+config {
+  id: EFFECT_EVASION_UP_2
+  legacy_config: "BattleScript_EffectEvasionUp2"
+}
+config {
+  id: EFFECT_TRANSFORM
+  legacy_config: "BattleScript_EffectTransform"
+}
+config {
+  id: EFFECT_ATTACK_DOWN_2
+  legacy_config: "BattleScript_EffectAttackDown2"
+}
+config {
+  id: EFFECT_DEFENSE_DOWN_2
+  legacy_config: "BattleScript_EffectDefenseDown2"
+}
+config {
+  id: EFFECT_SPEED_DOWN_2
+  legacy_config: "BattleScript_EffectSpeedDown2"
+}
+config {
+  id: EFFECT_SPECIAL_ATTACK_DOWN_2
+  legacy_config: "BattleScript_EffectSpecialAttackDown2"
+}
+config {
+  id: EFFECT_SPECIAL_DEFENSE_DOWN_2
+  legacy_config: "BattleScript_EffectSpecialDefenseDown2"
+}
+config {
+  id: EFFECT_ACCURACY_DOWN_2
+  legacy_config: "BattleScript_EffectAccuracyDown2"
+}
+config {
+  id: EFFECT_EVASION_DOWN_2
+  legacy_config: "BattleScript_EffectEvasionDown2"
+}
+config {
+  id: EFFECT_REFLECT
+  legacy_config: "BattleScript_EffectReflect"
+}
+config {
+  id: EFFECT_POISON
+  legacy_config: "BattleScript_EffectPoison"
+}
+config {
+  id: EFFECT_PARALYZE
+  legacy_config: "BattleScript_EffectParalyze"
+}
+config {
+  id: EFFECT_ATTACK_DOWN_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_ATK_MINUS_1
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_DEFENSE_DOWN_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_DEF_MINUS_1
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_SPEED_DOWN_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SPD_MINUS_1
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_SPECIAL_ATTACK_DOWN_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SP_ATK_MINUS_1
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_SPECIAL_DEFENSE_DOWN_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SP_DEF_MINUS_1
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_ACCURACY_DOWN_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_ACC_MINUS_1
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_EVASION_DOWN_HIT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_TWO_TURNS_ATTACK
+  legacy_config: "BattleScript_EffectTwoTurnsAttack"
+}
+config {
+  id: EFFECT_CONFUSE_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_CONFUSION
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_TWINEEDLE
+  legacy_config: "BattleScript_EffectTwineedle"
+}
+config {
+  id: EFFECT_VITAL_THROW
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_SUBSTITUTE
+  legacy_config: "BattleScript_EffectSubstitute"
+}
+config {
+  id: EFFECT_RECHARGE
+  legacy_config: "BattleScript_EffectRecharge"
+}
+config {
+  id: EFFECT_RAGE
+  legacy_config: "BattleScript_EffectRage"
+}
+config {
+  id: EFFECT_MIMIC
+  legacy_config: "BattleScript_EffectMimic"
+}
+config {
+  id: EFFECT_METRONOME
+  legacy_config: "BattleScript_EffectMetronome"
+}
+config {
+  id: EFFECT_LEECH_SEED
+  legacy_config: "BattleScript_EffectLeechSeed"
+}
+config {
+  id: EFFECT_DO_NOTHING
+  legacy_config: "BattleScript_EffectDoNothing"
+}
+config {
+  id: EFFECT_DISABLE
+  legacy_config: "BattleScript_EffectDisable"
+}
+config {
+  id: EFFECT_LEVEL_DAMAGE
+  legacy_config: "BattleScript_EffectLevelDamage"
+}
+config {
+  id: EFFECT_PSYWAVE
+  legacy_config: "BattleScript_EffectPsywave"
+}
+config {
+  id: EFFECT_COUNTER
+  legacy_config: "BattleScript_EffectCounter"
+}
+config {
+  id: EFFECT_ENCORE
+  legacy_config: "BattleScript_EffectEncore"
+}
+config {
+  id: EFFECT_PAIN_SPLIT
+  legacy_config: "BattleScript_EffectPainSplit"
+}
+config {
+  id: EFFECT_SNORE
+  legacy_config: "BattleScript_EffectSnore"
+}
+config {
+  id: EFFECT_CONVERSION_2
+  legacy_config: "BattleScript_EffectConversion2"
+}
+config {
+  id: EFFECT_LOCK_ON
+  legacy_config: "BattleScript_EffectLockOn"
+}
+config {
+  id: EFFECT_SKETCH
+  legacy_config: "BattleScript_EffectSketch"
+}
+config {
+  id: EFFECT_HAMMER_ARM
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SPD_MINUS_1
+        affects_user: true
+        certain: true
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_SLEEP_TALK
+  legacy_config: "BattleScript_EffectSleepTalk"
+}
+config {
+  id: EFFECT_DESTINY_BOND
+  legacy_config: "BattleScript_EffectDestinyBond"
+}
+config {
+  id: EFFECT_FLAIL
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_SPITE
+  legacy_config: "BattleScript_EffectSpite"
+}
+config {
+  id: EFFECT_FALSE_SWIPE
+  legacy_config: "BattleScript_EffectArgumentHit"
+}
+config {
+  id: EFFECT_HEAL_BELL
+  legacy_config: "BattleScript_EffectHealBell"
+}
+config {
+  id: EFFECT_ALWAYS_CRIT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_TRIPLE_KICK
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_THIEF
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_STEAL_ITEM
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_MEAN_LOOK
+  legacy_config: "BattleScript_EffectMeanLook"
+}
+config {
+  id: EFFECT_NIGHTMARE
+  legacy_config: "BattleScript_EffectNightmare"
+}
+config {
+  id: EFFECT_MINIMIZE
+  legacy_config: "BattleScript_EffectMinimize"
+}
+config {
+  id: EFFECT_CURSE
+  legacy_config: "BattleScript_EffectCurse"
+}
+config {
+  id: EFFECT_HEALING_WISH
+  legacy_config: "BattleScript_EffectHealingWish"
+}
+config {
+  id: EFFECT_PROTECT
+  legacy_config: "BattleScript_EffectProtect"
+}
+config {
+  id: EFFECT_SPIKES
+  legacy_config: "BattleScript_EffectSpikes"
+}
+config {
+  id: EFFECT_FORESIGHT
+  legacy_config: "BattleScript_EffectForesight"
+}
+config {
+  id: EFFECT_PERISH_SONG
+  legacy_config: "BattleScript_EffectPerishSong"
+}
+config {
+  id: EFFECT_SANDSTORM
+  legacy_config: "BattleScript_EffectSandstorm"
+}
+config {
+  id: EFFECT_ENDURE
+  legacy_config: "BattleScript_EffectEndure"
+}
+config {
+  id: EFFECT_ROLLOUT
+  legacy_config: "BattleScript_EffectRollout"
+}
+config {
+  id: EFFECT_SWAGGER
+  legacy_config: "BattleScript_EffectSwagger"
+}
+config {
+  id: EFFECT_ATTRACT
+  legacy_config: "BattleScript_EffectAttract"
+}
+config {
+  id: EFFECT_SAFEGUARD
+  legacy_config: "BattleScript_EffectSafeguard"
+}
+config {
+  id: EFFECT_UNUSED_125
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_MAGNITUDE
+  legacy_config: "BattleScript_EffectMagnitude"
+}
+config {
+  id: EFFECT_BATON_PASS
+  legacy_config: "BattleScript_EffectBatonPass"
+}
+config {
+  id: EFFECT_PURSUIT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_RAPID_SPIN
+  legacy_config: "BattleScript_EffectRapidSpin"
+}
+config {
+  id: EFFECT_CAPTIVATE
+  attack {
+    damage {
+      condition {
+        status {
+          status: STATUS2_INFATUATION
+          battler: BATTLER_TARGET
+        }
+      }
+      multiply: 2
+    }
+  }
+}
+config {
+  id: EFFECT_MORNING_SUN
+  legacy_config: "BattleScript_EffectMorningSun"
+}
+config {
+  id: EFFECT_SYNTHESIS
+  legacy_config: "BattleScript_EffectSynthesis"
+}
+config {
+  id: EFFECT_MOONLIGHT
+  legacy_config: "BattleScript_EffectMoonlight"
+}
+config {
+  id: EFFECT_HIDDEN_POWER
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_RAIN_DANCE
+  legacy_config: "BattleScript_EffectRainDance"
+}
+config {
+  id: EFFECT_SUNNY_DAY
+  legacy_config: "BattleScript_EffectSunnyDay"
+}
+config {
+  id: EFFECT_DEFENSE_UP_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_DEF_PLUS_1
+        affects_user: true
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_ATTACK_UP_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_ATK_PLUS_1
+        affects_user: true
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_ALL_STATS_UP_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_ALL_STATS_UP
+        affects_user: true
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_FELL_STINGER
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_BELLY_DRUM
+  legacy_config: "BattleScript_EffectBellyDrum"
+}
+config {
+  id: EFFECT_PSYCH_UP
+  legacy_config: "BattleScript_EffectPsychUp"
+}
+config {
+  id: EFFECT_MIRROR_COAT
+  legacy_config: "BattleScript_EffectMirrorCoat"
+}
+config {
+  id: EFFECT_SKULL_BASH
+  legacy_config: "BattleScript_EffectSkullBash"
+}
+config {
+  id: EFFECT_TWISTER
+  legacy_config: "BattleScript_EffectTwister"
+}
+config {
+  id: EFFECT_EARTHQUAKE
+  legacy_config: "BattleScript_EffectEarthquake"
+}
+config {
+  id: EFFECT_FUTURE_SIGHT
+  legacy_config: "BattleScript_EffectFutureSight"
+}
+config {
+  id: EFFECT_GUST
+  legacy_config: "BattleScript_EffectGust"
+}
+config {
+  id: EFFECT_FLINCH_MINIMIZE_HIT
+  legacy_config: "BattleScript_EffectStomp"
+}
+config {
+  id: EFFECT_SOLARBEAM
+  legacy_config: "BattleScript_EffectSolarbeam"
+}
+config {
+  id: EFFECT_THUNDER
+  legacy_config: "BattleScript_EffectThunder"
+}
+config {
+  id: EFFECT_SWITCH_ARGUMENT
+  legacy_config: "BattleScript_EffectBatonPass"
+}
+config {
+  id: EFFECT_BEAT_UP
+  legacy_config: "BattleScript_EffectBeatUp"
+}
+config {
+  id: EFFECT_SEMI_INVULNERABLE
+  legacy_config: "BattleScript_EffectSemiInvulnerable"
+}
+config {
+  id: EFFECT_DEFENSE_CURL
+  legacy_config: "BattleScript_EffectDefenseCurl"
+}
+config {
+  id: EFFECT_SOFTBOILED
+  legacy_config: "BattleScript_EffectSoftboiled"
+}
+config {
+  id: EFFECT_FAKE_OUT
+  legacy_config: "BattleScript_EffectFakeOut"
+}
+config {
+  id: EFFECT_UPROAR
+  legacy_config: "BattleScript_EffectUproar"
+}
+config {
+  id: EFFECT_STOCKPILE
+  legacy_config: "BattleScript_EffectStockpile"
+}
+config {
+  id: EFFECT_SPIT_UP
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_SWALLOW
+  legacy_config: "BattleScript_EffectRestoreHp"
+}
+config {
+  id: EFFECT_WORRY_SEED
+  legacy_config: "BattleScript_EffectWorrySeed"
+}
+config {
+  id: EFFECT_HAIL
+  legacy_config: "BattleScript_EffectHail"
+}
+config {
+  id: EFFECT_TORMENT
+  legacy_config: "BattleScript_EffectTorment"
+}
+config {
+  id: EFFECT_FLATTER
+  legacy_config: "BattleScript_EffectFlatter"
+}
+config {
+  id: EFFECT_WILL_O_WISP
+  legacy_config: "BattleScript_EffectWillOWisp"
+}
+config {
+  id: EFFECT_MEMENTO
+  legacy_config: "BattleScript_EffectMemento"
+}
+config {
+  id: EFFECT_FACADE
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_FOCUS_PUNCH
+  legacy_config: "BattleScript_EffectFocusPunch"
+}
+config {
+  id: EFFECT_SMELLINGSALT
+  legacy_config: "BattleScript_EffectSmellingsalt"
+}
+config {
+  id: EFFECT_FOLLOW_ME
+  legacy_config: "BattleScript_EffectFollowMe"
+}
+config {
+  id: EFFECT_NATURE_POWER
+  legacy_config: "BattleScript_EffectNaturePower"
+}
+config {
+  id: EFFECT_CHARGE
+  legacy_config: "BattleScript_EffectCharge"
+}
+config {
+  id: EFFECT_TAUNT
+  legacy_config: "BattleScript_EffectTaunt"
+}
+config {
+  id: EFFECT_HELPING_HAND
+  legacy_config: "BattleScript_EffectHelpingHand"
+}
+config {
+  id: EFFECT_TRICK
+  legacy_config: "BattleScript_EffectTrick"
+}
+config {
+  id: EFFECT_ROLE_PLAY
+  legacy_config: "BattleScript_EffectRolePlay"
+}
+config {
+  id: EFFECT_WISH
+  legacy_config: "BattleScript_EffectWish"
+}
+config {
+  id: EFFECT_ASSIST
+  legacy_config: "BattleScript_EffectAssist"
+}
+config {
+  id: EFFECT_INGRAIN
+  legacy_config: "BattleScript_EffectIngrain"
+}
+config {
+  id: EFFECT_SUPERPOWER
+  legacy_config: "BattleScript_EffectSuperpower"
+}
+config {
+  id: EFFECT_MAGIC_COAT
+  legacy_config: "BattleScript_EffectMagicCoat"
+}
+config {
+  id: EFFECT_RECYCLE
+  legacy_config: "BattleScript_EffectRecycle"
+}
+config {
+  id: EFFECT_REVENGE
+  attack {
+    damage {
+      condition {
+        damaged {
+          battler: BATTLER_ATTACKER
+          by: BATTLER_TARGET
+        }
+      }
+      multiply: 2.0
+    }
+  }
+}
+config {
+  id: EFFECT_BRICK_BREAK
+  legacy_config: "BattleScript_EffectBrickBreak"
+}
+config {
+  id: EFFECT_YAWN
+  legacy_config: "BattleScript_EffectYawn"
+}
+config {
+  id: EFFECT_KNOCK_OFF
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_KNOCK_OFF
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_ENDEAVOR
+  legacy_config: "BattleScript_EffectEndeavor"
+}
+config {
+  id: EFFECT_ERUPTION
+  attack {
+    damage {
+      custom: true
+    }
+    effect {
+      argument_effect: true
+    }
+  }
+}
+config {
+  id: EFFECT_SKILL_SWAP
+  legacy_config: "BattleScript_EffectSkillSwap"
+}
+config {
+  id: EFFECT_IMPRISON
+  legacy_config: "BattleScript_EffectImprison"
+}
+config {
+  id: EFFECT_REFRESH
+  legacy_config: "BattleScript_EffectRefresh"
+}
+config {
+  id: EFFECT_GRUDGE
+  legacy_config: "BattleScript_EffectGrudge"
+}
+config {
+  id: EFFECT_SNATCH
+  legacy_config: "BattleScript_EffectSnatch"
+}
+config {
+  id: EFFECT_LOW_KICK
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_SECRET_POWER
+  legacy_config: "BattleScript_EffectSecretPower"
+}
+config {
+  id: EFFECT_RECOIL_33
+  attack {
+    recoil_fraction: 3
+  }
+}
+config {
+  id: EFFECT_TEETER_DANCE
+  legacy_config: "BattleScript_EffectTeeterDance"
+}
+config {
+  id: EFFECT_HIT_ESCAPE
+  legacy_config: "BattleScript_EffectHitEscape"
+}
+config {
+  id: EFFECT_MUD_SPORT
+  legacy_config: "BattleScript_EffectMudSport"
+}
+config {
+  id: EFFECT_POISON_FANG
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_TOXIC
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_WEATHER_BALL
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_OVERHEAT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SP_ATK_MINUS_2
+        affects_user: true
+        certain: true
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_TICKLE
+  legacy_config: "BattleScript_EffectTickle"
+}
+config {
+  id: EFFECT_COSMIC_POWER
+  legacy_config: "BattleScript_EffectCosmicPower"
+}
+config {
+  id: EFFECT_SKY_UPPERCUT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_BULK_UP
+  legacy_config: "BattleScript_EffectBulkUp"
+}
+config {
+  id: EFFECT_PLACEHOLDER
+  legacy_config: "BattleScript_EffectPlaceholder"
+}
+config {
+  id: EFFECT_WATER_SPORT
+  legacy_config: "BattleScript_EffectWaterSport"
+}
+config {
+  id: EFFECT_CALM_MIND
+  legacy_config: "BattleScript_EffectCalmMind"
+}
+config {
+  id: EFFECT_DRAGON_DANCE
+  legacy_config: "BattleScript_EffectDragonDance"
+}
+config {
+  id: EFFECT_CAMOUFLAGE
+  legacy_config: "BattleScript_EffectCamouflage"
+}
+config {
+  id: EFFECT_PLEDGE
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_FLING
+  legacy_config: "BattleScript_EffectFling"
+}
+config {
+  id: EFFECT_NATURAL_GIFT
+  legacy_config: "BattleScript_EffectNaturalGift"
+}
+config {
+  id: EFFECT_WAKE_UP_SLAP
+  legacy_config: "BattleScript_EffectWakeUpSlap"
+}
+config {
+  id: EFFECT_HEX
+  attack {
+    effect {
+      argument_effect: true
+    }
+    damage {
+      condition {
+        status {
+          status: STATUS1_ANY
+          battler: BATTLER_TARGET
+        }
+      }
+      multiply: 2.0
+    }
+  }
+}
+config {
+  id: EFFECT_ASSURANCE
+  attack {
+    damage {
+      condition {
+        damaged {
+          battler: BATTLER_TARGET
+        }
+      }
+      multiply: 2.0
+    }
+  }
+}
+config {
+  id: EFFECT_TRUMP_CARD
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_ACROBATICS
+  attack {
+    damage {
+      condition {
+        # Gems are weird
+        custom: true
+      }
+      multiply: 1.5
+    }
+  }
+}
+config {
+  id: EFFECT_HEAT_CRASH
+  attack {
+    damage {
+      custom: true
+    }
+    effect {
+      argument_effect: true
+    }
+  }
+}
+config {
+  id: EFFECT_PUNISHMENT
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_STORED_POWER
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_ELECTRO_BALL
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_GYRO_BALL
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_ECHOED_VOICE
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_PAYBACK
+  attack {
+    damage {
+      condition {
+        acts_after {
+          before: BATTLER_TARGET
+          after: BATTLER_ATTACKER
+          fail_if_switching: true
+        }
+      }
+      multiply: 2.0
+    }
+  }
+}
+config {
+  id: EFFECT_ROUND
+  attack {
+    effect {
+      argument_effect: true
+    }
+    damage {
+      condition {
+        custom: true
+      }
+      multiply: 2.0
+    }
+  }
+}
+config {
+  id: EFFECT_BRINE
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_VENOSHOCK
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_RETALIATE
+  attack {
+    damage {
+      condition {
+        recent_fainted {
+          battler: BATTLER_ATTACKER
+        }
+      }
+      multiply: 2
+    }
+  }
+}
+config {
+  id: EFFECT_BULLDOZE
+  legacy_config: "BattleScript_EffectBulldoze"
+}
+config {
+  id: EFFECT_FOUL_PLAY
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_PSYSHOCK
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_ROOST
+  legacy_config: "BattleScript_EffectRoost"
+}
+config {
+  id: EFFECT_GRAVITY
+  legacy_config: "BattleScript_EffectGravity"
+}
+config {
+  id: EFFECT_MIRACLE_EYE
+  legacy_config: "BattleScript_EffectMiracleEye"
+}
+config {
+  id: EFFECT_TAILWIND
+  legacy_config: "BattleScript_EffectTailwind"
+}
+config {
+  id: EFFECT_EMBARGO
+  legacy_config: "BattleScript_EffectEmbargo"
+}
+config {
+  id: EFFECT_AQUA_RING
+  legacy_config: "BattleScript_EffectAquaRing"
+}
+config {
+  id: EFFECT_TRICK_ROOM
+  legacy_config: "BattleScript_EffectTrickRoom"
+}
+config {
+  id: EFFECT_WONDER_ROOM
+  legacy_config: "BattleScript_EffectWonderRoom"
+}
+config {
+  id: EFFECT_MAGIC_ROOM
+  legacy_config: "BattleScript_EffectMagicRoom"
+}
+config {
+  id: EFFECT_MAGNET_RISE
+  legacy_config: "BattleScript_EffectMagnetRise"
+}
+config {
+  id: EFFECT_TOXIC_SPIKES
+  legacy_config: "BattleScript_EffectToxicSpikes"
+}
+config {
+  id: EFFECT_GASTRO_ACID
+  legacy_config: "BattleScript_EffectGastroAcid"
+}
+config {
+  id: EFFECT_STEALTH_ROCK
+  legacy_config: "BattleScript_EffectStealthRock"
+}
+config {
+  id: EFFECT_TELEKINESIS
+  legacy_config: "BattleScript_EffectTelekinesis"
+}
+config {
+  id: EFFECT_POWER_SWAP
+  legacy_config: "BattleScript_EffectPowerSwap"
+}
+config {
+  id: EFFECT_GUARD_SWAP
+  legacy_config: "BattleScript_EffectGuardSwap"
+}
+config {
+  id: EFFECT_HEART_SWAP
+  legacy_config: "BattleScript_EffectHeartSwap"
+}
+config {
+  id: EFFECT_POWER_SPLIT
+  legacy_config: "BattleScript_EffectPowerSplit"
+}
+config {
+  id: EFFECT_GUARD_SPLIT
+  legacy_config: "BattleScript_EffectGuardSplit"
+}
+config {
+  id: EFFECT_STICKY_WEB
+  legacy_config: "BattleScript_EffectStickyWeb"
+}
+config {
+  id: EFFECT_METAL_BURST
+  legacy_config: "BattleScript_EffectMetalBurst"
+}
+config {
+  id: EFFECT_LUCKY_CHANT
+  legacy_config: "BattleScript_EffectLuckyChant"
+}
+config {
+  id: EFFECT_SUCKER_PUNCH
+  legacy_config: "BattleScript_EffectSuckerPunch"
+}
+config {
+  id: EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SP_DEF_MINUS_2
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_SIMPLE_BEAM
+  legacy_config: "BattleScript_EffectSimpleBeam"
+}
+config {
+  id: EFFECT_ENTRAINMENT
+  legacy_config: "BattleScript_EffectEntrainment"
+}
+config {
+  id: EFFECT_HEAL_PULSE
+  legacy_config: "BattleScript_EffectHealPulse"
+}
+config {
+  id: EFFECT_QUASH
+  legacy_config: "BattleScript_EffectQuash"
+}
+config {
+  id: EFFECT_ION_DELUGE
+  legacy_config: "BattleScript_EffectIonDeluge"
+}
+config {
+  id: EFFECT_FREEZE_DRY
+  attack {
+    super_effective_vs: TYPE_WATER
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_FROSTBITE
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_TOPSY_TURVY
+  legacy_config: "BattleScript_EffectTopsyTurvy"
+}
+config {
+  id: EFFECT_MISTY_TERRAIN
+  legacy_config: "BattleScript_EffectMistyTerrain"
+}
+config {
+  id: EFFECT_GRASSY_TERRAIN
+  legacy_config: "BattleScript_EffectGrassyTerrain"
+}
+config {
+  id: EFFECT_ELECTRIC_TERRAIN
+  legacy_config: "BattleScript_EffectElectricTerrain"
+}
+config {
+  id: EFFECT_PSYCHIC_TERRAIN
+  legacy_config: "BattleScript_EffectPsychicTerrain"
+}
+config {
+  id: EFFECT_ATTACK_ACCURACY_UP
+  legacy_config: "BattleScript_EffectAttackAccUp"
+}
+config {
+  id: EFFECT_ATTACK_SPATK_UP
+  legacy_config: "BattleScript_EffectAttackSpAttackUp"
+}
+config {
+  id: EFFECT_HURRICANE
+  legacy_config: "BattleScript_EffectHurricane"
+}
+config {
+  id: EFFECT_TWO_TYPED_MOVE
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_ME_FIRST
+  legacy_config: "BattleScript_EffectMeFirst"
+}
+config {
+  id: EFFECT_SPEED_UP_HIT
+  legacy_config: "BattleScript_EffectSpeedUpHit"
+}
+config {
+  id: EFFECT_QUIVER_DANCE
+  legacy_config: "BattleScript_EffectQuiverDance"
+}
+config {
+  id: EFFECT_COIL
+  legacy_config: "BattleScript_EffectCoil"
+}
+config {
+  id: EFFECT_ELECTRIFY
+  legacy_config: "BattleScript_EffectElectrify"
+}
+config {
+  id: EFFECT_REFLECT_TYPE
+  legacy_config: "BattleScript_EffectReflectType"
+}
+config {
+  id: EFFECT_SOAK
+  legacy_config: "BattleScript_EffectSoak"
+}
+config {
+  id: EFFECT_GROWTH
+  legacy_config: "BattleScript_EffectGrowth"
+}
+config {
+  id: EFFECT_CLOSE_COMBAT
+  legacy_config: "BattleScript_EffectCloseCombat"
+}
+config {
+  id: EFFECT_LAST_RESORT
+  legacy_config: "BattleScript_EffectLastResort"
+}
+config {
+  id: EFFECT_FLINCH_STATUS
+  legacy_config: "BattleScript_EffectFlinchWithStatus"
+}
+config {
+  id: EFFECT_RECOIL_50
+  attack {
+    recoil_fraction: 2
+  }
+}
+config {
+  id: EFFECT_SHELL_SMASH
+  legacy_config: "BattleScript_EffectShellSmash"
+}
+config {
+  id: EFFECT_SHIFT_GEAR
+  legacy_config: "BattleScript_EffectShiftGear"
+}
+config {
+  id: EFFECT_DEFENSE_UP_3
+  legacy_config: "BattleScript_EffectDefenseUp3"
+}
+config {
+  id: EFFECT_NOBLE_ROAR
+  legacy_config: "BattleScript_EffectNobleRoar"
+}
+config {
+  id: EFFECT_VENOM_DRENCH
+  legacy_config: "BattleScript_EffectVenomDrench"
+}
+config {
+  id: EFFECT_TOXIC_THREAD
+  legacy_config: "BattleScript_EffectToxicThread"
+}
+config {
+  id: EFFECT_CLEAR_SMOG
+  legacy_config: "BattleScript_EffectClearSmog"
+}
+config {
+  id: EFFECT_HIT_SWITCH_TARGET
+  legacy_config: "BattleScript_EffectHitSwitchTarget"
+}
+config {
+  id: EFFECT_FINAL_GAMBIT
+  legacy_config: "BattleScript_EffectFinalGambit"
+}
+config {
+  id: EFFECT_CHANGE_TYPE_ON_ITEM
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_AUTOTOMIZE
+  legacy_config: "BattleScript_EffectAutotomize"
+}
+config {
+  id: EFFECT_COPYCAT
+  legacy_config: "BattleScript_EffectCopycat"
+}
+config {
+  id: EFFECT_DEFOG
+  legacy_config: "BattleScript_EffectDefog"
+}
+config {
+  id: EFFECT_HIT_ENEMY_HEAL_ALLY
+  legacy_config: "BattleScript_EffectHitEnemyHealAlly"
+}
+config {
+  id: EFFECT_SMACK_DOWN
+  legacy_config: "BattleScript_EffectSmackDown"
+}
+config {
+  id: EFFECT_SYNCHRONOISE
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_PSYCHO_SHIFT
+  legacy_config: "BattleScript_EffectPsychoShift"
+}
+config {
+  id: EFFECT_POWER_TRICK
+  legacy_config: "BattleScript_EffectPowerTrick"
+}
+config {
+  id: EFFECT_FLAME_BURST
+  legacy_config: "BattleScript_EffectFlameBurst"
+}
+config {
+  id: EFFECT_AFTER_YOU
+  legacy_config: "BattleScript_EffectAfterYou"
+}
+config {
+  id: EFFECT_BESTOW
+  legacy_config: "BattleScript_EffectBestow"
+}
+config {
+  id: EFFECT_ROTOTILLER
+  legacy_config: "BattleScript_EffectRototiller"
+}
+config {
+  id: EFFECT_FLOWER_SHIELD
+  legacy_config: "BattleScript_EffectFlowerShield"
+}
+config {
+  id: EFFECT_HIT_PREVENT_ESCAPE
+  legacy_config: "BattleScript_EffectHitPreventEscape"
+}
+config {
+  id: EFFECT_SPEED_SWAP
+  legacy_config: "BattleScript_EffectSpeedSwap"
+}
+config {
+  id: EFFECT_DEFENSE_UP2_HIT
+  legacy_config: "BattleScript_EffectDefenseUp2Hit"
+}
+config {
+  id: EFFECT_REVELATION_DANCE
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_AURORA_VEIL
+  legacy_config: "BattleScript_EffectAuroraVeil"
+}
+config {
+  id: EFFECT_THIRD_TYPE
+  legacy_config: "BattleScript_EffectThirdType"
+}
+config {
+  id: EFFECT_FEINT
+  legacy_config: "BattleScript_EffectFeint"
+}
+config {
+  id: EFFECT_SPARKLING_ARIA
+  legacy_config: "BattleScript_EffectSparklingAria"
+}
+config {
+  id: EFFECT_ACUPRESSURE
+  legacy_config: "BattleScript_EffectAcupressure"
+}
+config {
+  id: EFFECT_AROMATIC_MIST
+  legacy_config: "BattleScript_EffectAromaticMist"
+}
+config {
+  id: EFFECT_POWDER
+  legacy_config: "BattleScript_EffectPowder"
+}
+config {
+  id: EFFECT_SP_ATTACK_UP_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SP_ATK_PLUS_1
+        affects_user: true
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_BELCH
+  legacy_config: "BattleScript_EffectBerrySmash"
+}
+config {
+  id: EFFECT_PARTING_SHOT
+  legacy_config: "BattleScript_EffectPartingShot"
+}
+config {
+  id: EFFECT_SPECTRAL_THIEF
+  legacy_config: "BattleScript_EffectSpectralThief"
+}
+config {
+  id: EFFECT_V_CREATE
+  legacy_config: "BattleScript_EffectVCreate"
+}
+config {
+  id: EFFECT_MAT_BLOCK
+  legacy_config: "BattleScript_EffectMatBlock"
+}
+config {
+  id: EFFECT_STOMPING_TANTRUM
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_CORE_ENFORCER
+  legacy_config: "BattleScript_EffectCoreEnforcer"
+}
+config {
+  id: EFFECT_INSTRUCT
+  legacy_config: "BattleScript_EffectInstruct"
+}
+config {
+  id: EFFECT_THROAT_CHOP
+  legacy_config: "BattleScript_EffectThroatChop"
+}
+config {
+  id: EFFECT_LASER_FOCUS
+  legacy_config: "BattleScript_EffectLaserFocus"
+}
+config {
+  id: EFFECT_MAGNETIC_FLUX
+  legacy_config: "BattleScript_EffectMagneticFlux"
+}
+config {
+  id: EFFECT_GEAR_UP
+  legacy_config: "BattleScript_EffectGearUp"
+}
+config {
+  id: EFFECT_INCINERATE
+  legacy_config: "BattleScript_EffectIncinerate"
+}
+config {
+  id: EFFECT_BUG_BITE
+  legacy_config: "BattleScript_EffectBugBite"
+}
+config {
+  id: EFFECT_STRENGTH_SAP
+  legacy_config: "BattleScript_EffectStrengthSap"
+}
+config {
+  id: EFFECT_MIND_BLOWN
+  legacy_config: "BattleScript_EffectMindBlown"
+}
+config {
+  id: EFFECT_PURIFY
+  legacy_config: "BattleScript_EffectPurify"
+}
+config {
+  id: EFFECT_BURN_UP
+  legacy_config: "BattleScript_EffectBurnUp"
+}
+config {
+  id: EFFECT_SHORE_UP
+  legacy_config: "BattleScript_EffectShoreUp"
+}
+config {
+  id: EFFECT_GEOMANCY
+  legacy_config: "BattleScript_EffectGeomancy"
+}
+config {
+  id: EFFECT_FAIRY_LOCK
+  legacy_config: "BattleScript_EffectFairyLock"
+}
+config {
+  id: EFFECT_ALLY_SWITCH
+  legacy_config: "BattleScript_EffectAllySwitch"
+}
+config {
+  id: EFFECT_RELIC_SONG
+  legacy_config: "BattleScript_EffectRelicSong"
+}
+config {
+  id: EFFECT_ATTACKER_DEFENSE_DOWN_HIT
+  legacy_config: "BattleScript_EffectAttackerDefenseDownHit"
+}
+config {
+  id: EFFECT_BODY_PRESS
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_EERIE_SPELL
+  legacy_config: "BattleScript_EffectEerieSpell"
+}
+config {
+  id: EFFECT_JUNGLE_HEALING
+  legacy_config: "BattleScript_EffectJungleHealing"
+}
+config {
+  id: EFFECT_COACHING
+  legacy_config: "BattleScript_EffectCoaching"
+}
+config {
+  id: EFFECT_LASH_OUT
+  attack {
+    damage {
+      custom: true
+    }
+  }
+}
+config {
+  id: EFFECT_GRASSY_GLIDE
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_REMOVE_TERRAIN
+  legacy_config: "BattleScript_EffectRemoveTerrain"
+}
+config {
+  id: EFFECT_DECORATE
+  legacy_config: "BattleScript_EffectDecorate"
+}
+config {
+  id: EFFECT_SNIPE_SHOT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_TEATIME
+  legacy_config: "BattleScript_EffectTeatime"
+}
+config {
+  id: EFFECT_RECOIL_HP_25
+  legacy_config: "BattleScript_EffectRecoilHP25"
+}
+config {
+  id: EFFECT_STUFF_CHEEKS
+  legacy_config: "BattleScript_EffectStuffCheeks"
+}
+config {
+  id: EFFECT_GRAV_APPLE
+  attack {
+    damage {
+      condition {
+        field_effect {
+          effect: FIELD_EFFECT_GRAVITY
+        }
+      }
+      multiply: 1.5
+    }
+    effect {
+      argument_effect: true
+    }
+  }
+}
+config {
+  id: EFFECT_EVASION_UP_HIT
+  legacy_config: "BattleScript_EffectEvasionUpHit"
+}
+config {
+  id: EFFECT_GLITZY_GLOW
+  legacy_config: "BattleScript_EffectGlitzyGlow"
+}
+config {
+  id: EFFECT_BADDY_BAD
+  legacy_config: "BattleScript_EffectBaddyBad"
+}
+config {
+  id: EFFECT_SAPPY_SEED
+  legacy_config: "BattleScript_EffectSappySeed"
+}
+config {
+  id: EFFECT_FREEZY_FROST
+  legacy_config: "BattleScript_EffectFreezyFrost"
+}
+config {
+  id: EFFECT_SPARKLY_SWIRL
+  legacy_config: "BattleScript_EffectSparklySwirl"
+}
+config {
+  id: EFFECT_PLASMA_FISTS
+  legacy_config: "BattleScript_EffectPlasmaFists"
+}
+config {
+  id: EFFECT_HYPERSPACE_FURY
+  legacy_config: "BattleScript_EffectHyperspaceFury"
+}
+config {
+  id: EFFECT_AURA_WHEEL
+  legacy_config: "BattleScript_EffectAuraWheel"
+}
+config {
+  id: EFFECT_PHOTON_GEYSER
+  legacy_config: "BattleScript_EffectPhotonGeyser"
+}
+config {
+  id: EFFECT_SHELL_SIDE_ARM
+  legacy_config: "BattleScript_EffectShellSideArm"
+}
+config {
+  id: EFFECT_TERRAIN_PULSE
+  attack {
+    damage {
+      condition {
+        terrain {
+          terrain: TERRAIN_ANY
+          battler: BATTLER_ATTACKER
+        }
+      }
+      multiply: 2
+    }
+  }
+}
+config {
+  id: EFFECT_JAW_LOCK
+  legacy_config: "BattleScript_EffectJawLock"
+}
+config {
+  id: EFFECT_NO_RETREAT
+  legacy_config: "BattleScript_EffectNoRetreat"
+}
+config {
+  id: EFFECT_TAR_SHOT
+  legacy_config: "BattleScript_EffectTarShot"
+}
+config {
+  id: EFFECT_POLTERGEIST
+  legacy_config: "BattleScript_EffectPoltergeist"
+}
+config {
+  id: EFFECT_OCTOLOCK
+  legacy_config: "BattleScript_EffectOctolock"
+}
+config {
+  id: EFFECT_CLANGOROUS_SOUL
+  legacy_config: "BattleScript_EffectClangorousSoul"
+}
+config {
+  id: EFFECT_BOLT_BEAK
+  attack {
+    damage {
+      condition {
+        acts_after {
+          after: BATTLER_TARGET
+          before: BATTLER_ATTACKER
+        }
+      }
+      multiply: 2.0
+    }
+  }
+}
+config {
+  id: EFFECT_RISING_VOLTAGE
+  attack {
+    damage {
+      condition {
+        terrain {
+          terrain: TERRAIN_ELECTRIC
+          battler: BATTLER_TARGET
+        }
+      }
+      multiply: 2
+    }
+  }
+}
+config {
+  id: EFFECT_BEAK_BLAST
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_FROSTBITE_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_FROSTBITE
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_EXPANDING_FORCE
+  attack {
+    damage {
+      condition {
+        terrain {
+          terrain: TERRAIN_PSYCHIC
+        }
+      }
+      set: 120
+    }
+  }
+}
+config {
+  id: EFFECT_STEEL_BEAM
+  legacy_config: "BattleScript_EffectSteelBeam"
+}
+config {
+  id: EFFECT_HOWL
+  legacy_config: "BattleScript_EffectAttackUpUserAlly"
+}
+config {
+  id: EFFECT_ATTRACT_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_ATTRACT
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_CURSE_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_CURSE
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_FLINCH_RECOIL_33
+  attack {
+    recoil_fraction: 3
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_FLINCH
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_FLINCH_RECOIL_50
+  attack {
+    recoil_fraction: 2
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_FLINCH
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_IGNORE_TYPE_IMMUNITY
+  attack {
+    ignore_type_immunity: true
+  }
+}
+config {
+  id: EFFECT_DOUBLE_DMG_IF_STATUS1
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_STEALTH_ROCK_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_STEALTH_ROCK
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_LEECH_SEED_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_LEECH_SEED
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_STICKY_WEB_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_STICKY_WEB
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_BLEED_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_BLEED
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_SLEEP_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SLEEP
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_BLEED
+  legacy_config: "BattleScript_EffectBleed"
+}
+config {
+  id: EFFECT_FROSTBITE
+  legacy_config: "BattleScript_EffectFrostbite"
+}
+config {
+  id: EFFECT_INFERNAL_PARADE
+  attack {
+    effect {
+      argument_effect: true
+    }
+    damage {
+      condition {
+        status {
+          status: STATUS1_ANY
+          battler: BATTLER_TARGET
+        }
+      }
+      multiply: 1.5
+    }
+  }
+}
+config {
+  id: EFFECT_MISTY_TERRAIN_BOOST
+  attack {
+    damage {
+      condition {
+        terrain {
+          terrain: TERRAIN_MISTY
+          battler: BATTLER_ATTACKER
+        }
+      }
+      multiply: 1.3
+    }
+  }
+}
+config {
+  id: EFFECT_BERRY_SMASH
+  legacy_config: "BattleScript_EffectBerrySmash"
+}
+config {
+  id: EFFECT_INVERSE_ROOM
+  legacy_config: "BattleScript_EffectInverseRoom"
+}
+config {
+  id: EFFECT_DRAIN_BRAIN
+  legacy_config: "BattleScript_EffectDrainBrain"
+}
+config {
+  id: EFFECT_WEATHER_BOOST
+  # Has unique interactions with weather. If non-trivial weather boost moves are needed please add a flag for it.
+  attack {}
+}
+config {
+  id: EFFECT_MORTAL_SPIN
+  legacy_config: "BattleScript_EffectMortalSpin"
+}
+config {
+  id: EFFECT_KARMA
+  legacy_config: "BattleScript_EffectKarma"
+}
+config {
+  id: EFFECT_REMOVE_TERRAIN_NO_FAIL
+  legacy_config: "BattleScript_EffectRemoveTerrainNoFail"
+}
+config {
+  id: EFFECT_TEN_HITS
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_TWO_TURN_SECONDARY
+  legacy_config: "BattleScript_EffectTwoTurnSecondary"
+}
+config {
+  id: EFFECT_SPECIAL_ATTACK_UP_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SP_ATK_PLUS_1
+        affects_user: true
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_ARGUMENT_HIT
+  legacy_config: "BattleScript_EffectArgumentHit"
+}
+config {
+  id: EFFECT_EVERY_OTHER_TURN
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_MISC_HIT
+  legacy_config: "BattleScript_EffectHit"
+}
+config {
+  id: EFFECT_FILLET_AWAY
+  legacy_config: "BattleScript_EffectFilletAway"
+}
+config {
+  id: EFFECT_COURT_CHANGE
+  legacy_config: "BattleScript_EffectCourtChange"
+}
+config {
+  id: EFFECT_CHILLY_RECEPTION
+  legacy_config: "BattleScript_EffectChillyReception"
+}
+config {
+  id: EFFECT_SHED_TAIL
+  legacy_config: "BattleScript_EffectShedTail"
+}
+config {
+  id: EFFECT_GHASTLY_ECHO
+  legacy_config: "BattleScript_EffectGhastlyEcho"
+}
+config {
+  id: EFFECT_REVIVAL_BLESSING
+  legacy_config: "BattleScript_EffectRevivalBlessing"
+}
+config {
+  id: EFFECT_TIDY_UP
+  legacy_config: "BattleScript_EffectTidyUp"
+}
+config {
+  id: EFFECT_PARALYZE_IGNORE_TYPE
+  legacy_config: "BattleScript_EffectParalyzeIgnoreType"
+}
+config {
+  id: EFFECT_SUPER_FANG_HAZE
+  legacy_config: "BattleScript_EffectSuperFangHaze"
+}
+config {
+  id: EFFECT_SPICY_EXTRACT
+  legacy_config: "BattleScript_EffectSpicyExtract"
+}
+config {
+  id: EFFECT_CLEAR_WEATHER_AND_TERRAIN_HIT
+  legacy_config: "BattleScript_EffectClearWeatherAndTerrainHit"
+}
+config {
+  id: EFFECT_MATCHA_GOTCHA
+  legacy_config: "BattleScript_EffectMatchaGotcha"
+}
+config {
+  id: EFFECT_DOODLE
+  legacy_config: "BattleScript_EffectDoodle"
+}
+config {
+  id: EFFECT_SPIKE_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_SPIKES
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_VICTORY_DANCE
+  legacy_config: "BattleScript_EffectVictoryDance"
+}
+config {
+  id: EFFECT_DRAGON_CHEER
+  legacy_config: "BattleScript_EffectDragonCheer"
+}
+config {
+  id: EFFECT_SHELTER
+  legacy_config: "BattleScript_EffectShelter"
+}
+config {
+  id: EFFECT_ARGUMENT_HIT_IF_STAT_UP
+  legacy_config: "BattleScript_EffectArgumentHitIfStatUp"
+}
+config {
+  id: EFFECT_UPPER_HAND
+  legacy_config: "BattleScript_EffectUpperHand"
+}
+config {
+  id: EFFECT_ELECTRO_SHOT
+  legacy_config: "BattleScript_EffectElectroShot"
+}
+config {
+  id: EFFECT_SHARPEN
+  legacy_config: "BattleScript_EffectSharpen"
+}
+config {
+  id: EFFECT_SCARY_FACE
+  legacy_config: "BattleScript_EffectScaryFace"
+}
+config {
+  id: EFFECT_SMOKESCREEN
+  legacy_config: "BattleScript_EffectSmokescreen"
+}
+config {
+  id: EFFECT_EERIE_FOG
+  legacy_config: "BattleScript_EffectEerieFog"
+}
+config {
+  id: EFFECT_MYSTIC_DANCE
+  legacy_config: "BattleScript_EffectMysticDance"
+}
+config {
+  id: EFFECT_SNAP_JAW
+  legacy_config: "BattleScript_EffectSnapJaw"
+}
+config {
+  id: EFFECT_RIP_AND_TEAR
+  legacy_config: "BattleScript_EffectRipAndTear"
+}
+config {
+  id: EFFECT_SKY_DROP
+  legacy_config: "BattleScript_EffectSkyDrop"
+}
+config {
+  id: EFFECT_TAILWIND_HIT
+  legacy_config: "BattleScript_EffectTailwindHit"
+}
+config {
+  id: EFFECT_SANDSTORM_HIT
+  legacy_config: "BattleScript_EffectSandstormHit"
+}
+config {
+  id: EFFECT_RAIN_HIT
+  legacy_config: "BattleScript_EffectRainHit"
+}
+config {
+  id: EFFECT_FAIRY_TERRAIN_HIT
+  legacy_config: "BattleScript_EffectFairyTerrainHit"
+}
+config {
+  id: EFFECT_CREEPING_THORNS_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_CREEPING_THORNS
+      }
+    }
+  }
+}
+config {
+  id: EFFECT_TAKE_HEART
+  legacy_config: "BattleScript_EffectTakeHeart"
+}
+config {
+  id: EFFECT_CLEAR_SKIES
+  legacy_config: "BattleScript_EffectClearSkies"
+}
+config {
+  id: EFFECT_SHOWTIME
+  legacy_config: "BattleScript_EffectShowtime"
+}
+config {
+  id: EFFECT_TREPIDATION
+  legacy_config: "BattleScript_EffectTrepidation"
+}
+config {
+  id: EFFECT_MEDITATE
+  legacy_config: "BattleScript_EffectMeditate"
+}
+config {
+  id: EFFECT_BARRIER
+  legacy_config: "BattleScript_EffectBarrier"
+}
+config {
+  id: EFFECT_KINESIS
+  legacy_config: "BattleScript_EffectKinesis"
+}
+config {
+  id: EFFECT_CALTROPS
+  legacy_config: "BattleScript_EffectCaltrops"
+}
+config {
+  id: EFFECT_SWEET_KISS
+  legacy_config: "BattleScript_EffectSweetKiss"
+}
+config {
+  id: EFFECT_QUICK_GUARD
+  legacy_config: "BattleScript_EffectQuickGuard"
+}
+config {
+  id: EFFECT_TWO_TURN_RETALIATION
+  legacy_config: "BattleScript_EffectTwoTurnRetaliation"
+}
+config {
+  id: EFFECT_SHELL_TRAP
+  legacy_config: "BattleScript_EffectShellTrap"
+}
+config {
+  id: EFFECT_GRASSY_TERRAIN_HIT
+  legacy_config: "BattleScript_GrassyTerrainHit"
+}
+config {
+  id: EFFECT_TOXIC_TERRAIN
+  legacy_config: "BattleScript_EffectMistyTerrain"
+}
+config {
+  id: EFFECT_SEPTIC_SWITCH
+  legacy_config: "BattleScript_SepticSwitch"
+}
+config {
+  id: EFFECT_PARTY_FAVORS
+  legacy_config: "BattleScript_EffectPartyFavors"
+}
+config {
+  id: EFFECT_WATERLOG
+  legacy_config: "BattleScript_EffectWaterlog"
+}
+config {
+  id: EFFECT_SPECTRAL_FLAME
+  legacy_config: "BattleScript_EffectSpectralFlame"
+}
+config {
+  id: EFFECT_CONCOCTION
+  legacy_config: "BattleScript_EffectConcoction"
+}
+config {
+  id: EFFECT_FETCH
+  legacy_config: "BattleScript_EffectFetch"
+}
+config {
+  id: EFFECT_DRENCH_HIT
+  attack {
+    effect {
+      move_effect {
+        effect: MOVE_EFFECT_DRENCH
+      }
+    }
+  }
+}

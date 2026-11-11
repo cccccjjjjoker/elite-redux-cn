@@ -1,0 +1,57 @@
+raw `
+SootopolisCity_House6_MapScripts:: @ 8226F5B
+	.byte 0
+
+SootopolisCity_House6_EventScript_Woman:: @ 8226F5C
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_WAILMER_DOLL, SootopolisCity_House6_EventScript_ReceivedWailmerDoll
+	msgbox SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	call_if_eq SootopolisCity_House6_EventScript_DeclineWailmerDoll
+	msgbox SootopolisCity_House6_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
+	givedecoration DECOR_WAILMER_DOLL
+	compare VAR_RESULT, FALSE
+	goto_if_eq SootopolisCity_House6_EventScript_NoRoomForWailmerDoll
+	setflag FLAG_RECEIVED_WAILMER_DOLL
+	release
+	end
+
+SootopolisCity_House6_EventScript_DeclineWailmerDoll:: @ 8226F99
+	msgbox SootopolisCity_House6_Text_DontWantThisDoll, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_House6_EventScript_ReceivedWailmerDoll:: @ 8226FA3
+	msgbox SootopolisCity_House6_Text_LovePlushDolls, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_House6_EventScript_NoRoomForWailmerDoll:: @ 8226FAD
+	bufferdecorationname 1, DECOR_WAILMER_DOLL
+	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
+	msgbox SootopolisCity_House6_Text_IllHoldItForYou, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_House6_Text_FirstGuestInWhileTakeDoll: @ 8226FC3
+	.string "你好！你是我们好久以来\n"
+	.string "的第一位客人。\p"
+	.string "你让我今天心情好起来，\n"
+	.string "所以我要送你一个大吼吼鲸玩偶。$"
+
+SootopolisCity_House6_Text_TakeGoodCareOfIt: @ 8227034
+	.string "请好好保管它！$"
+
+SootopolisCity_House6_Text_IllHoldItForYou: @ 822704A
+	.string "哦，你想要，但不是现在？\n"
+	.string "好，那我帮你留着。$"
+
+SootopolisCity_House6_Text_DontWantThisDoll: @ 822708F
+	.string "你确定？\n"
+	.string "你不要这个玩偶？$"
+
+SootopolisCity_House6_Text_LovePlushDolls: @ 82270B7
+	.string "我最爱毛绒玩偶了！$"
+
+`

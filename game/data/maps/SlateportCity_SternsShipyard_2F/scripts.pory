@@ -1,0 +1,24 @@
+raw `
+SlateportCity_SternsShipyard_2F_MapScripts:: @ 820863D
+	.byte 0
+
+SlateportCity_SternsShipyard_2F_EventScript_Scientist1:: @ 820863E
+	msgbox SlateportCity_SternsShipyard_2F_Text_ShipDesignMoreLikeBuilding, MSGBOX_NPC
+	end
+
+SlateportCity_SternsShipyard_2F_EventScript_Scientist2:: @ 8208647
+	msgbox SlateportCity_SternsShipyard_2F_Text_FloatsBecauseBuoyancy, MSGBOX_NPC
+	end
+
+SlateportCity_SternsShipyard_2F_Text_ShipDesignMoreLikeBuilding: @ 8208650
+	.string "设计一艘大船，\n"
+	.string "更像是盖一栋大楼，\p"
+	.string "而不是组装一台交通工具。$"
+
+SlateportCity_SternsShipyard_2F_Text_FloatsBecauseBuoyancy: @ 82086BA
+	.string "用沉重的铁造出来的船\n"
+	.string "能浮起来，你不觉得奇怪吗？\p"
+	.string "它浮着是因为一个叫\n"
+	.string "浮力的原理。$"
+
+`

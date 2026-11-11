@@ -1,0 +1,329 @@
+raw `
+.set LOCALID_MOM, 1
+.set LOCALID_RIVAL_MOM, 4
+.set LOCALID_RIVAL, 7
+
+LittlerootTown_MaysHouse_1F_MapScripts:: @ 81F88A5
+	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_MaysHouse_1F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_MaysHouse_1F_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_MaysHouse_1F_OnFrame
+	.byte 0
+
+LittlerootTown_MaysHouse_1F_OnLoad: @ 81F88B5
+	compare VAR_LITTLEROOT_INTRO_STATE, 6
+	call_if_lt LittlerootTown_MaysHouse_1F_EventScript_SetMovingBoxes
+	call_if_set FLAG_RECEIVED_RUNNING_SHOES, LittlerootTown_MaysHouse_1F_EventScript_CheckShowShoesManual
+	end
+
+LittlerootTown_MaysHouse_1F_EventScript_SetMovingBoxes:: @ 81F88CA
+	setmetatile 5, 4, METATILE_BrendansMaysHouse_MovingBox_Open, 1
+	setmetatile 5, 2, METATILE_BrendansMaysHouse_MovingBox_Closed, 1
+	return
+
+LittlerootTown_MaysHouse_1F_EventScript_CheckShowShoesManual:: @ 81F88DD
+	checkplayergender
+	compare VAR_RESULT, FEMALE
+	goto_if_eq LittlerootTown_MaysHouse_1F_EventScript_ShowRunningShoesManual
+	return
+
+LittlerootTown_MaysHouse_1F_EventScript_ShowRunningShoesManual:: @ 81F88EA
+	setmetatile 6, 7, METATILE_BrendansMaysHouse_BookOnTable, 1
+	return
+
+LittlerootTown_MaysHouse_1F_OnTransition: @ 81F88F4
+	compare VAR_LITTLEROOT_INTRO_STATE, 3
+	call_if_eq LittlerootTown_MaysHouse_1F_EventScript_MoveMomToDoor
+	compare VAR_LITTLEROOT_INTRO_STATE, 5
+	call_if_eq LittlerootTown_MaysHouse_1F_EventScript_MoveMomToStairs
+	compare VAR_LITTLEROOT_INTRO_STATE, 6
+	call_if_eq LittlerootTown_MaysHouse_1F_EventScript_MoveMomToTV
+	end
+
+LittlerootTown_MaysHouse_1F_EventScript_MoveMomToStairs:: @ 81F8916
+	setobjectxyperm LOCALID_MOM, 2, 4
+	setobjectmovementtype LOCALID_MOM, MOVEMENT_TYPE_FACE_UP
+	return
+
+LittlerootTown_MaysHouse_1F_EventScript_MoveMomToTV:: @ 81F8922
+	setobjectxyperm LOCALID_MOM, 6, 5
+	setobjectmovementtype LOCALID_MOM, MOVEMENT_TYPE_FACE_UP
+	return
+
+LittlerootTown_MaysHouse_1F_EventScript_MoveMomToDoor:: @ 81F892E
+	setobjectxyperm LOCALID_MOM, 1, 8
+	setobjectmovementtype LOCALID_MOM, MOVEMENT_TYPE_FACE_UP
+	return
+
+@ Many of the below scripts have no gender check because they assume youre in the correct house
+LittlerootTown_MaysHouse_1F_OnFrame: @ 81F893A
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1, LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+	.2byte 0
+
+LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F8964
+	lockall
+	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs
+	applymovement LOCALID_MOM, LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs
+	waitmovement 0
+	warp MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 255, 1, 1
+	waitstate
+	releaseall
+	end
+
+LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs: @ 81F898A
+	walk_up
+	step_end
+
+LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn:: @ 81F898C
+	lockall
+	setvar VAR_0x8004, LOCALID_MOM
+	setvar VAR_0x8005, FEMALE
+	goto PlayersHouse_1F_EventScript_EnterHouseMovingIn
+	end
+
+LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport:: @ 81F899D
+	lockall
+	setvar VAR_0x8004, FEMALE
+	setvar VAR_0x8005, LOCALID_MOM
+	@ goto PlayersHouse_1F_EventScript_PetalburgGymReportFemale
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	end
+
+LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor:: @ 81F89AE
+	lockall
+	playse SE_PIN
+	applymovement LOCALID_RIVAL_MOM, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_RIVAL_MOM, Common_Movement_Delay48
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_RIVAL_MOM, LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach
+	waitmovement 0
+	special GetRivalSonDaughterString
+	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
+	setflag FLAG_MET_RIVAL_MOM
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+	releaseall
+	end
+
+LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach: @ 81F89EC
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+RivalsHouse_1F_EventScript_RivalMom:: @ 81F89F3
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE103, RivalsHouse_1F_EventScript_GoHomeEverySoOften
+	goto_if_set FLAG_SYS_POKEMON_GET, RivalsHouse_1F_EventScript_RivalIsOnRoute103
+	compare VAR_LITTLEROOT_RIVAL_STATE, 3
+	goto_if_eq RivalsHouse_1F_EventScript_RivalTooBusy
+	special GetRivalSonDaughterString
+	msgbox RivalsHouse_1F_Text_LikeChildLikeFather, MSGBOX_DEFAULT
+	release
+	end
+
+RivalsHouse_1F_EventScript_RivalTooBusy:: @ 81F8A1F
+	msgbox RivalsHouse_1F_Text_TooBusyToNoticeVisit, MSGBOX_DEFAULT
+	release
+	end
+
+RivalsHouse_1F_EventScript_RivalIsOnRoute103:: @ 81F8A29
+	msgbox RivalsHouse_1F_Text_WentOutToRoute103, MSGBOX_DEFAULT
+	release
+	end
+
+RivalsHouse_1F_EventScript_GoHomeEverySoOften:: @ 81F8A33
+	msgbox RivalsHouse_1F_Text_ShouldGoHomeEverySoOften, MSGBOX_DEFAULT
+	release
+	end
+
+RivalsHouse_1F_EventScript_RivalSibling:: @ 81F8A3D
+	lock
+	faceplayer
+	special GetPlayerBigGuyGirlString
+	msgbox RivalsHouse_1F_Text_DoYouHavePokemon, MSGBOX_DEFAULT
+	release
+	end
+
+RivalsHouse_1F_Text_OhYoureTheNewNeighbor: @ 81F8BC5
+	.string "哦，你好。你是哪位？\n"
+	.string "……………………\p"
+	.string "……………………\n"
+	.string "哦，你是{PLAYER}{KUN}，\p"
+	.string "新搬来的隔壁邻居！你好！\n"
+	.string "我们家{STR_VAR_1}跟你差不多大。\p"
+	.string "我们的{STR_VAR_1}一直很兴奋，\n"
+	.string "说想交个新朋友。\p"
+	.string "{STR_VAR_1}应该在楼上。$"
+
+RivalsHouse_1F_Text_LikeChildLikeFather: @ 81F8CA5
+	.string "孩子像父亲。\n"
+	.string "我丈夫跟孩子一样\p"
+	.string "迷宝可梦。\n"
+	.string "他要是不在研究所，\p"
+	.string "多半就在草地上乱跑。$"
+
+RivalsHouse_1F_Text_TooBusyToNoticeVisit: @ 81F8D37
+	.string "{RIVAL}啊！\n"
+	.string "看来我们家孩子太忙着\p"
+	.string "跟宝可梦玩，都没注意到\n"
+	.string "你来看他了，{PLAYER}{KUN}。$"
+
+RivalsHouse_1F_Text_WentOutToRoute103: @ 81F8D93
+	.string "哦，{RIVAL}刚才出去\n"
+	.string "103号道路了。\p"
+	.string "真是孩子像父亲。\n"
+	.string "{RIVAL}在家里待不住。$"
+
+RivalsHouse_1F_Text_ShouldGoHomeEverySoOften: @ 81F8E01
+	.string "我觉得人能和宝可梦\n"
+	.string "一起旅行是件好事。\p"
+	.string "但也该时不时回趟家，\n"
+	.string "让妈妈知道你好好的。\p"
+	.string "她嘴上也许不说，但我相信\n"
+	.string "她一定担心你，{PLAYER}{KUN}。$"
+
+RivalsHouse_1F_Text_MayWhoAreYou: @ 81F8EC6
+	.string "咦？\n"
+	.string "你……你是谁？\p"
+	.string "……………………\n"
+	.string "……………………\p"
+	.string "哦，你是{PLAYER}{KUN}。\n"
+	.string "原来你今天搬来了。\p"
+	.string "嗯……我是小遥。\n"
+	.string "很高兴认识你！\p"
+	.string "我……\n"
+	.string "我有个梦想，就是想和\p"
+	.string "全世界的宝可梦成为朋友。\n"
+	.string "我……我听我爸爸小田卷博士\p"
+	.string "提起过你，{PLAYER}{KUN}。\n"
+	.string "我一直在想，希望你是位\p"
+	.string "好相处的人，我们能做朋友。\n"
+	.string "哦，这真傻，对吧？\p"
+	.string "我……我才刚认识你，{PLAYER}{KUN}。\n"
+	.string "呵呵……\p"
+	.string "哦，糟了！我忘了！\n"
+	.string "我本来要去帮爸爸\p"
+	.string "抓野生宝可梦的！\n"
+	.string "哦，对了，这倒提醒我了！\p"
+	.string "你该去看看爸爸的新宝可梦！\n"
+	.string "他刚得到三只非常稀有的，\p"
+	.string "从那个，嗯……$"
+
+RivalsHouse_1F_Text_MayCatchYouLater:
+	.string "咦？{STR_VAR_2}地区？\n"
+	.string "哇，应该就是那个！\p"
+	.string "{PLAYER}{KUN}，回头见！$"
+
+RivalsHouse_1F_Text_BrendanWhoAreYou: @ 81F90B4
+	.string "嘿！\n"
+	.string "你……\p"
+	.string "你是谁？\n"
+	.string "哦，你是{PLAYER}吧？\p"
+	.string "搬到隔壁来的，对吧？\n"
+	.string "我不知道你是女孩子。\p"
+	.string "我爸爸小田卷博士说，\n"
+	.string "新搬来的邻居是道馆馆主的\p"
+	.string "孩子，所以我还以为是男生。\n"
+	.string "我叫祐树。\p"
+	.string "那么，你好啊，邻居！\n"
+	.string "咦？嘿，{PLAYER}，\p"
+	.string "你没有宝可梦吗？\n"
+	.string "要我去帮你抓一只吗？\p"
+	.string "啊，糟了，我忘了……\n"
+	.string "我本来要去帮爸爸\p"
+	.string "抓野生宝可梦的。\n"
+	.string "哦，你该去看看爸爸\p"
+	.string "刚得到的三只新宝可梦。\n"
+	.string "它们非常稀有，而且都是从\p"
+	.string "那个，呃……$"
+
+RivalsHouse_1F_Text_BrendanSomeOtherTime:
+	.string "那个{STR_VAR_2}地区？\n"
+	.string "唔，好像确实是那个。\p"
+	.string "下次再说，好吗？$"
+
+RivalsHouse_1F_Text_BrendanSomeOtherTimeType:
+	.string "那个{STR_VAR_2}属性？\n"
+	.string "唔，好像确实是那个。\p"
+	.string "下次再说，好吗？$"
+
+RivalsHouse_1F_Text_DoYouHavePokemon: @ 81F9262
+	.string "嗨，邻居！\n"
+	.string "你已经有自己的\p"
+	.string "宝可梦了吗？$"
+`
+
+text RivalsHouse_1F_Text_SureAboutRegion{
+	"Are you sure about the region?"
+}
+
+text RivalsHouse_1F_Text_Which_Region{
+	"Oh, darn. Which region was it again?"
+}
+
+
+const MON_LOCAL_ID = 1
+script LittlerootTown_MaysHouse_1F_EventScript_MomGivesStuff0{
+    lock
+    applymovement(MON_LOCAL_ID,LittlerootTown_MaysHouse_1F_Movement_MomGivesStuff0)
+    waitmovement(0)
+    call(LittlerootTown_EventScript_GiveRunningShoes)
+    applymovement(MON_LOCAL_ID,LittlerootTown_MaysHouse_1F_Movement_MomBackTV0)
+    waitmovement(0)
+    release
+}
+movement LittlerootTown_MaysHouse_1F_Movement_MomGivesStuff0{
+    walk_left * 3
+    walk_up   
+}
+movement LittlerootTown_MaysHouse_1F_Movement_MomBackTV0{
+    walk_down
+    walk_right * 3
+    face_up
+}
+script LittlerootTown_MaysHouse_1F_EventScript_MomGivesStuff1{
+    lock
+    applymovement(MON_LOCAL_ID,LittlerootTown_MaysHouse_1F_Movement_MomGivesStuff1)
+    waitmovement(0)
+    call(LittlerootTown_EventScript_GiveRunningShoes)
+    applymovement(MON_LOCAL_ID,LittlerootTown_MaysHouse_1F_Movement_MomBackTV1)
+    waitmovement(0)
+    release
+}
+movement LittlerootTown_MaysHouse_1F_Movement_MomGivesStuff1{
+    walk_left * 4
+    face_up
+}
+movement LittlerootTown_MaysHouse_1F_Movement_MomBackTV1{
+    walk_right * 4
+    face_up
+}
+script LittlerootTown_MaysHouse_1F_EventScript_MomGivesStuff2{
+    lock
+    applymovement(MON_LOCAL_ID,LittlerootTown_MaysHouse_1F_Movement_MomGivesStuff2)
+    waitmovement(0)
+    call(LittlerootTown_EventScript_GiveRunningShoes)
+    applymovement(MON_LOCAL_ID,LittlerootTown_MaysHouse_1F_Movement_MomBackTV2)
+    waitmovement(0)
+    release
+}
+movement LittlerootTown_MaysHouse_1F_Movement_MomGivesStuff2{
+    walk_left * 5
+    walk_up
+}
+movement LittlerootTown_MaysHouse_1F_Movement_MomBackTV2{
+    walk_down
+    walk_right * 5
+    face_up
+}

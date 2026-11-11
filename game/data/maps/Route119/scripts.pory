@@ -1,0 +1,808 @@
+raw `
+.set LOCALID_RIVAL, 16
+.set LOCALID_RIVAL_ON_BIKE, 19
+.set LOCALID_SCOTT, 34
+
+Route119_MapScripts:: @ 81F4424
+	map_script MAP_SCRIPT_ON_RESUME, Route119_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Route119_OnTransition
+	.byte 0
+
+Route119_OnResume: @ 81F442F
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Route119_EventScript_TryRemoveKecleon
+	end
+
+Route119_EventScript_TryRemoveKecleon:: @ 81F4439
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_CAUGHT
+	goto_if_ne Common_EventScript_NopReturn
+	removeobject VAR_LAST_TALKED
+	return
+
+Route119_OnTransition: @ 81F444D
+	call Common_EventScript_SetupRivalGfxId
+	call Common_EventScript_SetupRivalOnBikeGfxId
+	compare VAR_WEATHER_INSTITUTE_STATE, 1
+	call_if_eq Route119_EventScript_MoveInstituteWorkersDownstairs
+	special SetRoute119Weather
+	end
+
+Route119_EventScript_MoveInstituteWorkersDownstairs:: @ 81F4466
+	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+	setvar VAR_WEATHER_INSTITUTE_STATE, 2
+	return
+
+Route119_EventScript_RivalTrigger1:: @ 81F4472
+	setvar VAR_TEMP_1, 1
+	goto Route119_EventScript_RivalEncounter
+	end
+
+Route119_EventScript_RivalTrigger2:: @ 81F447D
+	setvar VAR_TEMP_1, 2
+	goto Route119_EventScript_RivalEncounter
+	end
+
+Route119_EventScript_RivalEncounter:: @ 81F4488
+	lockall
+	addobject LOCALID_RIVAL_ON_BIKE
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq Route119_EventScript_PlayMayMusic
+	compare VAR_RESULT, FEMALE
+	call_if_eq Route119_EventScript_PlayBrendanMusic
+	delay 65
+	compare VAR_TEMP_1, 1
+	call_if_eq Route119_EventScript_RivalEnter1
+	compare VAR_TEMP_1, 2
+	call_if_eq Route119_EventScript_RivalEnter2
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	delay 30
+	compare VAR_TEMP_1, 1
+	call_if_eq Route119_EventScript_SetRivalPos1
+	compare VAR_TEMP_1, 2
+	call_if_eq Route119_EventScript_SetRivalPos2
+	removeobject LOCALID_RIVAL_ON_BIKE
+	addobject LOCALID_RIVAL
+	delay 30
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Route119_EventScript_BattleMay
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route119_EventScript_BattleBrendan
+	releaseall
+	end
+
+Route119_EventScript_PlayMayMusic:: @ 81F4501
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	return
+
+Route119_EventScript_PlayBrendanMusic:: @ 81F4506
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	return
+
+Route119_EventScript_BattleMay:: @ 81F450B
+	msgbox Route119_Text_MayIntro, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route119_EventScript_BattleMayTreecko
+	case 1, Route119_EventScript_BattleMayTorchic
+	case 2, Route119_EventScript_BattleMayMudkip
+	end
+
+Route119_EventScript_BattleMayTreecko:: @ 81F453A
+	setvar VAR_0x8004, 15
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TREECKO, Route119_Text_MayDefeat
+	goto Route119_EventScript_DefeatedMay
+	end
+
+Route119_EventScript_BattleMayTorchic:: @ 81F454A
+	setvar VAR_0x8004, 15
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TORCHIC, Route119_Text_MayDefeat
+	goto Route119_EventScript_DefeatedMay
+	end
+
+Route119_EventScript_BattleMayMudkip:: @ 81F455A
+	setvar VAR_0x8004, 15
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_MUDKIP, Route119_Text_MayDefeat
+	goto Route119_EventScript_DefeatedMay
+	end
+
+Route119_EventScript_DefeatedMay:: @ 81F456A
+	msgbox Route119_Text_MayPresentForYou, MSGBOX_DEFAULT
+	call Route119_EventScript_GiveFlyHM
+	msgbox Route119_Text_MayExplainFly, MSGBOX_DEFAULT
+	goto Route119_EventScript_RivalExitScottArrive
+	end
+
+Route119_EventScript_BattleBrendan:: @ 81F4585
+	msgbox Route119_Text_BrendanIntro, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route119_EventScript_BattleBrendanTreecko
+	case 1, Route119_EventScript_BattleBrendanTorchic
+	case 2, Route119_EventScript_BattleBrendanMudkip
+	end
+
+Route119_EventScript_BattleBrendanTreecko:: @ 81F45B4
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TREECKO, Route119_Text_BrendanDefeat
+	goto Route119_EventScript_DefeatedBrendan
+	end
+
+Route119_EventScript_BattleBrendanTorchic:: @ 81F45C4
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TORCHIC, Route119_Text_BrendanDefeat
+	goto Route119_EventScript_DefeatedBrendan
+	end
+
+Route119_EventScript_BattleBrendanMudkip:: @ 81F45D4
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_MUDKIP, Route119_Text_BrendanDefeat
+	goto Route119_EventScript_DefeatedBrendan
+	end
+
+Route119_EventScript_DefeatedBrendan:: @ 81F45E4
+	msgbox Route119_Text_BrendanIllGiveYouThis, MSGBOX_DEFAULT
+	call Route119_EventScript_GiveFlyHM
+	msgbox Route119_Text_BrendanExplainFly, MSGBOX_DEFAULT
+	goto Route119_EventScript_RivalExitScottArrive
+	end
+
+Route119_EventScript_GiveFlyHM:: @ 81F45FF
+	giveitem ITEM_HM02_FLY
+	setflag FLAG_RECEIVED_HM02
+	return
+
+Route119_EventScript_RivalExitScottArrive:: @ 81F460F
+	closemessage
+	compare VAR_TEMP_1, 1
+	call_if_eq Route119_EventScript_SetRivalPos1
+	compare VAR_TEMP_1, 2
+	call_if_eq Route119_EventScript_SetRivalPos2
+	removeobject LOCALID_RIVAL
+	addobject LOCALID_RIVAL_ON_BIKE
+	delay 30
+	compare VAR_TEMP_1, 1
+	call_if_eq Route119_EventScript_RivalExit1
+	compare VAR_TEMP_1, 2
+	call_if_eq Route119_EventScript_RivalExit2
+	removeobject LOCALID_RIVAL_ON_BIKE
+	setvar VAR_ROUTE119_STATE, 1
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	delay 60
+	compare VAR_TEMP_1, 1
+	call_if_eq Route119_EventScript_SetScottPos1
+	compare VAR_TEMP_1, 2
+	call_if_eq Route119_EventScript_SetScottPos2
+	addobject LOCALID_SCOTT
+	applymovement LOCALID_SCOTT, Route119_Movement_ScottEnter
+	waitmovement 0
+	addvar VAR_SCOTT_STATE, 1
+	msgbox Route119_Text_ScottWayToGoBeSeeingYou, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_TEMP_1, 1
+	call_if_eq Route119_EventScript_ScottExit1
+	compare VAR_TEMP_1, 2
+	call_if_eq Route119_EventScript_ScottExit2
+	removeobject LOCALID_SCOTT
+	releaseall
+	end
+
+Route119_EventScript_SetScottPos1:: @ 81F46A0
+	setobjectxyperm LOCALID_SCOTT, 27, 25
+	return
+
+Route119_EventScript_SetScottPos2:: @ 81F46A8
+	setobjectxyperm LOCALID_SCOTT, 28, 25
+	return
+
+Route119_EventScript_ScottExit1:: @ 81F46B0
+	applymovement LOCALID_SCOTT, Route119_Movement_ScottExit1
+	waitmovement 0
+	return
+
+Route119_EventScript_ScottExit2:: @ 81F46BB
+	applymovement LOCALID_SCOTT, Route119_Movement_ScottExit2
+	waitmovement 0
+	return
+
+Route119_EventScript_RivalEnter1:: @ 81F46C6
+	applymovement LOCALID_RIVAL_ON_BIKE, Route119_Movement_RivalEnter1
+	waitmovement 0
+	return
+
+Route119_EventScript_RivalEnter2:: @ 81F46D1
+	applymovement LOCALID_RIVAL_ON_BIKE, Route119_Movement_RivalEnter2
+	waitmovement 0
+	return
+
+Route119_EventScript_RivalExit1:: @ 81F46DC
+	applymovement OBJ_EVENT_ID_PLAYER, Route119_Movement_PlayerWatchRivalExit1
+	applymovement LOCALID_RIVAL_ON_BIKE, Route119_Movement_RivalExit1
+	waitmovement 0
+	return
+
+Route119_EventScript_RivalExit2:: @ 81F46EE
+	applymovement OBJ_EVENT_ID_PLAYER, Route119_Movement_PlayerWatchRivalExit2
+	applymovement LOCALID_RIVAL_ON_BIKE, Route119_Movement_RivalExit2
+	waitmovement 0
+	return
+
+Route119_EventScript_SetRivalPos1:: @ 81F4700
+	setobjectxyperm LOCALID_RIVAL, 25, 32
+	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 25, 32
+	return
+
+Route119_EventScript_SetRivalPos2:: @ 81F470F
+	setobjectxyperm LOCALID_RIVAL, 26, 32
+	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 26, 32
+	return
+
+Route119_Movement_PlayerWatchRivalExit1: @ 81F471E
+	delay_16
+	walk_in_place_fastest_right
+	delay_8
+	walk_in_place_fastest_up
+	step_end
+
+Route119_Movement_PlayerWatchRivalExit2: @ 81F4723
+	delay_16
+	walk_in_place_fastest_left
+	delay_8
+	walk_in_place_fastest_up
+	step_end
+
+Route119_Movement_RivalEnter1: @ 81F4728
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	step_end
+
+Route119_Movement_RivalEnter2: @ 81F4732
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	step_end
+
+Route119_Movement_RivalExit1: @ 81F473D
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+Route119_Movement_RivalExit2: @ 81F4747
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+Route119_Movement_ScottEnter: @ 81F4752
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_down
+	step_end
+
+Route119_Movement_ScottExit1: @ 81F475A
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route119_Movement_ScottExit2: @ 81F4763
+	walk_up
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route119_EventScript_CyclingTriathleteM:: @ 81F476B
+	msgbox Route119_Text_TallGrassSnaresBikeTires, MSGBOX_NPC
+	end
+
+Route119_EventScript_RouteSignFortree:: @ 81F4774
+	msgbox Route119_Text_RouteSignFortree, MSGBOX_SIGN
+	end
+
+Route119_EventScript_WeatherInstituteSign:: @ 81F477D
+	msgbox Route119_Text_WeatherInstitute, MSGBOX_SIGN
+	end
+
+Route119_EventScript_Brent:: @ 81F4786
+	trainerbattle_single TRAINER_BRENT, Route119_Text_BrentIntro, Route119_Text_BrentDefeat
+	msgbox Route119_Text_BrentPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Donald:: @ 81F479D
+	trainerbattle_single TRAINER_DONALD, Route119_Text_DonaldIntro, Route119_Text_DonaldDefeat
+	msgbox Route119_Text_DonaldPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Taylor:: @ 81F47B4
+	trainerbattle_single TRAINER_TAYLOR, Route119_Text_TaylorIntro, Route119_Text_TaylorDefeat
+	msgbox Route119_Text_TaylorPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Doug:: @ 81F47CB
+	trainerbattle_single TRAINER_DOUG, Route119_Text_DougIntro, Route119_Text_DougDefeat
+	msgbox Route119_Text_DougPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Greg:: @ 81F47E2
+	trainerbattle_single TRAINER_GREG, Route119_Text_GregIntro, Route119_Text_GregDefeat
+	msgbox Route119_Text_GregPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Kent:: @ 81F47F9
+	trainerbattle_single TRAINER_KENT, Route119_Text_KentIntro, Route119_Text_KentDefeat
+	msgbox Route119_Text_KentPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Jackson:: @ 81F4810
+	trainerbattle_single TRAINER_JACKSON_1, Route119_Text_JacksonIntro, Route119_Text_JacksonDefeat, Route119_EventScript_RegisterJackson
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route119_EventScript_RematchJackson
+	msgbox Route119_Text_JacksonPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_EventScript_RegisterJackson:: @ 81F483C
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route119_Text_JacksonRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JACKSON_1
+	release
+	end
+
+Route119_EventScript_RematchJackson:: @ 81F485B
+	trainerbattle_rematch TRAINER_JACKSON_1, Route119_Text_JacksonRematchIntro, Route119_Text_JacksonRematchDefeat
+	msgbox Route119_Text_JacksonPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Catherine:: @ 81F4872
+	trainerbattle_single TRAINER_CATHERINE_1, Route119_Text_CatherineIntro, Route119_Text_CatherineDefeat, Route119_EventScript_RegisterCatherine
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route119_EventScript_RematchCatherine
+	msgbox Route119_Text_CatherinePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_EventScript_RegisterCatherine:: @ 81F489E
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route119_Text_CatherineRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CATHERINE_1
+	release
+	end
+
+Route119_EventScript_RematchCatherine:: @ 81F48BD
+	trainerbattle_rematch TRAINER_CATHERINE_1, Route119_Text_CatherineRematchIntro, Route119_Text_CatherineRematchDefeat
+	msgbox Route119_Text_CatherinePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Hugh:: @ 81F48D4
+	trainerbattle_single TRAINER_HUGH, Route119_Text_HughIntro, Route119_Text_HughDefeat
+	msgbox Route119_Text_HughPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Phil:: @ 81F48EB
+	trainerbattle_single TRAINER_PHIL, Route119_Text_PhilIntro, Route119_Text_PhilDefeat
+	msgbox Route119_Text_PhilPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Yasu:: @ 81F4902
+	trainerbattle_single TRAINER_YASU, Route119_Text_YasuIntro, Route119_Text_YasuDefeat
+	msgbox Route119_Text_YasuPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Takashi:: @ 81F4919
+	trainerbattle_single TRAINER_TAKASHI, Route119_Text_TakashiIntro, Route119_Text_TakashiDefeat
+	msgbox Route119_Text_TakashiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Hideo:: @ 81F4930
+	trainerbattle_single TRAINER_HIDEO, Route119_Text_HideoIntro, Route119_Text_HideoDefeat
+	msgbox Route119_Text_HideoPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Chris:: @ 81F4947
+	trainerbattle_single TRAINER_CHRIS, Route119_Text_ChrisIntro, Route119_Text_ChrisDefeat
+	msgbox Route119_Text_ChrisPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Fabian:: @ 81F495E
+	trainerbattle_single TRAINER_FABIAN, Route119_Text_FabianIntro, Route119_Text_FabianDefeat
+	msgbox Route119_Text_FabianPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Dayton:: @ 81F4975
+	trainerbattle_single TRAINER_DAYTON, Route119_Text_DaytonIntro, Route119_Text_DaytonDefeat
+	msgbox Route119_Text_DaytonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_Rachel:: @ 81F498C
+	trainerbattle_single TRAINER_RACHEL, Route119_Text_RachelIntro, Route119_Text_RachelDefeat
+	msgbox Route119_Text_RachelPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_EventScript_BridgeAquaGrunt1:: @ 81F49A3
+	lock
+	faceplayer
+	msgbox Route119_Text_StayAwayFromWeatherInstitute, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route119_EventScript_BridgeAquaGrunt2:: @ 81F49BA
+	lock
+	faceplayer
+	msgbox Route119_Text_DontGoNearWeatherInstitute, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route119_EventScript_Boy1:: @ 81F49D1
+	msgbox Route119_Text_ThoughtFlyByCatchingBirdMons, MSGBOX_NPC
+	end
+
+Route119_EventScript_Boy2:: @ 81F49DA
+	msgbox Route119_Text_CanYourMonMakeSecretBase, MSGBOX_NPC
+	end
+
+Route119_EventScript_TrainerTipsDecoration:: @ 81F49E3
+	msgbox Route119_Text_TrainerTipsDecoration, MSGBOX_SIGN
+	end
+
+Route119_EventScript_ScottWonAtFortreeGymCall:: @ 81F49EC
+	lockall
+	@ pokenavcall Route119_Text_ScottYouWonAtFortreeGym
+	@ waitmessage
+	clearflag FLAG_SCOTT_CALL_FORTREE_GYM
+	addvar VAR_SCOTT_STATE, 1
+	releaseall
+	end
+
+Route119_Text_MayIntro: @ 81F49FD
+	.string "小遥：{PLAYER}{KUN}！\n"
+	.string "你去哪儿了？我一直在找你！\p"
+	.string "你变强了多少？\n"
+	.string "让我来检验一下！\p"
+	.string "宝可梦准备好了吗？\n"
+	.string "当然准备好了！上！$"
+
+Route119_Text_MayDefeat: @ 81F4A98
+	.string "啊哈！\n"
+	.string "{PLAYER}{KUN}，你很强！\p"
+	.string "我本来还担心你\n"
+	.string "训练上会吃力呢。$"
+
+Route119_Text_MayPresentForYou: @ 81F4AF3
+	.string "小遥：看来我完全不用担心！\n"
+	.string "继续保持！\p"
+	.string "还有，来！\n"
+	.string "我有个礼物给你。$"
+
+Route119_Text_MayExplainFly:
+	.string "小遥：你该用飞翔回家，\n"
+	.string "顺便回未白镇看看。\p"
+	.string "我敢打赌你妈妈\n"
+	.string "一定很担心你，{PLAYER}{KUN}。\p"
+	.string "那么，改天再见！$"
+
+Route119_Text_BrendanIntro: @ 81F4C9A
+	.string "祐树：{PLAYER}！\n"
+	.string "你一直在这儿找宝可梦？\p"
+	.string "让我看看你有多强。\n"
+	.string "我来考考你！\p"
+	.string "现在！\p"
+	.string "是对战，那就打吧！$"
+
+Route119_Text_BrendanDefeat: @ 81F4D24
+	.string "嗯……\n"
+	.string "你变得相当不错了。$"
+
+Route119_Text_BrendanIllGiveYouThis: @ 81F4D4B
+	.string "祐树：我看你现在\n"
+	.string "去哪儿找宝可梦都够格了。\p"
+	.string "来，这个给你。\n"
+	.string "试试看。$"
+
+Route119_Text_BrendanExplainFly: @ 81F4DB5
+	.string "祐树：总之，我得走了。$"
+
+Route119_Text_ScottWayToGoBeSeeingYou: @ 81F4E60
+	.string "斯科特：哈哈哈！\n"
+	.string "干得好，{PLAYER}{KUN}！\p"
+	.string "我刚才路过一个骑自行车的\n"
+	.string "训练家。\p"
+	.string "你刚打赢那个训练家吧？\n"
+	.string "一看就看出来了。\p"
+	.string "那孩子气红了脸，\n"
+	.string "看起来特别不服气。\p"
+	.string "我好像经常碰到你。\n"
+	.string "接下来要去茵郁道馆吗？\p"
+	.string "我相信你在道馆\n"
+	.string "会有好表现。\p"
+	.string "那么，回头见！$"
+
+
+Route119_Text_ScottYouWonAtFortreeGym: @ 81F4FBA
+	.string "…… …… ……\n"
+	.string "…… …… …… 嘀！\p"
+	.string "斯科特：嗨，{PLAYER}{KUN}，是我！\p"
+	.string "果然如我所料，\n"
+	.string "你在茵郁道馆赢了。\p"
+	.string "你的实力……\p"
+	.string "也许你真的是\n"
+	.string "我一直在找的那位训练家。\p"
+	.string "记住，我是你的粉丝。\n"
+	.string "我会在场边为你加油。\p"
+	.string "继续保持！\p"
+	.string "…… …… ……\n"
+	.string "…… …… …… 咔嗒！$"
+
+Route119_Text_StayAwayFromWeatherInstitute: @ 81F50EB
+	.string "我们在这儿放哨。\p"
+	.string "喂，你！离气象研究所远点。\n"
+	.string "那儿不安全。$"
+
+Route119_Text_DontGoNearWeatherInstitute: @ 81F5147
+	.string "放哨意外地无聊。\p"
+	.string "喂，你！请别靠近\n"
+	.string "气象研究所。$"
+
+Route119_Text_ThoughtFlyByCatchingBirdMons: @ 81F51A2
+	.string "我以前以为“飞翔”就是\n"
+	.string "抓一大群鸟宝可梦，\p"
+	.string "然后想办法挂在它们身上。\p"
+	.string "结果原来有个秘传招式\n"
+	.string "就叫飞翔！\p"
+	.string "真希望我早点知道……$"
+
+Route119_Text_TallGrassSnaresBikeTires: @ 81F5261
+	.string "啧……\n"
+	.string "不行……\p"
+	.string "高草会缠住自行车轮胎。\n"
+	.string "在这儿根本骑不了车。$"
+
+Route119_Text_CanYourMonMakeSecretBase: @ 81F52B9
+	.string "你的宝可梦能用秘密之力\n"
+	.string "在一大丛草里\p"
+	.string "做出秘密基地吗？$"
+
+Route119_Text_RouteSignFortree: @ 81F530E
+	.string "119 号道路\n"
+	.string "{RIGHT_ARROW} 茵郁市$"
+
+Route119_Text_WeatherInstitute: @ 81F5327
+	.string "气象研究所$"
+
+Route119_Text_TrainerTipsDecoration: @ 81F5339
+	.string "训练家小贴士\p"
+	.string "秘密基地里最多可以摆放\n"
+	.string "十六件装饰和家具。\p"
+	.string "挑你最喜欢的道具，\n"
+	.string "按你自己的想法\p"
+	.string "打造专属的秘密基地。$"
+`
+script Route119_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("贤者：我知道一个故事……\n关于我们人类\p如何变得有人性的故事。\n想听吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("据说阿尔宙斯创造人类时，\n最初的结果并不理想。\p那时的人类只是空壳，\n有身体却没有心灵与灵魂。\p他们需要活力与精神。\p阿尔宙斯为此召来了\n亚克诺姆、艾姆利多和由克希。\p三神赐予这些空壳\n良知、智慧与情感。\p但这还不够。\p改良后的人类只顾自己，\n满足于活着，而不是生活。\p这样撑不了多久。\p他们缺少人性、共情与意志。\n于是阿尔宙斯做了个决定：\p他召来比克提尼与谢米，\n要它们给人类\p带来深刻的转变。\p它们当时还是年幼的宝可梦，\n但他信任它们能完成此事。\p于是它们开始工作。\p比克提尼，胜利的使者，\n赋予人类不屈的精神。\p谢米，感恩的使者，\n让人们彼此照应。\p它们一同给了我们\n为共同目标努力的工具，\p让文明终于得以繁荣。\p于是，比克提尼与谢米的\n遗产流传下来，\p永远铭刻在人类心中。\p它们的慈悲存在，\n让同情的火花持续闪耀，\p照亮后世的道路。\p现在我期待你：\n重新点燃对胜利的热爱，\p感激同行的伙伴，\n成为冠军后再回来！$"))
+	}
+	else{
+		if(defeated(TRAINER_BRENT)  &&
+		   defeated(TRAINER_DONALD)  &&
+		   defeated(TRAINER_TAYLOR)  &&
+		   defeated(TRAINER_DOUG)  &&
+		   defeated(TRAINER_GREG)  &&
+		   defeated(TRAINER_KENT)  &&
+		   defeated(TRAINER_JACKSON_1)  &&
+		   defeated(TRAINER_CATHERINE_1)  &&
+		   defeated(TRAINER_HUGH)  &&
+		   defeated(TRAINER_PHIL)  &&
+		   defeated(TRAINER_YASU)  &&
+		   defeated(TRAINER_TAKASHI)  &&
+		   defeated(TRAINER_HIDEO)  &&
+		   defeated(TRAINER_CHRIS)  &&
+		   defeated(TRAINER_FABIAN)  &&
+		   defeated(TRAINER_DAYTON)  &&
+		   defeated(TRAINER_RACHEL)){
+			msgbox(format("我毫不怀疑……\n你现在有资格见到\p阿尔宙斯、谢米和比克提尼。\p你真是得到了\n一生一次的机会。\p使用图鉴导航器时，\n它们的位置就会显现，\p所以务必做好准备。\n祝你好运……$"))
+		}
+		else{
+			msgbox(format("你真是个特别的人类。\p起初似乎只有谢米和比克提尼\n愿意与你相见，\p现在看来阿尔宙斯\n也要插手了。\p不过要说服他可不容易。\p这一带有很多训练家，\n如果你能打败他们……\p他也许会给你一次机会。$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("好吧。$"))
+	}
+    release
+    end
+}
+
+script Route119_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+		if(defeated(TRAINER_DONALD)  &&
+		   defeated(TRAINER_GREG)  &&
+		   defeated(TRAINER_KENT)  &&
+		   defeated(TRAINER_DOUG)  &&
+		   defeated(TRAINER_TAYLOR)  &&
+		   defeated(TRAINER_BRENT)){
+		// when you defeat every trainer
+		msgbox(format("太感谢你了，你是我的救星！\p我猜这小家伙在来丰缘的路上\n出了点岔子，\p不过不管怎样我都喜欢它！$"))
+		givemon(SPECIES_ARCTOVISH, 50, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}得到了\n{COLOR BLUE}鳃鱼海兽{COLOR DARK_GRAY}，\p这是在高草里找到并击败\n所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("我只是在这儿徒步，\n结果有几个人过来\p说要玩捉迷藏。\p我当时想：“哥们，\n我还想继续徒步呢，\p没空玩这个。”\p可他们非要，我就答应了，\n然后……现在我得去找他们。\p求你了，能帮我找找吗？\n我会给你特别的东西作回报！$"))
+	}
+    release
+    end
+}
+
+script Route119_EventScript_MimicClubSign{
+    lock
+	msgbox("前方是模仿俱乐部。$")
+	closemessage
+	release
+	end
+}
+const LOCALID_RIVAL_HELPING = 37
+// hidden secret that will skip a bunch of trainers.
+script Route119_EventScript_RivalApproachWaterfall{
+    addobject(LOCALID_RIVAL_HELPING)
+    applymovement(LOCALID_RIVAL_HELPING, Route119_Movement_RivalGoingTowardsWaterFall)
+    waitmovement(0)
+    return
+}
+script Route119_EventScript_RivalHelpWaterfall{
+    msgbox(format("我试过了，没有第八枚徽章\n是游不过去的。\p不过我背包里有绳子，\n需要帮忙吗？$"), MSGBOX_YESNO)
+    closemessage
+    if (var(VAR_RESULT) != 1){
+        msgbox(format("好，玩得开心。$"))
+        closemessage
+        applymovement(LOCALID_RIVAL_HELPING, Route119_Movement_RivalLeavingAfterHavingRefused)
+        waitmovement(0)
+        setflag(FLAG_RIVAL_HELPED_WATERFALL_ROUTE_119)
+        removeobject(LOCALID_RIVAL_HELPING)
+        release
+        end
+    }
+    msgbox(format("好，抓住这个。$"))
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    playse(SE_M_STRING_SHOT)
+    setobjectxy(LOCALID_RIVAL_HELPING, 15, 81)
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 16, 81)
+    waitse
+    callnative(setPlayerOnFoot)
+    fadescreen(FADE_FROM_BLACK)
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, Route119_Movement_CameraFollowUp)
+    waitmovement(0)
+    special(RemoveCameraObject)
+    msgbox(format("真想再多聊会儿，\n可我忘了自行车，\p得赶紧回去拿。\n回头见。$"))
+    closemessage
+    applymovement(LOCALID_RIVAL_HELPING, Route119_Movement_RivalLeavingYouAloneWithYourPokemonInTheWildernessWithNoRealFriends)
+    waitmovement(0)
+    setflag(FLAG_RIVAL_HELPED_WATERFALL_ROUTE_119)
+    setflag(FLAG_HIDE_RIVAL_HELPING_WATERFALL_ROUTE_119)
+    removeobject(LOCALID_RIVAL_HELPING)
+    release
+}
+script Route119_EventScript_RivalHelpWaterfallCheck{
+	if (flag(FLAG_DEFEATED_RIVAL_RUSTBORO) == FALSE && flag(FLAG_DEFEATED_RIVAL_ROUTE_104) == FALSE){
+        release
+        end
+    }
+	if (flag(FLAG_RIVAL_HELPED_WATERFALL_ROUTE_119)){
+        release
+        end
+    }
+	return
+}
+
+script Route119_EventScript_RivalHelpWaterfall0{
+    lock
+    setvar(VAR_TEMP_2, 1)
+    call(Route119_EventScript_RivalHelpWaterfallCheck)
+    call(Route119_EventScript_RivalApproachWaterfall)
+    applymovement(OBJ_EVENT_ID_PLAYER, Route119_Movement_RivalHelpWaterfall0)
+    waitmovement(0)
+    goto(Route119_EventScript_RivalHelpWaterfall)
+}
+movement Route119_Movement_RivalHelpWaterfall0{
+    face_left
+}
+script Route119_EventScript_RivalHelpWaterfall1{
+    lock
+    setvar(VAR_TEMP_2, 1)
+    call(Route119_EventScript_RivalHelpWaterfallCheck)
+    call(Route119_EventScript_RivalApproachWaterfall)
+    applymovement(OBJ_EVENT_ID_PLAYER, Route119_Movement_RivalHelpWaterfall1)
+    waitmovement(0)
+    goto(Route119_EventScript_RivalHelpWaterfall)
+}
+movement Route119_Movement_RivalHelpWaterfall1{
+    walk_left
+}
+script Route119_EventScript_RivalHelpWaterfall2{
+    lock
+    setvar(VAR_TEMP_2, 1)
+    call(Route119_EventScript_RivalHelpWaterfallCheck)
+    call(Route119_EventScript_RivalApproachWaterfall)
+    applymovement(OBJ_EVENT_ID_PLAYER, Route119_Movement_RivalHelpWaterfall2)
+    waitmovement(0)
+    goto(Route119_EventScript_RivalHelpWaterfall)
+}
+movement Route119_Movement_RivalHelpWaterfall2{
+    walk_left * 2
+}
+movement Route119_Movement_RivalGoingTowardsWaterFall{
+    walk_right * 6
+}
+movement Route119_Movement_CameraFollowUp{
+    walk_left * 5
+    walk_up * 2
+}
+movement Route119_Movement_RivalLeavingAfterHavingRefused{
+    walk_left * 6
+    walk_down
+    walk_left * 2
+}
+movement Route119_Movement_RivalLeavingYouAloneWithYourPokemonInTheWildernessWithNoRealFriends{
+    walk_left * 3
+    walk_down
+    walk_left * 4
+}
+

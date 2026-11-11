@@ -1,0 +1,54 @@
+raw `
+RustboroCity_CuttersHouse_MapScripts:: @ 8215BD3
+	.byte 0
+
+RustboroCity_CuttersHouse_EventScript_Cutter:: @ 8215BD4
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_HM01, RustboroCity_CuttersHouse_EventScript_ExplainCut
+	msgbox RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse, MSGBOX_DEFAULT
+	giveitem ITEM_HM01_CUT
+	setflag FLAG_RECEIVED_HM01
+	msgbox RustboroCity_CuttersHouse_Text_ExplainCut, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_CuttersHouse_EventScript_ExplainCut:: @ 8215C00
+	msgbox RustboroCity_CuttersHouse_Text_ExplainCut, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_CuttersHouse_EventScript_Lass:: @ 8215C0A
+	msgbox RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees, MSGBOX_NPC
+	end
+
+RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse: @ 8215C13
+	.string "那坚定的表情……\n"
+	.string "那灵活的动作……\p"
+	.string "还有你训练有素的宝可梦……\n"
+	.string "你显然是个老练的训练家！\p"
+	.string "不，等等，什么都别说。\n"
+	.string "我一看就知道。\p"
+	.string "我相信你能把这台秘传学习器\n"
+	.string "用得恰到好处。\p"
+	.string "不用客气也不用害羞。\n"
+	.string "来，拿去吧！$"
+
+RustboroCity_CuttersHouse_Text_ExplainCut: @ 8215D33
+	.string "那个秘传学习器，简称秘传机，\n"
+	.string "里面是居合斩。\p"
+	.string "秘传招式是宝可梦能在\n"
+	.string "对战之外使用的招式。\p"
+	.string "只要训练家拿到了岩石徽章，\n"
+	.string "学会居合斩的宝可梦就能\p"
+	.string "砍倒细小的树。\n"
+	.string "而且和招式学习器一样，\p"
+	.string "秘传学习器能重复使用。$"
+
+RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees: @ 8215E39
+	.string "他们在扩建卡那兹市的时候，\n"
+	.string "我爸爸帮了忙。\p"
+	.string "他让宝可梦用居合斩\n"
+	.string "把地里的树清掉。$"
+
+`

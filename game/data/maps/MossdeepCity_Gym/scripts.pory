@@ -1,0 +1,1079 @@
+raw `
+MossdeepCity_Gym_MapScripts:: @ 8220800
+	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_Gym_OnLoad
+	.byte 0
+
+@ NOTE: Mossdeep Gym was redesigned between R/S and E. Leftover (and now functionally unused) scripts are commented below
+
+@ All the below checks are leftover from RS. FLAG_MOSSDEEP_GYM_SWITCH_X is never set
+MossdeepCity_Gym_OnLoad: @ 8220806
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_1, MossdeepCity_Gym_EventScript_SetSwitch1Metatiles
+	goto MossdeepCity_Gym_EventScript_CheckSwitch2
+	end
+
+MossdeepCity_Gym_EventScript_CheckSwitch2:: @ 8220815
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_2, MossdeepCity_Gym_EventScript_SetSwitch2Metatiles
+	goto MossdeepCity_Gym_EventScript_CheckSwitch3
+	end
+
+MossdeepCity_Gym_EventScript_CheckSwitch3:: @ 8220824
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_3, MossdeepCity_Gym_EventScript_SetSwitch3Metatiles
+	goto MossdeepCity_Gym_EventScript_CheckSwitch4
+	end
+
+MossdeepCity_Gym_EventScript_CheckSwitch4:: @ 8220833
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_4, MossdeepCity_Gym_EventScript_SetSwitch4Metatiles
+	end
+
+@ All the below set metatile scripts are leftover from RS and are functionally unused
+MossdeepCity_Gym_EventScript_SetSwitch1Metatiles:: @ 822083D
+	setmetatile 5, 5, METATILE_RS_MossdeepGym_RedArrow_Right, 0
+	setmetatile 2, 7, METATILE_RS_MossdeepGym_Switch_Down, 1
+	goto MossdeepCity_Gym_EventScript_CheckSwitch2
+	end
+
+MossdeepCity_Gym_EventScript_SetSwitch2Metatiles:: @ 8220855
+	setmetatile 8, 14, METATILE_RS_MossdeepGym_RedArrow_Right, 0
+	setmetatile 8, 10, METATILE_RS_MossdeepGym_Switch_Down, 1
+	goto MossdeepCity_Gym_EventScript_CheckSwitch3
+	end
+
+MossdeepCity_Gym_EventScript_SetSwitch3Metatiles:: @ 822086D
+	setmetatile 15, 17, METATILE_RS_MossdeepGym_RedArrow_Left, 0
+	setmetatile 17, 15, METATILE_RS_MossdeepGym_Switch_Down, 1
+	goto MossdeepCity_Gym_EventScript_CheckSwitch4
+	end
+
+MossdeepCity_Gym_EventScript_SetSwitch4Metatiles:: @ 8220885
+	setmetatile 1, 23, METATILE_RS_MossdeepGym_RedArrow_Up, 0
+	setmetatile 5, 24, METATILE_RS_MossdeepGym_Switch_Down, 1
+	end
+
+MossdeepCity_Gym_EventScript_TateAndLizaDefeated:: @ 82208D1
+	clearflag(FLAG_SYS_INVERSE_BATTLE)
+	goto_if_unset FLAG_DEFEATED_MOSSDEEP_GYM, MossdeepCity_Gym_EventScript_TateAndLizaDefeatedFirstTime
+	release
+	end
+MossdeepCity_Gym_EventScript_TateAndLizaDefeatedFirstTime:
+	message MossdeepCity_Gym_Text_ReceivedMindBadge
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	msgbox MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox MossdeepCity_Gym_Text_RegisteredSlowbro, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	msgbox MossdeepCity_Gym_Text_TakeThis, MSGBOX_DEFAULT
+	setflag FLAG_DEFEATED_MOSSDEEP_GYM
+	setflag FLAG_BADGE07_GET
+	setflag FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
+	clearflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
+	clearflag FLAG_UNKNOWN_0x393
+	setvar VAR_0x8008, 7
+	call Common_EventScript_SetGymTrainers
+	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+	clearflag FLAG_SYS_INVERSE_BATTLE
+	setvar VAR_MOSSDEEP_CITY_STATE, 1
+	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
+	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
+	call MossdeepCity_Gym_EventScript_GiveCalmMind
+	closemessage
+	@ delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox MossdeepCity_Gym_Text_RegisteredTateAndLiza, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL
+	release
+	end
+
+MossdeepCity_Gym_EventScript_TateAndLizaRematch::
+	msgbox MossdeepCity_Gym_Text_TateAndLizaAllowLegends, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_Gym_EventScript_TateAndLizaDoublesRematch
+	setvar VAR_0x8004, 10
+	setvar VAR_BATTLE_FIELD_EFFECT_TYPE, BATTLE_FIELD_EFFECT_ROOM
+	setvar VAR_BATTLE_FIELD_ID, STATUS_FIELD_TRICK_ROOM
+	trainerbattle_no_intro TRAINER_TATE_AND_LIZA_3, MossdeepCity_Gym_Text_TateAndLizaRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_TATE_AND_LIZA
+	clearflag FLAG_SYS_INVERSE_BATTLE
+	setvar VAR_BATTLE_FIELD_EFFECT_TYPE, 0
+	setvar VAR_BATTLE_FIELD_ID, 0
+	releaseall
+	end
+
+MossdeepCity_Gym_EventScript_TateAndLizaDoublesRematch::
+	setvar VAR_0x8004, 10
+	setvar VAR_BATTLE_FIELD_EFFECT_TYPE, BATTLE_FIELD_EFFECT_ROOM
+	setvar VAR_BATTLE_FIELD_ID, STATUS_FIELD_TRICK_ROOM
+	trainerbattle_no_intro TRAINER_TATE_AND_LIZA_2, MossdeepCity_Gym_Text_TateAndLizaRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_TATE_AND_LIZA
+	clearflag FLAG_SYS_INVERSE_BATTLE
+	setvar VAR_BATTLE_FIELD_EFFECT_TYPE, 0
+	setvar VAR_BATTLE_FIELD_ID, 0
+	releaseall
+	end
+
+MossdeepCity_Gym_EventScript_AlreadyRematched::
+	msgbox MossdeepCity_Gym_Text_TateAndLizaPostRematch, MSGBOX_AUTOCLOSE
+	clearflag FLAG_SYS_INVERSE_BATTLE
+	releaseall
+	end
+
+MossdeepCity_Gym_EventScript_Exit::
+	clearflag FLAG_SYS_INVERSE_BATTLE
+	releaseall
+	end
+
+@ All the below switch scripts are leftover from RS and are functionally unused
+MossdeepCity_Gym_EventScript_Switch1:: @ 8220999
+	lockall
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_1, MossdeepCity_Gym_EventScript_ClearSwitch1
+	setflag FLAG_MOSSDEEP_GYM_SWITCH_1
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 5, 5, METATILE_RS_MossdeepGym_RedArrow_Right, 0
+	setmetatile 2, 7, METATILE_RS_MossdeepGym_Switch_Down, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed:: @ 82209C8
+	special DrawWholeMapView
+	playse SE_CLICK
+	releaseall
+	end
+
+MossdeepCity_Gym_EventScript_ClearSwitch1:: @ 82209D0
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 5, 5, METATILE_RS_MossdeepGym_RedArrow_Left, 0
+	setmetatile 2, 7, METATILE_RS_MossdeepGym_Switch_Up, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_Switch2:: @ 82209F5
+	lockall
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_2, MossdeepCity_Gym_EventScript_ClearSwitch2
+	setflag FLAG_MOSSDEEP_GYM_SWITCH_2
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 8, 14, METATILE_RS_MossdeepGym_RedArrow_Right, 0
+	setmetatile 8, 10, METATILE_RS_MossdeepGym_Switch_Down, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_ClearSwitch2:: @ 8220A24
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 8, 14, METATILE_RS_MossdeepGym_RedArrow_Down, 0
+	setmetatile 8, 10, METATILE_RS_MossdeepGym_Switch_Up, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_Switch3:: @ 8220A49
+	lockall
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_3, MossdeepCity_Gym_EventScript_ClearSwitch3
+	setflag FLAG_MOSSDEEP_GYM_SWITCH_3
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 15, 17, METATILE_RS_MossdeepGym_RedArrow_Left, 0
+	setmetatile 17, 15, METATILE_RS_MossdeepGym_Switch_Down, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_ClearSwitch3:: @ 8220A78
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 15, 17, METATILE_RS_MossdeepGym_RedArrow_Right, 0
+	setmetatile 17, 15, METATILE_RS_MossdeepGym_Switch_Up, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_Switch4:: @ 8220A9D
+	lockall
+	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_4, MossdeepCity_Gym_EventScript_ClearSwitch4
+	setflag FLAG_MOSSDEEP_GYM_SWITCH_4
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 1, 23, METATILE_RS_MossdeepGym_RedArrow_Up, 0
+	setmetatile 5, 24, METATILE_RS_MossdeepGym_Switch_Down, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_ClearSwitch4:: @ 8220ACC
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
+	waitmovement 0
+	setmetatile 1, 23, METATILE_RS_MossdeepGym_RedArrow_Right, 0
+	setmetatile 5, 24, METATILE_RS_MossdeepGym_Switch_Up, 1
+	goto MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed
+	end
+
+MossdeepCity_Gym_EventScript_WarpToEntrance:: @ 8220AF1
+	lockall
+	warpmossdeepgym MAP_MOSSDEEP_CITY_GYM, 255, 7, 30
+	waitstate
+	releaseall
+	end
+
+MossdeepCity_Gym_EventScript_GymGuide:: 
+	lockall
+	faceplayer
+	goto_if_set FLAG_DEFEATED_MOSSDEEP_GYM, MossdeepCity_Gym_EventScript_AskResetTrainers
+	msgbox MossdeepCity_Gym_Text_Guide1, MSGBOX_DEFAULT
+	msgbox MossdeepCity_Gym_Text_Guide2, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_Gym_Guide2::
+	msgbox MossdeepCity_Gym_Text_Guide2, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_Gym_EventScript_GymGuidePostVictory:: @ 81FC998
+	msgbox MossdeepCity_Gym_Text_GymGuidePostVictory, MSGBOX_DEFAULT
+	release
+	end
+
+@ Leftover from RS, functionally unused
+MossdeepCity_Gym_Movement_WaitAfterSwitchUse: @ 8220C30
+	delay_16
+	delay_16
+	step_end
+
+MossdeepCity_Gym_EventScript_LeftGymStatue:: @ 8220C33
+	lockall
+	goto_if_set FLAG_BADGE07_GET, MossdeepCity_Gym_EventScript_GymStatueCertified
+	goto MossdeepCity_Gym_EventScript_GymStatue
+	end
+
+MossdeepCity_Gym_EventScript_RightGymStatue:: @ 8220C43
+	lockall
+	goto_if_set FLAG_BADGE07_GET, MossdeepCity_Gym_EventScript_GymStatueCertified
+	goto MossdeepCity_Gym_EventScript_GymStatue
+	end
+
+MossdeepCity_Gym_EventScript_GymStatueCertified:: @ 8220C53
+	msgbox MossdeepCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+	releaseall
+	end
+
+MossdeepCity_Gym_EventScript_GymStatue:: @ 8220C5D
+	msgbox MossdeepCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
+	end
+
+MossdeepCity_Gym_EventScript_YellowFloorSwitch:: @ 8220C67
+	playse SE_SWITCH
+	waitse
+	playse SE_REPEL
+	initrotatingtilepuzzle FALSE
+	moverotatingtileobjects 0
+	waitmovement 0
+	turnrotatingtileobjects
+	waitmovement 0
+	freerotatingtilepuzzle
+	end
+
+MossdeepCity_Gym_EventScript_BlueFloorSwitch:: @ 8220C7D
+	playse SE_SWITCH
+	waitse
+	playse SE_REPEL
+	initrotatingtilepuzzle FALSE
+	moverotatingtileobjects 1
+	waitmovement 0
+	turnrotatingtileobjects
+	waitmovement 0
+	freerotatingtilepuzzle
+	end
+
+MossdeepCity_Gym_EventScript_GreenFloorSwitch:: @ 8220C93
+	playse SE_SWITCH
+	waitse
+	playse SE_REPEL
+	initrotatingtilepuzzle FALSE
+	moverotatingtileobjects 2
+	waitmovement 0
+	turnrotatingtileobjects
+	waitmovement 0
+	freerotatingtilepuzzle
+	end
+
+MossdeepCity_Gym_EventScript_PurpleFloorSwitch:: @ 8220CA9
+	playse SE_SWITCH
+	waitse
+	playse SE_REPEL
+	initrotatingtilepuzzle FALSE
+	moverotatingtileobjects 3
+	waitmovement 0
+	turnrotatingtileobjects
+	waitmovement 0
+	freerotatingtilepuzzle
+	end
+
+MossdeepCity_Gym_EventScript_RedFloorSwitch:: @ 8220CBF
+	playse SE_SWITCH
+	waitse
+	playse SE_REPEL
+	initrotatingtilepuzzle FALSE
+	moverotatingtileobjects 4
+	waitmovement 0
+	turnrotatingtileobjects
+	waitmovement 0
+	freerotatingtilepuzzle
+	end
+
+MossdeepCity_Gym_Text_Guide1: @ 8220CD5
+	.string "哟，向着冠军前进的{PLAYER}，\n"
+	.string "过得怎么样？$"
+
+MossdeepCity_Gym_Text_Guide2: @ 8220CD5
+	.string "这里的馆主使用超能力属性的宝可梦\n"
+	.string "。\p"
+	.string "他们自己也拥有超能力，\n"
+	.string "还会用它改变战场！\p"
+	.string "想赢的话，你得让他们看到\n"
+	.string "你和宝可梦有多默契。去吧！$"
+
+MossdeepCity_Gym_Text_GymGuidePostVictory: @ 8220E2A
+	.string "哇，你太厉害了！\n"
+	.string "真是个了不起的训练家！$"
+
+MossdeepCity_Gym_Text_SamanthaAndBlakeIntro: @ 82211E2
+	.string "我看见了……\n"
+	.string "我看见你的未来……\p"
+	.string "你要是能打赢我，\n"
+	.string "我就告诉你未来！\p"
+	.string "呵呵呵呵……看我念力浮起精灵球！\n"
+	.string "唔哦哦哦哦哦哦！\p"
+	.string "…… …… …… ……\n"
+	.string "有时候，我会走神……$"
+
+MossdeepCity_Gym_Text_SamanthaIntro: @ 82211E2
+	.string "我看见了……\n"
+	.string "我看见你的未来……\p"
+	.string "你要是能打赢我，\n"
+	.string "我就告诉你未来！$"
+
+MossdeepCity_Gym_Text_SamanthaDefeat:: @ 8221230
+	.string "我认输！$"
+
+MossdeepCity_Gym_Text_SamanthaPostBattle: @ 822123D
+	.string "你会和我们的馆主进行一场\n"
+	.string "极其激烈的对战……\p"
+	.string "结果嘛……\n"
+	.string "我才不告诉你！$"
+
+MossdeepCity_Gym_Text_BlakeIntro: @ 8220FB0
+	.string "呵呵呵呵……看我念力浮起精灵球！\n"
+	.string "唔哦哦哦哦哦哦！\p"
+	.string "…… …… …… ……\n"
+	.string "有时候，我会走神……$"
+
+MossdeepCity_Gym_Text_BlakeDefeat:: @ 8221024
+	.string "我的宝可梦对战技术也走神了！$"
+
+MossdeepCity_Gym_Text_BlakePostBattle: @ 8221055
+	.string "精灵球太重，念力举不起来。\n"
+	.string "不过这团灰尘……\p"
+	.string "呼……！\n"
+	.string "…… …… …… ……\p"
+	.string "不，我没作弊！\n"
+	.string "我没吹气！真的！$"
+
+MossdeepCity_Gym_Text_MauraAndPrestonIntro:
+    .string "你走过的路……\n"
+    .string "你经历的一切……\p"
+    .string "把你学到的东西全都使出来！\n"
+    .string "对战靠的是心灵的力量！\p"
+    .string "心弱的人永远赢不了！$"
+
+MossdeepCity_Gym_Text_MauraIntro: @ 82212A6
+	.string "你走过的路……\n"
+	.string "你经历的一切……\p"
+	.string "把你学到的东西全都使出来！$"
+
+MossdeepCity_Gym_Text_MauraDefeat:: @ 8221309
+	.string "你走的是了不起的路！$"
+
+MossdeepCity_Gym_Text_MauraPostBattle: @ 822132E
+	.string "光明的前途在等着勤奋的人。\n"
+	.string "懒散度日的人，\p"
+	.string "尽头只有绝望。\n"
+	.string "种什么因，得什么果……$"
+	
+MossdeepCity_Gym_Text_PrestonIntro: @ 8220E5C
+	.string "对战靠的是心灵的力量！\n"
+	.string "心弱的人永远赢不了！$"
+
+MossdeepCity_Gym_Text_PrestonDefeat:: @ 8220EAC
+	.string "我输了！\n"
+	.string "我得重新磨炼我的心！$"
+
+MossdeepCity_Gym_Text_PrestonPostBattle: @ 8220ED3
+	.string "犹豫不决的人会输。\n"
+	.string "这是我对你的忠告。$"
+
+MossdeepCity_Gym_Text_SylviaAndHannahIntro: @ 82213C2
+	.string "就算赌上性命，\n"
+	.string "我也要赢下这场对战！\p"
+	.string "你输给我的时候，别太自责。\n"
+	.string "不是你太弱，是我太强了！$"
+
+MossdeepCity_Gym_Text_SylviaIntro: @ 82213C2
+	.string "就算赌上性命，\n"
+	.string "我也要赢下这场对战！$"
+
+MossdeepCity_Gym_Text_SylviaDefeat:: @ 82213F4
+	.string "你的做法……\n"
+	.string "让我胆寒……$"
+
+MossdeepCity_Gym_Text_SylviaPostBattle: @ 8221412
+	.string "你竟敢打赢我……\n"
+	.string "要是你遇上什么可怕的事，\p"
+	.string "可别怪我……$"
+
+
+MossdeepCity_Gym_Text_HannahIntro: @ 82210EE
+	.string "你输给我的时候，别太自责。\n"
+	.string "不是你太弱，是我太强了！$"
+
+MossdeepCity_Gym_Text_HannahDefeat:: @ 8221152
+	.string "你实在太强了！$"
+
+MossdeepCity_Gym_Text_HannahPostBattle: @ 822116A
+	.string "我不会因为输了就消沉。\n"
+	.string "我只要练得更狠就行。\p"
+	.string "正向思考，这是我的强项！$"
+
+MossdeepCity_Gym_Text_KathleenAndNicholasIntro: @ 8221507
+	.string "让我给你看看什么叫\n"
+	.string "彻头彻尾的可怕！\p"
+	.string "嗷！尝尝我宝可梦的超强战力！$"
+
+MossdeepCity_Gym_Text_KathleenIntro: @ 8221507
+	.string "让我给你看看什么叫彻头彻尾的可怕\n"
+	.string "！$"
+
+MossdeepCity_Gym_Text_KathleenDefeat:: @ 822153B
+	.string "不、不要啊！$"
+
+MossdeepCity_Gym_Text_KathleenPostBattle: @ 8221545
+	.string "你的活力会传染！快离我远点！$"
+
+MossdeepCity_Gym_Text_NicholasIntro: @ 82216EE
+	.string "嗷！尝尝我宝可梦的超强战力！$"
+
+MossdeepCity_Gym_Text_NicholasDefeat:: @ 822172D
+	.string "哦！完了！$"
+
+MossdeepCity_Gym_Text_NicholasPostBattle: @ 822173A
+	.string "好！下次我要开发一种\n"
+	.string "无敌的特别宝可梦力量。$"
+
+MossdeepCity_Gym_Text_MaceyAndCliffordIntro: @ 822161B
+	.string "你别想走到最后！\n"
+	.string "只要我还在，就别想！\p"
+	.string "我可能过了巅峰期，\n"
+	.string "但你最好别小看我。$"
+	
+MossdeepCity_Gym_Text_MaceyIntro: @ 822161B
+	.string "你别想走到最后！只要我还在，\n"
+	.string "就别想！$"
+
+MossdeepCity_Gym_Text_MaceyDefeat:: @ 8221658
+	.string "你怎么会强得这么离谱？$"
+
+MossdeepCity_Gym_Text_MaceyPostBattle: @ 8221680
+	.string "哼！你也许很强，\n"
+	.string "但你不适合超能力属性！\p"
+	.string "你的打法怎么说呢，太粗暴了！$"
+
+MossdeepCity_Gym_Text_CliffordIntro: @ 822157C
+	.string "我可能过了巅峰期，\n"
+	.string "但你最好别小看我。$"
+
+MossdeepCity_Gym_Text_CliffordDefeat:: @ 82215B8
+	.string "啊，你身上满是青春的力量！$"
+
+MossdeepCity_Gym_Text_CliffordPostBattle: @ 82215E2
+	.string "看来我敌不过你的年轻气盛。$"
+
+MossdeepCity_Gym_Text_NateAndVirgilIntro: @ 8221460
+	.string "呵呵呵。\n"
+	.string "得让你看看超能力属性有多难缠。\p"
+	.string "让我看看你的才能！$"
+
+MossdeepCity_Gym_Text_NateIntro: @ 8221460
+	.string "呵呵呵。\n"
+	.string "得让你看看超能力属性有多难缠。$"
+
+MossdeepCity_Gym_Text_NateDefeat:: @ 82214A7
+	.string "哦！哎呀呀！\n"
+	.string "你的对战风格太棒了！$"
+
+MossdeepCity_Gym_Text_NatePostBattle: @ 82214D3
+	.string "我……不管输得多惨，\n"
+	.string "都不会因失败而动摇。$"
+
+MossdeepCity_Gym_Text_VirgilIntro: @ 8220F02
+	.string "让我看看你的才能！$"
+
+MossdeepCity_Gym_Text_VirgilDefeat:: @ 8220F1A
+	.string "你拥有惊人的才能！$"
+
+MossdeepCity_Gym_Text_VirgilPostBattle: @ 8220F3A
+	.string "这世上要是有天才，\n"
+	.string "那就是我们的馆主！\p"
+	.string "不过，你也许比他们更有才能……$"
+
+
+
+MossdeepCity_Gym_Text_TateAndLizaIntro: @ 8221783
+	.string "小枫：嘿嘿嘿……你吃惊吗？\n"
+	.string "小南：呵呵呵……你吃惊吗？\p"
+	.string "小枫：馆主有两个人？\n"
+	.string "小南：馆主有两个人？\p"
+	.string "小枫：我们是双胞胎！\n"
+	.string "小南：我们是双胞胎！\p"
+	.string "小枫：我们不用说话，因为……\n"
+	.string "小南：我们能各自知道……\p"
+	.string "小枫：对方在想什么……\n"
+	.string "小南：全在心里！\p"
+	.string "小枫：还有……\n"
+	.string "小南：这是一场反转对战！\p"
+	.string "小枫：效果绝佳的招式会……\n"
+	.string "小南：变得效果不好！\p"
+	.string "小枫：而效果不好的招式……\n"
+	.string "小南：会变成效果绝佳！\p"
+	.string "小枫：我们这样的组合……\n"
+	.string "小南：你打得过吗？$"
+
+MossdeepCity_Gym_Text_TateAndLizaDefeat:: @ 82218EC
+	.string "小枫：什么？！我们的组合……\n"
+	.string "小南：被打破了！\p"
+	.string "小枫：没办法。你赢了……\n"
+	.string "小南：那么，作为认可，收下这个。$"
+
+MossdeepCity_Gym_Text_ReceivedMindBadge: @ 822196A
+	.string "{PLAYER}从小南和小枫那里得到了\n"
+	.string "心灵徽章。$"
+
+MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis: @ 8221999
+	.string "小枫：有了心灵徽章，\n"
+	.string "90级以下的宝可梦都会听你的话。\p"
+	.string "小南：还能在战斗外使用秘传招式潜\n"
+	.string "水，\p"
+	.string "需要的时候我们就借你呆壳兽！\n"
+	.string "…… …… …… ……$"
+
+MossdeepCity_Gym_Text_RegisteredSlowbro: @ 8221AEA
+	.string "在宝可梦导航器里登录了小枫和小南\n"
+	.string "的呆壳兽。$"
+
+MossdeepCity_Gym_Text_TakeThis:
+	.string "小南：这个你也拿去吧。$"
+
+MossdeepCity_Gym_Text_ExplainCalmMind: @ 8221A40
+	.string "小枫：招式学习器04里装着……\n"
+	.string "小南：冥想！\p"
+	.string "小枫：它能提高特攻……\n"
+	.string "小南：也能提高特防！\p"
+	.string "小枫：这招式正适合……\n"
+	.string "小南：超能力属性的宝可梦！\p"
+	.string "…… …… …… ……$"
+
+MossdeepCity_Gym_Text_RegisteredTateAndLiza: @ 8221AEA
+	.string "在宝可梦导航器里登录了馆主小枫和\n"
+	.string "小南。$"
+
+MossdeepCity_Gym_Text_TateAndLizaPostBattle: @ 8221B1D
+	.string "小枫：你和宝可梦的羁绊，\n"
+	.string "好像比我们双胞胎的羁绊还要强。\p"
+	.string "小南：你会变得更强！\n"
+	.string "和你打过，我们知道。$"
+
+MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons: @ 8221BCE
+	.string "小枫：嘿嘿嘿……你吃惊吗？\n"
+	.string "小南：馆主有两个人？\p"
+	.string "小枫：哎呀，你能对战的……\n"
+	.string "小南：宝可梦只有一只。\p"
+	.string "小枫：这样可没法打！\n"
+	.string "小南：想挑战我们的话，\p"
+	.string "多带几只宝可梦来。$"
+
+MossdeepCity_Gym_Text_GymStatue: @ 8221CB0
+	.string "绿岭市宝可梦道馆$"
+
+MossdeepCity_Gym_Text_GymStatueCertified: @ 8221CCA
+	.string "绿岭市宝可梦道馆\n"
+	.string "小南与小枫的认定训练家：\p"
+	.string "{PLAYER}$"
+
+MossdeepCity_Gym_Text_TateAndLizaPreRematch: @ 8221D0B
+	.string "小枫：我们的组合……\n"
+	.string "小南：我们会一次又一次展示给你看\p"
+	.string "！$"
+
+MossdeepCity_Gym_Text_TateAndLizaRematchDefeat:: @ 8221E05
+	.string "小枫：你和你的宝可梦……\n"
+	.string "小南：就像兄弟姐妹一样！$"
+
+MossdeepCity_Gym_Text_TateAndLizaPostRematch: @ 8221E45
+	.string "小枫：你也许能把我们打倒，\n"
+	.string "但我们绝不会一直倒下！\p"
+	.string "小南：因为我们两个人，\n"
+	.string "总是互相支持！$"
+
+MossdeepCity_Gym_Text_TateAndLizaRematchNeedTwoMons: @ 8221EB8
+	.string "小枫：哦……\n"
+	.string "小南：为了这场对战……\p"
+	.string "小枫：你只带了一只宝可梦！\n"
+	.string "小南：你只带了一只宝可梦！\p"
+	.string "小枫：回来的时候至少要带……\n"
+	.string "小南：两只宝可梦。$"
+
+MossdeepCity_Gym_Text_TateAndLizaAllowLegends:
+	.string "小枫：宝可梦……\n"
+	.string "小南：宝可梦……\p"
+	.string "小枫：只要改变队伍的搭配……\n"
+	.string "小南：对战风格就会改变。\p"
+	.string "小枫：但是我……\n"
+	.string "小南：但是我……\p"
+	.string "小枫：永远和小南在一起！\n"
+	.string "小南：永远和小枫在一起！\p"
+	.string "小枫：告诉我们，你想不想打……\n"
+	.string "小南：我们的传说宝可梦？$"
+`
+script MossdeepCity_Gym_EventScript_GiveCalmMind{
+	msgbox(format("小枫：这只特别的宝可梦，\n就当作我送你的礼物！$"))
+	givecustommon(SPECIES_REUNICLUS, 60, ITEM_LIFE_ORB, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_PSYSHOCK, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT, TRUE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	waitfanfare
+	msgbox(format("{PLAYER}得到了小枫的{COLOR BLUE}人造细胞卵{COLOR DARK_GRAY}\n！$"))
+	msgbox(format("小南：这一份是我的礼物！$"))
+	giveitem(ITEM_SLOWKINGITE, 1)
+	playfanfare(MUS_OBTAIN_ITEM)
+	waitfanfare
+	setflag(FLAG_RECEIVED_TM04)
+	msgbox(MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_GiveBattleText{
+	call (MossdeepCity_Gym_EventScript_CalcDefeatedCount)
+	switch(var(VAR_RESULT)){
+		case 0:
+			yesnobattle(format("这面{COLOR GREEN}光墙{COLOR DARK_GRAY}会保护我们不受特殊攻击。\n什么都穿不过去。$"))
+		break
+		case 1:
+			yesnobattle(format("如果你以为靠蛮力冲上来就能轻松取\n胜，那就大错特错了。\p再强的攻击也能被{COLOR GREEN}反射{COLOR DARK_GRAY}回去。$"))
+		break
+		case 2:
+			yesnobattle(format("只要一点超能力和正确的咒语，\n连{COLOR GREEN}运气{COLOR DARK_GRAY}都能随心操控。$"))
+		break
+		case 3:
+			//yesnobattle(format("很多时候{COLOR GREEN}毒素{COLOR DARK_GRAY}会被用来净化身心。\n小心，周围可能还残留着一些。$"))
+			yesnobattle(format("我们的超能力能限制你招式的范围！\n有了这个，你只能{COLOR GREEN}一只一只{COLOR DARK_GRAY}地攻过来\p。$"))
+		break
+		case 4:
+			yesnobattle(format("催眠是非常强大的超能力，\n甚至能{COLOR GREEN}让人睡着{COLOR DARK_GRAY}。$"))
+		break
+		case 5:
+			yesnobattle(format("希望你不会有{COLOR GREEN}躲在盾牌后面{COLOR DARK_GRAY}就安全了\n的想法，那种东西对我们的才能没什\p么用。$"))
+		break
+	}
+	return
+}
+
+
+script MossdeepCity_Gym_EventScript_SamanthaAndBlake{
+    call(MossdeepCity_Gym_EventScript_GiveBattleText)
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_SAMANTHA, TRAINER_BLAKE, TAG_TEAM_SAMANTHA_BLAKE,0, MossdeepCity_Gym_Text_SamanthaAndBlakeIntro)
+    }
+    release
+    end
+}
+
+script MossdeepCity_Gym_EventScript_Samantha {
+	lock
+	faceplayer
+	if (defeated(TRAINER_SAMANTHA)){
+		msgbox(MossdeepCity_Gym_Text_SamanthaPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_SamanthaAndBlake)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_Blake {
+	lock
+	faceplayer
+	if (defeated(TRAINER_BLAKE)){
+		msgbox(MossdeepCity_Gym_Text_BlakePostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_SamanthaAndBlake)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_MauraAndPreston{
+    call(MossdeepCity_Gym_EventScript_GiveBattleText)
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_MAURA, TRAINER_PRESTON, TAG_TEAM_MAURA_PRESTON,0, MossdeepCity_Gym_Text_MauraAndPrestonIntro)
+    }
+    release
+    end
+}
+
+script MossdeepCity_Gym_EventScript_Maura {
+	lock
+	faceplayer
+	if (defeated(TRAINER_MAURA)){
+		msgbox(MossdeepCity_Gym_Text_MauraPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_MauraAndPreston)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_Preston {
+	lock
+	faceplayer
+	if (defeated(TRAINER_PRESTON)){
+		msgbox(MossdeepCity_Gym_Text_PrestonPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_MauraAndPreston)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_SylviaAndHannah{
+    call(MossdeepCity_Gym_EventScript_GiveBattleText)
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_SYLVIA, TRAINER_HANNAH, TAG_TEAM_SYLVIA_HANNAH,0, MossdeepCity_Gym_Text_SylviaAndHannahIntro)
+    }
+    release
+    end
+}
+
+script MossdeepCity_Gym_EventScript_Sylvia {
+	lock
+	faceplayer
+	if (defeated(TRAINER_SYLVIA)){
+		msgbox(MossdeepCity_Gym_Text_SylviaPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_SylviaAndHannah)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_Hannah {
+	lock
+	faceplayer
+	if (defeated(TRAINER_HANNAH)){
+		msgbox(MossdeepCity_Gym_Text_HannahPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_SylviaAndHannah)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_NateAndVirgil{
+    call(MossdeepCity_Gym_EventScript_GiveBattleText)
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_NATE, TRAINER_VIRGIL, TAG_TEAM_NATE_VIRGIL,0, MossdeepCity_Gym_Text_NateAndVirgilIntro)
+    }
+    release
+    end
+}
+
+script MossdeepCity_Gym_EventScript_Nate {
+	lock
+	faceplayer
+	if (defeated(TRAINER_NATE)){
+		msgbox(MossdeepCity_Gym_Text_NatePostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_NateAndVirgil)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_Virgil {
+	lock
+	faceplayer
+	if (defeated(TRAINER_VIRGIL)){
+		msgbox(MossdeepCity_Gym_Text_VirgilPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_NateAndVirgil)
+	}
+	release
+	end
+}
+
+
+script MossdeepCity_Gym_EventScript_MaceyAndClifford{
+    call(MossdeepCity_Gym_EventScript_GiveBattleText)
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_MACEY, TRAINER_CLIFFORD, TAG_TEAM_MACEY_CLIFFORD,0, MossdeepCity_Gym_Text_MaceyAndCliffordIntro)
+    }
+    release
+    end
+}
+
+script MossdeepCity_Gym_EventScript_Macey {
+	lock
+	faceplayer
+	if (defeated(TRAINER_MACEY)){
+		msgbox(MossdeepCity_Gym_Text_MaceyPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_MaceyAndClifford)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_Clifford {
+	lock
+	faceplayer
+	if (defeated(TRAINER_CLIFFORD)){
+		msgbox(MossdeepCity_Gym_Text_CliffordPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_MaceyAndClifford)
+	}
+	release
+	end
+}
+
+
+script MossdeepCity_Gym_EventScript_KathleenAndNicholas{
+    call(MossdeepCity_Gym_EventScript_GiveBattleText)
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_KATHLEEN, TRAINER_NICHOLAS, TAG_TEAM_KATHLEEN_NICHOLAS,0, MossdeepCity_Gym_Text_KathleenAndNicholasIntro)
+    }
+    release
+    end
+}
+
+script MossdeepCity_Gym_EventScript_Kathleen {
+	lock
+	faceplayer
+	if (defeated(TRAINER_KATHLEEN)){
+		msgbox(MossdeepCity_Gym_Text_KathleenPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_KathleenAndNicholas)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_Nicholas {
+	lock
+	faceplayer
+	if (defeated(TRAINER_NICHOLAS)){
+		msgbox(MossdeepCity_Gym_Text_NicholasPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(MossdeepCity_Gym_EventScript_KathleenAndNicholas)
+	}
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_CalcDefeatedCount{
+	adddefeatedcount(TRAINER_SAMANTHA, 1) // TRAINER_BLAKE
+	adddefeatedcount(TRAINER_MAURA) // TRAINER_PRESTON
+	adddefeatedcount(TRAINER_SYLVIA) // TRAINER_HANNAH
+	adddefeatedcount(TRAINER_KATHLEEN) // TRAINER_NICHOLAS
+	adddefeatedcount(TRAINER_MACEY) // TRAINER_CLIFFORD
+	adddefeatedcount(TRAINER_NATE) // TRAINER_VIRGIL
+	return
+}
+
+script MossdeepCity_Gym_EventScript_CheckTrainers{
+    if (defeated(TRAINER_TATE_AND_LIZA_1)) {
+        msgbox(MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT)
+        release
+        end
+    }
+	// TRAINER_SAMANTHA => TRAINER_BLAKE
+	// TRAINER_MAURA    => TRAINER_PRESTON	
+	// TRAINER_SYLVIA   => TRAINER_HANNAH
+	// TRAINER_KATHLEEN => TRAINER_NICHOLAS
+	// TRAINER_MACEY    => TRAINER_CLIFFORD
+	// TRAINER_NATE     => TRAINER_VIRGIL
+    call (MossdeepCity_Gym_EventScript_CalcDefeatedCount)
+	if (var(VAR_RESULT) < 1 ){
+		registerbattleevent(BATTLE_EVENT_LIGHTSCREEN, 5)
+	}
+	if (var(VAR_RESULT) < 2){
+		registerbattleevent(BATTLE_EVENT_REFLECT, 5)
+	}
+	if (var(VAR_RESULT) < 3){
+		registerbattleevent(BATTLE_EVENT_LUCKY_CHANT, 5)
+	}
+	if (var(VAR_RESULT) < 4){
+		registerbattleevent(BATTLE_EVENT_PERMA_WIDE_GUARD)
+	}
+	if (var(VAR_RESULT) < 5){
+	    registerbattleevent(BATTLE_EVENT_LAST_SLEEP, 1)
+	}
+	if (var(VAR_RESULT) < 6){
+		registerbattleevent(BATTLE_EVENT_NO_PROTECT)
+	}
+}
+movement MossdeepCity_Gym_Text_LizaSansFromUndertale{
+	walk_in_place_down * 3
+}
+text MossdeepCity_Gym_Text_TateAndLizaIntro0{
+	format("小枫：不用超能力我们也知道……\n小南：……你接下来要吃苦头了。$")
+}
+text MossdeepCity_Gym_Text_TateAndLizaIntro1{
+	format("小枫：你以为打几场对战……\n小南：……就能对付我们？\p小枫：好吧，但你最好确保……\n小南：……输了以后别抱怨太多！$")
+}
+text MossdeepCity_Gym_Text_TateAndLizaIntroAll{
+	format("小枫：你的心已经强化到极致……\n小南：……\p但你要是以为我们没留最后一手，\n那就错了！！$")
+}
+text MossdeepCity_Gym_Text_TateAndLizaDefeat0{
+	format("小枫：你逼我们拿出了特别的挑战，\n结果还是赢了。\p小南：看来该停手了。\n你得到想要的挑战了吗？$")
+}
+text MossdeepCity_Gym_Text_TateAndLizaDefeat1{
+	format("小枫：虽然你一路上有点急……\n小南：……\p但最后还是站到了最高处！\n小枫：恭喜你获胜。\p小南：我们预见你未来会有精彩的对\n战。$")
+}
+text MossdeepCity_Gym_Text_TateAndLizaDefeatAll{
+	format("小枫：你连我们都打败了……\n小南：……\p那下一个道馆对你来说一定没问题！$")
+}
+const LOCAL_ID_LIZA = 12
+script MossdeepCity_Gym_EventScript_TateAndLiza{
+    goto_if_set(FLAG_SYS_GAME_CLEAR, MossdeepCity_Gym_EventScript_TateAndLizaRematch)
+    call(MossdeepCity_Gym_EventScript_CheckTrainers)
+	setvar(VAR_0x8004, 15)
+	setvar(VAR_BATTLE_FIELD_EFFECT_TYPE, BATTLE_FIELD_EFFECT_ROOM)
+	setvar(VAR_BATTLE_FIELD_ID, STATUS_FIELD_TRICK_ROOM)
+	setflag(FLAG_SYS_INVERSE_BATTLE)
+	registerbattleevent(BATTLE_EVENT_TENSE_BATTLE)
+	call (MossdeepCity_Gym_EventScript_CalcDefeatedCount)
+    switch (var(VAR_RESULT)) {
+		case 0:
+			msgbox(MossdeepCity_Gym_Text_TateAndLizaIntro0)
+			applymovement(LOCAL_ID_LIZA, MossdeepCity_Gym_Text_LizaSansFromUndertale)
+			playse(SE_M_METRONOME)
+			delay(8)
+			playse(SE_M_METRONOME)
+			delay(8)
+			playse(SE_M_SKETCH)
+			delay(6)
+			playse(SE_M_METRONOME)
+			trainerbattle_double_no_intro(TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaDefeat0, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated)
+		break
+		case 6:
+			trainerbattle_double(TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntroAll, MossdeepCity_Gym_Text_TateAndLizaDefeatAll, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC)
+		break
+		default:
+			trainerbattle_double(TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro1, MossdeepCity_Gym_Text_TateAndLizaDefeat1, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC)
+		break
+	}
+	
+	clearflag(FLAG_SYS_INVERSE_BATTLE)
+	setvar(VAR_BATTLE_FIELD_EFFECT_TYPE, 0)
+	setvar(VAR_BATTLE_FIELD_ID, 0)
+	goto_if_eq(MossdeepCity_Gym_EventScript_TateAndLizaRematch)
+	goto_if_unset(FLAG_RECEIVED_TM04, MossdeepCity_Gym_EventScript_GiveCalmMind)
+	msgbox(MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT)
+	release
+	end
+
+}
+
+script MossdeepCity_Gym_EventScript_AskResetTrainers{
+	lock
+	clydeaskresettrainers(MossdeepCity_Gym_EventScript_ResetAllTrainers, MossdeepCity_Gym_EventScript_SelectTrainers)
+	release
+	end
+}
+
+script MossdeepCity_Gym_EventScript_ResetAllTrainers{
+	cleartrainerflag(TRAINER_SAMANTHA)
+	cleartrainerflag(TRAINER_BLAKE)
+	cleartrainerflag(TRAINER_MAURA)
+	cleartrainerflag(TRAINER_PRESTON)
+	cleartrainerflag(TRAINER_SYLVIA)
+	cleartrainerflag(TRAINER_HANNAH)
+	cleartrainerflag(TRAINER_KATHLEEN)
+	cleartrainerflag(TRAINER_NICHOLAS)
+	cleartrainerflag(TRAINER_MACEY)
+	cleartrainerflag(TRAINER_CLIFFORD)
+	cleartrainerflag(TRAINER_NATE)
+	cleartrainerflag(TRAINER_VIRGIL)
+	cleartrainerflag(TRAINER_TATE_AND_LIZA_1)
+	return
+}
+
+movement MossdeepCity_Gym_Movement_SylviaAndHannah{
+	walk_fastest_left * 5
+	walk_fastest_up * 2
+}
+
+movement MossdeepCity_Gym_Movement_NateAndVirgil{
+	walk_fastest_right * 7
+}
+
+movement MossdeepCity_Gym_Movement_MaceyAndClifford{
+	walk_fastest_up * 4
+}
+
+movement MossdeepCity_Gym_Movement_PrestonAndMaura{
+	walk_fastest_left * 7
+}
+movement MossdeepCity_Gym_Movement_SamantaAndBlake{
+	walk_fastest_up * 3
+}
+movement MossdeepCity_Gym_Movement_KathleenAndNicholas{
+	walk_fastest_right * 7
+}
+movement MossdeepCity_Gym_Movement_TateAndLyza{
+	walk_fastest_left * 3
+	walk_fastest_up * 3
+}
+
+// don't forget to bring you back to the player
+movement MossdeepCity_Gym_Movement_Clyde{
+	walk_fastest_right * 1
+	walk_fastest_down * 12
+}
+
+script MossdeepCity_Gym_EventScript_SelectTrainers{
+	special(SpawnCameraObject)
+	selecttrainercameraoffset()
+	selecttrainer(MossdeepCity_Gym_Movement_SylviaAndHannah, "Sylvia & Hannah", TRAINER_SYLVIA, TRAINER_HANNAH)
+	selecttrainer(MossdeepCity_Gym_Movement_NateAndVirgil, "Nate & Virgil", TRAINER_NATE, TRAINER_VIRGIL)
+	selecttrainer(MossdeepCity_Gym_Movement_MaceyAndClifford, "Macey & Clifford", TRAINER_MACEY, TRAINER_CLIFFORD)
+	selecttrainer(MossdeepCity_Gym_Movement_PrestonAndMaura, "Preston & Maura", TRAINER_PRESTON, TRAINER_MAURA)
+	selecttrainer(MossdeepCity_Gym_Movement_SamantaAndBlake, "Samanta & Blake", TRAINER_SAMANTHA, TRAINER_BLAKE)
+	selecttrainer(MossdeepCity_Gym_Movement_KathleenAndNicholas, "Kathleen & Nicholas", TRAINER_KATHLEEN, TRAINER_NICHOLAS)
+	selecttrainer(MossdeepCity_Gym_Movement_TateAndLyza, "Tate & Lyza", TRAINER_TATE_AND_LIZA_1)
+	applymovement(OBJ_EVENT_ID_CAMERA, MossdeepCity_Gym_Movement_Clyde)
+	waitmovement(0)
+	selecttrainercameraoffset(TRUE)
+	special(RemoveCameraObject)
+	return
+}

@@ -1,0 +1,34 @@
+raw `
+Route111_RuinsExterior_MapScripts::
+	.byte 0
+`
+
+script Route111_Ruins_Exterior_EventScript_Krookodilenite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR) // Only For testing
+		if (!defeated(TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR)) { // asking for battle
+			msgbox(format("嗯，在找什么有趣的东西吗？\n这块地我已经占了，\p不过我在你身上看到了灵气。\p证明给我看，\n我就把挖到的好东西赏你。$"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("那就开始吧！$"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR, format("哈，我这双老眼从不说谎。$")) // in-battle, player wins
+				msgbox(format("我就知道我眼力不错！\n拿着这个，赶紧走，\p别在我的挖掘现场踩出脚印！$"), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_KROOKODILENITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("真可惜，等你准备好\n动手挖的时候再来吧！$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("你的执着令人钦佩，年轻人，\n但毫无意义。\p我的宝贝已经被挖光了。\p去别处寻你的运气吧，\n让这座空寂的圣所安静地歇着。$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("这是什么？一个小鬼\n跑到我的场地上来了？\p走开吧，孩子，\n等你更强了，我也许会陪你玩玩。$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

@@ -1,0 +1,189 @@
+raw `
+Route102_MapScripts:: @ 81EC0E0
+	.byte 0
+
+Route102_EventScript_LittleBoy:: @ 81EC0E1
+	msgbox Route102_Text_ImNotVeryTall, MSGBOX_NPC
+	end
+
+Route102_EventScript_RouteSignOldale:: @ 81EC0EA
+	msgbox Route102_Text_RouteSignOldale, MSGBOX_SIGN
+	end
+
+Route102_EventScript_RouteSignPetalburg:: @ 81EC0F3
+	msgbox Route102_Text_RouteSignPetalburg, MSGBOX_SIGN
+	end
+
+Route102_EventScript_Boy:: @ 81EC0FC
+	msgbox Route102_Text_CatchWholeBunchOfPokemon, MSGBOX_NPC
+	end
+
+Route102_EventScript_Oldplayer::
+	trainerbattle_no_intro TRAINER_OLDPLAYER, Route102_Text_CalvinDefeated
+	release
+	end
+
+
+Route102_EventScript_Calvin:: @ 81EC105
+	trainerbattle_single TRAINER_CALVIN_1, Route102_Text_CalvinIntro, Route102_Text_CalvinDefeated, Route102_EventScript_CalvinRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route102_EventScript_CalvinRematch
+	setvar VAR_0x8004, TRAINER_CALVIN_1
+	specialvar VAR_RESULT, IsTrainerRegistered
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route102_EventScript_CalvinTryRegister
+	msgbox Route102_Text_CalvinPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route102_EventScript_CalvinRegisterMatchCallAfterBattle:: @ 81EC146
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	goto_if_set FLAG_HAS_MATCH_CALL, Route102_EventScript_CalvinRegisterMatchCall
+	release
+	end
+
+Route102_EventScript_CalvinRegisterMatchCall:: @ 81EC157
+	msgbox Route102_Text_CalvinRegisterShort, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CALVIN_1
+	release
+	end
+
+Route102_EventScript_CalvinTryRegister:: @ 81EC170
+	goto_if_set FLAG_HAS_MATCH_CALL, Route102_EventScript_CalvinRegister
+	msgbox Route102_Text_CalvinPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route102_EventScript_CalvinRegister:: @ 81EC183
+	msgbox Route102_Text_CalvinRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CALVIN_1
+	release
+	end
+
+Route102_EventScript_CalvinRematch:: @ 81EC19C
+	trainerbattle_rematch TRAINER_CALVIN_1, Route102_Text_CalvinRematchIntro, Route102_Text_CalvinRematchDefeated
+	msgbox Route102_Text_CalvinRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route102_EventScript_Rick:: @ 81EC1B3
+	trainerbattle_single TRAINER_RICK, Route102_Text_RickIntro, Route102_Text_RickDefeated
+	msgbox Route102_Text_RickPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route102_EventScript_Tiana:: @ 81EC1CA
+	trainerbattle_single TRAINER_TIANA, Route102_Text_TianaIntro, Route102_Text_TianaDefeated
+	msgbox Route102_Text_TianaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route102_EventScript_Allen:: @ 81EC1E1
+	trainerbattle_single TRAINER_ALLEN, Route102_Text_AllenIntro, Route102_Text_AllenDefeated
+	msgbox Route102_Text_AllenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route102_Text_WatchMeCatchPokemon: @ 81EC1F8
+	.string "小胜：{PLAYER}……\n"
+	.string "宝可梦就藏在这种\l"
+	.string "草丛里吧？\p"
+	.string "请看着我，看我能不能\n"
+	.string "好好抓到一只。\p"
+	.string "上吧，蛇纹熊！$"
+
+Route102_Text_WallyIDidIt: @ 81EC271
+	.string "小胜：加油，精灵球！\n"
+	.string "再晃几下……\p"
+	.string "……\p"
+	.string "小胜：太好了！成功了……这是……\n"
+	.string "我的第一只宝可梦！\p"
+	.string "我永远不会忘记这一刻！$"
+
+Route102_Text_LetsGoBack: @ 81EC297
+	.string "{PLAYER}，谢谢你！\n"
+	.string "我们回道馆吧！$"
+
+Route102_Text_ImNotVeryTall: @ 81EC2C0
+	.string "我……个子不高，所以会\n"
+	.string "整个陷进草丛里。\p"
+	.string "草叶钻进鼻子，然后……\n"
+	.string "阿嚏阿嚏阿嚏……\p"
+	.string "哈啊嚏！$"
+
+Route102_Text_CatchWholeBunchOfPokemon: @ 81EC32E
+	.string "我要抓好多好多\n"
+	.string "宝可梦！$"
+
+Route102_Text_RouteSignOldale: @ 81EC35B
+	.string "102号道路\n"
+	.string "{RIGHT_ARROW} 古玫镇$"
+
+Route102_Text_RouteSignPetalburg: @ 81EC373
+	.string "102号道路\n"
+	.string "{LEFT_ARROW} 橙华市$"
+`
+script Route102_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_CALVIN_1) &&
+	   defeated(TRAINER_RICK) &&
+	   defeated(TRAINER_ALLEN) &&
+	   defeated(TRAINER_TIANA)){
+		// when you defeat every trainer
+		msgbox(format("打得好！这只来自伽勒尔的宝可梦送\n你，想要多少都行！"))
+		givemon(SPECIES_ROOKIDEE, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}因为击败了这里所有训练家，\n得到了{COLOR BLUE}稚山雀{COLOR DARK_GRAY}作为礼物！"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("嘿，训练家！\n你听说我们办的活动了吗？\p我们是伽勒尔来的学生，\n专程来到美丽的丰缘，\p介绍家乡的宝可梦有多棒。\n只要你击败一条道路上的所有训练家，\p再来找我们，\n我们就免费送你一只！"))
+	}
+    release
+    end
+}
+
+script Common_EventScript_GenericTrainer{
+	trainerbattle_single(TRAINER_NONE, format("我输了……"), format("来对战吧！"))
+	msgbox(format("下次我会更强的。"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Common_EventScript_FindItem{
+	getobjecteventextraid(GET_EXTRA_ID_DEFAULT)
+	finditem(VAR_RESULT)
+	end
+}
+
+script Common_EventScript_GiveItemBallBP{
+	getobjecteventextraid(GET_EXTRA_ID_BATTLE_POINTS)
+	removeobject(VAR_LAST_TALKED)
+	msgbox(format("{PLAYER}获得了{STR_VAR_1}点对战点数"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Common_EventScript_GiveMon{
+    lock
+    faceplayer
+	getobjecteventextraid(GET_EXTRA_ID_POKEMON)
+	removeobject(VAR_LAST_TALKED)
+	givemon(VAR_RESULT, 0, ITEM_NONE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER}得到了{STR_VAR_1}！"))
+	waitfanfare
+    release
+    end
+}
+
+script Common_EventScript_GiveMonFromPool{
+    lock
+    faceplayer
+	getobjecteventextraid(GET_EXTRA_ID_RANDOM_FROM_POOL)
+	removeobject(VAR_LAST_TALKED)
+	givemon(VAR_RESULT, 0, ITEM_NONE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER}得到了{STR_VAR_1}！"))
+	waitfanfare
+    release
+    end
+}

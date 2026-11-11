@@ -1,0 +1,28 @@
+raw `
+AbandonedShip_Corridors_1F_MapScripts:: @ 82379A4
+	.byte 0
+
+AbandonedShip_Corridors_1F_EventScript_Youngster:: @ 82379A5
+	msgbox AbandonedShip_Corridors_1F_Text_IsntItFunHere, MSGBOX_NPC
+	end
+
+AbandonedShip_Corridors_1F_EventScript_Charlie:: @ 82379AE
+	trainerbattle_single TRAINER_CHARLIE, AbandonedShip_Corridors_1F_Text_CharlieIntro, AbandonedShip_Corridors_1F_Text_CharlieDefeat
+	msgbox AbandonedShip_Corridors_1F_Text_CharliePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+AbandonedShip_Corridors_1F_Text_CharlieIntro: @ 82379C5
+	.string "我带着游泳圈上船，\n"
+	.string "有那么好笑吗？$"
+
+AbandonedShip_Corridors_1F_Text_CharlieDefeat: @ 8237A01
+	.string "哇，你把我彻底打垮了！$"
+
+AbandonedShip_Corridors_1F_Text_CharliePostBattle: @ 8237A1B
+	.string "一边抓着游泳圈一边扔精灵球，\n"
+	.string "可不容易！$"
+
+AbandonedShip_Corridors_1F_Text_IsntItFunHere: @ 8237A60
+	.string "这里很好玩吧？\n"
+	.string "光是待在这儿我就兴奋！$"
+`

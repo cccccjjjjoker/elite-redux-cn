@@ -1,0 +1,203 @@
+raw `
+Route109_SeashoreHouse_MapScripts:: @ 82693F4
+	map_script MAP_SCRIPT_ON_TRANSITION, Route109_SeashoreHouse_OnTransition
+	.byte 0
+
+Route109_SeashoreHouse_OnTransition: @ 82693FA
+	setflag FLAG_LANDMARK_SEASHORE_HOUSE
+	end
+
+Route109_SeashoreHouse_EventScript_Owner:: @ 82693FE
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_6_SODA_POP, Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop
+	goto_if_set FLAG_DEFEATED_SEASHORE_HOUSE, Route109_SeashoreHouse_EventScript_DefeatedTrainers
+	goto_if_set FLAG_TEMP_2, Route109_SeashoreHouse_EventScript_AlreadyGaveIntroduction
+	msgbox Route109_SeashoreHouse_Text_SeashoreHouseIntro, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_2
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_AlreadyGaveIntroduction:: @ 8269428
+	msgbox Route109_SeashoreHouse_Text_ShowMeSomeHotMatches, MSGBOX_DEFAULT
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_DefeatedTrainers:: @ 8269432
+	msgbox Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles, MSGBOX_DEFAULT
+	giveitem ITEM_SODA_POP, 6
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route109_SeashoreHouse_EventScript_BagFull
+	setflag FLAG_RECEIVED_6_SODA_POP
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_BagFull:: @ 8269456
+	msgbox Route109_SeashoreHouse_Text_BagFull, MSGBOX_DEFAULT
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop:: @ 8269460
+	showmoneybox 0, 0, 0
+	msgbox Route109_SeashoreHouse_Text_WantToBuySodaPop, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route109_SeashoreHouse_EventScript_BuySodaPop
+	msgbox Route109_SeashoreHouse_Text_ThatsTooBad, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_BuySodaPop:: @ 8269484
+	checkmoney 300, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route109_SeashoreHouse_EventScript_NotEnoughMoney
+	checkitemspace ITEM_SODA_POP, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route109_SeashoreHouse_EventScript_NotEnoughSpace
+	msgbox Route109_SeashoreHouse_Text_HereYouGo, MSGBOX_DEFAULT
+	removemoney 300, 0
+	updatemoneybox 0, 0
+	giveitem ITEM_SODA_POP
+	hidemoneybox
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_NotEnoughMoney:: @ 82694C8
+	msgbox Route109_SeashoreHouse_Text_NotEnoughMoney, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_NotEnoughSpace:: @ 82694D5
+	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_Dwayne:: @ 82694E2
+	trainerbattle_single TRAINER_DWAYNE, Route109_SeashoreHouse_Text_DwayneIntro, Route109_SeashoreHouse_Text_DwayneDefeated, Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+	msgbox Route109_SeashoreHouse_Text_DwaynePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route109_SeashoreHouse_EventScript_Johanna:: @ 82694FD
+	trainerbattle_single TRAINER_JOHANNA, Route109_SeashoreHouse_Text_JohannaIntro, Route109_SeashoreHouse_Text_JohannaDefeated, Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+	msgbox Route109_SeashoreHouse_Text_JohannaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route109_SeashoreHouse_EventScript_Simon:: @ 8269518
+	trainerbattle_single TRAINER_SIMON, Route109_SeashoreHouse_Text_SimonIntro, Route109_SeashoreHouse_Text_SimonDefeated, Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+	msgbox Route109_SeashoreHouse_Text_SimonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route109_SeashoreHouse_EventScript_CheckTrainersCompletion:: @ 8269533
+	goto_if_not_defeated TRAINER_DWAYNE, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+	goto_if_not_defeated TRAINER_JOHANNA, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+	goto_if_not_defeated TRAINER_SIMON, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+	setflag FLAG_DEFEATED_SEASHORE_HOUSE
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_TrainersNotCompleted:: @ 8269553
+	release
+	end
+
+Route109_SeashoreHouse_Text_SeashoreHouseIntro: @ 8269555
+	.string "我是海滨海屋的老板。\n"
+	.string "不过你可以叫我“海先生”！\p"
+	.string "我最喜欢看的就是激烈的宝可梦对战\n"
+	.string "。\p"
+	.string "让我看看你的心有多热！\n"
+	.string "如果你能打败这里所有的训练家，\p"
+	.string "我就给你奖励。$"
+
+Route109_SeashoreHouse_Text_ShowMeSomeHotMatches: @ 8269635
+	.string "让我看看火热的对战吧！\n"
+	.string "我开这家海滨海屋，就为了这个！$"
+
+Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles: @ 8269685
+	.string "你真是火热！\n"
+	.string "那些对战太精彩了！\p"
+	.string "我满意得不能再满意了！\n"
+	.string "为了感谢你让我看到这么火热的表现\p"
+	.string "，这个给你。\n"
+	.string "是半打汽水！$"
+
+Route109_SeashoreHouse_Text_BagFull: @ 826973A
+	.string "哦，不过你的背包满了。\n"
+	.string "这些我先帮你收着。$"
+
+Route109_SeashoreHouse_Text_WantToBuySodaPop: @ 826977E
+	.string "要买汽水吗？\n"
+	.string "宝可梦可喜欢了！\p"
+	.string "一瓶只要¥300！\n"
+	.string "买点吧！$"
+
+Route109_SeashoreHouse_Text_HereYouGo: @ 82697C8
+	.string "给你！$"
+
+Route109_SeashoreHouse_Text_NotEnoughMoney: @ 82697D5
+	.string "你的钱不够。$"
+
+Route109_SeashoreHouse_Text_ThatsTooBad: @ 82697EF
+	.string "不要？\n"
+	.string "那真可惜。$"
+
+Route109_SeashoreHouse_Text_DwayneIntro: @ 8269803
+	.string "想在滨海鲜屋对战的话，\n"
+	.string "这里没有比我更热的训练家了，\p"
+	.string "伙计！$"
+
+Route109_SeashoreHouse_Text_DwayneDefeated: @ 8269867
+	.string "那是一场火热的对战！\n"
+	.string "这场败仗我认了，伙计！$"
+
+Route109_SeashoreHouse_Text_DwaynePostBattle: @ 826989D
+	.string "每次来凯那市，\n"
+	.string "我都要打场火热的对战，\p"
+	.string "再来瓶冰镇汽水！$"
+
+Route109_SeashoreHouse_Text_JohannaIntro: @ 82698E3
+	.string "无聊的对战不值得打。\n"
+	.string "只有火热的对战才能让训练家和宝可\p"
+	.string "梦变强！$"
+
+Route109_SeashoreHouse_Text_JohannaDefeated: @ 8269947
+	.string "太热了！$"
+
+Route109_SeashoreHouse_Text_JohannaPostBattle: @ 8269953
+	.string "呼，我渴了。\n"
+	.string "来瓶汽水吧。$"
+
+Route109_SeashoreHouse_Text_SimonIntro: @ 8269986
+	.string "我要让你看看我的宝可梦有多强，\n"
+	.string "可别哭啊！$"
+
+Route109_SeashoreHouse_Text_SimonDefeated: @ 82699C5
+	.string "……我输了，但我不会哭……$"
+
+Route109_SeashoreHouse_Text_SimonPostBattle: @ 82699DF
+	.string "要是我的宝可梦里有谁会背着我过水\n"
+	.string "，\p"
+	.string "我就能把这救生圈扔了。$"
+
+`
+script Route109_SeashoreHouse_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_DWAYNE) &&
+	   defeated(TRAINER_JOHANNA) &&
+	   defeated(TRAINER_SIMON)){
+		// when you defeat every trainer
+		msgbox(format("干得漂亮！这只新伙伴就送你，\n算我请客！$"))
+		givemon(SPECIES_YAMPER, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}来电汪{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("在伽勒尔，\n我们管它们叫“人类最好的朋友”！\p只要你的对战实力够格，\n它们也能成为你最好的朋友！$"))
+	}
+    release
+    end
+}

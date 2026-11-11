@@ -1,0 +1,50 @@
+raw `
+AbandonedShip_CaptainsOffice_MapScripts:: @ 82387E1
+	.byte 0
+
+AbandonedShip_CaptainsOffice_EventScript_CaptSternAide:: @ 82387E2
+	lock
+	faceplayer
+	goto_if_set FLAG_EXCHANGED_SCANNER, AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+	checkitem ITEM_SCANNER, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq AbandonedShip_CaptainsOffice_EventScript_CanYouDeliverScanner
+	goto_if_set FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_4_SCANNER, AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus
+	msgbox AbandonedShip_CaptainsOffice_Text_NoSuccessFindingScanner, MSGBOX_DEFAULT
+	release
+	end
+
+AbandonedShip_CaptainsOffice_EventScript_CanYouDeliverScanner:: @ 8238810
+	msgbox AbandonedShip_CaptainsOffice_Text_OhCanYouDeliverScanner, MSGBOX_DEFAULT
+	release
+	end
+
+AbandonedShip_CaptainsOffice_EventScript_ThisIsSSCactus:: @ 823881A
+	msgbox AbandonedShip_CaptainsOffice_Text_ThisIsSSCactus, MSGBOX_DEFAULT
+	release
+	end
+
+AbandonedShip_CaptainsOffice_Text_NoSuccessFindingScanner: @ 8238824
+	.string "我受施坦恩船长之托\n"
+	.string "在调查这艘船。\p"
+	.string "他也让我找一台探测器，\n"
+	.string "可我一点进展都没有……$"
+
+AbandonedShip_CaptainsOffice_Text_OhCanYouDeliverScanner: @ 823889D
+	.string "哦！那是探测器！\n"
+	.string "听着，能请你把它交给\p"
+	.string "施坦恩船长吗？\n"
+	.string "我还想再调查这艘船\p"
+	.string "一会儿。$"
+
+AbandonedShip_CaptainsOffice_Text_ThisIsSSCactus: @ 8238918
+	.string "这艘船叫仙人掌号。\n"
+	.string "看来是更早时代的船。$"
+
+`
+
+script Debug_Script_2_Pory{
+	msgbox(format("开始脚本2$"), MSGBOX_DEFAULT)
+	giveegg(SPECIES_PICHU)
+	end
+}

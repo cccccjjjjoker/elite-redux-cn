@@ -1,0 +1,64 @@
+raw `
+MossdeepCity_House4_MapScripts:: @ 8222DD7
+	.byte 0
+
+MossdeepCity_House4_EventScript_Woman:: @ 8222DD8
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_House4_EventScript_CanBattleAtSecretBases
+	msgbox MossdeepCity_House4_Text_BrotherLikesToFindBases, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_House4_EventScript_CanBattleAtSecretBases:: @ 8222DED
+	msgbox MossdeepCity_House4_Text_BrotherLikesToVisitBasesAndBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_House4_EventScript_NinjaBoy:: @ 8222DF7
+	lock
+	faceplayer
+	special CheckPlayerHasSecretBase
+	compare VAR_RESULT, FALSE
+	goto_if_eq MossdeepCity_House4_EventScript_NoSecretBase
+	special GetSecretBaseNearbyMapName
+	msgbox MossdeepCity_House4_Text_YouMadeSecretBaseNearX, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_House4_EventScript_NoSecretBase:: @ 8222E14
+	msgbox MossdeepCity_House4_Text_MakeSecretBase, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_House4_EventScript_Skitty:: @ 8222E1E
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_SKITTY, 0
+	msgbox MossdeepCity_House4_Text_Skitty, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+MossdeepCity_House4_Text_BrotherLikesToFindBases: @ 8222E31
+	.string "我弟弟说，他喜欢去找\n"
+	.string "别人的秘密基地。$"
+
+MossdeepCity_House4_Text_BrotherLikesToVisitBasesAndBattle: @ 8222E73
+	.string "我弟弟说，他喜欢去\n"
+	.string "别人的秘密基地\p"
+	.string "打宝可梦对战。$"
+
+MossdeepCity_House4_Text_YouMadeSecretBaseNearX: @ 8222ECC
+	.string "在{STR_VAR_1}附近\n"
+	.string "建秘密基地的人是你吗？$"
+
+MossdeepCity_House4_Text_MakeSecretBase: @ 8222EF7
+	.string "你也该在哪儿建个秘密基地。\n"
+	.string "我会去找的！$"
+
+MossdeepCity_House4_Text_Skitty: @ 8222F31
+	.string "向尾喵：喵嗷？$"
+
+`

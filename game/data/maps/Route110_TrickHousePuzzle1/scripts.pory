@@ -1,0 +1,81 @@
+raw `
+Route110_TrickHousePuzzle1_MapScripts:: @ 826B90F
+	map_script MAP_SCRIPT_ON_LOAD, Route110_TrickHousePuzzle1_OnLoad
+	.byte 0
+
+Route110_TrickHousePuzzle1_OnLoad: @ 826B915
+	compare VAR_TRICK_HOUSE_PUZZLE_1_STATE, 2
+	goto_if_eq Route110_TrickHousePuzzle1_EventScript_OpenDoor
+	end
+
+Route110_TrickHousePuzzle1_EventScript_OpenDoor:: @ 826B921
+	setmetatile 13, 1, METATILE_TrickHousePuzzle_Stairs_Down, 0
+	end
+
+Route110_TrickHousePuzzle1_EventScript_Scroll:: @ 826B92B
+	lockall
+	compare VAR_TRICK_HOUSE_PUZZLE_1_STATE, 0
+	goto_if_eq Route110_TrickHousePuzzle1_EventScript_FoundScroll
+	goto Route110_TrickHousePuzzle_EventScript_ReadScrollAgain
+	end
+
+Route110_TrickHousePuzzle1_EventScript_FoundScroll:: @ 826B93D
+	setvar VAR_TRICK_HOUSE_PUZZLE_1_STATE, 1
+	goto Route110_TrickHousePuzzle_EventScript_FoundScroll
+	end
+
+Route110_TrickHousePuzzle1_EventScript_Sally:: @ 826B948
+	trainerbattle_single TRAINER_SALLY, Route110_TrickHousePuzzle1_Text_SallyIntro, Route110_TrickHousePuzzle1_Text_SallyDefeat
+	msgbox Route110_TrickHousePuzzle1_Text_SallyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle1_EventScript_Eddie:: @ 826B95F
+	trainerbattle_single TRAINER_EDDIE, Route110_TrickHousePuzzle1_Text_EddieIntro, Route110_TrickHousePuzzle1_Text_EddieDefeat
+	msgbox Route110_TrickHousePuzzle1_Text_EddiePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle1_EventScript_Robin:: @ 826B976
+	trainerbattle_single TRAINER_ROBIN, Route110_TrickHousePuzzle1_Text_RobinIntro, Route110_TrickHousePuzzle1_Text_RobinDefeat
+	msgbox Route110_TrickHousePuzzle1_Text_RobinPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle1_Text_WroteSecretCodeLockOpened:: @ 826B98D
+	.string "{PLAYER}在门上写下了密码。\p"
+	.string "“戏法大师真是了不起。”\p"
+	.string "…… …… …… ……\p"
+	.string "锁咔嗒一声开了！$"
+
+Route110_TrickHousePuzzle1_Text_SallyIntro: @ 826B9FB
+	.string "我要用刚学会的居合斩\n"
+	.string "一路砍到胜利！$"
+
+Route110_TrickHousePuzzle1_Text_SallyDefeat: @ 826BA3F
+	.string "你为什么这么认真？$"
+
+Route110_TrickHousePuzzle1_Text_SallyPostBattle: @ 826BA57
+	.string "我对砍砍削削\n"
+	.string "永远不会腻！$"
+
+Route110_TrickHousePuzzle1_Text_EddieIntro: @ 826BA82
+	.string "我不小心走进了\n"
+	.string "这栋奇怪的房子……$"
+
+Route110_TrickHousePuzzle1_Text_EddieDefeat: @ 826BAB0
+	.string "然后我就输了……$"
+
+Route110_TrickHousePuzzle1_Text_EddiePostBattle: @ 826BAC3
+	.string "我迷了路，输了比赛，\n"
+	.string "现在更迷了……\p"
+	.string "我出不去了……$"
+
+Route110_TrickHousePuzzle1_Text_RobinIntro: @ 826BB10
+	.string "戏法大师到底是谁？$"
+
+Route110_TrickHousePuzzle1_Text_RobinDefeat: @ 826BB2E
+	.string "我一边想事情一边就输了！$"
+
+Route110_TrickHousePuzzle1_Text_RobinPostBattle: @ 826BB52
+	.string "你很强！\p"
+	.string "你到底是谁？$"
+
+`

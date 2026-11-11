@@ -1,0 +1,1970 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  name: "????????"
+  description: "?????"
+  grouping: POCKET_NONE
+  image: "question_mark"
+  palette: "question_mark"
+}
+item {
+  id: ITEM_POTION
+  name: "伤药"
+  description: "回复1只宝可梦20点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 20
+  use_type: ITEM_USE_PARTY_MENU
+  image: "potion"
+  palette: "potion"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_ANTIDOTE
+  name: "解毒药"
+  description: "治愈宝可梦的中毒状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "antidote"
+  palette: "antidote"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_BURN_HEAL
+  name: "灼伤药"
+  description: "治愈宝可梦的灼伤状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "status_heal"
+  palette: "burn_heal"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_ICE_HEAL
+  name: "解冻药"
+  description: "治愈宝可梦的冰冻状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "status_heal"
+  palette: "ice_heal"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_AWAKENING
+  name: "解眠药"
+  description: "唤醒睡着的宝可梦。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "status_heal"
+  palette: "awakening"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_PARALYZE_HEAL
+  name: "解麻药"
+  description: "治愈宝可梦的麻痹状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "status_heal"
+  palette: "paralyze_heal"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_FULL_RESTORE
+  name: "全复药"
+  description: "全回复1只宝可梦的HP和异常状态。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 255
+  use_type: ITEM_USE_PARTY_MENU
+  image: "large_potion"
+  palette: "full_restore"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_MAX_POTION
+  name: "全满药"
+  description: "全回复1只宝可梦的HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 255
+  use_type: ITEM_USE_PARTY_MENU
+  image: "large_potion"
+  palette: "max_potion"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_HYPER_POTION
+  name: "厉害伤药"
+  description: "回复1只宝可梦200点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 200
+  use_type: ITEM_USE_PARTY_MENU
+  image: "potion"
+  palette: "hyper_potion"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_SUPER_POTION
+  name: "好伤药"
+  description: "回复1只宝可梦60点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 60
+  use_type: ITEM_USE_PARTY_MENU
+  image: "potion"
+  palette: "super_potion"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_FULL_HEAL
+  name: "万灵药"
+  description: "治愈1只宝可梦的所有异常状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "full_heal"
+  palette: "full_heal"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_REVIVE
+  name: "活力碎片"
+  description: "让濒死的宝可梦以一半HP复活。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "revive"
+  palette: "revive"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_MAX_REVIVE
+  name: "活力块"
+  description: "让濒死的宝可梦以全满HP复活。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "max_revive"
+  palette: "revive"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_FRESH_WATER
+  name: "美味之水"
+  description: "富含矿物质的水，恢复50点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 50
+  use_type: ITEM_USE_PARTY_MENU
+  image: "fresh_water"
+  palette: "fresh_water"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_SODA_POP
+  name: "劲爽汽水"
+  description: "清爽的汽水，恢复60点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 60
+  use_type: ITEM_USE_PARTY_MENU
+  image: "soda_pop"
+  palette: "soda_pop"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_LEMONADE
+  name: "果汁牛奶"
+  description: "非常甜的饮料，回复80点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 80
+  use_type: ITEM_USE_PARTY_MENU
+  image: "lemonade"
+  palette: "lemonade"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_MOOMOO_MILK
+  name: "哞哞鲜奶"
+  description: "营养丰富的牛奶，回复100点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 100
+  use_type: ITEM_USE_PARTY_MENU
+  image: "moomoo_milk"
+  palette: "moomoo_milk"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_ENERGY_POWDER
+  name: "元气粉"
+  description: "苦涩的粉末，回复60点HP。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "powder"
+  palette: "energy_powder"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_ENERGY_ROOT
+  name: "元气根"
+  description: "很苦的植物根须，恢复200点HP。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "energy_root"
+  palette: "energy_root"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_HEAL_POWDER
+  name: "万能粉"
+  description: "苦涩的粉末，治愈所有异常状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "powder"
+  palette: "heal_powder"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_REVIVAL_HERB
+  name: "复活草"
+  description: "能让濒死宝可梦复活的极苦药草"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "revival_herb"
+  palette: "revival_herb"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_ETHER
+  name: "PP单项小回复"
+  description: "恢复所选招式的10点PP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 10
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ether"
+  palette: "ether"
+  field_use_func: "PPRecovery"
+  battle_use_func: "PPRecovery"
+}
+item {
+  id: ITEM_MAX_ETHER
+  name: "PP单项全回复"
+  description: "完全回复所选招式的PP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 255
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ether"
+  palette: "max_ether"
+  field_use_func: "PPRecovery"
+  battle_use_func: "PPRecovery"
+}
+item {
+  id: ITEM_ELIXIR
+  name: "PP多项小回复"
+  description: "回复所有招式10点PP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 10
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ether"
+  palette: "elixir"
+  field_use_func: "PPRecovery"
+  battle_use_func: "PPRecovery"
+}
+item {
+  id: ITEM_MAX_ELIXIR
+  name: "PP多项全回复"
+  description: "全回复1只宝可梦所有招式的PP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 255
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ether"
+  palette: "max_elixir"
+  field_use_func: "PPRecovery"
+  battle_use_func: "PPRecovery"
+}
+item {
+  id: ITEM_LAVA_COOKIE
+  name: "釜炎仙贝"
+  description: "当地特产，治愈所有异常状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "lava_cookie"
+  palette: "lava_cookie_and_letter"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_SWEET_HEART
+  name: "心形甜点"
+  description: "甜甜的巧克力，回复20点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect_strength: 20
+  use_type: ITEM_USE_PARTY_MENU
+  image: "sweet_heart"
+  palette: "sweet_heart"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_BIG_MALASADA
+  name: "大马拉萨达"
+  description: "治愈1只宝可梦的所有异常状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "big_malasada"
+  palette: "big_malasada"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_OLD_GATEAU
+  name: "森之羊羹"
+  description: "治愈1只宝可梦的所有异常状态。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "old_gateau"
+  palette: "old_gateau"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_SACRED_ASH
+  name: "圣灰"
+  description: "完全复活并回复所有濒死的宝可梦"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "sacred_ash"
+  palette: "sacred_ash"
+  field_use_func: "SacredAsh"
+}
+item {
+  id: ITEM_HP_UP
+  name: "HP增强剂"
+  description: "提高1只宝可梦的HP个体值8点。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hp_up"
+  palette: "hp_up"
+  field_use_func: "Medicine"
+}
+item {
+  id: ITEM_PROTEIN
+  name: "攻击增强剂"
+  description: "提高1只宝可梦的攻击个体值8点。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "vitamin"
+  palette: "protein"
+  field_use_func: "Medicine"
+}
+item {
+  id: ITEM_IRON
+  name: "防御增强剂"
+  description: "提高1只宝可梦的防御个体值8点。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "vitamin"
+  palette: "iron"
+  field_use_func: "Medicine"
+}
+item {
+  id: ITEM_CARBOS
+  name: "速度增强剂"
+  description: "提高1只宝可梦的速度个体值8点。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "vitamin"
+  palette: "carbos"
+  field_use_func: "Medicine"
+}
+item {
+  id: ITEM_CALCIUM
+  name: "特攻增强剂"
+  description: "提高1只宝可梦的特攻个体值8点。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "vitamin"
+  palette: "calcium"
+  field_use_func: "Medicine"
+}
+item {
+  id: ITEM_RARE_CANDY
+  name: "神奇糖果"
+  description: "让1只宝可梦的等级提升1级。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "rare_candy"
+  palette: "rare_candy"
+  field_use_func: "RareCandy"
+}
+item {
+  id: ITEM_PP_UP
+  name: "PP提升剂"
+  description: "提高所选招式的最大PP。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "pp_up"
+  palette: "pp_up"
+  field_use_func: "PPUp"
+}
+item {
+  id: ITEM_ZINC
+  name: "特防增强剂"
+  description: "提高1只宝可梦的特防个体值8点。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "vitamin"
+  palette: "zinc"
+  field_use_func: "Medicine"
+}
+item {
+  id: ITEM_PP_MAX
+  name: "PP极限提升剂"
+  description: "能把招式点数提升到极限值。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "pp_max"
+  palette: "pp_max"
+  field_use_func: "PPUp"
+}
+item {
+  id: ITEM_ABILITY_CAPSULE
+  name: "特性药片"
+  description: "更换宝可梦的特性。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ability_capsule"
+  palette: "ability_capsule"
+  field_use_func: "AbilityCapsule"
+}
+item {
+  id: ITEM_ABILITY_PATCH
+  name: "特性膏药"
+  description: "把宝可梦的特性换成隐藏特性。"
+  grouping: POCKET_MEDICINE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ability_patch"
+  palette: "ability_patch"
+  field_use_func: "AbilityCapsule"
+}
+item {
+  id: ITEM_SUN_STONE
+  name: "日之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "sun_stone"
+  palette: "sun_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_MOON_STONE
+  name: "月之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "moon_stone"
+  palette: "moon_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_FIRE_STONE
+  name: "火之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "fire_stone"
+  palette: "fire_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_THUNDER_STONE
+  name: "雷之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "thunder_stone"
+  palette: "thunder_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_WATER_STONE
+  name: "水之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "water_stone"
+  palette: "water_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_LEAF_STONE
+  name: "叶之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "leaf_stone"
+  palette: "leaf_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_DAWN_STONE
+  name: "觉醒之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dawn_stone"
+  palette: "dawn_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_DUSK_STONE
+  name: "暗之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dusk_stone"
+  palette: "dusk_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_SHINY_STONE
+  name: "光之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "shiny_stone"
+  palette: "shiny_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_ICE_STONE
+  name: "冰之石"
+  description: "让某些特定的宝可梦进化。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ice_stone"
+  palette: "ice_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_RED_NECTAR
+  name: "朱红色花蜜"
+  description: "改变某些宝可梦形态的花蜜"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "red_nectar"
+  palette: "red_nectar"
+  field_use_func: "Nectar"
+}
+item {
+  id: ITEM_YELLOW_NECTAR
+  name: "金黄色花蜜"
+  description: "改变某些宝可梦形态的花蜜"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 1
+  use_type: ITEM_USE_PARTY_MENU
+  image: "yellow_nectar"
+  palette: "yellow_nectar"
+  field_use_func: "Nectar"
+}
+item {
+  id: ITEM_PINK_NECTAR
+  name: "桃粉色花蜜"
+  description: "改变某些宝可梦形态的花蜜"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 2
+  use_type: ITEM_USE_PARTY_MENU
+  image: "pink_nectar"
+  palette: "pink_nectar"
+  field_use_func: "Nectar"
+}
+item {
+  id: ITEM_PURPLE_NECTAR
+  name: "兰紫色花蜜"
+  description: "改变某些宝可梦形态的花蜜"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 3
+  use_type: ITEM_USE_PARTY_MENU
+  image: "purple_nectar"
+  palette: "purple_nectar"
+  field_use_func: "Nectar"
+}
+item {
+  id: ITEM_SWEET_APPLE
+  name: "甜甜苹果"
+  description: "让某些宝可梦进化的奇特苹果"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "sweet_apple"
+  palette: "sweet_apple"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_TART_APPLE
+  name: "酸酸苹果"
+  description: "让某些宝可梦进化的奇特苹果"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tart_apple"
+  palette: "tart_apple"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_CRACKED_POT
+  name: "破裂的茶壶"
+  description: "让某些宝可梦进化的奇特壶"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "cracked_pot"
+  palette: "cracked_pot"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_GALARICA_CUFF
+  name: "伽勒豆蔻手环"
+  description: "用伽勒豆蔻枝编成的手环。呆壳兽很喜欢。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "galarica_cuff"
+  palette: "galarica_cuff"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_GALARICA_WREATH
+  name: "伽勒豆蔻花圈"
+  description: "用伽勒豆蔻枝编成的花环。呆壳兽很喜欢。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "galarica_wreath"
+  palette: "galarica_wreath"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_STRAWBERRY_SWEET
+  name: "草莓糖饰"
+  description: "草莓形状的糖果，深受小仙奶喜爱。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "strawberry_sweet"
+  palette: "strawberry_sweet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_LOVE_SWEET
+  name: "爱心糖饰"
+  description: "心形的糖果，深受小仙奶喜爱。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "love_sweet"
+  palette: "love_sweet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_BERRY_SWEET
+  name: "野莓糖饰"
+  description: "浆果形状的糖果，深受小仙奶喜爱。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "berry_sweet"
+  palette: "berry_sweet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_CLOVER_SWEET
+  name: "幸运草糖饰"
+  description: "四叶草形状的糖果，深受小仙奶喜爱。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "clover_sweet"
+  palette: "clover_sweet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_FLOWER_SWEET
+  name: "花朵糖饰"
+  description: "花朵形状的糖果，深受小仙奶喜爱。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "flower_sweet"
+  palette: "flower_sweet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_STAR_SWEET
+  name: "星星糖饰"
+  description: "星星形状的糖果，深受小仙奶喜爱。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "star_sweet"
+  palette: "star_sweet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_RIBBON_SWEET
+  name: "蝴蝶结糖饰"
+  description: "蝴蝶结形状的糖果，深受小仙奶喜爱。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ribbon_sweet"
+  palette: "ribbon_sweet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_BLUE_FLUTE
+  name: "蓝色玻璃哨"
+  description: "能唤醒睡着宝可梦的玻璃笛。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "flute"
+  palette: "blue_flute"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_YELLOW_FLUTE
+  name: "黄色玻璃哨"
+  description: "让宝可梦摆脱混乱的玻璃笛"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "flute"
+  palette: "yellow_flute"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_RED_FLUTE
+  name: "红色玻璃哨"
+  description: "让宝可梦摆脱着迷的玻璃笛"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "flute"
+  palette: "red_flute"
+  battle_use_func: "Medicine"
+}
+item {
+  id: ITEM_BLACK_FLUTE
+  name: "黑色玻璃哨"
+  description: "能驱散野生宝可梦的玻璃笛。"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 50
+  use_type: ITEM_USE_PARTY_MENU
+  image: "flute"
+  palette: "black_flute"
+  field_use_func: "BlackWhiteFlute"
+}
+item {
+  id: ITEM_WHITE_FLUTE
+  name: "白色玻璃哨"
+  description: "能吸引野生宝可梦的玻璃笛。"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 150
+  use_type: ITEM_USE_PARTY_MENU
+  image: "flute"
+  palette: "white_flute"
+  field_use_func: "BlackWhiteFlute"
+}
+item {
+  id: ITEM_SHOAL_SALT
+  name: "浅滩海盐"
+  description: "从浅滩洞穴深处取得的盐。"
+  grouping: POCKET_ITEMS
+  image: "powder"
+  palette: "shoal_salt"
+}
+item {
+  id: ITEM_SHOAL_SHELL
+  name: "浅滩贝壳"
+  description: "在浅滩洞穴深处发现的贝壳。"
+  grouping: POCKET_ITEMS
+  image: "shoal_shell"
+  palette: "shell"
+}
+item {
+  id: ITEM_RED_SHARD
+  name: "红色碎片"
+  description: "古代道具的碎片。只能廉价出售。"
+  grouping: POCKET_ITEMS
+  image: "shard"
+  palette: "red_shard"
+}
+item {
+  id: ITEM_BLUE_SHARD
+  name: "蓝色碎片"
+  description: "古代道具的碎片。只能廉价出售。"
+  grouping: POCKET_ITEMS
+  image: "shard"
+  palette: "blue_shard"
+}
+item {
+  id: ITEM_YELLOW_SHARD
+  name: "黄色碎片"
+  description: "古代道具的碎片。只能廉价出售。"
+  grouping: POCKET_ITEMS
+  image: "shard"
+  palette: "yellow_shard"
+}
+item {
+  id: ITEM_GREEN_SHARD
+  name: "绿色碎片"
+  description: "古代道具的碎片。只能廉价出售。"
+  grouping: POCKET_ITEMS
+  image: "shard"
+  palette: "green_shard"
+}
+item {
+  id: ITEM_REPEL
+  name: "除虫喷雾"
+  description: "100步内，弱小的野生宝可梦不会出现。"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 100
+  image: "repel"
+  palette: "repel"
+  field_use_func: "Repel"
+}
+item {
+  id: ITEM_SUPER_REPEL
+  name: "白银喷雾"
+  description: "200步内，弱小的野生宝可梦不会出现。"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 200
+  image: "repel"
+  palette: "super_repel"
+  field_use_func: "Repel"
+}
+item {
+  id: ITEM_MAX_REPEL
+  name: "黄金喷雾"
+  description: "250步内，弱小的野生宝可梦不会出现。"
+  grouping: POCKET_ITEMS
+  hold_effect_strength: 250
+  image: "repel"
+  palette: "max_repel"
+  field_use_func: "Repel"
+}
+item {
+  id: ITEM_TINY_MUSHROOM
+  name: "小蘑菇"
+  description: "普通的蘑菇，能以低价卖出。"
+  grouping: POCKET_ITEMS
+  image: "tiny_mushroom"
+  palette: "mushroom"
+}
+item {
+  id: ITEM_BIG_MUSHROOM
+  name: "大蘑菇"
+  description: "珍贵的蘑菇，能以高价卖出。"
+  grouping: POCKET_ITEMS
+  image: "big_mushroom"
+  palette: "mushroom"
+}
+item {
+  id: ITEM_BALM_MUSHROOM
+  name: "芳香蘑菇"
+  description: "能以高价出售的稀有蘑菇。"
+  grouping: POCKET_ITEMS
+  image: "balm_mushroom"
+  palette: "balm_mushroom"
+}
+item {
+  id: ITEM_PEARL
+  name: "珍珠"
+  description: "能以廉价出售的漂亮珍珠。"
+  grouping: POCKET_ITEMS
+  image: "pearl"
+  palette: "pearl"
+}
+item {
+  id: ITEM_BIG_PEARL
+  name: "大珍珠"
+  description: "能以高价出售的美丽大珍珠。"
+  grouping: POCKET_ITEMS
+  image: "big_pearl"
+  palette: "pearl"
+}
+item {
+  id: ITEM_PEARL_STRING
+  name: "丸子珍珠"
+  description: "能以极高价格出售的超大珍珠。"
+  grouping: POCKET_ITEMS
+  image: "pearl_string"
+  palette: "pearl_string"
+}
+item {
+  id: ITEM_STARDUST
+  name: "星星沙子"
+  description: "漂亮的红色粉末，能以高价卖出。"
+  grouping: POCKET_ITEMS
+  image: "stardust"
+  palette: "star"
+}
+item {
+  id: ITEM_STAR_PIECE
+  name: "星星碎片"
+  description: "红色宝石碎片。能以极高价格出售。"
+  grouping: POCKET_ITEMS
+  image: "star_piece"
+  palette: "star"
+}
+item {
+  id: ITEM_COMET_SHARD
+  name: "彗星碎片"
+  description: "彗星经过时落下的碎片。"
+  grouping: POCKET_ITEMS
+  image: "comet_shard"
+  palette: "comet_shard"
+}
+item {
+  id: ITEM_NUGGET
+  name: "金珠"
+  description: "纯金块。能以高价出售。"
+  grouping: POCKET_ITEMS
+  image: "nugget"
+  palette: "nugget"
+}
+item {
+  id: ITEM_BIG_NUGGET
+  name: "巨大金珠"
+  description: "纯金大块。非常昂贵。"
+  grouping: POCKET_ITEMS
+  image: "big_nugget"
+  palette: "big_nugget"
+}
+item {
+  id: ITEM_RELIC_COPPER
+  name: "古代铜币"
+  description: "古代文明使用的铜制硬币。"
+  grouping: POCKET_ITEMS
+  image: "relic_copper"
+  palette: "relic_copper"
+}
+item {
+  id: ITEM_RELIC_SILVER
+  name: "古代银币"
+  description: "古代文明使用的银币。"
+  grouping: POCKET_ITEMS
+  image: "relic_silver"
+  palette: "relic_silver"
+}
+item {
+  id: ITEM_RELIC_GOLD
+  name: "古代金币"
+  description: "古代文明使用的金币。"
+  grouping: POCKET_ITEMS
+  image: "relic_gold"
+  palette: "relic_gold"
+}
+item {
+  id: ITEM_RELIC_VASE
+  name: "古代之壶"
+  description: "古代文明制作的易碎花瓶。"
+  grouping: POCKET_ITEMS
+  image: "relic_vase"
+  palette: "relic_vase"
+}
+item {
+  id: ITEM_RELIC_STATUE
+  name: "古代石像"
+  description: "古代文明制作的石像。"
+  grouping: POCKET_ITEMS
+  image: "relic_statue"
+  palette: "relic_statue"
+}
+item {
+  id: ITEM_RELIC_BAND
+  name: "古代手镯"
+  description: "古代文明制作的沉重手镯。"
+  grouping: POCKET_ITEMS
+  image: "relic_band"
+  palette: "relic_band"
+}
+item {
+  id: ITEM_HEART_SCALE
+  name: "心之鳞片"
+  description: "美丽的鳞片。收藏家梦寐以求。"
+  grouping: POCKET_ITEMS
+  image: "heart_scale"
+  palette: "heart_scale"
+}
+item {
+  id: ITEM_BOTTLE_CAP
+  name: "银色王冠"
+  description: "闪闪发光的银色瓶盖。收藏家梦寐以求。"
+  grouping: POCKET_ITEMS
+  image: "bottle_cap"
+  palette: "bottle_cap"
+}
+item {
+  id: ITEM_GOLD_BOTTLE_CAP
+  name: "金色王冠"
+  description: "闪闪发光的金色瓶盖。收藏家梦寐以求。"
+  grouping: POCKET_ITEMS
+  image: "gold_bottle_cap"
+  palette: "gold_bottle_cap"
+}
+item {
+  id: ITEM_RARE_BONE
+  name: "贵重骨头"
+  description: "非常稀有的骨头。能以高价出售。"
+  grouping: POCKET_ITEMS
+  image: "rare_bone"
+  palette: "rare_bone"
+}
+item {
+  id: ITEM_OVAL_STONE
+  name: "浑圆之石"
+  description: "让某只宝可梦进化，看起来像蛋"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "oval_stone"
+  palette: "oval_stone"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_PROTECTOR
+  name: "护具"
+  description: "某种宝可梦喜欢的东西。又硬又重。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "protector"
+  palette: "protector"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_ELECTIRIZER
+  name: "电力增幅器"
+  description: "某种宝可梦喜欢的东西。充满电能。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "electirizer"
+  palette: "electirizer"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_MAGMARIZER
+  name: "熔岩增幅器"
+  description: "某种宝可梦喜欢的东西。充满熔岩能量。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "magmarizer"
+  palette: "magmarizer"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_DUBIOUS_DISC
+  name: "可疑补丁"
+  description: "透明的装置，充满了可疑数据。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dubious_disc"
+  palette: "dubious_disc"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_REAPER_CLOTH
+  name: "灵界之布"
+  description: "蕴含灵力的布。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "reaper_cloth"
+  palette: "reaper_cloth"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_PRISM_SCALE
+  name: "美丽鳞片"
+  description: "能让某些宝可梦进化的美丽鳞片。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "prism_scale"
+  palette: "prism_scale"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_WHIPPED_DREAM
+  name: "泡沫奶油"
+  description: "某只宝可梦喜爱的柔软甜点"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "whipped_dream"
+  palette: "whipped_dream"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_SACHET
+  name: "香袋"
+  description: "某只宝可梦喜爱的香水小袋"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "sachet"
+  palette: "sachet"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_UPGRADE
+  name: "升级数据"
+  description: "西尔佛公司制造的奇特盒子。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "up_grade"
+  palette: "up_grade"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_RED_SCARF
+  name: "红色头巾"
+  description: "在华丽大赛中提升帅气的携带道具。"
+  grouping: POCKET_ITEMS
+  image: "scarf"
+  palette: "red_scarf"
+}
+item {
+  id: ITEM_BLUE_SCARF
+  name: "蓝色头巾"
+  description: "在华丽大赛中提升美丽的携带道具。"
+  grouping: POCKET_ITEMS
+  image: "scarf"
+  palette: "blue_scarf"
+}
+item {
+  id: ITEM_PINK_SCARF
+  name: "粉红头巾"
+  description: "在华丽大赛中提升可爱的携带道具。"
+  grouping: POCKET_ITEMS
+  image: "scarf"
+  palette: "pink_scarf"
+}
+item {
+  id: ITEM_GREEN_SCARF
+  name: "绿色头巾"
+  description: "在华丽大赛中提升聪明的携带道具。"
+  grouping: POCKET_ITEMS
+  image: "scarf"
+  palette: "green_scarf"
+}
+item {
+  id: ITEM_YELLOW_SCARF
+  name: "黄色头巾"
+  description: "在华丽大赛中提升强壮的携带道具。"
+  grouping: POCKET_ITEMS
+  image: "scarf"
+  palette: "yellow_scarf"
+}
+item {
+  id: ITEM_GUARD_SPEC
+  name: "能力防守"
+  description: "战斗中使用，防止能力下降。"
+  grouping: POCKET_BATTLE
+  image: "battle_stat_item"
+  palette: "guard_spec"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_DIRE_HIT
+  name: "要害攻击"
+  description: "在一场战斗中提升击中要害率。"
+  grouping: POCKET_BATTLE
+  image: "battle_stat_item"
+  palette: "dire_hit"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_X_ATTACK
+  name: "力量强化"
+  description: "在一场战斗中提升攻击能力。"
+  grouping: POCKET_BATTLE
+  image: "battle_stat_item"
+  palette: "x_attack"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_X_DEFENSE
+  name: "防御强化"
+  description: "在一场战斗中提升防御能力。"
+  grouping: POCKET_BATTLE
+  image: "battle_stat_item"
+  palette: "x_defend"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_X_SPEED
+  name: "速度强化"
+  description: "一场战斗中，速度会提高。"
+  grouping: POCKET_BATTLE
+  image: "battle_stat_item"
+  palette: "x_speed"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_X_ACCURACY
+  name: "命中强化"
+  description: "在一场战斗中提升攻击招式的命中率。"
+  grouping: POCKET_BATTLE
+  image: "battle_stat_item"
+  palette: "x_accuracy"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_X_SP_ATK
+  name: "特攻强化"
+  description: "一场战斗中提高特攻。"
+  grouping: POCKET_BATTLE
+  image: "battle_stat_item"
+  palette: "x_special"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_X_SP_DEF
+  name: "特防强化"
+  description: "一场战斗中提高特防。"
+  grouping: POCKET_BATTLE
+  image: "x_special_defense"
+  palette: "x_special_defense"
+  battle_use_func: "StatIncrease"
+}
+item {
+  id: ITEM_POKE_DOLL
+  name: "皮皮玩偶"
+  description: "可以从野生宝可梦的战斗中逃走。"
+  grouping: POCKET_BATTLE
+  image: "poke_doll"
+  palette: "poke_doll"
+  battle_use_func: "Escape"
+}
+item {
+  id: ITEM_FLUFFY_TAIL
+  name: "向尾喵的尾"
+  description: "可以从野生宝可梦的战斗中逃走。"
+  grouping: POCKET_BATTLE
+  image: "fluffy_tail"
+  palette: "fluffy_tail"
+  battle_use_func: "Escape"
+}
+item {
+  id: ITEM_MACHO_BRACE
+  name: "强制锻炼器"
+  description: "携带道具，促进成长，但降低速度。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "macho_brace"
+  palette: "macho_brace"
+}
+item {
+  id: ITEM_EXP_SHARE
+  name: "学习装置"
+  description: "携带道具，从战斗中获得经验值。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "exp_share"
+  palette: "exp_share"
+}
+item {
+  id: ITEM_SOOTHE_BELL
+  name: "安抚之铃"
+  description: "携带道具，安抚心灵，增进友好度。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "FRIENDSHIP_UP"
+  image: "soothe_bell"
+  palette: "soothe_bell"
+}
+item {
+  id: ITEM_AMULET_COIN
+  name: "护符金币"
+  description: "携带后，战斗结束时获得的金钱翻倍。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 10
+  image: "amulet_coin"
+  palette: "amulet_coin"
+}
+item {
+  id: ITEM_CLEANSE_TAG
+  name: "洁净之符"
+  description: "携带后，能更容易地驱散野生宝可梦。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_REPEL
+  image: "cleanse_tag"
+  palette: "cleanse_tag"
+}
+item {
+  id: ITEM_EVERSTONE
+  name: "不变之石"
+  description: "不可思议的携带道具，能阻止进化。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "PREVENT_EVOLVE"
+  image: "everstone"
+  palette: "everstone"
+}
+item {
+  id: ITEM_FOCUS_BAND
+  name: "气势头带"
+  description: "携带道具，偶尔能防止濒死。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 10
+  image: "focus_band"
+  palette: "focus_band"
+}
+item {
+  id: ITEM_LUCKY_EGG
+  name: "幸运蛋"
+  description: "携带道具，增加战斗中获得的经验值。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "lucky_egg"
+  palette: "lucky_egg"
+}
+item {
+  id: ITEM_DRAGON_SCALE
+  name: "龙之鳞片"
+  description: "龙属性宝可梦持有的神奇鳞片。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 10
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dragon_scale"
+  palette: "dragon_scale"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_RAZOR_CLAW
+  name: "锐利之爪"
+  description: "钩爪，提高携带者的击中要害率。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_SCOPE_LENS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "razor_claw"
+  palette: "razor_claw"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_RAZOR_FANG
+  name: "锐利之牙"
+  description: "携带道具，击中对手时可能使其畏缩。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_FLINCH
+  hold_effect_strength: 10
+  use_type: ITEM_USE_PARTY_MENU
+  image: "razor_fang"
+  palette: "razor_fang"
+  field_use_func: "EvolutionStone"
+}
+item {
+  id: ITEM_POWER_BRACER
+  name: "力量护腕"
+  description: "携带时只提升攻击，但会降低速度。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_POWER_ITEM
+  hold_effect_strength: 16
+  hold_effect_misc_param: "STAT_ATK"
+  image: "power_bracer"
+  palette: "power_bracer"
+}
+item {
+  id: ITEM_POWER_BELT
+  name: "力量腰带"
+  description: "携带道具，只允许防御成长但降低速度"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_POWER_ITEM
+  hold_effect_strength: 16
+  hold_effect_misc_param: "STAT_DEF"
+  image: "power_belt"
+  palette: "power_belt"
+}
+item {
+  id: ITEM_POWER_LENS
+  name: "力量镜"
+  description: "携带道具，只增加特攻，但降低速度。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_POWER_ITEM
+  hold_effect_strength: 16
+  hold_effect_misc_param: "STAT_SPATK"
+  image: "power_lens"
+  palette: "power_lens"
+}
+item {
+  id: ITEM_POWER_BAND
+  name: "力量束带"
+  description: "携带道具，只增加特防，但降低速度。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_POWER_ITEM
+  hold_effect_strength: 16
+  hold_effect_misc_param: "STAT_SPDEF"
+  image: "power_band"
+  palette: "power_band"
+}
+item {
+  id: ITEM_POWER_ANKLET
+  name: "力量护踝"
+  description: "携带道具，只增加速度，但降低速度。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_POWER_ITEM
+  hold_effect_strength: 16
+  hold_effect_misc_param: "STAT_SPEED"
+  image: "power_anklet"
+  palette: "power_anklet"
+}
+item {
+  id: ITEM_POWER_WEIGHT
+  name: "力量负重"
+  description: "携带道具，只增加HP，但降低速度。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_POWER_ITEM
+  hold_effect_strength: 16
+  hold_effect_misc_param: "STAT_HP"
+  image: "power_weight"
+  palette: "power_weight"
+}
+item {
+  id: ITEM_ZOOM_LENS
+  name: "对焦镜"
+  description: "携带者比对手后攻时，会提高命中率。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 20
+  image: "zoom_lens"
+  palette: "zoom_lens"
+}
+item {
+  id: ITEM_METRONOME
+  name: "挥指"
+  description: "携带道具，连续使用同一招式会提高威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 20
+  image: "metronome"
+  palette: "metronome"
+}
+item {
+  id: ITEM_DESTINY_KNOT
+  name: "红线"
+  description: "若携带者陷入爱河，对手也会如此。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "destiny_knot"
+  palette: "destiny_knot"
+}
+item {
+  id: ITEM_GRIP_CLAW
+  name: "紧缠钩爪"
+  description: "使携带者的束缚招式持续7回合。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "grip_claw"
+  palette: "grip_claw"
+}
+item {
+  id: ITEM_STICKY_BARB
+  name: "附着针"
+  description: "每回合伤害携带者，可能黏住对手。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "sticky_barb"
+  palette: "sticky_barb"
+}
+item {
+  id: ITEM_FLOAT_STONE
+  name: "轻石"
+  description: "非常轻，携带后宝可梦的体重会减半。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "float_stone"
+  palette: "float_stone"
+}
+item {
+  id: ITEM_RING_TARGET
+  name: "标靶"
+  description: "原本无效的招式会命中携带者。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "ring_target"
+  palette: "ring_target"
+}
+item {
+  id: ITEM_ABSORB_BULB
+  name: "球根"
+  description: "携带者被水属性招式击中时，提升特攻。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "absorb_bulb"
+  palette: "absorb_bulb"
+}
+item {
+  id: ITEM_CELL_BATTERY
+  name: "充电电池"
+  description: "携带者被电属性招式击中时，提升攻击。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "cell_battery"
+  palette: "cell_battery"
+}
+item {
+  id: ITEM_LUMINOUS_MOSS
+  name: "光苔"
+  description: "携带者被水属性招式击中时，提升特防。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "luminous_moss"
+  palette: "luminous_moss"
+}
+item {
+  id: ITEM_SNOWBALL
+  name: "雪丸"
+  description: "携带者被冰属性招式击中时，提升攻击。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "snowball"
+  palette: "snowball"
+}
+item {
+  id: ITEM_ADRENALINE_ORB
+  name: "胆怯球"
+  description: "自己受到威吓时提升速度，但仅限一次。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "adrenaline_orb"
+  palette: "adrenaline_orb"
+}
+item {
+  id: ITEM_BLUNDER_POLICY
+  name: "打空保险"
+  description: "招式未命中时，携带者的速度大幅提高。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "blunder_policy"
+  palette: "blunder_policy"
+}
+item {
+  id: ITEM_ROOM_SERVICE
+  name: "客房服务"
+  description: "使用戏法空间时降低速度的携带道具。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "room_service"
+  palette: "room_service"
+}
+item {
+  id: ITEM_UTILITY_UMBRELLA
+  name: "万能伞"
+  description: "保护携带者免受雨天和烈日的影响。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "utility_umbrella"
+  palette: "utility_umbrella"
+}
+item {
+  id: ITEM_QUICK_POWDER
+  name: "速度粉"
+  description: "提升百变怪速度的奇异粉末。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "quick_powder"
+  palette: "quick_powder"
+}
+item {
+  id: ITEM_LAX_INCENSE
+  name: "悠闲熏香"
+  description: "略微降低对手命中率的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_EVASION_UP
+  hold_effect_strength: 10
+  image: "lax_incense"
+  palette: "lax_incense"
+}
+item {
+  id: ITEM_FULL_INCENSE
+  name: "饱腹熏香"
+  description: "携带后，使携带者行动变慢的道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_LAGGING_TAIL
+  hold_effect_strength: 5
+  image: "full_incense"
+  palette: "full_incense"
+}
+item {
+  id: ITEM_LUCK_INCENSE
+  name: "幸运熏香"
+  description: "携带者参战时，战斗中获得的金币翻倍。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "DOUBLE_PRIZE"
+  hold_effect_strength: 10
+  image: "luck_incense"
+  palette: "luck_incense"
+}
+item {
+  id: ITEM_PURE_INCENSE
+  name: "洁净熏香"
+  description: "携带后，能更容易地驱散野生宝可梦。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_REPEL
+  image: "pure_incense"
+  palette: "pure_incense"
+}
+item {
+  id: ITEM_TRAINING_BAND
+  name: "训练腕带"
+  description: "大幅提升较弱宝可梦获得的经验值"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "focus_sash"
+  palette: "training_band"
+}
+item {
+  id: ITEM_FAB_MAIL
+  name: "华丽邮件"
+  description: "印有华丽图案、让宝可梦携带的信纸。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_MAIL
+  image: "fab_mail"
+  palette: "fab_mail"
+}
+item {
+  id: ITEM_RETRO_MAIL
+  name: "复古邮件"
+  description: "画着3只宝可梦图案的信纸。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_MAIL
+  image: "retro_mail"
+  palette: "retro_mail"
+}
+item {
+  id: ITEM_NORMALIUM_Z
+  name: "一般Z"
+  description: "将一般属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_NORMAL
+  image: "normalium_z"
+  palette: "normalium_z"
+}
+item {
+  id: ITEM_FIGHTINIUM_Z
+  name: "格斗Z"
+  description: "将格斗属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_FIGHTING
+  image: "fightinium_z"
+  palette: "fightinium_z"
+}
+item {
+  id: ITEM_FLYINIUM_Z
+  name: "飞行Z"
+  description: "将飞行属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_FLYING
+  image: "flyinium_z"
+  palette: "flyinium_z"
+}
+item {
+  id: ITEM_POISONIUM_Z
+  name: "毒Z"
+  description: "将毒属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_POISON
+  image: "poisonium_z"
+  palette: "poisonium_z"
+}
+item {
+  id: ITEM_GROUNDIUM_Z
+  name: "地面Z"
+  description: "将地面属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_GROUND
+  image: "groundium_z"
+  palette: "groundium_z"
+}
+item {
+  id: ITEM_ROCKIUM_Z
+  name: "岩石Z"
+  description: "将岩石属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_ROCK
+  image: "rockium_z"
+  palette: "rockium_z"
+}
+item {
+  id: ITEM_BUGINIUM_Z
+  name: "虫Z"
+  description: "将虫属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_BUG
+  image: "buginium_z"
+  palette: "buginium_z"
+}
+item {
+  id: ITEM_GHOSTIUM_Z
+  name: "幽灵Z"
+  description: "将幽灵属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_GHOST
+  image: "ghostium_z"
+  palette: "ghostium_z"
+}
+item {
+  id: ITEM_STEELIUM_Z
+  name: "钢Z"
+  description: "将钢属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_STEEL
+  image: "steelium_z"
+  palette: "steelium_z"
+}
+item {
+  id: ITEM_FIRIUM_Z
+  name: "火Z"
+  description: "把火属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_FIRE
+  image: "firium_z"
+  palette: "firium_z"
+}
+item {
+  id: ITEM_WATERIUM_Z
+  name: "水Z"
+  description: "将水属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_WATER
+  image: "waterium_z"
+  palette: "waterium_z"
+}
+item {
+  id: ITEM_GRASSIUM_Z
+  name: "草Z"
+  description: "把草属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_GRASS
+  image: "grassium_z"
+  palette: "grassium_z"
+}
+item {
+  id: ITEM_ELECTRIUM_Z
+  name: "电Z"
+  description: "把电属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_ELECTRIC
+  image: "electrium_z"
+  palette: "electrium_z"
+}
+item {
+  id: ITEM_PSYCHIUM_Z
+  name: "超能力Z"
+  description: "将超能力属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_PSYCHIC
+  image: "psychium_z"
+  palette: "psychium_z"
+}
+item {
+  id: ITEM_ICIUM_Z
+  name: "冰Z"
+  description: "把冰属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_ICE
+  image: "icium_z"
+  palette: "icium_z"
+}
+item {
+  id: ITEM_DRAGONIUM_Z
+  name: "龙Z"
+  description: "将龙属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_DRAGON
+  image: "dragonium_z"
+  palette: "dragonium_z"
+}
+item {
+  id: ITEM_DARKINIUM_Z
+  name: "恶Z"
+  description: "将恶属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_DARK
+  image: "darkinium_z"
+  palette: "darkinium_z"
+}
+item {
+  id: ITEM_FAIRIUM_Z
+  name: "妖精Z"
+  description: "将妖精属性招式升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  hold_effect_type: TYPE_FAIRY
+  image: "fairium_z"
+  palette: "fairium_z"
+}
+item {
+  id: ITEM_ALORAICHIUM_Z
+  name: "阿罗雷丘Z"
+  description: "把阿罗拉雷丘的十万伏特升级为Z招式"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "aloraichium_z"
+  palette: "aloraichium_z"
+}
+item {
+  id: ITEM_DECIDIUM_Z
+  name: "狙射树枭Z"
+  description: "将狙射树枭的暗影偷盗升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "decidium_z"
+  palette: "decidium_z"
+}
+item {
+  id: ITEM_EEVIUM_Z
+  name: "伊布Z"
+  description: "将伊布的珍藏升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "eevium_z"
+  palette: "eevium_z"
+}
+item {
+  id: ITEM_INCINIUM_Z
+  name: "炽焰咆哮虎Z"
+  description: "将炽焰咆哮虎的DD金勾臂升级为Z招式"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "incinium_z"
+  palette: "incinium_z"
+}
+item {
+  id: ITEM_KOMMONIUM_Z
+  name: "杖尾鳞甲龙Z"
+  description: "将杖尾鳞甲龙的鳞片噪音升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "kommonium_z"
+  palette: "kommonium_z"
+}
+item {
+  id: ITEM_LUNALIUM_Z
+  name: "露奈雅拉Z"
+  description: "将露奈雅拉的月光束升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "lunalium_z"
+  palette: "lunalium_z"
+}
+item {
+  id: ITEM_LYCANIUM_Z
+  name: "鬃岩狼人Z"
+  description: "将鬃岩狼人的尖石攻击升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "lycanium_z"
+  palette: "lycanium_z"
+}
+item {
+  id: ITEM_MARSHADIUM_Z
+  name: "玛夏多Z"
+  description: "将玛夏多的暗影偷盗升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "marshadium_z"
+  palette: "marshadium_z"
+}
+item {
+  id: ITEM_MEWNIUM_Z
+  name: "梦幻Z"
+  description: "将梦幻的精神强念升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "mewnium_z"
+  palette: "mewnium_z"
+}
+item {
+  id: ITEM_MIMIKIUM_Z
+  name: "谜拟丘Z"
+  description: "将谜拟丘的嬉闹升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "mimikium_z"
+  palette: "mimikium_z"
+}
+item {
+  id: ITEM_PIKANIUM_Z
+  name: "皮卡丘Z"
+  description: "将皮卡丘的伏特攻击升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "pikanium_z"
+  palette: "pikanium_z"
+}
+item {
+  id: ITEM_PIKASHUNIUM_Z
+  name: "智皮卡Z"
+  description: "将戴帽皮卡丘的十万伏特升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "pikashunium_z"
+  palette: "pikashunium_z"
+}
+item {
+  id: ITEM_PRIMARIUM_Z
+  name: "西狮海壬Z"
+  description: "将西狮海壬的泡影的咏叹调升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "primarium_z"
+  palette: "primarium_z"
+}
+item {
+  id: ITEM_SNORLIUM_Z
+  name: "卡比兽Z"
+  description: "将卡比兽的终极冲击升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "snorlium_z"
+  palette: "snorlium_z"
+}
+item {
+  id: ITEM_SOLGANIUM_Z
+  name: "索尔迦雷欧Z"
+  description: "将索尔迦雷欧的流星闪冲升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "solganium_z"
+  palette: "solganium_z"
+}
+item {
+  id: ITEM_TAPUNIUM_Z
+  name: "卡璞Z"
+  description: "将卡璞的自然的愤怒升级为Z招式。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_Z_CRYSTAL
+  image: "tapunium_z"
+  palette: "tapunium_z"
+}

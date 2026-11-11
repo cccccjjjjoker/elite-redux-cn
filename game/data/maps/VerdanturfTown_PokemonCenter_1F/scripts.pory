@@ -1,0 +1,136 @@
+raw `
+.set LOCALID_NURSE, 1
+
+VerdanturfTown_PokemonCenter_1F_MapScripts:: @ 8202726
+	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+VerdanturfTown_PokemonCenter_1F_OnTransition: @ 8202731
+	setrespawn HEAL_LOCATION_VERDANTURF_TOWN
+	call Common_EventScript_UpdateBrineyLocation
+	end
+
+VerdanturfTown_PokemonCenter_1F_EventScript_Nurse:: @ 820273A
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+VerdanturfTown_PokemonCenter_1F_EventScript_XscissorTM::
+	lock
+	faceplayer
+	msgbox VerdanturfTown_PokemonCenter_1F_Text_DoYouLikeBugs, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq VerdanturfTown_PokemonCenter_1F_EventScript_DontLikeBugs
+	msgbox VerdanturfTown_PokemonCenter_1F_Text_GiveTM81, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_PokemonCenter_1F_EventScript_ReceivedTM81::
+	msgbox VerdanturfTown_PokemonCenter_1F_Text_HaveTM81, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_PokemonCenter_1F_EventScript_DontLikeBugs::
+	msgbox VerdanturfTown_PokemonCenter_1F_Text_DontLikeBugs, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_PokemonCenter_1F_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart PokeMart_PokeCenterVerdanturfTown
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+PokeMart_PokeCenterVerdanturfTown::
+	.2byte ITEM_HEAL_BALL
+	.2byte ITEM_NEST_BALL
+	.2byte ITEM_LUXURY_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
+VerdanturfTown_PokemonCenter_1F_EventScript_Gentleman:: @ 8202748
+	msgbox VerdanturfTown_PokemonCenter_1F_Text_FaithInYourPokemon, MSGBOX_NPC
+	end
+
+VerdanturfTown_PokemonCenter_1F_EventScript_ExpertM:: @ 8202751
+	msgbox VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent, MSGBOX_NPC
+	end
+
+VerdanturfTown_PokemonCenter_1F_Text_DoYouLikeBugs:
+	.string "哟！虫属性宝可梦帅得离谱！\n"
+	.string "你也这么觉得吧？$"
+
+VerdanturfTown_PokemonCenter_1F_Text_GiveTM81:
+	.string "对！我喜欢你。我们可以做朋友。$"
+
+VerdanturfTown_PokemonCenter_1F_Text_HaveTM81:
+	.string "招式学习器81是十字剪。\n"
+	.string "那是帅得离谱的虫属性招式！$"
+
+VerdanturfTown_PokemonCenter_1F_Text_DontLikeBugs:
+	.string "不要？我们合不来啊。$"
+
+VerdanturfTown_PokemonCenter_1F_Text_FaithInYourPokemon: @ 820275A
+	.string "如果不相信自己的宝可梦，\n"
+	.string "就不配当真正的训练家。\p"
+	.string "只有那些相信自己对战中的\n"
+	.string "宝可梦的人，才能一路赢到底。$"
+
+VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent: @ 820280B
+	.string "会有人来绿茵镇，\n"
+	.string "理由只有一个……\p"
+	.string "当然是对战帐篷。\n"
+	.string "这还用说。\p"
+	.string "还是说，这里有你想见的人？$"
+
+`
+script Common_EventScript_PkmnCenterNurse{
+    lock
+    faceplayer
+	//Checks if the player has the Poke Vial
+    checkitem(ITEM_POKE_VIAL, 1)
+    if(var(VAR_RESULT) == 1){
+		//Calls the script that checks if you have certain items if you do
+    	goto(EventScript_PkmnCenterNurseHasVial)
+	}
+	else{
+		//First time talking to the nurse
+		msgbox(format("你好，欢迎来到宝可梦中心。\n我们可以让你的宝可梦恢复\p全部体力，不过其实不太需要，\n因为每场对战前它们都会自动回复。\p你是第一次来吧？\n你今天真走运！\p我们正在给所有新手训练家\n赠送大量有用的道具。\p先收下这台宝可梦导航器吧！$"), MSGBOX_DEFAULT)
+		//Give the DexNav
+		playfanfare(MUS_OBTAIN_ITEM)
+		message("{PLAYER}得到了宝可梦导航器！$")
+		waitmessage
+		setflag(FLAG_SYS_DEXNAV_GET)
+		waitfanfare
+		//Give the other items
+		msgbox(format("我还会给你糖果盒、招式学习器盒、\n所有对战道具、所有精灵球、\p所有招式学习器和秘传学习器、\n所有树果、所有属性宝石，\p还有更多东西。\n每次你跟我说话，\p我都会把你的道具补满。$"), MSGBOX_DEFAULT)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message("{PLAYER}得到了大量道具！$")
+		waitmessage
+		call(Common_EventScript_PkmnCenterNurse_GiveItems_First_Time)
+		waitfanfare
+		//Give Silent Items
+		applymovement(VAR_0x800B, Movement_PkmnCenterNurse_Bow)
+		additem(ITEM_POKE_VIAL)
+		setvar(VAR_POKE_VIAL_MAX_CHARGES, 1)
+		setvar(VAR_POKE_VIAL_CHARGES, 1)
+		msgbox("希望还能再见到你！$", MSGBOX_DEFAULT)
+	}
+	release
+	end
+}
+
+script Common_EventScript_PkmnCenterNurse_GiveItems_First_Time{
+	giveBattleItems
+	return
+}

@@ -1,0 +1,71 @@
+raw `
+Route110_TrickHousePuzzle8_MapScripts:: @ 826E801
+	.byte 0
+
+Route110_TrickHousePuzzle8_EventScript_Scroll:: @ 826E802
+	lockall
+	compare VAR_TRICK_HOUSE_PUZZLE_8_STATE, 0
+	goto_if_eq Route110_TrickHousePuzzle8_EventScript_FoundScroll
+	goto Route110_TrickHousePuzzle_EventScript_ReadScrollAgain
+	end
+
+Route110_TrickHousePuzzle8_EventScript_FoundScroll:: @ 826E814
+	setvar VAR_TRICK_HOUSE_PUZZLE_8_STATE, 1
+	goto Route110_TrickHousePuzzle_EventScript_FoundScroll
+	end
+
+Route110_TrickHousePuzzle8_EventScript_Vincent:: @ 826E81F
+	trainerbattle_single TRAINER_VINCENT, Route110_TrickHousePuzzle8_Text_VincentIntro, Route110_TrickHousePuzzle8_Text_VincentDefeat
+	msgbox Route110_TrickHousePuzzle8_Text_VincentPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle8_EventScript_Keira:: @ 826E836
+	trainerbattle_single TRAINER_KEIRA, Route110_TrickHousePuzzle8_Text_KeiraIntro, Route110_TrickHousePuzzle8_Text_KeiraDefeat
+	msgbox Route110_TrickHousePuzzle8_Text_KeiraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle8_EventScript_Leroy:: @ 826E84D
+	trainerbattle_single TRAINER_LEROY, Route110_TrickHousePuzzle8_Text_LeroyIntro, Route110_TrickHousePuzzle8_Text_LeroyDefeat
+	msgbox Route110_TrickHousePuzzle8_Text_LeroyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle8_EventScript_WroteSecretCodeLockOpened:: @ 826E864
+	.string "{PLAYER}在门上写下了密码。\p"
+	.string "“我爱戏法大师。”\p"
+	.string "…… …… …… ……\p"
+	.string "锁咔嗒一声开了！$"
+
+Route110_TrickHousePuzzle8_Text_VincentIntro: @ 826E8CD
+	.string "没几个训练家能走到这里。$"
+
+Route110_TrickHousePuzzle8_Text_VincentDefeat: @ 826E8F6
+	.string "那说明你也很强……$"
+
+Route110_TrickHousePuzzle8_Text_VincentPostBattle: @ 826E918
+	.string "你打赢了宝可梦联盟冠军？\n"
+	.string "太夸张了吧！$"
+
+Route110_TrickHousePuzzle8_Text_KeiraIntro: @ 826E954
+	.string "能跟我对战，你算走运了！$"
+
+Route110_TrickHousePuzzle8_Text_KeiraDefeat: @ 826E97F
+	.string "这不对！\p"
+	.string "我不能输！$"
+
+Route110_TrickHousePuzzle8_Text_KeiraPostBattle: @ 826E99F
+	.string "你能打赢我简直是奇迹。\n"
+	.string "你可以拿这个去炫耀。$"
+
+Route110_TrickHousePuzzle8_Text_LeroyIntro: @ 826E9D7
+	.string "你也在硬撑着\n"
+	.string "打戏法屋的挑战吧。$"
+
+Route110_TrickHousePuzzle8_Text_LeroyDefeat: @ 826EA14
+	.string "我明白了……\p"
+	.string "你有着非凡的风格。$"
+
+Route110_TrickHousePuzzle8_Text_LeroyPostBattle: @ 826EA3F
+	.string "看到你这样的人，\n"
+	.string "戏法大师一定会很高兴。$"
+
+`

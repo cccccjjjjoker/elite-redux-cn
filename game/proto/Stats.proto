@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package er;
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+// same as STAT_* in include/constants/pokemon.h
+enum Stat {
+  STAT_HP = 0;
+  STAT_ATK = 1;
+  STAT_DEF = 2;
+  STAT_SPEED = 3;
+  STAT_SPATK = 4;
+  STAT_SPDEF = 5;
+  // battle only
+  STAT_ACC = 6;
+  STAT_EVASION = 7;
+  // picked in battle by TranslateStatId()
+  STAT_HIGHEST_ATTACKING = 80;
+  STAT_HIGHEST_DEFENDING = 82;
+  STAT_HIGHEST_TOTAL = 84;
+}

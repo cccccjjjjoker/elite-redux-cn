@@ -1,0 +1,26 @@
+raw `
+FortreeCity_DecorationShop_MapScripts:: @ 821800D
+	.byte 0
+
+FortreeCity_DecorationShop_EventScript_PokefanM:: @ 821800E
+	msgbox FortreeCity_DecorationShop_Text_MerchandiseSentToPC, MSGBOX_NPC
+	end
+
+FortreeCity_DecorationShop_EventScript_Girl:: @ 8218017
+	msgbox FortreeCity_DecorationShop_Text_BuyingDeskForDolls, MSGBOX_NPC
+	end
+
+FortreeCity_DecorationShop_Text_MerchandiseSentToPC: @ 8218078
+	.string "你在这里买的商品会被送到\n"
+	.string "你自己的电脑里。\p"
+	.string "太棒了！真希望他们也能\n"
+	.string "这样把我送回家。$"
+
+FortreeCity_DecorationShop_Text_BuyingDeskForDolls: @ 82180ED
+	.string "我在买一张漂亮的桌子，\n"
+	.string "要把可爱的玩偶摆上去。\p"
+	.string "不然等我装饰秘密基地时，\n"
+	.string "我的玩偶会弄脏，\p"
+	.string "还会被木刺扎到。$"
+
+`

@@ -1,0 +1,233 @@
+raw `
+.set LOCALID_CHANSEY, 6
+.set LOCALID_POKE_BALL, 7
+
+AshenWoods_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, AshenWoods_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, AshenWoods_OnTransition
+	.byte 0
+
+AshenWoods_OnResume::
+	setstepcallback STEP_CB_ASH
+	end
+
+AshenWoods_OnTransition::
+	setflag FLAG_LANDMARK_ASHEN_WOODS
+	compare VAR_JAGGED_PASS_ASH_WEATHER, 1
+	call_if_eq AshenWoods_EventScript_SetWeatherAsh
+	switch VAR_CHANSEY_NURSE_STATE
+	case 4, AshenWoods_EventScript_ChanseySetPos1
+	case 5, AshenWoods_EventScript_ChanseySetPos2
+	end
+
+AshenWoods_EventScript_SetWeatherAsh::
+	setweather WEATHER_VOLCANIC_ASH
+	doweather
+	return
+
+AshenWoods_EventScript_Chef::
+	msgbox AshenWoods_Text_Mushrooms, MSGBOX_NPC
+	end
+
+AshenWoods_EventScript_ChanseyTrigger::
+	lockall
+	waitse
+	playse SE_PIN
+	applymovement LOCALID_CHANSEY, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_CHANSEY, Common_Movement_Delay48
+	waitmovement 0
+	applymovement LOCALID_CHANSEY, AshenWoods_Movement_ChanseyJumpRight
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	applymovement LOCALID_CHANSEY, AshenWoods_Movement_ChanseyEscape1
+	waitmovement 0
+	call AshenWoods_EventScript_ChanseySetPos1
+	setvar VAR_CHANSEY_NURSE_STATE, 4
+	releaseall
+	end
+
+AshenWoods_EventScript_ChanseyTrigger2::
+	lockall
+	waitse
+	playse SE_PIN
+	applymovement LOCALID_CHANSEY, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_CHANSEY, Common_Movement_Delay48
+	waitmovement 0
+	applymovement LOCALID_CHANSEY, AshenWoods_Movement_ChanseyJumpUp
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	applymovement LOCALID_CHANSEY, AshenWoods_Movement_ChanseyEscape2
+	waitmovement 0
+	call AshenWoods_EventScript_ChanseySetPos2
+	setvar VAR_CHANSEY_NURSE_STATE, 5
+	releaseall
+	end
+
+AshenWoods_EventScript_ChanseySetPos1::
+	setobjectxy LOCALID_CHANSEY, 6, 40
+	copyobjectxytoperm LOCALID_CHANSEY
+	return
+
+AshenWoods_EventScript_ChanseySetPos2::
+	setobjectxy LOCALID_CHANSEY, 27, 43
+	copyobjectxytoperm LOCALID_CHANSEY
+	return
+
+AshenWoods_EventScript_Chansey::
+	lockall
+	faceplayer
+	applymovement LOCALID_CHANSEY, AshenWoods_Movement_ChanseyJumpRight
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	msgbox AshenWoods_Text_BlobNowhereToRun, MSGBOX_DEFAULT
+	checkitem ITEM_HEAL_BALL, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq AshenWoods_EventScript_BlobNoHealBall
+	msgbox AshenWoods_Text_CatchBlob, MSGBOX_DEFAULT
+	removeitem ITEM_HEAL_BALL, 1
+	playse SE_BALL_THROW
+	waitse
+	removeobject LOCALID_CHANSEY
+	addobject LOCALID_POKE_BALL
+	playse SE_BALL_BOUNCE_1
+	waitse
+	playse SE_BALL_BOUNCE_2
+	waitse
+	playse SE_BALL_BOUNCE_4
+	waitse
+	playse SE_RG_BALL_CLICK
+	waitse
+	msgbox AshenWoods_Text_BlobCaught, MSGBOX_DEFAULT
+	removeobject LOCALID_POKE_BALL
+	setvar VAR_CHANSEY_NURSE_STATE, 6
+	releaseall
+	end
+
+AshenWoods_EventScript_BlobNoHealBall::
+	msgbox AshenWoods_Text_BlobNoHealBall, MSGBOX_DEFAULT
+	releaseall
+	end
+
+AshenWoods_Movement_ChanseyJumpRight:
+	jump_in_place_right
+	delay_4
+	jump_in_place_right
+	step_end
+
+AshenWoods_Movement_ChanseyJumpUp:
+	jump_in_place_up
+	delay_4
+	jump_in_place_up
+	step_end
+
+AshenWoods_Movement_ChanseyEscape1:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	face_up
+	step_end
+
+AshenWoods_Movement_ChanseyEscape2:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+AshenWoods_EventScript_Alannah::
+	trainerbattle_single TRAINER_ALANNAH, AshenWoods_Text_AlannahIntro, AshenWoods_Text_AlannahDefeat
+	msgbox AshenWoods_Text_AlannahPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+AshenWoods_EventScript_Martin::
+	trainerbattle_single TRAINER_MARTIN, AshenWoods_Text_MartinIntro, AshenWoods_Text_MartinDefeat
+	msgbox AshenWoods_Text_MartinPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+AshenWoods_EventScript_Roman::
+	trainerbattle_single TRAINER_ROMAN, AshenWoods_Text_RomanIntro, AshenWoods_Text_RomanDefeat
+	msgbox AshenWoods_Text_RomanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+AshenWoods_EventScript_Elmer::
+	trainerbattle_single TRAINER_ELMER, AshenWoods_Text_ElmerIntro, AshenWoods_Text_ElmerDefeat
+	msgbox AshenWoods_Text_ElmerPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+AshenWoods_Text_Mushrooms:
+	.string "这里长出来的蘑菇\n"
+	.string "是极受欢迎的食材。\p"
+	.string "它们相当值钱，而且\n"
+	.string "好像一夜之间就会长回来！$"
+
+AshenWoods_Text_BlobNowhereToRun:
+	.string "布洛布无路可逃了！$"
+
+AshenWoods_Text_BlobNoHealBall:
+	.string "可{PLAYER}没有治愈球\n"
+	.string "可以抓它……$"
+
+AshenWoods_Text_CatchBlob:
+	.string "{PLAYER}朝布洛布扔出了治愈球！$"
+
+AshenWoods_Text_BlobCaught:
+	.string "布洛布被抓到了！\n"
+	.string "布洛布被送到了护士的电脑里。$"
+`
+
+script AshenWoods_EventScript_Typhlosionite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_TYPHLOSIONITE_ASHEN_WOODS) // Only For testing
+		if (!defeated(TRAINER_TYPHLOSIONITE_ASHEN_WOODS)) { // asking for battle
+			msgbox(format("小子，你看起来挺强！这样吧，\n我们打一场，你赢了我，\p我就给你点小礼物！$"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("来玩火吧！$"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_TYPHLOSIONITE_ASHEN_WOODS, format("小子，打得真好！$")) // when the player wins
+				msgbox(format("哎哟！这么年轻，就已经能把\n我这样的人打成这样！\p你有潜力，小子。这颗火暴兽进化石\n给你，把敢挑战你的人都烧成灰！$"), MSGBOX_NPC)
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_TYPHLOSIONITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("那你准备好了再来！\n别让我失望！$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("小子，我这儿没什么可给你的了。\n快走吧！$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("唔……你还不够强，小子！\n打不赢橙华市那家伙之前，\p别再来这儿！$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

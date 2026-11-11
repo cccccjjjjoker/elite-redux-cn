@@ -1,0 +1,98 @@
+raw `
+.set LOCALID_NURSE, 1
+
+PetalburgCity_PokemonCenter_1F_MapScripts:: @ 82079E8
+	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+PetalburgCity_PokemonCenter_1F_OnTransition: @ 82079F3
+	setrespawn HEAL_LOCATION_PETALBURG_CITY
+	call Common_EventScript_UpdateBrineyLocation
+	end
+
+PetalburgCity_PokemonCenter_1F_EventScript_Nurse:: @ 82079FC
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+PetalburgCity_PokemonCenter_1F_EventScript_FatMan:: @ 8207A0A
+	msgbox PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem, MSGBOX_NPC
+	end
+
+PetalburgCity_PokemonCenter_1F_EventScript_Youngster:: @ 8207A13
+	msgbox PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP, MSGBOX_NPC
+	end
+
+PetalburgCity_PokemonCenter_1F_EventScript_Woman:: @ 8207A1C
+	lock
+	faceplayer
+	msgbox PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, IsStarterInParty
+	compare VAR_RESULT, TRUE
+	goto_if_eq PetalburgCity_PokemonCenter_1F_EventScript_SayStarterTypeInfo
+	release
+	end
+
+PetalburgCity_PokemonCenter_1F_EventScript_SayStarterTypeInfo:: @ 8207A38
+	compare VAR_STARTER_MON, 0
+	call_if_eq PetalburgCity_PokemonCenter_1F_EventScript_SayTreeckoType
+	compare VAR_STARTER_MON, 1
+	call_if_eq PetalburgCity_PokemonCenter_1F_EventScript_SayTorchicType
+	compare VAR_STARTER_MON, 2
+	call_if_eq PetalburgCity_PokemonCenter_1F_EventScript_SayMudkipType
+	release
+	end
+
+PetalburgCity_PokemonCenter_1F_EventScript_SayTreeckoType:: @ 8207A5B
+	msgbox PetalburgCity_PokemonCenter_1F_Text_TreeckoIsGrassType, MSGBOX_DEFAULT
+	return
+
+PetalburgCity_PokemonCenter_1F_EventScript_SayTorchicType:: @ 8207A64
+	msgbox PetalburgCity_PokemonCenter_1F_Text_TorchicIsFireType, MSGBOX_DEFAULT
+	return
+
+PetalburgCity_PokemonCenter_1F_EventScript_SayMudkipType:: @ 8207A6D
+	msgbox PetalburgCity_PokemonCenter_1F_Text_MudkipIsWaterType, MSGBOX_DEFAULT
+	return
+
+PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem: @ 8207A76
+	.string "那个用电脑的宝可梦寄存系统……\n"
+	.string "做出来的人一定是个\p"
+	.string "科学天才！$"
+
+PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP: @ 8207AD6
+	.string "我的宝可梦吃了橙橙果，\n"
+	.string "ＨＰ就回复了！$"
+
+PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon: @ 8207B09
+	.string "宝可梦有很多种属性。\n"
+	.string "所有属性对其他属性\p"
+	.string "都有长处和短处。\n"
+	.string "宝可梦的属性不同，\p"
+	.string "对战的难易也不同。$"
+
+PetalburgCity_PokemonCenter_1F_Text_TreeckoIsGrassType: @ 8207BB0
+	.string "比如，你最初的伙伴是草属性。\n"
+	.string "它对水属性和地面属性\p"
+	.string "很占优势。\n"
+	.string "但对火属性的宝可梦\p"
+	.string "就比较吃亏。$"
+
+PetalburgCity_PokemonCenter_1F_Text_TorchicIsFireType: @ 8207C35
+	.string "比如，你最初的伙伴是火属性。\n"
+	.string "它对草属性和虫属性\p"
+	.string "很占优势。\n"
+	.string "但对水属性的宝可梦\p"
+	.string "就比较吃亏。$"
+
+PetalburgCity_PokemonCenter_1F_Text_MudkipIsWaterType: @ 8207CB7
+	.string "比如，你最初的伙伴是水属性。\n"
+	.string "它对火属性很占优势。\p"
+	.string "但对草属性和电属性的宝可梦\n"
+	.string "就比较吃亏。$"
+
+`

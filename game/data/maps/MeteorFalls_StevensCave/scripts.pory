@@ -1,0 +1,73 @@
+raw `
+.set LOCALID_STEVEN, 1
+
+MeteorFalls_StevensCave_MapScripts:: @ 823B181
+	.byte 0
+
+MeteorFalls_StevensCave_EventScript_Steven:: @ 823B182
+	lock
+	//goto_if_set FLAG_DAILY_REMATCH_STEVEN, MeteorFalls_StevensCave_EventScript_Defeated
+	waitse
+	playse SE_PIN
+	applymovement LOCALID_STEVEN, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_STEVEN, Common_Movement_Delay48
+	waitmovement 0
+	applymovement LOCALID_STEVEN, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_STEVEN, MeteorFalls_StevensCave_Text_StevenDefeat
+	msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
+	//setflag FLAG_DAILY_REMATCH_STEVEN
+	goto_if_unset FLAG_RECEIVED_AURORA_TICKET, MeteorFalls_StevensCave_EventScript_GiveAuroraTicket
+	release
+	end
+
+MeteorFalls_StevensCave_EventScript_Defeated:: @ 823B1CD
+	applymovement LOCALID_STEVEN, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
+	release
+	end
+
+MeteorFalls_StevensCave_EventScript_GiveAuroraTicket:
+	msgbox MeteorFalls_StevensCave_Text_BirthIsland, MSGBOX_DEFAULT
+	giveitem ITEM_AURORA_TICKET
+	setflag FLAG_RECEIVED_AURORA_TICKET
+	setflag FLAG_ENABLE_SHIP_BIRTH_ISLAND
+	release
+	end
+
+MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst: @ 823B1E1
+	.string "大吾：哦，哇，{PLAYER}{KUN}。\n"
+	.string "真惊讶你知道来这儿找我。\p"
+	.string "你该不会……把我当成\n"
+	.string "只是个石头迷吧？\p"
+	.string "不，那不可能。\n"
+	.string "我们在绿岭市的航天中心\p"
+	.string "并肩作战过。\n"
+	.string "你应该很清楚我有多强。\p"
+	.string "好，{PLAYER}{KUN}，既然你要\n"
+	.string "认真挑战，就做好最坏的准备！$"
+
+MeteorFalls_StevensCave_Text_StevenDefeat: @ 823B32D
+	.string "你……\n"
+	.string "没想到你已经变得这么强……$"
+
+MeteorFalls_StevensCave_Text_MyPredictionCameTrue: @ 823B358
+	.string "大吾：说起来，自从我们在\n"
+	.string "武斗镇附近的洞窟初次相遇，\p"
+	.string "我就有这种感觉。\n"
+	.string "我觉得你终究会成为冠军。\p"
+	.string "我的预测通常都会应验。\n"
+	.string "那么，你接下来要去哪儿？\p"
+	.string "………………\n"
+	.string "………………\p"
+	.string "呵呵，这个连我也说不出来。$"
+
+MeteorFalls_StevensCave_Text_BirthIsland:
+	.string "不过……也许你想去调查一下\n"
+	.string "诞生岛上出现的那块奇怪石头？\p"
+	.string "来，拿着这张船票去水静市的港口。\n"
+	.string "也许你会找到有用的东西……$"
+`

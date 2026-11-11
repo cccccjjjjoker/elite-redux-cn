@@ -1,0 +1,56 @@
+raw `
+Route111_OldLadysRestStop_MapScripts:: @ 822A916
+	map_script MAP_SCRIPT_ON_TRANSITION, Route111_OldLadysRestStop_OnTransition
+	.byte 0
+
+Route111_OldLadysRestStop_OnTransition: @ 822A91C
+	setflag FLAG_LANDMARK_OLD_LADY_REST_SHOP
+	end
+
+Route111_OldLadysRestStop_EventScript_OldLady:: @ 822A920
+	lock
+	faceplayer
+	msgbox Route111_OldLadysRestStop_Text_RestUpHere, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route111_OldLadysRestStop_EventScript_Rest
+	compare VAR_RESULT, NO
+	goto_if_eq Route111_OldLadysRestStop_EventScript_DeclineRest
+	end
+
+Route111_OldLadysRestStop_EventScript_Rest:: @ 822A941
+	msgbox Route111_OldLadysRestStop_Text_TakeYourTimeRestUp, MSGBOX_DEFAULT
+	closemessage
+	call Common_EventScript_OutOfCenterPartyHeal
+	msgbox Route111_OldLadysRestStop_Text_StillTiredTakeAnotherRest, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route111_OldLadysRestStop_EventScript_Rest
+	compare VAR_RESULT, NO
+	goto_if_eq Route111_OldLadysRestStop_EventScript_DeclineRest
+	end
+
+Route111_OldLadysRestStop_EventScript_DeclineRest:: @ 822A96E
+	msgbox Route111_OldLadysRestStop_Text_DontNeedToBeShy, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_OldLadysRestStop_Text_RestUpHere: @ 822A978
+	.string "哎哟哟。\n"
+	.string "你的宝可梦是不是累坏了？\p"
+	.string "要是愿意，就在这儿歇歇吧。\n"
+	.string "这主意不错！你就该这么做。$"
+
+Route111_OldLadysRestStop_Text_TakeYourTimeRestUp: @ 822A9EC
+	.string "对，就这样。\n"
+	.string "慢慢来，好好休息！$"
+
+Route111_OldLadysRestStop_Text_StillTiredTakeAnotherRest: @ 822AA16
+	.string "哎哟哟。\n"
+	.string "你的宝可梦还累着吗？\p"
+	.string "你该在这儿再歇一次。\n"
+	.string "这主意不错，你就该这么做。$"
+
+Route111_OldLadysRestStop_Text_DontNeedToBeShy: @ 822AA8F
+	.string "是吗？\n"
+	.string "你也不用这么客气。$"
+
+`

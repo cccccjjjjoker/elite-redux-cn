@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package er;
+
+import "AbilityEnum.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+message AbilityList {
+  repeated Ability ability = 1;
+}
+
+message Ability {
+  AbilityEnum id = 1;
+  string name = 2;
+  string description = 3;
+  optional string expanded_description = 4;
+}

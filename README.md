@@ -38,10 +38,15 @@ Pokémon Elite Redux 的社区汉化项目。当前版本为 `2.65.5.2b`，使�
 
 主源码提交用于定位汉化工程的构建基线。玩家打补丁时请以本页列出的英文 ROM SHA-256 为准。
 
-[下载汉化源码构建包](source/ER-2.65.5.2b-CN-source-build.zip?raw=true)。包内含汉化源码、配置、字库及 Windows 下的 Docker 构建脚本。解压 ZIP 后按包内 `README.md` 运行 `.\build.ps1 -Jobs 8`。源码包的 SHA-256 见 [校验记录](SHA256SUMS.txt)。
+汉化源码位于 [game/](game/)，包含汉化配置、中文字库及生成输入。克隆仓库后，在根目录运行：
 
-源码构建会从固定的上游提交下载一项构建资源并校验其 SHA-256。用源码包重新构建，得到的中文版与本页 BPS 的输出逐字节一致。
+```powershell
+.\build.ps1 -Jobs 8
+```
 
+需要 Git、Docker Desktop 和 WSL 2。修改源码后先提交到本地 Git，再执行构建；脚本会把当前提交的 game/ 归档到 Linux 容器，保留文件大小写和执行权限。构建所需的一项上游二进制资源会从固定提交下载，并校验 SHA-256。
+
+首次构建需要联网下载工具链，结果和日志保存在 build-results/。
 ## 致谢
 
 感谢 Elite Redux 和 pokeemerald 项目的贡献者。

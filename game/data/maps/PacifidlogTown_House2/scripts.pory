@@ -1,0 +1,98 @@
+raw `
+PacifidlogTown_House2_MapScripts::
+	.byte 0
+
+PacifidlogTown_House2_EventScript_FanClubYoungerBrother::
+	lock
+	faceplayer
+	msgbox PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation, MSGBOX_DEFAULT
+	releaseall
+	end
+
+PacifidlogTown_House2_EventScript_GiveDiancite::
+	playse SE_PIN
+	applymovement 1, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 1, Common_Movement_Delay48
+	waitmovement 0
+	msgbox PacifidlogTown_House2_Text_DiancieLikesYou, MSGBOX_DEFAULT
+	giveitem ITEM_DIANCITE
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_DIANCITE
+PacifidlogTown_House2_EventScript_HaveDiancite::
+	msgbox PacifidlogTown_House2_Text_ExplainDiancite, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_House2_FanClubYoungerBrotherIntro::
+	msgbox PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation, MSGBOX_DEFAULT
+	return
+
+PacifidlogTown_House2_FanClubYoungerBrotherStrongBond::
+	msgbox PacifidlogTown_House2_Text_StrongBond, MSGBOX_DEFAULT
+	return
+
+PacifidlogTown_House2_EventScript_HappyAzurill::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZURILL, 0
+	msgbox PacifidlogTown_House2_Text_Rurii, MSGBOX_DEFAULT
+	waitmoncry
+	msgbox PacifidlogTown_House2_Text_VeryFriendlyWithTrainer, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_House2_EventScript_UnhappyAzurill::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZURILL, 2
+	msgbox PacifidlogTown_House2_Text_Rururi, MSGBOX_DEFAULT
+	waitmoncry
+	msgbox PacifidlogTown_House2_Text_DoesntLikeTrainerVeryMuch, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation:
+	.string "咳咳！\n"
+	.string "我是宝可梦发烧友俱乐部里\p"
+	.string "最重要的人物……会长的弟弟。\n"
+	.string "我正带着宝可梦在这里\p"
+	.string "享受假期，没错。\n"
+	.string "祝你有美好的一天！$"
+
+PacifidlogTown_House2_Text_AlasNotYou:
+	.string "可惜啊，看来你并不是\n"
+	.string "那位训练家……$"
+
+PacifidlogTown_House2_Text_DiancieLikesYou:
+	.string "哦呵！你身上带着蒂安希！\n"
+	.string "而且它似乎非常喜欢你。\p"
+	.string "你配得上这颗超级石。\n"
+	.string "请收下！$"
+
+PacifidlogTown_House2_Text_ExplainDiancite:
+	.string "让蒂安希持有那颗石头，\n"
+	.string "它就能在对战中超级进化。$"
+
+PacifidlogTown_House2_Text_StrongBond:
+	.string "咳咳！\n"
+	.string "我只会把这颗石头送给\p"
+	.string "与某只幻之宝可梦有着\n"
+	.string "深厚羁绊的训练家。$"
+
+PacifidlogTown_House2_Text_Rurii: @ 8203B8D
+	.string "露力丽：露哩。$"
+
+PacifidlogTown_House2_Text_VeryFriendlyWithTrainer: @ 8203B9D
+	.string "它似乎和训练家非常亲近。$"
+
+PacifidlogTown_House2_Text_Rururi: @ 8203BCE
+	.string "露力丽：露露哩！$"
+
+PacifidlogTown_House2_Text_DoesntLikeTrainerVeryMuch: @ 8203BDF
+	.string "它似乎不太喜欢这个训练家。$"
+
+`

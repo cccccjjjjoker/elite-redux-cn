@@ -1,0 +1,283 @@
+raw `
+FallarborTown_MapScripts:: @ 81EB1FA
+	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_OnTransition
+	.byte 0
+
+FallarborTown_OnTransition: @ 81EB200
+	setflag FLAG_VISITED_FALLARBOR_TOWN
+	setvar VAR_CONTEST_HALL_STATE, 0
+	clearflag FLAG_CONTEST_SKETCH_CREATED
+	call Common_EventScript_SetupRivalGfxId
+	call Common_EventScript_SetupRivalOnBikeGfxId
+	end
+
+FallarborTown_EventScript_ExpertM:: @ 81EB20C
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_EventScript_ExpertMNormal
+	msgbox FallarborTown_Text_ShadyCharactersCozmosHome, MSGBOX_DEFAULT
+	release
+	end
+
+FallarborTown_EventScript_ExpertMNormal:: @ 81EB221
+	msgbox FallarborTown_Text_RegionKnownForMeteors, MSGBOX_DEFAULT
+	release
+	end
+
+FallarborTown_EventScript_Girl:: @ 81EB22B
+	msgbox FallarborTown_Text_MyPreciousAzurill, MSGBOX_NPC
+	end
+
+FallarborTown_EventScript_Gentleman:: @ 81EB234
+	msgbox FallarborTown_Text_HaveYouChallengedFlannery, MSGBOX_NPC
+	end
+
+FallarborTown_EventScript_Azurill:: @ 81EB23D
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZURILL, 0
+	msgbox FallarborTown_Text_Azurill, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+FallarborTown_EventScript_BattleTentSign:: @ 81EB250
+	msgbox FallarborTown_Text_BattleTentSign, MSGBOX_SIGN
+	end
+
+FallarborTown_EventScript_TownSign:: @ 81EB259
+	msgbox FallarborTown_Text_TownSign, MSGBOX_SIGN
+	end
+
+FallarborTown_EventScript_MoveTutorSign:: @ 81EB262
+	msgbox FallarborTown_Text_MoveTutorSign, MSGBOX_SIGN
+	end
+
+FallarborTown_EventScript_RivalTrigger1::
+	setvar VAR_0x8004, 1
+	goto FallarborTown_EventScript_RivalScene
+	end
+
+FallarborTown_EventScript_RivalTrigger2::
+	setvar VAR_0x8004, 2
+	goto FallarborTown_EventScript_RivalScene
+	end
+
+FallarborTown_EventScript_RivalTrigger3::
+	setvar VAR_0x8004, 3
+	goto FallarborTown_EventScript_RivalScene
+	end
+
+FallarborTown_EventScript_RivalTrigger4::
+	setvar VAR_0x8004, 4
+	goto FallarborTown_EventScript_RivalScene
+	end
+	
+FallarborTown_EventScript_RivalTrigger5::
+	setvar VAR_0x8004, 5
+	goto FallarborTown_EventScript_RivalScene
+	end
+
+FallarborTown_EventScript_RivalScene::
+	lockall
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	applymovement 5, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48
+	waitmovement 0
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq FallarborTown_EventScript_MayScene
+	compare VAR_RESULT, FEMALE
+	goto_if_eq FallarborTown_EventScript_BrendanScene
+
+FallarborTown_EventScript_MayScene::
+	playbgm MUS_ENCOUNTER_MAY, 1
+	msgbox FallarborTown_Text_MayDisaster, MSGBOX_DEFAULT
+	closemessage
+	call FallarborTown_EventScript_MoveToPlayer
+	msgbox FallarborTown_Text_MayWeirdos, MSGBOX_DEFAULT
+	closemessage
+	goto FallarborTown_EventScript_RivalExit
+
+FallarborTown_EventScript_BrendanScene::
+	playbgm MUS_ENCOUNTER_BRENDAN, 1
+	msgbox FallarborTown_Text_BrendanComeHere, MSGBOX_DEFAULT
+	closemessage
+	call FallarborTown_EventScript_MoveToPlayer
+	msgbox FallarborTown_Text_BrendanNuts, MSGBOX_DEFAULT
+	closemessage
+	goto FallarborTown_EventScript_RivalExit
+
+FallarborTown_EventScript_RivalExit::
+	setobjectxyperm 6, 12, 10
+	setobjectmovementtype 5, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtype 6, MOVEMENT_TYPE_FACE_DOWN
+	removeobject 5
+	addobject 6
+	delay 45
+	applymovement 6, FallarborTown_Movement_RivalExit
+	waitmovement 0
+	removeobject 6
+	setvar VAR_FALLARBOR_TOWN_STATE, 1
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
+
+FallarborTown_EventScript_MoveToPlayer::
+	compare VAR_0x8004, 1
+	call_if_eq FallarborTown_EventScript_PlayerApproach1
+	compare VAR_0x8004, 2
+	call_if_eq FallarborTown_EventScript_PlayerApproach2
+	compare VAR_0x8004, 3
+	call_if_eq FallarborTown_EventScript_PlayerApproach3
+	compare VAR_0x8004, 4
+	call_if_eq FallarborTown_EventScript_PlayerApproach4
+	compare VAR_0x8004, 5
+	call_if_eq FallarborTown_EventScript_PlayerApproach5
+	return
+
+FallarborTown_EventScript_PlayerApproach1::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_PlayerApproach1
+	applymovement 5, FallarborTown_Movement_RivalApproach
+	waitmovement 0
+	return
+
+FallarborTown_EventScript_PlayerApproach2::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_PlayerApproach2
+	applymovement 5, FallarborTown_Movement_RivalApproach
+	waitmovement 0
+	return
+
+FallarborTown_EventScript_PlayerApproach3::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_PlayerApproach3
+	applymovement 5, FallarborTown_Movement_RivalApproach
+	waitmovement 0
+	return
+
+FallarborTown_EventScript_PlayerApproach4::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_PlayerApproach4
+	applymovement 5, FallarborTown_Movement_RivalApproach
+	waitmovement 0
+	return
+
+FallarborTown_EventScript_PlayerApproach5::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_PlayerApproach5
+	applymovement 5, FallarborTown_Movement_RivalApproach
+	waitmovement 0
+	return
+
+FallarborTown_Movement_PlayerApproach1:
+	walk_down
+	walk_down
+	face_left
+	step_end
+
+FallarborTown_Movement_PlayerApproach2:
+	walk_down
+	face_left
+	step_end
+
+FallarborTown_Movement_PlayerApproach3:
+	face_left
+	step_end
+
+FallarborTown_Movement_PlayerApproach4:
+	walk_up
+	face_left
+	step_end
+
+FallarborTown_Movement_PlayerApproach5:
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+FallarborTown_Movement_RivalApproach:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+FallarborTown_Movement_RivalExit:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+FallarborTown_Text_MayDisaster:
+	.string "小遥：哦！{PLAYER}{KUN}！救命！$"
+
+FallarborTown_Text_BrendanComeHere:
+	.string "祐树：{PLAYER}！过来！$"
+
+FallarborTown_Text_MayWeirdos:
+	.string "小遥：你得跟我来！\n"
+	.string "你、你看……\p"
+	.string "索蓝斯博士……\n"
+	.string "他被一群自称火岩队的怪人抓走了！\p"
+	.string "{PLAYER}{KUN}，求你……\n"
+	.string "帮我救他！\p"
+	.string "我……我这就去追他们！\n"
+	.string "我们在流星瀑布会合！$"
+
+FallarborTown_Text_BrendanNuts:
+	.string "祐树：全都乱套了！\n"
+	.string "太荒唐了……\p"
+	.string "索蓝斯博士……\n"
+	.string "听说他刚被一群自称火岩队的疯子\p"
+	.string "抓走了！\n"
+	.string "{PLAYER}……我知道这很冒昧，\p"
+	.string "但我们得去帮索蓝斯！\n"
+	.string "我这就去流星瀑布。\p"
+	.string "你尽快跟上来。$"
+
+FallarborTown_Text_ShadyCharactersCozmosHome: @ 81EB26B
+	.string "出事了，我很不喜欢！\n"
+	.string "我看到一些可疑的家伙\p"
+	.string "在索蓝斯博士家进出……$"
+
+FallarborTown_Text_RegionKnownForMeteors: @ 81EB2DE
+	.string "这一带自古以来就以陨石闻名。\n"
+	.string "据说流星瀑布是很久以前\p"
+	.string "一颗落下的陨石砸出来的。$"
+
+FallarborTown_Text_MyPreciousAzurill: @ 81EB35F
+	.string "看！你看！\n"
+	.string "这是我宝贝的露力丽！\p"
+	.string "它又滑又嫩，还软乎乎的！$"
+
+FallarborTown_Text_Azurill: @ 81EB3B5
+	.string "露力丽：噜哩噜噜。$"
+
+FallarborTown_Text_HaveYouChallengedFlannery: @ 81EB3CA
+	.string "你挑战过釜炎道馆的馆主亚莎了吗？\n"
+	.string "那女孩的爷爷很有名。\p"
+	.string "他曾是宝可梦联盟四天王之一。\n"
+	.string "亚莎靠自己成为了不起的训练家，\p"
+	.string "我一点都不意外。$"
+
+FallarborTown_Text_BattleTentSign: @ 81EB4C2
+	.string "对战帐篷 秋叶会场\n"
+	.string "“愿最强的队伍齐聚一堂！”$"
+
+FallarborTown_Text_TownSign: @ 81EB4FE
+	.string "秋叶镇\n"
+	.string "“带小菜园的农业小镇。”$"
+
+FallarborTown_Text_MoveTutorSign: @ 81EB534
+	.string "艾薇与艾比的家\n"
+	.string "已废弃。$"
+
+`

@@ -1,0 +1,16 @@
+raw `
+OldaleTown_House1_MapScripts:: @ 81FBE85
+	.byte 0
+
+OldaleTown_House1_EventScript_Woman:: @ 81FBE86
+	msgbox OldaleTown_House1_Text_LeftPokemonGoesOutFirst, MSGBOX_NPC
+	end
+
+OldaleTown_House1_Text_LeftPokemonGoesOutFirst: @ 81FBE8F
+	.string "宝可梦对战开始时，\n"
+	.string "队伍列表最左边的那只先出场。\p"
+	.string "所以队伍里的宝可梦多了以后，\n"
+	.string "试着调整它们的顺序。\p"
+	.string "那可能给你带来优势。$"
+
+`

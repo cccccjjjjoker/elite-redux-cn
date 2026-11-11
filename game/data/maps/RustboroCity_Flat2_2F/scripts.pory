@@ -1,0 +1,95 @@
+raw `
+.set LOCALID_ACE, 3
+.set LOCALID_HIKER, 4
+
+RustboroCity_Flat2_2F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_Flat2_2F_OnTransition
+	.byte 0
+
+RustboroCity_Flat2_2F_OnTransition: @ 82379A0
+	goto_if_set FLAG_ITEM_RUSTBORO_FLOAT_STONE, RustboroCity_Flat2_2F_HideAceShowHiker
+	end
+
+RustboroCity_Flat2_2F_HideAceShowHiker:
+	clearflag FLAG_HIDE_RUSTBORO_HIKER 
+	removeobject LOCALID_ACE
+	end
+
+RustboroCity_Flat2_2F_EventScript_OldMan:: @ 8215FD8
+	msgbox RustboroCity_Flat2_2F_Text_DevonWasTinyInOldDays, MSGBOX_NPC
+	end
+
+RustboroCity_Flat2_2F_EventScript_NinjaBoy:: @ 8215FE1
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_PREMIER_BALL_RUSTBORO, RustboroCity_Flat2_2F_EventScript_GavePremierBall
+	msgbox RustboroCity_Flat2_2F_Text_MyDaddyMadeThisYouCanHaveIt, MSGBOX_DEFAULT
+	giveitem ITEM_PREMIER_BALL
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_PREMIER_BALL_RUSTBORO
+	release
+	end
+
+RustboroCity_Flat2_2F_EventScript_GavePremierBall:: @ 8216010
+	msgbox RustboroCity_Flat2_2F_Text_GoingToWorkAtDevonToo, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Flat2_2F_EventScript_GiveFloatStone::
+	lock
+	faceplayer
+	goto_if_set FLAG_ITEM_RUSTBORO_FLOAT_STONE, RustboroCity_Flat2_2F_EventScript_GaveFloatStone
+	msgbox RustboroCity_Flat2_2F_Text_MyDadsAceAtDevon, MSGBOX_DEFAULT
+	giveitem ITEM_FLOAT_STONE
+	msgbox RustboroCity_Flat2_2F_Text_PokemonHoldFloatStone, MSGBOX_DEFAULT
+	setflag FLAG_ITEM_RUSTBORO_FLOAT_STONE
+	release
+	end
+
+RustboroCity_Flat2_2F_EventScript_GaveFloatStone::
+	lock
+	faceplayer
+	msgbox RustboroCity_Flat2_2F_Text_PokemonHoldFloatStone, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Flat2_2F_EventScript_FatMan::
+	lock
+	faceplayer
+	msgbox RustboroCity_Flat2_2F_Text_PutOnWeight, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Flat2_2F_Text_DevonWasTinyInOldDays: @ 821601A
+	.string "很久以前，得文只是一家\n"
+	.string "小小的公司。$"
+
+RustboroCity_Flat2_2F_Text_MyDaddyMadeThisYouCanHaveIt: @ 821605A
+	.string "我爸爸在公司上班。\n"
+	.string "这是我爸爸做的！\p"
+	.string "可我用不了，所以给你吧。$"
+
+RustboroCity_Flat2_2F_Text_GoingToWorkAtDevonToo: @ 82160BD
+	.string "我爸爸在公司上班。\n"
+	.string "等我长大了，我也要\p"
+	.string "去得文工作。$"
+
+RustboroCity_Flat2_2F_Text_MyDadsAceAtDevon:
+	.string "我跟你说，我爸爸在得文公司\n"
+	.string "可是个真正的高手！\p"
+	.string "难怪我自己也是高手！\n"
+	.string "来，我给你一样像我这样的\p"
+	.string "精英训练家会用的东西！$"
+
+RustboroCity_Flat2_2F_Text_PokemonHoldFloatStone:
+	.string "让宝可梦持有轻石，\n"
+	.string "它的体重就会减半。\p"
+	.string "不过看起来，你还得再练一阵\n"
+	.string "才能像我一样用得这么好。$"
+
+RustboroCity_Flat2_2F_Text_PutOnWeight:
+	.string "………………\n"
+	.string "不知为什么，我最近\p"
+	.string "胖了好多。$"
+`

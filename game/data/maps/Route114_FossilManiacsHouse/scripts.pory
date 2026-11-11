@@ -1,0 +1,59 @@
+raw `
+Route114_FossilManiacsHouse_MapScripts:: @ 822AD30
+	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsHouse_OnTransition
+	.byte 0
+
+Route114_FossilManiacsHouse_OnTransition: @ 822AD36
+	setflag FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE
+	end
+
+Route114_FossilManiacsHouse_EventScript_FossilManiacsBrother:: @ 822AD3A
+	lock
+	faceplayer
+	goto Route114_FossilManiacsHouse_EventScript_ReceivedDig
+	release
+	end
+	goto_if_set FLAG_RECEIVED_TM28, Route114_FossilManiacsHouse_EventScript_ReceivedDig
+	msgbox Route114_FossilManiacsHouse_Text_HaveThisToDigLikeMyBrother, MSGBOX_DEFAULT
+	giveitem ITEM_TM28_DIG
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_TM28
+	release
+	end
+
+Route114_FossilManiacsHouse_EventScript_ReceivedDig:: @ 822AD69
+	msgbox Route114_FossilManiacsHouse_Text_DigReturnsYouToEntrance, MSGBOX_DEFAULT
+	release
+	end
+
+Route114_FossilManiacsHouse_EventScript_RockDisplay:: @ 822AD73
+	msgbox Route114_FossilManiacsHouse_Text_RocksFillDisplayCase, MSGBOX_SIGN
+	end
+
+Route114_FossilManiacsHouse_EventScript_Bookshelf:: @ 822AD7C
+	msgbox Route114_FossilManiacsHouse_Text_CrammedWithBooks, MSGBOX_SIGN
+	end
+
+Route114_FossilManiacsHouse_Text_HaveThisToDigLikeMyBrother: @ 822AD85
+	.string "我哥哥是化石狂……\n"
+	.string "他是个爱化石的好人……\p"
+	.string "他也爱挖洞……\n"
+	.string "这个洞是他一个人挖的……\p"
+	.string "这个给你，\n"
+	.string "这样你就能像我哥哥一样挖洞了……$"
+
+Route114_FossilManiacsHouse_Text_DigReturnsYouToEntrance: @ 822AE48
+	.string "在洞窟里让宝可梦使用挖洞，\n"
+	.string "就会回到入口……$"
+
+Route114_FossilManiacsHouse_Text_RocksFillDisplayCase: @ 822AE92
+	.string "展示柜里摆满了形状奇特的石头……$"
+
+Route114_FossilManiacsHouse_Text_CrammedWithBooks: @ 822AEC2
+	.string "地层的组成……\n"
+	.string "雨水如何塑造大地……\p"
+	.string "石头、土壤与岩石……\n"
+	.string "这里塞满了书。$"
+
+`

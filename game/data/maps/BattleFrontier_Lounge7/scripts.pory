@@ -1,0 +1,828 @@
+raw `
+BattleFrontier_Lounge7_MapScripts:: @ 8265254
+	.byte 0
+
+BattleFrontier_Lounge7_EventScript_LeftMoveTutor:: @ 8265255
+	lock
+	faceplayer
+	setvar VAR_TEMP_C, SCROLL_MULTI_BF_MOVE_TUTOR_1
+	goto_if_set FLAG_MET_FRONTIER_BEAUTY_MOVE_TUTOR, BattleFrontier_Lounge7_EventScript_AlreadyMetLeftTutor
+	msgbox BattleFrontier_Lounge7_Text_LeftTutorIntro, MSGBOX_DEFAULT
+	setflag FLAG_MET_FRONTIER_BEAUTY_MOVE_TUTOR
+	goto BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove
+	end
+
+BattleFrontier_Lounge7_EventScript_AlreadyMetLeftTutor:: @ 8265276
+	msgbox BattleFrontier_Lounge7_Text_LeftTutorWelcomeBack, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove
+	end
+
+BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove:: @ 8265284
+	message BattleFrontier_Lounge7_Text_TeachWhichMove
+	waitmessage
+	special ShowBattlePointsWindow
+	setvar VAR_TEMP_E, 0
+	setvar VAR_0x8004, SCROLL_MULTI_BF_MOVE_TUTOR_1
+	setvar VAR_0x8006, 0
+	special ShowScrollableMultichoice
+	waitstate
+	copyvar VAR_TEMP_D, VAR_RESULT
+	switch VAR_RESULT
+	case 0, BattleFrontier_Lounge7_EventScript_Softboiled
+	case 1, BattleFrontier_Lounge7_EventScript_SeismicToss
+	case 2, BattleFrontier_Lounge7_EventScript_DreamEater
+	case 3, BattleFrontier_Lounge7_EventScript_MegaPunch
+	case 4, BattleFrontier_Lounge7_EventScript_MegaKick
+	case 5, BattleFrontier_Lounge7_EventScript_BodySlam
+	case 6, BattleFrontier_Lounge7_EventScript_RockSlide
+	case 7, BattleFrontier_Lounge7_EventScript_Counter
+	case 8, BattleFrontier_Lounge7_EventScript_ThunderWave
+	case 9, BattleFrontier_Lounge7_EventScript_SwordsDance
+	case 10, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	end
+
+BattleFrontier_Lounge7_EventScript_ChooseNewLeftTutorMove:: @ 826532F
+	message BattleFrontier_Lounge7_Text_TeachWhichMove
+	waitmessage
+	setvar VAR_TEMP_E, 0
+	setvar VAR_0x8004, SCROLL_MULTI_BF_MOVE_TUTOR_1
+	setvar VAR_0x8006, 1
+	special ShowScrollableMultichoice
+	waitstate
+	copyvar VAR_TEMP_D, VAR_RESULT
+	switch VAR_RESULT
+	case 0, BattleFrontier_Lounge7_EventScript_Softboiled
+	case 1, BattleFrontier_Lounge7_EventScript_SeismicToss
+	case 2, BattleFrontier_Lounge7_EventScript_DreamEater
+	case 3, BattleFrontier_Lounge7_EventScript_MegaPunch
+	case 4, BattleFrontier_Lounge7_EventScript_MegaKick
+	case 5, BattleFrontier_Lounge7_EventScript_BodySlam
+	case 6, BattleFrontier_Lounge7_EventScript_RockSlide
+	case 7, BattleFrontier_Lounge7_EventScript_Counter
+	case 8, BattleFrontier_Lounge7_EventScript_ThunderWave
+	case 9, BattleFrontier_Lounge7_EventScript_SwordsDance
+	case 10, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	end
+
+BattleFrontier_Lounge7_EventScript_Softboiled:: @ 82653D7
+	setvar VAR_0x8008, 16
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_SeismicToss:: @ 82653E2
+	setvar VAR_0x8008, 24
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_DreamEater:: @ 82653ED
+	setvar VAR_0x8008, 24
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_MegaPunch:: @ 82653F8
+	setvar VAR_0x8008, 24
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_MegaKick:: @ 8265403
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_BodySlam:: @ 826540E
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_RockSlide:: @ 8265419
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_Counter:: @ 8265424
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_ThunderWave:: @ 826542F
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_SwordsDance:: @ 826543A
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_RightMoveTutor:: @ 8265445
+	lock
+	faceplayer
+	special ScriptMenu_CreatePKMNCenterMoveTutorMultichoice
+	waitstate
+	special GetPKMNCenterMoveListMultichoice
+	switch VAR_RESULT
+	case 0, testBlock
+	case 1, testBlock
+	case 2, testBlock
+	case 3, testBlock
+	case 4, testBlock
+	case 5, testBlock
+	case 6, testBlock
+	case 7, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	end
+
+testBlock::
+	setvar VAR_TEMP_C, SCROLL_MULTI_PC_TUTOR_SET_7
+	goto BattleFrontier_Lounge7_EventScript_AlreadyMetRightTutor
+	end
+
+BattleFrontier_Lounge7_EventScript_AlreadyMetRightTutor:: @ 8265466
+	msgbox BattleFrontier_Lounge7_Text_RightTutorWelcomeBack, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove
+	end
+
+BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove:: @ 8265474
+	message BattleFrontier_Lounge7_Text_TeachWhichMove
+	waitmessage
+	setvar VAR_TEMP_E, 6
+	setvar VAR_0x8004, SCROLL_MULTI_PC_TUTOR_SET_7
+	setvar VAR_0x8006, 0
+	special ShowScrollableMultichoice
+	waitstate
+	copyvar VAR_TEMP_D, VAR_RESULT
+	compare VAR_RESULT 17
+	goto_if_eq BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	compare VAR_RESULT MULTI_B_PRESSED
+	goto_if_eq BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove:: @ 826551F
+	message BattleFrontier_Lounge7_Text_TeachWhichMove
+	waitmessage
+	setvar VAR_TEMP_E, 6
+	setvar VAR_0x8004, SCROLL_MULTI_PC_TUTOR_SET_7
+	setvar VAR_0x8006, 1
+	special ShowScrollableMultichoice
+	waitstate
+	copyvar VAR_TEMP_D, VAR_RESULT
+	compare VAR_RESULT 17
+	goto_if_eq BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	compare VAR_RESULT MULTI_B_PRESSED
+	goto_if_eq BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_DefenseCurl:: @ 82655C7
+	setvar VAR_0x8008, 16
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_Snore:: @ 82655D2
+	setvar VAR_0x8008, 24
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_MudSlap:: @ 82655DD
+	setvar VAR_0x8008, 24
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_Swift:: @ 82655E8
+	setvar VAR_0x8008, 24
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_IcyWind:: @ 82655F3
+	setvar VAR_0x8008, 24
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_Endure:: @ 82655FE
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_PsychUp:: @ 8265609
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_IcePunch:: @ 8265614
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_ThunderPunch:: @ 826561F
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_FirePunch:: @ 826562A
+	setvar VAR_0x8008, 48
+	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
+	end
+
+BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect:: @ 8265635
+	special CloseBattleFrontierTutorWindow
+	special CloseBattlePointsWindow
+	msgbox BattleFrontier_Lounge7_Text_YouDontWantTo, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge7_EventScript_CancelChooseMon:: @ 8265645
+	msgbox BattleFrontier_Lounge7_Text_YouDontWantTo, MSGBOX_DEFAULT
+	release
+	end
+
+@ VAR_0x8008 is the price
+@ VAR_TEMP_C is the scroll multichoice ID
+@ VAR_TEMP_D is the move selection
+@ VAR_TEMP_E is which move tutor was spoken to
+BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection:: @ 826564F
+	copyvar VAR_0x8004, VAR_TEMP_D
+	copyvar VAR_0x8005, VAR_TEMP_E
+	special BufferBattleFrontierTutorMoveName
+	buffernumberstring 1, VAR_0x8008
+	copyvar VAR_0x8004, VAR_TEMP_C
+	msgbox BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BattleFrontier_Lounge7_EventScript_ChooseNewMove
+	goto BattleFrontier_Lounge7_EventScript_TeachTutorMove
+	end
+
+BattleFrontier_Lounge7_EventScript_TeachTutorMove:: @ 8265696
+	msgbox BattleFrontier_Lounge7_Text_TeachMoveToWhichMon, MSGBOX_DEFAULT
+	special GetBattleFrontierTutorMoveIndex
+	fadescreen FADE_TO_BLACK
+	special CloseBattlePointsWindow
+	special CloseBattleFrontierTutorWindow
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, FALSE
+	goto_if_eq BattleFrontier_Lounge7_EventScript_CancelChooseMon
+	msgbox BattleFrontier_Lounge7_Text_IllTakeBattlePoints, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge7_EventScript_ChooseNewMove:: @ 82656CA
+	compare VAR_TEMP_E, 0
+	goto_if_eq BattleFrontier_Lounge7_EventScript_ChooseNewLeftTutorMove
+	goto BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove
+	end
+
+BattleFrontier_Lounge7_EventScript_Sailor:: @ 82656DB
+	msgbox BattleFrontier_Lounge7_Text_ThinkLadiesDontGetAlong, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge7_EventScript_Gentleman:: @ 82656E4
+	msgbox BattleFrontier_Lounge7_Text_LadiesWereStrongAndBeautiful, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge7_Text_LeftTutorIntro: @ 82656ED
+	.string "哈哈哈！\n"
+	.string "现在看不出来，但我以前\n"
+	.string "可是个强悍的训练家。\p"
+	.string "当年人家都称我是最难对付的\n"
+	.string "大姐姐！\n"
+	.string "………………\p"
+	.string "怎么了？\n"
+	.string "你不信。\n"
+	.string "我可不像那边那个吹牛的女人。\p"
+	.string "我是真有本事！\n"
+	.string "让我证明给你看。\n"
+	.string "我能教你的宝可梦一些\p"
+	.string "特别又可爱的招式。\n"
+	.string "不过我的课不免费。\n"
+	.string "用一点对战点数\p"
+	.string "来付我教的招式，如何？$"
+
+BattleFrontier_Lounge7_Text_LeftTutorWelcomeBack: @ 82658AB
+	.string "哈哈哈！\n"
+	.string "你又来学特别又可爱的\n"
+	.string "宝可梦招式了？$"
+
+BattleFrontier_Lounge7_Text_TeachWhichMove: @ 82658EF
+	.string "好，好，看这儿！\n"
+	.string "要教哪个招式？$"
+
+BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints: @ 8265921
+	.string "是{STR_VAR_1}这个招式吧？\n"
+	.string "那要{STR_VAR_2}对战点数，行吗？$"
+
+BattleFrontier_Lounge7_Text_TeachMoveToWhichMon: @ 826595A
+	.string "好，好，那挑一只\n"
+	.string "要学招式的宝可梦吧。$"
+
+BattleFrontier_Lounge7_Text_HaventGotEnoughPoints: @ 8265997
+	.string "什么……\n"
+	.string "你的对战点数不够！$"
+
+BattleFrontier_Lounge7_Text_IllTakeBattlePoints: @ 82659C7
+	.string "现在你看到我多厉害了？\n"
+	.string "那我就收下你的对战点数！$"
+
+BattleFrontier_Lounge7_Text_YouDontWantTo: @ 8265A0E
+	.string "什么？\n"
+	.string "你不想学……\n"
+	.string "想看我多厉害，\p"
+	.string "随时来找我！$"
+
+BattleFrontier_Lounge7_Text_RightTutorIntro: @ 8265A6C
+	.string "呵呵呵！\n"
+	.string "现在看不出来，但我以前\n"
+	.string "可是个了不起的训练家。\p"
+	.string "当年人家都称我是最强的\n"
+	.string "泳装大姐！\n"
+	.string "………………\p"
+	.string "怎么了？\n"
+	.string "你不信。\n"
+	.string "我可不像那边那个可笑的女人。\p"
+	.string "我是真有经验！\n"
+	.string "让我证明给你看。\n"
+	.string "我能教你的宝可梦一些\p"
+	.string "强硬又漂亮的招式。\n"
+	.string "不过我的课不免费。\n"
+	.string "用一点对战点数\p"
+	.string "来付我教的招式，如何？$"
+
+BattleFrontier_Lounge7_Text_RightTutorWelcomeBack: @ 8265C2C
+	.string "呵呵呵！\n"
+	.string "你是来学强硬又漂亮的\n"
+	.string "宝可梦招式的吗？$"
+
+BattleFrontier_Lounge7_Text_ThinkLadiesDontGetAlong: @ 8265C6F
+	.string "那两位女士互相说坏话，\n"
+	.string "你大概会以为她们\n"
+	.string "处不来吧。\p"
+	.string "可要真是那样，她们也不会\n"
+	.string "一起待在这儿了，对吧？$"
+
+BattleFrontier_Lounge7_Text_LadiesWereStrongAndBeautiful: @ 8265D17
+	.string "我还是个短裤小子的时候，\n"
+	.string "那两位女士就又强又美。\n"
+	.string "她们是我们训练家中的偶像。\p"
+	.string "就算现在，岁月也没让\n"
+	.string "她们的本事变钝。\n"
+	.string "事实上，她们的宝可梦招式\p"
+	.string "还更精炼了。\n"
+	.string "可是……不知为什么，我忍不住\n"
+	.string "有这种感觉……\p"
+	.string "时间真残酷……$"
+
+BattleFrontier_Lounge7_Text_SoftboiledDesc:: @ 8265E30
+	.string "回复最大ＨＰ的一半。$"
+
+BattleFrontier_Lounge7_Text_SeismicTossDesc:: @ 8265E5B
+	.string "造成与使用者等级相同的伤害。$"
+
+BattleFrontier_Lounge7_Text_DreamEaterDesc:: @ 8265E8A
+	.string "回复对睡眠对手造成伤害的一半。$"
+
+BattleFrontier_Lounge7_Text_MegaPunchDesc:: @ 8265EC0
+	.string "用惊人力量挥出的强力拳。$"
+
+BattleFrontier_Lounge7_Text_MegaKickDesc:: @ 8265EED
+	.string "以猛烈力量踢出的极强一踢。$"
+
+BattleFrontier_Lounge7_Text_BodySlamDesc:: @ 8265F1C
+	.string "全身撞击，可能使对手麻痹。$"
+
+BattleFrontier_Lounge7_Text_RockSlideDesc:: @ 8265F47
+	.string "投掷大岩石，可能使对手畏缩。$"
+
+BattleFrontier_Lounge7_Text_CounterDesc:: @ 8265F77
+	.string "以两倍威力反击物理攻击。$"
+
+BattleFrontier_Lounge7_Text_ThunderWaveDesc:: @ 8265FAA
+	.string "微弱电流，使对手麻痹。$"
+
+BattleFrontier_Lounge7_Text_SwordsDanceDesc:: @ 8265FDD
+	.string "战斗之舞，大幅提升攻击。$"
+
+BattleFrontier_Lounge7_Text_DefenseCurlDesc:: @ 826600A
+	.string "蜷起身体藏住弱点，提升防御。$"
+
+BattleFrontier_Lounge7_Text_SnoreDesc:: @ 826603E
+	.string "只有睡眠时才能使用的大声攻击。$"
+
+BattleFrontier_Lounge7_Text_MudSlapDesc:: @ 8266070
+	.string "向对手投泥，降低其命中率。$"
+
+BattleFrontier_Lounge7_Text_SwiftDesc:: @ 82660A6
+	.string "射出星形光线，绝不会落空。$"
+
+BattleFrontier_Lounge7_Text_IcyWindDesc:: @ 82660D0
+	.string "冰冷攻击，降低对手速度。$"
+
+BattleFrontier_Lounge7_Text_EndureDesc:: @ 82660FF
+	.string "一回合内承受攻击，留下1ＨＰ。$"
+
+BattleFrontier_Lounge7_Text_PsychUpDesc:: @ 826612D
+	.string "复制对手的效果，加在自己身上。$"
+
+BattleFrontier_Lounge7_Text_IcePunchDesc:: @ 826615F
+	.string "冰冷的拳，可能使对手冰冻。$"
+
+BattleFrontier_Lounge7_Text_ThunderPunchDesc:: @ 8266185
+	.string "带电的拳，可能使对手麻痹。$"
+
+BattleFrontier_Lounge7_Text_FirePunchDesc:: @ 82661B5
+	.string "炽热的拳，可能使对手灼伤。$"
+
+@@@@@
+
+@ Set 1
+PokemonCenterMoveTutor_Text_FuryCutterDesc::
+	.string "连续命中时威力会增强的攻击。$"
+
+PokemonCenterMoveTutor_Text_RolloutDesc::
+	.string "每回合威力都会增强的攻击。$"
+
+PokemonCenterMoveTutor_Text_SeismicTossDesc::
+	.string "造成与使用者等级相同的伤害。$"
+
+PokemonCenterMoveTutor_Text_CovetDesc::
+	.string "可爱地撒娇，偷走对手的持有道具。$"
+
+PokemonCenterMoveTutor_Text_VacuumWaveDesc::
+	.string "真空波，必定先制攻击。$"
+
+PokemonCenterMoveTutor_Text_ShockWaveDesc::
+	.string "迅速的电击，无法躲避。$"
+
+PokemonCenterMoveTutor_Text_BugBiteDesc::
+	.string "偷走并吃掉目标的树果。$"
+
+PokemonCenterMoveTutor_Text_AirCutterDesc::
+	.string "攻击两只对手。易击中要害。$"
+
+PokemonCenterMoveTutor_Text_SwiftDesc::
+	.string "射出星形光线，绝不会落空。$"
+
+PokemonCenterMoveTutor_Text_SnatchDesc::
+	.string "盗取目标下一个招式的效果。$"
+
+PokemonCenterMoveTutor_Text_MimicDesc::
+	.string "复制对手的一个招式，仅限一战。$"
+
+PokemonCenterMoveTutor_Text_MudSlapDesc::
+	.string "向对手投泥，降低其命中率。$"
+
+PokemonCenterMoveTutor_Text_MetronomeDesc::
+	.string "未知的力量随机使出招式。$"
+
+PokemonCenterMoveTutor_Text_OminousWindDesc::
+	.string "令人讨厌的风，可能提升所有能力。$"
+
+PokemonCenterMoveTutor_Text_SuperFangDesc::
+	.string "用尖牙咬住，使对手ＨＰ减半。$"
+
+PokemonCenterMoveTutor_Text_HoneClawsDesc::
+	.string "磨爪，提升攻击与命中率。$"
+
+PokemonCenterMoveTutor_Text_PsychUpDesc::
+	.string "复制对手的效果，加在自己身上。$"
+
+PokemonCenterMoveTutor_Text_FocusEnergyDesc::
+	.string "集中精神，提升击中要害率。$"
+
+PokemonCenterMoveTutor_Text_SpikesDesc::
+	.string "撒下尖刺，伤害上场的对手。$"
+
+PokemonCenterMoveTutor_Text_InfestationDesc::
+	.string "缠住对手攻击2到5回合。$"
+
+@ Set 2
+PokemonCenterMoveTutor_Text_CounterDesc::
+	.string "以两倍威力反击物理攻击。$"
+
+PokemonCenterMoveTutor_Text_EndeavorDesc::
+	.string "削减目标ＨＰ，使其与使用者相同。$"
+
+PokemonCenterMoveTutor_Text_WorrySeedDesc::
+	.string "让目标特性变成失眠，无法入睡。$"
+
+PokemonCenterMoveTutor_Text_DefenseCurlDesc::
+	.string "蜷起身体藏住弱点，提升防御。$"
+
+PokemonCenterMoveTutor_Text_DefogDesc::
+	.string "吹走尖刺屏障等。也降低闪避率。$"
+
+PokemonCenterMoveTutor_Text_MagicCoatDesc::
+	.string "反射寄生种子与异常状态。$"
+
+PokemonCenterMoveTutor_Text_UproarDesc::
+	.string "吵闹三回合，使对手无法入睡。$"
+
+PokemonCenterMoveTutor_Text_HexDesc::
+	.string "目标有异常状态时伤害翻倍。$"
+
+PokemonCenterMoveTutor_Text_GastroAcidDesc::
+	.string "吐出胃酸，消除目标的特性。$"
+
+PokemonCenterMoveTutor_Text_SynthesisDesc::
+	.string "回复ＨＰ。回复量随天气变化。$"
+
+PokemonCenterMoveTutor_Text_PainSplitDesc::
+	.string "把双方ＨＰ相加后平均分配。$"
+
+PokemonCenterMoveTutor_Text_LowKickDesc::
+	.string "对手越重，这记踢击伤害越大。$"
+
+PokemonCenterMoveTutor_Text_IronDefenseDesc::
+	.string "硬化身体表面，大幅提升防御。$"
+
+PokemonCenterMoveTutor_Text_MagnetRiseDesc::
+	.string "用电磁力浮起，持续五回合。$"
+
+PokemonCenterMoveTutor_Text_SwaggerDesc::
+	.string "使目标混乱，但大幅提升其攻击。$"
+
+PokemonCenterMoveTutor_Text_PinMissileDesc::
+	.string "射出尖针，攻击2到5次。$"
+
+PokemonCenterMoveTutor_Text_MudShotDesc::
+	.string "向目标投泥，降低其速度。$"
+
+PokemonCenterMoveTutor_Text_AgilityDesc::
+	.string "放松身体，大幅提升速度。$"
+
+@ Set 3
+PokemonCenterMoveTutor_Text_SignalBeamDesc::
+	.string "邪恶的光线，也可能造成混乱。$"
+
+PokemonCenterMoveTutor_Text_GravityDesc::
+	.string "五回合内无法飞行，命中率提升。$"
+
+PokemonCenterMoveTutor_Text_SeedBombDesc::
+	.string "硬壳种子如雨般砸向对手。$"
+
+PokemonCenterMoveTutor_Text_PsychoCutDesc::
+	.string "容易击中要害。$"
+
+PokemonCenterMoveTutor_Text_IcyWindDesc::
+	.string "冰冷攻击，降低对手速度。$"
+
+PokemonCenterMoveTutor_Text_ElectroWebDesc::
+	.string "电网捕捉对手，降低速度。$"
+
+PokemonCenterMoveTutor_Text_ThunderFangDesc::
+	.string "带电的咬击，可能使对手麻痹。$"
+
+PokemonCenterMoveTutor_Text_FireFangDesc::
+	.string "炽热的咬击，可能使对手灼伤。$"
+
+PokemonCenterMoveTutor_Text_IceFangDesc::
+	.string "冰冷的咬击，可能使对手冰冻。$"
+
+PokemonCenterMoveTutor_Text_BrineDesc::
+	.string "对手ＨＰ在半数以下时威力翻倍。$"
+
+PokemonCenterMoveTutor_Text_RazorShellDesc::
+	.string "易击中要害。也可能降低防御。$"
+
+PokemonCenterMoveTutor_Text_RevengeDesc::
+	.string "本回合若被对手伤到，伤害翻倍。$"
+
+PokemonCenterMoveTutor_Text_DrainingKissDesc::
+	.string "偷取所造成伤害一半的吻。$"
+
+PokemonCenterMoveTutor_Text_LeafBladeDesc::
+	.string "容易击中要害。$"
+
+PokemonCenterMoveTutor_Text_RockBlastDesc::
+	.string "连续向对手投掷岩石2到5次。$"
+
+PokemonCenterMoveTutor_Text_SoftBoiledDesc::
+	.string "回复最大ＨＰ的一半。$"
+
+PokemonCenterMoveTutor_Text_AuroraBeamDesc::
+	.string "射出虹色光线，可能降低攻击。$"
+
+PokemonCenterMoveTutor_Text_TeleportDesc::
+	.string "瞬间从对战中逃脱的超能力招式。$"
+
+@ Set 4
+PokemonCenterMoveTutor_Text_ThunderPunchDesc::
+	.string "带电的拳，可能使对手麻痹。$"
+
+PokemonCenterMoveTutor_Text_FirePunchDesc::
+	.string "炽热的拳，可能使对手灼伤。$"
+
+PokemonCenterMoveTutor_Text_IcePunchDesc::
+	.string "冰冷的拳，可能使对手冰冻。$"
+
+PokemonCenterMoveTutor_Text_TailwindDesc::
+	.string "狂风，四回合内提升同伴速度。$"
+
+PokemonCenterMoveTutor_Text_ZenHeadbuttDesc::
+	.string "集中意志撞向对手。可能使其畏缩。$"
+
+PokemonCenterMoveTutor_Text_BodySlamDesc::
+	.string "全身撞击，可能使对手麻痹。$"
+
+PokemonCenterMoveTutor_Text_IcicleSpearDesc::
+	.string "射出尖锐冰柱，命中2到5次。$"
+
+PokemonCenterMoveTutor_Text_DualChopDesc::
+	.string "用残暴的连击攻击，命中两次。$"
+
+PokemonCenterMoveTutor_Text_ReversalDesc::
+	.string "使用者ＨＰ越低，伤害越大。$"
+
+PokemonCenterMoveTutor_Text_BugBuzzDesc::
+	.string "发出有害声波，可能降低特防。$"
+
+PokemonCenterMoveTutor_Text_LastResortDesc::
+	.string "必须先使用其他已学会的招式。$"
+
+PokemonCenterMoveTutor_Text_RolePlayDesc::
+	.string "模仿目标，复制其特性。$"
+
+PokemonCenterMoveTutor_Text_DrillRunDesc::
+	.string "旋转撞击对手。易击中要害。$"
+
+PokemonCenterMoveTutor_Text_BlazeKickDesc::
+	.string "易击中要害。也可能灼伤目标。$"
+
+PokemonCenterMoveTutor_Text_CrossPoisonDesc::
+	.string "易击中要害。也可能使目标中毒。$"
+
+PokemonCenterMoveTutor_Text_WeatherBallDesc::
+	.string "招式的属性与威力随天气变化。$"
+
+PokemonCenterMoveTutor_Text_AirSlashDesc::
+	.string "用空气之刃斩击。可能使对手畏缩。$"
+
+PokemonCenterMoveTutor_Text_StompingTantrumDesc::
+	.string "愤怒地跺脚。失败后威力更强。$"
+
+@ Set 5
+PokemonCenterMoveTutor_Text_IronHeadDesc::
+	.string "用钢铁般坚硬的头撞击。\n"
+	.string "对手可能畏缩。$"
+
+PokemonCenterMoveTutor_Text_AquaTailDesc::
+	.string "像暴风雨中的浪一样挥动尾巴。$"
+
+PokemonCenterMoveTutor_Text_PowerGemDesc::
+	.string "射出如宝石般闪耀的光线攻击。$"
+
+PokemonCenterMoveTutor_Text_BounceDesc::
+	.string "弹起后下回合落下。\n"
+	.string "可能使对手麻痹。$"
+
+PokemonCenterMoveTutor_Text_HealBellDesc::
+	.string "奏出安宁的铃声，消除异常状态。$"
+
+PokemonCenterMoveTutor_Text_SuperpowerDesc::
+	.string "全力攻击，但降低攻击与防御。$"
+
+PokemonCenterMoveTutor_Text_CrunchDesc::
+	.string "用尖牙咬碎。可能降低防御。$"
+
+PokemonCenterMoveTutor_Text_MysticalFireDesc::
+	.string "吐出特别炽热的火。可能降低特攻。$"
+
+PokemonCenterMoveTutor_Text_GunkShotDesc::
+	.string "向对手喷出污物。可能使其中毒。$"
+
+PokemonCenterMoveTutor_Text_HyperVoiceDesc::
+	.string "用声波伤人的大声攻击。$"
+
+PokemonCenterMoveTutor_Text_SkyAttackDesc::
+	.string "找出弱点，下回合攻击。$"
+
+PokemonCenterMoveTutor_Text_HeatCrashDesc::
+	.string "使用者比对手越重，伤害越大。$"
+
+PokemonCenterMoveTutor_Text_StoredPowerDesc::
+	.string "使用者的能力提升越多，伤害越大。$"
+
+PokemonCenterMoveTutor_Text_TrickDesc::
+	.string "诱骗对手交换持有道具。$"
+
+PokemonCenterMoveTutor_Text_DynamicPunchDesc::
+	.string "威力强大必使对手混乱，\n"
+	.string "但命中率低。$"
+
+PokemonCenterMoveTutor_Text_HelpingHandDesc::
+	.string "提升同伴在战斗中的攻击威力。$"
+
+PokemonCenterMoveTutor_Text_ToxicSpikesDesc::
+	.string "撒下尖刺，使上场的对手中毒。$"
+
+PokemonCenterMoveTutor_Text_HighHorsepowerDesc::
+	.string "用整个身体猛撞对手。$"
+
+@ Set 6
+PokemonCenterMoveTutor_Text_MegahornDesc::
+	.string "用前伸的角进行的猛烈冲撞。$"
+
+PokemonCenterMoveTutor_Text_AuraSphereDesc::
+	.string "无法躲避的气场冲击。$"
+
+PokemonCenterMoveTutor_Text_ThroatChopDesc::
+	.string "击打对手喉咙，\n"
+	.string "使其两回合无法出声。$"
+
+PokemonCenterMoveTutor_Text_EarthPowerDesc::
+	.string "对手脚下的地面喷发。\n"
+	.string "可能降低特防。$"
+
+PokemonCenterMoveTutor_Text_HeatWaveDesc::
+	.string "向对手呼出热气。可能造成灼伤。$"
+
+PokemonCenterMoveTutor_Text_LiquidationDesc::
+	.string "用水流猛击目标。可能降低防御。$"
+
+PokemonCenterMoveTutor_Text_BatonPassDesc::
+	.string "换下使用者，但场上效果保留。$"
+
+PokemonCenterMoveTutor_Text_FoulPlayDesc::
+	.string "根据对手的攻击能力值造成伤害。$"
+
+PokemonCenterMoveTutor_Text_SolarBladeDesc::
+	.string "一回合吸收光，下回合攻击。$"
+
+PokemonCenterMoveTutor_Text_PhantomForceDesc::
+	.string "消失，下回合攻击。无视保护。$"
+
+PokemonCenterMoveTutor_Text_MeteorMashDesc::
+	.string "射出流星般的拳。可能提升攻击。$"
+
+PokemonCenterMoveTutor_Text_PsychicFangsDesc::
+	.string "用超能力咬击。也会破坏屏障。$"
+
+PokemonCenterMoveTutor_Text_EncoreDesc::
+	.string "使对手三回合内重复上一个招式。$"
+
+PokemonCenterMoveTutor_Text_GrassyTerrainDesc::
+	.string "让场地长满草，\n"
+	.string "回复地面上的宝可梦。$"
+
+PokemonCenterMoveTutor_Text_ElectricTerrainDesc::
+	.string "使地面带电，防止睡眠。$"
+
+PokemonCenterMoveTutor_Text_MistyTerrainDesc::
+	.string "让场地布满雾气，防止异常状态。$"
+
+PokemonCenterMoveTutor_Text_PsychicTerrainDesc::
+	.string "保护地面上的宝可梦免受先制招式。$"
+
+PokemonCenterMoveTutor_Text_PowerUpPunchDesc::
+	.string "强力的一拳，提升使用者的攻击。$"
+
+@ Set 7
+PokemonCenterMoveTutor_Text_DoubleEdgeDesc::
+	.string "舍身的撞击，也会伤到使用者。$"
+
+PokemonCenterMoveTutor_Text_PlayRoughDesc::
+	.string "粗鲁地对待对手。可能降低攻击。$"
+
+PokemonCenterMoveTutor_Text_NastyPlotDesc::
+	.string "想着坏事，大幅提升特攻。$"
+
+PokemonCenterMoveTutor_Text_SelfDestructDesc::
+	.string "造成严重伤害，但使用者会倒下。$"
+
+PokemonCenterMoveTutor_Text_CloseCombatDesc::
+	.string "近身搏斗。降低防御与特防。$"
+
+PokemonCenterMoveTutor_Text_FlareBlitzDesc::
+	.string "裹着火焰冲锋，也会伤到使用者。$"
+
+PokemonCenterMoveTutor_Text_BraveBirdDesc::
+	.string "低空冲锋，也会伤到使用者。$"
+
+PokemonCenterMoveTutor_Text_LeafStormDesc::
+	.string "锐利叶片的风暴。大幅降低特攻。$"
+
+PokemonCenterMoveTutor_Text_PowerWhipDesc::
+	.string "猛烈甩动藤蔓等抽打对手。$"
+
+PokemonCenterMoveTutor_Text_HurricaneDesc::
+	.string "用猛风攻击，也可能造成混乱。$"
+
+PokemonCenterMoveTutor_Text_HydroPumpDesc::
+	.string "以强大力量喷射水流攻击对手。$"
+
+PokemonCenterMoveTutor_Text_DragonDanceDesc::
+	.string "神秘的舞蹈，提升攻击与速度。$"
+
+PokemonCenterMoveTutor_Text_OutrageDesc::
+	.string "连续2到3回合大闹。之后陷入混乱。$"
+
+PokemonCenterMoveTutor_Text_KnockOffDesc::
+	.string "打落对手的持有道具，\n"
+	.string "使其无法使用。$"
+
+PokemonCenterMoveTutor_Text_QuiverDanceDesc::
+	.string "神秘的舞蹈，提升特攻、\n"
+	.string "特防与速度。$"
+
+`

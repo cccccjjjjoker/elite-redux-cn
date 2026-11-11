@@ -1,0 +1,975 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_TM01_FOCUS_PUNCH
+  name: "TM01"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fighting_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM02_DRAGON_CLAW
+  name: "TM02"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dragon_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM03_WATER_PULSE
+  name: "TM03"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "water_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM04_CALM_MIND
+  name: "TM04"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM05_ROAR
+  name: "TM05"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM06_TOXIC
+  name: "TM06"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "poison_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM07_HAIL
+  name: "TM07"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ice_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM08_BULK_UP
+  name: "TM08"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fighting_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM09_BULLET_SEED
+  name: "TM09"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "grass_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM10_HIDDEN_POWER
+  name: "TM10"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM11_SUNNY_DAY
+  name: "TM11"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fire_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM12_TAUNT
+  name: "TM12"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dark_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM13_ICE_BEAM
+  name: "TM13"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ice_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM14_BLIZZARD
+  name: "TM14"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ice_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM15_HYPER_BEAM
+  name: "TM15"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM16_LIGHT_SCREEN
+  name: "TM16"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM17_PROTECT
+  name: "TM17"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM18_RAIN_DANCE
+  name: "TM18"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "water_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM19_GIGA_DRAIN
+  name: "TM19"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "grass_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM20_SAFEGUARD
+  name: "TM20"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM21_FRUSTRATION
+  name: "TM21"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM22_SOLARBEAM
+  name: "TM22"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "grass_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM23_IRON_TAIL
+  name: "TM23"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "steel_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM24_THUNDERBOLT
+  name: "TM24"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "electric_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM25_THUNDER
+  name: "TM25"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "electric_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM26_EARTHQUAKE
+  name: "TM26"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ground_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM27_RETURN
+  name: "TM27"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM28_DIG
+  name: "TM28"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ground_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM29_PSYCHIC
+  name: "TM29"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM30_SHADOW_BALL
+  name: "TM30"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ghost_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM31_BRICK_BREAK
+  name: "TM31"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fighting_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM32_DOUBLE_TEAM
+  name: "TM32"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM33_REFLECT
+  name: "TM33"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM34_SLUDGE_WAVE
+  name: "TM34"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "poison_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM35_FLAMETHROWER
+  name: "TM35"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fire_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM36_SLUDGE_BOMB
+  name: "TM36"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "poison_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM37_SANDSTORM
+  name: "TM37"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM38_FIRE_BLAST
+  name: "TM38"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fire_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM39_ROCK_TOMB
+  name: "TM39"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM40_AERIAL_ACE
+  name: "TM40"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "flying_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM41_TORMENT
+  name: "TM41"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dark_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM42_FACADE
+  name: "TM42"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM43_SECRET_POWER
+  name: "TM43"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM44_REST
+  name: "TM44"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM45_ATTRACT
+  name: "TM45"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM46_THIEF
+  name: "TM46"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dark_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM47_STEEL_WING
+  name: "TM47"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "steel_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM48_SKILL_SWAP
+  name: "TM48"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM49_SLEEP_TALK
+  name: "TM49"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM50_OVERHEAT
+  name: "TM50"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fire_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM51_ROOST
+  name: "TM51"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "flying_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM52_FOCUS_BLAST
+  name: "TM52"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fighting_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM53_ENERGY_BALL
+  name: "TM53"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "grass_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM54_PSYSHOCK
+  name: "TM54"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM55_SCALD
+  name: "TM55"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "water_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM56_LEECH_LIFE
+  name: "TM56"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "bug_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM57_CHARGE_BEAM
+  name: "TM57"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "electric_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM58_ENDURE
+  name: "TM58"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM59_DRAGON_PULSE
+  name: "TM59"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dragon_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM60_DRAIN_PUNCH
+  name: "TM60"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fighting_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM61_WILL_O_WISP
+  name: "TM61"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fire_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM62_ACROBATICS
+  name: "TM62"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "flying_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM63_ROCK_SLIDE
+  name: "TM63"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM64_EXPLOSION
+  name: "TM64"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM65_SHADOW_CLAW
+  name: "TM65"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ghost_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM66_PAYBACK
+  name: "TM66"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dark_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM67_RECYCLE
+  name: "TM67"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM68_GIGA_IMPACT
+  name: "TM68"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM69_ROCK_POLISH
+  name: "TM69"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM70_AURORA_VEIL
+  name: "TM70"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ice_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM71_STONE_EDGE
+  name: "TM71"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM72_VOLT_SWITCH
+  name: "TM72"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "electric_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM73_THUNDER_WAVE
+  name: "TM73"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "electric_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM74_GYRO_BALL
+  name: "TM74"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "steel_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM75_SWORDS_DANCE
+  name: "TM75"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM76_STEALTH_ROCK
+  name: "TM76"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM77_STRUGGLE_BUG
+  name: "TM77"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "bug_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM78_BULLDOZE
+  name: "TM78"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ground_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM79_FREEZE_DRY
+  name: "TM79"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ice_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM80_VENOSHOCK
+  name: "TM80"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "poison_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM81_X_SCISSOR
+  name: "TM81"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "bug_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM82_DRAGON_TAIL
+  name: "TM82"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dragon_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM83_FLAME_CHARGE
+  name: "TM83"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fire_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM84_POISON_JAB
+  name: "TM84"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "poison_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM85_DREAM_EATER
+  name: "TM85"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM86_GRASS_KNOT
+  name: "TM86"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "grass_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM87_SMACK_DOWN
+  name: "TM87"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM88_LOW_SWEEP
+  name: "TM88"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fighting_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM89_U_TURN
+  name: "TM89"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "bug_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM90_SUBSTITUTE
+  name: "TM90"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM91_FLASH_CANNON
+  name: "TM91"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "steel_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM92_TRICK_ROOM
+  name: "TM92"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "psychic_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM93_WILD_CHARGE
+  name: "TM93"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "electric_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM94_SUCKER_PUNCH
+  name: "TM94"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dark_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM95_SNARL
+  name: "TM95"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dark_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM96_AVALANCHE
+  name: "TM96"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ice_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM97_DARK_PULSE
+  name: "TM97"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "dark_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM98_FALSE_SWIPE
+  name: "TM98"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM99_DAZZLING_GLEAM
+  name: "TM99"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "fairy_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_TM100_CURSE
+  name: "TM100"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tm"
+  palette: "ghost_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM01_CUT
+  name: "HM01"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "steel_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM02_FLY
+  name: "HM02"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "flying_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM03_SURF
+  name: "HM03"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "water_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM04_STRENGTH
+  name: "HM04"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "rock_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM05_FLASH
+  name: "HM05"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "normal_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM06_ROCK_SMASH
+  name: "HM06"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "fighting_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM07_WATERFALL
+  name: "HM07"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "water_tm_hm"
+  field_use_func: "TMHM"
+}
+item {
+  id: ITEM_HM08_DIVE
+  name: "HM08"
+  grouping: POCKET_TM_HM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hm"
+  palette: "water_tm_hm"
+  field_use_func: "TMHM"
+}

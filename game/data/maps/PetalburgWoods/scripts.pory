@@ -1,0 +1,489 @@
+raw `
+.set LOCALID_GRUNT, 3
+.set LOCALID_DEVON_EMPLOYEE, 4
+
+PetalburgWoods_MapScripts:: @ 822DFD6
+	.byte 0
+
+PetalburgWoods_EventScript_DevonResearcherLeft:: @ 822DFD7
+	lockall
+	call PetalburgWoods_EventScript_DevonResearcherIntro
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft
+	waitmovement 0
+	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
+	closemessage
+	playbgm MUS_ENCOUNTER_AQUA, FALSE
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance
+	waitmovement 0
+	msgbox PetalburgWoods_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaApproachResearcherLeft
+	waitmovement 0
+	applymovement LOCALID_DEVON_EMPLOYEE, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	msgbox PetalburgWoods_Text_HandOverThosePapers, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft
+	waitmovement 0
+	msgbox PetalburgWoods_Text_YouHaveToHelpMe, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaApproachPlayer
+	waitmovement 0
+	msgbox PetalburgWoods_Text_NoOneCrossesTeamAqua, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS, PetalburgWoods_Text_YoureKiddingMe
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaBackOff
+	waitmovement 0
+	call PetalburgWoods_EventScript_DevonResearcherPostBattle
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherExitLeft
+	waitmovement 0
+	goto PetalburgWoods_EventScript_RemoveDevonResearcher
+	end
+
+PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
+	lockall
+	call PetalburgWoods_EventScript_DevonResearcherIntro
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherApproachPlayerRight
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
+	closemessage
+	playbgm MUS_ENCOUNTER_AQUA, FALSE
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance
+	waitmovement 0
+	msgbox PetalburgWoods_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaApproachResearcherRight
+	waitmovement 0
+	applymovement LOCALID_DEVON_EMPLOYEE, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	msgbox PetalburgWoods_Text_HandOverThosePapers, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight
+	waitmovement 0
+	msgbox PetalburgWoods_Text_YouHaveToHelpMe, MSGBOX_DEFAULT
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	msgbox PetalburgWoods_Text_NoOneCrossesTeamAqua, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS, PetalburgWoods_Text_YoureKiddingMe
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaBackOff
+	waitmovement 0
+	call PetalburgWoods_EventScript_DevonResearcherPostBattle
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherExitRight
+	waitmovement 0
+	goto PetalburgWoods_EventScript_RemoveDevonResearcher
+	end
+
+PetalburgWoods_EventScript_DevonResearcherIntro:: @ 822E124
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherLookAround
+	waitmovement 0
+	msgbox PetalburgWoods_Text_NotAOneToBeFound, MSGBOX_DEFAULT
+	closemessage
+	return
+
+PetalburgWoods_EventScript_DevonResearcherPostBattle::
+	msgbox PetalburgWoods_Text_YouveGotSomeNerve, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaRunAway
+	waitmovement 0
+	removeobject LOCALID_GRUNT
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	msgbox PetalburgWoods_Text_ThatWasAwfullyClose, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_SHARE
+	compare VAR_RESULT, FALSE
+	goto_if_eq PetalburgWoods_EventScript_BagFull
+	goto PetalburgWoods_EventScript_DevonResearcherFinish
+	end
+
+PetalburgWoods_EventScript_BagFull:: @ 822E17D
+	msgbox PetalburgWoods_Text_YoureLoadedWithItems, MSGBOX_DEFAULT
+	goto PetalburgWoods_EventScript_DevonResearcherFinish
+	end
+
+PetalburgWoods_EventScript_DevonResearcherFinish:: @ 822E18B
+	msgbox PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro, MSGBOX_DEFAULT
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherStartExit
+	waitmovement 0
+	msgbox PetalburgWoods_Text_ICantBeWastingTime, MSGBOX_DEFAULT
+	closemessage
+	return
+
+PetalburgWoods_EventScript_RemoveDevonResearcher:: @ 822E1A7
+	removeobject LOCALID_DEVON_EMPLOYEE
+	setvar VAR_PETALBURG_WOODS_STATE, 1
+	releaseall
+	end
+
+PetalburgWoods_Movement_DevonResearcherLookAround: @ 822E1B1
+	face_up
+	delay_16
+	delay_4
+	face_right
+	delay_16
+	delay_8
+	face_left
+	delay_16
+	delay_8
+	face_down
+	delay_16
+	face_right
+	delay_16
+	delay_8
+	face_up
+	delay_16
+	step_end
+
+PetalburgWoods_Movement_DevonResearcherExitLeft: @ 822E1C2
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft: @ 822E1CB
+	delay_16
+	face_player
+	walk_down
+	walk_down
+	step_end
+
+PetalburgWoods_Movement_DevonResearcherApproachPlayerRight: @ 822E1D0
+	delay_16
+	face_player
+	walk_down
+	walk_down
+	walk_down
+	walk_in_place_fastest_right
+	step_end
+
+PetalburgWoods_Movement_DevonResearcherExitRight: @ 822E1D7
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+PetalburgWoods_Movement_WatchResearcherLeave: @ 822E1E0
+	delay_16
+	delay_16
+	walk_in_place_fastest_up
+	step_end
+
+PetalburgWoods_Movement_DevonResearcherFleeToPlayerLeft: @ 822E1E4
+	walk_fast_right
+	walk_fast_down
+	walk_fast_down
+	walk_fast_left
+	walk_in_place_fastest_up
+	step_end
+
+PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight: @ 822E1EA
+	walk_fast_down
+	walk_fast_right
+	walk_in_place_fastest_up
+	step_end
+
+PetalburgWoods_Movement_DevonResearcherStartExit: @ 822E1EE
+	walk_in_place_fastest_down
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	face_up
+	step_end
+
+PetalburgWoods_Movement_AquaApproachResearcherLeft: @ 822E1F6
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+PetalburgWoods_Movement_AquaBackOff: @ 822E1F9
+	lock_facing_direction
+	walk_up
+	unlock_facing_direction
+	step_end
+
+PetalburgWoods_Movement_AquaRunAway: @ 822E1FD
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	delay_16
+	delay_16
+	step_end
+
+PetalburgWoods_Movement_AquaApproachResearcherRight: @ 822E205
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+PetalburgWoods_Movement_AquaEntrance: @ 822E209
+	walk_down
+	walk_down
+	delay_16
+	delay_16
+	step_end
+
+PetalburgWoods_Movement_AquaApproachPlayer: @ 822E20E
+	walk_down
+	step_end
+
+PetalburgWoods_EventScript_Boy1:: @ 822E210
+	msgbox PetalburgWoods_Text_StayOutOfTallGrass, MSGBOX_NPC
+	end
+
+PetalburgWoods_EventScript_Boy2:: @ 822E219
+	msgbox PetalburgWoods_Text_HiddenItemsExplanation, MSGBOX_NPC
+	end
+
+PetalburgWoods_EventScript_Girl:: @ 822E222
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_MIRACLE_SEED, PetalburgWoods_EventScript_ExplainMiracleSeed
+	msgbox PetalburgWoods_Text_TryUsingThisItem, MSGBOX_DEFAULT
+	giveitem ITEM_MIRACLE_SEED
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_MIRACLE_SEED
+	release
+	end
+
+PetalburgWoods_EventScript_ExplainMiracleSeed:: @ 822E251
+	msgbox PetalburgWoods_Text_MiracleSeedExplanation, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgWoods_EventScript_Sign1:: @ 822E25B
+	msgbox PetalburgWoods_Text_TrainerTipsExperience, MSGBOX_SIGN
+	end
+
+PetalburgWoods_EventScript_Sign2:: @ 822E264
+	msgbox PetalburgWoods_Text_TrainerTipsPP, MSGBOX_SIGN
+	end
+
+PetalburgWoods_EventScript_Lyle:: @ 822E26D
+	trainerbattle_single TRAINER_LYLE, PetalburgWoods_Text_GoBugPokemonTeam, PetalburgWoods_Text_ICouldntWin
+	msgbox PetalburgWoods_Text_ImOutOfPokeBalls, MSGBOX_AUTOCLOSE
+	end
+
+PetalburgWoods_EventScript_James:: @ 822E284
+	trainerbattle_single TRAINER_JAMES_1, PetalburgWoods_Text_InstantlyPopularWithBugPokemon, PetalburgWoods_Text_CantBePopularIfILose, PetalburgWoods_EventScript_TryRegisterJames
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq PetalburgWoods_EventScript_JamesRematch
+	setvar VAR_0x8004, TRAINER_JAMES_1
+	specialvar VAR_RESULT, IsTrainerRegistered
+	compare VAR_RESULT, FALSE
+	goto_if_eq PetalburgWoods_EventScript_TryRegisterJames2
+	msgbox PetalburgWoods_Text_PeopleRespectYou, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgWoods_EventScript_TryRegisterJames:: @ 822E2C5
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	goto_if_set FLAG_HAS_MATCH_CALL, PetalburgWoods_EventScript_RegisterJames
+	release
+	end
+
+PetalburgWoods_EventScript_RegisterJames:: @ 822E2D6
+	msgbox PetalburgWoods_Text_IWantRematch1, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JAMES_1
+	release
+	end
+
+PetalburgWoods_EventScript_TryRegisterJames2:: @ 822E2EF
+	goto_if_set FLAG_HAS_MATCH_CALL, PetalburgWoods_EventScript_RegisterJames2
+	msgbox PetalburgWoods_Text_PeopleRespectYou, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgWoods_EventScript_RegisterJames2:: @ 822E302
+	msgbox PetalburgWoods_Text_IWantRematch2, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JAMES_1
+	release
+	end
+
+PetalburgWoods_EventScript_JamesRematch:: @ 822E31B
+	trainerbattle_rematch TRAINER_JAMES_1, PetalburgWoods_Text_MyPokemonHaveGrown, PetalburgWoods_Text_CantBePopularIfLose
+	msgbox PetalburgWoods_Text_IveBeenTrainingHard, MSGBOX_AUTOCLOSE
+	end
+
+PetalburgWoods_Text_NotAOneToBeFound: @ 822E332
+	.string "嗯……一只都找不到……$"
+
+PetalburgWoods_Text_HaveYouSeenShroomish: @ 822E34F
+	.string "你好，你在这一带见过一种\n"
+	.string "叫蘑蘑菇的宝可梦吗？\p"
+	.string "我很喜欢那只宝可梦。$"
+
+PetalburgWoods_Text_IWasGoingToAmbushYou: @ 822E3AA
+	.string "我本来想埋伏你，\n"
+	.string "可你非要在橙华森林里磨蹭那么久，\p"
+	.string "是吧？\n"
+	.string "我等得不耐烦了，就自己出来了！$"
+
+PetalburgWoods_Text_HandOverThosePapers: @ 822E428
+	.string "你！得文的研究员！\n"
+	.string "把那些文件交出来！$"
+
+PetalburgWoods_Text_YouHaveToHelpMe: @ 822E457
+	.string "呀啊！\n"
+	.string "你是宝可梦训练家吧？\p"
+	.string "求你帮帮我！$"
+
+PetalburgWoods_Text_NoOneCrossesTeamAqua: @ 822E4A5
+	.string "啥？你以为你在干什么？\n"
+	.string "怎么，你要护着他？\p"
+	.string "跟水舰队作对的人，\n"
+	.string "我一个都不放过，小孩也一样！\p"
+	.string "来打一场！$"
+
+PetalburgWoods_Text_YoureKiddingMe: @ 822E542
+	.string "你开玩笑吧！你挺硬的！$"
+
+PetalburgWoods_Text_YouveGotSomeNerve: @ 822E563
+	.string "唔……你还真敢插手水舰队的事！\n"
+	.string "再来打一场！\p"
+	.string "我本来想这么说，但我的宝可梦\n"
+	.string "已经打完了……\p"
+	.string "而且，喂，我们水舰队也盯上了\n"
+	.string "卡那兹市的某样东西。\p"
+	.string "今天就放你一马！$"
+
+PetalburgWoods_Text_ThatWasAwfullyClose: @ 822E63D
+	.string "呼……真是太险了！\n"
+	.string "多亏你，他没抢走这些重要文件。\p"
+	.string "我知道了，作为谢礼，\n"
+	.string "这个学习装置给你！$"
+
+PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro:
+	.string "宝可梦带上学习装置，\n"
+	.string "就算没参加对战，\p"
+	.string "也能得到100%的经验值。\n"
+	.string "平时只能拿到四分之一的经验值，\p"
+	.string "所以拿来培养弱小的宝可梦很有用！\n"
+	.string "刚才那个水舰队的混混是不是说，\p"
+	.string "他们也盯上了卡那兹市的什么东西？$"
+
+PetalburgWoods_Text_ICantBeWastingTime: @ 822E712
+	.string "糟了！出大事了！我没时间耽搁！$"
+
+PetalburgWoods_Text_YoureLoadedWithItems: @ 822E741
+	.string "你身上东西满了。\n"
+	.string "这个学习装置没法给你。$"
+
+PetalburgWoods_Text_GoBugPokemonTeam: @ 822E77D
+	.string "我抓了一大堆宝可梦！\n"
+	.string "上啊上啊上啊！我的虫宝可梦队！$"
+
+PetalburgWoods_Text_ICouldntWin: @ 822E7C1
+	.string "我有这么多宝可梦，却还是赢不了…\n"
+	.string "…$"
+
+PetalburgWoods_Text_ImOutOfPokeBalls: @ 822E7EF
+	.string "我抓了一堆宝可梦。\n"
+	.string "现在精灵球用完了。$"
+
+PetalburgWoods_Text_InstantlyPopularWithBugPokemon: @ 822E827
+	.string "把虫宝可梦带去学校，\n"
+	.string "你会立刻变红人！$"
+
+PetalburgWoods_Text_CantBePopularIfILose: @ 822E86B
+	.string "输了可没法当红人。$"
+
+PetalburgWoods_Text_PeopleRespectYou: @ 822E889
+	.string "有只大个的虫子属性宝可梦，\n"
+	.string "别人就会敬你。$"
+
+PetalburgWoods_Text_IWantRematch1: @ 822E8C3
+	.string "等我的虫子属性宝可梦长大，\n"
+	.string "我要再打一场！\p"
+	.string "我把你登录到宝可梦导航器里！$"
+
+PetalburgWoods_Text_IWantRematch2: @ 822E914
+	.string "等我的虫子属性宝可梦长大，\n"
+	.string "我要再打一场！\p"
+	.string "我把你登录到宝可梦导航器里！$"
+
+PetalburgWoods_Text_MyPokemonHaveGrown: @ 822E966
+	.string "我的虫宝可梦长大了。\n"
+	.string "我又能当红人了。$"
+
+PetalburgWoods_Text_CantBePopularIfLose: @ 822E998
+	.string "输了可没法当红人。$"
+
+PetalburgWoods_Text_IveBeenTrainingHard: @ 822E9B6
+	.string "宝可梦强就会变红人，对吧？\n"
+	.string "所以我一直在拼命训练。$"
+
+PetalburgWoods_Text_StayOutOfTallGrass: @ 822EA0C
+	.string "哟，你好！你的宝可梦还好吗？\n"
+	.string "如果你的宝可梦很弱、想避开对战，\p"
+	.string "就别走进高草丛。$"
+
+PetalburgWoods_Text_HiddenItemsExplanation: @ 822EA8B
+	.string "有时候地上有些东西你看不见。\n"
+	.string "所以我走路时总要确认脚下。$"
+
+PetalburgWoods_Text_TryUsingThisItem: @ 822EAFE
+	.string "哦，不错！\n"
+	.string "那是卡那兹道馆的徽章！\p"
+	.string "你一定是训练家。\n"
+	.string "试试用这个道具吧。$"
+
+PetalburgWoods_Text_MiracleSeedExplanation: @ 822EB63
+	.string "这是奇迹种子。\n"
+	.string "宝可梦带上它，\p"
+	.string "草属性招式的威力就会提升。\n"
+	.string "除了奇迹种子，我想还有其他\p"
+	.string "方便让宝可梦携带的道具。$"
+
+PetalburgWoods_Text_TrainerTipsExperience: @ 822EC10
+	.string "Elite Redux 训练家提示\n"
+	.string "有了新的糖果盒，\p"
+	.string "你能轻松提升宝可梦的等级。\n"
+	.string "再也不用刷级了。$"
+
+PetalburgWoods_Text_TrainerTipsPP: @ 822ED07
+	.string "Elite Redux 训练家提示\n"
+	.string "除了HP（体力），宝可梦还有\p"
+	.string "PP（招式点数），\n"
+	.string "在对战中使出招式会消耗它。\p"
+	.string "有了自动回复，\n"
+	.string "你再也不用跑宝可梦中心了。$"
+
+`
+script PetalburgWoods_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_JAMES_1) &&
+	   defeated(TRAINER_LYLE)){
+		// when you defeat every trainer
+		msgbox(format("干得好，方圆千里内的百足蜈蚣现在\n都怕你了！$"))
+		givemon(SPECIES_SIZZLIPEDE, 10, ITEM_NONE)
+		msgbox(format("{PLAYER}获得了{COLOR BLUE}烧火蚣{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		msgbox(format("还想要更多就再来！$"))
+
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("在伽勒尔，\n野生的百足蜈蚣和烧火蚣一直在争夺\p地盘。你愿意站到后者这边吗？\n打败这里所有训练家，\p我就给你一只烧火蚣！$"))
+	}
+    release
+    end
+}

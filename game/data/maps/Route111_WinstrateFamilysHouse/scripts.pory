@@ -1,0 +1,112 @@
+raw `
+.set LOCALID_VIVI, 1
+.set LOCALID_VICTOR, 2
+.set LOCALID_VICTORIA, 3
+.set LOCALID_VICKY, 4
+
+Route111_WinstrateFamilysHouse_MapScripts:: @ 822A48C
+	.byte 0
+
+Route111_WinstrateFamilysHouse_EventScript_Victor:: @ 822A48D
+	lock
+	faceplayer
+	setvar VAR_0x8008, LOCALID_VICTOR
+	msgbox Route111_WinstrateFamilysHouse_Text_MySonIsStrongerThanYou, MSGBOX_DEFAULT
+	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+	end
+
+Route111_WinstrateFamilysHouse_EventScript_Victoria:: @ 822A4A2
+	lock
+	faceplayer
+	setvar VAR_0x8008, LOCALID_VICTORIA
+	goto_if_set FLAG_RECEIVED_LIFE_ORB, Route111_WinstrateFamilysHouse_EventScript_ReceivedLifeOrb
+	msgbox Route111_WinstrateFamilysHouse_Text_LikeYouToHaveLifeOrb, MSGBOX_DEFAULT
+	givecustommon SPECIES_PINSIR, 30, ITEM_FOCUS_SASH, ITEM_SAFARI_BALL, NATURE_JOLLY, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_GUILLOTINE, MOVE_STONE_EDGE, MOVE_SUPERPOWER, MOVE_SWORDS_DANCE, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111_WinstrateFamilysHouse_Text_Got_Pinsir
+	waitfanfare
+	setflag FLAG_RECEIVED_LIFE_ORB
+	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+	end
+
+Route111_WinstrateFamilysHouse_EventScript_ReceivedLifeOrb:: @ 822A4DA
+	msgbox Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles, MSGBOX_DEFAULT
+	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+	end
+
+Route111_WinstrateFamilysHouse_EventScript_Vivi:: @ 822A4E8
+	lock
+	faceplayer
+	setvar VAR_0x8008, LOCALID_VIVI
+	msgbox Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers, MSGBOX_DEFAULT
+	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+	end
+
+Route111_WinstrateFamilysHouse_EventScript_Vicky:: @ 822A4FD
+	lock
+	faceplayer
+	setvar VAR_0x8008, LOCALID_VICKY
+	goto_if_set FLAG_TEMP_4, Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
+	msgbox Route111_WinstrateFamilysHouse_Text_GrandsonStrong, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_4
+	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+	end
+
+Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo:: @ 822A51E
+	msgbox Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort, MSGBOX_DEFAULT
+	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+	end
+
+Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection:: @ 822A52C
+	closemessage
+	applymovement VAR_0x8008, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route111_WinstrateFamilysHouse_Text_MySonIsStrongerThanYou: @ 822A539
+	.string "你是我见过第一个\n"
+	.string "把宝可梦用得这么妙的训练家。\p"
+	.string "不过我该告诉你：\n"
+	.string "我儿子比你更强。\p"
+	.string "你知道吗，他甚至\n"
+	.string "去挑战过宝可梦联盟。$"
+
+Route111_WinstrateFamilysHouse_Text_LikeYouToHaveLifeOrb: @ 822A5F4
+	.string "你在对战中见识过\n"
+	.string "我的凯罗斯有多猛了吧。\p"
+	.string "既然你打赢了我们所有人，\n"
+	.string "我不知道你需不需要，\p"
+	.string "但请收下这个！$"
+
+Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles: @ 822A6B4
+	.string "一说起宝可梦对战，\n"
+	.string "我们就会特别热血。$"
+
+Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers: @ 822A6F7
+	.string "妈妈比爸爸强。\p"
+	.string "我比妈妈强。\p"
+	.string "奶奶比我还强！\p"
+	.string "但我哥哥比奶奶更强。$"
+
+Route111_WinstrateFamilysHouse_Text_GrandsonStrong: @ 822A780
+	.string "你很强，这点毫无疑问。\p"
+	.string "但要是跟我孙子打一场，\n"
+	.string "你最后会哭出来的。\p"
+	.string "他比我们家认识的\n"
+	.string "任何训练家都强得多。\p"
+	.string "他现在肯定在挑战\n"
+	.string "宝可梦联盟冠军了。\p"
+	.string "按我孙子的性子，\n"
+	.string "说不定已经是冠军了！$"
+
+Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort: @ 822A89B
+	.string "我孙子现在肯定在挑战\n"
+	.string "宝可梦联盟冠军了。\p"
+	.string "按我孙子的性子，\n"
+	.string "说不定已经是冠军了！$"
+
+`
+text Route111_WinstrateFamilysHouse_Text_Got_Pinsir{
+	format("{PLAYER}获得了{COLOR BLUE}凯罗斯{COLOR DARK_GRAY}，\n这是礼物！$")
+}

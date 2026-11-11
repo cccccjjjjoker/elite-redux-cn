@@ -1,0 +1,174 @@
+raw `
+.set LOCALID_LITTLE_BOY, 5
+
+Route119_WeatherInstitute_1F_MapScripts:: @ 826FA86
+	map_script MAP_SCRIPT_ON_TRANSITION, Route119_WeatherInstitute_1F_OnTransition
+	.byte 0
+
+Route119_WeatherInstitute_1F_OnTransition: @ 826FA8C
+	compare VAR_WEATHER_INSTITUTE_STATE, 0
+	call_if_eq Route119_WeatherInstitute_1F_EventScript_SetLittleBoyPos
+	end
+
+Route119_WeatherInstitute_1F_EventScript_SetLittleBoyPos:: @ 826FA98
+	setobjectxyperm LOCALID_LITTLE_BOY, 0, 5
+	setobjectmovementtype LOCALID_LITTLE_BOY, MOVEMENT_TYPE_FACE_RIGHT
+	return
+
+Route119_WeatherInstitute_1F_EventScript_LittleBoy:: @ 826FAA4
+	lock
+	faceplayer
+	special GetPlayerBigGuyGirlString
+	compare VAR_WEATHER_INSTITUTE_STATE, 0
+	goto_if_eq Route119_WeatherInstitute_1F_EventScript_LittleBoyTeamAquaHere
+	goto_if_set FLAG_WEATHER_INSTITUTE_ROCKS, Route119_WeatherInstitute_1F_EventScript_LittleBoyGaveRocks
+	msgbox Route119_WeatherInstitute_1F_Text_WowYoureStrong, MSGBOX_DEFAULT
+	giveitem ITEM_HEAT_ROCK
+	giveitem ITEM_DAMP_ROCK
+	giveitem ITEM_ICY_ROCK
+	giveitem ITEM_SMOOTH_ROCK
+	giveitem ITEM_SMOKE_BALL
+	setflag FLAG_WEATHER_INSTITUTE_ROCKS
+Route119_WeatherInstitute_1F_EventScript_LittleBoyGaveRocks:
+	msgbox Route119_WeatherInstitute_1F_Text_Rocks, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_WeatherInstitute_1F_EventScript_LittleBoyTeamAquaHere:: @ 826FABE
+	msgbox Route119_WeatherInstitute_1F_Text_EveryoneWentUpstairs, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_WeatherInstitute_1F_EventScript_InstituteWorker1:: @ 826FAC8
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route119_WeatherInstitute_1F_EventScript_StudyingRain
+	setvar VAR_0x8004, 0
+	call_if_set FLAG_DEFEATED_KYOGRE, Route119_WeatherInstitute_1F_EventScript_LegendaryDefeated
+	call_if_set FLAG_DEFEATED_GROUDON, Route119_WeatherInstitute_1F_EventScript_LegendaryDefeated
+	compare VAR_0x8004, 2  @ Both defeated
+	goto_if_eq Route119_WeatherInstitute_1F_EventScript_StudyingRain
+	msgbox Route119_WeatherInstitute_1F_Text_NoticingAbnormalWeather, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_WeatherInstitute_1F_EventScript_LegendaryDefeated:: @ 826FAFF
+	addvar VAR_0x8004, 1
+	return
+
+Route119_WeatherInstitute_1F_EventScript_StudyingRain:: @ 826FB05
+	msgbox Route119_WeatherInstitute_1F_Text_ProfStudyingRain, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_WeatherInstitute_1F_EventScript_InstituteWorker2:: @ 826FB0F
+	lock
+	faceplayer
+	goto_if_set FLAG_WEATHER_INSTITUTE_BOTTLE_CAPS, Route119_WeatherInstitute_1F_EventScript_ReceivedCaps
+	msgbox Route119_WeatherInstitute_1F_Text_PleaseTakeThese, MSGBOX_DEFAULT
+	giveitem ITEM_BOTTLE_CAP, 4
+	setflag FLAG_WEATHER_INSTITUTE_BOTTLE_CAPS
+Route119_WeatherInstitute_1F_EventScript_ReceivedCaps::
+	msgbox Route119_WeatherInstitute_1F_Text_WhatWereAquasUpTo, MSGBOX_AUTOCLOSE
+	release
+	end
+
+Route119_WeatherInstitute_1F_EventScript_Bed:: @ 826FB18
+	lockall
+	msgbox Route119_WeatherInstitute_1F_Text_TakeRestInBed, MSGBOX_DEFAULT
+	closemessage
+	goto_if_set FLAG_IS_DAYNIGHT_INVERTED, Route119_WeatherInstitute_1F_EventScript_Bed2
+	setflag FLAG_IS_DAYNIGHT_INVERTED
+	call Common_EventScript_OutOfCenterPartyHeal
+	releaseall
+	end
+	
+Route119_WeatherInstitute_1F_EventScript_Bed2:: @ 826FB18
+	clearflag FLAG_IS_DAYNIGHT_INVERTED
+	call Common_EventScript_OutOfCenterPartyHeal
+	releaseall
+	end
+
+Route119_WeatherInstitute_1F_EventScript_Grunt1:: @ 826FB29
+	trainerbattle_single TRAINER_GRUNT_WEATHER_INST_1, Route119_WeatherInstitute_1F_Text_Grunt1Intro, Route119_WeatherInstitute_1F_Text_Grunt1Defeat
+	msgbox Route119_WeatherInstitute_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_WeatherInstitute_1F_EventScript_Grunt4:: @ 826FB40
+	trainerbattle_single TRAINER_GRUNT_WEATHER_INST_4, Route119_WeatherInstitute_1F_Text_Grunt4Intro, Route119_WeatherInstitute_1F_Text_Grunt4Defeat
+	msgbox Route119_WeatherInstitute_1F_Text_Grunt4PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route119_WeatherInstitute_1F_Text_Grunt1Intro: @ 826FB57
+	.string "老大对这里进行的研究\n"
+	.string "很感兴趣，\p"
+	.string "就派我们来了。\p"
+	.string "你别多管闲事！$"
+
+Route119_WeatherInstitute_1F_Text_Grunt1Defeat: @ 826FBBB
+	.string "可恶……\p"
+	.string "居然被个小鬼打倒了……$"
+
+Route119_WeatherInstitute_1F_Text_Grunt1PostBattle: @ 826FBD7
+	.string "我们老大什么都知道。\p"
+	.string "可我不过是个手下。\n"
+	.string "我哪知道他在想什么？$"
+
+Route119_WeatherInstitute_1F_Text_Grunt4Intro: @ 826FC34
+	.string "咦？\p"
+	.string "小鬼来这儿干什么？$"
+
+Route119_WeatherInstitute_1F_Text_Grunt4Defeat: @ 826FC52
+	.string "咦？\p"
+	.string "我输了？！$"
+
+Route119_WeatherInstitute_1F_Text_Grunt4PostBattle: @ 826FC60
+	.string "哦，不……\p"
+	.string "输给小鬼，我肯定要挨骂……\p"
+	.string "我还是去床上睡一觉吧……$"
+
+Route119_WeatherInstitute_1F_Text_EveryoneWentUpstairs:
+	.string "我睡觉的时候，\n"
+	.string "大家都上楼去了！$"
+
+Route119_WeatherInstitute_1F_Text_WowYoureStrong:
+	.string "哇，你真的好强！\p"
+	.string "你这样的训练家\n"
+	.string "该拥有这些！$"
+
+Route119_WeatherInstitute_1F_Text_Rocks:
+	.string "我们这儿这种石头多得是！\p"
+	.string "它们能让求雨之类的招式\n"
+	.string "效果持续更久。$"
+
+Route119_WeatherInstitute_1F_Text_ProfStudyingRain: @ 826FD2E
+	.string "教授很喜欢雨。\n"
+	.string "这是事实。\p"
+	.string "可要是一直下雨，\n"
+	.string "人们就麻烦了。\p"
+	.string "这也是事实。\p"
+	.string "所以教授正在研究\n"
+	.string "能不能把雨用在好的地方。$"
+
+Route119_WeatherInstitute_1F_Text_NoticingAbnormalWeather: @ 826FDE8
+	.string "在研究所二楼，\n"
+	.string "我们研究丰缘地区的\p"
+	.string "天气变化。\p"
+	.string "最近我们注意到\n"
+	.string "零星、局部的干旱\p"
+	.string "和暴雨……$"
+
+Route119_WeatherInstitute_1F_Text_PleaseTakeThese:
+	.string "你好！\p"
+	.string "多亏你的行动，我们得救了！\p"
+	.string "请收下这些作为谢礼！$"
+
+Route119_WeatherInstitute_1F_Text_WhatWereAquasUpTo:
+	.string "我不明白的是，\n"
+	.string "水舰队到底想干什么。$"
+
+Route119_WeatherInstitute_1F_Text_TakeRestInBed: @ 826FEFC
+	.string "有张床……\p"
+	.string "休息一下吧。$"
+
+`

@@ -1,0 +1,98 @@
+raw `
+MtPyre_3F_MapScripts:: @ 8231752
+	.byte 0
+
+MtPyre_3F_EventScript_William:: @ 8231753
+	trainerbattle_single TRAINER_WILLIAM, MtPyre_3F_Text_WilliamIntro, MtPyre_3F_Text_WilliamDefeat
+	msgbox MtPyre_3F_Text_WilliamPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_3F_EventScript_Kayla:: @ 823176A
+	trainerbattle_single TRAINER_KAYLA, MtPyre_3F_Text_KaylaIntro MtPyre_3F_Text_KaylaDefeat
+	msgbox MtPyre_3F_Text_KaylaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_3F_EventScript_Gabrielle:: @ 8231781
+	trainerbattle_single TRAINER_GABRIELLE_1, MtPyre_3F_Text_GabrielleIntro, MtPyre_3F_Text_GabrielleDefeat, MtPyre_3F_EventScript_RegisterGabrielle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq MtPyre_3F_EventScript_RematchGabrielle
+	msgbox MtPyre_3F_Text_GabriellePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MtPyre_3F_EventScript_RegisterGabrielle:: @ 82317AD
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox MtPyre_3F_Text_GabrielleRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_GABRIELLE_1
+	release
+	end
+
+MtPyre_3F_EventScript_RematchGabrielle:: @ 82317CC
+	trainerbattle_rematch TRAINER_GABRIELLE_1, MtPyre_3F_Text_GabrielleRematchIntro, MtPyre_3F_Text_GabrielleRematchDefeat
+	msgbox MtPyre_3F_Text_GabriellePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_3F_Text_WilliamIntro: @ 82317E3
+	.string "山中浓厚的灵气\n"
+	.string "提升了我的超能力！\p"
+	.string "像你这样的小孩……\n"
+	.string "也梦想获胜？$"
+
+MtPyre_3F_Text_WilliamDefeat: @ 8231853
+	.string "我沉溺在自怜里……$"
+
+MtPyre_3F_Text_WilliamPostBattle: @ 8231869
+	.string "我的超能力确实增长了\n"
+	.string "好几倍，可是……$"
+
+MtPyre_3F_Text_KaylaIntro: @ 82318A1
+	.string "啊哈哈哈！\n"
+	.string "这里可不是小孩来的地方，\p"
+	.string "尤其是你！$"
+
+MtPyre_3F_Text_KaylaDefeat: @ 82318DD
+	.string "输得真干净……$"
+
+MtPyre_3F_Text_KaylaPostBattle: @ 82318F2
+	.string "这说明我的修行还不够……\n"
+	.string "我得继续向着山顶前进……\p"
+	.string "加油，我！$"
+
+MtPyre_3F_Text_GabrielleIntro: @ 8231952
+	.string "你为什么会来这里？$"
+
+MtPyre_3F_Text_GabrielleDefeat: @ 823196A
+	.string "太厉害了！\n"
+	.string "你是位非常特别的训练家。$"
+
+MtPyre_3F_Text_GabriellePostBattle: @ 823199B
+	.string "已不在这个世界的宝可梦。\n"
+	.string "现在陪在你身边的宝可梦。\p"
+	.string "还有你未来会遇见的宝可梦……\n"
+	.string "它们都该被同样珍视。\p"
+	.string "请你记住这一点。$"
+
+MtPyre_3F_Text_GabrielleRegister: @ 8231A49
+	.string "我想看看你的宝可梦\n"
+	.string "长大一些的样子……\p"
+	.string "请让我看看你的宝可梦领航员。$"
+
+MtPyre_3F_Text_GabrielleRematchIntro: @ 8231AAB
+	.string "哦，是你……\n"
+	.string "你是来让我看看长大的\p"
+	.string "宝可梦的吗？$"
+
+MtPyre_3F_Text_GabrielleRematchDefeat: @ 8231AE6
+	.string "真了不起！\n"
+	.string "你是个特别的人。$"
+
+MtPyre_3F_Text_GabriellePostRematch: @ 8231B0D
+	.string "已不在这个世界的宝可梦。\n"
+	.string "现在陪在你身边的宝可梦。\p"
+	.string "还有你未来会遇见的宝可梦……\n"
+	.string "它们都该被同样珍视。\p"
+	.string "看来你已经记住了。$"
+
+`

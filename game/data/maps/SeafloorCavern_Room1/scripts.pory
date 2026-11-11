@@ -1,0 +1,38 @@
+raw `
+SeafloorCavern_Room1_MapScripts:: @ 82347EB
+	.byte 0
+
+SeafloorCavern_Room1_EventScript_Grunt1:: @ 82347EC
+	trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_1, SeafloorCavern_Room1_Text_Grunt1Intro, SeafloorCavern_Room1_Text_Grunt1Defeat
+	msgbox SeafloorCavern_Room1_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SeafloorCavern_Room1_EventScript_Grunt2:: @ 8234803
+	trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_2, SeafloorCavern_Room1_Text_Grunt2Intro, SeafloorCavern_Room1_Text_Grunt2Defeat
+	msgbox SeafloorCavern_Room1_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SeafloorCavern_Room1_Text_Grunt1Intro: @ 823481A
+	.string "我们不需要小孩在这里！\n"
+	.string "快回家去！$"
+
+SeafloorCavern_Room1_Text_Grunt1Defeat: @ 823484A
+	.string "我想回家……$"
+
+SeafloorCavern_Room1_Text_Grunt1PostBattle: @ 823485D
+	.string "我想升职，这样就能\n"
+	.string "指使别的手下了……$"
+
+SeafloorCavern_Room1_Text_Grunt2Intro: @ 8234898
+	.string "那艘潜艇……里面好小。\n"
+	.string "我全身都酸疼！$"
+
+SeafloorCavern_Room1_Text_Grunt2Defeat: @ 82348CD
+	.string "输了我更酸疼了！$"
+
+SeafloorCavern_Room1_Text_Grunt2PostBattle: @ 82348E3
+	.string "我们抢来那艘潜艇，\n"
+	.string "坐起来真是要命。\p"
+	.string "里面挤得太厉害了！$"
+
+`

@@ -1,0 +1,149 @@
+raw `
+EverGrandeCity_SidneysRoom_MapScripts:: @ 8227F01
+	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_SidneysRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_SidneysRoom_OnWarp
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_SidneysRoom_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_SidneysRoom_OnFrame
+	.byte 0
+
+EverGrandeCity_SidneysRoom_OnTransition: @ 8227F16
+	setflag FLAG_MET_SCOTT_IN_EVERGRANDE
+	setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
+	end
+
+EverGrandeCity_SidneysRoom_OnLoad: @ 8227F1D
+	call_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_ResetAdvanceToNextRoom
+	compare VAR_ELITE_4_STATE, 1
+	call_if_eq EverGrandeCity_SidneysRoom_EventScript_CloseDoor
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_ResetAdvanceToNextRoom:: @ 8227F32
+	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+	return
+
+EverGrandeCity_SidneysRoom_EventScript_CloseDoor:: @ 8227F38
+	call PokemonLeague_EliteFour_EventScript_CloseDoor
+	return
+
+EverGrandeCity_SidneysRoom_OnWarp: @ 8227F3E
+	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_SidneysRoom_EventScript_PlayerTurnNorth
+	.2byte 0
+
+EverGrandeCity_SidneysRoom_EventScript_PlayerTurnNorth:: @ 8227F48
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+EverGrandeCity_SidneysRoom_OnFrame: @ 8227F4D
+	map_script_2 VAR_ELITE_4_STATE, 0, EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor
+	.2byte 0
+
+EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor:: @ 8227F57
+	lockall
+	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+	setvar VAR_ELITE_4_STATE, 1
+	releaseall
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_Sidney:: @ 8227F64
+	lock
+	faceplayer
+	cleartrainerflag(TRAINER_CALVIN_E4)
+	goto_if_set FLAG_SYS_GAME_CLEAR, EverGrandeCity_SidneysRoom_EventScript_SidneyRematch
+	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
+	goto EverGrandeCity_SidneysRoom_EventScript_Defeated
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_SidneyRematch::
+	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeechRematch
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
+	msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeechRematch, MSGBOX_DEFAULT
+	switch VAR_ELITE_4_MODE
+	case 0, EverGrandeCity_SidneysRoom_EventScript_SidneySingles
+	case 1, EverGrandeCity_SidneysRoom_EventScript_SidneySinglesLegends
+	case 2, EverGrandeCity_SidneysRoom_EventScript_SidneyDoubles
+	case 3, EverGrandeCity_SidneysRoom_EventScript_SidneyDoublesLegends
+
+EverGrandeCity_SidneysRoom_EventScript_SidneySingles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
+	goto EverGrandeCity_SidneysRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_SidneySinglesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_SIDNEY_3, EverGrandeCity_SidneysRoom_Text_Defeat
+	goto EverGrandeCity_SidneysRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_SidneyDoubles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_SIDNEY_2, EverGrandeCity_SidneysRoom_Text_Defeat
+	goto EverGrandeCity_SidneysRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_SidneyDoublesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_SIDNEY_4, EverGrandeCity_SidneysRoom_Text_Defeat
+	goto EverGrandeCity_SidneysRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech:: @ 8227F8B
+	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeechRematch::
+	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_Defeated:: @ 8227F95
+	setflag FLAG_DEFEATED_ELITE_4_SIDNEY
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_SidneysRoom_EventScript_DefeatedRematch::
+	setflag FLAG_DEFEATED_ELITE_4_SIDNEY
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_SidneysRoom_Text_IntroSpeech: @ 8227FA7
+	.string "欢迎，挑战者！\n"
+	.string "我是四天王的花月。\p"
+	.string "我喜欢你那个眼神。\n"
+	.string "看来你会给我一场好比赛。\p"
+	.string "那太好了！看着真不错！\n"
+	.string "好！你和我，来享受一场\p"
+	.string "只有在宝可梦联盟才能上演的\n"
+	.string "对战吧！$"
+
+EverGrandeCity_SidneysRoom_Text_Defeat: @ 82280A2
+	.string "哎呀，你瞧？我输了！\n"
+	.string "哎，打得开心，无所谓。$"
+
+EverGrandeCity_SidneysRoom_Text_PostBattleSpeech: @ 82280EC
+	.string "来听听我这个输家说什么吧。\n"
+	.string "你有走得很远的本事。\p"
+	.string "现在，去下一个房间，\n"
+	.string "享受你的下一场对战吧！$"
+
+EverGrandeCity_SidneysRoom_Text_IntroSpeechRematch:
+	.string "冠军，我一直在等你。\n"
+	.string "不管谁赢，都别记恨！\p"
+	.string "让我们开始这场\n"
+	.string "最精彩的对战吧！$"
+
+EverGrandeCity_SidneysRoom_Text_PostBattleSpeechRematch:
+	.string "嘿……\n"
+	.string "我就知道你真的是最强的……\p"
+	.string "好了，快走吧！\n"
+	.string "其他人还都等着你呢！$"
+`

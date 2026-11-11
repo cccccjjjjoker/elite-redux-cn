@@ -1,0 +1,78 @@
+raw `
+.set LOCALID_ATTENDANT, 1
+
+VerdanturfTown_BattleTentCorridor_MapScripts:: @ 820208A
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerdanturfTown_BattleTentCorridor_OnFrame
+	.byte 0
+
+VerdanturfTown_BattleTentCorridor_OnFrame: @ 8202090
+	map_script_2 VAR_TEMP_0, 0, VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor
+	.2byte 0
+
+VerdanturfTown_BattleTentCorridor_EventScript_EnterCorridor:: @ 820209A
+	lockall
+	setvar VAR_TEMP_0, 1
+	applymovement LOCALID_ATTENDANT, VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor
+	applymovement OBJ_EVENT_ID_PLAYER, VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor
+	waitmovement 0
+	opendoor 2, 1
+	waitdooranim
+	applymovement LOCALID_ATTENDANT, VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor
+	applymovement OBJ_EVENT_ID_PLAYER, VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor
+	waitmovement 0
+	closedoor 2, 1
+	waitdooranim
+	setvar VAR_0x8006, 0
+	warp MAP_VERDANTURF_TOWN_BATTLE_TENT_BATTLE_ROOM, 255, 6, 5
+	waitstate
+	releaseall
+	end
+
+VerdanturfTown_BattleTentCorridor_Movement_WalkToDoor: @ 82020DE
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+VerdanturfTown_BattleTentCorridor_Movement_PlayerEnterDoor: @ 82020E3
+	walk_up
+VerdanturfTown_BattleTentCorridor_Movement_AttendantEnterDoor: @ 82020E4
+	walk_up
+	set_invisible
+	step_end
+
+
+@ Leftover text from when this was a Contest Hall in R/S
+@ Unused
+VerdanturfTown_ContestHall_Text_WhichContestYouEntering: @ 82020E7
+	.string "你要参加哪一场华丽大赛？\n"
+	.string "想听点建议吗？\p"
+	.string "不管哪一场，比如可爱大赛，\n"
+	.string "我觉得第一轮并不只是\p"
+	.string "评比可爱程度。\n"
+	.string "你得琢磨出更好的\p"
+	.string "培养宝可梦的方法。$"
+
+@ Unused
+VerdanturfTown_ContestHall_Text_RaisedMonToBeCute: @ 82021C4
+	.string "我把宝可梦培养得很可爱。\n"
+	.string "我发现可以把宝可梦\p"
+	.string "送去参加可爱大赛！\n"
+	.string "幸好我用心爱护地\p"
+	.string "培养它……$"
+
+@ Unused
+VerdanturfTown_ContestHall_Text_MyMonRules: @ 8202251
+	.string "我的宝可梦最棒！\n"
+	.string "它又酷又强壮又美丽，\p"
+	.string "可爱又聪明。完美无缺！\n"
+	.string "我干脆把每场华丽大赛\p"
+	.string "都赢一遍好了。$"
+
+@ Unused
+VerdanturfTown_ContestHall_Text_NormalRankStage: @ 82022D6
+	.string "宝可梦华丽大赛\n"
+	.string "普通级别舞台！$"
+
+`

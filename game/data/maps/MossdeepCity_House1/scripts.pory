@@ -1,0 +1,144 @@
+raw `
+.set LOCALID_CYNTHIA, 1
+
+@ VAR_CYNTHIA_STATE
+@ 0: Unmet
+@ 1: Defeated for the first time
+
+MossdeepCity_House1_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_House1_MapScripts_OnFrame
+	.byte 0
+
+MossdeepCity_House1_MapScripts_OnFrame:
+	map_script_2 VAR_CYNTHIA_STATE, 1, MossdeepCity_House1_EventScript_CynthiaBattle
+	.2byte 0
+
+MossdeepCity_House1_EventScript_CynthiaBattle::
+	lockall
+	goto_if_unset FLAG_SYS_GAME_CLEAR, MossdeepCity_House1_EventScript_End
+	goto_if_set FLAG_HIDE_MOSSDEEP_CYNTHIA, MossdeepCity_House1_EventScript_End
+	delay 40
+	playse SE_PIN
+	applymovement LOCALID_CYNTHIA, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_CYNTHIA, Common_Movement_Delay48
+	waitmovement 0
+	playbgm DP_SEQ_EYE_CHAMP, FALSE
+	applymovement LOCALID_CYNTHIA, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	msgbox MossdeepCity_House1_Text_WhatsThis, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	call_if_eq MossdeepCity_House1_EventScript_CynthiaHeal
+	msgbox MossdeepCity_House1_Text_BeforeISendOut, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_no_intro TRAINER_CYNTHIA_1, MossdeepCity_House1_Text_CynthiaDefeat
+	msgbox MossdeepCity_House1_Text_BeyondExpectation, MSGBOX_DEFAULT
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp
+	waitmovement 0
+	giveitem ITEM_MYSTIC_TICKET
+	setflag FLAG_ENABLE_SHIP_NAVEL_ROCK
+	setflag FLAG_RECEIVED_MYSTIC_TICKET
+	setflag FLAG_DAILY_REMATCH_CYNTHIA
+	setvar VAR_CYNTHIA_STATE, 2
+	releaseall
+	end
+
+MossdeepCity_House1_EventScript_CynthiaHeal::
+	msgbox MossdeepCity_House1_Text_LetMeHealYourPokemon, MSGBOX_DEFAULT
+	playfanfare MUS_HEAL
+	waitfanfare
+	special HealPlayerParty
+	return
+
+MossdeepCity_House1_EventScript_Cynthia::
+	lockall
+	faceplayer
+	goto_if_unset FLAG_DAILY_REMATCH_CYNTHIA, MossdeepCity_House1_EventScript_CynthiaRematch
+	msgbox MossdeepCity_House1_Text_AfterBattle, MSGBOX_DEFAULT
+	releaseall
+	end
+
+MossdeepCity_House1_EventScript_CynthiaRematch::
+	msgbox MossdeepCity_House1_Text_BeforeRematch, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq MossdeepCity_House1_EventScript_CynthiaStartRematch
+	releaseall
+	end
+
+MossdeepCity_House1_EventScript_CynthiaStartRematch::
+	msgbox MossdeepCity_House1_Text_NoHoldsBarred, MSGBOX_DEFAULT
+	random 1
+	compare VAR_RESULT, 1
+	goto_if_eq MossdeepCity_House1_EventScript_CynthiaTeam1
+	trainerbattle_no_intro TRAINER_CYNTHIA_2, MossdeepCity_House1_Text_CynthiaDefeat
+	setflag FLAG_DAILY_REMATCH_CYNTHIA
+	releaseall
+	end
+
+MossdeepCity_House1_EventScript_CynthiaTeam1::
+	trainerbattle_no_intro TRAINER_CYNTHIA_1, MossdeepCity_House1_Text_CynthiaDefeat
+	setflag FLAG_DAILY_REMATCH_CYNTHIA
+	releaseall
+	end
+
+MossdeepCity_House1_EventScript_End::
+	releaseall
+	end
+
+MossdeepCity_House1_Text_WhatsThis:
+	.string "这是谁？\n"
+	.string "哦，你是{PLAYER}吧？\p"
+	.string "丰缘最新的冠军！\n"
+	.string "我是竹兰。我也和你一样，\p"
+	.string "是宝可梦训练家。\n"
+	.string "我对研究宝可梦的神话传说\p"
+	.string "有着无止境的好奇心。\n"
+	.string "你听说过脐之岩吗？\p"
+	.string "据说有两只传说的宝可梦\n"
+	.string "在那里等待一位特别的训练家。\p"
+	.string "只要把神秘船票交给船长，\n"
+	.string "你就能去那里。\p"
+	.string "我本来打算自己去的，可是……\n"
+	.string "奇怪的是，我总觉得\p"
+	.string "该去的人是你。\n"
+	.string "当然，要决定只有一个办法……\p"
+	.string "用宝可梦对战！\n"
+	.string "你愿意当我的对手吗？$"
+
+MossdeepCity_House1_Text_LetMeHealYourPokemon:
+	.string "哦？我明白了。\n"
+	.string "先让我治好你的宝可梦。$"
+
+MossdeepCity_House1_Text_BeforeISendOut:
+	.string "在放出宝可梦之前，\n"
+	.string "我的心总是跳得很快……\p"
+	.string "有意思……\n"
+	.string "精灵球里的宝可梦们\p"
+	.string "正散发出幸福的感觉。\n"
+	.string "是因为你吗？$"
+
+MossdeepCity_House1_Text_CynthiaDefeat:
+	.string "跟你打得那么激烈，\n"
+	.string "我的心到现在还砰砰跳。\p"
+	.string "你真是位了不起的训练家！$"
+
+MossdeepCity_House1_Text_BeyondExpectation:
+	.string "这超出了我的预想！\n"
+	.string "多么出色的一场对战！\p"
+	.string "看来神秘船票该交给你。\n"
+	.string "来，收下吧！$"
+
+MossdeepCity_House1_Text_AfterBattle:
+	.string "竹兰：你是位了不起的训练家，\n"
+	.string "要是能再见到你，我会很高兴。$"
+
+MossdeepCity_House1_Text_BeforeRematch:
+	.string "竹兰：又见到你，太好了！\n"
+	.string "我得告诉你……\p"
+	.string "我的宝可梦都很想跟你的对战。\n"
+	.string "你愿意当我的对手吗？$"
+
+MossdeepCity_House1_Text_NoHoldsBarred:
+	.string "这一定会很有趣！\n"
+	.string "全力以赴！$"
+`

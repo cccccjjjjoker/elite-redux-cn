@@ -1,0 +1,756 @@
+raw `
+.set LOCALID_ARCHIE, 2
+.set LOCALID_OLD_LADY, 3
+.set LOCALID_GRUNT_1, 4
+.set LOCALID_GRUNT_2, 5
+.set LOCALID_GRUNT_3, 6
+.set LOCALID_GRUNT_4, 7
+.set LOCALID_MAXIE, 8
+.set LOCALID_MATT, 9
+
+MtPyre_Summit_MapScripts:: @ 8231FF7
+	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Summit_OnTransition
+	.byte 0
+
+MtPyre_Summit_OnTransition: @ 8231FFD
+	compare VAR_MT_PYRE_STATE, 2
+	call_if_eq MtPyre_Summit_EventScript_SetArchieMaxiePositions
+	end
+
+MtPyre_Summit_EventScript_SetArchieMaxiePositions:: @ 8232009
+	setobjectxyperm LOCALID_MAXIE, 23, 6
+	setobjectxyperm LOCALID_ARCHIE, 22, 6
+	end
+
+MtPyre_Summit_EventScript_TeamAquaTrigger0:: @ 8232018
+	lockall
+	setvar VAR_0x8008, 0
+	goto MtPyre_Summit_EventScript_TeamAquaExits
+	end
+
+MtPyre_Summit_EventScript_TeamAquaTrigger1:: @ 8232024
+	lockall
+	setvar VAR_0x8008, 1
+	goto MtPyre_Summit_EventScript_TeamAquaExits
+	end
+
+MtPyre_Summit_EventScript_TeamAquaTrigger2:: @ 8232030
+	lockall
+	setvar VAR_0x8008, 2
+	goto MtPyre_Summit_EventScript_TeamAquaExits
+	end
+
+MtPyre_Summit_EventScript_TeamAquaExits:: @ 823203C
+	playbgm MUS_ENCOUNTER_AQUA, FALSE
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	delay 50
+	compare VAR_0x8008, 0
+	call_if_eq MtPyre_Summit_EventScript_ArchieFacePlayer0
+	compare VAR_0x8008, 1
+	call_if_eq MtPyre_Summit_EventScript_ArchieFacePlayer1
+	compare VAR_0x8008, 2
+	call_if_eq MtPyre_Summit_EventScript_ArchieFacePlayer2
+	call MtPyre_Summit_EventScript_ArchieBattle
+	// msgbox MtPyre_Summit_Text_ArchieWeGotTheOrbLetsGo, MSGBOX_DEFAULT
+	// closemessage
+	// fadescreen FADE_TO_BLACK
+	removeobject LOCALID_ARCHIE
+	removeobject LOCALID_GRUNT_1
+	removeobject LOCALID_GRUNT_2
+	removeobject LOCALID_GRUNT_3
+	removeobject LOCALID_GRUNT_4
+	removeobject LOCALID_MATT
+	setflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
+	setflag FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
+	fadedefaultbgm
+	// fadescreen FADE_FROM_BLACK
+	delay 20
+	setvar VAR_MT_PYRE_STATE, 1
+	compare VAR_0x8008, 0
+	call_if_eq MtPyre_Summit_EventScript_OldLadyApproachPlayer0
+	compare VAR_0x8008, 1
+	call_if_eq MtPyre_Summit_EventScript_OldLadyApproachPlayer1
+	compare VAR_0x8008, 2
+	call_if_eq MtPyre_Summit_EventScript_OldLadyApproachPlayer2
+	call MtPyre_Summit_EventScript_OldLadyGivesMagmaEmblem
+	// msgbox MtPyre_Summit_Text_BothOrbsTakenMagmaLeftThis, MSGBOX_DEFAULT
+	// giveitem ITEM_MAGMA_EMBLEM
+	setflag FLAG_RECEIVED_RED_OR_BLUE_ORB
+	setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
+	releaseall
+	end
+
+MtPyre_Summit_EventScript_ArchieFacePlayer0:: @ 82320E0
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieFacePlayer0
+	waitmovement 0
+	return
+
+@ Archie is already facing player
+MtPyre_Summit_EventScript_ArchieFacePlayer1:: @ 82320EB
+	return
+
+MtPyre_Summit_EventScript_ArchieFacePlayer2:: @ 82320EC
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieFacePlayer2
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_OldLadyApproachPlayer0:: @ 82320F7
+	applymovement LOCALID_OLD_LADY, MtPyre_Summit_Movement_OldLadyApproachPlayer0
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_OldLadyApproachPlayer1:: @ 823210C
+	applymovement LOCALID_OLD_LADY, MtPyre_Summit_Movement_OldLadyApproachPlayer1
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_OldLadyApproachPlayer2:: @ 8232117
+	applymovement LOCALID_OLD_LADY, MtPyre_Summit_Movement_OldLadyApproachPlayer2
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	return
+
+MtPyre_Summit_Movement_OldLadyApproachPlayer0: @ 823212C
+	walk_down
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+MtPyre_Summit_Movement_OldLadyApproachPlayer1: @ 8232130
+	walk_down
+	step_end
+
+MtPyre_Summit_Movement_OldLadyApproachPlayer2: @ 8232132
+	walk_down
+	walk_down
+	walk_in_place_fastest_right
+	step_end
+
+MtPyre_Summit_Movement_ArchieFacePlayer0: @ 8232136
+	walk_left
+	walk_in_place_fastest_down
+	step_end
+
+MtPyre_Summit_Movement_ArchieFacePlayer2: @ 8232139
+	walk_right
+	walk_in_place_fastest_down
+	step_end
+
+MtPyre_Summit_EventScript_OldMan:: @ 823213C
+	lock
+	faceplayer
+	goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, MtPyre_Summit_EventScript_OldManAfterRayquaza
+	msgbox MtPyre_Summit_Text_WillYouHearOutMyTale, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq MtPyre_Summit_EventScript_OldManTale
+	compare VAR_RESULT, NO
+	call_if_eq MtPyre_Summit_EventScript_DeclineOldManTale
+	release
+	end
+
+MtPyre_Summit_EventScript_OldManAfterRayquaza:: @ 8232167
+	msgbox MtPyre_Summit_Text_HearTheNewLegendOfHoenn, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq MtPyre_Summit_EventScript_OldManNewTale
+	compare VAR_RESULT, NO
+	call_if_eq MtPyre_Summit_EventScript_DeclineOldManTale
+	release
+	end
+
+MtPyre_Summit_EventScript_OldManTale:: @ 8232187
+	msgbox MtPyre_Summit_Text_GroudonKyogreTale, MSGBOX_DEFAULT
+	return
+
+MtPyre_Summit_EventScript_DeclineOldManTale:: @ 8232190
+	msgbox MtPyre_Summit_Text_WellThatTooIsFine, MSGBOX_DEFAULT
+	return
+
+MtPyre_Summit_EventScript_OldManNewTale:: @ 8232199
+	msgbox MtPyre_Summit_Text_HoennTrioTale, MSGBOX_DEFAULT
+	return
+
+MtPyre_Summit_EventScript_OldLady:: @ 82321A2
+	lock
+	faceplayer
+	goto_if_set FLAG_RETURNED_RED_OR_BLUE_ORB, MtPyre_Summit_EventScript_OldLadyAfterOrbsReturned
+	compare VAR_MT_PYRE_STATE, 3
+	call_if_ge MtPyre_Summit_EventScript_OldLadyOrbsReturned
+	goto_if_set FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, MtPyre_Summit_EventScript_OldLadyLegendariesAwake
+	msgbox MtPyre_Summit_Text_OrbsHaveBeenTaken, MSGBOX_DEFAULT
+	release
+	end
+
+MtPyre_Summit_EventScript_OldLadyOrbsReturned:: @ 82321CB
+	msgbox MtPyre_Summit_Text_ThoseTwoMenReturnedOrbs, MSGBOX_DEFAULT
+	setflag FLAG_RETURNED_RED_OR_BLUE_ORB
+	release
+	end
+
+MtPyre_Summit_EventScript_OldLadyLegendariesAwake:: @ 82321D8
+	msgbox MtPyre_Summit_Text_GroudonKyogreAwakened, MSGBOX_DEFAULT
+	release
+	end
+
+MtPyre_Summit_EventScript_OldLadyAfterOrbsReturned:: @ 82321E2
+	msgbox MtPyre_Summit_Text_SuperAncientPokemonTaughtUs, MSGBOX_DEFAULT
+	release
+	end
+
+MtPyre_Summit_EventScript_ArchieMaxieTrigger0:: @ 82321EC
+	lockall
+	setvar VAR_0x8008, 0
+	goto MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs
+	end
+
+MtPyre_Summit_EventScript_ArchieMaxieTrigger1:: @ 82321F8
+	lockall
+	setvar VAR_0x8008, 1
+	goto MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs
+	end
+
+MtPyre_Summit_EventScript_ArchieMaxieTrigger2:: @ 8232204
+	lockall
+	setvar VAR_0x8008, 2
+	goto MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs
+	end
+
+MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs:: @ 8232210
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	delay 60
+	compare VAR_0x8008, 0
+	call_if_eq MtPyre_Summit_EventScript_ArchieMaxieBeginExit0
+	compare VAR_0x8008, 1
+	call_if_eq MtPyre_Summit_EventScript_ArchieMaxieBeginExit1
+	compare VAR_0x8008, 2
+	call_if_eq MtPyre_Summit_EventScript_ArchieMaxieBeginExit2
+	playse SE_PIN
+	applymovement LOCALID_MAXIE, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_MAXIE, Common_Movement_Delay48
+	waitmovement 0
+	delay 30
+	compare VAR_0x8008, 0
+	call_if_eq MtPyre_Summit_EventScript_MaxieApproachPlayer0
+	compare VAR_0x8008, 1
+	call_if_eq MtPyre_Summit_EventScript_MaxieApproachPlayer1
+	compare VAR_0x8008, 2
+	call_if_eq MtPyre_Summit_EventScript_MaxieApproachPlayer2
+	msgbox MtPyre_Summit_Text_MaxieSilence, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_0x8008, 0
+	call_if_eq MtPyre_Summit_EventScript_MaxieApproachArchie0
+	compare VAR_0x8008, 1
+	call_if_eq MtPyre_Summit_EventScript_MaxieApproachArchie1
+	compare VAR_0x8008, 2
+	call_if_eq MtPyre_Summit_EventScript_MaxieApproachArchie2
+	delay 30
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	waitmovement 0
+	removeobject LOCALID_ARCHIE
+	removeobject LOCALID_MAXIE
+	setvar VAR_MT_PYRE_STATE, 3
+	releaseall
+	end
+
+MtPyre_Summit_EventScript_ArchieMaxieBeginExit0:: @ 82322C4
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit0
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_ArchieMaxieBeginExit1:: @ 82322DD
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit1
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_ArchieMaxieBeginExit2:: @ 82322F6
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit2
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_MaxieApproachPlayer0:: @ 823230F
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerFaceMaxie0
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieWatchMaxie
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachPlayer0
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_MaxieApproachPlayer1:: @ 8232328
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerFaceMaxie
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieWatchMaxie
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachPlayer1
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_MaxieApproachPlayer2:: @ 8232341
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerFaceMaxie
+	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieWatchMaxie
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachPlayer2
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_MaxieApproachArchie0:: @ 823235A
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchMaxie
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachArchie0
+	waitmovement 0
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_MaxieApproachArchie1:: @ 8232376
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchMaxie
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachArchie1
+	waitmovement 0
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	return
+
+MtPyre_Summit_EventScript_MaxieApproachArchie2:: @ 8232392
+	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchMaxie
+	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachArchie2
+	waitmovement 0
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	return
+
+MtPyre_Summit_Movement_PlayerFaceMaxie0: @ 82323AE
+	delay_16
+	delay_16
+	walk_in_place_fastest_right
+	step_end
+
+MtPyre_Summit_Movement_PlayerFaceMaxie: @ 82323B2
+	delay_16
+	delay_16
+	walk_in_place_fastest_left
+	step_end
+
+MtPyre_Summit_Movement_ArchieExit: @ 82323B6
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+MtPyre_Summit_Movement_MaxieExit: @ 82323BD
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit0: @ 82323C4
+	delay_16
+	delay_8
+	walk_left
+	walk_in_place_fastest_right
+	delay_16
+	walk_in_place_fastest_down
+	step_end
+
+MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit1: @ 82323CB
+	delay_16
+	delay_8
+	walk_right
+	walk_in_place_fastest_left
+	delay_16
+	walk_in_place_fastest_down
+	step_end
+
+MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit2: @ 82323D2
+	delay_16
+	delay_8
+	walk_in_place_fastest_left
+	delay_16
+	walk_in_place_fastest_down
+	step_end
+
+MtPyre_Summit_Movement_MaxieApproachPlayer0: @ 82323D8
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	step_end
+
+MtPyre_Summit_Movement_MaxieApproachPlayer1: @ 82323DD
+	walk_up
+	walk_up
+	walk_up
+	walk_in_place_fastest_right
+	step_end
+
+MtPyre_Summit_Movement_MaxieApproachPlayer2: @ 82323E2
+	walk_up
+	walk_up
+	walk_up
+	walk_in_place_fastest_right
+	step_end
+
+MtPyre_Summit_Movement_ArchieWatchMaxie: @ 82323E7
+	delay_16
+	walk_in_place_fastest_up
+	step_end
+
+MtPyre_Summit_Movement_PlayerWatchMaxie: @ 82323EA
+	delay_16
+	walk_in_place_fastest_down
+	step_end
+
+MtPyre_Summit_Movement_MaxieApproachArchie0: @ 82323ED
+	walk_down
+	walk_right
+	walk_down
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+MtPyre_Summit_Movement_MaxieApproachArchie1: @ 82323F3
+	walk_down
+	walk_down
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+MtPyre_Summit_Movement_MaxieApproachArchie2: @ 82323F8
+	walk_down
+	walk_down
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+MtPyre_Summit_EventScript_Grunt1:: @ 82323FD
+	trainerbattle_single TRAINER_GRUNT_MT_PYRE_1, MtPyre_Summit_Text_Grunt1Intro, MtPyre_Summit_Text_Grunt1Defeat
+	msgbox MtPyre_Summit_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_Summit_EventScript_Grunt2:: @ 8232414
+	trainerbattle_single TRAINER_GRUNT_MT_PYRE_2, MtPyre_Summit_Text_Grunt2Intro, MtPyre_Summit_Text_Grunt2Defeat
+	msgbox MtPyre_Summit_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_Summit_EventScript_Grunt3:: @ 823242B
+	trainerbattle_single TRAINER_GRUNT_MT_PYRE_3, MtPyre_Summit_Text_Grunt3Intro, MtPyre_Summit_Text_Grunt3Defeat
+	msgbox MtPyre_Summit_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_Summit_EventScript_Grunt4:: @ 8232442
+	trainerbattle_single TRAINER_GRUNT_MT_PYRE_4, MtPyre_Summit_Text_Grunt4Intro, MtPyre_Summit_Text_Grunt4Defeat
+	msgbox MtPyre_Summit_Text_Grunt4PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_Summit_EventScript_Matt::
+	trainerbattle_single TRAINER_MATT_MT_PYRE, MtPyre_Summit_Text_MattIntro, MtPyre_Summit_Text_MattDefeat
+	msgbox MtPyre_Summit_Text_MattPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_Summit_Text_MattIntro:
+	.string "嘿嘿嘿！\n"
+	.string "你一定就是那个有名的{PLAYER}！\p"
+	.string "你也来这儿捣乱了，是吧？\n"
+	.string "那可不巧！\p"
+	.string "我比你之前见过的小兵强得多。\n"
+	.string "你别想从我这儿过去！$"
+
+MtPyre_Summit_Text_MattDefeat:
+	.string "嘿嘿嘿……\n"
+	.string "看来我还是放你过去吧……$"
+
+MtPyre_Summit_Text_MattPostBattle:
+	.string "嘿嘿嘿……{PLAYER}，你很强，\n"
+	.string "但太慢了！\p"
+	.string "我们要的东西已经到手了。$"
+
+MtPyre_Summit_Text_Grunt1Intro: @ 8232459
+	.string "不！那些火岩队的家伙比我们先到！\n"
+	.string "我们不能落后！$"
+
+MtPyre_Summit_Text_Grunt1Defeat: @ 82324A0
+	.string "我还以为是哪个火岩队的人回来了…\n"
+	.string "…$"
+
+MtPyre_Summit_Text_Grunt1PostBattle: @ 82324E0
+	.string "是啊，你确实很强……\n"
+	.string "但我们人多！$"
+
+MtPyre_Summit_Text_Grunt2Intro: @ 8232513
+	.string "哈！你运气真差！\n"
+	.string "你要是早点来，只用跟那些软弱的\p"
+	.string "火岩队打。\n"
+	.string "可你现在才到，\p"
+	.string "就得对付我们这些硬手！$"
+
+MtPyre_Summit_Text_Grunt2Defeat: @ 82325B0
+	.string "呃……我该先让你去跟火岩队打的…\n"
+	.string "…$"
+
+MtPyre_Summit_Text_Grunt2PostBattle: @ 82325E4
+	.string "你什么都不知道！\n"
+	.string "那你为什么要来插手我们的事？$"
+
+MtPyre_Summit_Text_Grunt3Intro: @ 823261D
+	.string "你……\n"
+	.string "我们在烟囱山见过你。\p"
+	.string "你两边都不属于，那为什么在这儿？$"
+
+MtPyre_Summit_Text_Grunt3Defeat: @ 8232678
+	.string "你要插手，就去插手火岩队吧……$"
+
+MtPyre_Summit_Text_Grunt3PostBattle: @ 82326B3
+	.string "嘿，无所谓！\n"
+	.string "我们争取到时间了！\p"
+	.string "老大应该已经拿走他要的东西了！$"
+
+MtPyre_Summit_Text_Grunt4Intro: @ 823271B
+	.string "哦，我知道了！\n"
+	.string "你想加入火岩队，但他们不要你！\p"
+	.string "那你别以为我们会让你加入水舰队！$"
+
+MtPyre_Summit_Text_Grunt4Defeat: @ 823279A
+	.string "你要真想加入水舰队，\n"
+	.string "我们可以考虑……$"
+
+MtPyre_Summit_Text_Grunt4PostBattle: @ 82327D8
+	.string "我们队员和老大配合得非常好。$"
+
+MtPyre_Summit_Text_ArchieWeGotTheOrbLetsGo: @ 823281A
+	.string "水梧桐：火岩队的赤焰松虽然抢在我\n"
+	.string "们前面，\p"
+	.string "但我们想要的东西也到手了。\n"
+	.string "供奉在送神火山的蓝色宝珠……\p"
+	.string "现在已经在我水梧桐手里！\n"
+	.string "呵呵呵……现在我们可以实现\p"
+	.string "最终目标了！\n"
+	.string "好，全体！我们撤！$"
+
+MtPyre_Summit_Text_BothOrbsTakenMagmaLeftThis: @ 823290E
+	.string "哦，不……\n"
+	.string "这怎么可以……\p"
+	.string "不只是蓝色宝珠，\n"
+	.string "连红色宝珠也被拿走了……\p"
+	.string "蓝色宝珠和红色宝珠绝不能分开。\n"
+	.string "它们本该在一起。\p"
+	.string "那些人拿两颗宝珠想干什么？\n"
+	.string "…… …… …… ……\p"
+	.string "…… …… …… ……\n"
+	.string "哦，对了。先来取走红色宝珠的\p"
+	.string "是火岩队吧？\n"
+	.string "他们走得太急，\p"
+	.string "把这个落下了。\n"
+	.string "我实在想不出这到底是什么。\p"
+	.string "我想把它交给你。\n"
+	.string "也许在什么地方能派上用场。$"
+
+MtPyre_Summit_Text_OrbsHaveBeenTaken: @ 8232AD8
+	.string "蓝色宝珠和红色宝珠被那些坏人拿走\n"
+	.string "了……\p"
+	.string "它们绝不能分开……\n"
+	.string "我怕会发生可怕的事……$"
+
+MtPyre_Summit_Text_GroudonKyogreAwakened: @ 8232B4F
+	.string "哦，天啊……\n"
+	.string "你说固拉多和盖欧卡都醒来了？\p"
+	.string "据说蓝色宝珠和红色宝珠\n"
+	.string "平息了那两只宝可梦的怒火……\p"
+	.string "也有人说，宝珠真正的主人\n"
+	.string "仍然存在。\p"
+	.string "但谁也不知道，\n"
+	.string "宝珠究竟属于谁、属于什么。\p"
+	.string "可能是人，也可能是宝可梦，\n"
+	.string "但没人知道。$"
+
+MtPyre_Summit_Text_ThoseTwoMenReturnedOrbs: @ 8232CA6
+	.string "拿走宝珠的那两个人，\n"
+	.string "自己回来把宝珠还了回来。\p"
+	.string "那两个人……\n"
+	.string "也许并没有那么邪恶……$"
+
+MtPyre_Summit_Text_SuperAncientPokemonTaughtUs: @ 8232D1E
+	.string "大地、海洋与天空的化身……\n"
+	.string "据说那就是超古代宝可梦的身份……\p"
+	.string "就像我们人类和宝可梦有生命一样，\n"
+	.string "我们的世界也活着……\p"
+	.string "超古代宝可梦教会了我们这一点……$"
+
+MtPyre_Summit_Text_WillYouHearOutMyTale: @ 8232E0C
+	.string "送神火山是我们安抚离世宝可梦灵魂\n"
+	.string "的地方……\p"
+	.string "这里是能望见整个丰缘的高处……\n"
+	.string "宝可梦离体的灵魂一定在这里\p"
+	.string "找到了安慰……\n"
+	.string "你来到这里，是巧合吗……\p"
+	.string "愿意听我讲一个故事吗？\n"
+	.string "一个在丰缘流传已久的故事？$"
+
+MtPyre_Summit_Text_GroudonKyogreTale: @ 8232F27
+	.string "那是很久很久以前的事……\n"
+	.string "世界被大地宝可梦与海洋宝可梦\p"
+	.string "之间的激烈冲突撕裂……\n"
+	.string "大地宝可梦隆起山脉，造出大陆……\p"
+	.string "海洋宝可梦掀起巨浪，刻出海洋……\n"
+	.string "它们的决斗无休无止。\p"
+	.string "世界被巨大的火海与狂暴的风暴吞没\n"
+	.string "。\p"
+	.string "蓝色宝珠与红色宝珠终结了这场灾难\n"
+	.string "。\p"
+	.string "两颗宝珠放出光芒，\n"
+	.string "让暴怒的对手平静下来。\p"
+	.string "这一对宝可梦变得温顺，\n"
+	.string "潜入深海，最终消失了……$"
+
+MtPyre_Summit_Text_WellThatTooIsFine: @ 8233162
+	.string "我明白了……\n"
+	.string "那样也好……$"
+
+MtPyre_Summit_Text_MaxieSilence: @ 8233183
+	.string "赤焰松：{PLAYER}……\n"
+	.string "…… …… …… ……\p"
+	.string "…… …… …… ……$"
+
+MtPyre_Summit_Text_HearTheNewLegendOfHoenn: @ 82331A6
+	.string "把丰缘的传说传给后代，\n"
+	.string "是我的职责。\p"
+	.string "而刚刚在琉璃市结束的那场危机，\n"
+	.string "改写了一段传说……\p"
+	.string "你有时间听听丰缘新的传说吗？$"
+
+MtPyre_Summit_Text_HoennTrioTale: @ 823325D
+	.string "那是很久很久以前的事……\n"
+	.string "世界被大地宝可梦与海洋宝可梦\p"
+	.string "之间的激烈冲突撕裂……\n"
+	.string "大地宝可梦隆起山脉，造出大陆……\p"
+	.string "海洋宝可梦掀起巨浪，刻出海洋……\n"
+	.string "它们的决斗无休无止。\p"
+	.string "世界被巨大的火焰与狂暴的风暴吞没\n"
+	.string "。\p"
+	.string "就在那时，天空的宝可梦\n"
+	.string "乘着风暴降临。\p"
+	.string "那只宝可梦闪着鲜绿的光，\n"
+	.string "让两只暴怒的宝可梦平静下来。\p"
+	.string "然后，职责已尽，\n"
+	.string "那只绿色的宝可梦飞向了蔚蓝的远方\p"
+	.string "……$"
+
+`
+const LOCALID_BOULDER_0 = 10
+const LOCALID_BOULDER_1 = 11
+
+script MtPyre_Summit_EventScript_RemoveBoulders{
+    // prevent boulders fromt being pushed to the top, not great but the best solution so far
+    removeobject(LOCALID_BOULDER_0)
+    removeobject(LOCALID_BOULDER_1)
+    setvar(VAR_TEMP_0, 1)
+}
+script MtPyre_Summit_EventScript_ReAddBoulders{
+    // actually it does not re add them, but the var set prevent a trick to bypass the protection
+    addobject(LOCALID_BOULDER_0)
+    addobject(LOCALID_BOULDER_1)
+    setvar(VAR_TEMP_0, 0)
+}
+
+script MtPyre_Summit_EventScript_ArchieBattle {
+    msgbox(format(
+        "水梧桐：{PLAYER}，你也在？\n你怎么会……\p啊，你在日穹金字塔。对。\n可恶。\p真不巧，但我不能让你把蓝色宝珠拿\n回去。来吧！$"
+    ))
+    closemessage
+
+    trainerbattle_no_intro(TRAINER_ARCHIE_MT_PYRE, format("可恶至极！$"))
+
+    call(MtPyre_Summit_EventScript_ArchieAfterBattle)
+    return
+}
+
+script MtPyre_Summit_EventScript_ArchieAfterBattle
+{
+    msgbox(format(
+        "水梧桐：哈……哈……{PLAYER}，\n真是一场好对战！\p可惜你不肯加入我们。\n你现在知道我们的目标了吧？\p老人：绝对不行！盖欧卡太危险了！\n老妇：亚历山大，求你，别冒险……$"
+    ))
+
+    applymovement(LOCALID_ARCHIE, moves(
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format(
+        "老人：你懂那些传说！你自己说的！\n你听过它能做什么！\p盖欧卡。太。危险了。\n水梧桐：……不。抱歉，老爷子，\p你错了。\n它能带来的好处太多了。\p就算不提清理海洋的污染，\n我们还能……\p老人：为了那个你要冒着毁灭的风险\n？\p水梧桐：赤焰松不会毁灭世界！\n他太胆小了，不敢冒这个险。\p只要盖欧卡先醒来，他就会缩起来，\n而我们能把整片沙漠变成水乡！$"
+    ))
+
+    applymovement(LOCALID_ARCHIE, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format(
+        "{PLAYER}，你……一直很碍事，\n但打起来挺有意思。\p不过别插手我们的事。\n这事对一个孩子来说太严重了。$"
+    ))
+    closemessage
+
+    switch (var(VAR_0x8008)) {
+        case 0:
+            applymovement(LOCALID_ARCHIE, moves(
+                walk_right
+                walk_down * 7
+            ))
+        case 1:
+        case 2:
+            applymovement(LOCALID_ARCHIE, moves(
+                walk_left
+                walk_down * 7
+            ))
+    }
+    waitmovement(0)
+
+    return
+}
+
+script MtPyre_Summit_EventScript_OldLadyGivesMagmaEmblem {
+    msgbox(format(
+        "老妇：哦，不……这消息太糟了。\n红色宝珠和蓝色宝珠都被拿走了……\p它们绝不能分开，否则力量会失衡。\n老人：说得对。\p火岩队不久前刚来过，\n抢走了红色宝珠，这已经够糟了。\p老妇：请去追上他们，\n把宝珠夺回来！\p……这个也许能帮上你？$"
+    ))
+
+    delay(20)
+
+    giveitem(ITEM_MAGMA_EMBLEM)
+
+    msgbox(format(
+        "这是火岩队的人落下的。\n也许你可以装成他们的一员？\p我们会留在这里祈祷。\n也许能帮大家争取一点时间。$"
+    ))
+    closemessage
+
+    switch(var(VAR_0x8008)) {
+        case 1:
+           applymovement(LOCALID_OLD_LADY, moves(
+               walk_up
+               walk_in_place_fastest_down
+               step_end
+           ))
+        case 0:
+        case 2:
+           applymovement(LOCALID_OLD_LADY, moves(
+               walk_up * 2
+               walk_in_place_fastest_down
+               step_end
+           ))
+    }
+    waitmovement(0)
+
+    return
+}

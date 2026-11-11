@@ -1,0 +1,138 @@
+raw `
+BattleFrontier_RankingHall_MapScripts:: @ 825E4A9
+	.byte 0
+
+BattleFrontier_RankingHall_EventScript_TowerSinglesRecords:: @ 825E4AA
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_TOWER_SINGLES
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_TowerDoublesRecords:: @ 825E4B6
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_TOWER_DOUBLES
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_TowerMultisRecords:: @ 825E4C2
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_TOWER_MULTIS
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_TowerLinkRecords:: @ 825E4CE
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_TOWER_LINK
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_ArenaRecords:: @ 825E4DA
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_ARENA
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_PalaceRecords:: @ 825E4E6
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_PALACE
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_FactoryRecords:: @ 825E4F2
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_FACTORY
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_DomeRecords:: @ 825E4FE
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_DOME
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_PikeRecords:: @ 825E50A
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_PIKE
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_PyramidRecords:: @ 825E516
+	lockall
+	setvar VAR_0x8005, RANKING_HALL_BATTLE_PYRAMID
+	goto BattleFrontier_RankingHall_EventScript_ShowRecords
+	end
+
+BattleFrontier_RankingHall_EventScript_ShowRecords:: @ 825E522
+	special ShowRankingHallRecordsWindow
+	waitbuttonpress
+	special ScrollRankingHallRecordsWindow
+	waitbuttonpress
+	special RemoveRecordsWindow
+	releaseall
+	end
+
+BattleFrontier_RankingHall_EventScript_Attendant:: @ 825E52F
+	msgbox BattleFrontier_RankingHall_Text_ExplainRankingHall, MSGBOX_NPC
+	end
+
+BattleFrontier_RankingHall_EventScript_DomePikeFactoryRecordsSign:: @ 825E538
+	msgbox BattleFrontier_RankingHall_Text_DomePikeFactoryRecords, MSGBOX_SIGN
+	end
+
+BattleFrontier_RankingHall_EventScript_PalaceArenaPyramidRecordsSIgn:: @ 825E541
+	msgbox BattleFrontier_RankingHall_Text_PalaceArenaPyramidRecords, MSGBOX_SIGN
+	end
+
+BattleFrontier_RankingHall_EventScript_NinjaBoy:: @ 825E54A
+	lock
+	faceplayer
+	msgbox BattleFrontier_RankingHall_Text_IsYourNameOnThisList, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq BattleFrontier_RankingHall_EventScript_NinjaBoyNameOnList
+	msgbox BattleFrontier_RankingHall_Text_WorkHarderIfYouSawFriendsName, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_RankingHall_EventScript_NinjaBoyNameOnList:: @ 825E569
+	msgbox BattleFrontier_RankingHall_Text_WowThatsSuper, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_RankingHall_EventScript_Boy:: @ 825E573
+	msgbox BattleFrontier_RankingHall_Text_MyNamesNotUpThere, MSGBOX_NPC
+	end
+
+BattleFrontier_RankingHall_Text_ExplainRankingHall: @ 825E57C
+	.string "这里就是排名大厅。\n"
+	.string "在这里，我们会表彰在对战\p"
+	.string "开拓区各项赛事中留下\n"
+	.string "伟大纪录的不朽训练家。$"
+
+BattleFrontier_RankingHall_Text_DomePikeFactoryRecords: @ 825E5F9
+	.string "对战巨蛋、对战管道\n"
+	.string "与对战工厂的纪录$"
+
+BattleFrontier_RankingHall_Text_PalaceArenaPyramidRecords: @ 825E62E
+	.string "对战宫殿、对战竞技场\n"
+	.string "与对战金字塔的纪录$"
+
+BattleFrontier_RankingHall_Text_IsYourNameOnThisList: @ 825E666
+	.string "你好，你的名字在\n"
+	.string "这份名单上吗？$"
+
+BattleFrontier_RankingHall_Text_WowThatsSuper: @ 825E685
+	.string "哇，太厉害了！\n"
+	.string "我也得再加把劲！$"
+
+BattleFrontier_RankingHall_Text_WorkHarderIfYouSawFriendsName: @ 825E6B6
+	.string "哦，是这样吗？\n"
+	.string "要是你看到朋友的名字\p"
+	.string "在上面，肯定会更用功吧！$"
+
+BattleFrontier_RankingHall_Text_MyNamesNotUpThere: @ 825E715
+	.string "嗯……\n"
+	.string "我的名字不在上面……\p"
+	.string "也难怪，我还没参加过\n"
+	.string "任何挑战呢。$"
+
+`

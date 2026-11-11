@@ -1,0 +1,59 @@
+raw `
+DewfordTown_House2_MapScripts:: @ 81FE22D
+	.byte 0
+
+DewfordTown_House2_EventScript_Man:: @ 81FE22E
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_SILK_SCARF, DewfordTown_House2_EventScript_ExplainSilkScarf
+	msgbox DewfordTown_House2_Text_WantYouToHaveSilkScarf, MSGBOX_DEFAULT
+	giveitem ITEM_SILK_SCARF
+	compare VAR_RESULT, FALSE
+	goto_if_eq DewfordTown_House2_EventScript_NoRoomForScarf
+	setflag FLAG_RECEIVED_SILK_SCARF
+	release
+	end
+
+DewfordTown_House2_EventScript_NoRoomForScarf:: @ 81FE25D
+	msgbox DewfordTown_House2_Text_NoRoom, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_House2_EventScript_ExplainSilkScarf:: @ 81FE267
+	msgbox DewfordTown_House2_Text_ExplainSilkScarf, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_House2_EventScript_Boy:: @ 81FE271
+	msgbox DewfordTown_House2_Text_BrawlySoCool, MSGBOX_NPC
+	end
+
+DewfordTown_House2_Text_WantYouToHaveSilkScarf: @ 81FE27A
+	.string "好好看看这个！\n"
+	.string "这是丝绸围巾。它正处在\p"
+	.string "时尚的最前沿，对吧！\n"
+	.string "哦，我看到你眼睛发亮了！\p"
+	.string "你懂我耀眼的风采！\n"
+	.string "哦，你真是惹人喜欢！\p"
+	.string "给你。我希望你收下它！$"
+
+DewfordTown_House2_Text_NoRoom: @ 81FE356
+	.string "哦，你没地方放？\n"
+	.string "听好了，这条围巾是必须\p"
+	.string "拥有的！为了它，我愿意\n"
+	.string "卖掉我所有的道具！$"
+
+DewfordTown_House2_Text_ExplainSilkScarf: @ 81FE3D1
+	.string "丝绸围巾能提升\n"
+	.string "一般属性招式的威力。\p"
+	.string "是条几乎和所有宝可梦\n"
+	.string "都相配的绝妙围巾！$"
+
+DewfordTown_House2_Text_BrawlySoCool: @ 81FE444
+	.string "哇，你特地渡海来武斗镇？\n"
+	.string "你该不会是听说了藤树\p"
+	.string "才来的吧？\n"
+	.string "他真帅……\p"
+	.string "大家都很崇拜他。$"
+
+`

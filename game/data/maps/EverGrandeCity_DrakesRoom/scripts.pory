@@ -1,0 +1,159 @@
+raw `
+EverGrandeCity_DrakesRoom_MapScripts:: @ 822869C
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_DrakesRoom_OnFrame
+	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_DrakesRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_SidneysRoom_OnWarp
+	.byte 0
+
+@ Unused, Drake uses Sidneys identical OnWarp for some reason
+EverGrandeCity_DrakesRoom_OnWarp: @ 82286AC
+	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_DrakesRoom_EventScript_PlayerTurnNorth
+	.2byte 0
+
+EverGrandeCity_DrakesRoom_EventScript_PlayerTurnNorth:: @ 82286B6
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+EverGrandeCity_DrakesRoom_OnFrame: @ 82286BB
+	map_script_2 VAR_ELITE_4_STATE, 3, EverGrandeCity_DrakesRoom_EventScript_WalkInCloseDoor
+	.2byte 0
+
+EverGrandeCity_DrakesRoom_EventScript_WalkInCloseDoor:: @ 82286C5
+	lockall
+	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+	setvar VAR_ELITE_4_STATE, 4
+	releaseall
+	end
+
+EverGrandeCity_DrakesRoom_OnLoad: @ 82286D2
+	call_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_ResetAdvanceToNextRoom
+	compare VAR_ELITE_4_STATE, 4
+	call_if_eq EverGrandeCity_DrakesRoom_EventScript_CloseDoor
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_ResetAdvanceToNextRoom:: @ 82286E7
+	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+	return
+
+EverGrandeCity_DrakesRoom_EventScript_CloseDoor:: @ 82286ED
+	call PokemonLeague_EliteFour_EventScript_CloseDoor
+	return
+
+EverGrandeCity_DrakesRoom_EventScript_Drake:: @ 82286F3
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, EverGrandeCity_DrakesRoom_EventScript_DrakeRematch
+	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
+	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_DrakeRematch::
+	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeechRematch
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
+	msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeechRematch, MSGBOX_DEFAULT
+	switch VAR_ELITE_4_MODE
+	case 0, EverGrandeCity_DrakesRoom_EventScript_DrakeSingles
+	case 1, EverGrandeCity_DrakesRoom_EventScript_DrakeSinglesLegends
+	case 2, EverGrandeCity_DrakesRoom_EventScript_DrakeDoubles
+	case 3, EverGrandeCity_DrakesRoom_EventScript_DrakeDoublesLegends
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_DrakeSingles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
+	goto EverGrandeCity_DrakesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_DrakeSinglesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_DRAKE_3, EverGrandeCity_DrakesRoom_Text_Defeat
+	goto EverGrandeCity_DrakesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_DrakeDoubles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_DRAKE_2, EverGrandeCity_DrakesRoom_Text_Defeat
+	goto EverGrandeCity_DrakesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_DrakeDoublesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_DRAKE_4, EverGrandeCity_DrakesRoom_Text_Defeat
+	goto EverGrandeCity_DrakesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech:: @ 822871A
+	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeechRematch::
+	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_Defeated:: @ 8228724
+	setvar VAR_0x8004, FANCOUNTER_DEFEATED_DRAKE
+	special Script_TryGainNewFanFromCounter
+	setflag FLAG_DEFEATED_ELITE_4_DRAKE
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_DrakesRoom_EventScript_DefeatedRematch::
+	setvar VAR_0x8004, FANCOUNTER_DEFEATED_DRAKE
+	special Script_TryGainNewFanFromCounter
+	setflag FLAG_DEFEATED_ELITE_4_DRAKE
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_DrakesRoom_Text_IntroSpeech: @ 822873E
+	.string "我是宝可梦联盟四天王的最后一位，\n"
+	.string "龙之使者源治！\p"
+	.string "宝可梦原本就是\n"
+	.string "野生的活物。它们是自由的。\p"
+	.string "有时它们阻碍我们。\n"
+	.string "有时它们帮助我们。\p"
+	.string "要和宝可梦成为伙伴\n"
+	.string "一起对战，你知道需要什么吗？\p"
+	.string "你知道那必需之物吗？\n"
+	.string "不知道的话，\p"
+	.string "你就永远赢不了我！$"
+
+EverGrandeCity_DrakesRoom_Text_Defeat: @ 8228895
+	.string "该说是精彩。$"
+
+EverGrandeCity_DrakesRoom_Text_PostBattleSpeech: @ 82288B0
+	.string "你能作为宝可梦训练家走到这里，\n"
+	.string "这份荣耀你当之无愧。\p"
+	.string "看来你确实知道那必需之物。\n"
+	.string "没错，训练家需要的是\p"
+	.string "一颗正直的心。\n"
+	.string "宝可梦会触动训练家善良的心，\p"
+	.string "从中学会是非。\n"
+	.string "它们触动训练家善良的心，\p"
+	.string "从而变得强大。\n"
+	.string "去吧！继续前进！\p"
+	.string "冠军在等着你！$"
+
+EverGrandeCity_DrakesRoom_Text_IntroSpeechRematch:
+	.string "哦，我一直在等你！\n"
+	.string "我和我的宝可梦要\p"
+	.string "把全部本事都展示给你！\n"
+	.string "那么，你最好\p"
+	.string "做好阻止我的准备！$"
+
+EverGrandeCity_DrakesRoom_Text_PostBattleSpeechRematch:
+	.string "我瞥见了你心里的一角！\n"
+	.string "我对你无话可说！\p"
+	.string "前进吧，训练家！\n"
+	.string "昂首挺胸，去迎接\p"
+	.string "下一场挑战！$"
+`

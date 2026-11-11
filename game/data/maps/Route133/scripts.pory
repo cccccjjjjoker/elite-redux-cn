@@ -1,0 +1,184 @@
+raw `
+.set LOCALID_NURSE, 8
+.set LOCALID_CHANSEY, 9
+
+Route133_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route133_OnTransition
+	.byte 0
+
+Route133_OnTransition:
+	compare VAR_POKE_VIAL_MAX_CHARGES, 1
+	goto_if_eq Route133_HideNurse
+	compare VAR_POKE_VIAL_MAX_CHARGES, 2
+	goto_if_eq Route133_ShowNurse
+	end
+
+Route133_HideNurse:
+	setflag FLAG_LENT_NURSE_SURF
+	end
+
+Route133_ShowNurse:
+	clearflag FLAG_LENT_NURSE_SURF
+	end
+
+Route133_EventScript_Franklin:: @ 81F75A3
+	trainerbattle_single TRAINER_FRANKLIN, Route133_Text_FranklinIntro, Route133_Text_FranklinDefeat
+	msgbox Route133_Text_FranklinPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route133_EventScript_Debra:: @ 81F75BA
+	trainerbattle_single TRAINER_DEBRA, Route133_Text_DebraIntro, Route133_Text_DebraDefeat
+	msgbox Route133_Text_DebraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route133_EventScript_Linda:: @ 81F75D1
+	trainerbattle_single TRAINER_LINDA, Route133_Text_LindaIntro, Route133_Text_LindaDefeat
+	msgbox Route133_Text_LindaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route133_EventScript_Warren:: @ 81F75E8
+	trainerbattle_single TRAINER_WARREN, Route133_Text_WarrenIntro, Route133_Text_WarrenDefeat
+	msgbox Route133_Text_WarrenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route133_EventScript_Beck:: @ 81F75FF
+	trainerbattle_single TRAINER_BECK, Route133_Text_BeckIntro, Route133_Text_BeckDefeat
+	msgbox Route133_Text_BeckPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route133_EventScript_Mollie:: @ 81F7616
+	trainerbattle_single TRAINER_MOLLIE, Route133_Text_MollieIntro, Route133_Text_MollieDefeat
+	msgbox Route133_Text_MolliePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route133_EventScript_Conor:: @ 81F762D
+	trainerbattle_single TRAINER_CONOR, Route133_Text_ConorIntro, Route133_Text_ConorDefeat
+	msgbox Route133_Text_ConorPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route133_EventScript_Nurse::
+	lockall
+	faceplayer
+	playse SE_PIN
+	compare VAR_TEMP_1, 1
+	goto_if_eq Route133_EventScript_NurseShortMsg
+	applymovement LOCALID_NURSE, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 40
+	msgbox Route133_Text_NurseHello, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Route133_EventScript_NurseRefuse
+Route133_EventScript_NurseTeachAudino::
+	msgbox Route133_Text_NurseTeachAudino, MSGBOX_DEFAULT
+	playse SE_PC_LOGIN
+	waitse
+	playfanfare MUS_LEVEL_UP
+	msgbox Route133_Text_NurseDoneHaveVialUpgrade, MSGBOX_DEFAULT
+	setvar VAR_POKE_VIAL_MAX_CHARGES, 3
+	setvar VAR_POKE_VIAL_CHARGES, 3
+	fadescreen FADE_TO_BLACK
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	removeobject LOCALID_NURSE
+	removeobject LOCALID_CHANSEY
+	closemessage
+	fadescreen FADE_FROM_BLACK
+	setflag FLAG_LENT_NURSE_SURF
+	releaseall
+	end
+
+Route133_EventScript_NurseShortMsg::
+	msgbox Route133_Text_NurseSoYoullHelp, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Route133_EventScript_NurseRefuse
+	goto Route133_EventScript_NurseTeachAudino
+
+Route133_EventScript_NurseRefuse::
+	setvar VAR_TEMP_1, 1
+	msgbox Route133_Text_NurseReally, MSGBOX_AUTOCLOSE
+	releaseall
+	end
+
+Route133_EventScript_Blob::
+	lockall
+	faceplayer
+	applymovement LOCALID_CHANSEY, Route133_Movement_ChanseyJump
+	waitmovement 0
+	message Route133_Text_Chansey
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	closemessage
+	releaseall
+	end
+
+Route133_Movement_ChanseyJump:
+	jump_in_place_left
+	delay_4
+	jump_in_place_left
+	step_end
+
+Route133_Text_Chansey:
+	.string "吉利蛋：嘻！$"
+
+Route133_Text_NurseHello:
+	.string "哦，嘿，是{PLAYER}！\n"
+	.string "能帮个忙吗？\p"
+	.string "我们被困在这个岛上好几个小时了！\n"
+	.string "我是靠我的差不多娃娃冲浪过来的，\p"
+	.string "但它忘了那个招式，\n"
+	.string "然后某个粉色的软团子\p"
+	.string "把我的冲浪秘传机砸了！\n"
+	.string "能把你的借我用一下吗？\p"
+	.string "不会让你白帮忙的！$"
+
+Route133_Text_NurseReally:
+	.string "真的？求你了，我走投无路了！$"
+
+Route133_Text_NurseSoYoullHelp:
+	.string "那，能把你的冲浪秘传机借我吗？\n"
+	.string "只要一会儿！$"
+
+Route133_Text_NurseTeachAudino:
+	.string "谢谢！我这就教给我的差不多娃娃…\n"
+	.string "…$"
+
+Route133_Text_NurseDoneHaveVialUpgrade:
+	.string "好……完成了！\n"
+	.string "再次谢谢，{PLAYER}。作为报酬，\p"
+	.string "以后你每次补充宝可梦药瓶，\n"
+	.string "我都会给你多加一份。\p"
+	.string "回头见！$"
+`
+script Route133_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：这里还住着一些究极异兽。\n想知道更多吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("这座群岛是究极异兽的家，\n它们来自外太空，\p为了逃离奈克洛兹玛的饥饿而离开了\n故乡星球。许多在旅途中死去，\p还有更多死于蕾冠王之手，\n但有些还是熬过了一切活了下来。\p这些孤独的幸存者如今住在这里。\n这些可怜的生物正在寻找一位勇敢的\p向导：我看得出你就是对的人。\n成为冠军后再来，我会告诉你更多。$"))
+	}
+	else{
+		if(defeated(TRAINER_CONOR)  &&
+		   defeated(TRAINER_MOLLIE) &&
+		   defeated(TRAINER_BECK)   &&
+		   defeated(TRAINER_WARREN) &&
+		   defeated(TRAINER_LINDA)  &&
+		   defeated(TRAINER_DEBRA)  &&
+		   defeated(TRAINER_FRANKLIN)){
+			msgbox(format("是的，我毫无怀疑：\n你有资格与究极异兽见面。\p我已把它们的所在标记在你的图鉴导\n航上：用它去和它们见面吧。$"))
+		}
+		else{
+			msgbox(format("你还记得我们的小约定。很好。\n在我告诉你那些异兽的位置之前，\p还有一件事：\n这条路上还有几名训练家没被收拾。\p不如你去把他们打败再回来找我，\n怎么样？$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("别招惹灾祸。$"))
+	}
+    release
+    end
+}

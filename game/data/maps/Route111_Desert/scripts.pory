@@ -1,0 +1,26 @@
+mapscripts Route111_Desert_MapScripts {
+}
+
+script Route111_Desert_EventScript_Lett{
+	trainerbattle_single(TRAINER_LETT, format("别在意，我只是个占位符。$"), format("I guess even placeholders can be defeated"))
+	msgbox(format("这是段占位文本，对吧？$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route111_Desert_EventScript_Orwell{
+	trainerbattle_single(TRAINER_ORWELL, format("别在意，我只是个占位符。$"), format("I guess even placeholders can be defeated"))
+	msgbox(format("这是段占位文本，对吧？$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route111_Desert_EventScript_Amanda{
+	trainerbattle_single(TRAINER_AMANDA, format("别在意，我只是个占位符。$"), format("I guess even placeholders can be defeated"))
+	msgbox(format("这是段占位文本，对吧？$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route111_Desert_EventScript_Rodrick{
+	trainerbattle_single(TRAINER_RODRICK, format("别在意，我只是个占位符。$"), format("I guess even placeholders can be defeated"))
+	msgbox(format("这是段占位文本，对吧？$"), MSGBOX_AUTOCLOSE)
+	end
+}

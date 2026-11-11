@@ -1,0 +1,132 @@
+raw `
+FortreeCity_House2_MapScripts:: @ 82177CA
+	.byte 0
+
+FortreeCity_House2_EventScript_HiddenPowerGiver:: @ 82177CB
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_TM10, FortreeCity_House2_EventScript_ExplainHiddenPower
+	call_if_unset FLAG_MET_HIDDEN_POWER_GIVER, FortreeCity_House2_EventScript_Greeting
+	msgbox FortreeCity_House2_Text_CoinInWhichHand, MSGBOX_DEFAULT
+	multichoice 21, 8, MULTI_RIGHTLEFT, TRUE
+	switch VAR_RESULT
+	case 1, FortreeCity_House2_EventScript_WrongGuess
+	msgbox FortreeCity_House2_Text_CorrectTryAgainWhichHand, MSGBOX_DEFAULT
+	multichoice 21, 8, MULTI_RIGHTLEFT, TRUE
+	switch VAR_RESULT
+	case 1, FortreeCity_House2_EventScript_WrongGuess
+	msgbox FortreeCity_House2_Text_CorrectTryAgainWhichHand2, MSGBOX_DEFAULT
+	multichoice 21, 8, MULTI_RIGHTLEFT, TRUE
+	switch VAR_RESULT
+	case 0, FortreeCity_House2_EventScript_WrongGuess
+	msgbox FortreeCity_House2_Text_YourHiddenPowerHasAwoken, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_TM10
+	msgbox FortreeCity_House2_Text_ExplainHiddenPower, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House2_EventScript_Greeting:: @ 8217862
+	msgbox FortreeCity_House2_Text_HiddenPowersArousedByNature, MSGBOX_DEFAULT
+	setflag FLAG_MET_HIDDEN_POWER_GIVER
+	return
+
+FortreeCity_House2_EventScript_ExplainHiddenPower:: @ 821786E
+	msgbox FortreeCity_House2_Text_ExplainHiddenPower, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House2_EventScript_WrongGuess:: @ 8217878
+	msgbox FortreeCity_House2_Text_YouGuessedWrong, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House2_EventScript_SleepTalkTM::
+	lock
+	faceplayer
+	checkitem ITEM_TM49_SLEEP_TALK, 1
+	compare VAR_RESULT, 1
+	goto_if_eq FortreeCity_House2_EventScript_ReceivedTM49
+	msgbox FortreeCity_House2_Text_WantSleepTalk, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq FortreeCity_House2_EventScript_SleepTalkDeclined
+	msgbox FortreeCity_Text_GiveTM49, MSGBOX_DEFAULT
+	giveitem ITEM_TM49_SLEEP_TALK
+	msgbox FortreeCity_Text_HaveTM49, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House2_EventScript_ReceivedTM49::
+	msgbox FortreeCity_Text_HaveTM49, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House2_EventScript_SleepTalkDeclined::
+	msgbox FortreeCity_House2_Text_SleepTalkDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House2_EventScript_SleepTalkTaught::
+	msgbox FortreeCity_Text_HaveTM49, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House2_Text_WantSleepTalk:
+	.string "哼！我老婆靠觉醒力量\n"
+	.string "保持清醒。\p"
+	.string "她该像我一样睡个午觉，\n"
+	.string "然后说梦话。\p"
+	.string "我可以教你的宝可梦\n"
+	.string "说梦话。有兴趣吗？$"
+
+FortreeCity_House2_Text_SleepTalkDeclined:
+	.string "哦，好吧好吧。你也想靠\n"
+	.string "觉醒力量保持清醒……$"
+
+FortreeCity_Text_GiveTM49:
+	.string "啊，真是个懂事的孩子！\n"
+	.string "请收下这个招式学习器。$"
+
+FortreeCity_Text_HaveTM49:
+	.string "我从没猜对过我老婆的\n"
+	.string "硬币把戏。\p"
+	.string "要是我一边说梦话\n"
+	.string "一边猜对，那该多好……$"
+
+FortreeCity_House2_Text_HiddenPowersArousedByNature: @ 8217882
+	.string "人……宝可梦……\n"
+	.string "它们潜藏的力量，是被\p"
+	.string "在自然环境中生活唤醒的……$"
+
+FortreeCity_House2_Text_CoinInWhichHand: @ 82178D6
+	.string "让老太婆看看你的\n"
+	.string "潜藏之力是否已经苏醒……\p"
+	.string "我手里握着一枚硬币。\n"
+	.string "说吧，我把它藏在了\p"
+	.string "右手？还是左手？$"
+
+FortreeCity_House2_Text_CorrectTryAgainWhichHand: @ 821796A
+	.string "哦！对，答对了！\n"
+	.string "再来一次。\p"
+	.string "我把硬币藏在了哪只手？\n"
+	.string "右还是左？$"
+
+FortreeCity_House2_Text_CorrectTryAgainWhichHand2: @ 82179C9
+	.string "哦！对，答对了！\n"
+	.string "再来一次。\p"
+	.string "我把硬币藏在了哪只手？\n"
+	.string "右还是左？$"
+
+FortreeCity_House2_Text_YourHiddenPowerHasAwoken: @ 8217A28
+	.string "哦！太棒了！\n"
+	.string "我真想把觉醒力量教给你，\p"
+	.string "可你已经有了所有招式学习器……$"
+
+FortreeCity_House2_Text_ExplainHiddenPower: @ 8217A91
+	.string "觉醒力量是一种会随\n"
+	.string "宝可梦的个体值变化的招式。$"
+
+FortreeCity_House2_Text_YouGuessedWrong: @ 8217AC7
+	.string "不对，可惜。\n"
+	.string "你猜错了。$"
+
+`

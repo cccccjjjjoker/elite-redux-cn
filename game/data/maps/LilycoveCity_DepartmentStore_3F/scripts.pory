@@ -1,0 +1,78 @@
+raw `
+LilycoveCity_DepartmentStore_3F_MapScripts:: @ 821FC64
+	.byte 0
+
+LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft:: @ 821FC65
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins: @ 821FC7C
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_CALCIUM
+	.2byte ITEM_IRON
+	.2byte ITEM_ZINC
+	.2byte ITEM_CARBOS
+	.2byte ITEM_HP_UP
+	.2byte ITEM_NONE
+	release
+	end
+
+LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight:: @ 821FC8C
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters: @ 821FCA4
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_X_SP_ATK
+	.2byte ITEM_X_SP_DEF
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_NONE
+	release
+	end
+
+LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM:: @ 821FCB6
+	msgbox LilycoveCity_DepartmentStore_3F_Text_ItemsBestForTougheningPokemon, MSGBOX_NPC
+	end
+
+LilycoveCity_DepartmentStore_3F_EventScript_PokefanM:: @ 821FCBF
+	msgbox LilycoveCity_DepartmentStore_3F_Text_WantMoreEndurance, MSGBOX_NPC
+	end
+
+LilycoveCity_DepartmentStore_3F_EventScript_Woman:: @ 821FCC8
+	msgbox LilycoveCity_DepartmentStore_3F_Text_GaveCarbosToSpeedUpMon, MSGBOX_NPC
+	end
+
+LilycoveCity_DepartmentStore_3F_Text_ItemsBestForTougheningPokemon: @ 821FCD1
+	.string "要快速让宝可梦变强，\n"
+	.string "道具最好。\p"
+	.string "攻击增强剂提升攻击，\n"
+	.string "特攻增强剂提升特攻。$"
+
+LilycoveCity_DepartmentStore_3F_Text_WantMoreEndurance: @ 821FD3B
+	.string "我想让宝可梦更耐打。\n"
+	.string "我正犹豫是用防御增强剂\p"
+	.string "提升防御，还是用特防增强剂\n"
+	.string "提升特防。$"
+
+LilycoveCity_DepartmentStore_3F_Text_GaveCarbosToSpeedUpMon: @ 821FDB4
+	.string "我给宝可梦用了速度增强剂，\n"
+	.string "它的速度提升了。$"
+
+`

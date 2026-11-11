@@ -1,0 +1,208 @@
+raw `
+BattleFrontier_Lounge5_MapScripts:: @ 82645C5
+	.byte 0
+
+BattleFrontier_Lounge5_EventScript_NatureGirl:: @ 82645C6
+	lock
+	faceplayer
+	msgbox BattleFrontier_Lounge5_Text_NatureGirlGreeting, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BattleFrontier_Lounge5_EventScript_NatureGirlNoneShown
+	special ChoosePartyMon
+	waitstate
+	lock
+	faceplayer
+	compare VAR_0x8004, 255
+	goto_if_eq BattleFrontier_Lounge5_EventScript_NatureGirlNoneShown
+	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
+	compare VAR_RESULT, SPECIES_EGG
+	goto_if_eq BattleFrontier_Lounge5_EventScript_NatureGirlEgg
+	special ShowNatureGirlMessage
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+BattleFrontier_Lounge5_EventScript_NatureGirlEgg:: @ 8264603
+	msgbox BattleFrontier_Lounge5_Text_NatureGirlEgg, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge5_EventScript_NatureGirlNoneShown:: @ 826460D
+	msgbox BattleFrontier_Lounge5_Text_NatureGirlNoneShown, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge5_EventScript_Gentleman:: @ 8264617
+	msgbox BattleFrontier_Lounge5_Text_LadyClaimsSheUnderstandsPokemon, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge5_EventScript_BlackBelt:: @ 8264620
+	msgbox BattleFrontier_Lounge5_Text_GirlSayingSomethingProfound, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge5_EventScript_LittleBoy:: @ 8264629
+	msgbox BattleFrontier_Lounge5_Text_GirlPlaysAtRedHouseALot, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge5_Text_NatureGirlGreeting:: @ 8264632
+	.string "嘿嘿！\n"
+	.string "我能看出宝可梦在想什么！\p"
+	.string "拜托！\n"
+	.string "能让我看看你的宝可梦吗？$"
+
+BattleFrontier_Lounge5_Text_NatureGirlNoneShown:: @ 826467F
+	.string "呸！\n"
+	.string "小气鬼！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlHardy:: @ 826468D
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "就算伤得很重，\n"
+	.string "它也会去打！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlLonely:: @ 82646E5
+	.string "嗯哼……\n"
+	.string "这只说它喜欢耍滑头！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会反击！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlBrave:: @ 8264741
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会担心自己！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlAdamant:: @ 82647A4
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "就算伤得很重，\n"
+	.string "它也会去打！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlNaughty:: @ 82647FC
+	.string "嗯哼……\n"
+	.string "这只说它会照顾自己！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会反击！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlBold:: @ 8264858
+	.string "嗯哼……\n"
+	.string "这只说它喜欢耍滑头！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会担心自己！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky:: @ 82648BE
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "就算伤得很重，\n"
+	.string "它也会去打！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlRelaxed:: @ 8264916
+	.string "嗯哼……\n"
+	.string "这只说它喜欢耍滑头！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会反击！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlImpish:: @ 8264972
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会担心自己！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlLax:: @ 82649D5
+	.string "嗯哼……\n"
+	.string "这只说它喜欢耍滑头！\p"
+	.string "就算伤得很重，\n"
+	.string "它也还是要耍滑头！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlTimid:: @ 8264A3F
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会变得滑头！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlHasty:: @ 8264A9B
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "就算伤得很重，\n"
+	.string "它也会去打！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlSerious:: @ 8264AF3
+	.string "嗯哼……\n"
+	.string "这只说它喜欢耍滑头！\p"
+	.string "就算伤得很重，\n"
+	.string "它也还是要耍滑头！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlJolly:: @ 8264B5D
+	.string "嗯哼……\n"
+	.string "这只说它喜欢耍滑头！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会担心自己！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlModest:: @ 8264BC3
+	.string "嗯哼……\n"
+	.string "这只说它会照顾自己！\p"
+	.string "不管伤得重不重，\n"
+	.string "它都会担心自己！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlMild:: @ 8264C36
+	.string "嗯哼……\n"
+	.string "这只说它会照顾自己！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会变得滑头！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlBashful:: @ 8264C95
+	.string "嗯哼……\n"
+	.string "这只说它会照顾自己！\p"
+	.string "就算伤得很重，\n"
+	.string "它也还是要担心自己！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlRash:: @ 8264D01
+	.string "嗯哼……\n"
+	.string "这只说它喜欢耍滑头！\p"
+	.string "就算伤得很重，\n"
+	.string "它也还是要耍滑头！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlCalm:: @ 8264D6B
+	.string "嗯哼……\n"
+	.string "这只说它会照顾自己！\p"
+	.string "就算伤得很重，\n"
+	.string "它也还是要担心自己！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlGentle:: @ 8264DD7
+	.string "嗯哼……\n"
+	.string "这只说它会照顾自己！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会反击！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlSassy:: @ 8264E33
+	.string "嗯哼……\n"
+	.string "这只说它喜欢对战！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会变得滑头！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlCareful:: @ 8264E8F
+	.string "嗯哼……\n"
+	.string "这只说它会照顾自己！\p"
+	.string "但只要伤得够重，\n"
+	.string "它就会变得滑头！$"
+
+BattleFrontier_Lounge5_Text_NatureGirlEgg:: @ 8264EEE
+	.string "真傻！蛋在睡觉呢！\n"
+	.string "我没法跟它说话！$"
+
+BattleFrontier_Lounge5_Text_LadyClaimsSheUnderstandsPokemon:: @ 8264F22
+	.string "多可爱呀！\n"
+	.string "那位小姑娘说她\p"
+	.string "能听懂宝可梦的话！$"
+
+BattleFrontier_Lounge5_Text_GirlSayingSomethingProfound:: @ 8264F64
+	.string "我总觉得那小姑娘\n"
+	.string "说的是很深奥的道理。$"
+
+BattleFrontier_Lounge5_Text_GirlPlaysAtRedHouseALot:: @ 8264FAB
+	.string "我知道一件事！\n"
+	.string "那小姑娘经常在\p"
+	.string "红房子那边玩！$"
+
+`

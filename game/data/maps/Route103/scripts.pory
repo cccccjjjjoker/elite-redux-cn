@@ -1,0 +1,528 @@
+raw `
+.set LOCALID_RIVAL, 2
+
+Route103_MapScripts:: @ 81EC38E
+	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
+	.byte 0
+
+Route103_OnTransition: @ 81EC399
+	call Common_EventScript_SetupRivalGfxId
+	call ProfBirch_EventScript_UpdateLocation
+	end
+
+Route103_OnLoad: @ 81EC3A4
+	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
+	end
+
+Route103_EventScript_OpenAlteringCave:: @ 81EC3AE
+	setmetatile 45, 5, METATILE_General_CaveEntrance_Top, 1
+	setmetatile 45, 6, METATILE_General_CaveEntrance_Bottom, 0
+	return
+
+Route103_EventScript_Rival:: @ 81EC3C1
+	lockall
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Route103_EventScript_RivalMay
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route103_EventScript_RivalBrendan
+	end
+
+Route103_EventScript_RivalMay:: @ 81EC3DA
+	goto_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_RivalMayRematch
+	msgbox Route103_Text_MayRoute103Pokemon, MSGBOX_DEFAULT
+	closemessage
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	msgbox Route103_Text_MayLetsBattle, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route103_EventScript_StartMayBattleTreecko
+	case 1, Route103_EventScript_StartMayBattleTorchic
+	case 2, Route103_EventScript_StartMayBattleMudkip
+	end
+
+Route103_EventScript_RivalBrendan:: @ 81EC434
+	goto_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_RivalBrendanRematch
+	msgbox Route103_Text_BrendanRoute103Pokemon, MSGBOX_DEFAULT
+	closemessage
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	msgbox Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route103_EventScript_StartBrendanBattleTreecko
+	case 1, Route103_EventScript_StartBrendanBattleTorchic
+	case 2, Route103_EventScript_StartBrendanBattleMudkip
+	end
+
+Route103_EventScript_RivalMayRematch::
+	goto_if_set FLAG_DAILY_REMATCH_RIVAL, Route103_EventScript_AfterMayRematch
+	playbgm MUS_ENCOUNTER_MAY, 1
+	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	msgbox Route103_Text_MayRematch, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route103_EventScript_StartMayRematchTreecko
+	case 1, Route103_EventScript_StartMayRematchTorchic
+	case 2, Route103_EventScript_StartMayRematchMudkip
+	end
+
+Route103_EventScript_RivalBrendanRematch:: @ 81EC434
+	goto_if_set FLAG_DAILY_REMATCH_RIVAL, Route103_EventScript_AfterBrendanRematch
+	playbgm MUS_ENCOUNTER_BRENDAN, 1
+	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	msgbox Route103_Text_BrendanRematch, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route103_EventScript_StartBrendanRematchTreecko
+	case 1, Route103_EventScript_StartBrendanRematchTorchic
+	case 2, Route103_EventScript_StartBrendanRematchMudkip
+	end
+
+Route103_EventScript_StartMayBattleTreecko:: @ 81EC48E
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayDefeated
+	goto Route103_EventScript_AfterMayBattle
+	end
+
+Route103_EventScript_StartMayBattleTorchic:: @ 81EC49E
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TORCHIC, Route103_Text_MayDefeated
+	goto Route103_EventScript_AfterMayBattle
+	end
+
+Route103_EventScript_StartMayBattleMudkip:: @ 81EC4AE
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_MUDKIP, Route103_Text_MayDefeated
+	goto Route103_EventScript_AfterMayBattle
+	end
+
+Route103_EventScript_StartBrendanBattleTreecko:: @ 81EC4BE
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TREECKO, Route103_Text_BrendanDefeated
+	goto Route103_EventScript_AfterBrendanBattle
+	end
+
+Route103_EventScript_StartBrendanBattleTorchic:: @ 81EC4CE
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TORCHIC, Route103_Text_BrendanDefeated
+	goto Route103_EventScript_AfterBrendanBattle
+	end
+
+Route103_EventScript_StartBrendanBattleMudkip:: @ 81EC4DE
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_MUDKIP, Route103_Text_BrendanDefeated
+	goto Route103_EventScript_AfterBrendanBattle
+	end
+
+@@@@@@@@@@@@@@@@@@@@@@@@ Rematch teams @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Route103_EventScript_StartMayRematchTreecko:: @ 81EC48E
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TREECKO, Route103_Text_MayRematchDefeated
+	goto Route103_EventScript_AfterMayRematch
+	end
+
+Route103_EventScript_StartMayRematchTorchic:: @ 81EC49E
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TORCHIC, Route103_Text_MayRematchDefeated
+	goto Route103_EventScript_AfterMayRematch
+	end
+
+Route103_EventScript_StartMayRematchMudkip:: @ 81EC4AE
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_MUDKIP, Route103_Text_MayRematchDefeated
+	goto Route103_EventScript_AfterMayRematch
+	end
+
+Route103_EventScript_StartBrendanRematchTreecko:: @ 81EC4BE
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TREECKO, Route103_Text_BrendanRematchDefeated
+	goto Route103_EventScript_AfterBrendanRematch
+	end
+
+Route103_EventScript_StartBrendanRematchTorchic:: @ 81EC4CE
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TORCHIC, Route103_Text_BrendanRematchDefeated
+	goto Route103_EventScript_AfterBrendanRematch
+	end
+
+Route103_EventScript_StartBrendanRematchMudkip:: @ 81EC4DE
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_MUDKIP, Route103_Text_BrendanRematchDefeated
+	goto Route103_EventScript_AfterBrendanRematch
+	end
+
+Route103_EventScript_AfterMayBattle:: @ 81EC4EE
+	msgbox Route103_Text_MayTimeToHeadBack, MSGBOX_DEFAULT
+	goto Route103_EventScript_RivalExit
+	end
+
+Route103_EventScript_AfterBrendanBattle:: @ 81EC4FC
+	msgbox Route103_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT
+	goto Route103_EventScript_RivalExit
+	end
+
+Route103_EventScript_AfterMayRematch:: @ 81EC4EE
+	msgbox Route103_Text_MayPostRematch, MSGBOX_DEFAULT
+	setflag FLAG_DAILY_REMATCH_RIVAL
+	goto_if_unset FLAG_ENABLE_SHIP_SOUTHERN_ISLAND, Route103_EventScript_MayGiveEonTicket
+	releaseall
+	end
+
+Route103_EventScript_AfterBrendanRematch:: @ 81EC4FC
+	msgbox Route103_Text_BrendanPostRematch, MSGBOX_DEFAULT
+	setflag FLAG_DAILY_REMATCH_RIVAL
+	goto_if_unset FLAG_ENABLE_SHIP_SOUTHERN_ISLAND, Route103_EventScript_BrendanGiveEonTicket
+	releaseall
+	end
+
+Route103_EventScript_BrendanGiveEonTicket::
+	msgbox Route103_Text_BrendanGiveEonTicket, MSGBOX_DEFAULT
+	setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
+	giveitem ITEM_EON_TICKET
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
+
+Route103_EventScript_MayGiveEonTicket::
+	msgbox Route103_Text_MayGiveEonTicket, MSGBOX_DEFAULT
+	setflag FLAG_ENABLE_SHIP_SOUTHERN_ISLAND
+	giveitem ITEM_EON_TICKET
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
+
+Route103_EventScript_RivalExit:: @ 81EC50A
+	closemessage
+	switch VAR_FACING
+	case DIR_SOUTH, Route103_EventScript_RivalExitFacingSouth
+	case DIR_NORTH, Route103_EventScript_RivalExitFacingNorth
+	case DIR_WEST, Route103_EventScript_RivalExitFacingEastOrWest
+	case DIR_EAST, Route103_EventScript_RivalExitFacingEastOrWest
+	end
+
+Route103_EventScript_RivalExitFacingNorth:: @ 81EC53D
+	applymovement OBJ_EVENT_ID_PLAYER, Route103_Movement_WatchRivalExitFacingNorth
+	applymovement LOCALID_RIVAL, Route103_Movement_RivalExitFacingNorth1
+	waitmovement 0
+	playse SE_LEDGE
+	applymovement LOCALID_RIVAL, Route103_EventScript_RivalExitFacingNorth2
+	waitmovement 0
+	goto Route103_EventScript_RivalEnd
+	end
+
+Route103_EventScript_RivalExitFacingEastOrWest:: @ 81EC561
+	applymovement OBJ_EVENT_ID_PLAYER, Route103_Movement_WatchRivalExitFacingEastOrWest
+	applymovement LOCALID_RIVAL, Route103_Movement_RivalExit1
+	waitmovement 0
+	playse SE_LEDGE
+	applymovement LOCALID_RIVAL, Route103_Movement_RivalExit2
+	waitmovement 0
+	goto Route103_EventScript_RivalEnd
+	end
+
+Route103_EventScript_RivalExitFacingSouth:: @ 81EC585
+	applymovement LOCALID_RIVAL, Route103_Movement_RivalExit1
+	waitmovement 0
+	playse SE_LEDGE
+	applymovement LOCALID_RIVAL, Route103_Movement_RivalExit2
+	waitmovement 0
+	goto Route103_EventScript_RivalEnd
+	end
+
+Route103_EventScript_RivalEnd:: @ 81EC5A2
+	removeobject LOCALID_RIVAL
+	@ setvar VAR_BIRCH_LAB_STATE, 4
+	@ clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
+	setflag FLAG_DEFEATED_RIVAL_ROUTE103
+	setvar VAR_OLDALE_RIVAL_STATE, 1
+	@ clearflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+	@ added
+	setflag FLAG_ADVENTURE_STARTED
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
+
+Route103_Movement_RivalExitFacingNorth1: @ 81EC5BE
+	walk_left
+	walk_down
+	step_end
+
+Route103_EventScript_RivalExitFacingNorth2: @ 81EC5C1
+	jump_2_down
+	delay_16
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route103_Movement_WatchRivalExitFacingNorth: @ 81EC5C8
+	delay_16
+	delay_4
+	walk_in_place_fastest_left
+	delay_16
+	walk_in_place_fastest_down
+	step_end
+
+Route103_Movement_RivalExit1: @ 81EC5CE
+	walk_down
+	step_end
+
+Route103_Movement_RivalExit2: @ 81EC5D0
+	jump_2_down
+	delay_16
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route103_Movement_WatchRivalExitFacingEastOrWest: @ 81EC5D6
+	delay_16
+	walk_in_place_fastest_down
+	step_end
+
+Route103_EventScript_Boy:: @ 81EC5D9
+	msgbox Route103_Text_ShouldHaveBroughtPotion, MSGBOX_NPC
+	end
+
+Route103_EventScript_Man:: @ 81EC5E2
+	msgbox Route103_Text_ShortcutToOldale, MSGBOX_NPC
+	end
+
+Route103_EventScript_RouteSign:: @ 81EC5EB
+	msgbox Route103_Text_RouteSign, MSGBOX_SIGN
+	end
+
+Route103_EventScript_Daisy:: @ 81EC5F4
+	trainerbattle_single TRAINER_DAISY, Route103_Text_DaisyIntro, Route103_Text_DaisyDefeated
+	msgbox Route103_Text_DaisyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Amy:: @ 81EC60B
+	trainerbattle_double TRAINER_AMY_AND_LIV_1, Route103_Text_AmyIntro, Route103_Text_AmyDefeated, Route103_Text_AmyNotEnoughPokemon, Route102_EventScript_AmyRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route102_EventScript_AmyRematch
+	msgbox Route103_Text_AmyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route102_EventScript_AmyRegisterMatchCallAfterBattle:: @ 81EC63A
+	msgbox Route103_Text_AmyLivRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_AMY_AND_LIV_1
+	release
+	end
+
+Route102_EventScript_AmyRematch:: @ 81EC653
+	trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1, Route103_Text_AmyRematchIntro, Route103_Text_AmyRematchDefeated, Route103_Text_AmyRematchNotEnoughPokemon
+	msgbox Route103_Text_AmyRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Liv:: @ 81EC66E
+	trainerbattle_double TRAINER_AMY_AND_LIV_1, Route103_Text_LivIntro, Route103_Text_LivDefeated, Route103_Text_LivNotEnoughPokemon, Route102_EventScript_LivRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route102_EventScript_LivRematch
+	msgbox Route103_Text_LivPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route102_EventScript_LivRegisterMatchCallAfterBattle:: @ 81EC69D
+	msgbox Route103_Text_AmyLivRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_AMY_AND_LIV_1
+	release
+	end
+
+Route102_EventScript_LivRematch:: @ 81EC6B6
+	trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1, Route103_Text_LivRematchIntro, Route103_Text_LivRematchDefeated, Route103_Text_LivRematchNotEnoughPokemon
+	msgbox Route103_Text_LivRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Andrew:: @ 81EC6D1
+	trainerbattle_single TRAINER_ANDREW, Route103_Text_AndrewIntro, Route103_Text_AndrewDefeated
+	msgbox Route103_Text_AndrewPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Miguel:: @ 81EC6E8
+	trainerbattle_single TRAINER_MIGUEL_1, Route103_Text_MiguelIntro, Route103_Text_MiguelDefeated, Route102_EventScript_MiguelRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route103_EventScript_MiguelRematch
+	msgbox Route103_Text_MiguelPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route102_EventScript_MiguelRegisterMatchCallAfterBattle:: @ 81EC714
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route103_Text_MiguelRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_MIGUEL_1
+	release
+	end
+
+Route103_EventScript_MiguelRematch:: @ 81EC733
+	trainerbattle_rematch TRAINER_MIGUEL_1, Route103_Text_MiguelRematchIntro, Route103_Text_MiguelRematchDefeated
+	msgbox Route103_Text_MiguelRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Marcos:: @ 81EC74A
+	trainerbattle_single TRAINER_MARCOS, Route103_Text_MarcosIntro, Route103_Text_MarcosDefeated
+	msgbox Route103_Text_MarcosPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Rhett:: @ 81EC761
+	trainerbattle_single TRAINER_RHETT, Route103_Text_RhettIntro, Route103_Text_RhettDefeated
+	msgbox Route103_Text_RhettPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Pete:: @ 81EC778
+	trainerbattle_single TRAINER_PETE, Route103_Text_PeteIntro, Route103_Text_PeteDefeated
+	msgbox Route103_Text_PetePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Isabelle:: @ 81EC78F
+	trainerbattle_single TRAINER_ISABELLE, Route103_Text_IsabelleIntro, Route103_Text_IsabelleDefeated
+	msgbox Route103_Text_IsabellePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_Text_MayRoute103Pokemon: @ 81EC7A6
+	.string "小遥：让我看看……\n"
+	.string "103 号道路上生活的宝可梦有……$"
+
+Route103_Text_MayLetsBattle: @ 81EC7DE
+	.string "啊，{PLAYER}{KUN}！\p"
+	.string "……哦，我明白了，\n"
+	.string "爸爸送了你一只宝可梦当礼物。\p"
+	.string "既然都在这儿了，\n"
+	.string "我们简单对战一场吧！\p"
+	.string "让你见识见识训练家\n"
+	.string "是什么感觉。$"
+
+Route103_Text_MayDefeated: @ 81EC881
+	.string "哇！太厉害了！\n"
+	.string "{PLAYER}{KUN}，你还挺有两下子的！$"
+
+Route103_Text_MayTimeToHeadBack: @ 81EC8AE
+	.string "小遥：我想我现在明白\n"
+	.string "爸爸为什么这么看重你了。\p"
+	.string "我是说，你才刚拿到那只宝可梦，\n"
+	.string "它就已经很喜欢你了。\p"
+	.string "你说不定能轻松地和\n"
+	.string "任何宝可梦成为朋友。\p"
+	.string "好了，该回研究所了。$"
+
+Route103_Text_BrendanRoute103Pokemon: @ 81EC989
+	.string "祐树：好，住在 103 号道路的\n"
+	.string "就是这种和那种宝可梦……$"
+
+Route103_Text_BrendanLetsBattle: @ 81EC9CE
+	.string "嘿，是{PLAYER}啊！\p"
+	.string "……哦对，\n"
+	.string "爸爸给了你一只宝可梦。\p"
+	.string "既然都在这儿了，\n"
+	.string "来场小对战怎么样？\p"
+	.string "我来教教你\n"
+	.string "训练家该是什么样子！$"
+
+Route103_Text_BrendanDefeated: @ 81ECA59
+	.string "呵，{PLAYER}，你还挺不赖的。$"
+
+Route103_Text_BrendanTimeToHeadBack: @ 81ECA79
+	.string "祐树：我好像明白了。\n"
+	.string "我想我知道爸爸为什么看重你了。\p"
+	.string "你看，你才刚拿到宝可梦，\n"
+	.string "它就已经喜欢上你了。\p"
+	.string "{PLAYER}，我感觉你能轻松地\n"
+	.string "和任何宝可梦交朋友。\p"
+	.string "我们该回研究所了。$"
+
+Route103_Text_ShouldHaveBroughtPotion: @ 81ECB73
+	.string "我的宝可梦累得不行了……\n"
+	.string "早知道就带伤药来了……$"
+
+Route103_Text_ShortcutToOldale: @ 81ECBB5
+	.string "从这里渡过海去，\n"
+	.string "就是通往古玫镇的近路。\p"
+	.string "呵呵，很方便吧？$"
+
+Route103_Text_RouteSign: @ 81ECC1A
+	.string "103 号道路\n"
+	.string "{DOWN_ARROW} 古玫镇$"
+
+Route103_Text_MayRematch:
+	.string "小遥：我们又来到 103 号道路了！\n"
+	.string "哇，好怀念啊！\p"
+	.string "我们第一次对战\n"
+	.string "就是在这里吧？\p"
+	.string "……{PLAYER}！\n"
+	.string "你能帮我个忙吗？\p"
+	.string "来吧！再和我对战一次！\p"
+	.string "我想知道你一路上看到了什么、\n"
+	.string "有什么感受、经历了什么。\p"
+	.string "我想了解关于你和你的\n"
+	.string "宝可梦的一切，{PLAYER}！\p"
+	.string "然后……\p"
+	.string "我也想让你了解关于我和\n"
+	.string "我的宝可梦的一切！$"
+
+Route103_Text_MayRematchDefeated:
+	.string "……\p"
+	.string "谢谢你，{PLAYER}！\n"
+	.string "你真的是冠军！$"
+
+Route103_Text_MayPostRematch:
+	.string "小遥：遇见那么多不同的人……\n"
+	.string "遇到那么多不同的宝可梦……\p"
+	.string "真的……\n"
+	.string "真的非常非常开心！$"
+
+Route103_Text_BrendanRematch:
+	.string "祐树：唉，真怀念。\n"
+	.string "又回到 103 号道路了。\p"
+	.string "我们第一次对战\n"
+	.string "就是在这里吧。\p"
+	.string "嘿，{PLAYER}……\n"
+	.string "帮我个忙？\p"
+	.string "来吧！再和我对战一次！\p"
+	.string "我想知道你一路上看到了什么、\n"
+	.string "有什么感受、经历了什么。\p"
+	.string "我想了解关于你和你的\n"
+	.string "宝可梦的一切，{PLAYER}。\p"
+	.string "但不只是这样……\p"
+	.string "我也想让你了解关于我和\n"
+	.string "我的宝可梦的一切！$"
+
+Route103_Text_BrendanRematchDefeated:
+	.string "……\p"
+	.string "谢谢你，{PLAYER}！\n"
+	.string "不愧是冠军！$"
+
+Route103_Text_BrendanPostRematch:
+	.string "祐树：能遇见那么多不同的人……\p"
+	.string "还有那么多不同的宝可梦……\p"
+	.string "就像……我不知道该怎么说……\n"
+	.string "真的非常非常开心！$"
+
+Route103_Text_BrendanGiveEonTicket:
+	.string "祐树：还有件事，{PLAYER}。\n"
+	.string "这个就当是精彩对战的谢礼吧！$"
+
+Route103_Text_MayGiveEonTicket:
+	.string "小遥：哦对了，{PLAYER}。\n"
+	.string "我有东西要给你！\p"
+	.string "请收下这张船票！$"
+`

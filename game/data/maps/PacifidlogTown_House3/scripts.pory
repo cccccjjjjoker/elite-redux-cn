@@ -1,0 +1,25 @@
+raw `
+PacifidlogTown_House3_MapScripts:: @ 8203C10
+	.byte 0
+
+PacifidlogTown_House3_EventScript_Girl:: @ 8203CB5
+	msgbox PacifidlogTown_House3_Text_IsThatAPokedex, MSGBOX_NPC
+	end
+
+PacifidlogTown_House3_EventScript_Guy::
+	msgbox PacifidlogTown_House3_Text_UsedToBeUseful, MSGBOX_NPC
+	end
+
+PacifidlogTown_House3_Text_IsThatAPokedex:
+	.string "那是宝可梦图鉴？\n"
+	.string "你见到过很多不同的宝可梦吗？\p"
+	.string "真希望我也像你一样。$"
+
+PacifidlogTown_House3_Text_UsedToBeUseful:
+	.string "我以前还算有点用，可现在……\n"
+	.string "现在我就站在这儿，用这段\p"
+	.string "没意义的独白浪费你的时间，\n"
+	.string "或者盯着这个罐子。\p"
+	.string "也许哪天我还会再做点什么。\n"
+	.string "谁知道呢！$"
+`

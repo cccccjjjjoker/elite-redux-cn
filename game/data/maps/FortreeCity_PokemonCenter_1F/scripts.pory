@@ -1,0 +1,58 @@
+raw `
+.set LOCALID_NURSE, 1
+
+FortreeCity_PokemonCenter_1F_MapScripts:: @ 82173D8
+	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+FortreeCity_PokemonCenter_1F_OnTransition: @ 82173E3
+	setrespawn HEAL_LOCATION_FORTREE_CITY
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_Nurse:: @ 82173E7
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_Gentleman:: @ 82173F5
+	msgbox FortreeCity_PokemonCenter_1F_Text_GoToSafariZone, MSGBOX_NPC
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_Man:: @ 82173FE
+	msgbox FortreeCity_PokemonCenter_1F_Text_RecordCornerIsNeat, MSGBOX_NPC
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_Boy:: @ 8217407
+	msgbox FortreeCity_PokemonCenter_1F_Text_DoYouKnowAboutPokenav, MSGBOX_NPC
+	end
+
+FortreeCity_PokemonCenter_1F_Text_GoToSafariZone: @ 8217410
+	.string "听着，孩子，你在做\n"
+	.string "宝可梦图鉴吗？\p"
+	.string "唔……去狩猎地带吧。\n"
+	.string "这是我的建议。$"
+
+FortreeCity_PokemonCenter_1F_Text_RecordCornerIsNeat: @ 821746D
+	.string "你在记录角做过什么吗？\n"
+	.string "那里挺不错。会把训练家的\p"
+	.string "记录混在一起配对。\n"
+	.string "我不太懂原理，\p"
+	.string "但很酷。甚至让人兴奋！$"
+
+FortreeCity_PokemonCenter_1F_Text_DoYouKnowAboutPokenav: @ 821751F
+	.string "哦，哇，你有宝可梦导航器！\n"
+	.string "而且跟我的一模一样！\p"
+	.string "你知道导航器的\n"
+	.string "通话功能吗？\p"
+	.string "用它，你随时能和登录过的\n"
+	.string "训练家聊天。\p"
+	.string "它还会显示哪些训练家\n"
+	.string "想再跟你对战。\p"
+	.string "真是好用！得文那些人\n"
+	.string "真懂行！$"
+
+`

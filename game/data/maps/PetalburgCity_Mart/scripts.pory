@@ -1,0 +1,57 @@
+raw `
+PetalburgCity_Mart_MapScripts:: @ 8207D68
+	.byte 0
+
+PetalburgCity_Mart_EventScript_Clerk:: @ 8207D69
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart PetalburgCity_Mart_Pokemart_Basic
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_Mart_Pokemart_Basic:
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_X_SP_ATK
+	.2byte ITEM_X_SP_DEF
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_NONE
+	release
+	end
+
+PetalburgCity_Mart_EventScript_Woman:: @ 8207DD6
+	msgbox PetalburgCity_Mart_Text_WeakWillGrowStronger, MSGBOX_NPC
+	end
+
+PetalburgCity_Mart_EventScript_Boy:: @ 8207DDF
+	msgbox PetalburgCity_Mart_Text_RepelIsUseful, MSGBOX_NPC
+	end
+
+PetalburgCity_Mart_EventScript_Man:: @ 8207DE8
+	msgbox PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou, MSGBOX_NPC
+	end
+
+PetalburgCity_Mart_Text_WeakWillGrowStronger: @ 8207DF1
+	.string "就算宝可梦现在很弱，\n"
+	.string "它也会变强。\p"
+	.string "最重要的是爱！\n"
+	.string "对你宝可梦的爱！$"
+
+PetalburgCity_Mart_Text_RepelIsUseful: @ 8207E60
+	.string "你用喷雾吗？\n"
+	.string "它能让宝可梦远离，\p"
+	.string "赶时间时很有用。$"
+
+PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou: @ 8207EB0
+	.string "你身上带解毒药了吗？\n"
+	.string "带着中毒的宝可梦走路，\p"
+	.string "它会掉ＨＰ直到倒下。\n"
+	.string "带些解毒药吧。$"
+
+`

@@ -1,0 +1,86 @@
+raw `
+RustboroCity_House1_MapScripts:: @ 821593E
+	.byte 0
+
+RustboroCity_House1_EventScript_Trader:: @ 821593F
+	lock
+	faceplayer
+	goto_if_set FLAG_RUSTBORO_NPC_TRADE_COMPLETED, RustboroCity_House1_EventScript_TradeCompleted
+	setvar VAR_0x8008, INGAME_TRADE_PAWNIARD
+	copyvar VAR_0x8004, VAR_0x8008
+	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	copyvar VAR_0x8009, VAR_RESULT
+	msgbox RustboroCity_House1_Text_IllTradeIfYouWant, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RustboroCity_House1_EventScript_DeclineTrade
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_0x800A, VAR_0x8004
+	compare VAR_0x8004, 255
+	goto_if_eq RustboroCity_House1_EventScript_DeclineTrade
+	copyvar VAR_0x8005, VAR_0x800A
+	specialvar VAR_RESULT, GetTradeSpecies
+	copyvar VAR_0x800B, VAR_RESULT
+	compare VAR_RESULT, VAR_0x8009
+	goto_if_ne RustboroCity_House1_EventScript_NotRequestedMon
+	copyvar VAR_0x8004, VAR_0x8008
+	copyvar VAR_0x8005, VAR_0x800A
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	msgbox RustboroCity_House1_Text_PleaseBeGoodToMyPokemon, MSGBOX_DEFAULT
+	setflag FLAG_RUSTBORO_NPC_TRADE_COMPLETED
+	release
+	end
+
+RustboroCity_House1_EventScript_DeclineTrade:: @ 82159BD
+	msgbox RustboroCity_House1_Text_YouDontWantToThatsOkay, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_House1_EventScript_NotRequestedMon:: @ 82159C7
+	bufferspeciesname 0, VAR_0x8009
+	msgbox RustboroCity_House1_Text_DoesntLookLikeMonToMe, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_House1_EventScript_TradeCompleted:: @ 82159D5
+	msgbox RustboroCity_House1_Text_AnyPokemonCanBeCute, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_House1_EventScript_Hiker:: @ 82159DF
+	msgbox RustboroCity_House1_Text_AllSortsOfPlaces, MSGBOX_NPC
+	end
+
+RustboroCity_House1_Text_IllTradeIfYouWant: @ 82159E8
+	.string "咦？我的宝可梦可爱？\n"
+	.string "当然，我早知道。\p"
+	.string "不过如果你真想，\n"
+	.string "我愿意跟你换。\p"
+	.string "你想要的话，我用我的{STR_VAR_2}\n"
+	.string "换{STR_VAR_1}。$"
+
+RustboroCity_House1_Text_PleaseBeGoodToMyPokemon: @ 8215A77
+	.string "呵呵……\n"
+	.string "请好好对待我的宝可梦。$"
+
+RustboroCity_House1_Text_DoesntLookLikeMonToMe: @ 8215A9D
+	.string "咦？那看起来一点也不像\n"
+	.string "{STR_VAR_1}啊。$"
+
+RustboroCity_House1_Text_YouDontWantToThatsOkay: @ 8215ACE
+	.string "哦，你不想换，那就算了。\n"
+	.string "可我的宝可梦很可爱啊……$"
+
+RustboroCity_House1_Text_AnyPokemonCanBeCute: @ 8215B17
+	.string "只要用心温柔地养育，\n"
+	.string "任何宝可梦都会变得可爱。$"
+
+RustboroCity_House1_Text_AllSortsOfPlaces: @ 8215B57
+	.string "各种各样的地方，有各种各样\n"
+	.string "的宝可梦和人。\p"
+	.string "我觉得那很有趣，\n"
+	.string "所以会去各种各样的地方。$"
+
+`

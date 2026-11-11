@@ -1,0 +1,27 @@
+raw `
+MagmaHideout_3F_2R_MapScripts:: @ 823A3D4
+	.byte 0
+
+MagmaHideout_3F_2R_EventScript_Grunt10:: @ 823A3D5
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_10, MagmaHideout_3F_2R_Text_Grunt10Intro, MagmaHideout_3F_2R_Text_Grunt10Defeat
+	msgbox MagmaHideout_3F_2R_Text_Grunt10PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_3F_2R_Text_Grunt10Intro: @ 823A3EC
+	.string "首领说的话我全都明白。\n"
+	.string "可你知道吗？\p"
+	.string "像挖出一只超古代的宝可梦、\n"
+	.string "抢别人的陨石这种事……\p"
+	.string "我觉得我们做得有点过头了。\n"
+	.string "你怎么想？$"
+
+MagmaHideout_3F_2R_Text_Grunt10Defeat: @ 823A4BB
+	.string "是啊，我总觉得我们\n"
+	.string "在做什么错事。$"
+
+MagmaHideout_3F_2R_Text_Grunt10PostBattle: @ 823A4EF
+	.string "你知道吗，输给你让我脑子清醒了。\n"
+	.string "下次见到首领，\p"
+	.string "我要问问他我们到底在做什么。$"
+
+`

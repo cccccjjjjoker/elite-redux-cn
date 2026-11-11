@@ -1,0 +1,185 @@
+raw `
+LilycoveCity_CoveLilyMotel_2F_MapScripts:: @ 82186D2
+	.byte 0
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_GameDesigner:: @ 82186D3
+	lock
+	faceplayer
+	call_if_unset FLAG_TEMP_2, LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex
+	call_if_set FLAG_TEMP_2, LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
+	specialvar VAR_RESULT, HasAllHoennMons
+	compare VAR_RESULT, TRUE
+	goto_if_eq LilycoveCity_CoveLilyMotel_2F_EventScript_AllHoennMonsFanfare
+	release
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex:: @ 82186F9
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ShowMeCompletedDex, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_AllHoennMonsFanfare:: @ 8218702
+	setflag FLAG_TEMP_2
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	goto LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma:: @ 821870F
+	message LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	special Special_ShowDiploma
+	waitstate
+	release
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsert::
+	lockall
+	faceplayer
+	//goto_if_set FLAG_DAILY_REMATCH_BUFFEL, LilycoveCity_CoveLilyMotel_2F_EventScript_BuffelDefeated
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ImBuffel, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsertNo
+	message LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertBattle
+	waitmessage
+	trainerbattle_no_intro TRAINER_BUFFEL, LilycoveCity_CoveLilyMotel_2F_Text_BuffelDefeat
+	//setflag FLAG_DAILY_REMATCH_BUFFEL
+LilycoveCity_CoveLilyMotel_2F_EventScript_BuffelDefeated::
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ThanksAgain, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsertNo::
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertNo, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_Programmer:: @ 8218720
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ImTheProgrammer, MSGBOX_NPC
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_GraphicArtist:: @ 8218729
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ImTheGraphicArtist, MSGBOX_NPC
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_FatMan:: @ 8218732
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute, MSGBOX_NPC
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_Woman:: @ 821873B
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_SeaBreezeTicklesHeart, MSGBOX_NPC
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_GameBoyKid:: @ 8218744
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_NeverLeaveWithoutGameBoy, MSGBOX_NPC
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_Scott:: @ 821874D
+	lock
+	faceplayer
+	goto_if_set FLAG_MET_SCOTT_IN_LILYCOVE, LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_SnoozingPreferBattles, MSGBOX_DEFAULT
+	addvar VAR_SCOTT_STATE, 1
+	setflag FLAG_MET_SCOTT_IN_LILYCOVE
+	release
+	end
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott:: @ 821876A
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ContestsDoTakeStrategy, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_CoveLilyMotel_2F_Text_ShowMeCompletedDex: @ 8218774
+	.string "我是游戏设计师。\n"
+	.string "哦，是这样吗？\p"
+	.string "你在做宝可梦图鉴？\n"
+	.string "要把它集齐可不容易，\p"
+	.string "但别放弃。\n"
+	.string "如果真集齐了，请来给我看看。$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis: @ 821881C
+	.string "哇！太厉害了！\n"
+	.string "没错，简直厉害到不行！\p"
+	.string "这本宝可梦图鉴全都填满了！\n"
+	.string "你是真的爱宝可梦啊！\p"
+	.string "我太感动了！\n"
+	.string "为了纪念你的壮举，\p"
+	.string "让我送你点东西吧！$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_ImTheProgrammer: @ 82188D6
+	.string "我？你在跟我说话？\n"
+	.string "我是程序员。\p"
+	.string "不知道这里的老虎机\n"
+	.string "是什么样子。$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_ImTheGraphicArtist: @ 821892B
+	.string "我是美术设计！丰缘的宝可梦\n"
+	.string "是不是很有意思？$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute: @ 821896C
+	.string "泳圈丫头很可爱吧？\n"
+	.string "和可爱的泳圈丫头对战……\p"
+	.string "哇，真是太棒了！\n"
+	.string "还有双胞胎！不可爱吗？\p"
+	.string "和双胞胎来场2对2……\n"
+	.string "哇，好玩得受不了！$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_SeaBreezeTicklesHeart: @ 8218A21
+	.string "海风吹得人心痒痒的。\n"
+	.string "这里感觉真好！$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_NeverLeaveWithoutGameBoy: @ 8218A5B
+	.string "你永远不知道什么时候、\n"
+	.string "在哪里会有人向你挑战。\p"
+	.string "所以我出门从不离身\n"
+	.string "我的 Game Boy Advance。$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_SnoozingPreferBattles: @ 8218ACF
+	.string "斯科特：………………\n"
+	.string "………………呼……\p"
+	.string "………………嗯？！\n"
+	.string "哦，抱歉抱歉！我打了个盹！\p"
+	.string "我是来看看这个宝可梦\n"
+	.string "华丽大赛的。\p"
+	.string "我得承认，看起来确实\n"
+	.string "挺有意思，不过……\p"
+	.string "我是个纯粹派……我更偏爱\n"
+	.string "对战和强悍的训练家。\p"
+	.string "不过那只是我个人喜好。\n"
+	.string "{PLAYER}{KUN}，希望你能好好享受\p"
+	.string "道馆、华丽大赛、对战帐篷，\n"
+	.string "所有这些内容！$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_ContestsDoTakeStrategy: @ 8218C33
+	.string "斯科特：我觉得要在华丽大赛\n"
+	.string "获胜也得讲策略。\p"
+	.string "琢磨大赛策略，也算是\n"
+	.string "让自己变强的一种方式。$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_ImBuffel:
+	.string "嘿，{PLAYER}！\n"
+	.string "我是巴菲尔，这个改版的\p"
+	.string "原作者。\n"
+	.string "谢谢你玩这个游戏！\p"
+	.string "希望你的旅程玩得开心，\n"
+	.string "也没撞上太多问题！\p"
+	.string "既然你已经是冠军了，\n"
+	.string "要不要来场友谊对战？\p"
+	.string "放心……我没给自己\n"
+	.string "加任何不公平的优势！\p"
+	.string "那么，准备好了吗？$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertNo:
+	.string "那就改天吧？$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertBattle:
+	.string "太好了！让我看看你的本事！$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_BuffelDefeat:
+	.string "干得漂亮，{PLAYER}！$"
+
+LilycoveCity_CoveLilyMotel_2F_Text_ThanksAgain:
+	.string "再次感谢你来玩！\n"
+	.string "想再打一场的话，\p"
+	.string "明天再来吧！$"
+`

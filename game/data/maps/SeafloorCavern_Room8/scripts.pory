@@ -1,0 +1,11 @@
+raw `
+SeafloorCavern_Room8_MapScripts:: @ 8234DC7
+	.byte 0
+
+`
+
+script SeafloorCavern_Room8_EventScript_PuzzleSign{
+	msgbox(format("前进的方法是{UP_ARROW}{RIGHT_ARROW}{UP_ARROW}{LEFT_ARROW}……\n（后面的字被划掉了，看不清。）\p熔岩队让大地震动。\n剩下的你自己想吧，\p我已经不知道了。$"))
+	release
+	end
+}

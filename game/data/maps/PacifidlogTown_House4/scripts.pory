@@ -1,0 +1,57 @@
+raw `
+PacifidlogTown_House4_MapScripts:: @ 8203F4B
+	.byte 0
+
+PacifidlogTown_House4_EventScript_LittleGirl:: @ 8203F4C
+	msgbox PacifidlogTown_House4_Text_SkyPokemon, MSGBOX_NPC
+	end
+
+PacifidlogTown_House4_EventScript_Woman:: @ 8203F55
+	msgbox PacifidlogTown_House4_Text_PeopleSawHighFlyingPokemon, MSGBOX_NPC
+	end
+
+PacifidlogTown_House4_EventScript_Boy:: @ 8203F5E
+	lock
+	faceplayer
+	msgbox PacifidlogTown_House4_Text_WhereDidYouComeFrom, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq PacifidlogTown_House4_EventScript_Yes
+	compare VAR_RESULT, NO
+	goto_if_eq PacifidlogTown_House4_EventScript_No
+	end
+
+PacifidlogTown_House4_EventScript_Yes:: @ 8203F7F
+	msgbox PacifidlogTown_House4_Text_YesTown, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_House4_EventScript_No:: @ 8203F89
+	msgbox PacifidlogTown_House4_Text_YouHaveToComeFromSomewhere, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_House4_Text_PeopleSawHighFlyingPokemon: @ 8203F93
+	.string "有人说看到过一只宝可梦\n"
+	.string "在丰缘高空飞。\p"
+	.string "它一直那样飞吗？\n"
+	.string "它不需要在哪儿休息吗？$"
+
+PacifidlogTown_House4_Text_SkyPokemon: @ 8204017
+	.string "天空宝可梦！\n"
+	.string "天空宝可梦！$"
+
+PacifidlogTown_House4_Text_WhereDidYouComeFrom: @ 8204035
+	.string "你是从哪儿来的？$"
+
+PacifidlogTown_House4_Text_YesTown: @ 820404E
+	.string "什么？\n"
+	.string "“是之镇”？\p"
+	.string "我从没听说过这种地方。$"
+
+PacifidlogTown_House4_Text_YouHaveToComeFromSomewhere: @ 8204084
+	.string "不是？这说不通啊。\n"
+	.string "你总得从某个地方来吧。\p"
+	.string "哦！等等！你别想说你是\n"
+	.string "在海底出生的吧？$"
+
+`

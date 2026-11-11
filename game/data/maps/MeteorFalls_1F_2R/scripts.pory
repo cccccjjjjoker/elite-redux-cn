@@ -1,0 +1,241 @@
+raw `
+MeteorFalls_1F_2R_MapScripts:: @ 822C4DD
+	.byte 0
+
+MeteorFalls_1F_2R_EventScript_Nicolas:: @ 822C4DE
+	trainerbattle_single TRAINER_NICOLAS_1, MeteorFalls_1F_2R_Text_NicolasIntro, MeteorFalls_1F_2R_Text_NicolasDefeat, MeteorFalls_1F_2R_EventScript_RegisterNicolas
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq MeteorFalls_1F_2R_EventScript_RematchNicolas
+	msgbox MeteorFalls_1F_2R_Text_NicolasPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MeteorFalls_1F_2R_EventScript_RegisterNicolas:: @ 822C50A
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox MeteorFalls_1F_2R_Text_NicolasRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_NICOLAS_1
+	release
+	end
+
+MeteorFalls_1F_2R_EventScript_RematchNicolas:: @ 822C529
+	trainerbattle_rematch TRAINER_NICOLAS_1, MeteorFalls_1F_2R_Text_NicolasRematchIntro, MeteorFalls_1F_2R_Text_NicolasRematchDefeat
+	msgbox MeteorFalls_1F_2R_Text_NicolasPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+MeteorFalls_1F_2R_EventScript_John:: @ 822C540
+	trainerbattle_double TRAINER_JOHN_AND_JAY_1, MeteorFalls_1F_2R_Text_JohnIntro, MeteorFalls_1F_2R_Text_JohnDefeat, MeteorFalls_1F_2R_Text_JohnNotEnoughMons, MeteorFalls_1F_2R_EventScript_RegisterJohn
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq MeteorFalls_1F_2R_EventScript_RematchJohn
+	msgbox MeteorFalls_1F_2R_Text_JohnPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MeteorFalls_1F_2R_EventScript_RegisterJohn:: @ 822C570
+	msgbox MeteorFalls_1F_2R_Text_JohnRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JOHN_AND_JAY_1
+	release
+	end
+
+MeteorFalls_1F_2R_EventScript_RematchJohn:: @ 822C589
+	trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1, MeteorFalls_1F_2R_Text_JohnRematchIntro, MeteorFalls_1F_2R_Text_JohnRematchDefeat, MeteorFalls_1F_2R_Text_JohnRematchNotEnoughMons
+	msgbox MeteorFalls_1F_2R_Text_JohnPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+MeteorFalls_1F_2R_EventScript_Jay:: @ 822C5A4
+	trainerbattle_double TRAINER_JOHN_AND_JAY_1, MeteorFalls_1F_2R_Text_JayIntro, MeteorFalls_1F_2R_Text_JayDefeat, MeteorFalls_1F_2R_Text_JayNotEnoughMons, MeteorFalls_1F_2R_EventScript_RegisterJay
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq MeteorFalls_1F_2R_EventScript_RematchJay
+	msgbox MeteorFalls_1F_2R_Text_JayPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MeteorFalls_1F_2R_EventScript_RegisterJay:: @ 822C5D4
+	msgbox MeteorFalls_1F_2R_Text_JohnRegister, MSGBOX_DEFAULT  @ John speaks for both during register
+	//register_matchcall TRAINER_JOHN_AND_JAY_1
+	release
+	end
+
+MeteorFalls_1F_2R_EventScript_RematchJay:: @ 822C5ED
+	trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1, MeteorFalls_1F_2R_Text_JayRematchIntro, MeteorFalls_1F_2R_Text_JayRematchDefeat, MeteorFalls_1F_2R_Text_JayRematchNotEnoughMons
+	msgbox MeteorFalls_1F_2R_Text_JayPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Meteor_Falls1F_2R_EventScript_DragonAscentTutor::
+	lock
+	faceplayer
+	msgbox MoveTutor_Text_DragonAscentTeach, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MoveTutor_EventScript_DragonAscentDeclined
+	call Meteor_Falls1F_2R_EventScript_RayquazaCheck
+	msgbox MoveTutor_Text_DragonAscentWhichMon, MSGBOX_DEFAULT
+	setvar VAR_0x8005, TUTOR_MOVE_DRAGON_ASCENT
+	call MoveTutor_EventScript_OpenPartyMenu
+	compare VAR_RESULT, 0
+	goto_if_eq MoveTutor_EventScript_DragonAscentDeclined
+	goto MoveTutor_EventScript_DragonAscentTaught
+	end
+
+Meteor_Falls1F_2R_EventScript_RayquazaCheck::
+	checkPartyHasSpecies SPECIES_RAYQUAZA
+	compare VAR_RESULT, FALSE
+	goto_if_eq Meteor_Falls1F_2R_EventScript_DragonAscentNoFug
+	return
+
+Meteor_Falls1F_2R_EventScript_DragonAscentNoFug::
+	msgbox MoveTutor_Text_DragonAscentNoFug, MSGBOX_DEFAULT
+	release
+	end
+
+MoveTutor_EventScript_DragonAscentDeclined::
+	msgbox MoveTutor_Text_DragonAscentDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+MoveTutor_EventScript_DragonAscentTaught::
+	msgbox MoveTutor_Text_DragonAscentTaught, MSGBOX_DEFAULT
+	release
+	end
+
+MoveTutor_EventScript_OpenPartyMenu::
+	special ChooseMonForMoveTutor
+	waitstate
+	lock
+	faceplayer
+	return
+
+MeteorFalls_1F_2R_Text_NicolasIntro: @ 822C608
+	.string "这里是我们龙属性使用者训练的地方\n"
+	.string "。\p"
+	.string "连冠军都会来。\n"
+	.string "现在你知道这里有多特别了吧？$"
+
+MeteorFalls_1F_2R_Text_NicolasDefeat: @ 822C678
+	.string "呃！没想到你这么强！$"
+
+MeteorFalls_1F_2R_Text_NicolasPostBattle: @ 822C6A3
+	.string "前方的路还很长、很艰难。\n"
+	.string "我和我的宝可梦什么时候才能\p"
+	.string "成为最强的？$"
+
+MeteorFalls_1F_2R_Text_NicolasRegister: @ 822C6F6
+	.string "我想更了解你的实力。\n"
+	.string "让我把你登录到我的宝可梦导航器里\p"
+	.string "。$"
+
+MeteorFalls_1F_2R_Text_NicolasRematchIntro: @ 822C73F
+	.string "自从遇见你，\n"
+	.string "我们就以第一为目标拼命训练。\p"
+	.string "帮我们看看我们强了多少！$"
+
+MeteorFalls_1F_2R_Text_NicolasRematchDefeat: @ 822C7AD
+	.string "呃！没想到你这么强！$"
+
+MeteorFalls_1F_2R_Text_NicolasPostRematch: @ 822C7D8
+	.string "看来你的宝可梦训练一直没落下。\n"
+	.string "只要你保持强大，\p"
+	.string "我也能变得更强！$"
+
+MeteorFalls_1F_2R_Text_JohnIntro: @ 822C843
+	.string "约翰：我们一直两个人一起和宝可梦\n"
+	.string "对战。\p"
+	.string "我们对自己有信心。$"
+
+MeteorFalls_1F_2R_Text_JohnDefeat: @ 822C89C
+	.string "约翰：哦，天啊。\n"
+	.string "老伴，我们输了。$"
+
+MeteorFalls_1F_2R_Text_JohnPostBattle: @ 822C8C1
+	.string "约翰：我们结婚五十年了。\n"
+	.string "说起来，我还从没在对战中赢过我老\p"
+	.string "伴。$"
+
+MeteorFalls_1F_2R_Text_JohnNotEnoughMons: @ 822C92B
+	.string "约翰：哎呀呀，多年轻的训练家！\n"
+	.string "要跟我们打一场吗？\p"
+	.string "要的话，你得带更多宝可梦回来。$"
+
+MeteorFalls_1F_2R_Text_JohnRegister: @ 822C99C
+	.string "约翰：年轻的训练家，有机会的话，\n"
+	.string "愿意再跟我们打一场吗？$"
+
+MeteorFalls_1F_2R_Text_JayIntro: @ 822C9E6
+	.string "珍：我们结婚五十年了。\n"
+	.string "我们夫妻之间的羁绊，\p"
+	.string "永远不会断。$"
+
+MeteorFalls_1F_2R_Text_JayDefeat: @ 822CA44
+	.string "珍：哦，亲爱的。\n"
+	.string "老伴，我们输了。$"
+
+MeteorFalls_1F_2R_Text_JayPostBattle: @ 822CA70
+	.string "珍：五十年的婚姻……\n"
+	.string "我们要是吵架了，\p"
+	.string "总是用宝可梦对战来解决……$"
+
+MeteorFalls_1F_2R_Text_JayNotEnoughMons: @ 822CACD
+	.string "珍：哎呀呀，多年轻的训练家！\n"
+	.string "想跟我们打的话，\p"
+	.string "你得带更多宝可梦回来。$"
+
+MeteorFalls_1F_2R_Text_JohnRematchIntro: @ 822CB47
+	.string "约翰：我们一直两个人一起和宝可梦\n"
+	.string "对战。\p"
+	.string "我们对自己有信心。$"
+
+MeteorFalls_1F_2R_Text_JohnRematchDefeat: @ 822CBA0
+	.string "约翰：哦，天啊。老伴，我们输了。$"
+
+MeteorFalls_1F_2R_Text_JohnPostRematch: @ 822CBC5
+	.string "约翰：结婚五十年……\n"
+	.string "回想起来，我和老伴\p"
+	.string "天天都在对战……$"
+
+MeteorFalls_1F_2R_Text_JohnRematchNotEnoughMons: @ 822CC27
+	.string "约翰：哎呀呀，多年轻的训练家！\n"
+	.string "要跟我们打一场吗？\p"
+	.string "要的话，你得带更多宝可梦回来。$"
+
+MeteorFalls_1F_2R_Text_JayRematchIntro: @ 822CC98
+	.string "珍：我们结婚五十年了。\n"
+	.string "这些年我们一直互相支持。\p"
+	.string "我们让自己变强了。$"
+
+MeteorFalls_1F_2R_Text_JayRematchDefeat: @ 822CD08
+	.string "珍：哦，亲爱的。老伴，我们输了。$"
+
+MeteorFalls_1F_2R_Text_JayPostRematch: @ 822CD34
+	.string "珍：五十年的婚姻……\n"
+	.string "发生了很多事。\p"
+	.string "希望我们能继续一起\n"
+	.string "创造幸福的回忆。$"
+
+MeteorFalls_1F_2R_Text_JayRematchNotEnoughMons: @ 822CDAB
+	.string "珍：哎呀呀，多年轻的训练家！\n"
+	.string "想跟我们打的话，\p"
+	.string "你得带更多宝可梦回来。$"
+
+MoveTutor_Text_DragonAscentTeach:
+	.string "嗯……要我把画龙点睛\n"
+	.string "教给你的宝可梦吗？$"
+
+MoveTutor_Text_DragonAscentWhichMon:
+	.string "你想让我把招式教给哪只宝可梦？$"
+
+MoveTutor_Text_DragonAscentNoFug:
+	.string "嗯……只有烈空坐能学会画龙点睛。\n"
+	.string "你好像没有。$"
+
+MoveTutor_Text_DragonAscentDeclined:
+	.string "嗯……我明白了。\n"
+	.string "需要我帮忙的时候随时再来。$"
+
+MoveTutor_Text_DragonAscentTaught:
+	.string "画龙点睛是只有烈空坐能用的强大招\n"
+	.string "式。\p"
+	.string "据说它的力量强到\n"
+	.string "一击就能把巨大的陨石打碎。$"
+`

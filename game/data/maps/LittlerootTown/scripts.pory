@@ -1,0 +1,2411 @@
+raw `
+.set LOCALID_TWIN, 1
+.set LOCALID_MOM, 4
+.set LOCALID_RIVAL, 7
+.set LOCALID_BIRCH, 8
+
+LittlerootTown_MapScripts:: @ 81E7DCB
+	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
+	.byte 0
+
+	@ State descriptions for VAR_LITTLEROOT_TOWN_STATE
+	@ 1: Met Rival
+	@ 2: Saving Birch
+	@ 3: Received Pokedex
+	@ 4: Received Running Shoes
+
+	@ State descriptions for VAR_LITTLEROOT_INTRO_STATE
+	@ 1: In truck male
+	@ 2: In truck female
+	@ 3: Entered house
+	@ 4: Told to go set clock
+	@ 5: Entered 2F to set clock
+	@ 6: Set clock
+	@ 7: Told to go meet rival
+
+	@ State descriptions for VAR_LITTLEROOT_HOUSES_STATE_MAY
+	@                    and VAR_LITTLEROOT_HOUSES_STATE_BRENDAN
+	@ 1: On Truck (and is corresponding gender)
+	@ 2: Met Rival's Mom (and is corresponding gender)
+	@ 3: Entered Hall of Fame
+	@ 4: Completed Lati TV / SS Ticket event
+	@ 5: Exited house after above event
+
+	@ State descriptions for VAR_LITTLEROOT_RIVAL_STATE
+	@ 1: Never occurs
+	@ 2: Entered Rival's bedroom
+	@ 3: Met Rival
+	@ 4: Received Pokedex
+
+
+LittlerootTown_OnTransition: @ 81E7DDB
+	call LittlerootTown_EventScript_EnableLegendaryNPC
+	setflag FLAG_VISITED_LITTLEROOT_TOWN
+	call Common_EventScript_SetupRivalGfxId
+	compare VAR_LITTLEROOT_INTRO_STATE, 2
+	call_if_eq LittlerootTown_EventScript_MoveMomToMaysDoor
+	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
+	@ compare VAR_LITTLEROOT_TOWN_STATE, 3
+	@ call_if_eq LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
+	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
+	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
+	compare VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
+	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
+	compare VAR_OLDALE_RIVAL_STATE, 1
+	call_if_eq LittlerootTown_EventScript_MoveRivalFromOldale
+	compare VAR_LITTLEROOT_RIVAL_STATE, 3
+	call_if_eq LittlerootTown_EventScript_SetRivalLeftForRoute103
+	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
+	call_if_eq LittlerootTown_EventScript_HideMapNamePopup
+	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
+	call_if_eq LittlerootTown_EventScript_LeftLabAfterDexUpgrade
+	end
+
+LittlerootTown_EventScript_LeftLabAfterDexUpgrade:: @ 81E7E45
+	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
+	return
+
+LittlerootTown_EventScript_HideMapNamePopup:: @ 81E7E4B
+	setflag FLAG_HIDE_MAP_NAME_POPUP
+	return
+
+LittlerootTown_EventScript_SetRivalLeftForRoute103:: @ 81E7E4F
+	setflag FLAG_RIVAL_LEFT_FOR_ROUTE103
+	return
+
+LittlerootTown_EventScript_MoveRivalFromOldale:: @ 81E7E53
+	setvar VAR_OLDALE_RIVAL_STATE, 2
+	setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+	return
+
+LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent:: @ 81E7E5C
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 5
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 5
+	return
+
+LittlerootTown_EventScript_MoveMomToMaysDoor:: @ 81E7E67
+	setobjectxyperm LOCALID_MOM, 14, 8
+	return
+
+LittlerootTown_EventScript_SetTwinPos:: @ 81E7E6F
+	compare VAR_LITTLEROOT_TOWN_STATE, 0
+	goto_if_eq LittlerootTown_EventScript_SetTwinGuardingRoutePos
+	setobjectxyperm LOCALID_TWIN, 10, 1
+	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_UP
+	return
+
+LittlerootTown_EventScript_SetTwinGuardingRoutePos:: @ 81E7E86
+	setobjectxyperm LOCALID_TWIN, 7, 2
+	setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_DOWN
+	return
+
+LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos:: @ 81E7E92
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+	setobjectmovementtype LOCALID_MOM, MOVEMENT_TYPE_FACE_DOWN
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_SetMomInFrontOfDoorMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_SetMomInFrontOfDoorFemale
+	return
+
+LittlerootTown_EventScript_SetMomInFrontOfDoorMale:: @ 81E7EB1
+	setobjectxyperm LOCALID_MOM, 5, 9
+	return
+
+LittlerootTown_EventScript_SetMomInFrontOfDoorFemale:: @ 81E7EB9
+	setobjectxyperm LOCALID_MOM, 14, 9
+	return
+
+LittlerootTown_OnFrame: @ 81E7EC1
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 1, LittlerootTown_EventScript_StepOffTruckMale
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_StepOffTruckFemale
+	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_BeginDexUpgradeScene
+	.2byte 0
+
+LittlerootTown_EventScript_StepOffTruckMale:: @ 81E7EDB
+	lockall
+	setvar VAR_0x8004, 5
+	setvar VAR_0x8005, 8
+	call LittlerootTown_EventScript_GoInsideWithMom
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
+	warpsilent MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 255, 8, 8
+	waitstate
+	releaseall
+	end
+
+LittlerootTown_EventScript_StepOffTruckFemale:: @ 81E7EF9
+	lockall
+	setvar VAR_0x8004, 14
+	setvar VAR_0x8005, 8
+	call LittlerootTown_EventScript_GoInsideWithMom
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
+	warpsilent MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 255, 2, 8
+	waitstate
+	releaseall
+	end
+
+LittlerootTown_EventScript_GoInsideWithMom:: @ 81E7F17
+	delay 15
+	playse SE_LEDGE
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerStepOffTruck
+	waitmovement 0
+	opendoor VAR_0x8004, VAR_0x8005
+	waitdooranim
+	addobject LOCALID_MOM
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitHouse
+	waitmovement 0
+	closedoor VAR_0x8004, VAR_0x8005
+	waitdooranim
+	delay 10
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
+	waitmovement 0
+	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerApproachDoor
+	waitmovement 0
+	opendoor VAR_0x8004, VAR_0x8005
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomEnterHouse
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerEnterHouse
+	waitmovement 0
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+	setvar VAR_LITTLEROOT_INTRO_STATE, 3
+	hideobjectat OBJ_EVENT_ID_PLAYER, 0
+	closedoor VAR_0x8004, VAR_0x8005
+	waitdooranim
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	return
+
+LittlerootTown_Movement_MomExitHouse: @ 81E7F98
+	walk_down
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerAtTruck: @ 81E7F9A
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+LittlerootTown_Movement_MomApproachDoor: @ 81E7F9D
+	delay_16
+	delay_8
+	walk_up
+	step_end
+
+LittlerootTown_Movement_MomEnterHouse: @ 81E7FA1
+	walk_up
+	set_invisible
+	step_end
+
+LittlerootTown_Movement_PlayerApproachDoor: @ 81E7FA4
+	delay_16
+	delay_8
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_PlayerEnterHouse: @ 81E7FA9
+	walk_up
+	walk_up
+	step_end
+
+LittlerootTown_Movement_PlayerStepOffTruck: @ 81E7FAC
+	jump_right
+	delay_16
+	delay_16
+	delay_16
+	step_end
+
+LittlerootTown_EventScript_BeginDexUpgradeScene:: @ 81E7FB1
+	lockall
+	playse SE_PIN
+	applymovement LOCALID_BIRCH, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 80
+	msgbox LittlerootTown_Text_BirchSomethingToShowYouAtLab, MSGBOX_DEFAULT
+	closemessage
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
+	delay 20
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 255, 6, 5
+	waitstate
+	releaseall
+	end
+
+LittlerootTown_OnWarp: @ 81E7FE2
+	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade
+	.2byte 0
+
+LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade:: @ 81E7FEC
+	addobject LOCALID_BIRCH
+	addobject LOCALID_RIVAL
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale
+	goto LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale
+	end
+
+LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale:: @ 81E8004
+	setobjectxy LOCALID_RIVAL, 6, 10
+	setobjectxy LOCALID_BIRCH, 5, 10
+	end
+
+LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale:: @ 81E8013
+	setobjectxy LOCALID_RIVAL, 13, 10
+	setobjectxy LOCALID_BIRCH, 14, 10
+	end
+
+LittlerootTown_EventScript_FatMan:: @ 81E8022
+	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
+	end
+
+LittlerootTown_EventScript_Boy:: @ 81E802B
+	msgbox LittlerootTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC
+	end
+
+LittlerootTown_EventScript_Twin:: @ 81E8034
+	lock
+	faceplayer
+	goto_if_set FLAG_ADVENTURE_STARTED, LittlerootTown_EventScript_GoodLuck
+	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_YouSavedBirch
+	compare VAR_LITTLEROOT_TOWN_STATE, 0
+	goto_if_ne LittlerootTown_EventScript_GoSaveBirch
+	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_EventScript_GoSaveBirch:: @ 81E805D
+	special GetPlayerBigGuyGirlString
+	msgbox LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LittlerootTown_EventScript_YouSavedBirch:: @ 81E807A
+	special GetPlayerBigGuyGirlString
+	msgbox LittlerootTown_Text_YouSavedBirch, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_EventScript_GoodLuck:: @ 81E8087
+	msgbox LittlerootTown_Text_GoodLuckCatchingPokemon, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_EventScript_NeedPokemonTriggerLeft:: @ 81E8091
+	lockall
+	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft
+	waitmovement 0
+	call LittlerootTown_EventScript_DangerousWithoutPokemon
+	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinReturnLeft
+	waitmovement 0
+	releaseall
+	end
+
+LittlerootTown_EventScript_DangerousWithoutPokemon:: @ 81E80AD
+	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinPushPlayerFromRoute
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute
+	waitmovement 0
+	msgbox LittlerootTown_Text_DangerousIfYouDontHavePokemon, MSGBOX_DEFAULT
+	closemessage
+	return
+
+LittlerootTown_Movement_TwinApproachPlayerLeft: @ 81E80D1
+	face_right
+	delay_8
+	disable_jump_landing_ground_effect
+	jump_in_place_right
+	delay_8
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_left
+	face_down
+	step_end
+
+LittlerootTown_Movement_TwinPushPlayerFromRoute: @ 81E80DF
+	walk_down
+	step_end
+
+LittlerootTown_Movement_TwinReturnLeft: @ 81E80E1
+	walk_right
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_in_place_fastest_down
+	step_end
+
+LittlerootTown_Movement_PushPlayerBackFromRoute: @ 81E80EB
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+	step_end
+
+LittlerootTown_EventScript_NeedPokemonTriggerRight:: @ 81E80EF
+	lockall
+	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerRight
+	waitmovement 0
+	call LittlerootTown_EventScript_DangerousWithoutPokemon
+	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinReturnRight
+	waitmovement 0
+	releaseall
+	end
+
+LittlerootTown_Movement_TwinApproachPlayerRight: @ 81E810B
+	face_right
+	delay_8
+	disable_jump_landing_ground_effect
+	jump_in_place_right
+	delay_8
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	face_down
+	step_end
+
+LittlerootTown_Movement_TwinReturnRight: @ 81E8118
+	walk_left
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_fastest_down
+	step_end
+
+LittlerootTown_EventScript_GoSaveBirchTrigger:: @ 81E811F
+	lockall
+	applymovement LOCALID_TWIN, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	special GetPlayerBigGuyGirlString
+	msgbox LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	setvar VAR_LITTLEROOT_TOWN_STATE, 2
+	releaseall
+	end
+
+LittlerootTown_EventScript_TownSign:: @ 81E8151
+	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
+	end
+
+LittlerootTown_EventScript_BirchsLabSign:: @ 81E815A
+	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
+	end
+
+LittlerootTown_EventScript_BrendansHouseSign:: @ 81E8163
+	lockall
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_PlayersHouseSignMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_BirchsHouseSignFemale
+	releaseall
+	end
+
+LittlerootTown_EventScript_PlayersHouseSignMale:: @ 81E817D
+	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
+	return
+
+LittlerootTown_EventScript_BirchsHouseSignFemale:: @ 81E8186
+	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
+	return
+
+LittlerootTown_EventScript_MaysHouseSign:: @ 81E818F
+	lockall
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_BirchsHouseSignMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_PlayersHouseSignFemale
+	releaseall
+	end
+
+LittlerootTown_EventScript_BirchsHouseSignMale:: @ 81E81A9
+	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
+	return
+
+LittlerootTown_EventScript_PlayersHouseSignFemale:: @ 81E81B2
+	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
+	return
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger0:: @ 81E81BB
+	lockall
+	setvar VAR_0x8008, 0
+	setobjectxy LOCALID_MOM, 10, 9
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger1:: @ 81E81CE
+	lockall
+	setvar VAR_0x8008, 1
+	setobjectxy LOCALID_MOM, 11, 9
+	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger2:: @ 81E81E1
+	lockall
+	setvar VAR_0x8008, 2
+	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger3:: @ 81E81ED
+	lockall
+	setvar VAR_0x8008, 3
+	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger4:: @ 81E81F9
+	lockall
+	setvar VAR_0x8008, 4
+	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger5:: @ 81E8205
+	lockall
+	setvar VAR_0x8008, 5
+	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger:: @ 81E8211
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_MomNoticePlayerMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_MomNoticePlayerFemale
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsFemale
+	msgbox LittlerootTown_Text_WaitPlayer, MSGBOX_DEFAULT
+	closemessage
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerFemale
+	call LittlerootTown_EventScript_GiveRunningShoes
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeFemale
+	goto LittlerootTown_EventScript_SetReceivedRunningShoes
+	end
+
+LittlerootTown_EventScript_SetHomeDoorCoordsMale:: @ 81E8281
+	setvar VAR_0x8009, 5
+	setvar VAR_0x800A, 8
+	return
+
+LittlerootTown_EventScript_SetHomeDoorCoordsFemale:: @ 81E828C
+	setvar VAR_0x8009, 14
+	setvar VAR_0x800A, 8
+	return
+
+LittlerootTown_EventScript_MomNoticePlayerMale:: @ 81E8297
+	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomNoticePlayerFemale:: @ 81E82A2
+	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerMale:: @ 81E82AD
+	compare VAR_0x8008, 0
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayer0
+	compare VAR_0x8008, 1
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayer1
+	compare VAR_0x8008, 2
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerMale2
+	compare VAR_0x8008, 3
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerMale3
+	compare VAR_0x8008, 4
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerMale4
+	compare VAR_0x8008, 5
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerMale5
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerFemale:: @ 81E82F0
+	compare VAR_0x8008, 0
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayer0
+	compare VAR_0x8008, 1
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayer1
+	compare VAR_0x8008, 2
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerFemale2
+	compare VAR_0x8008, 3
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerFemale3
+	compare VAR_0x8008, 4
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerFemale4
+	compare VAR_0x8008, 5
+	call_if_eq LittlerootTown_EventScript_MomApproachPlayerFemale5
+	return
+
+LittlerootTown_EventScript_MomApproachPlayer0:: @ 81E8333
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayer0
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayer1:: @ 81E8348
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayer1
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerMale2:: @ 81E835D
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerMale2
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerMale3:: @ 81E8372
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerMale3
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerMale4:: @ 81E8387
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerMale4
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerMale5:: @ 81E839C
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerMale5
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerFemale2:: @ 81E83B1
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerFemale2
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerFemale3:: @ 81E83C6
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerFemale3
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerFemale4:: @ 81E83DB
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerFemale4
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomApproachPlayerFemale5:: @ 81E83F0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerFemale5
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomReturnHomeMale:: @ 81E8405
+	compare VAR_0x8008, 0
+	call_if_eq LittlerootTown_EventScript_MomReturnHome0
+	compare VAR_0x8008, 1
+	call_if_eq LittlerootTown_EventScript_MomReturnHome1
+	compare VAR_0x8008, 2
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeMale2
+	compare VAR_0x8008, 3
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeMale3
+	compare VAR_0x8008, 4
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeMale4
+	compare VAR_0x8008, 5
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeMale5
+	return
+
+LittlerootTown_EventScript_MomReturnHomeFemale:: @ 81E8448
+	compare VAR_0x8008, 0
+	call_if_eq LittlerootTown_EventScript_MomReturnHome0
+	compare VAR_0x8008, 1
+	call_if_eq LittlerootTown_EventScript_MomReturnHome1
+	compare VAR_0x8008, 2
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeFemale2
+	compare VAR_0x8008, 3
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeFemale3
+	compare VAR_0x8008, 4
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeFemale4
+	compare VAR_0x8008, 5
+	call_if_eq LittlerootTown_EventScript_MomReturnHomeFemale5
+	return
+
+LittlerootTown_EventScript_MomReturnHome0:: @ 81E848B
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHome0
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomReturnHome1:: @ 81E8496
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHome1
+	waitmovement 0
+	return
+
+LittlerootTown_EventScript_MomReturnHomeMale2:: @ 81E84A1
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeMale2
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_EventScript_MomReturnHomeMale3:: @ 81E84C7
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeMale3
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_EventScript_MomReturnHomeMale4:: @ 81E84ED
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeMale4
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_EventScript_MomReturnHomeMale5:: @ 81E8513
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeMale5
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_EventScript_MomReturnHomeFemale2:: @ 81E8539
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeFemale2
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_EventScript_MomReturnHomeFemale3:: @ 81E855F
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeFemale3
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_EventScript_MomReturnHomeFemale4:: @ 81E8585
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeFemale4
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_EventScript_MomReturnHomeFemale5:: @ 81E85AB
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomReturnHomeFemale5
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	return
+
+LittlerootTown_Movement_MomApproachPlayer0: @ 81E85D1
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayer1: @ 81E85D8
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerMale2: @ 81E85DF
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerMale3: @ 81E85E4
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerMale4: @ 81E85EA
+	walk_right
+	walk_right
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerMale5: @ 81E85ED
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerFemale2: @ 81E85F1
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerFemale3: @ 81E85F5
+	walk_left
+	walk_left
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerFemale4: @ 81E85F8
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+LittlerootTown_Movement_MomApproachPlayerFemale5: @ 81E85FE
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+LittlerootTown_Movement_MomReturnHome0: @ 81E8603
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+LittlerootTown_Movement_MomReturnHome1: @ 81E8609
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeMale2: @ 81E860F
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeMale3: @ 81E8615
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeMale4: @ 81E861C
+	walk_left
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeMale5: @ 81E8620
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeFemale2: @ 81E8625
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeFemale3: @ 81E862A
+	walk_right
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeFemale4: @ 81E862E
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomReturnHomeFemale5: @ 81E8635
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+LittlerootTown_Movement_MomExitThroughDoor: @ 81E863B
+	walk_up
+	step_end
+
+LittlerootTown_EventScript_Mom:: @ 81E863D
+	lock
+	faceplayer
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsFemale
+	call LittlerootTown_EventScript_GiveRunningShoes
+	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement LOCALID_MOM, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	goto LittlerootTown_EventScript_SetReceivedRunningShoes
+	end
+
+LittlerootTown_EventScript_SetReceivedRunningShoes:: @ 81E8686
+	removeobject LOCALID_MOM
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	release
+	end
+
+LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
+	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
+	giveitem ITEM_OLD_ROD
+	giveitem ITEM_COIN_CASE
+	setflag FLAG_RECEIVED_COIN_CASE
+	setflag FLAG_RECEIVED_OLD_ROD
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	@ msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
+	@ closemessage
+	delay 30
+	return
+
+LittlerootTown_Text_DisableShinyRate:
+	.string "是：1/1024\n"
+	.string "否：取消$"		
+
+LittlerootTown_Text_ShinyRates:
+	.string "是：1/250\n"
+	.string "否：1/100$"
+		
+LittlerootTown_Text_EnbableShinyRate:
+	.string "是：闪光率提升选项\n"
+	.string "否：关闭闪光率提升$"	
+
+LittlerootTown_Text_ShinyRate_0:
+	.string "当前闪光率：1/1024\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ShinyRate_1:
+	.string "当前闪光率：1/250\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ShinyRate_2:
+	.string "当前闪光率：1/100\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_Text_ChangePokevial:
+	.string "启用无限宝可梦药水？$"
+		
+LittlerootTown_Text_ChangePokevialEnabled:
+	.string "已启用无限宝可梦药水。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangePokevialDisabled:
+	.string "已关闭无限宝可梦药水。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_Text_ChangeItems:
+	.string "启用护士乔伊的道具？\n"
+	.string "无限大珍珠、文柚果等…$"
+		
+LittlerootTown_Text_ChangeItemsEnabled:
+	.string "已启用乔伊的道具。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeItemsDisabled:
+	.string "已关闭乔伊的道具。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeBerries:
+	.string "启用瞬间树果？$"
+		
+LittlerootTown_Text_ChangeBerriesEnabled:
+	.string "已启用瞬间树果。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeBerriesDisabled:
+	.string "已关闭瞬间树果。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_Text_ChangeUniqueColor:
+	.string "启用个体独特宝可梦？\n"
+	.string "感谢 codes 提供的补丁。$"
+		
+LittlerootTown_Text_ChangeUniqueColorEnabled:
+	.string "已启用个体独特宝可梦。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeUniqueColorDisabled:
+	.string "已关闭个体独特宝可梦。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_Text_ChangeAIcontrolled:
+	.string "启用 AI 控制战斗？$"
+		
+LittlerootTown_Text_ChangeAIcontrolledEnabled:
+	.string "已启用 AI 控制战斗。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeAIcontrolledDisabled:
+	.string "已关闭 AI 控制战斗。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_Text_MakePlaceForSettingsMon:
+	.string "请确保电脑里没有宝可梦\n"
+	.string "位于14号盒第5行第6列。$"
+
+LittlerootTown_Text_ChangeIVSettingsDisabled:
+	.string "已关闭完美个体值。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeIVSettingsEnabled:
+	.string "已启用完美个体值。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_Text_HandleIVSettings:
+	.string "启用完美个体值？\n"
+	.string "训练家不会受影响。$"
+		
+LittlerootTown_Text_EnableIVSettings:
+	.string "确定吗？？？？所有宝可梦的\n"
+	.string "个体值都会被设为31。$"
+		
+LittlerootTown_Text_DisableIVSettings:
+	.string "关闭完美个体值？$"
+
+LittlerootTown_Text_ChangeEVSettingsEnabled:
+	.string "已关闭努力值。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeEVSettingsDisabled:
+	.string "已启用努力值。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_Text_HandleEVSettings:
+	.string "关闭努力值？\n"
+	.string "训练家会受影响。$"
+		
+LittlerootTown_Text_EnableEVSettings:
+	.string "确定吗？？？？所有宝可梦的\n"
+	.string "努力值会被设为0。$"
+
+LittlerootTown_Text_DisableEVSettings:
+	.string "是：允许获得努力值\n"
+	.string "否：取消$"
+
+LittlerootTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
+	.string "妈妈：{PLAYER}，我们到家了，宝贝！\p"
+	.string "和行李一起坐车一定很累吧，\n"
+	.string "搬家卡车里可不好受。\p"
+	.string "好了，这里就是未白镇。\p"
+	.string "你觉得怎么样？\n"
+	.string "这就是我们的新家！\p"
+	.string "虽然有点简朴，但住起来\n"
+	.string "应该很舒服，你觉得呢？\p"
+	.string "而且你还有自己的房间，{PLAYER}！\n"
+	.string "我们进去吧。$"
+
+LittlerootTown_Text_WaitPlayer: @ 81E87E1
+	.string "妈妈：等等，{PLAYER}！$"
+
+LittlerootTown_Text_WearTheseRunningShoes: @ 81E87F0
+	.string "妈妈：{PLAYER}！{PLAYER}！你\n"
+	.string "和小田卷博士打过招呼了吗？\p"
+	.string "他总是在野外跑！\n"
+
+LittlerootTown_Text_ComeHomeIfAnythingHappens: @ 81E8A03
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
+	.string "没想到你已经有了自己的\n"
+	.string "宝可梦了…\l"
+	.string "你爸爸一定会很高兴的。\p"
+	.string "…不过一定要小心。\n"
+	.string "要是出了什么事，就回家来。\p"
+	.string "去吧，去收服它们，宝贝！$"
+
+LittlerootTown_Text_CanUsePCToStoreItems: @ 81E8ACF
+	.string "用电脑可以存放道具\n"
+	.string "和宝可梦。\p"
+	.string "科学的力量真是惊人！$"
+
+LittlerootTown_Text_BirchSpendsDaysInLab: @ 81E8B25
+	.string "小田卷博士整天待在研究所\n"
+	.string "做研究，然后又突然跑到\l"
+	.string "野外继续研究…\p"
+	.string "小田卷博士什么时候\n"
+	.string "才在家呢？$"
+
+LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut: @ 81E8BB8
+	.string "那个、那个、那个！\p"
+	.string "你到外面走进草丛，\n"
+	.string "野生宝可梦就会跳出来！$"
+
+LittlerootTown_Text_DangerousIfYouDontHavePokemon: @ 81E8C07
+	.string "如果没有自己的宝可梦，\n"
+	.string "会很危险的。$"
+
+LittlerootTown_Text_CanYouGoSeeWhatsHappening: @ 81E8C3A
+	.string "那个，你好！\p"
+	.string "外面有可怕的宝可梦！\n"
+	.string "我能听到它们的叫声！\p"
+	.string "我想去看看发生了什么，\n"
+	.string "可是我没有宝可梦…\p"
+	.string "你能替我去看看\n"
+	.string "发生了什么吗？$"
+
+LittlerootTown_Text_YouSavedBirch: @ 81E8CE3
+	.string "你救了小田卷博士！\n"
+	.string "太好了！$"
+
+LittlerootTown_Text_GoodLuckCatchingPokemon: @ 81E8D07
+	.string "你要去捕捉宝可梦吗？\n"
+	.string "祝你好运！$"
+
+LittlerootTown_Text_TownSign: @ 81E8D32
+	.string "未白镇\n"
+	.string "“无法被任何色彩渲染的小镇。”$"
+
+LittlerootTown_Text_ProfBirchsLab: @ 81E8D69
+	.string "小田卷博士的宝可梦研究所$"
+
+LittlerootTown_Text_PlayersHouse: @ 81E8D83
+	.string "{PLAYER}的家$"
+
+LittlerootTown_Text_ProfBirchsHouse: @ 81E8D8E
+	.string "小田卷博士的家$"
+
+LittlerootTown_Text_BirchSomethingToShowYouAtLab: @ 81E8DA2
+	.string "小田卷博士：哎呀，{PLAYER}{KUN}！\n"
+	.string "刚才干得漂亮！\p"
+	.string "我第一次见到你时就知道\n"
+	.string "你与众不同，\l"
+	.string "但没想到这么厉害。\p"
+	.string "我有样东西要给你看。\n"
+	.string "去我的研究所吧。$"
+	
+	
+	
+
+	
+		
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+LittlerootTown_EventScript_PatchSettings_PerfectIV::
+	faceplayer
+	lockall
+	compare VAR_RESULT, 1
+	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
+	setvar VAR_0x8006, 0
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	goto_if_eq LittlerootTown_EventScript_ChangeIVSettingsEnabled
+	compare VAR_0x8005, 1
+	goto_if_ne LittlerootTown_EventScript_ChangeIVSettingsDisabled
+	releaseall
+	end
+	
+LittlerootTown_EventScript_PatchSettings_DisableEV::
+	faceplayer
+	lockall
+	compare VAR_RESULT, 1
+	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
+	setvar VAR_0x8006, 1
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	goto_if_eq LittlerootTown_EventScript_ChangeEVSettingsEnabled
+	compare VAR_0x8005, 1
+	goto_if_ne LittlerootTown_EventScript_ChangeEVSettingsDisabled
+	releaseall
+	end	
+	
+LittlerootTown_EventScript_PatchSettings_UniqueColor::
+	faceplayer
+	lockall
+	compare VAR_RESULT, 1
+	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
+	call LittlerootTown_EventScript_UniqueColor
+	releaseall
+	end
+
+	
+LittlerootTown_EventScript_PatchSettings_AIcontrolled::
+	faceplayer
+	lockall
+	compare VAR_RESULT, 1
+	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
+	call LittlerootTown_EventScript_AIcontrolled
+	releaseall
+	end
+LittlerootTown_EventScript_NoPlaceForSettingsMon::
+	msgbox LittlerootTown_Text_MakePlaceForSettingsMon, MSGBOX_DEFAULT
+	releaseall
+	end
+	
+LittlerootTown_EventScript_PatchSettings_Others::
+	faceplayer
+	lockall
+	compare VAR_RESULT, 1
+	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
+	call LittlerootTown_EventScript_PatchSettings_Berries
+	call LittlerootTown_EventScript_PatchSettings_ShinyRate
+	call LittlerootTown_EventScript_PatchSettings_Pokevial
+	releaseall
+	end
+	
+LittlerootTown_EventScript_HandleIVSettings::
+	msgbox LittlerootTown_Text_HandleIVSettings, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_EventScript_DisableIVSettings
+	compare VAR_RESULT, YES
+	goto_if_eq LittlerootTown_EventScript_EnableIVSettings
+	
+LittlerootTown_EventScript_DisableIVSettings::
+	msgbox LittlerootTown_Text_DisableIVSettings, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_EventScript_PatchSettings_PerfectIV
+	setvar VAR_0x8006, 0 
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	releaseall
+	end
+		
+LittlerootTown_EventScript_EnableIVSettings::
+	msgbox LittlerootTown_Text_EnableIVSettings, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_EventScript_PatchSettings_PerfectIV
+	setvar VAR_0x8006, 0 
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	releaseall
+	end
+		
+LittlerootTown_EventScript_HandleEVSettings::
+	msgbox LittlerootTown_Text_HandleEVSettings, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_EventScript_DisableEVSettings
+	compare VAR_RESULT, YES
+	goto_if_eq LittlerootTown_EventScript_EnableEVSettings
+		
+LittlerootTown_EventScript_DisableEVSettings::
+	msgbox LittlerootTown_Text_DisableEVSettings, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_EventScript_PatchSettings_DisableEV
+	setvar VAR_0x8006, 1 
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	releaseall
+	end
+		
+LittlerootTown_EventScript_EnableEVSettings::
+	msgbox LittlerootTown_Text_EnableEVSettings, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_EventScript_PatchSettings_DisableEV
+	setvar VAR_0x8006, 1 
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats		
+	releaseall
+	end
+
+LittlerootTown_EventScript_ChangeEVSettingsEnabled::
+	msgbox LittlerootTown_Text_ChangeEVSettingsEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES	
+	goto_if_eq LittlerootTown_EventScript_HandleEVSettings
+	releaseall
+	end
+	
+LittlerootTown_EventScript_ChangeEVSettingsDisabled::
+	msgbox LittlerootTown_Text_ChangeEVSettingsDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES	
+	goto_if_eq LittlerootTown_EventScript_HandleEVSettings
+	releaseall
+	end
+	
+LittlerootTown_EventScript_ChangeIVSettingsEnabled::
+	msgbox LittlerootTown_Text_ChangeIVSettingsEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES	
+	goto_if_eq LittlerootTown_EventScript_HandleIVSettings
+	releaseall
+	end
+	
+LittlerootTown_EventScript_ChangeIVSettingsDisabled::
+	msgbox LittlerootTown_Text_ChangeIVSettingsDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES	
+	goto_if_eq LittlerootTown_EventScript_HandleIVSettings
+	releaseall
+	end
+	
+LittlerootTown_EventScript_AIcontrolled::
+	setvar VAR_0x8006, 7
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeAIcontrolledEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeAIcontrolledDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeAIcontrolledEnabled::
+	msgbox LittlerootTown_Text_ChangeAIcontrolledEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeAIcontrolled
+	return
+
+LittlerootTown_EventScript_ChangeAIcontrolledDisabled::
+	msgbox LittlerootTown_Text_ChangeAIcontrolledDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeAIcontrolled
+	return
+
+LittlerootTown_EventScript_ChangeAIcontrolled::
+	msgbox LittlerootTown_Text_ChangeAIcontrolled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableAIcontrolled
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableAIcontrolled
+	return	
+
+LittlerootTown_EventScript_EnableAIcontrolled::
+	setvar VAR_0x8006, 7
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisableAIcontrolled::
+	setvar VAR_0x8006, 7
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return
+
+LittlerootTown_EventScript_UniqueColor::
+	setvar VAR_0x8006, 6
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeUniqueColorEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeUniqueColorDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeUniqueColorEnabled::
+	msgbox LittlerootTown_Text_ChangeUniqueColorEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeUniqueColor
+	return
+
+LittlerootTown_EventScript_ChangeUniqueColorDisabled::
+	msgbox LittlerootTown_Text_ChangeUniqueColorDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeUniqueColor
+	return
+
+LittlerootTown_EventScript_ChangeUniqueColor::
+	msgbox LittlerootTown_Text_ChangeUniqueColor, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableUniqueColor
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableUniqueColor
+	return
+		
+LittlerootTown_EventScript_EnableUniqueColor::
+	setvar VAR_0x8006, 6
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisableUniqueColor::
+	setvar VAR_0x8006, 6
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return
+
+LittlerootTown_EventScript_PatchSettings_Berries::
+	setvar VAR_0x8006, 5
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeBerriesEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeBerriesDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeBerriesEnabled::
+	msgbox LittlerootTown_Text_ChangeBerriesEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeBerries
+	return
+
+LittlerootTown_EventScript_ChangeBerriesDisabled::
+	msgbox LittlerootTown_Text_ChangeBerriesDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeBerries
+	return
+
+LittlerootTown_EventScript_ChangeBerries::
+	msgbox LittlerootTown_Text_ChangeBerries, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableBerries
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableBerries
+	return
+
+LittlerootTown_EventScript_EnableBerries::
+	setvar VAR_0x8006, 5 
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisableBerries::
+	setvar VAR_0x8006, 5
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return
+
+LittlerootTown_EventScript_PatchSettings_Items::
+	setvar VAR_0x8006, 4
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeItemsEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeItemsDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeItemsEnabled::
+	msgbox LittlerootTown_Text_ChangeItemsEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeItems
+	return
+
+LittlerootTown_EventScript_ChangeItemsDisabled::
+	msgbox LittlerootTown_Text_ChangeItemsDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeItems
+	return
+
+LittlerootTown_EventScript_ChangeItems::
+	msgbox LittlerootTown_Text_ChangeItems, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableItems
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableItems
+	return
+
+LittlerootTown_EventScript_EnableItems::
+	setvar VAR_0x8006, 4 
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisableItems::
+	setvar VAR_0x8006, 4
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return			
+		
+LittlerootTown_EventScript_PatchSettings_Pokevial::
+	setvar VAR_0x8006, 3
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangePokevialEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangePokevialDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangePokevialEnabled::
+	msgbox LittlerootTown_Text_ChangePokevialEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangePokevial
+	return
+
+LittlerootTown_EventScript_ChangePokevialDisabled::
+	msgbox LittlerootTown_Text_ChangePokevialDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangePokevial
+	return
+
+LittlerootTown_EventScript_ChangePokevial::
+	msgbox LittlerootTown_Text_ChangePokevial, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnablePokevial
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisablePokevial
+	return
+
+LittlerootTown_EventScript_EnablePokevial::
+	setvar VAR_0x8006, 3 
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisablePokevial::
+	setvar VAR_0x8006, 3
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_ShinyRate_0::
+	msgbox LittlerootTown_Text_ShinyRate_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_HandleShinyRate
+	return
+
+LittlerootTown_EventScript_ShinyRate_1::
+	msgbox LittlerootTown_Text_ShinyRate_1, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_HandleShinyRate
+	return
+
+LittlerootTown_EventScript_ShinyRate_2::
+	msgbox LittlerootTown_Text_ShinyRate_2, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_HandleShinyRate
+	return
+	
+		
+LittlerootTown_EventScript_HandleShinyRate::
+	setvar VAR_0x8004, 0
+	msgbox LittlerootTown_Text_EnbableShinyRate, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableShinyRate
+	compare VAR_0x8004, 0
+	call_if_eq LittlerootTown_EventScript_DisableShinyRate
+	return
+
+LittlerootTown_EventScript_EnableShinyRate::
+	setvar VAR_0x8004, 1
+	msgbox LittlerootTown_Text_ShinyRates, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableShinyRate_1
+	compare VAR_RESULT, NO
+	call_if_eq LittlerootTown_EventScript_EnableShinyRate_2
+	return
+
+LittlerootTown_EventScript_DisableShinyRate::
+	msgbox LittlerootTown_Text_DisableShinyRate, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableShinyRate_0
+	return
+			
+		
+LittlerootTown_EventScript_PatchSettings_ShinyRate::
+	setvar VAR_0x8006, 2
+	special GetSettingsMonStats
+	compare VAR_0x8005,1
+	call_if_lt LittlerootTown_EventScript_ShinyRate_0
+	compare VAR_0x8005,1
+	call_if_eq LittlerootTown_EventScript_ShinyRate_1
+	compare VAR_0x8005,1
+	call_if_gt LittlerootTown_EventScript_ShinyRate_2
+	return
+	
+LittlerootTown_EventScript_EnableShinyRate_0::
+	setvar VAR_0x8006, 2 
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_EnableShinyRate_1::
+	setvar VAR_0x8006, 2
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+
+LittlerootTown_EventScript_EnableShinyRate_2::
+	setvar VAR_0x8006, 2
+	setvar VAR_0x8007, 2
+	special SetSettingsMonStats
+	return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LittlerootTown_EventScript_PatchSettings_Random::
+	faceplayer
+	lockall
+	compare VAR_RESULT, 1
+	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
+	call LittlerootTown_EventScript_PatchSettings_Starters
+	call LittlerootTown_EventScript_PatchSettings_Legends
+	@call LittlerootTown_EventScript_PatchSettings_Unobtainable
+	call LittlerootTown_EventScript_PatchSettings_AltForms
+	releaseall
+	end
+
+LittlerootTown_Text_ChangeLegends:
+	.string "启用传说/幻之宝可梦？\n"
+	.string "这会影响随机初始/蛋$"
+		
+LittlerootTown_Text_ChangeLegendsEnabled:
+	.string "已启用传说/幻之宝可梦。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeLegendsDisabled:
+	.string "已关闭传说/幻之宝可梦。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_EventScript_PatchSettings_Legends::
+	setvar VAR_0x8006, 8
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeLegendsEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeLegendsDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeLegendsEnabled::
+	msgbox LittlerootTown_Text_ChangeLegendsEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeLegends
+	return
+
+LittlerootTown_EventScript_ChangeLegendsDisabled::
+	msgbox LittlerootTown_Text_ChangeLegendsDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeLegends
+	return
+
+LittlerootTown_EventScript_ChangeLegends::
+	msgbox LittlerootTown_Text_ChangeLegends, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableLegends
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableLegends
+	return
+
+LittlerootTown_EventScript_EnableLegends::
+	setvar VAR_0x8006, 8 
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+	
+LittlerootTown_EventScript_DisableLegends::
+	setvar VAR_0x8006, 8
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return
+	
+LittlerootTown_Text_ChangeStarters:
+	.string "启用随机初始宝可梦？$"
+		
+LittlerootTown_Text_ChangeStartersEnabled:
+	.string "已启用随机初始宝可梦。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeStartersDisabled:
+	.string "已关闭随机初始宝可梦。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_EventScript_PatchSettings_Starters::
+	setvar VAR_0x8006, 9
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeStartersEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeStartersDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeStartersEnabled::
+	msgbox LittlerootTown_Text_ChangeStartersEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeStarters
+	return
+
+LittlerootTown_EventScript_ChangeStartersDisabled::
+	msgbox LittlerootTown_Text_ChangeStartersDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeStarters
+	return
+
+LittlerootTown_EventScript_ChangeStarters::
+	msgbox LittlerootTown_Text_ChangeStarters, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableStarters
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableStarters
+	return
+
+LittlerootTown_EventScript_EnableStarters::
+	setvar VAR_0x8006, 9 
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisableStarters::
+	setvar VAR_0x8006, 9
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+LittlerootTown_Text_ChangeUnobtainable:
+	.string "启用无法获得的宝可梦？$"
+		
+LittlerootTown_Text_ChangeUnobtainableEnabled:
+	.string "已启用无法获得的宝可梦。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeUnobtainableDisabled:
+	.string "已关闭无法获得的宝可梦。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_EventScript_PatchSettings_Unobtainable::
+	setvar VAR_0x8006, 10
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeUnobtainableEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeUnobtainableDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeUnobtainableEnabled::
+	msgbox LittlerootTown_Text_ChangeUnobtainableEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeUnobtainable
+	return
+
+LittlerootTown_EventScript_ChangeUnobtainableDisabled::
+	msgbox LittlerootTown_Text_ChangeUnobtainableDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeUnobtainable
+	return
+
+LittlerootTown_EventScript_ChangeUnobtainable::
+	msgbox LittlerootTown_Text_ChangeUnobtainable, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableUnobtainable
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableUnobtainable
+	return
+
+LittlerootTown_EventScript_EnableUnobtainable::
+	setvar VAR_0x8006, 10
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisableUnobtainable::
+	setvar VAR_0x8006, 10
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+LittlerootTown_Text_ChangeAltForms:
+	.string "启用其他形态？\n"
+	.string "（阿罗拉、伽勒尔、装饰等）$"
+		
+LittlerootTown_Text_ChangeAltFormsEnabled:
+	.string "已启用其他形态。\n"
+	.string "要修改这个设置吗？$"
+
+LittlerootTown_Text_ChangeAltFormsDisabled:
+	.string "已关闭其他形态。\n"
+	.string "要修改这个设置吗？$"
+		
+LittlerootTown_EventScript_PatchSettings_AltForms::
+	setvar VAR_0x8006, 11
+	special GetSettingsMonStats
+	compare VAR_0x8005, 1
+	call_if_eq LittlerootTown_EventScript_ChangeAltFormsEnabled
+	compare VAR_0x8005, 1
+	call_if_ne LittlerootTown_EventScript_ChangeAltFormsDisabled
+	return	
+	
+LittlerootTown_EventScript_ChangeAltFormsEnabled::
+	msgbox LittlerootTown_Text_ChangeAltFormsEnabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeAltForms
+	return
+
+LittlerootTown_EventScript_ChangeAltFormsDisabled::
+	msgbox LittlerootTown_Text_ChangeAltFormsDisabled, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_ChangeAltForms
+	return
+
+LittlerootTown_EventScript_ChangeAltForms::
+	msgbox LittlerootTown_Text_ChangeAltForms, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LittlerootTown_EventScript_EnableAltForms
+	compare VAR_RESULT, YES
+	call_if_ne LittlerootTown_EventScript_DisableAltForms
+	return
+
+LittlerootTown_EventScript_EnableAltForms::
+	setvar VAR_0x8006, 11
+	setvar VAR_0x8007, 1
+	special SetSettingsMonStats
+	return
+		
+LittlerootTown_EventScript_DisableAltForms::
+	setvar VAR_0x8006, 11
+	setvar VAR_0x8007, 0
+	special SetSettingsMonStats
+	return	
+`
+
+script LittlerootTown_EventScript_LegendaryNPC {
+    lock
+    faceplayer
+	if (!flag(FLAG_GOT_LEGENDARY_NPC_ITEMS)){
+		checkSaveblockValue(SAVEBLOCK_ENABLE_LEGENDARY)
+		if(var(VAR_RESULT) == TRUE && !flag(FLAG_SYS_GAME_CLEAR)){
+			msgbox(format("既然你在玩随机模式，这些传说宝可梦道具就都给你吧！"))
+		}
+		else{
+			msgbox(format("恭喜你成为冠军！你的努力没有白费。我等这一天已经很久了，终于可以把这些道具交给值得信赖的人。"))
+		}
+		additem(ITEM_GRACIDEA)
+		additem(ITEM_REVEAL_GLASS)
+		additem(ITEM_DNA_SPLICERS)
+		additem(ITEM_PRISON_BOTTLE)
+		additem(ITEM_N_LUNARIZER)
+		additem(ITEM_N_SOLARIZER)
+		additem(ITEM_FLAME_PLATE)
+		additem(ITEM_SPLASH_PLATE)
+		additem(ITEM_ZAP_PLATE)
+		additem(ITEM_MEADOW_PLATE)
+		additem(ITEM_ICICLE_PLATE)
+		additem(ITEM_FIST_PLATE)
+		additem(ITEM_TOXIC_PLATE)
+		additem(ITEM_EARTH_PLATE)
+		additem(ITEM_SKY_PLATE)
+		additem(ITEM_MIND_PLATE)
+		additem(ITEM_INSECT_PLATE)
+		additem(ITEM_STONE_PLATE)
+		additem(ITEM_SPOOKY_PLATE)
+		additem(ITEM_DRACO_PLATE)
+		additem(ITEM_DREAD_PLATE)
+		additem(ITEM_IRON_PLATE)
+		additem(ITEM_PIXIE_PLATE)
+		additem(ITEM_FIRE_MEMORY)
+		additem(ITEM_WATER_MEMORY)
+		additem(ITEM_ELECTRIC_MEMORY)
+		additem(ITEM_GRASS_MEMORY)
+		additem(ITEM_ICE_MEMORY)
+		additem(ITEM_FIGHTING_MEMORY)
+		additem(ITEM_POISON_MEMORY)
+		additem(ITEM_GROUND_MEMORY)
+		additem(ITEM_FLYING_MEMORY)
+		additem(ITEM_PSYCHIC_MEMORY)
+		additem(ITEM_BUG_MEMORY)
+		additem(ITEM_ROCK_MEMORY)
+		additem(ITEM_GHOST_MEMORY)
+		additem(ITEM_DRAGON_MEMORY)
+		additem(ITEM_DARK_MEMORY)
+		additem(ITEM_STEEL_MEMORY)
+		additem(ITEM_FAIRY_MEMORY)
+		additem(ITEM_SHOCK_DRIVE)
+		additem(ITEM_BURN_DRIVE)
+		additem(ITEM_CHILL_DRIVE)
+		additem(ITEM_DOUSE_DRIVE)
+		additem(ALL_LEGENDARY_SAGE_ITEMS)
+		playfanfare(MUS_OBTAIN_ITEM)
+		msgbox(format("{PLAYER}从贤者那里得到了传说神器！"))
+		waitmessage
+		waitfanfare
+		setflag(FLAG_GOT_LEGENDARY_NPC_ITEMS)
+		msgbox(format("曾经游荡在这片土地上的传说宝可梦，因你而回归了。\p"
+			"清光一条道路上的所有对手，\n这些传说宝可梦才会出现。\p"
+			"有不明白的，就问野外的同伴，\n他们会告诉你该知道的一切。\p"
+			"祝你好运，冠军，我们期待你的成功！"))
+	}
+	else{
+		msgbox(format("你需要什么吗？"), MSGBOX_DEFAULT)
+		multichoice2(1, 1, LittlerootTown_EventScript_LegendaryNPC_Options)
+		switch (var(VAR_RESULT)) {
+			case 0:
+				msgbox(format("曾经游荡在这片土地上的传说宝可梦\n，因你而回归了。\p"
+			"清光一条道路上的所有对手，\n这些传说宝可梦才会出现。\p"
+			"有不明白的，就问野外的同伴，\n他们会告诉你该知道的一切。\p"
+			"祝你好运，冠军，我们期待你的成功！"))
+			case MULTI_B_PRESSED:
+			default:
+				msgbox("回头见。")
+		}
+    }
+    release
+    end
+}
+
+text LittlerootTown_EventScript_LegendaryNPC_Options{
+    "请再给我讲一遍$"
+    "算了$"
+    "$"
+}
+
+script LittlerootTown_EventScript_TutorialNPC{
+    lock
+    faceplayer
+	msgbox(format("你好{PLAYER}，我可以告诉你Elite Redux有哪些改动。"))
+	goto(LittlerootTown_EventScript_TutorialNPC2)
+    release
+    end
+}
+
+script LittlerootTown_EventScript_TutorialNPC2{
+	messageinstant(format("你想了解什么？"))
+	scrollingmultichoice2(0, 0, 0, 6, TRUE)
+	switch (var(VAR_RESULT)) {
+		case 0:// Nurse Joy
+			msgbox(format("在任何宝可梦中心找护士乔伊，她会给你以下东西：\p"
+                          "糖果盒、宝可梦搜寻器、招式机盒、\n全部招式机与秘传机、对战道具、\p各种精灵球、各种树果、\n各种属性宝石等。\p"
+                          "每次和她说话，所有道具都会补满。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+			case 1:// Read the Wiki
+				msgbox(format("需要帮助？Wiki里有答案！\p"
+                          "从开始菜单进入，选择“百科”。\p"
+                          "里面有特性、招式、\n道具和玩法提示！"))
+				goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 2:// Pokémon changes
+			msgbox(format("几乎所有宝可梦都被强化得更有趣、更好用了。\p"
+                          "一些宝可梦被重做了：\n比如阿柏怪改成了毒/恶，\p暴鲤龙是水/龙且拥有飘浮。\p" 
+						  "白海狮的种族值提升不少，\n攻守都好用了。\p"
+                          "想看更多详情，请查阅在线图鉴。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 3:// Ability changes
+			msgbox(format("现在每只宝可梦最多同时拥有四个特性。\p"
+						  "最多有三个固定特性，\n称为“先天特性”。\p"
+						  "新增了 110 多种特性，\n许多旧特性也有了新效果。\p比如冰冻之躯现在每回合回复 1/8 H\nP，健壮胸肌则相当于硬爪。\p"
+                          "想看更多详情，请查阅在线图鉴。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 4:// Move changes
+			msgbox(format("许多招式被强化了（主要是命中率，有些改动更大）。\p"
+                          "地裂这类一击必杀招式不再必杀，\n改为 80% 命中、约 120 点伤害。\p"
+                          "更多招式会受到特定特性的影响（比\n如超级发射器）。\p"
+                          "想看更多详情，请查阅在线图鉴。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 5:// Quality of Life
+			msgbox(format("你现在有了便携电脑（开始菜单）。四天王战中禁用。\p"
+                          "自动奔跑、常驻驱虫喷雾等都能在设\n置里开关。\p"
+						  "不用再教秘传机，任何宝可梦都能飞\n往去过的地方。\p"
+						  "道具可以登记到新的列表菜单（按 L\n 打开列表）。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 6:// Battle changes
+			msgbox(format("招式与特性引发的天气现在持续8回合（带天气岩石为12回合）。\p"
+                          "冰属性在冰雹中防御提升 50%。\n沙暴仍是特防提升 50%。\p"
+                          "所有宝可梦默认个体值全 31，\n用铁丸可以把速度设为 0。\p"
+						  "进阶和精英模式下有睡眠条款：\n不能同时让两只敌方宝可梦睡眠。\p"
+						  "所有招式的 PP 都已最大化。\n对战后携带的道具会保留。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 7:// Battle UI changes
+			msgbox(format("战斗中按L可查看招式威力、命中率与是否接触。\p"
+                          "攻击前就能看到招式的效果，\n连飘浮、食草这类特性也会计入！\p"
+                          "本系加成（50% 同属性加成）\n会用加号标出。\p"
+						  "现在可以放弃训练家对战，\n会被送回最近去过的宝可梦中心。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 8:// Catching Pokémon
+			msgbox(format("护士乔伊会给你每种精灵球各一个。所有球捕捉率都是100%。\p"
+                          "护士乔伊会给你升级版搜寻器：\n可以直接搜索想要的宝可梦，\p靠近时也不用慢慢走。\p"
+						  "闪光率可以大幅提升，最高到 1/5。\p"
+						  "从第一世代到第九世代，\n几乎所有宝可梦都能捕获。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 9:// Switch abilities 
+			msgbox(format("可以在宝可梦摘要页直接切换特性。\p"
+                          "有的宝可梦只有一个特性，\n有的最多三个。\p"
+                          "每只宝可梦最多有三个固定先天特性\n，先天特性无法更改。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 10:// Switch nature
+			msgbox(format("可以在宝可梦摘要页直接切换性格。\p"
+                          "性格会让一项种族值提升 10%，\n另一项降低 10%。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 11:// Switch Hidden Power
+			msgbox(format("把护士乔伊给你的属性宝石用在任意宝可梦身上就行。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 12:// Set EVs
+			msgbox(format("可以在摘要页直接设定努力值。再也不用刷了！\p"
+                          "单项努力值最多 252，总和最多 510。\p"
+                          "多数情况下，把 252 点投给最强的\n两项就好。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 13:// Learn moves
+			msgbox(format("可以在队伍菜单里直接学会新招式，但某些招式仍需升级才能学。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 14:// Auto-Healing
+			msgbox(format("每场战斗前全队都会回复。\p"
+                          "这也是为了防止提前烧伤或中毒 ;-)"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 15:// Leveling
+			msgbox(format("新增了重要道具：糖果盒。可以轻松升级。\p"
+                          "因为有等级上限和自动等级缩放，\n不用担心练过头。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 16:// Evolutions
+			msgbox(format("所有进化道具都能在友好商店买到。\p"
+                          "想看某只宝可梦怎么进化，\n可以查游戏内或在线图鉴。"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 17:// Exit
+		case MULTI_B_PRESSED:
+		default:
+			msgbox("回头见。")
+	}
+    release
+    end
+}
+
+script PKMN_Center_Move_Tutor{
+	lockall
+	messageinstant("How can I help you today?")
+	multichoice2(0, 0, MultiChoice_Move_Tutor_NPC)
+	switch(var(VAR_RESULT)){
+		case 0:
+			closemessage
+			goto(PKMN_Center_EventScript_DayNightToggle)
+		break
+		case 1:
+			closemessage
+			goto(PKMN_Center_EventScript_RandomizerToggle)
+		break
+		case 2:
+			closemessage
+			goto(PKMN_Center_NameRater_EventScript)
+		break
+		case 3:
+			closemessage
+			goto(PKMN_Center_EventScript_Mystery_Gift)
+		break
+		case 4:
+			closemessage
+			goto(PKMN_Center_Change_Difficulty)
+		break
+		case 5:
+			closemessage
+			goto(PKMN_Center_Change_Season)
+		break
+		case MULTI_B_PRESSED:
+		default:
+		case 6:
+			closemessage
+			goto(PKMN_Center_Move_Tutor_General_Exit)
+		break
+	}
+}
+
+script PKMN_Center_Change_Difficulty{
+	lockall
+	messageinstant("What do you want to do with it?")
+	multichoice2(0, 0, MultiChoice_Difficulty_Change)
+	switch(var(VAR_RESULT)){
+		case 0:
+			closemessage
+			goto(PKMN_Center_EventScript_Up_Difficulty)
+		break
+		case 1:
+			closemessage
+			goto(PKMN_Center_EventScript_Lower_Difficulty)
+		break
+		case MULTI_B_PRESSED:
+		default:
+		case 6:
+			closemessage
+			goto(PKMN_Center_Move_Tutor)
+		break
+	}
+}
+
+script PKMN_Center_Change_Season{
+	lockall
+	messageinstant("Please chose the season you like\nthe best.")
+	multichoice2(0, 0, MultiChoice_Season_Change)
+	switch(var(VAR_RESULT)){
+		case 0:
+			//Spring
+			clearflag(FLAG_AUTOMATIC_SEASON)
+			toggleSaveblock(SAVEBLOCK_SEASON, SEASON_SPRING)
+			playfanfare(MUS_OBTAIN_ITEM)
+			message(format("季节变成了春天！"))
+			waitmessage
+			waitfanfare
+		break
+		case 1:
+			//Spring
+			clearflag(FLAG_AUTOMATIC_SEASON)
+			toggleSaveblock(SAVEBLOCK_SEASON, SEASON_SUMMER)
+			playfanfare(MUS_OBTAIN_ITEM)
+			message(format("季节变成了夏天！"))
+			waitmessage
+			waitfanfare
+		break
+		case 2:
+			//Spring
+			clearflag(FLAG_AUTOMATIC_SEASON)
+			toggleSaveblock(SAVEBLOCK_SEASON, SEASON_AUTUMN)
+			playfanfare(MUS_OBTAIN_ITEM)
+			message(format("季节变成了秋天！"))
+			waitmessage
+			waitfanfare
+		break
+		case 3:
+			//Spring
+			clearflag(FLAG_AUTOMATIC_SEASON)
+			toggleSaveblock(SAVEBLOCK_SEASON, SEASON_WINTER)
+			playfanfare(MUS_OBTAIN_ITEM)
+			message(format("季节变成了冬天！"))
+			waitmessage
+			waitfanfare
+		break
+		case 4:
+			//Spring
+			setflag(FLAG_AUTOMATIC_SEASON)
+			playfanfare(MUS_OBTAIN_ITEM)
+			message(format("季节将自动设置！"))
+			waitmessage
+			waitfanfare
+		break
+		case MULTI_B_PRESSED:
+		default:
+		case 6:
+			closemessage
+			goto(PKMN_Center_Move_Tutor)
+		break
+	}
+}
+
+script PKMN_Center_EventScript_DayNightToggle{
+	msgbox("要反转昼夜吗？\n"
+           "仅用于浅滩洞穴。$", MSGBOX_YESNO)
+	switch(var(VAR_RESULT)){
+		case YES:
+			if(flag(FLAG_IS_DAYNIGHT_INVERTED)){
+				clearflag(FLAG_IS_DAYNIGHT_INVERTED)
+			}
+			else{
+				setflag(FLAG_IS_DAYNIGHT_INVERTED)
+			}
+			playfanfare(MUS_OBTAIN_ITEM)
+			message(format("昼夜已经反转。"))
+			waitmessage
+			waitfanfare
+		break
+		case NO:
+		case MULTI_B_PRESSED:
+		default:
+			goto(PKMN_Center_Move_Tutor)
+		break
+	}
+    release
+    end
+}
+
+script PKMN_Center_EventScript_RandomizerToggle{
+	checkSaveblockValue(SAVEBLOCK_RANDOMIZER)
+	if(var(VAR_RESULT) == TRUE){
+		msgbox(format("要关闭野外遭遇的随机化吗？"), MSGBOX_YESNO)
+		switch(var(VAR_RESULT)){
+			case YES:
+				checkSaveblockValue(SAVEBLOCK_RANDOMIZER)
+				if(var(VAR_RESULT) == TRUE){
+					toggleSaveblock(SAVEBLOCK_RANDOMIZER, FALSE)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("随机化已关闭。"))
+				}
+				waitmessage
+				waitfanfare
+			break
+			case NO:
+			case MULTI_B_PRESSED:
+			default:
+				goto(PKMN_Center_Move_Tutor)
+			break
+		}
+	}
+	else{
+		msgbox(format("随机化已经关闭了。$"), MSGBOX_NPC)
+		waitmessage
+		goto(PKMN_Center_Move_Tutor)
+	}
+    release
+    end
+}
+
+script PKMN_Center_EventScript_Lower_Difficulty{
+	checkSaveblockValue(SAVEBLOCK_DIFFICULTY)
+	if(var(VAR_RESULT) != DIFFICULTY_EASY){
+		msgbox(format("要降低难度吗？"), MSGBOX_YESNO)
+		switch(var(VAR_RESULT)){
+			case YES:
+				checkSaveblockValue(SAVEBLOCK_DIFFICULTY)
+				if(var(VAR_RESULT) == DIFFICULTY_HELL){
+					//Hell Mode -> Elite Mode
+					//toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_ELITE)
+					//playfanfare(MUS_OBTAIN_ITEM)
+					//message(format("难度变为精英。"))
+					msgbox(format("无法关闭地狱模式难度！\n如果觉得太难，\l请重新开始存档。"), MSGBOX_NPC)
+				}
+				elif(var(VAR_RESULT) == DIFFICULTY_ELITE){
+					//Elite Mode -> Ace Mode
+					toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_ACE)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("难度变为进阶。"))
+					waitmessage
+					waitfanfare
+				}
+				else{
+					//Ace Mode -> Easy Mode
+					toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_EASY)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("难度变为简单。"))
+					waitmessage
+					waitfanfare
+				}
+			break
+			case NO:
+			case MULTI_B_PRESSED:
+			default:
+				goto(PKMN_Center_Change_Difficulty)
+			break
+		}
+	}
+	else{
+		msgbox(format("已经是最低难度了，练练吧！"))
+		goto(PKMN_Center_Move_Tutor)
+	}
+    release
+    end
+}
+
+script PKMN_Center_EventScript_Up_Difficulty{
+	checkSaveblockValue(SAVEBLOCK_DIFFICULTY)
+	if(var(VAR_RESULT) != DIFFICULTY_HELL){
+		msgbox(format("要提升难度吗？"), MSGBOX_YESNO)
+		switch(var(VAR_RESULT)){
+			case YES:
+				checkSaveblockValue(SAVEBLOCK_DIFFICULTY)
+				if(var(VAR_RESULT) == DIFFICULTY_EASY){
+					//Easy Mode -> Ace Mode
+					toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_ACE)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("难度变为进阶。"))
+					setflag(FLAG_SYS_UPPED_DIFFICULTY)
+					waitmessage
+					waitfanfare
+				}
+				elif(var(VAR_RESULT) == DIFFICULTY_ACE){
+					//Ace Mode -> Elite Mode
+					toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_ELITE)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("难度变为精英。"))
+					setflag(FLAG_SYS_UPPED_DIFFICULTY)
+					waitmessage
+					waitfanfare
+				}
+				else{
+					//Elite Mode -> Hell Mode
+					//toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_HELL)
+					//playfanfare(MUS_OBTAIN_ITEM)
+					//message(format("难度变为地狱。"))
+					msgbox(format("不重新开始存档\n就无法进入地狱难度！"), MSGBOX_NPC)
+				}
+			break
+			case NO:
+			case MULTI_B_PRESSED:
+			default:
+				goto(PKMN_Center_Change_Difficulty)
+			break
+		}
+	}
+	else{
+		msgbox(format("已经是最高难度了，出去走走吧！"))
+		goto(PKMN_Center_Move_Tutor)
+	}
+    release
+    end
+}
+text MultiChoice_Move_Tutor_NPC{
+    "反转昼夜$"
+    "关闭随机化$"
+    "评价昵称$"
+    "神秘礼物$"
+    "更改难度$"
+    "更改季节$"
+    "$"
+}
+
+text MultiChoice_Difficulty_Change{
+    "提升难度$"
+    "降低难度$"
+    "退出$"
+    "$"
+}
+
+text MultiChoice_Season_Change{
+    "春天$"
+    "夏天$"
+    "秋天$"
+    "冬天$"
+    "自动$"
+    "退出$"
+    "$"
+}
+
+text Text_Pokemart_Script_No_Badges{
+    format("抱歉，你还没有徽章，我不能卖东西给你。")
+}
+
+script LittlerootTown_EventScript_EnableLegendaryNPC{
+	setflag(FLAG_REMOVE_LEGENDARY_NPC)
+	checkSaveblockValue(SAVEBLOCK_ENABLE_LEGENDARY)
+	if(var(VAR_RESULT) == TRUE || flag(FLAG_SYS_GAME_CLEAR)){
+		clearflag(FLAG_REMOVE_LEGENDARY_NPC) //Adds the NPC
+	}
+	return
+}

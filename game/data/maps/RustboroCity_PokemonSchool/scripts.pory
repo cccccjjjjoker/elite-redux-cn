@@ -1,0 +1,334 @@
+raw `
+RustboroCity_PokemonSchool_MapScripts:: @ 8213EA8
+	.byte 0
+
+RustboroCity_PokemonSchool_EventScript_Blackboard:: @ 8213EA9
+	lockall
+	msgbox RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
+	end
+
+RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic:: @ 8213EB8
+	message RustboroCity_PokemonSchool_Text_ReadWhichTopic
+	waitmessage
+	multichoicegrid 8, 1, MULTI_STATUS_INFO, 3, FALSE
+	switch VAR_RESULT
+	case 0, RustboroCity_PokemonSchool_EventScript_Poison
+	case 1, RustboroCity_PokemonSchool_EventScript_Paralysis
+	case 2, RustboroCity_PokemonSchool_EventScript_Sleep
+	case 3, RustboroCity_PokemonSchool_EventScript_Burn
+	case 4, RustboroCity_PokemonSchool_EventScript_Freeze
+	case 5, RustboroCity_PokemonSchool_EventScript_ExitTopicSelect
+	case MULTI_B_PRESSED, RustboroCity_PokemonSchool_EventScript_ExitTopicSelect
+	end
+
+RustboroCity_PokemonSchool_EventScript_Poison:: @ 8213F17
+	msgbox RustboroCity_PokemonSchool_Text_ExplainPoison, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
+	end
+
+RustboroCity_PokemonSchool_EventScript_Paralysis:: @ 8213F25
+	msgbox RustboroCity_PokemonSchool_Text_ExplainParalysis, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
+	end
+
+RustboroCity_PokemonSchool_EventScript_Sleep:: @ 8213F33
+	msgbox RustboroCity_PokemonSchool_Text_ExplainSleep, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
+	end
+
+RustboroCity_PokemonSchool_EventScript_Burn:: @ 8213F41
+	msgbox RustboroCity_PokemonSchool_Text_ExplainBurn, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
+	end
+
+RustboroCity_PokemonSchool_EventScript_Freeze:: @ 8213F4F
+	msgbox RustboroCity_PokemonSchool_Text_ExplainFreeze, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
+	end
+
+RustboroCity_PokemonSchool_EventScript_ExitTopicSelect:: @ 8213F5D
+	releaseall
+	end
+
+RustboroCity_PokemonSchool_EventScript_GameboyKid1:: @ 8213F5F
+	msgbox RustboroCity_PokemonSchool_Text_TradingRightNow, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_GameboyKid2:: @ 8213F68
+	msgbox RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_RichBoy:: @ 8213F71
+	msgbox RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_Lass:: @ 8213F7A
+	msgbox RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_SchoolKidM:: @ 8213F83
+	msgbox RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_StudentNotebook:: @ 8213F8C
+	msgbox RustboroCity_PokemonSchool_Text_StudentsNotes, MSGBOX_SIGN
+	end
+
+RustboroCity_PokemonSchool_EventScript_Teacher:: @ 8213F95
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
+	compare VAR_FACING, DIR_EAST
+	call_if_eq RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast
+	compare VAR_FACING, DIR_WEST
+	call_if_eq RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest
+	msgbox RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw, MSGBOX_DEFAULT
+	giveitem ITEM_QUICK_CLAW
+	compare VAR_RESULT, 0
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	setflag FLAG_RECEIVED_QUICK_CLAW
+	release
+	end
+
+RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast:: @ 8213FE5
+	applymovement VAR_LAST_TALKED, RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast
+	waitmovement 0
+	return
+
+RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest:: @ 8213FF0
+	applymovement VAR_LAST_TALKED, RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest
+	waitmovement 0
+	return
+
+RustboroCity_PokemonSchool_EventScript_GaveQuickClaw:: @ 8213FFB
+	msgbox RustboroCity_PokemonSchool_Text_ExplainQuickClaw, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	release
+	end
+
+RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsWest: @ 8214010
+	walk_left
+	walk_down
+	walk_down
+	walk_right
+	walk_in_place_fastest_down
+	delay_16
+	delay_16
+	delay_16
+	walk_down
+	walk_in_place_fastest_left
+	delay_16
+	delay_16
+	walk_right
+	delay_16
+	delay_16
+	delay_8
+	walk_up
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_right
+	step_end
+
+RustboroCity_PokemonSchool_Movement_TeacherCheckOnStudentsEast: @ 8214027
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_in_place_fastest_down
+	delay_16
+	delay_16
+	delay_16
+	walk_down
+	walk_in_place_fastest_left
+	delay_16
+	delay_16
+	walk_right
+	delay_16
+	delay_16
+	delay_8
+	walk_up
+	walk_right
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	step_end
+
+RustboroCity_PokemonSchool_EventScript_Scott:: @ 8214040
+	lock
+	faceplayer
+	goto_if_set FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE, RustboroCity_PokemonSchool_EventScript_ScottWatchStudents
+	goto_if_set FLAG_MET_SCOTT_RUSTBORO, RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready
+	goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge
+	msgbox RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut, MSGBOX_DEFAULT
+	addvar VAR_SCOTT_STATE, 1
+	setflag FLAG_MET_SCOTT_RUSTBORO
+	release
+	end
+
+RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready:: @ 821406F
+	goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge
+	msgbox RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge:: @ 8214082
+	msgbox RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge
+	end
+
+RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge:: @ 8214090
+	msgbox RustboroCity_PokemonSchool_Text_ScottStoneBadge, MSGBOX_DEFAULT
+	goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge
+	end
+
+RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge:: @ 821409E
+	addvar VAR_SCOTT_STATE, 1
+	setflag FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE
+	release
+	end
+
+RustboroCity_PokemonSchool_EventScript_ScottWatchStudents:: @ 82140A8
+	msgbox RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges: @ 82140B2
+	.string "黑板上列着对战中可能影响宝可梦的\n"
+	.string "状态变化。$"
+
+RustboroCity_PokemonSchool_Text_ReadWhichTopic: @ 82140F9
+	.string "你想读哪一项？$"
+
+RustboroCity_PokemonSchool_Text_ExplainPoison: @ 821411A
+	.string "宝可梦中毒后会持续损失HP。\n"
+	.string "中毒的效果在对战结束后仍然存在。\p"
+	.string "中毒的宝可梦在行走时HP也会减少。\n"
+	.string "用解毒药治疗中毒。$"
+
+RustboroCity_PokemonSchool_Text_ExplainParalysis: @ 82141D8
+	.string "宝可梦麻痹后速度会下降。\n"
+	.string "在对战中有时还会无法行动。\p"
+	.string "麻痹在对战后仍然存在。\n"
+	.string "用麻痹药治疗。$"
+
+RustboroCity_PokemonSchool_Text_ExplainSleep: @ 821427D
+	.string "宝可梦睡着后无法攻击。\n"
+	.string "宝可梦可能自己醒来，\p"
+	.string "但如果在对战中一直睡着到结束，\n"
+	.string "它会继续睡。\p"
+	.string "用醒药把它叫醒。$"
+
+RustboroCity_PokemonSchool_Text_ExplainBurn: @ 8214336
+	.string "灼伤会降低攻击力，\n"
+	.string "并持续减少受伤者的HP。\p"
+	.string "灼伤在对战后仍然存在。\n"
+	.string "用灼伤药治疗灼伤。$"
+
+RustboroCity_PokemonSchool_Text_ExplainFreeze: @ 82143B8
+	.string "宝可梦被冰冻后会完全无法行动。\n"
+	.string "对战后仍会保持冰冻。\p"
+	.string "用解冻药解冻。$"
+
+RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw: @ 8214433
+	.string "不学习的学生，\n"
+	.string "会尝到我先制之爪的厉害。\p"
+	.string "你是不是好学生，\n"
+	.string "从你用这件道具的方式就能看出来。$"
+
+RustboroCity_PokemonSchool_Text_ExplainQuickClaw: @ 82144C8
+	.string "宝可梦携带先制之爪，\n"
+	.string "有时会加速，抢在对手之前行动。\p"
+	.string "还有很多其他让宝可梦携带的道具。\n"
+	.string "光这些就够你研究很久了！$"
+
+RustboroCity_PokemonSchool_Text_TradingRightNow: @ 821459F
+	.string "我正在跟朋友交换宝可梦。$"
+
+RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot: @ 82145CD
+	.string "我一直想要一只橡实果，\n"
+	.string "终于要拿到了！$"
+
+RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems: @ 8214604
+	.string "宝可梦能携带道具，\n"
+	.string "但它们不知道怎么用伤药、解毒药\p"
+	.string "这类人造物品。$"
+
+RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself: @ 8214669
+	.string "你知道有些招式会让宝可梦混乱吧？\n"
+	.string "混乱的宝可梦有时会不由自主地攻击\p"
+	.string "自己。\n"
+	.string "但一旦离开对战，它就会恢复正常。$"
+
+RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry: @ 8214719
+	.string "宝可梦携带树果就能自己回复……\n"
+	.string "宝可梦能携带的道具种类很多……\p"
+	.string "唉，记笔记真难……$"
+
+RustboroCity_PokemonSchool_Text_StudentsNotes: @ 82147A2
+	.string "这是这个学生的笔记本……\n"
+	.string "宝可梦要用精灵球捕捉。\p"
+	.string "训练家最多可以带六只宝可梦。\n"
+	.string "训练家就是捕捉、培养宝可梦，\p"
+	.string "并与它们对战的人。\n"
+	.string "训练家的使命，\p"
+	.string "是打败在宝可梦道馆里\n"
+	.string "等待挑战者的强大训练家。$"
+
+RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut: @ 82148C0
+	.string "你好？我们之前见过吧？\n"
+	.string "我想是在橙华市。\p"
+	.string "让我自我介绍。我叫斯科特。\n"
+	.string "我一直在各地旅行，\p"
+	.string "寻找出色的训练家。\n"
+	.string "更具体地说，\p"
+	.string "我在找宝可梦对战的高手。\n"
+	.string "那么，你来这所学校干什么？\p"
+	.string "你也是训练家？\n"
+	.string "你首先该做的，\p"
+	.string "是让宝可梦学会居合斩。\n"
+	.string "如果我没记错，\p"
+	.string "这镇上有人会居合斩。$"
+
+RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown: @ 8214A5F
+	.string "斯科特：嗯……\n"
+	.string "这里学生的才能还看不出来。\p"
+	.string "但潜力是有的。$"
+
+RustboroCity_PokemonSchool_Text_ScottStoneBadge: @ 8214AB6
+	.string "斯科特：哦，那是什么？\n"
+	.string "是石头徽章，对吧？\p"
+	.string "这可真了不起。\n"
+	.string "不过，你知道吗，\p"
+	.string "我更想看你打一场。\n"
+	.string "光凭联盟徽章，\p"
+	.string "很难看出你是什么样的训练家。$"
+
+RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge: @ 8214B8A
+	.string "你好？我们之前见过吧？\n"
+	.string "我想是在橙华市。\p"
+	.string "让我自我介绍。我叫斯科特。\n"
+	.string "我一直在各地旅行，\p"
+	.string "寻找出色的训练家。\n"
+	.string "更具体地说，\p"
+	.string "我在找宝可梦对战的高手。\n"
+	.string "哦，那是什么？\p"
+	.string "是石头徽章，对吧？\n"
+	.string "对刚起步的训练家来说，\p"
+	.string "这可真了不起。\n"
+	.string "不过，你知道吗，\p"
+	.string "我更想看你打一场。\n"
+	.string "光凭联盟徽章，\p"
+	.string "很难看出你是什么样的训练家。$"
+
+`

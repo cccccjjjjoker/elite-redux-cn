@@ -1,0 +1,78 @@
+raw `
+.set LOCALID_NURSE, 1
+
+PacifidlogTown_PokemonCenter_1F_MapScripts:: @ 82034A7
+	map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+PacifidlogTown_PokemonCenter_1F_OnTransition: @ 82034B2
+	setrespawn HEAL_LOCATION_PACIFIDLOG_TOWN
+	end
+
+PacifidlogTown_PokemonCenter_1F_EventScript_Nurse:: @ 82034B6
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+PacifidlogTown_PokemonCenter_1F_EventScript_Girl:: @ 82034C4
+	msgbox PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard, MSGBOX_NPC
+	end
+
+PacifidlogTown_PokemonCenter_1F_EventScript_Woman:: @ 82034CD
+	msgbox PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola, MSGBOX_NPC
+	end
+
+PacifidlogTown_PokemonCenter_1F_EventScript_OldMan:: @ 82034D6
+	msgbox PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats, MSGBOX_NPC
+	end
+
+PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTM::
+	lock
+	faceplayer
+	msgbox PacifidlogTown_PokemonCenter_1F_Text_HaveExplosion, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_PokemonCenter_1F_EventScript_HaveExplosion::
+	msgbox PacifidlogTown_PokemonCenter_1F_Text_HaveExplosion, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard: @ 82034DF
+	.string "你的训练家卡是什么颜色？\n"
+	.string "我的是铜色！$"
+
+PacifidlogTown_PokemonCenter_1F_Text_OnColonyOfCorsola: @ 820350F
+	.string "暮水镇浮在一大群\n"
+	.string "太阳珊瑚上面。\p"
+	.string "我这么告诉你，\n"
+	.string "你会信吗？$"
+
+PacifidlogTown_PokemonCenter_1F_Text_AncestorsLivedOnBoats: @ 820356F
+	.string "据说暮水镇居民的祖先\n"
+	.string "是在船上出生，\p"
+	.string "然后在船上生活、死去的。\n"
+	.string "我听说他们那样生活，\p"
+	.string "是因为在寻找某样东西。$"
+
+PacifidlogTown_PokemonCenter_1F_Text_GiveExplosion: @ 82C7CFA
+	.string "我可没打算在这种乡下地方\n"
+	.string "一直待下去。\p"
+	.string "你看着吧，我要进城，\n"
+	.string "成为大红人。\p"
+	.string "说真的，我要掀起一场\n"
+	.string "人气大爆炸！\p"
+	.string "既然你听到了，我就高高兴兴\n"
+	.string "把这本大爆炸的招式学习器送你！$"
+
+PacifidlogTown_PokemonCenter_1F_Text_HaveExplosion: @ 82C7E7A
+	.string "很久以来，我一直在教宝可梦\n"
+	.string "使用大爆炸，可我自己\p"
+	.string "还没引爆过……\n"
+	.string "也许是因为内心深处，\p"
+	.string "我宁愿留在这里……$"
+`

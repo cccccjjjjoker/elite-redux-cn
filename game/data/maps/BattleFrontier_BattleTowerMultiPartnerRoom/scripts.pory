@@ -1,0 +1,1800 @@
+raw `
+.set LOCALID_ATTENDANT, 1
+
+BattleFrontier_BattleTowerMultiPartnerRoom_MapScripts:: @ 8243D92
+	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_BattleTowerMultiPartnerRoom_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattleTowerMultiPartnerRoom_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattleTowerMultiPartnerRoom_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleTowerMultiPartnerRoom_OnFrame
+	.byte 0
+
+BattleFrontier_BattleTowerMultiPartnerRoom_OnResume: @ 8243DA7
+	pyramid_resetparty
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_OnTransition: @ 8243DB0
+	goto_if_set FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ChosePartner
+	clearflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_1
+	clearflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_2
+	clearflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_3
+	clearflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_4
+	clearflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_5
+	clearflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_6
+	setflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1
+	setflag FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2
+	tower_loadpartners
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ChosePartner:: @ 8243DDA
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_OBJ_GFX_ID_5, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_OBJ_GFX_ID_6, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_OBJ_GFX_ID_7, OBJ_EVENT_GFX_BOY_1
+	setvar VAR_TEMP_1, 1
+	setvar VAR_TEMP_3, 1
+	setobjectxyperm LOCALID_ATTENDANT, 10, 2
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_OnWarp: @ 8243E14
+	map_script_2 VAR_TEMP_3, 1, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TurnPlayerNorth
+	.2byte 0
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TurnPlayerNorth:: @ 8243E1E
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_OnFrame: @ 8243E23
+	map_script_2 VAR_TEMP_1, 0, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterRoom
+	map_script_2 VAR_TEMP_3, 1, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ExitRoom
+	.2byte 0
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ExitRoom:: @ 8243E35
+	lockall
+	setvar VAR_TEMP_3, 0
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterRoom:: @ 8243E41
+	lockall
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterRoom
+	waitmovement 0
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantBlockExit
+	waitmovement 0
+	copyobjectxytoperm LOCALID_ATTENDANT
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	msgbox BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner, MSGBOX_DEFAULT
+	special HealPlayerParty
+	setvar VAR_TEMP_1, 1
+	releaseall
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterRoom: @ 8243E75
+	walk_down
+	step_end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantBlockExit: @ 8243E77
+	walk_left
+	walk_in_place_fastest_down
+	step_end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Attendant:: @ 8243E7A
+	lock
+	faceplayer
+	message BattleFrontier_BattleTowerMultiPartnerRoom_Text_QuitLookingForPartner
+	waitmessage
+	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
+	compare VAR_RESULT, 0
+	goto_if_eq BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge
+	msgbox BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner2, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge:: @ 8243E9D
+	frontier_set FRONTIER_DATA_RECORD_DISABLED, TRUE
+	goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator:: @ 8243EB5
+	msgbox BattleFrontier_BattleTowerMultiPartnerRoom_Text_ThankYouForChoosingPartner, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_ATTENDANT, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	opendoor 10, 1
+	waitdooranim
+	call BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevator
+	closedoor 10, 1
+	waitdooranim
+	warp MAP_BATTLE_FRONTIER_BATTLE_TOWER_ELEVATOR, 255, 1, 6
+	waitstate
+	releaseall
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevator:: @ 8243EE4
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevator
+	waitmovement 0
+	return
+
+@ Unused
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevatorEast: @ 8243EF6
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevatorEast
+	waitmovement 0
+	return
+
+@ Unused
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevatorWest: @ 8243F08
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEneterElevatorWest
+	waitmovement 0
+	return
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevator: @ 8243F1A
+	walk_up
+	walk_up
+	set_invisible
+	step_end
+
+@ Functionally unused
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevatorEast: @ 8243F1E
+	walk_right
+	walk_up
+	set_invisible
+	step_end
+
+@ Functionally unused
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEneterElevatorWest: @ 8243F22
+	walk_left
+	walk_up
+	set_invisible
+	step_end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator: @ 8243F26
+	walk_up
+	set_invisible
+	step_end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner1:: @ 8243F29
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 0
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner:: @ 8243F36
+	goto_if_set FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
+	tower_dopartnermsg PARTNER_MSGID_INTRO
+	waitmessage
+	waitbuttonpress
+	tower_dopartnermsg PARTNER_MSGID_MON1
+	waitmessage
+	waitbuttonpress
+	tower_dopartnermsg PARTNER_MSGID_MON2_ASK
+	waitmessage
+	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
+	switch VAR_RESULT
+	case 1, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
+	tower_dopartnermsg PARTNER_MSGID_ACCEPT
+	waitmessage
+	waitbuttonpress
+	closemessage
+	compare VAR_FACING, DIR_SOUTH
+	call_if_ne BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExit
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExitSouth
+	removeobject VAR_LAST_TALKED
+	setflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER
+	warpsilent MAP_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_PARTNER_ROOM, 255, 10, 3
+	waitstate
+	release
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner:: @ 8243FC3
+	tower_dopartnermsg PARTNER_MSGID_REJECT
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExit:: @ 8243FD4
+	applymovement VAR_LAST_TALKED, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExit
+	waitmovement 0
+	return
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_PartnerExitSouth:: @ 8243FDF
+	applymovement VAR_LAST_TALKED, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExitSouth
+	waitmovement 0
+	return
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExit: @ 8243FEA
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PartnerExitSouth: @ 8243FF2
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner2:: @ 8243FFB
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 1
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner3:: @ 8244008
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 2
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner4:: @ 8244015
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 3
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner5:: @ 8244022
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 4
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner6:: @ 824402F
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 5
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner7:: @ 824403C
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 6
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Partner8:: @ 8244049
+	lock
+	faceplayer
+	setvar VAR_TEMP_2, 7
+	goto BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner
+	end
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner: @ 8244056
+	.string "请你从聚集在此的训练家中\n"
+	.string "挑选一位搭档。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_QuitLookingForPartner: @ 8244094
+	.string "{PLAYER}，你还没有为双打队伍\n"
+	.string "找到搭档。\p"
+	.string "要放弃寻找，回到\n"
+	.string "接待柜台吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner2: @ 824410C
+	.string "那么，请从聚集在此的训练家中\n"
+	.string "挑选一位搭档。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ThankYouForChoosingPartner:: @ 8244149
+	.string "谢谢你选择搭档。\n"
+	.string "我现在带你去\p"
+	.string "双打对战房间。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Intro:: @ 824419A
+	.string "我是{STR_VAR_1}的第{STR_VAR_2}号弟子。\n"
+	.string "叫我{STR_VAR_3}就好！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Mon1:: @ 82441CA
+	.string "听了{STR_VAR_1}的建议，我准备了一只\n"
+	.string "带着{STR_VAR_2}的{STR_VAR_3}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Mon2Ask:: @ 82441F7
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "请让我加入你的双打队伍。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Accept:: @ 824422E
+	.string "谢谢！\n"
+	.string "我这就去登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice1Reject:: @ 8244255
+	.string "我真的很想和{PLAYER}\n"
+	.string "组成双打队伍……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Intro:: @ 8244286
+	.string "我是{STR_VAR_1}的第{STR_VAR_2}号弟子。\n"
+	.string "我叫{STR_VAR_3}。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Mon1:: @ 82442B2
+	.string "我听从{STR_VAR_1}的建议，挑了一只\n"
+	.string "带着{STR_VAR_2}的{STR_VAR_3}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Mon2Ask:: @ 82442E4
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "请跟我组成双打队伍吧！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Accept:: @ 8244313
+	.string "非常感谢！\n"
+	.string "我很快就能登记好！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_UnusedApprentice2Reject:: @ 8244350
+	.string "{PLAYER}，我本来希望能\n"
+	.string "和你搭档的……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Intro:: @ 8244383
+	.string "嗯，我叫{STR_VAR_3}，是{STR_VAR_1}的\n"
+	.string "第{STR_VAR_2}号弟子。\p"
+	.string "吸鼻子……\n"
+	.string "对不起！\p"
+	.string "我太紧张，眼泪都出来了……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Mon1:: @ 82443E7
+	.string "{STR_VAR_3}给了我建议，所以我准备了\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Mon2Ask:: @ 8244413
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "吸鼻子……\p"
+	.string "请、请跟我组队吧！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Accept:: @ 824444B
+	.string "哦，真的？你愿意？\n"
+	.string "太棒了！太好了！哇哦！\p"
+	.string "哦……对不起……\n"
+	.string "我太高兴，又哭了……\p"
+	.string "我马上去登记。\n"
+	.string "请你别走开！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Reject:: @ 82444D6
+	.string "哦，可、可是……\n"
+	.string "呜……哇啊啊！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Intro:: @ 82444EF
+	.string "嗨，你好！我是{STR_VAR_3}！\n"
+	.string "是{STR_VAR_1}的第{STR_VAR_2}号弟子！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Mon1:: @ 824451E
+	.string "{STR_VAR_3}推荐了我的队伍。\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Mon2Ask:: @ 8244549
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，\n"
+	.string "这就是我带的！很酷吧？\p"
+	.string "来吧！\n"
+	.string "我们组成双打队伍！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Accept:: @ 824459B
+	.string "耶！太好了！\n"
+	.string "好，我去登记，可以吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice2Reject:: @ 82445C5
+	.string "哎，为什么？\n"
+	.string "我本来想跟你组队的，{PLAYER}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Intro:: @ 82445E8
+	.string "我是{STR_VAR_3}，著名{STR_VAR_1}的\n"
+	.string "第{STR_VAR_2}号弟子！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Mon1:: @ 8244618
+	.string "我向{STR_VAR_3}请教过。\n"
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Mon2Ask:: @ 8244643
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，\n"
+	.string "这就是我的一对。\p"
+	.string "请问，能跟我\n"
+	.string "组成双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Accept:: @ 824468F
+	.string "谢谢！\n"
+	.string "我马上去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice3Reject:: @ 82446B4
+	.string "{PLAYER}，我一直希望能\n"
+	.string "和你组成双打队伍……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Intro:: @ 82446E5
+	.string "嗯……你愿意抽时间来\n"
+	.string "跟我说话，我真心感到高兴。\p"
+	.string "我是{STR_VAR_3}。\n"
+	.string "是{STR_VAR_1}的第{STR_VAR_2}号弟子……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Mon1:: @ 824474D
+	.string "{STR_VAR_3}给了我建议。\n"
+	.string "我非常感激。\p"
+	.string "我有一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Mon2Ask:: @ 824479E
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "我知道这要求太过分了……\p"
+	.string "我想你不会愿意，\n"
+	.string "但能让我当你的搭档吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Accept:: @ 824480C
+	.string "真的？我不敢相信！\n"
+	.string "我不敢相信你愿意让我加入！\p"
+	.string "我……我不会让你失望的！\n"
+	.string "嗯……如果真的可以，\p"
+	.string "我这就去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice4Reject:: @ 82448A7
+	.string "哦……\n"
+	.string "我就知道自己不够格……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Intro:: @ 82448CD
+	.string "嗨，我是{STR_VAR_3}。\n"
+	.string "是{STR_VAR_1}的第{STR_VAR_2}号弟子！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Mon1:: @ 82448F5
+	.string "{STR_VAR_3}告诉我这样组队不错：\n"
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Mon2Ask:: @ 8244939
+	.string "一只会用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "不错吧？\p"
+	.string "要不要跟我组队？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Accept:: @ 8244989
+	.string "好，很高兴加入你！\n"
+	.string "希望你别给我添麻烦！\p"
+	.string "我现在就去登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice5Reject:: @ 82449E6
+	.string "咦？你为什么拒绝我？\n"
+	.string "你真不会看人！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Intro:: @ 8244A23
+	.string "我是{STR_VAR_3}，是铁人三项选手。\n"
+	.string "每天跑步、训练、说唱，忙得很。\p"
+	.string "顺便说，我还是{STR_VAR_1}的\n"
+	.string "第{STR_VAR_2}号弟子。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Mon1:: @ 8244AA9
+	.string "这是{STR_VAR_3}推荐的配置。\n"
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Mon2Ask:: @ 8244AD6
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "我很忙，可还是用心\p"
+	.string "把它们养大了。\n"
+	.string "我们组队试试吧！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Accept:: @ 8244B52
+	.string "谢了，就要这股劲！\n"
+	.string "我去登记，你等着，好吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice6Reject:: @ 8244B93
+	.string "我可是从百忙之中抽空来的！\n"
+	.string "饶了我吧！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Intro:: @ 8244BD2
+	.string "嗨！\n"
+	.string "最近怎么样？\p"
+	.string "我是{STR_VAR_3}，{STR_VAR_1}的\n"
+	.string "第{STR_VAR_2}号弟子。很高兴认识你！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Mon1:: @ 8244C18
+	.string "听我说，听我说！你得听听\n"
+	.string "{STR_VAR_3}推荐的宝可梦。\p"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Mon2Ask:: @ 8244C6E
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "当然我养得特别好！\p"
+	.string "那么，要组队吗？\n"
+	.string "一定会是绝佳组合！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Accept:: @ 8244CD6
+	.string "耶，我觉得会很好玩！\n"
+	.string "我去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice7Reject:: @ 8244D07
+	.string "哦，你真坏！\n"
+	.string "我可是有推荐的。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Intro:: @ 8244D36
+	.string "请让我自我介绍。\n"
+	.string "我是{STR_VAR_3}。\p"
+	.string "我是{STR_VAR_1}的\n"
+	.string "第{STR_VAR_2}号弟子。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Mon1:: @ 8244D82
+	.string "我求教了{STR_VAR_3}的高见，\n"
+	.string "培养了这只带着{STR_VAR_2}的{STR_VAR_1}$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Mon2Ask:: @ 8244DC6
+	.string "还有一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "请答应和我组成\p"
+	.string "双打队伍！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Accept:: @ 8244DFE
+	.string "哦……我很高兴！\n"
+	.string "我保证全力以赴！\p"
+	.string "当然由我去登记！\n"
+	.string "请稍等！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice8Reject:: @ 8244E5B
+	.string "{PLAYER}，我一直希望能\n"
+	.string "和你组队……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Intro:: @ 8244E7E
+	.string "哎呀！你跟我说话了！\n"
+	.string "我……我太高兴了！\p"
+	.string "我是{STR_VAR_3}！{STR_VAR_1}的\n"
+	.string "第{STR_VAR_2}号弟子！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Mon1:: @ 8244ECA
+	.string "听{STR_VAR_3}的建议，我练了一只\n"
+	.string "用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Mon2Ask:: @ 8244EF4
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "请、请实现我的愿望！\p"
+	.string "我想当你的双打搭档！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Accept:: @ 8244F4F
+	.string "哎呀！我……我头晕了！\n"
+	.string "太感谢你了！\p"
+	.string "我马上去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice9Reject:: @ 8244F98
+	.string "哇啊！你一点都不同情我吗？\n"
+	.string "不过这样更帅……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Intro:: @ 8244FD3
+	.string "呀呼！我是{STR_VAR_1}的\n"
+	.string "第{STR_VAR_2}号弟子！\p"
+	.string "我叫{STR_VAR_3}，你好你好！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Mon1:: @ 8245013
+	.string "我的师父{STR_VAR_3}推荐了\n"
+	.string "一只{STR_VAR_1}名手的{STR_VAR_2}$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Mon2Ask:: @ 824503D
+	.string "还有一只{STR_VAR_1}名手的\n"
+	.string "{STR_VAR_2}。\p"
+	.string "好东西吧？\n"
+	.string "你要跟我搭档，对吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Accept:: @ 8245087
+	.string "好，太好了！\n"
+	.string "我马上把登记办完！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice10Reject:: @ 82450C0
+	.string "哇啊！\n"
+	.string "{PLAYER}，你真是会算计！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Intro:: @ 82450E6
+	.string "喂！出大事了！今天是\n"
+	.string "对战塔的最后一天！\p"
+	.string "………………\n"
+	.string "我开玩笑的！\p"
+	.string "大家叫我{STR_VAR_3}，我自己也这么叫！\n"
+	.string "我是{STR_VAR_1}的第1000号弟子！\p"
+	.string "其实呢，我是第{STR_VAR_2}号！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Mon1:: @ 8245196
+	.string "{STR_VAR_3}给了我一些建议。\n"
+	.string "{STR_VAR_2}配{STR_VAR_1}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Mon2Ask:: @ 82451BD
+	.string "{STR_VAR_2}配{STR_VAR_1}。\n"
+	.string "每种我有十只！\p"
+	.string "其实每种只有一只！\n"
+	.string "怎么样？\p"
+	.string "要跟我打双打吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Accept:: @ 824522F
+	.string "耶！\n"
+	.string "作为谢礼我送你一只宝可梦！\p"
+	.string "开玩笑的！不过我真的会去\n"
+	.string "登记，好吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice11Reject:: @ 824529A
+	.string "哦，这么冷淡！\n"
+	.string "那我只好把对战塔拆了！\p"
+	.string "当然不会啦！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Intro:: @ 82452EF
+	.string "嘿，我摇滚得正起劲！\n"
+	.string "宝可梦，全在我掌控中！\p"
+	.string "我是{STR_VAR_3}，会说唱的水手。\n"
+	.string "别把我当成哭哭啼啼的人！\p"
+	.string "我是{STR_VAR_1}的第{STR_VAR_2}号弟子。\n"
+	.string "别急着把我打发走！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Mon1:: @ 82453B4
+	.string "我照{STR_VAR_3}的建议来组队，\n"
+	.string "骄傲的队伍就这样配对！\p"
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Mon2Ask:: @ 8245406
+	.string "还有一只用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}！\p"
+	.string "我们的相遇值得纪念，\n"
+	.string "就用双打胜利来庆祝！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Accept:: @ 8245464
+	.string "嘿，嘿，我喜欢你的风格！\n"
+	.string "登记这事，我这就去办！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice12Reject:: @ 82454A3
+	.string "哦，嘿，{PLAYER}，这也太冷了！\n"
+	.string "恕我直言！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Intro:: @ 82454D6
+	.string "耶呼！\n"
+	.string "哦，别跑！我只是在开玩笑！\p"
+	.string "你好！我是{STR_VAR_3}！\n"
+	.string "我是{STR_VAR_1}的第{STR_VAR_2}号弟子！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Mon1:: @ 8245535
+	.string "{STR_VAR_3}告诉我该怎么做。\n"
+	.string "所以一只用{STR_VAR_1}的{STR_VAR_2}$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Mon2Ask:: @ 824555F
+	.string "还有一只用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}，我就选它们了。\p"
+	.string "那么，你说呢？\n"
+	.string "来吧，让我高兴一下！\p"
+	.string "求你了！让我加入你，\n"
+	.string "别让我难过！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Accept:: @ 82455EC
+	.string "耶哈！运气站在我这边！\n"
+	.string "真让我开心！\p"
+	.string "在开战之前，\n"
+	.string "我马上去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice13Reject:: @ 8245656
+	.string "你拒绝我？\n"
+	.string "{PLAYER}，你让我皱眉头了！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Intro:: @ 824568A
+	.string "咳！\n"
+	.string "哦，抱歉，我感冒了。\p"
+	.string "不过我的宝可梦都没事。\n"
+	.string "我叫{STR_VAR_3}，{STR_VAR_1}的\p"
+	.string "第{STR_VAR_2}号弟子。咳！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Mon1:: @ 82456F5
+	.string "我把{STR_VAR_3}的建议记在心里，\n"
+	.string "组好了队伍：\p"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Mon2Ask:: @ 8245740
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "风雨无阻，我每天都训练它们。\p"
+	.string "所以我才感冒了吧。\n"
+	.string "我就是这么个人。\p"
+	.string "要当我的双打搭档吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Accept:: @ 82457D9
+	.string "谢了，我很感激！\n"
+	.string "咳，咳！\p"
+	.string "我去登记，你等一下。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice14Reject:: @ 824581F
+	.string "哦，你不愿意？\n"
+	.string "{PLAYER}，\p"
+	.string "我觉得我们会是好搭档。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Intro:: @ 8245851
+	.string "哦，你好！\n"
+	.string "这真让人紧张。\p"
+	.string "我是{STR_VAR_3}。\n"
+	.string "我是{STR_VAR_1}的第{STR_VAR_2}号弟子。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Mon1:: @ 824589C
+	.string "{STR_VAR_3}说这样组队不错……\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Mon2Ask:: @ 82458CE
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "我有点不好意思，\p"
+	.string "但能让我加入你吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Accept:: @ 8245923
+	.string "哦，天哪，谢谢你！\n"
+	.string "我很害羞，但我会尽力！\p"
+	.string "我去把登记办好。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice15Reject:: @ 824597F
+	.string "哦，请别说不行！\n"
+	.string "我已经够不好意思了……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Intro:: @ 82459BE
+	.string "我是{STR_VAR_3}，这可没骗你。\n"
+	.string "我是{STR_VAR_1}的第{STR_VAR_2}号弟子。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Mon1:: @ 82459F7
+	.string "{STR_VAR_3}推荐了我的队伍。\n"
+	.string "那建议听起来很诚恳，\p"
+	.string "所以我决定带上\n"
+	.string "我的{STR_VAR_1}用{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Mon2Ask:: @ 8245A5F
+	.string "我的{STR_VAR_1}用{STR_VAR_2}。\n"
+	.string "如果可以，我希望你能\p"
+	.string "接受我当你的双打搭档。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Accept:: @ 8245AB4
+	.string "你真的愿意接受我？\n"
+	.string "不然那就太糟了。\p"
+	.string "既然你答应了，那就好。\n"
+	.string "我去给我们俩登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice16Reject:: @ 8245B3E
+	.string "嗯？你为什么拒绝？\n"
+	.string "你这是在开玩笑吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassIntro:: @ 8245B79
+	.string "我是{STR_VAR_1}，是迷你裙！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassMon1:: @ 8245B91
+	.string "我带的是一只\n"
+	.string "会用{STR_VAR_2}的{STR_VAR_1}，还有一只$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassMon2Ask:: @ 8245BBD
+	.string "会用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "这就是我带的。\p"
+	.string "你愿意当我的搭档吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassAccept:: @ 8245C05
+	.string "谢谢！\n"
+	.string "我去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LassReject:: @ 8245C2D
+	.string "你不想当我的搭档？\n"
+	.string "你以后会后悔的！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterIntro:: @ 8245C66
+	.string "你好！\n"
+	.string "我是短裤小子{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterMon1:: @ 8245C7F
+	.string "想知道我带了什么吗？\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterMon2Ask:: @ 8245CAC
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "你会当我的双打搭档吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterAccept:: @ 8245CE6
+	.string "耶！\n"
+	.string "我去登记，好吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_YoungsterReject:: @ 8245D07
+	.string "哎！要是你跟我组队，\n"
+	.string "我们一定无敌！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerIntro:: @ 8245D4B
+	.string "呀呼！\n"
+	.string "我是登山男{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerMon1:: @ 8245D60
+	.string "知道我带着什么吗？\n"
+	.string "我的{STR_VAR_1}用{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerMon2Ask:: @ 8245D8D
+	.string "我的{STR_VAR_1}用{STR_VAR_2}！\n"
+	.string "听起来不错吧？\p"
+	.string "要组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerAccept:: @ 8245DC7
+	.string "呀呼！\n"
+	.string "那我去登记了。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HikerReject:: @ 8245DF0
+	.string "我本来想和你并肩\n"
+	.string "一起对战的。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyIntro:: @ 8245E20
+	.string "你好！\n"
+	.string "我是{STR_VAR_1}，是大姐姐！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyMon1:: @ 8245E41
+	.string "你知道我养了什么吗？\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyMon2Ask:: @ 8245E78
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "你觉得怎么样？\p"
+	.string "要一起组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyAccept:: @ 8245EBD
+	.string "太好了！\n"
+	.string "我现在就去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BeautyReject:: @ 8245EEC
+	.string "真让人失望！\n"
+	.string "我们俩要是搭档……\p"
+	.string "一定是最强的！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanIntro:: @ 8245F2B
+	.string "哟！\n"
+	.string "你知道我是谁吗？\p"
+	.string "我是钓客{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanMon1:: @ 8245F58
+	.string "我带的队伍是一只\n"
+	.string "用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanMon2Ask:: @ 8245F87
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "那么，怎么样？\p"
+	.string "要在我身边一起对战吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanAccept:: @ 8245FC6
+	.string "好，好！\n"
+	.string "交给我吧！\p"
+	.string "我现在去登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_FishermanReject:: @ 8246002
+	.string "我们明明那么合拍……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyIntro:: @ 8246020
+	.string "很高兴认识你。\n"
+	.string "我是{STR_VAR_1}，是千金小姐。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyMon1:: @ 8246051
+	.string "我身边的队伍是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyMon2Ask:: @ 8246082
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "希望你能满意。\p"
+	.string "因为我希望你能当我的搭档。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyAccept:: @ 82460D5
+	.string "我衷心感谢你。\n"
+	.string "登记的事交给我。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_LadyReject:: @ 824610D
+	.string "我确信你会后悔\n"
+	.string "没有选我当搭档。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFIntro:: @ 824614A
+	.string "我是铁人三项选手{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFMon1:: @ 824615D
+	.string "我带的是……\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFMon2Ask:: @ 824617D
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "这就是我的一对！\p"
+	.string "拜托？\n"
+	.string "能跟我组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFAccept:: @ 82461C7
+	.string "哎呀，谢谢！\n"
+	.string "我去柜台登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteFReject:: @ 82461F5
+	.string "我们俩要是搭档，\n"
+	.string "肯定很难对付！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherIntro:: @ 824622A
+	.string "嗨呀！\n"
+	.string "我是捕虫少年{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherMon1:: @ 8246244
+	.string "看看我带的！\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherMon2Ask:: @ 824626E
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "那么，听着！\p"
+	.string "要组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherAccept:: @ 82462AA
+	.string "成了！\n"
+	.string "我去柜台办登记的手续。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugCatcherReject:: @ 82462E4
+	.string "哎，我的宝可梦很厉害的。\n"
+	.string "希望你别后悔！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMIntro:: @ 824631F
+	.string "你好！\n"
+	.string "我是学生{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMMon1:: @ 824633C
+	.string "我养的一只是\n"
+	.string "会用{STR_VAR_1}的{STR_VAR_2}，$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMMon2Ask:: @ 824636B
+	.string "还有一只是会用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}。\p"
+	.string "还不错吧？\n"
+	.string "要不要组个双打队伍？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMAccept:: @ 82463C5
+	.string "非常感谢！\n"
+	.string "我会把登记办好。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidMReject:: @ 82463FF
+	.string "那太可惜了……\n"
+	.string "我本来希望当你的搭档，\p"
+	.string "从你身上学点东西……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyIntro:: @ 8246449
+	.string "哟！让我告诉你我是谁！\n"
+	.string "我是阔少爷{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyMon1:: @ 8246478
+	.string "猜猜我有什么！\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyMon2Ask:: @ 824649D
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "我愿意给你一个机会，\p"
+	.string "跟我组双打队伍。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyAccept:: @ 82464EE
+	.string "明智之举！\n"
+	.string "我会很快把登记\p"
+	.string "手续办完！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RichBoyReject:: @ 8246529
+	.string "连我都拒绝？\n"
+	.string "你一定会后悔的！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BlackBeltIntro:: @ 8246571
+	.string "嗨呀！\n"
+	.string "我是空手道王{STR_VAR_1}。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BlackBeltMon1:: @ 824658C
+	.string "作为我的伙伴，我有\n"
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}，$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BlackBeltMon2Ask:: @ 82465B5
+	.string "还有一只用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}。\p"
+	.string "请实现我的愿望！\n"
+	.string "让我当你的双打搭档！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BlackBeltAccept:: @ 8246605
+	.string "嗨呀！\n"
+	.string "我这就去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BlackBeltReject:: @ 824662A
+	.string "我明白了……希望下次\n"
+	.string "见面时能有机会……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFIntro:: @ 8246662
+	.string "嗨，你好！\n"
+	.string "我是{STR_VAR_1}，是泳圈小子！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFMon1:: @ 8246686
+	.string "我告诉你我带了什么。\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFMon2Ask:: @ 82466B4
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "能让我加入你的双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFAccept:: @ 82466E6
+	.string "谢谢！\n"
+	.string "我现在去给我们登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFReject:: @ 824670A
+	.string "要是我们成了搭档，\n"
+	.string "本来可以很强的！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacIntro:: @ 8246741
+	.string "你好……\n"
+	.string "我是灵异迷{STR_VAR_1}……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacMon1:: @ 8246760
+	.string "我随身带着一只用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}，还有一只$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacMon2Ask:: @ 8246791
+	.string "用{STR_VAR_1}的{STR_VAR_2}……\n"
+	.string "我恳求你……\p"
+	.string "跟我组双打队伍……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacAccept:: @ 82467C4
+	.string "我感谢你……\n"
+	.string "我去登记……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacReject:: @ 82467E6
+	.string "我多么希望能加入你……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMIntro:: @ 82467FF
+	.string "你好。我是{STR_VAR_1}，\n"
+	.string "是个饲育家！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMMon1:: @ 8246831
+	.string "我养了两只不错的！\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMMon2Ask:: @ 8246864
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "怎么样？\p"
+	.string "想跟我组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMAccept:: @ 82468A7
+	.string "多谢你！\n"
+	.string "登记的手续交给我，\p"
+	.string "你就在这儿等着！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMReject:: @ 82468FE
+	.string "我本来很期待\n"
+	.string "当你的搭档……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFIntro:: @ 824692B
+	.string "哦，你好！\n"
+	.string "我是铁人三项选手{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFMon1:: @ 824694B
+	.string "想知道我跑着带的是什么？\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFMon2Ask:: @ 824697C
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "怎么样？\p"
+	.string "要跟我组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFAccept:: @ 82469B4
+	.string "干得好！\n"
+	.string "我很快就把登记\p"
+	.string "全部办好！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteFReject:: @ 82469F1
+	.string "你和我，本来会是最强的。\n"
+	.string "太可惜了……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMIntro:: @ 8246A22
+	.string "嘿，你好！我叫{STR_VAR_1}！\n"
+	.string "我是铁人三项选手！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMMon1:: @ 8246A4E
+	.string "我带着结实的队伍跑步……\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMMon2Ask:: @ 8246A85
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "还不错吧？\p"
+	.string "我们该组个双打队伍！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMAccept:: @ 8246ACF
+	.string "好！\n"
+	.string "我马上就去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RunningTriathleteMReject:: @ 8246AF7
+	.string "我真的很想当你的\n"
+	.string "双打搭档一起对战……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlIntro:: @ 8246B2B
+	.string "我是对战少女{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlMon1:: @ 8246B3F
+	.string "我一直在锻炼一只\n"
+	.string "用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlMon2Ask:: @ 8246B6B
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "你喜欢这个组合吗？\p"
+	.string "你跟我一起组队如何？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlAccept:: @ 8246BB2
+	.string "哎呀，谢谢！\n"
+	.string "我现在就把登记\p"
+	.string "办好！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BattleGirlReject:: @ 8246BE9
+	.string "我本来以为，和你一起\n"
+	.string "能组成最强的双打队伍……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteMIntro:: @ 8246C22
+	.string "我是铁人三项选手{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteMMon1:: @ 8246C35
+	.string "我一直带着一只会用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}跑步，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteMMon2Ask:: @ 8246C6C
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "我们可以组个双打队伍。\p"
+	.string "那不是很好吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteMAccept:: @ 8246CB3
+	.string "谢谢！\n"
+	.string "我现在就去登记，\p"
+	.string "马上！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CyclingTriathleteMReject:: @ 8246CE9
+	.string "哎，太可惜了。我们本来会是\n"
+	.string "最强的双打队伍！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMIntro:: @ 8246D2D
+	.string "我？\n"
+	.string "我是泳圈小子{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMMon1:: @ 8246D3F
+	.string "我带着什么？\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMMon2Ask:: @ 8246D6A
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "嘿？\p"
+	.string "你会跟我组队吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMAccept:: @ 8246D9E
+	.string "好！\n"
+	.string "我去登记！\p"
+	.string "我们一起变强！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberMReject:: @ 8246DD3
+	.string "我的宝可梦确实很强……\n"
+	.string "你不组队真是太可惜了。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristIntro:: @ 8246E1A
+	.string "耶嘿！\n"
+	.string "叫我吉他手{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristMon1:: @ 8246E39
+	.string "看看我的阵容！\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristMon2Ask:: @ 8246E64
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "耶嘿！很狂吧？\p"
+	.string "我们得在双打里来个二重奏！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristAccept:: @ 8246EB6
+	.string "耶嘿！太好了！\n"
+	.string "我现在就去办登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GuitaristReject:: @ 8246EEE
+	.string "我的宝可梦可是很硬的！\n"
+	.string "我跟你说，你会后悔的！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GentlemanIntro:: @ 8246F21
+	.string "很高兴见到你。\n"
+	.string "我是{STR_VAR_1}，是绅士。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GentlemanMon1:: @ 8246F4C
+	.string "我身边是我信赖的\n"
+	.string "用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GentlemanMon2Ask:: @ 8246F7B
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "能请你和我结成\p"
+	.string "双打搭档吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GentlemanAccept:: @ 8246FCC
+	.string "啊，感谢你的信任。\n"
+	.string "登记的事就交给我。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_GentlemanReject:: @ 8247013
+	.string "那真是太遗憾了……\n"
+	.string "我期待下一次\p"
+	.string "机会……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMIntro:: @ 824705B
+	.string "你好，我是{STR_VAR_1}，\n"
+	.string "是宝可梦发烧友。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMMon1:: @ 824707D
+	.string "我现在带着一只会用{STR_VAR_1}\n"
+	.string "这个招式的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMMon2Ask:: @ 82470B2
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "你看着喜欢吗？\p"
+	.string "何不当我的双打搭档？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMAccept:: @ 82470FD
+	.string "谢谢！\n"
+	.string "登记的事我来办！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanMReject:: @ 824712A
+	.string "我的宝可梦可是顶级的……\n"
+	.string "可惜你不懂欣赏。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMIntro:: @ 824716C
+	.string "哼！\n"
+	.string "我是{STR_VAR_1}，是达人！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMMon1:: @ 824718D
+	.string "我锻炼出来的宝可梦是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMMon2Ask:: @ 82471C7
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "跟我组双打队伍，意下如何？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMAccept:: @ 82471FB
+	.string "哼！\n"
+	.string "我马上给我们登记！\p"
+	.string "我们都尽力吧！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertMReject:: @ 8247238
+	.string "我希望你的选择\n"
+	.string "确实是对的……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFIntro:: @ 8247268
+	.string "你好，你好。\n"
+	.string "我是{STR_VAR_1}，是达人。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFMon1:: @ 8247291
+	.string "我把宝可梦培养得很彻底。\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFMon2Ask:: @ 82472C7
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}……\n"
+	.string "这就是我带的。\p"
+	.string "不想跟我组队吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFAccept:: @ 8247313
+	.string "好，好。\n"
+	.string "我马上去办登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ExpertFReject:: @ 8247348
+	.string "也许下次见面，\n"
+	.string "我们能组成一队。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerIntro:: @ 824737A
+	.string "我是驯龙师{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerMon1:: @ 824738F
+	.string "我锻炼出来的队伍是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerMon2Ask:: @ 82473C6
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "怎么样？\p"
+	.string "要当我的搭档吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerAccept:: @ 82473FB
+	.string "好，我会尽全力！\n"
+	.string "我现在去登记，好吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_DragonTamerReject:: @ 8247438
+	.string "你找不到比我更强的\n"
+	.string "搭档了！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperIntro:: @ 8247470
+	.string "我是养鸟人{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperMon1:: @ 8247484
+	.string "我有什么宝可梦？\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperMon2Ask:: @ 82474AF
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "你不觉得我们能组成\p"
+	.string "不错的双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperAccept:: @ 82474EC
+	.string "太好了，谢谢！\n"
+	.string "登记的事我来办！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BirdKeeperReject:: @ 824751D
+	.string "我和我的宝可梦都很强。\n"
+	.string "真让人失望。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyIntro:: @ 824754A
+	.string "我是忍者少年{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyMon1:: @ 824755C
+	.string "我的宝可梦队伍是一只\n"
+	.string "带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyMon2Ask:: @ 824758B
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "我们一起组双打队伍吧！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyAccept:: @ 82475BC
+	.string "耶！\n"
+	.string "让我去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_NinjaBoyReject:: @ 82475D5
+	.string "你没让我这些强力的宝可梦\n"
+	.string "帮你，你会后悔的！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyIntro:: @ 824760D
+	.string "你好！\n"
+	.string "我是阳伞大姐{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyMon1:: @ 8247629
+	.string "护送我的是我的{STR_VAR_2}，\n"
+	.string "它用{STR_VAR_1}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyMon2Ask:: @ 8247655
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "它们不错吧？\p"
+	.string "要跟我们组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyAccept:: @ 824769B
+	.string "多谢你！\n"
+	.string "我去柜台登记。\p"
+	.string "我们都别让对方失望！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ParasolLadyReject:: @ 82476ED
+	.string "我的宝可梦强得很。\n"
+	.string "真可惜……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacIntro:: @ 8247724
+	.string "你好。\n"
+	.string "我是{STR_VAR_1}，是昆虫狂！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacMon1:: @ 8247749
+	.string "我找到了我的宝可梦，没错。\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacMon2Ask:: @ 824777A
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}……\n"
+	.string "这些就是我找到的。\p"
+	.string "能请你跟我组成\n"
+	.string "双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacAccept:: @ 82477CE
+	.string "好！\n"
+	.string "明白了！\p"
+	.string "登记不会花太久！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_BugManiacReject:: @ 8247807
+	.string "用我找到的宝可梦，\n"
+	.string "我们本来不会输的……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SailorIntro:: @ 8247838
+	.string "喂，你好！\n"
+	.string "我是水手{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SailorMon1:: @ 8247854
+	.string "让你看看我的骄傲！\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SailorMon2Ask:: @ 8247889
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "你当然不会拒绝我吧。\p"
+	.string "我们会组队，对吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SailorAccept:: @ 82478DD
+	.string "不出我所料！\n"
+	.string "我现在就去登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SailorReject:: @ 824790D
+	.string "我们本来能一路冲垮\n"
+	.string "对手的！太可惜了！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CollectorIntro:: @ 8247942
+	.string "嗨，我是{STR_VAR_1}。\n"
+	.string "我是收藏家。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CollectorMon1:: @ 824795F
+	.string "我收藏的宝贝是\n"
+	.string "我的{STR_VAR_1}用{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CollectorMon2Ask:: @ 8247991
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "很棒吧？\p"
+	.string "我们该组个队伍。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CollectorAccept:: @ 82479CE
+	.string "哦，好！\n"
+	.string "那就别浪费时间，\p"
+	.string "我去给我们俩登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CollectorReject:: @ 8247A18
+	.string "唉，真让人不痛快。\n"
+	.string "你不懂欣赏我的宝可梦。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerMIntro:: @ 8247A51
+	.string "你好，我是{STR_VAR_1}。\n"
+	.string "我是宝可梦巡护员。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerMMon1:: @ 8247A76
+	.string "陪着我的是一只\n"
+	.string "用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerMMon2Ask:: @ 8247AA1
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "你不觉得我们能组成\p"
+	.string "了不起的双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerMAccept:: @ 8247AE3
+	.string "太好了！\n"
+	.string "我现在去办登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerMReject:: @ 8247B16
+	.string "下次请选我的宝可梦，\n"
+	.string "好吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFIntro:: @ 8247B3E
+	.string "我叫{STR_VAR_1}。\n"
+	.string "我是宝可梦巡护员！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFMon1:: @ 8247B62
+	.string "我跟你说说我的队伍。我有\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFMon2Ask:: @ 8247B9B
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "你愿意跟我这一小群\p"
+	.string "组成双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFAccept:: @ 8247BE7
+	.string "我们会是最好的！\n"
+	.string "我很快把登记办好！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFReject:: @ 8247C23
+	.string "希望你下次会选\n"
+	.string "我的宝可梦。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyIntro:: @ 8247C4E
+	.string "很高兴认识你。我是{STR_VAR_1}。\n"
+	.string "我自认是香氛姐姐。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyMon1:: @ 8247C8C
+	.string "我带着一只用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyMon2Ask:: @ 8247CB2
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "希望它们能让你中意。\p"
+	.string "你愿意当我的搭档吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyAccept:: @ 8247D07
+	.string "你的答应是我的荣幸。\n"
+	.string "我这就去登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyReject:: @ 8247D4E
+	.string "要是下次见面能组\n"
+	.string "双打队伍就好了。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacIntro:: @ 8247D97
+	.string "想知道我是谁吗？\n"
+	.string "我是遗迹狂{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacMon1:: @ 8247DC7
+	.string "我带着的宝可梦是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacMon2Ask:: @ 8247DFE
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "有意思吧？\p"
+	.string "你和我搭档如何？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacAccept:: @ 8247E3E
+	.string "这决定很明智！\n"
+	.string "我去办登记的文书。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacReject:: @ 8247E7E
+	.string "唔……\n"
+	.string "我觉得我的宝可梦很强……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMIntro:: @ 8247EA1
+	.string "我是精英训练家{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMMon1:: @ 8247EB5
+	.string "我现在拥有的宝可梦是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMMon2Ask:: @ 8247EE9
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "很酷吧？\p"
+	.string "我们要是组双打队伍，\n"
+	.string "不觉得很酷吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMAccept:: @ 8247F3F
+	.string "酷！\n"
+	.string "我马上就去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMReject:: @ 8247F6D
+	.string "我本来以为我们会成为\n"
+	.string "史上最强的队伍。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFIntro:: @ 8247FA3
+	.string "我是精英训练家{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon1:: @ 8247FB7
+	.string "我培养的队伍有一只\n"
+	.string "带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon2Ask:: @ 8247FE9
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "听起来可以吧？\p"
+	.string "我们当双打搭档如何？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFAccept:: @ 8248031
+	.string "听着完全可以！\n"
+	.string "我该去登记了。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFReject:: @ 824805E
+	.string "我一直在想我们会是\n"
+	.string "一支强队……$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacIntro:: @ 824808D
+	.string "嘿！\n"
+	.string "我是{STR_VAR_1}，是宝可梦狂！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacMon1:: @ 82480AB
+	.string "像我这样的人有什么？\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacMon2Ask:: @ 82480DC
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，\n"
+	.string "就是这样！\p"
+	.string "来吧！\n"
+	.string "我们组队横扫四方！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacAccept:: @ 8248128
+	.string "选得好！\n"
+	.string "我去给我们俩登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacReject:: @ 8248151
+	.string "我的宝可梦可凶了！\n"
+	.string "你要是后悔，可不怪我！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerIntro:: @ 824818E
+	.string "哟，你好！\n"
+	.string "我是引火少年{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerMon1:: @ 82481A9
+	.string "知道我训练出了什么吗？\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerMon2Ask:: @ 82481E1
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "那么，你说呢？\p"
+	.string "要组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerAccept:: @ 8248221
+	.string "好！\n"
+	.string "我这就去登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_KindlerReject:: @ 824824F
+	.string "下次碰上了，\n"
+	.string "一定要跟我组队。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperIntro:: @ 8248297
+	.string "我是{STR_VAR_1}，是露营少年！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperMon1:: @ 82482B1
+	.string "我养了一只用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}，还有一只$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperMon2Ask:: @ 82482DC
+	.string "用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "你觉得组队会好玩吗？\p"
+	.string "我觉得一定好玩！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperAccept:: @ 8248321
+	.string "耶！\n"
+	.string "我去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_CamperReject:: @ 824833D
+	.string "下次，好吗？\n"
+	.string "我想加入你的队伍。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerIntro:: @ 8248369
+	.string "你好！\n"
+	.string "我是{STR_VAR_1}，是野餐少女！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerMon1:: @ 824838D
+	.string "我一直带着的宝可梦是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerMon2Ask:: @ 82483C1
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "有兴趣跟我一起\p"
+	.string "组双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerAccept:: @ 8248401
+	.string "哎呀，谢谢你！\n"
+	.string "我现在去登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PicnickerReject:: @ 8248431
+	.string "要是下次能加入你就好了。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicMIntro:: @ 8248467
+	.string "我是超能力者{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicMMon1:: @ 8248477
+	.string "我培养的这一对是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicMMon2Ask:: @ 82484AC
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "要跟我组成\p"
+	.string "双打队伍吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicMAccept:: @ 82484E7
+	.string "当然！\n"
+	.string "登记交给我！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicMReject:: @ 8248517
+	.string "要是再见面，\n"
+	.string "那时我想跟你组队。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicFIntro:: @ 8248553
+	.string "我是{STR_VAR_1}。\n"
+	.string "我是超能力者。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicFMon1:: @ 824856A
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicFMon2Ask:: @ 824857D
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}……\n"
+	.string "它们是我的弟子。\p"
+	.string "结成双打搭档的提议，\n"
+	.string "你不觉得有意思吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicFAccept:: @ 82485E5
+	.string "谢谢。\n"
+	.string "我去办登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PsychicFReject:: @ 8248614
+	.string "希望还有下一次\n"
+	.string "结成同盟的机会。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidFIntro:: @ 824864E
+	.string "我是学生{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidFMon1:: @ 8248661
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidFMon2Ask:: @ 8248671
+	.string "和一只用{STR_VAR_1}的{STR_VAR_2}\n"
+	.string "就是我的一对宝可梦。\p"
+	.string "能让我当你的\n"
+	.string "双打搭档吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidFAccept:: @ 82486C6
+	.string "哦，谢谢你！\n"
+	.string "我马上去柜台登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SchoolKidFReject:: @ 82486FF
+	.string "拜托？\n"
+	.string "下次能让我加入你吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFIntro:: @ 8248725
+	.string "嗨呀！我叫{STR_VAR_1}！\n"
+	.string "我是饲育家！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFMon1:: @ 8248751
+	.string "我养的宝可梦是一只\n"
+	.string "用{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFMon2Ask:: @ 8248781
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "听起来有意思吗？\p"
+	.string "那我们就组个双打队伍吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFAccept:: @ 82487C9
+	.string "好嘞！\n"
+	.string "登记就交给我！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederFReject:: @ 82487F7
+	.string "下次你一定要跟我组队，\n"
+	.string "好吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanFIntro:: @ 8248829
+	.string "我是{STR_VAR_1}，我很自豪地说\n"
+	.string "我是宝可梦发烧友。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanFMon1:: @ 824885B
+	.string "我养的可爱宝可梦是\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanFMon2Ask:: @ 8248892
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}。\n"
+	.string "它们不可爱吗？\p"
+	.string "我们该组个队！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanFAccept:: @ 82488D8
+	.string "谢谢你，亲爱的！\n"
+	.string "我这就去登记！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokefanFReject:: @ 8248908
+	.string "我跟你说，我的宝贝宝可梦\n"
+	.string "是最好的。真让人恼火！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFIntro:: @ 824894B
+	.string "嗨，我是泳装大姐{STR_VAR_1}。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFMon1:: @ 824895F
+	.string "一只用{STR_VAR_1}的{STR_VAR_2}$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFMon2Ask:: @ 824896F
+	.string "和一只用{STR_VAR_1}的{STR_VAR_2}\n"
+	.string "就是我训练出来的。\p"
+	.string "你和我，我们组个双打队伍吧。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFAccept:: @ 82489BD
+	.string "那好啊！\n"
+	.string "我去给我们俩登记。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerFReject:: @ 82489E7
+	.string "要是再见面，你欠我\n"
+	.string "一场双打！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteMIntro:: @ 8248A10
+	.string "怎么回事？\n"
+	.string "我是{STR_VAR_1}，是铁人三项选手。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteMMon1:: @ 8248A40
+	.string "我带着两只不错的宝可梦。\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteMMon2Ask:: @ 8248A72
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "我们要是组双打队伍会很棒，\p"
+	.string "所以怎么样？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteMAccept:: @ 8248AC0
+	.string "太好了！\n"
+	.string "我去登记，你等着，好吗？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteMReject:: @ 8248AEB
+	.string "我希望下次你能让我\n"
+	.string "加入你，怎么样？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFIntro:: @ 8248B22
+	.string "我是铁人三项选手{STR_VAR_1}！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFMon1:: @ 8248B39
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFMon2Ask:: @ 8248B4C
+	.string "另一只会用{STR_VAR_1}的\n"
+	.string "{STR_VAR_2}。这就是我的一对。\p"
+	.string "你觉得呢？\n"
+	.string "我说我们会是支好队伍。$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFAccept:: @ 8248BB4
+	.string "我喜欢这个回答！\n"
+	.string "我很快把登记办好！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmingTriathleteFReject:: @ 8248BEE
+	.string "你会再给我一次\n"
+	.string "结盟的机会吧？$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMIntro:: @ 8248C2E
+	.string "嗨，你好！\n"
+	.string "我是{STR_VAR_1}，是泳装大姐！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMMon1:: @ 8248C5B
+	.string "看看我养的！\n"
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}，还有$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMMon2Ask:: @ 8248C90
+	.string "一只带着{STR_VAR_1}的{STR_VAR_2}！\n"
+	.string "很棒吧？\p"
+	.string "组个队伍也很棒！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMAccept:: @ 8248CCF
+	.string "多谢你！\n"
+	.string "我把这登记的事办完！$"
+
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMReject:: @ 8248D04
+	.string "要是再见面，你一定要跟我组队。\n"
+	.string "你会吧？$"
+
+`

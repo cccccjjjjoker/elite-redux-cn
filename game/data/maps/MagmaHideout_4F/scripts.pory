@@ -1,0 +1,326 @@
+raw `
+.set LOCALID_GROUDON, 1
+.set LOCALID_GRUNT_1, 2
+.set LOCALID_GRUNT_2, 3
+.set LOCALID_GRUNT_3, 4
+.set LOCALID_TABITHA, 5
+.set LOCALID_MAXIE, 6
+.set LOCALID_GROUDON_SLEEPING, 7
+
+MagmaHideout_4F_MapScripts:: @ 823A55F
+	.byte 0
+
+MagmaHideout_4F_EventScript_Maxie:: @ 823A560
+	lockall
+	playbgm MUS_ENCOUNTER_MAGMA, FALSE
+	msgbox MagmaHideout_4F_Text_MaxieAwakenGroudon, MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	setvar VAR_RESULT, 1
+	playse SE_M_DETECT
+	dofieldeffectsparkle 18, 42, 0
+	waitfieldeffect FLDEFF_SPARKLE
+	setvar VAR_RESULT, 0
+	playfanfare MUS_AWAKEN_LEGEND
+	playse SE_ORB
+	special DoOrbEffect
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	delay 150
+	removeobject LOCALID_GROUDON_SLEEPING
+	addobject LOCALID_GROUDON
+	waitstate
+	delay 60
+	applymovement LOCALID_GROUDON, MagmaHideout_4F_Movement_GroudonApproach
+	waitmovement 0
+	special FadeOutOrbEffect
+	waitstate
+	playmoncry SPECIES_GROUDON, 2
+	waitmoncry
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	delay 30
+	applymovement LOCALID_MAXIE, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox MagmaHideout_4F_Text_MaxieOhItWasYou, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MAXIE, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	msgbox MagmaHideout_4F_Text_MaxieWowItsGroudon, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MAXIE, Common_Movement_FacePlayer
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	msgbox MagmaHideout_4F_Text_MaxieFightMe, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_no_intro TRAINER_MAXIE_MAGMA_HIDEOUT, MagmaHideout_4F_Text_MaxieDefeat
+	setvar VAR_0x8004, 1  @ vertical pan
+	setvar VAR_0x8005, 1  @ horizontal pan
+	setvar VAR_0x8006, 8  @ num shakes
+	setvar VAR_0x8007, 5  @ shake delay
+	special ShakeCamera
+	waitstate
+	applymovement LOCALID_MAXIE, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	applymovement LOCALID_GROUDON, MagmaHideout_4F_Movement_GroudonExit
+	waitmovement 0
+	removeobject LOCALID_GROUDON
+	delay 4
+	setvar VAR_0x8004, 2  @ vertical pan
+	setvar VAR_0x8005, 2  @ horizontal pan
+	setvar VAR_0x8006, 8  @ num shakes
+	setvar VAR_0x8007, 5  @ shake delay
+	special ShakeCamera
+	waitstate
+	delay 30
+	applymovement LOCALID_MAXIE, Common_Movement_FacePlayer
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	msgbox MagmaHideout_4F_Text_MaxieImGoingAfterGroudon, MSGBOX_DEFAULT
+	closemessage
+	clearflag FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN
+	clearflag FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY
+	setvar VAR_SLATEPORT_CITY_STATE, 1
+	setflag FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT
+	setvar VAR_SLATEPORT_HARBOR_STATE, 1
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MAXIE
+	removeobject LOCALID_GRUNT_1
+	removeobject LOCALID_GRUNT_2
+	removeobject LOCALID_GRUNT_3
+	removeobject LOCALID_TABITHA
+	setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+	fadescreen FADE_FROM_BLACK
+	releaseall
+    @ NEW shortcut for the next
+    goto MagmaHideout_4F_EventScript_CourtneyGoOutside
+	@msgbox MagmaHideout_4F_Text_MaxieImGoingAfterGroudon, MSGBOX_DEFAULT
+	@closemessage
+
+MagmaHideout_4F_Movement_GroudonApproach: @ 823A672
+	delay_16
+	delay_16
+	walk_slow_down
+	delay_16
+	delay_16
+	delay_16
+	walk_slow_down
+	delay_16
+	delay_16
+	delay_16
+	step_end
+
+MagmaHideout_4F_Movement_GroudonExit: @ 823A67D
+	slide_up
+	slide_up
+	step_end
+
+MagmaHideout_4F_Movement_MaxieLookAround: @ 823A680
+	face_left
+	delay_16
+	face_right
+	delay_16
+	face_left
+	delay_16
+	face_right
+	delay_16
+	face_up
+	delay_16
+	delay_16
+	step_end
+
+MagmaHideout_4F_EventScript_Grunt11:: @ 823A68C
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_11, MagmaHideout_4F_Text_Grunt11Intro, MagmaHideout_4F_Text_Grunt11Defeat
+	msgbox MagmaHideout_4F_Text_Grunt11PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_4F_EventScript_Grunt12:: @ 823A6A3
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_12, MagmaHideout_4F_Text_Grunt12Intro, MagmaHideout_4F_Text_Grunt12Defeat
+	msgbox MagmaHideout_4F_Text_Grunt12PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_4F_EventScript_Grunt13:: @ 823A6BA
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_13, MagmaHideout_4F_Text_Grunt13Intro, MagmaHideout_4F_Text_Grunt13Defeat
+	msgbox MagmaHideout_4F_Text_Grunt13PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_4F_EventScript_Tabitha::
+	trainerbattle_single TRAINER_TABITHA_MAGMA_HIDEOUT, MagmaHideout_4F_Text_TabithaIntro, MagmaHideout_4F_Text_TabithaDefeat
+	msgbox MagmaHideout_4F_Text_TabithaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_4F_EventScript_Courtney::
+	trainerbattle_single TRAINER_COURTNEY_MAGMA_HIDEOUT, MagmaHideout_4F_Text_CourtneyIntro, MagmaHideout_4F_Text_CourtneyDefeat
+	msgbox MagmaHideout_4F_Text_CourtneyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_4F_Text_Grunt11Intro: @ 823A6E8
+	.string "我也想看看固拉多，\n"
+	.string "可他们连它的尾巴\p"
+	.string "都不让我看……\n"
+	.string "真让我憋得慌。\p"
+	.string "哦，糟了！\n"
+	.string "我把固拉多的事说出去了！$"
+
+MagmaHideout_4F_Text_Grunt11Defeat: @ 823A775
+	.string "看来心不静下来是赢不了的……$"
+
+MagmaHideout_4F_Text_Grunt11PostBattle: @ 823A7B5
+	.string "我在想固拉多到底有没有尾巴？$"
+
+MagmaHideout_4F_Text_Grunt12Intro: @ 823A7DA
+	.string "呼哈哈！快了！就快了！\n"
+	.string "我们的宏大目标就要实现了！$"
+
+MagmaHideout_4F_Text_Grunt12Defeat: @ 823A81B
+	.string "唔……我走了这么远，结果就这样？$"
+
+MagmaHideout_4F_Text_Grunt12PostBattle: @ 823A841
+	.string "赤焰松老大！\n"
+	.string "有入侵者朝你那边去了！$"
+
+MagmaHideout_4F_Text_Grunt13Intro: @ 823A86D
+	.string "你还没完呢！别想轻易过我这一关！$"
+
+MagmaHideout_4F_Text_Grunt13Defeat: @ 823A8A7
+	.string "我就这么容易被放倒吗？$"
+
+MagmaHideout_4F_Text_Grunt13PostBattle: @ 823A8C6
+	.string "来、再来一场……$"
+
+MagmaHideout_4F_Text_TabithaIntro: @ 823A8E1
+	.string "嘿嘿嘿！\n"
+	.string "你能走到这里，那我就告诉你！\p"
+	.string "没错！\n"
+	.string "前面就是沉睡的固拉多！\p"
+	.string "赤焰松几秒前刚去找固拉多了！\n"
+	.string "它很快就要醒来了！嘿嘿！嘿嘿嘿！$"
+
+MagmaHideout_4F_Text_TabithaDefeat: @ 823A994
+	.string "又被打倒了……嘿嘿……$"
+
+MagmaHideout_4F_Text_TabithaPostBattle: @ 823A9AC
+	.string "……就在你跟我们耗时间的时候，\n"
+	.string "赤焰松应该已经唤醒固拉多了……$"
+
+MagmaHideout_4F_Text_CourtneyIntro:
+	.string "啊哈哈哈！\n"
+	.string "小鬼，很高兴你来了！\p"
+	.string "你正好赶上亲眼看着火岩队的野心\n"
+	.string "变成现实！\p"
+	.string "有了固拉多的力量，\n"
+	.string "我们就能为大家扩大陆地！$"
+
+MagmaHideout_4F_Text_CourtneyDefeat:
+	.string "啊哈……哈……\n"
+	.string "本来可以更顺利的……$"
+
+MagmaHideout_4F_Text_CourtneyPostBattle:
+	.string "你也许打赢了我们，\n"
+	.string "但赢家还是我们！$"
+
+MagmaHideout_4F_Text_MaxieAwakenGroudon: @ 823A9F4
+	.string "赤焰松：固拉多……\n"
+	.string "泡在岩浆里的长眠，\p"
+	.string "什么都不能把你唤醒……\n"
+	.string "这颗红色宝珠就是你要找的，对吧？\p"
+	.string "我把红色宝珠带来了。\n"
+	.string "让它的光辉唤醒你！\p"
+	.string "然后让我看看……\n"
+	.string "让我看看你全部的力量！$"
+
+MagmaHideout_4F_Text_MaxieGroudonWhatsWrong: @ 823AADA
+	.string "赤焰松：固拉多！\n"
+	.string "怎么了？\p"
+	.string "红色宝珠不是关键吗？\n"
+	.string "固拉多！你到哪儿去了……$"
+
+MagmaHideout_4F_Text_MaxieOhItWasYou: @ 823AB33
+	.string "赤焰松：哦？又是你？\n"
+	.string "我见你到处不请自来地探头探脑……\p"
+	.string "我猜你又来插手我们的事了？\n"
+	.string "还是说，你想近距离看看固拉多？\p"
+	.string "那好吧……$"
+
+MagmaHideout_4F_Text_MaxieWowItsGroudon:
+	.string "赤焰松：看吧！大地超古代宝可梦，\n"
+	.string "固拉多！\p"
+	.string "只要红色宝珠在我手上，\n"
+	.string "我就能完全控制它。$"
+
+MagmaHideout_4F_Text_MaxieFightMe:
+	.string "赤焰松：有了固拉多的力量，\n"
+	.string "火岩队的宏大野心终于要实现了！\p"
+	.string "不过首先……\n"
+	.string "我要把你的插手彻底了结！$"
+
+MagmaHideout_4F_Text_MaxieDefeat: @ 823ABB5
+	.string "你凭什么这么擅长操纵宝可梦？$"
+
+MagmaHideout_4F_Text_MaxieImGoingAfterGroudon: @ 823ABE2
+	.string "赤焰松：不！\n"
+	.string "看来你打赢固拉多，\p"
+	.string "就足以让它摆脱我的控制……\n"
+	.string "固拉多走了，\p"
+	.string "这座该死的火山也没用了。\n"
+	.string "我要去追固拉多，我们就在此别过！$"
+`
+
+const LOCALID_COURTNEY = 9
+movement MagmaHideout_4F_Movement_CourtneyArrives{
+    walk_fast_right * 4
+    walk_fast_down
+    walk_right * 5
+}
+
+movement MagmaHideout_4F_Movement_CourtneyGoToPanel{
+    walk_left
+    walk_up
+}
+
+script MagmaHideout_4F_EventScript_WarpToSlatePortCity{
+    warp(MAP_SLATEPORT_CITY, 255, 17, 10)
+    waitstate
+    release
+}
+
+script MagmaHideout_4F_EventScript_CourtneyChangedOpinion{
+    lock
+	faceplayer
+    msgbox(format("哦，改主意了？$"), MSGBOX_YESNO)
+    if (var(VAR_RESULT)){
+        goto(MagmaHideout_4F_EventScript_WarpToSlatePortCity)
+    }
+	//yeah it's fucking bugged, for some reason even courtney have its movement type wrong.
+    applymovement(LOCALID_COURTNEY, Common_Movement_FaceUp)
+	waitmovement(0)
+    release
+}
+script MagmaHideout_4F_EventScript_CourtneyGoOutside{
+    lock
+    addobject(LOCALID_COURTNEY)
+    setobjectxy(LOCALID_COURTNEY, 5, 20)
+    applymovement(LOCALID_COURTNEY, MagmaHideout_4F_Movement_CourtneyArrives)
+    message(format("火雁：赤焰松！紧急消息！\n水舰队在搞事，我们得去……$"))
+	waitmessage
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft)
+    waitmovement(LOCALID_COURTNEY)
+    applymovement(LOCALID_COURTNEY, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    closemessage
+    delay(16)
+    msgbox(format("哦！你不是赤焰松。\n你就是那个老插手我们事情的小鬼，\p对吧？\n……等等，这也许行得通……\p你愿意帮我们给水舰队找点麻烦吗？$"), MSGBOX_YESNO)
+    if (var(VAR_RESULT)){
+        msgbox(format("太好了，谢谢你，{PLAYER}。$"), MSGBOX_DEFAULT)
+        goto(MagmaHideout_4F_EventScript_WarpToSlatePortCity)
+    } else {
+        msgbox(format("嗯。你确定？再想想，我们还没走。$"), MSGBOX_DEFAULT)
+        applymovement(LOCALID_COURTNEY, MagmaHideout_4F_Movement_CourtneyGoToPanel)
+        waitmovement(0)
+    }
+    release
+}
+
+

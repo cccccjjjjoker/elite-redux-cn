@@ -1,0 +1,6420 @@
+# proto-file: AbilityList.proto
+# proto-message: er.AbilityList
+
+ability {
+  id: ABILITY_NONE
+  name: "-------"
+  description: "特性槽为空。"
+}
+ability {
+  id: ABILITY_STENCH
+  name: "恶臭"
+  description: "10%几率使目标畏缩.剧毒地形永久存在."
+  expanded_description: "攻击获得+10%的畏缩几率.连续攻击招式的每一击单独计算畏缩几率.当该宝可梦在场时,剧毒地形的回合数不会减少."
+}
+ability {
+  id: ABILITY_DRIZZLE
+  name: "降雨"
+  description: "出场时降下雨水,持续8回合."
+  expanded_description: "降雨特性会在宝可梦进入战斗时降下雨水,持续8回合（携带潮湿岩石时为12回合）.雨天使水系招式威力提升50%,火系伤害降低50%.部分招式和特性在雨天下有特殊效果.无法覆盖原始天气."
+}
+ability {
+  id: ABILITY_SPEED_BOOST
+  name: "加速"
+  description: "每回合结束后自身速度提升1级."
+  expanded_description: "该宝可梦每在场完成一个完整的回合,其速度在回合结束时提升1级.入场的当回合不会触发."
+}
+ability {
+  id: ABILITY_BATTLE_ARMOR
+  name: "战斗盔甲"
+  description: "免疫击中要害.受到的招式伤害降低20%."
+  expanded_description: "受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+}
+ability {
+  id: ABILITY_STURDY
+  name: "结实"
+  description: "满HP时,不会一击濒死,必定留下1点HP."
+  expanded_description: "当该宝可梦HP全满时,能够承受任何一次攻击并至少留下1点HP.此效果如同携带了气势披带,因此无法抵御连续攻击招式或后续攻击（例如“余震”、“雷召”）."
+}
+ability {
+  id: ABILITY_DAMP
+  name: "湿气"
+  description: "使接触到的对手变为水属性.攻击时也生效."
+  expanded_description: "如果该宝可梦与另一只宝可梦发生接触（无论是攻击方还是防御方）,对方的属性会变为纯水属性.此效果在连续招式或优先度招式命中时立即发生,可以在对手的连续攻击过程中消除其本系加成."
+}
+ability {
+  id: ABILITY_LIMBER
+  name: "柔软"
+  description: "免疫麻痹；反作用力伤害减半，且不会因自身招式而降低能力。"
+  expanded_description: "该宝可梦受到的所有反伤伤害减半；包括具有比例反伤的招式（如勇鸟猛攻）、具有撞伤风险的招式（如飞膝踢）、或固定反伤的招式（如钢炮光线）.麻痹状态无法影响该宝可梦,且获得此特性时,若已处于麻痹状态则会立刻治愈."
+}
+ability {
+  id: ABILITY_SAND_VEIL
+  name: "沙隐"
+  description: "在沙暴中,闪避率提升1.25倍."
+  expanded_description: "在沙暴中,对手的命中率变为原来的1/1.25,且自身免疫沙暴伤害.会被无防御或破格特性识破."
+}
+ability {
+  id: ABILITY_STATIC
+  name: "静电"
+  description: "接触攻击有30%几率麻痹,非接触攻击有10%几率麻痹."
+  expanded_description: "无论该宝可梦是攻击方还是被攻击方,都有几率使对手陷入麻痹.非接触攻击有10%几率麻痹,接触攻击有30%几率麻痹."
+}
+ability {
+  id: ABILITY_VOLT_ABSORB
+  name: "蓄电"
+  description: "受到电属性招式攻击时,恢复最大HP的25%."
+  expanded_description: "该宝可梦能够吸收电属性招式,将其转化为能量,恢复其最大HP的25%.对电属性伤害及其附加效果（如电磁波的麻痹）完全免疫.对于水/飞行属性宝可梦来说,是消除4倍电系弱点的完美选择."
+}
+ability {
+  id: ABILITY_WATER_ABSORB
+  name: "储水"
+  description: "受到水属性招式攻击时,恢复最大HP的25%."
+  expanded_description: "该宝可梦免疫水属性招式,并且受到水属性招式攻击时会恢复其最大HP的25%."
+}
+ability {
+  id: ABILITY_OBLIVIOUS
+  name: "迟钝"
+  description: "免疫着迷、惊吓、威吓及招式封锁。"
+  expanded_description: "该宝可梦免疫着迷、惊吓、威吓和挑衅.在获得此特性时,如果已经处于上述任意状态,则会立刻解除."
+}
+ability {
+  id: ABILITY_CLOUD_NINE
+  name: "无关天气"
+  description: "清除天气并阻止其效果产生."
+  expanded_description: "上场时清除所有天气,并且在该宝可梦在场期间使所有天气效果（包括原始天气）失效.天气仍可以被设置,但在该宝可梦下场前,不会提供任何伤害加成或触发与天气相关的特性."
+}
+ability {
+  id: ABILITY_COMPOUND_EYES
+  name: "复眼"
+  description: "获得1.3倍的命中率提升."
+  expanded_description: "该宝可梦的招式命中率变为1.3倍."
+}
+ability {
+  id: ABILITY_INSOMNIA
+  name: "不眠"
+  description: "不会陷入睡眠状态.使用睡觉会失败."
+  expanded_description: "防止任何方式陷入睡眠状态,包括催眠招式、特性（如哈欠）以及其他可能导致睡眠的效果.使用招式睡觉将完全失败.若在获得此特性前已处于睡眠状态（例如通过烦恼种子或特性交换）,则会立刻醒来.可被破格等特性识破"
+}
+ability {
+  id: ABILITY_COLOR_CHANGE
+  name: "变色"
+  description: "受到攻击前,变为拥有抗性或免疫的属性."
+  expanded_description: "受到伤害前,将自身转变为防御效果最佳的纯属性.优先考虑免疫而非抗性.每回合仅触发一次."
+}
+ability {
+  id: ABILITY_IMMUNITY
+  name: "免疫"
+  description: "不会陷入中毒状态.受到的毒属性伤害减半."
+  expanded_description: "防止中毒.所有毒属性伤害减半.与其他减伤效果乘法叠加.获得此特性时若已中毒,则立刻治愈."
+}
+ability {
+  id: ABILITY_FLASH_FIRE
+  name: "引火"
+  description: "受到火属性招式攻击后,自身火属性招式威力提升至1.5倍."
+  expanded_description: "引火特性使宝可梦完全免疫火属性招式.受到火属性攻击后,自身的火属性招式威力提升50%,直到下场为止.多次被火属性攻击命中不会使效果叠加."
+}
+ability {
+  id: ABILITY_SHIELD_DUST
+  name: "鳞粉"
+  description: "免疫招式的追加效果、场地状态和粉末类招式."
+  expanded_description: "阻挡所有攻击招式的追加效果.免疫所有入场陷阱.免疫所有粉末类招式,包括催眠粉、麻痹粉、毒粉、蘑菇孢子、棉孢子、愤怒粉、粉末和魔法粉."
+}
+ability {
+  id: ABILITY_OWN_TEMPO
+  name: "我行我素"
+  description: "免疫混乱、威吓和惊吓."
+  expanded_description: "免疫混乱、威吓和惊吓.获得此特性时若已混乱,则立刻解除混乱状态."
+}
+ability {
+  id: ABILITY_SUCTION_CUPS
+  name: "吸盘"
+  description: "不会被对手的招式强制替换下场."
+  expanded_description: "防止被招式或红牌强制替换下场."
+}
+ability {
+  id: ABILITY_INTIMIDATE
+  name: "威吓"
+  description: "出场时,降低所有对手的攻击1级."
+  expanded_description: "进入战斗时,降低所有对手宝可梦的攻击1级."
+}
+ability {
+  id: ABILITY_SHADOW_TAG
+  name: "影子游戏"
+  description: "对手无法替换下场.幽灵属性不受影响."
+  expanded_description: "阻止所有不具有影子游戏特性或非幽灵属性的对手替换下场.携带逃脱按键或使用替换招式（如快速折返）的宝可梦可以逃脱如果在战斗中中途替换上场,效果将在下一回合生效."
+}
+ability {
+  id: ABILITY_ROUGH_SKIN
+  name: "粗糙皮肤"
+  description: "受到接触类招式攻击时，攻击者损失最大HP的1/8。"
+  expanded_description: "对使用接触类招式的攻击者造成其最大HP1/8的伤害.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_WONDER_GUARD
+  name: "神奇守护"
+  description: "仅会受到效果绝佳的攻击或间接伤害."
+  expanded_description: "只有效果绝佳的招式或间接伤害能够伤害到该宝可梦.其他所有直接攻击造成的伤害均为零.中毒或特性伤害等其他来源的伤害照常生效."
+}
+ability {
+  id: ABILITY_LEVITATE
+  name: "飘浮"
+  description: "免疫地面属性招式.自身飞行招式威力提升至1.25倍."
+  expanded_description: "该宝可梦免疫地面属性招式以及其他地面效果,如撒菱和场地状态.飞行属性招式伤害提升25%."
+}
+ability {
+  id: ABILITY_EFFECT_SPORE
+  name: "孢子"
+  description: "受接触攻击时30%使攻击者\n陷入睡眠、麻痹或中毒。"
+  expanded_description: "受到接触类招式攻击时,有30%的几率使攻击者陷入睡眠、麻痹或中毒状态.状态类型随机选择."
+}
+ability {
+  id: ABILITY_SYNCHRONIZE
+  name: "同步"
+  description: "受到异常状态时，使攻击者也获得相同的异常状态"
+  expanded_description: "当被施加非瞬间异常状态（睡眠除外）时,攻击者也会陷入相同的状态.此效果可穿透替身.若该宝可梦在被施加异常状态时能够治愈自身,则会在治愈前先将异常状态施加给攻击者."
+}
+ability {
+  id: ABILITY_CLEAR_BODY
+  name: "恒净之躯"
+  description: "免疫能力降低."
+  expanded_description: "免疫所有由招式或特性引起的能力降低效果.包括因使用过热等招式导致的自身能力降低."
+}
+ability {
+  id: ABILITY_NATURAL_CURE
+  name: "自然回复"
+  description: "替换下场时,治愈异常状态."
+  expanded_description: "替换下场时,治愈所有异常状态."
+}
+ability {
+  id: ABILITY_LIGHTNING_ROD
+  name: "避雷针"
+  description: "吸引电属性招式.并提升自身最高的攻击能力."
+  expanded_description: "该宝可梦会吸引电属性招式,并对其免疫.此外,受到电属性招式攻击后,自身最高的攻击能力提升1级."
+}
+ability {
+  id: ABILITY_SERENE_GRACE
+  name: "天恩"
+  description: "自身招式的追加效果触发几率加倍."
+  expanded_description: "自身攻击招式的追加效果触发几率加倍."
+}
+ability {
+  id: ABILITY_SWIFT_SWIM
+  name: "悠游自如"
+  description: "下雨天气时,该宝可梦的速度提升至1.5倍."
+  expanded_description: "下雨天气时,速度提升50%."
+}
+ability {
+  id: ABILITY_CHLOROPHYLL
+  name: "叶绿素"
+  description: "大晴天天气时,该宝可梦的速度提升至1.5倍."
+  expanded_description: "大晴天天气时,速度提升50%."
+}
+ability {
+  id: ABILITY_ILLUMINATE
+  name: "发光"
+  description: "命中率×1.2；攻击会移除目标的幽灵属性。"
+  expanded_description: "该宝可梦的招式命中率变为1.2倍.攻击命中时,移除目标的幽灵属性."
+}
+ability {
+  id: ABILITY_TRACE
+  name: "复制"
+  description: "复制对手的特性.无法复制先天特性."
+  expanded_description: "进入战斗时,复制一只对手宝可梦的特性,替换当前特性栏位中的特性.无法复制复制、神奇守护以及大多数与形态相关的特性.在双打对战中,随机选择首个符合条件的对手."
+}
+ability {
+  id: ABILITY_HUGE_POWER
+  name: "大力士"
+  description: "自身的攻击能力加倍.提升最终能力值而非基础能力值."
+  expanded_description: "该宝可梦的攻击能力值变为2倍与其他伤害加成效果乘法叠加."
+}
+ability {
+  id: ABILITY_POISON_POINT
+  name: "毒刺"
+  description: "接触攻击有30%几率使目标中毒.攻击时也生效."
+  expanded_description: "无论该宝可梦是攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒."
+}
+ability {
+  id: ABILITY_INNER_FOCUS
+  name: "精神力"
+  description: "不会陷入畏缩状态,免疫威吓和惊吓.真气弹必中."
+  expanded_description: "真气弹必定命中.不受畏缩、威吓或惊吓的影响."
+}
+ability {
+  id: ABILITY_MAGMA_ARMOR
+  name: "熔岩铠甲"
+  description: "免疫冻伤.受到的水系和冰系招式伤害降低30%."
+  expanded_description: "免疫冻伤状态.受到的水属性和冰属性招式伤害降低30%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_WATER_VEIL
+  name: "水幕"
+  description: "免疫灼伤.出场时制造出水环."
+  expanded_description: "出场时制造出水环,每回合回复1/16的HP.免疫灼伤状态,并在替换上场时解除灼伤状态."
+}
+ability {
+  id: ABILITY_MAGNET_PULL
+  name: "磁力"
+  description: "钢属性宝可梦无法逃走幽灵属性不受影响."
+  expanded_description: "在该宝可梦在场期间,阻止钢属性宝可梦替换下场.幽灵属性免疫此效果.携带逃脱按键或使用替换招式（如快速折返）的宝可梦可以逃脱如果在战斗中中途替换上场,效果将在下一回合生效."
+}
+ability {
+  id: ABILITY_SOUNDPROOF
+  name: "隔音"
+  description: "免疫声音类招式."
+  expanded_description: "免疫声音类招式.以自身为目标的声音类招式不受影响."
+}
+ability {
+  id: ABILITY_RAIN_DISH
+  name: "雨盘"
+  description: "下雨天气时,每回合回复1/8的最大HP."
+  expanded_description: "下雨天气时,每回合结束时回复1/8的最大HP."
+}
+ability {
+  id: ABILITY_SAND_STREAM
+  name: "扬沙"
+  description: "出场时引发沙暴,持续8回合."
+  expanded_description: "出场时引发沙暴,持续8回合（携带光滑岩石时为12回合）.每回合对非岩石/地面/钢属性宝可梦造成1/16的HP伤害岩石属性宝可梦的特防提升50%.使与大晴天相关的招式效果减半"
+}
+ability {
+  id: ABILITY_PRESSURE
+  name: "压迫感"
+  description: "对手招式PP消耗翻倍.出场时清除对手的能力提升."
+  expanded_description: "对手使用招式时,PP消耗加倍.出场时,清除所有对手的能力提升等级."
+}
+ability {
+  id: ABILITY_THICK_FAT
+  name: "厚脂肪"
+  description: "受到的火属性和冰属性招式伤害减半."
+  expanded_description: "受到的火属性和冰属性招式伤害降低50%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_EARLY_BIRD
+  name: "早足"
+  description: "从睡眠中醒来的速度加倍."
+  expanded_description: "该宝可梦从睡眠状态醒来的速度加倍.每回合减少2个睡眠计数而非1个."
+}
+ability {
+  id: ABILITY_FLAME_BODY
+  name: "火焰之躯"
+  description: "接触攻击有30%几率灼伤,非接触20%.主动攻击时也生效."
+  expanded_description: "与该宝可梦发生接触有30%几率使对手灼伤.非接触攻击有20%几率.无论攻击方还是被攻击方均会生效."
+}
+ability {
+  id: ABILITY_RUN_AWAY
+  name: "逃足"
+  description: "必定能逃离.能力被对手降低时,速度提升."
+  expanded_description: "无论速度如何,必定能从野生宝可梦对战中成功逃离.当该宝可梦的任何能力被对手的招式或特性降低时,其速度提升2级."
+}
+ability {
+  id: ABILITY_KEEN_EYE
+  name: "锐利目光"
+  description: "免疫命中率降低.获得1.2倍的命中率提升."
+  expanded_description: "防止命中率能力等级被降低.所有招式获得1.2倍的命中率提升."
+}
+ability {
+  id: ABILITY_HYPER_CUTTER
+  name: "巨钳"
+  description: "无法降低自身的攻击或特攻.接触类招式易中要害."
+  expanded_description: "巨钳特性防止敌人通过招式或特性降低该宝可梦的攻击能力.该宝可梦使用的所有接触类招式的击中要害率提升1级."
+}
+ability {
+  id: ABILITY_PICKUP
+  name: "捡拾"
+  description: "出场时移除所有场地状态.但不会免疫场地状态伤害."
+  expanded_description: "进入战斗时,清除己方场地上所有入场陷阱.该宝可梦在清除陷阱时仍会受到它们的影响."
+}
+ability {
+  id: ABILITY_TRUANT
+  name: "懒惰"
+  description: "无法连续使用攻击招式."
+  expanded_description: "防止连续使用攻击招式.使用攻击招式后,下一回合必须偷懒,无法攻击.使用变化招式不受影响."
+}
+ability {
+  id: ABILITY_HUSTLE
+  name: "活力"
+  description: "命中率0.9倍.伤害提升至1.4倍."
+  expanded_description: "攻击招式威力提升40%,但命中率降低10%.仅影响非变化招式."
+}
+ability {
+  id: ABILITY_CUTE_CHARM
+  name: "迷人之躯"
+  description: "接触时有50%概率使对方着迷；主动攻击时也能触发。"
+  expanded_description: "当通过接触受到攻击时（无论攻击方还是被攻击方）,有50%几率使攻击者陷入着迷状态（使其攻击和特攻减半）.此效果仅对异性宝可梦生效."
+}
+ability {
+  id: ABILITY_PLUS
+  name: "正电"
+  description: "如果同伴宝可梦具有负电或正电,造成双倍伤害."
+  expanded_description: "当与具有负电或正电的同伴一起出战时,该宝可梦的输出威力加倍."
+}
+ability {
+  id: ABILITY_MINUS
+  name: "负电"
+  description: "如果同伴宝可梦具有负电或正电,造成双倍伤害."
+  expanded_description: "当与具有负电或正电的同伴一起出战时,该宝可梦的输出威力加倍."
+}
+ability {
+  id: ABILITY_FORECAST
+  name: "天气预报"
+  description: "随天气改变形态.在设置天气时发动攻击."
+  expanded_description: "根据当前的天气改变自身形态和属性.当使用改变天气的招式时,会紧接着使用气象球（威力100,特殊,类型与设置的天气一致）.在出场时、天气变化时以及回合结束时触发形态变化.此特性无法被压制,即使在破格等效果下也能生效."
+}
+ability {
+  id: ABILITY_STICKY_HOLD
+  name: "黏着"
+  description: "不会失去携带的物品."
+  expanded_description: "该宝可梦携带的物品不会被强制移除或偷走."
+}
+ability {
+  id: ABILITY_SHED_SKIN
+  name: "蜕皮"
+  description: "每回合结束时,有30%几率治愈自身的异常状态."
+  expanded_description: "每回合结束时,该宝可梦有30%的几率治愈自身所受到的异常状态."
+}
+ability {
+  id: ABILITY_GUTS
+  name: "毅力"
+  description: "处于异常状态时，攻击×1.5。"
+  expanded_description: "处于任何异常状态时,攻击能力值提升50%.并且无视灼伤状态带来的攻击力降低效果."
+}
+ability {
+  id: ABILITY_MARVEL_SCALE
+  name: "神奇鳞片"
+  description: "处于异常状态时，防御×1.5。"
+  expanded_description: "处于任何异常状态时,基础防御能力值提升50%."
+}
+ability {
+  id: ABILITY_LIQUID_OOZE
+  name: "污泥浆"
+  description: "吸取招式会对使用者造成伤害而非治疗."
+  expanded_description: "污泥浆特性会反转所有吸取招式的治疗效果,使攻击者受到伤害.影响吸取拳、超级吸取、终极吸取、吸血以及类似的吸取类攻击伤害量等于原本应恢复的HP.完美克制依赖治疗的战术."
+}
+ability {
+  id: ABILITY_OVERGROW
+  name: "茂盛"
+  description: "草属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+  expanded_description: "草属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_BLAZE
+  name: "猛火"
+  description: "火属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+  expanded_description: "火属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_TORRENT
+  name: "激流"
+  description: "水属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+  expanded_description: "水属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_SWARM
+  name: "虫之预感"
+  description: "虫属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+  expanded_description: "虫属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_ROCK_HEAD
+  name: "坚硬脑袋"
+  description: "免疫反伤伤害,但不免疫大爆炸/撞击伤害."
+  expanded_description: "防止所有来自自身招式或特性的反伤伤害.同时免疫因愤怒产生的反伤伤害无法防止撞击伤害或大爆炸/自爆的伤害."
+}
+ability {
+  id: ABILITY_DROUGHT
+  name: "干旱"
+  description: "出场时降下大晴天,持续8回合."
+  expanded_description: "出场时引发大晴天,持续8回合（携带炎热岩石时为12回合）.火属性招式威力提升50%,水属性招式威力降低50%.并激活与大晴天相关的招式的额外效果."
+}
+ability {
+  id: ABILITY_ARENA_TRAP
+  name: "沙穴"
+  description: "敌人无法逃走.幽灵属性和飘浮状态的宝可梦免疫."
+  expanded_description: "防止所有非飘浮状态或非幽灵属性的对手替换下场.携带逃脱按键或使用替换招式（如快速折返）的宝可梦可以逃脱如果在战斗中中途替换上场,效果将在下一回合生效."
+}
+ability {
+  id: ABILITY_VITAL_SPIRIT
+  name: "干劲"
+  description: "不会陷入睡眠.使用格斗属性招式治愈异常状态."
+  expanded_description: "免疫睡眠状态.当该宝可梦使用格斗属性招式时在招式效果结束后立即治愈所有异常状态.获得此特性时若已睡眠,则立刻解除."
+}
+ability {
+  id: ABILITY_WHITE_SMOKE
+  name: "白烟"
+  description: "替换上场时,设置烟幕,持续3回合."
+  expanded_description: "出场时设置烟幕,持续3回合.烟幕使己方全队的闪避率提升25%."
+}
+ability {
+  id: ABILITY_PURE_POWER
+  name: "瑜伽之力"
+  description: "自身的特攻能力加倍.提升最终能力值,而非基础能力值."
+  expanded_description: "该宝可梦的攻击能力值变为2倍与其他伤害加成效果乘法叠加."
+}
+ability {
+  id: ABILITY_SHELL_ARMOR
+  name: "硬壳盔甲"
+  description: "免疫击中要害.受到的招式伤害降低20%."
+  expanded_description: "受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+}
+ability {
+  id: ABILITY_AIR_LOCK
+  name: "气闸"
+  description: "无关天气 + 吹气筒."
+  expanded_description: "出场时设置顺风,持续3回合,并清除所有天气效果.原始天气会被压制.在该宝可梦在场期间,天气仍可被设置,但不会产生任何效果,直到该宝可梦下场."
+}
+ability {
+  id: ABILITY_TANGLED_FEET
+  name: "蹒跚"
+  description: "处于混乱或愤怒状态时,使用速度进行防御."
+  expanded_description: "当该宝可梦处于混乱或愤怒状态时,在伤害计算中使用其速度能力值来代替防御或特防.讲究围巾的效果不会影响此特性"
+}
+ability {
+  id: ABILITY_MOTOR_DRIVE
+  name: "电气引擎"
+  description: "受到电属性招式攻击时,提升速度而非受到伤害."
+  expanded_description: "免疫电属性招式,并且在受到电属性招式攻击时,速度提升1级.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_RIVALRY
+  name: "斗争心"
+  description: "对同性对手造成1.25倍伤害.受到异性对手的伤害为0.75倍."
+  expanded_description: "该宝可梦对同性别的对手造成伤害提高25%,受到异性别的对手造成的伤害降低25%.对无性别的宝可梦无效."
+}
+ability {
+  id: ABILITY_STEADFAST
+  name: "不屈之心"
+  description: "如果该宝可梦畏缩,速度提升1级."
+  expanded_description: "当陷入畏缩状态时,速度提升1级."
+}
+ability {
+  id: ABILITY_SNOW_CLOAK
+  name: "雪隐"
+  description: "在冰雹中,闪避率提升至1.25倍."
+}
+ability {
+  id: ABILITY_GLUTTONY
+  name: "贪吃鬼"
+  description: "提早吃树果.树果还会额外回复1/3的最大HP."
+  expanded_description: "原本在HP低于1/4时发动的树果,改为在HP低于1/2时发动.此外,在消耗任何树果后,该宝可梦会额外回复1/3的最大HP.不包括通过啄食等招式消耗的树果."
+}
+ability {
+  id: ABILITY_ANGER_POINT
+  name: "愤怒穴位"
+  description: "受到攻击时,攻击提升1级.受到击中要害的攻击时提升至最大."
+  expanded_description: "受到攻击时,该宝可梦的攻击提升1级；若受到击中要害的攻击,则攻击能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_UNBURDEN
+  name: "轻装"
+  description: "消耗掉携带的物品后,速度加倍直到下场."
+  expanded_description: "当消耗或失去携带的物品时,该宝可梦的基础速度能力值变为2倍.当替换下场、获得新物品或失去此特性时,速度加成消失."
+}
+ability {
+  id: ABILITY_HEATPROOF
+  name: "耐热"
+  description: "受到的火属性招式伤害减半.不会受到灼伤伤害."
+  expanded_description: "受到的火属性招式伤害减半.免疫灼伤伤害以及灼伤状态带来的攻击力降低效果."
+}
+ability {
+  id: ABILITY_SIMPLE
+  name: "单纯"
+  description: "该宝可梦的能力变化效果翻倍."
+}
+ability {
+  id: ABILITY_DRY_SKIN
+  name: "干燥皮肤"
+  description: "水/雨天会回复.火/晴天会受伤."
+  expanded_description: "受到水属性招式攻击时回复25%的HP,下雨天气时每回合回复12.5%的HP.受到火属性招式伤害增加25%,大晴天天气时每回合损失12.5%的HP."
+}
+ability {
+  id: ABILITY_DOWNLOAD
+  name: "下载"
+  description: "根据对手的防御和特防,提升自身的攻击或特攻1级."
+  expanded_description: "替换上场时,如果对手的防御高于特防,则自身的特攻提升1级.如果对手的特防高于或等于防御则自身的攻击提升1级."
+}
+ability {
+  id: ABILITY_IRON_FIST
+  name: "铁拳"
+  description: "拳类招式的威力提升至1.3倍."
+  expanded_description: "拳类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_POISON_HEAL
+  name: "毒疗"
+  description: "处于中毒状态时,每回合结束回复1/8的最大HP."
+  expanded_description: "处于中毒状态时,每回合回复1/8的最大HP,而非受到伤害.对普通中毒和剧毒状态均有效.同时免疫剧毒地形的伤害."
+}
+ability {
+  id: ABILITY_ADAPTABILITY
+  name: "适应力"
+  description: "本系加成从1.5倍提升至2倍."
+  expanded_description: "使用与自身属性相同的招式时,伤害加成从1.5倍提升至2.0倍."
+}
+ability {
+  id: ABILITY_SKILL_LINK
+  name: "连续攻击"
+  description: "连续攻击招式总会打出最大次数."
+  expanded_description: "使连续攻击招式必定打出5次.对于仅能攻击3次或使用大扫荡时,所有攻击进行一次命中判定,而非每次攻击单独判定."
+}
+ability {
+  id: ABILITY_HYDRATION
+  name: "湿润之躯"
+  description: "下雨天气时,每回合结束时治愈自身异常状态."
+  expanded_description: "下雨天气时,每回合结束时治愈所有异常状态"
+}
+ability {
+  id: ABILITY_SOLAR_POWER
+  name: "太阳之力"
+  description: "大晴天时,自身最高的攻击能力提升至1.5倍."
+  expanded_description: "大晴天时,该宝可梦最高的攻击能力值提升50%."
+}
+ability {
+  id: ABILITY_QUICK_FEET
+  name: "飞毛腿"
+  description: "处于异常状态时,速度提升至1.5倍."
+  expanded_description: "处于任何异常状态时,速度能力值提升50%.并且无视麻痹状态带来的速度降低效果."
+}
+ability {
+  id: ABILITY_NORMALIZE
+  name: "一般皮肤"
+  description: "自身的招式变为一般属性,获得1.1倍威力提升,并无视抗性."
+  expanded_description: "将所有攻击招式转变为一般属性,并给予10%的威力加成.一般属性招式可以无视属性抗性但无法无视属性免疫."
+}
+ability {
+  id: ABILITY_SNIPER
+  name: "狙击手"
+  description: "击中要害时的伤害倍率从1.5倍提升至2.25倍."
+  expanded_description: "击中要害时的伤害倍率从1.5倍提升至2.25倍,即额外增加50%的伤害加成."
+}
+ability {
+  id: ABILITY_MAGIC_GUARD
+  name: "魔法防守"
+  description: "仅受攻击伤害."
+  expanded_description: "免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害."
+}
+ability {
+  id: ABILITY_NO_GUARD
+  name: "无防守"
+  description: "该宝可梦使用或受到的招式必定命中."
+  expanded_description: "确保该宝可梦使用的所有招式以及所有对该宝可梦使用的招式必定命中."
+}
+ability {
+  id: ABILITY_STALL
+  name: "后攻"
+  description: "如果还未行动,受到的伤害降低30%."
+  expanded_description: "如果该宝可梦本回合还未行动,则受到的伤害降低30%.与其他减伤效果乘法叠加.当该宝可梦在回合中替换上场时也生效."
+}
+ability {
+  id: ABILITY_TECHNICIAN
+  name: "技术高手"
+  description: "威力小于等于60的招式威力提升至1.5倍."
+  expanded_description: "威力小于等于60的招式威力提升1.5倍.对于基础威力可能超过60的招式（如复仇或毒击）,即使当前威力小于等于60,也不会获得提升."
+}
+ability {
+  id: ABILITY_LEAF_GUARD
+  name: "叶子防守"
+  description: "大晴天时,每回合结束时治愈自身异常状态."
+  expanded_description: "大晴天时,每回合结束时治愈所有异常状态"
+}
+ability {
+  id: ABILITY_KLUTZ
+  name: "笨拙"
+  description: "自身携带的物品无效.超级石不受影响."
+  expanded_description: "使所有携带物品的效果失效.物品仍可以被打落或偷走,但不会提供任何增益.投掷等依赖物品的招式会失败.超级石不受此限制."
+}
+ability {
+  id: ABILITY_MOLD_BREAKER
+  name: "破格"
+  description: "招式可穿透特性生效.同样影响先天特性."
+  expanded_description: "允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过那些会修改基础能力值的特性,如草之皮毛."
+}
+ability {
+  id: ABILITY_SUPER_LUCK
+  name: "超幸运"
+  description: "自身招式的击中要害率提升1级."
+  expanded_description: "该宝可梦所有攻击招式的击中要害率提升1级."
+}
+ability {
+  id: ABILITY_AFTERMATH
+  name: "引爆"
+  description: "倒下时发动威力100的大爆炸。\n爆炸类招式使目标畏缩。"
+  expanded_description: "当该宝可梦被击倒时,使用威力100的大爆炸或迸裂拳（取两者中威力更高者）.使用爆炸类招式时,必定使目标畏缩."
+}
+ability {
+  id: ABILITY_ANTICIPATION
+  name: "危险预知"
+  description: "预感到效果绝佳的招式.能闪避一次效果绝佳的招式攻击."
+  expanded_description: "替换上场时,若对手拥有对自身效果绝佳的招式,则会收到警告.闪避战斗中受到的第一次效果绝佳的招式攻击."
+}
+ability {
+  id: ABILITY_FOREWARN
+  name: "预知梦"
+  description: "出场时,对对手施放威力80的预知未来."
+  expanded_description: "替换上场时,对目标对手施放一个威力80的预知未来.2回合后攻击,可穿透替身和其他保护效果.一旦施放必定命中,无视命中判定.无法对同一目标施放两次."
+}
+ability {
+  id: ABILITY_UNAWARE
+  name: "纯朴"
+  description: "无视对手的能力变化,无论是提升还是降低."
+  expanded_description: "进行伤害计算时,完全无视对手的所有能力等级变化."
+}
+ability {
+  id: ABILITY_TINTED_LENS
+  name: "有色眼镜"
+  description: "攻击被抵抗时,造成双倍伤害."
+  expanded_description: "攻击被抵抗时,伤害加倍.如果招式被抵抗（伤害减半或更低）,则最终伤害乘以2倍."
+}
+ability {
+  id: ABILITY_FILTER
+  name: "过滤"
+  description: "受到效果绝佳的招式攻击时,伤害降低35%."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_SLOW_START
+  name: "慢启动"
+  description: "出场后的前5回合,攻击、特攻和速度减半."
+  expanded_description: "替换上场后的前5回合,攻击、特攻和速度能力值减半.每次替换下场后,回合计数会重置."
+}
+ability {
+  id: ABILITY_SCRAPPY
+  name: "胆量"
+  description: "一般/格斗系招式可以命中幽灵系.免疫威吓和惊吓."
+  expanded_description: "该宝可梦使用的一般和格斗属性招式能够以普通效果击中幽灵属性宝可梦.免疫威吓和惊吓."
+}
+ability {
+  id: ABILITY_STORM_DRAIN
+  name: "引水"
+  description: "吸引水属性招式.并提升自身最高的攻击能力."
+  expanded_description: "该宝可梦会吸引水属性招式,并对其免疫.此外,受到水属性招式攻击后,自身最高的攻击能力提升1级."
+}
+ability {
+  id: ABILITY_ICE_BODY
+  name: "冰冻之躯"
+  description: "冰雹天气时,每回合回复1/8的最大HP."
+  expanded_description: "冰雹天气时,每回合结束时回复1/8的最大HP.同时免疫冰雹伤害."
+}
+ability {
+  id: ABILITY_SOLID_ROCK
+  name: "坚硬岩石"
+  description: "受到效果绝佳的招式攻击时,伤害降低35%."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_SNOW_WARNING
+  name: "降雪"
+  description: "出场时引发冰雹,持续8回合."
+  expanded_description: "出场时引发冰雹,持续8回合（携带冰冷岩石时为12回合）.每回合对非冰属性宝可梦造成1/16的HP伤害.冰属性宝可梦的防御提升50%.使与大晴天相关的招式效果减半."
+}
+ability {
+  id: ABILITY_HONEY_GATHER
+  name: "采蜜"
+  description: "每回合有50%几率获得甜甜蜜."
+  expanded_description: "如果未携带物品,每回合有50%的几率获得甜甜蜜.甜甜蜜每回合可回复1/16的HP,并可在危急时食用以回复1/4的HP.即使该宝可梦最初未携带甜甜蜜作为物品,此效果也有效."
+}
+ability {
+  id: ABILITY_FRISK
+  name: "察觉"
+  description: "查看对手的物品,并使其物品失效2回合."
+  expanded_description: "进入战斗时,揭示对手的物品,并使其效果失效2回合.此效果不会阻止超级石及其他类似物品的运作."
+}
+ability {
+  id: ABILITY_RECKLESS
+  name: "舍身"
+  description: "会造成反伤伤害的招式威力提升至1.2倍."
+  expanded_description: "会造成反伤伤害的招式威力提升20%.此加成也适用于通过其他方式（如疯狂状态或特性）获得反伤效果的招式."
+}
+ability {
+  id: ABILITY_MULTITYPE
+  name: "多重属性"
+  description: "携带的石板决定持有者的属性."
+  expanded_description: "该宝可梦根据其当前携带的石板的属性改变形态.石板无法被移除,并且多重属性特性无法以任何方式被覆盖、压制、交换或复制."
+}
+ability {
+  id: ABILITY_FLOWER_GIFT
+  name: "花之礼"
+  description: "在大晴天时,使己方全队的特攻和特防提升至1.5倍."
+  expanded_description: "在大晴天时,该宝可梦及其所有同伴的基础特攻和特防提升50%."
+}
+ability {
+  id: ABILITY_BAD_DREAMS
+  name: "梦魇"
+  description: "处于睡眠状态的对手每回合结束时损失1/4的最大HP."
+  expanded_description: "所有处于睡眠状态的对手每回合结束时损失25%的最大HP."
+}
+ability {
+  id: ABILITY_PICKPOCKET
+  name: "顺手牵羊"
+  description: "通过接触招式偷走对手携带的物品."
+  expanded_description: "如果该宝可梦当前未携带物品,通过接触招式攻击时,会偷走目标携带的物品.对超级石及其他类似物品无效."
+}
+ability {
+  id: ABILITY_SHEER_FORCE
+  name: "强行"
+  description: "以牺牲招式的追加效果为代价,换取1.3倍的威力提升."
+  expanded_description: "在攻击命中后,移除大部分有益的追加效果,以获得1.3倍的威力提升.使用此类招式时,显著特点是不会受到生命宝珠的反伤.可被移除的效果包括：降低目标能力、提升自身能力、施加异常状态以及造成畏缩."
+}
+ability {
+  id: ABILITY_CONTRARY
+  name: "唱反调"
+  description: "对该宝可梦的能力提升会变成降低,反之亦然."
+  expanded_description: "反转影响该宝可梦的所有能力变化.对自身引起的能力变化同样有效."
+}
+ability {
+  id: ABILITY_UNNERVE
+  name: "紧张感"
+  description: "对手无法使用消耗性物品."
+  expanded_description: "阻止所有对手宝可梦消耗其携带的物品."
+}
+ability {
+  id: ABILITY_DEFIANT
+  name: "不服输"
+  description: "能力被对手降低时,攻击提升2级."
+  expanded_description: "当该宝可梦的能力被其他宝可梦降低时,其攻击能力提升2级."
+}
+ability {
+  id: ABILITY_DEFEATIST
+  name: "受迫"
+  description: "当HP低于1/3时,攻击和特攻能力减半."
+  expanded_description: "当HP低于最大值的33%时,攻击和特攻能力值减半.当HP回复至该阈值以上时,效果解除."
+}
+ability {
+  id: ABILITY_CURSED_BODY
+  name: "诅咒之躯"
+  description: "受到接触招式攻击时,有30%几率使对手的招式陷入封印状态."
+  expanded_description: "该宝可梦受到接触招式攻击时,有30%的几率使攻击者的该招式陷入封印状态,持续4回合.被封印的招式在效果结束前无法被选择."
+}
+ability {
+  id: ABILITY_HEALER
+  name: "治愈之心"
+  description: "每回合结束时,有30%几率治愈自身或同伴的异常状态."
+  expanded_description: "在双打对战中,每回合结束时,有30%的几率治愈自身和场上同伴的异常状态.对两只宝可梦分别进行几率判定."
+}
+ability {
+  id: ABILITY_FRIEND_GUARD
+  name: "友情防守"
+  description: "双打中，队友受到的伤害减少25%。"
+  expanded_description: "在双打对战中,该宝可梦的同伴受到伤害降低50%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_WEAK_ARMOR
+  name: "碎裂铠甲"
+  description: "受到接触类招式攻击时，防御降低1级，速度提升2级。"
+  expanded_description: "受到接触招式攻击时,该宝可梦的速度提升2级,防御降低1级.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_HEAVY_METAL
+  name: "重金属"
+  description: "受到的幽灵、恶属性伤害减半，体重翻倍。"
+  expanded_description: "受到的幽灵和恶属性招式伤害减半.该宝可梦的重量加倍,影响部分招式."
+}
+ability {
+  id: ABILITY_LIGHT_METAL
+  name: "轻金属"
+  description: "速度提升1.3倍,且该宝可梦的重量减半."
+  expanded_description: "轻金属使该宝可梦的重量减半,并且速度能力值提升30%.这使得基于重量的招式（如踢倒）对该宝可梦造成的伤害降低.但同时也会降低该宝可梦使用重磅冲撞等基于重量的招式造成的伤害."
+}
+ability {
+  id: ABILITY_MULTISCALE
+  name: "多重鳞片"
+  description: "HP全满时,受到的招式伤害减半."
+  expanded_description: "当该宝可梦HP全满时,受到的所有伤害降低50%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_TOXIC_BOOST
+  name: "中毒激升"
+  description: "处于中毒状态时,攻击提升至1.5倍.免疫中毒状态造成的伤害."
+  expanded_description: "处于中毒状态（普通中毒或剧毒）时,该宝可梦的攻击能力值提升50%.在剧毒地形上,无论是否扎根,都会立刻让自己陷入中毒状态.无视中毒伤害."
+}
+ability {
+  id: ABILITY_FLARE_BOOST
+  name: "受热激升"
+  description: "处于灼伤状态时,特攻提升至1.5倍.在雾中会点燃自身."
+  expanded_description: "处于灼伤状态时,该宝可梦的特攻能力值提升50%.无视灼伤伤害.在雾天时立刻让自己陷入灼伤状态."
+}
+ability {
+  id: ABILITY_HARVEST
+  name: "收获"
+  description: "每回合有50%几率回收已使用的树果,大晴天时100%回收."
+  expanded_description: "每回合结束时,有50%几率回收已使用的树果大晴天时100%回收.包括用于投掷、自然恩惠或被吃掉的树果."
+}
+ability {
+  id: ABILITY_TELEPATHY
+  name: "心灵感应"
+  description: "保护己方队伍免受友方伤害."
+  expanded_description: "在双打对战中,保护该宝可梦免受其同伴使用的所有造成伤害的招式的影响."
+}
+ability {
+  id: ABILITY_MOODY
+  name: "心情不定"
+  description: "每回合随机一项能力大幅提升,另一项能力降低."
+  expanded_description: "每回合结束时,随机选择一项能力提升2级,并随机选择另一项不同的能力降低1级."
+}
+ability {
+  id: ABILITY_OVERCOAT
+  name: "防尘"
+  description: "免疫天气伤害和粉末类招式.受到的特殊伤害降低20%."
+  expanded_description: "免疫沙暴和冰雹的天气伤害,并阻挡所有粉末类招式,包括催眠粉、麻痹粉、毒粉、蘑菇孢子、棉孢子、愤怒粉、粉末和魔法粉.同时,受到的特殊伤害降低20%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_POISON_TOUCH
+  name: "剧毒之触"
+  description: "接触攻击有30%几率使目标中毒.攻击时也生效."
+  expanded_description: "无论该宝可梦是攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒."
+}
+ability {
+  id: ABILITY_REGENERATOR
+  name: "再生力"
+  description: "替换下场时,回复1/3的最大HP."
+  expanded_description: "替换下场时,回复33%的最大HP.此回复效果不受回复封锁影响."
+}
+ability {
+  id: ABILITY_BIG_PECKS
+  name: "健壮胸肌"
+  description: "接触类招式的威力提升至1.3倍."
+  expanded_description: "接触类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_SAND_RUSH
+  name: "挖沙"
+  description: "在沙暴中,宝可梦的速度提升至1.5倍."
+  expanded_description: "在沙暴中,该宝可梦的速度能力值提升50%.同时免疫沙暴伤害."
+}
+ability {
+  id: ABILITY_WONDER_SKIN
+  name: "奇迹皮肤"
+  description: "阻挡大多数伤害增益和连续攻击特性."
+  expanded_description: "免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+}
+ability {
+  id: ABILITY_ANALYTIC
+  name: "分析"
+  description: "如果在目标之后行动,招式威力提升至1.3倍."
+  expanded_description: "当该宝可梦在目标之后行动时,攻击威力提升30%."
+}
+ability {
+  id: ABILITY_ILLUSION
+  name: "幻觉"
+  description: "伪装成队伍中最后的宝可梦,在受到攻击前威力提升1.3倍."
+  expanded_description: "使该宝可梦伪装成队伍中最后存活的同伴.在幻觉被打破前,该宝可梦造成的伤害提升30%."
+}
+ability {
+  id: ABILITY_IMPOSTER
+  name: "变身者"
+  description: "出场时,变身为对手."
+  expanded_description: "替换上场时,该宝可梦变身为对手.复制其外形、能力值（HP除外）、属性、特性、招式以及能力变化.每个被复制的招式拥有5点PP如果目标有替身、已经变身、处于幻觉状态或处于部分无敌状态,则无法变身."
+}
+ability {
+  id: ABILITY_INFILTRATOR
+  name: "穿透"
+  description: "自身的招式可以穿透替身和伤害减免屏障."
+  expanded_description: "允许招式穿透光墙、反射壁、神秘守护、白雾和替身的效果."
+}
+ability {
+  id: ABILITY_MUMMY
+  name: "木乃伊"
+  description: "受到接触攻击时,使攻击者的特性变为木乃伊."
+  expanded_description: "当该宝可梦受到其他宝可梦的接触招式攻击时,如果对方不具有此特性,则对方的当前特性会被替换为木乃伊."
+}
+ability {
+  id: ABILITY_MOXIE
+  name: "自信过度"
+  description: "击倒对手时,攻击提升1级."
+  expanded_description: "每当该宝可梦通过直接攻击击倒对手时,其攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_JUSTIFIED
+  name: "正义之心"
+  description: "免疫恶属性招式，并提升攻击与特攻中较高的一项。"
+  expanded_description: "免疫恶属性招式,并在受到恶属性招式攻击时,攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_RATTLED
+  name: "胆小"
+  description: "受到虫、恶或幽灵招式攻击或畏缩时,速度提升1级."
+  expanded_description: "受到虫、恶或幽灵属性招式攻击或陷入畏缩状态时,速度提升1级.对连续攻击招式可多次触发."
+}
+ability {
+  id: ABILITY_MAGIC_BOUNCE
+  name: "魔法镜"
+  description: "将变化招式弹回给使用者."
+  expanded_description: "在大部分变化招式生效前,将其反弹回原使用者.被反弹的招式无需额外命中判定直接作用于原使用者.无法反弹已被反弹的招式."
+}
+ability {
+  id: ABILITY_SAP_SIPPER
+  name: "食草"
+  description: "吸收草属性招式,提升自身最高的攻击能力."
+  expanded_description: "免疫草属性招式,并在受到草属性招式攻击时,自身最高的攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_PRANKSTER
+  name: "恶作剧之心"
+  description: "变化招式拥有+1优先度,但对恶属性对手失效."
+  expanded_description: "变化类招式获得+1优先度.当直接以恶属性宝可梦为目标时变化招式会失败."
+}
+ability {
+  id: ABILITY_SAND_FORCE
+  name: "沙之力"
+  description: "在沙暴中,自身最高的攻击能力提升至1.5倍."
+  expanded_description: "在沙暴中,该宝可梦最高的攻击能力值提升50%.免疫沙暴伤害."
+}
+ability {
+  id: ABILITY_IRON_BARBS
+  name: "铁棘"
+  description: "使用接触类招式的敌人损失1/8的最大HP."
+}
+ability {
+  id: ABILITY_ZEN_MODE
+  name: "禅境模式"
+  description: "出场时变为禅境模式,持续至战斗结束."
+  expanded_description: "进入战斗时触发形态变化."
+}
+ability {
+  id: ABILITY_VICTORY_STAR
+  name: "胜利之星"
+  description: "为己方和同伴的招式提供1.2倍命中率提升."
+  expanded_description: "在双打对战中,该宝可梦及其同伴的招式命中率提升1.2倍."
+}
+ability {
+  id: ABILITY_TURBOBLAZE
+  name: "涡轮火焰"
+  description: "招式可穿透特性.为自身添加火属性."
+  expanded_description: "允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过会修改基础能力值的特性,如草之皮毛.为自身添加火属性.即使失去此特性,添加的火属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_TERAVOLT
+  name: "兆级电压"
+  description: "招式可穿透特性.为自身添加电属性."
+  expanded_description: "允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过会修改基础能力值的特性,如草之皮毛.为自身添加电属性.即使失去此特性,添加的电属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_AROMA_VEIL
+  name: "芳香幕"
+  description: "保护己方队伍免受着迷、回复封锁和封印效果."
+  expanded_description: "保护该宝可梦及其同伴免受着迷、回复封锁效果以及封印类招式（包括封印、挑衅、再来一次和无理取闹）的影响."
+}
+ability {
+  id: ABILITY_FLOWER_VEIL
+  name: "花幕"
+  description: "保护草属性的同伴免受异常状态和能力降低."
+  expanded_description: "防止草属性同伴陷入任何异常状态或能力降低.包括自身引起的能力降低."
+}
+ability {
+  id: ABILITY_CHEEK_POUCH
+  name: "颊囊"
+  description: "此特性无效果."
+  expanded_description: "无效果."
+}
+ability {
+  id: ABILITY_PROTEAN
+  name: "变幻自如"
+  description: "使用招式前变为该招式的属性；每次上场仅触发一次。"
+  expanded_description: "每次攻击前,该宝可梦的属性会变为与所用招式相同的属性.每回合触发一次."
+}
+ability {
+  id: ABILITY_FUR_COAT
+  name: "毛皮大衣"
+  description: "受到的物理招式伤害减半.不会加倍防御."
+  expanded_description: "所有受到的物理攻击伤害减半.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_MAGICIAN
+  name: "魔术师"
+  description: "使用非接触类招式后,偷走对手携带的物品."
+  expanded_description: "如果该宝可梦当前未携带物品,使用非接触类招式命中后,会偷走目标携带的物品.对超级石及其他类似物品无效."
+}
+ability {
+  id: ABILITY_BULLETPROOF
+  name: "防弹"
+  description: "免疫基于投射物、球或炸弹的招式."
+  expanded_description: "免疫球、炸弹和投射物类招式.包括酸液炸弹、岩石炮、花粉团和投球."
+}
+ability {
+  id: ABILITY_COMPETITIVE
+  name: "好胜"
+  description: "能力被对手降低时,特攻提升2级."
+  expanded_description: "当该宝可梦的能力被其他宝可梦降低时,其特攻能力提升2级."
+}
+ability {
+  id: ABILITY_STRONG_JAW
+  name: "强壮之颚"
+  description: "啃咬类招式威力提升至1.3倍."
+  expanded_description: "啃咬和颚类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_REFRIGERATE
+  name: "冰冻皮肤"
+  description: "一般属性招式变为冰属性.冰属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为冰属性.如果该宝可梦是冰属性,其冰属性招式有10%的几率造成冻伤；否则,它获得冰属性的本系加成."
+}
+ability {
+  id: ABILITY_SWEET_VEIL
+  name: "甜幕"
+  description: "该宝可梦及其同伴免疫睡眠."
+  expanded_description: "在双打对战中,为该宝可梦及其同伴提供睡眠免疫."
+}
+ability {
+  id: ABILITY_STANCE_CHANGE
+  name: "战斗切换"
+  description: "根据使用的招式在刀剑形态和盾牌形态之间切换."
+  expanded_description: "根据使用的招式改变坚盾剑怪的形态.盾牌形态在使用攻击招式时切换为刀剑形态.刀剑形态在使用王者盾牌时切换为盾牌形态.终极形态根据招式类型在物理/特殊之间切换.此特性无法被压制.形态变化在招式执行前发生."
+}
+ability {
+  id: ABILITY_GALE_WINGS
+  name: "疾风之翼"
+  description: "HP全满时,飞行属性招式获得+1优先度."
+  expanded_description: "当HP全满时,赋予飞行属性招式+1优先度."
+}
+ability {
+  id: ABILITY_MEGA_LAUNCHER
+  name: "超级发射器"
+  description: "波动、波导、脉冲类招式威力提升至1.3倍."
+  expanded_description: "脉冲、波导、波动和光环类招式威力提升30%."
+}
+ability {
+  id: ABILITY_GRASS_PELT
+  name: "草之皮毛"
+  description: "青草场地中，防御提升50%。"
+  expanded_description: "在青草场地中,该宝可梦的防御能力值提升50%."
+}
+ability {
+  id: ABILITY_SYMBIOSIS
+  name: "共生"
+  description: "当同伴消耗其携带物品时,将自己的物品传递给同伴."
+  expanded_description: "在同伴消耗或使用掉其携带的物品后,立即将持有者的物品传递给该同伴."
+}
+ability {
+  id: ABILITY_TOUGH_CLAWS
+  name: "硬爪"
+  description: "接触类招式的威力提升至1.3倍."
+  expanded_description: "接触类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_PIXILATE
+  name: "妖精皮肤"
+  description: "一般属性招式变为妖精属性.妖精属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为妖精属性.如果该宝可梦是妖精属性,其妖精属性招式有10%的几率造成着迷；否则,它获得妖精属性的本系加成."
+}
+ability {
+  id: ABILITY_GOOEY
+  name: "黏滑"
+  description: "与该宝可梦发生接触的敌人,其速度降低."
+  expanded_description: "当该宝可梦受到接触招式攻击时,攻击者的速度降低1级.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_AERILATE
+  name: "飞行皮肤"
+  description: "一般属性招式变为飞行属性.飞行属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为飞行属性.如果该宝可梦是飞行属性,其飞行属性招式的速度提升10%；否则,它获得飞行属性的本系加成."
+}
+ability {
+  id: ABILITY_PARENTAL_BOND
+  name: "亲子爱"
+  description: "招式攻击两次.第一击威力100%,第二击威力25%."
+  expanded_description: "使所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）.可穿透坚壁/奇迹皮肤."
+}
+ability {
+  id: ABILITY_DARK_AURA
+  name: "暗黑气场"
+  description: "在该宝可梦在场时,所有宝可梦的恶属性招式威力提升至1.33倍."
+  expanded_description: "使用者、其同伴以及对手的所有恶属性招式获得1.33倍的威力提升.此加成会被气场破坏反转."
+}
+ability {
+  id: ABILITY_FAIRY_AURA
+  name: "妖精气场"
+  description: "在该宝可梦在场时,所有宝可梦的妖精属性招式威力提升至1.33倍."
+  expanded_description: "使用者、其同伴以及对手的所有妖精属性招式获得1.33倍的威力提升.此加成会被气场破坏反转."
+}
+ability {
+  id: ABILITY_AURA_BREAK
+  name: "气场破坏"
+  description: "取消气场特性,并使其效果变为降低25%的威力."
+  expanded_description: "使暗黑气场和妖精气场的效果反转,将其对应属性的招式威力降低25%,而非提升33%."
+}
+ability {
+  id: ABILITY_PRIMORDIAL_SEA
+  name: "始源之海"
+  description: "制造终焉大雨,持续到下场.火属性招式无法使用."
+  expanded_description: "创造终焉大雨,持续到使用者下场.完全无效所有造成伤害的火属性招式.水属性招式获得50%威力提升除其他原始天气外,无法被覆盖.激活与雨天相关招式的额外效果使与大晴天相关的招式效果减半."
+}
+ability {
+  id: ABILITY_DESOLATE_LAND
+  name: "终结之地"
+  description: "制造终焉大晴天,持续到下场.水属性招式无法使用."
+  expanded_description: "创造终焉大晴天,持续到使用者下场.完全无效所有造成伤害的水属性招式.火属性招式获得50%威力提升除其他原始天气外,无法被覆盖.激活与大晴天相关招式的额外效果."
+}
+ability {
+  id: ABILITY_DELTA_STREAM
+  name: "德尔塔气流"
+  description: "制造强风,持续到下场.基于天气的招式无法使用."
+  expanded_description: "创造强风,持续到使用者下场.将场上所有飞行属性宝可梦受到的效果绝佳伤害变为普通伤害.阻止所有基于天气的招式命中对手.除其他原始天气外,无法被覆盖."
+}
+ability {
+  id: ABILITY_STAMINA
+  name: "持久力"
+  description: "受到攻击时防御提升1级；受到击中要害时防御升至最高。"
+  expanded_description: "受到攻击时,该宝可梦的防御提升1级；若受到击中要害的攻击,则防御能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_WIMP_OUT
+  name: "跃跃欲逃"
+  description: "当HP首次降至1/2或以下时,立即替换下场."
+  expanded_description: "当该宝可梦受到伤害,且HP在战斗中首次降至50%或以下时,它会替换下场以保安全.对于连续攻击招式,在最后一击后触发."
+}
+ability {
+  id: ABILITY_EMERGENCY_EXIT
+  name: "遁走"
+  description: "当HP首次降至1/2或以下时,立即替换下场."
+  expanded_description: "当该宝可梦受到伤害,且HP在战斗中首次降至50%或以下时,它会替换下场以保安全.对于连续攻击招式,在最后一击后触发."
+}
+ability {
+  id: ABILITY_WATER_COMPACTION
+  name: "遇水凝固"
+  description: "受到的水属性招式伤害减半.被水属性招式击中后,防御提升2级."
+  expanded_description: "受到的水属性招式伤害降低50%,并且被水属性招式击中后,防御提升2级.与其他减伤来源乘法叠加.防御提升效果在攻击命中后生效对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_MERCILESS
+  name: "不仁不义"
+  description: "攻击处于减速、中毒、麻痹或流血状态的对手时,必定会心一击."
+  expanded_description: "对处于中毒、麻痹、流血或速度降低状态的目标,必定造成击中要害."
+}
+ability {
+  id: ABILITY_SHIELDS_DOWN
+  name: "界限盾壳"
+  description: "当HP降至1/2或以下时,变身为核心形态."
+  expanded_description: "当小陨星的HP降至50%或以下时,从流星形态变身为核心形态.在流星形态下,免疫所有异常状态.使用破壳时,无论当前HP多少,立即变身为核心形态.在战斗中一旦变身,无法恢复为流星形态."
+}
+ability {
+  id: ABILITY_STAKEOUT
+  name: "蹲守"
+  description: "对刚替换上场的对手造成双倍伤害."
+  expanded_description: "对刚替换上场的对手造成双倍伤害.仅在对手替换上场后的第一回合内生效."
+}
+ability {
+  id: ABILITY_WATER_BUBBLE
+  name: "水泡"
+  description: "受到的火属性伤害减半.造成的水属性伤害加倍.不会灼伤."
+  expanded_description: "水属性招式威力加倍,受到的火属性伤害降低50%.同时完全免疫灼伤,并在获得此特性时移除已有的灼伤状态."
+}
+ability {
+  id: ABILITY_STEELWORKER
+  name: "钢能力士"
+  description: "一般属性招式变为钢属性.钢属性抵抗幽灵和恶属性."
+  expanded_description: "将该宝可梦的一般属性招式变为钢属性.如果该宝可梦是钢属性,它获得对幽灵和恶属性的抗性；否则,它获得钢属性的本系加成."
+}
+ability {
+  id: ABILITY_BERSERK
+  name: "怒火冲天"
+  description: "当HP降至1/2或以下时,自身最高的攻击能力提升1级."
+  expanded_description: "当该宝可梦因对手的攻击而使HP降至一半或以下时,其最高的攻击能力值提升1级.根据能力等级决定提升哪一项.每场战斗仅触发一次.其他伤害来源使HP降至一半或以下不会触发此特性."
+}
+ability {
+  id: ABILITY_SLUSH_RUSH
+  name: "拨雪"
+  description: "在冰雹中,该宝可梦的速度提升至1.5倍."
+  expanded_description: "在冰雹中,该宝可梦的速度能力值提升50%.同时免疫冰雹伤害."
+}
+ability {
+  id: ABILITY_LONG_REACH
+  name: "远隔"
+  description: "物理招式获得1.2倍威力加成,且不会接触."
+  expanded_description: "远隔特性防止该宝可梦在使用接触类招式时与目标发生接触.此外,物理招式获得1.2倍的伤害加成."
+}
+ability {
+  id: ABILITY_LIQUID_VOICE
+  name: "湿润之声"
+  description: "声音类招式获得1.2倍威力加成,若为一般属性则变为水属性."
+  expanded_description: "湿润之声将一般属性的声音类招式转变为水属性,并将其威力提升20%."
+}
+ability {
+  id: ABILITY_TRIAGE
+  name: "先行治疗"
+  description: "回复HP的招式优先度+3。"
+  expanded_description: "治愈之心给予大多数回复类招式+3优先度.包括终极吸取等吸取类招式,以及祈愿等延迟回复招式.对水流环、青草场地、扎根、寄生种子、痛平分、礼物或花粉团无效."
+}
+ability {
+  id: ABILITY_GALVANIZE
+  name: "电气皮肤"
+  description: "一般属性招式变为电属性.电属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为电属性.如果该宝可梦是电属性,其电属性招式有10%的几率造成麻痹；否则,它获得电属性的本系加成."
+}
+ability {
+  id: ABILITY_SURGE_SURFER
+  name: "冲浪之尾"
+  description: "在电气场地中,速度提升至1.5倍."
+  expanded_description: "在电气场地生效时,该宝可梦的速度能力值提升50%.场地开始时立即生效,场地结束时加成消失."
+}
+ability {
+  id: ABILITY_SCHOOLING
+  name: "鱼群"
+  description: "等级20或以上时：变为鱼群形态,直到HP降至1/4或以下."
+  expanded_description: "当等级达到20或以上时,变身为鱼群形态.当HP降至25%或以下时,恢复为单独形态.此形态变化在出场时和每回合结束时自动触发.无法以任何方式覆盖、压制、交换或复制."
+}
+ability {
+  id: ABILITY_DISGUISE
+  name: "画皮"
+  description: "抵挡一次攻击.在雾中可恢复此保护效果."
+  expanded_description: "画皮会抵挡第一个命中该宝可梦的造成伤害的招式,之后改变形态.仅能抵挡非变化招式.在雾中,每次替换上场或当雾重新出现时,画皮会立即恢复."
+}
+ability {
+  id: ABILITY_BATTLE_BOND
+  name: "牵绊变身"
+  description: "击倒对手后,变身为牵绊形态."
+  expanded_description: "当该宝可梦给予对手最后一击使其濒死时,立即触发形态变化.无法被复制."
+}
+ability {
+  id: ABILITY_POWER_CONSTRUCT
+  name: "群聚变形"
+  description: "当HP降至1/2或以下时,变身为完全体形态."
+  expanded_description: "群聚变形会在任何回合结束时,如果基格尔德50%或10%形态的HP降至50%或以下,则使其变身为完全体形态.完全体形态拥有高达216的HP（从108翻倍）,使其成为极其耐打的坦克.此形态变化在战斗中永久持续,且无法被压制."
+}
+ability {
+  id: ABILITY_CORROSION
+  name: "腐蚀"
+  description: "毒属性招式对钢属性效果绝佳.可使任何属性的宝可梦中毒."
+  expanded_description: "毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态."
+}
+ability {
+  id: ABILITY_COMATOSE
+  name: "绝对睡眠"
+  description: "可以行动,但始终处于睡眠状态.免疫异常状态."
+  expanded_description: "绝对睡眠特性使该宝可梦在招式和状态判定中被视为处于睡眠状态.该宝可梦可以正常行动,并且免疫所有异常状态.此特性无法被复制或压制.使用招式睡觉会失败."
+}
+ability {
+  id: ABILITY_QUEENLY_MAJESTY
+  name: "女王威严"
+  description: "保护自身及同伴免受先制招式影响."
+  expanded_description: "女王威严防止该宝可梦及其同伴成为优先度大于0的先制招式的目标."
+}
+ability {
+  id: ABILITY_INNARDS_OUT
+  name: "甩不掉的"
+  description: "如果被击倒,对攻击者造成等同于致命一击伤害的伤害."
+  expanded_description: "当该宝可梦被对手的攻击击倒时,会向攻击者返还与致命一击等量的伤害.对拥有魔法防守特性的攻击者无效."
+}
+ability {
+  id: ABILITY_DANCER
+  name: "舞者"
+  description: "模仿其他宝可梦使用的舞蹈招式."
+  expanded_description: "当场上任何宝可梦使用舞蹈类招式后,该宝可梦会立即使用相同的招式每回合对每个招式触发一次."
+}
+ability {
+  id: ABILITY_BATTERY
+  name: "蓄电池"
+  description: "使同伴的特殊攻击威力提升至1.3倍."
+  expanded_description: "在双打对战中,蓄电池为同伴宝可梦的特殊攻击提供30%的威力提升.不影响使用者自身的招式."
+}
+ability {
+  id: ABILITY_FLUFFY
+  name: "毛茸茸"
+  description: "受到的接触类招式伤害减半；受到的火属性招式伤害翻倍。"
+  expanded_description: "毛茸茸使受到的接触类招式伤害降低50%.火属性招式对该宝可梦造成双倍伤害.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_DAZZLING
+  name: "炫彩之躯"
+  description: "保护自身及同伴免受先制招式影响."
+  expanded_description: "棱镜装甲阻挡所有来自对手的、以该宝可梦或其同伴为目标的先制招式."
+}
+ability {
+  id: ABILITY_SOUL_HEART
+  name: "魂心"
+  description: "场上任何宝可梦被击倒时,特攻提升1级."
+  expanded_description: "当战场上任何宝可梦（包括同伴和对手）濒死时,魂心特性会提升该宝可梦的特攻1级."
+}
+ability {
+  id: ABILITY_TANGLING_HAIR
+  name: "卷发"
+  description: "与该宝可梦发生接触的敌人,其速度降低."
+  expanded_description: "当该宝可梦受到接触招式攻击时,攻击者的速度降低1级.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_RECEIVER
+  name: "接球手"
+  description: "在双打对战中,复制濒死同伴的特性."
+  expanded_description: "接球手会复制濒死同伴的特性,替换自身的接球手特性.此效果持续到替换下场."
+}
+ability {
+  id: ABILITY_POWER_OF_ALCHEMY
+  name: "化学之力"
+  description: "出场时转化树果.物品失去时转化物品."
+  expanded_description: "出场时,将所有对手的树果转化为黑色污泥.战斗中任何宝可梦失去物品时,该物品会被黑色污泥取代.如果黑色污泥被移除,则会被大金珠取代."
+}
+ability {
+  id: ABILITY_BEAST_BOOST
+  name: "异兽提升"
+  description: "击倒对手后,自身最高的计算后能力值提升1级."
+  expanded_description: "每当该宝可梦击倒一名对手时,其最高的计算后能力值提升1级被提升的能力基于不考虑当前能力等级变化的原始能力值决定."
+}
+ability {
+  id: ABILITY_RKS_SYSTEM
+  name: "AR系统"
+  description: "携带的记忆碟决定其属性.同时拥有变幻自在和适应力特性."
+  expanded_description: "AR系统根据携带的记忆碟改变使用者的形态.每次攻击前,使用者的属性会变为与所用招式相同的属性.本系加成从1.5倍提升至2.0倍."
+}
+ability {
+  id: ABILITY_ELECTRIC_SURGE
+  name: "电气制造者"
+  description: "出场时制造电气场地,持续8回合."
+  expanded_description: "出场时制造电气场地,持续8回合（携带场地制造机时为12回合）.地面上的宝可梦不会陷入睡眠,且电属性招式威力提升30%.激活时覆盖其他场地."
+}
+ability {
+  id: ABILITY_PSYCHIC_SURGE
+  name: "精神制造者"
+  description: "出场时制造精神场地,持续8回合."
+  expanded_description: "出场时制造精神场地,持续8回合（携带场地制造机时为12回合）.地面上的宝可梦免疫对手的先制招式.超能力属性招式威力提升30%.广阔战场可以攻击所有对手且威力提升.自然之力变为精神强念.覆盖其他现有场地."
+}
+ability {
+  id: ABILITY_MISTY_SURGE
+  name: "薄雾制造者"
+  description: "出场时制造薄雾场地,持续8回合."
+  expanded_description: "出场时制造薄雾场地,持续8回合（携带场地制造机时为12回合）.薄雾场地防止地面上的宝可梦陷入任何异常状态,并使妖精属性招式威力提升30%.覆盖现有场地."
+}
+ability {
+  id: ABILITY_GRASSY_SURGE
+  name: "青草制造者"
+  description: "出场时制造青草场地,持续8回合."
+  expanded_description: "出场时制造青草场地,持续8回合（携带场地制造机时为12回合）地面上的宝可梦每回合回复1/16的HP,且草属性招式威力提升30%.覆盖其他场地."
+}
+ability {
+  id: ABILITY_FULL_METAL_BODY
+  name: "金属防护"
+  description: "免疫能力降低."
+  expanded_description: "金属防护使该宝可梦免疫所有来自招式或特性的能力降低效果.包括因使用过热等招式导致的自身能力降低."
+}
+ability {
+  id: ABILITY_SHADOW_SHIELD
+  name: "幻影防守"
+  description: "HP全满时,受到的招式伤害减半."
+  expanded_description: "当HP全满时,幻影防守使受到的所有攻击伤害减半.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_PRISM_ARMOR
+  name: "棱镜装甲"
+  description: "受到效果绝佳的招式攻击时,伤害降低35%."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_NEUROFORCE
+  name: "脑核之力"
+  description: "对效果绝佳的招式提供额外的1.35倍威力加成."
+  expanded_description: "效果绝佳的攻击威力提升35%."
+}
+ability {
+  id: ABILITY_INTREPID_SWORD
+  name: "不挠之剑"
+  description: "出场时,攻击提升1级."
+  expanded_description: "不挠之剑在替换上场时,使该宝可梦的攻击能力提升1级."
+}
+ability {
+  id: ABILITY_DAUNTLESS_SHIELD
+  name: "不屈之盾"
+  description: "出场时,防御提升1级."
+  expanded_description: "不屈之盾在进入战斗时,立即将防御能力提升1级."
+}
+ability {
+  id: ABILITY_LIBERO
+  name: "自由者"
+  description: "使用招式前变为该招式的属性；每次上场仅触发一次。"
+  expanded_description: "自由者在攻击前,会将使用者的属性覆盖为与所用招式相同的属性.挣扎招式无法触发此效果."
+}
+ability {
+  id: ABILITY_BALL_FETCH
+  name: "拾球"
+  description: "对战斗无效果."
+  expanded_description: "对战斗无效果."
+}
+ability {
+  id: ABILITY_COTTON_DOWN
+  name: "棉絮"
+  description: "受到攻击时,降低所有对手的速度1级."
+  expanded_description: "棉絮特性在该宝可梦受到任何攻击时触发,降低所有宝可梦的速度1级.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_PROPELLER_TAIL
+  name: "螺旋尾鳍"
+  description: "悠游自如 + 免疫招式吸引."
+  expanded_description: "螺旋尾鳍使该宝可梦在雨天时速度提升50%,并且免疫招式吸引效果.速度加成在所有形式的雨天中都有效."
+}
+ability {
+  id: ABILITY_MIRROR_ARMOR
+  name: "镜甲"
+  description: "将敌人施加的任何能力降低效果反弹回去."
+  expanded_description: "镜甲将所有以该宝可梦为目标的降低能力效果反弹给攻击者.反弹效果无视免疫."
+}
+ability {
+  id: ABILITY_GULP_MISSILE
+  name: "一口导弹"
+  description: "使用潜水/冲浪后叼住猎物.受到攻击时,向敌人射出猎物."
+  expanded_description: "当古月鸟使用冲浪、三重潜水或潜水时,它会叼住猎物：HP小于50%时为叼喙形态,HP大于50%时为吞喙形态.在任一形态下受到攻击时,会向攻击者吐出猎物,造成其最大HP25%的伤害,并返回普通形态.叼喙形态还会降低防御1级；吞喙形态会麻痹目标.此特性无法被压制等."
+}
+ability {
+  id: ABILITY_STALWART
+  name: "坚毅"
+  description: "不受招式吸引、击中要害或特性压制的影响."
+  expanded_description: "招式不会被吸引,不会受到击中要害,且特性不会被压制.特性压制包括破格、化学变化气体和菌丝之力等效果."
+}
+ability {
+  id: ABILITY_STEAM_ENGINE
+  name: "蒸汽机"
+  description: "受到火属性或水属性招式攻击时,速度提升至最大."
+  expanded_description: "受到任何火属性或水属性招式攻击后,蒸汽机特性立即将速度能力值提升至+6级.提升效果在受到伤害后生效."
+}
+ability {
+  id: ABILITY_PUNK_ROCK
+  name: "庞克摇滚"
+  description: "声音类招式造成1.3倍伤害.受到的声音类招式伤害降低50%."
+  expanded_description: "庞克摇滚使该宝可梦的声音类招式威力提升30%,并且受到的声音类招式伤害降低50%.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_SAND_SPIT
+  name: "喷沙"
+  description: "受到攻击时引发沙暴.攻击者随后会接地."
+  expanded_description: "受到攻击伤害时,如果场上没有沙暴,则会引发持续8回合的沙暴.如果沙暴被引发,攻击者会被拉至地面.该宝可梦免疫沙暴伤害.如果该宝可梦因该次攻击而濒死则不会触发此特性."
+}
+ability {
+  id: ABILITY_ICE_SCALES
+  name: "冰鳞粉"
+  description: "受到的特殊招式伤害减半.不会加倍特防."
+  expanded_description: "所有受到的特殊攻击伤害减半.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_RIPEN
+  name: "熟成"
+  description: "树果提供的抗性、回复和能力提升效果加倍."
+  expanded_description: "熟成使所有树果的有益效果加倍回复类树果回复量加倍,提升能力的树果改为提升2级,抵抗树果将效果绝佳的伤害降低75%而非50%,回复PP的树果回复量加倍."
+}
+ability {
+  id: ABILITY_ICE_FACE
+  name: "结冻头"
+  description: "抵挡一次攻击.在冰雹中可恢复此保护效果."
+  expanded_description: "结冻头使哭哭面具在受到物理攻击后变身为无头形态,并抵消一次伤害.在无头形态下,如果场上出现冰雹或该宝可梦被替换上场,则恢复为结冻头形态.无法被复制或压制."
+}
+ability {
+  id: ABILITY_POWER_SPOT
+  name: "能量点"
+  description: "使同伴的攻击威力提升至1.3倍."
+  expanded_description: "在双打对战中,能量点使同伴的攻击威力提升30%.使用者自身不受此加成影响."
+}
+ability {
+  id: ABILITY_MIMICRY
+  name: "拟态"
+  description: "根据当前场地改变自身属性."
+  expanded_description: "拟态使该宝可梦的属性变为与当前场地一致：电气场地变为电属性,薄雾场地变为妖精属性,青草场地变为草属性,精神场地变为超能力属性.属性变化持续到场地结束或该宝可梦下场.保留通过浸水等招式改变的属性."
+}
+ability {
+  id: ABILITY_SCREEN_CLEANER
+  name: "除障"
+  description: "出场时清除双方场上的屏障.可以重置屏障."
+  expanded_description: "除障特性在该宝可梦进入战斗时,移除双方场地上所有的防护屏障、反射壁、光墙、极光幕和烟幕它还允许该宝可梦在屏障已激活时重新设置它们,刷新其持续时间."
+}
+ability {
+  id: ABILITY_STEELY_SPIRIT
+  name: "钢魂"
+  description: "提升自身和同伴的钢属性招式威力至1.3倍."
+  expanded_description: "钢魂特性在战斗中使使用者及其同伴的钢属性招式威力提升30%."
+}
+ability {
+  id: ABILITY_PERISH_BODY
+  name: "灭亡之躯"
+  description: "受到接触类招式攻击时使用灭亡之歌。"
+  expanded_description: "受到接触招式攻击时,灭亡之躯对使用者和攻击者发动灭亡之歌.除非替换下场,否则两只宝可梦将在3回合后濒死."
+}
+ability {
+  id: ABILITY_WANDERING_SPIRIT
+  name: "游魂"
+  description: "受到接触攻击时,与攻击者交换特性."
+  expanded_description: "受到接触招式攻击时,游魂特性会与攻击者交换特性.两只宝可梦在替换下场后恢复各自原有的特性.无法与同样不能被复制或压制的特性交换."
+}
+ability {
+  id: ABILITY_GORILLA_TACTICS
+  name: "一猩一意"
+  description: "自身攻击提升1.5倍,但只能使用最初选择的招式."
+  expanded_description: "一猩一意使物理招式威力提升50%,但会锁定使用者只能使用首次选择的招式,直到替换下场."
+}
+ability {
+  id: ABILITY_NEUTRALIZING_GAS
+  name: "化学变化气体"
+  description: "所有特性都失效."
+  expanded_description: "用气体充满战场,完全压制除无法压制外的所有特性.效果在使用者在场时持续.在使用者尝试替换下场后,所有被压制的特性会重新触发其入场效果.无法被复制或交换."
+}
+ability {
+  id: ABILITY_PASTEL_VEIL
+  name: "粉彩护幕"
+  description: "出场时施放神秘守护."
+  expanded_description: "粉彩护幕在该宝可梦进入战斗时,自动为其队伍设置神秘守护.神秘守护持续5回合,保护所有队友免受异常状态."
+}
+ability {
+  id: ABILITY_HUNGER_SWITCH
+  name: "饱了又饿"
+  description: "每回合结束后在吃饱形态和饥饿形态之间切换."
+  expanded_description: "每回合结束时自动在吃饱形态和饥饿形态之间切换.无法以任何方式覆盖、压制、交换或复制."
+}
+ability {
+  id: ABILITY_QUICK_DRAW
+  name: "速击"
+  description: "30%几率先出手."
+  expanded_description: "速击有30%的几率让使用者在当前优先度层级内率先行动.与先制之爪的效果乘法叠加,使总触发几率达到44%."
+}
+ability {
+  id: ABILITY_UNSEEN_FIST
+  name: "无形拳"
+  description: "接触类招式可以穿透保护效果."
+  expanded_description: "无形拳允许所有接触类招式穿透保护类招式,并忽略与其相关的任何附加效果."
+}
+ability {
+  id: ABILITY_CURIOUS_MEDICINE
+  name: "怪药"
+  description: "出场时重置同伴的能力变化."
+  expanded_description: "怪药在使用者出场时,移除同伴的所有正向和负向能力变化."
+}
+ability {
+  id: ABILITY_TRANSISTOR
+  name: "电晶体"
+  description: "电属性招式威力提升至1.5倍."
+  expanded_description: "电晶体使所有电属性招式的威力提升50%.与其他伤害加成效果加法叠加."
+}
+ability {
+  id: ABILITY_DRAGONS_MAW
+  name: "龙颚"
+  description: "龙属性招式威力提升至1.5倍."
+  expanded_description: "龙颚使龙属性招式的威力提升50%."
+}
+ability {
+  id: ABILITY_CHILLING_NEIGH
+  name: "苍白嘶鸣"
+  description: "击倒对手时,攻击提升1级."
+  expanded_description: "当该宝可梦通过直接攻击击倒对手时,其攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_GRIM_NEIGH
+  name: "漆黑嘶鸣"
+  description: "击倒对手时,特攻提升1级."
+  expanded_description: "漆黑嘶鸣特性在该宝可梦通过直接攻击使对手濒死时,提升其特攻能力值1级."
+}
+ability {
+  id: ABILITY_AS_ONE_ICE_RIDER
+  name: "人马一体"
+  description: "紧张感 + 苍白嘶鸣."
+  expanded_description: "阻止所有对手宝可梦消耗其携带的物品.当该宝可梦通过直接攻击击倒对手时,其攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_AS_ONE_SHADOW_RIDER
+  name: "人马一体"
+  description: "紧张感 + 漆黑嘶鸣."
+  expanded_description: "阻止所有对手宝可梦消耗其携带的物品.当该宝可梦通过直接攻击击倒对手时,其特攻能力值提升1级."
+}
+ability {
+  id: ABILITY_CHLOROPLAST
+  name: "叶绿体"
+  description: "气象球、日光束/刃、生长视为在大晴天下使用."
+  expanded_description: "气象球威力加倍并变为火属性.日光类招式无需蓄力.生长使攻击和特攻提升2级.月光、晨光和光合作用回复2/3的最大HP.草之誓约和水之誓约组合分别产生火海或彩虹效果."
+}
+ability {
+  id: ABILITY_WHITEOUT
+  name: "白茫茫"
+  description: "在冰雹中,自身最高的攻击能力提升至1.5倍."
+  expanded_description: "白茫茫使该宝可梦在冰雹中时,其最高的攻击能力值提升50%.同时免疫冰雹伤害."
+}
+ability {
+  id: ABILITY_PYROMANCY
+  name: "火焰占卜"
+  description: "招式的灼伤几率变为5倍."
+  expanded_description: "火焰占卜将所有招式的灼伤几率乘以5倍.与火焰之躯特性不叠加."
+}
+ability {
+  id: ABILITY_KEEN_EDGE
+  name: "锋锐"
+  description: "切割类招式威力×1.3。"
+  expanded_description: "锐利刀刃使所有劈开类攻击的威力提升30%."
+}
+ability {
+  id: ABILITY_PRISM_SCALES
+  name: "棱镜鳞片"
+  description: "受到的特殊攻击伤害降低30%."
+  expanded_description: "棱镜鳞片使受到的所有特殊攻击伤害降低30%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_POWER_FISTS
+  name: "铁拳之力"
+  description: "拳类招式以目标特防计算伤害，威力×1.3。"
+  expanded_description: "拳类招式获得30%的伤害加成,并且伤害计算时目标改为特防而非防御."
+}
+ability {
+  id: ABILITY_SAND_SONG
+  name: "沙之歌"
+  description: "声音类招式获得1.2倍威力加成,若为一般属性则变为地面属性."
+  expanded_description: "沙之歌使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为地面属性."
+}
+ability {
+  id: ABILITY_RAMPAGE
+  name: "暴走"
+  description: "需要休息一回合的招式,在击倒对手后无需休息."
+  expanded_description: "暴走特性在该宝可梦通过直接攻击成功击倒对手时,消除其需要休息的回合."
+}
+ability {
+  id: ABILITY_VENGEANCE
+  name: "复仇"
+  description: "幽灵属性招式威力×1.2；HP低于1/3时改为×1.5。"
+  expanded_description: "幽灵属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_BLITZ_BOXER
+  name: "闪电拳手"
+  description: "HP全满时，拳类招式优先度+1。"
+  expanded_description: "闪电拳手在HP全满时,赋予所有拳类招式+1优先度."
+}
+ability {
+  id: ABILITY_ANTARCTIC_BIRD
+  name: "南极鸟"
+  description: "冰属性和飞行属性招式威力提升至1.3倍."
+  expanded_description: "南极鸟使冰属性和飞行属性招式的威力提升30%.与其他伤害加成效果加法叠加."
+}
+ability {
+  id: ABILITY_IMMOLATE
+  name: "献祭"
+  description: "一般属性招式变为火属性.火属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为火属性.如果该宝可梦是火属性,其火属性招式有10%的几率造成灼伤；否则,它获得火属性的本系加成."
+}
+ability {
+  id: ABILITY_CRYSTALLIZE
+  name: "结晶"
+  description: "岩石属性招式变为冰属性,并获得1.1倍威力加成."
+  expanded_description: "结晶将所有岩石属性招式转变为冰属性,并将其威力提升10%."
+}
+ability {
+  id: ABILITY_ELECTROCYTES
+  name: "电细胞"
+  description: "电属性招式威力提升至1.25倍."
+  expanded_description: "电细胞使电属性招式威力提升25%."
+}
+ability {
+  id: ABILITY_AERODYNAMICS
+  name: "空气动力学"
+  description: "免疫飞行属性招式,并在受到攻击时提升速度."
+  expanded_description: "当成为飞行属性招式的目标时,空气动力学吸收该攻击并使使用者的速度能力值提升1级."
+}
+ability {
+  id: ABILITY_CHRISTMAS_SPIRIT
+  name: "圣诞精神"
+  description: "在冰雹中,受到的伤害降低50%."
+  expanded_description: "圣诞精神在冰雹天气时使受到的所有伤害降低50%.免疫冰雹伤害.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_EXPLOIT_WEAKNESS
+  name: "弱点利用"
+  description: "攻击处于异常状态的对手时,针对其较低的防御能力."
+  expanded_description: "当攻击处于异常状态的对手时,攻击目标改为其较低的防御能力值."
+}
+ability {
+  id: ABILITY_GROUND_SHOCK
+  name: "大地冲击"
+  description: "使地面属性的目标不再免疫电属性,而是变为抵抗."
+  expanded_description: "大地冲击允许电属性招式命中地面属性宝可梦,造成0.5倍伤害."
+}
+ability {
+  id: ABILITY_ANCIENT_IDOL
+  name: "古代偶像"
+  description: "攻击时,使用防御和特防代替攻击和特攻."
+  expanded_description: "物理招式使用使用者的防御能力值而非攻击能力值进行伤害计算特殊招式则使用使用者的特防能力值而非特攻能力值."
+}
+ability {
+  id: ABILITY_MYSTIC_POWER
+  name: "神秘力量"
+  description: "所有招式获得1.5倍的本系加成."
+  expanded_description: "神秘力量使所有招式获得1.5倍的本系加成,无论属性是否匹配.不会增强已经获得本系加成的招式."
+}
+ability {
+  id: ABILITY_PERFECTIONIST
+  name: "完美主义者"
+  description: "威力<51：暴击率+1。\n威力<26：再获先制+1。"
+  expanded_description: "威力小于等于50的攻击招式,其击中要害率提升1级；威力小于等于25的招式,额外获得+1优先度."
+}
+ability {
+  id: ABILITY_GROWING_TOOTH
+  name: "不断生长的牙齿"
+  description: "自身咬类招式命中时，攻击提升1级。"
+  expanded_description: "不断生长的牙齿特性在该宝可梦成功使用啃咬类招式命中后,其攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_INFLATABLE
+  name: "充气"
+  description: "受到飞行或火属性招式攻击时,防御和特防各提升1级."
+  expanded_description: "受到任何火属性或飞行属性招式攻击时,防御和特防能力值各提升1级.对于连续攻击招式,每次命中都会触发.能力提升效果在攻击命中后生效."
+}
+ability {
+  id: ABILITY_AURORA_BOREALIS
+  name: "北极光"
+  description: "冰属性招式获得本系加成.招式总能享受到冰雹的增益."
+  expanded_description: "北极光使所有冰属性招式获得本系加成,无论该宝可梦的属性如何.气象球变为冰属性且威力加倍,极光幕无需冰雹即可生效,基于天气的冰属性招式（如暴风雪）必定命中."
+}
+ability {
+  id: ABILITY_AVENGER
+  name: "复仇者"
+  description: "上一回合有同伴宝可梦濒死,下次招式威力提升1.5倍."
+  expanded_description: "复仇者特性在任何同伴宝可梦濒死后的一回合内,使所有招式的威力提升50%."
+}
+ability {
+  id: ABILITY_LETS_ROLL
+  name: "我们滚吧"
+  description: "出场时使用变圆."
+  expanded_description: "我们滚吧在进入战斗时自动将防御提升1级并附加变圆状态,使滚动等招式的威力加倍."
+}
+ability {
+  id: ABILITY_AQUATIC
+  name: "水生"
+  description: "出场时添加水属性."
+  expanded_description: "进入战斗时,为使用者的当前属性添加水属性即使失去此特性,添加的水属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_LOUD_BANG
+  name: "巨响"
+  description: "声音类招式有50%几率使对手混乱."
+  expanded_description: "声音类攻击成功命中后,有50%的几率使目标陷入混乱状态."
+}
+ability {
+  id: ABILITY_LEAD_COAT
+  name: "铅衣"
+  description: "受到的物理伤害减少40%，速度×0.9，体重变为3倍。"
+  expanded_description: "铅衣使受到的物理伤害降低40%,但速度降低10%.同时使使用者的重量变为3倍.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_AMPHIBIOUS
+  name: "两栖"
+  description: "水属性招式获得本系加成.不会被浸水."
+  expanded_description: "使水属性招式获得本系加成,无论使用者的属性如何.同时免疫浸水状态."
+}
+ability {
+  id: ABILITY_GROUNDED
+  name: "接地"
+  description: "出场时添加地面属性."
+  expanded_description: "接地特性在出场时为该宝可梦添加地面属性.即使失去此特性,添加的地面属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_EARTHBOUND
+  name: "大地束缚"
+  description: "地面属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+  expanded_description: "地面属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_FIGHT_SPIRIT
+  name: "斗争精神"
+  description: "一般属性招式变为格斗属性.格斗属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为格斗属性.如果该宝可梦是格斗属性,其格斗属性招式可以击破屏障；否则,它获得格斗属性的本系加成."
+}
+ability {
+  id: ABILITY_FELINE_PROWESS
+  name: "猫科本领"
+  description: "自身的特攻能力加倍.提升最终能力值,而非基础能力值."
+  expanded_description: "神秘力量使该宝可梦的特攻能力值变为2倍.与其他伤害加成效果乘法叠加."
+}
+ability {
+  id: ABILITY_COIL_UP
+  name: "盘卷"
+  description: "每次上场使用的首个咬类招式优先度+1。"
+  expanded_description: "出场时,赋予第一次使用的啃咬类招式+1优先度.在使用任何啃咬类招式命中后,该优先度加成即被消耗."
+}
+ability {
+  id: ABILITY_FOSSILIZED
+  name: "化石"
+  description: "受到的岩石属性伤害减半.自身的岩石属性招式威力提升1.2倍."
+  expanded_description: "化石使受到的岩石属性伤害降低50%,并提升使用者自身的岩石属性招式威力20%.伤害减免与其他来源乘法叠加,威力加成与其他来源加法叠加."
+}
+ability {
+  id: ABILITY_MAGICAL_DUST
+  name: "魔法粉"
+  description: "使接触到的对手变为超能力属性.主动攻击时也生效."
+  expanded_description: "如果该宝可梦与另一只宝可梦发生接触（无论是攻击方还是防御方）,对方的属性会变为纯超能力属性此效果在连续招式或优先度招式命中时立即发生,可以在对手的连续攻击过程中消除其本系加成."
+}
+ability {
+  id: ABILITY_DREAMCATCHER
+  name: "捕梦人"
+  description: "如果对手处于睡眠状态,造成双倍伤害.追击睡眠中的对手."
+  expanded_description: "当场上任何对手处于睡眠状态时,捕梦人使该宝可梦的招式威力加倍.这包括使用者、同伴或对手造成的睡眠.攻击会对正在替换下场的睡眠中对手造成1倍伤害,在其离开前造成伤害.对绝对睡眠特性无效."
+}
+ability {
+  id: ABILITY_NOCTURNAL
+  name: "夜行"
+  description: "恶属性招式威力1.25倍。\n受恶、妖精伤害降低25%。"
+  expanded_description: "恶属性招式获得25%威力提升,并且使用者受到的恶属性和妖精属性伤害降低25%.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_SELF_SUFFICIENT
+  name: "自给自足"
+  description: "每回合结束时回复1/16的最大HP."
+}
+ability {
+  id: ABILITY_TECTONIZE
+  name: "构造"
+  description: "一般属性招式变为地面属性；地面属性可无视部分场地陷阱。"
+  expanded_description: "将该宝可梦的一般属性招式变为地面属性.如果该宝可梦是地面属性,它免疫隐形岩和撒菱；否则,它获得地面属性的本系加成."
+}
+ability {
+  id: ABILITY_ICE_AGE
+  name: "冰河时代"
+  description: "出场时添加冰属性."
+  expanded_description: "进入战斗时,为使用者的当前属性添加冰属性即使失去此特性,添加的冰属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_HALF_DRAKE
+  name: "半龙"
+  description: "出场时添加龙属性."
+  expanded_description: "进入战斗时,为使用者的当前属性添加龙属性即使失去此特性,添加的龙属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_LIQUIFIED
+  name: "液化"
+  description: "受到的接触类招式伤害减半,但受到的水属性招式会造成2倍伤害."
+  expanded_description: "液化使受到的接触类招式伤害降低50%,但受到的水属性招式伤害变为2倍.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_DRAGONFLY
+  name: "龙飞"
+  description: "出场时添加龙属性.回避地面属性攻击."
+  expanded_description: "进入战斗时,为使用者的当前属性添加龙属性即使失去此特性,添加的龙属性在替换下场前依然保留.同时使该宝可梦免疫地面属性攻击以及需要接地才能生效的场地效果."
+}
+ability {
+  id: ABILITY_DRAGONSLAYER
+  name: "屠龙者"
+  description: "对龙属性目标造成的伤害×1.5；受到龙属性目标的伤害×0.5。"
+  expanded_description: "对龙属性宝可梦造成1.5倍伤害,并且受到龙属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_MOUNTAINEER
+  name: "登山者"
+  description: "免疫岩石属性攻击和隐形岩伤害."
+  expanded_description: "登山者特性使该宝可梦免疫所有岩石属性招式以及隐形岩的入场伤害."
+}
+ability {
+  id: ABILITY_HYDRATE
+  name: "水合"
+  description: "一般属性招式变为水属性.水属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为水属性.如果该宝可梦是水属性,其水属性招式有10%的几率造成浸水；否则,它获得水属性的本系加成."
+}
+ability {
+  id: ABILITY_METALLIC
+  name: "金属化"
+  description: "出场时添加钢属性."
+  expanded_description: "进入战斗时,为使用者的当前属性添加钢属性即使失去此特性,添加的钢属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_PERMAFROST
+  name: "永冻土"
+  description: "受到效果绝佳的招式攻击时,伤害降低35%."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_PRIMAL_ARMOR
+  name: "原始铠甲"
+  description: "受到效果绝佳的招式攻击时,伤害降低50%."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低50%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_RAGING_BOXER
+  name: "狂暴拳手"
+  description: "拳类招式攻击两次.第一击威力100%,第二击威力40%."
+  expanded_description: "狂暴拳手使拳类招式连续命中两次,第一击造成100%伤害,第二击造成40%伤害.两次攻击独立判定追加效果（畏缩除外）."
+}
+ability {
+  id: ABILITY_AIR_BLOWER
+  name: "吹气筒"
+  description: "出场时制造顺风,持续3回合."
+  expanded_description: "吹气筒在进入战斗时自动设置持续3回合的顺风,使使用者一方所有宝可梦的速度加倍.同时会触发乘风特性."
+}
+ability {
+  id: ABILITY_JUGGERNAUT
+  name: "主宰"
+  description: "接触类招式将20%的防御加入攻击计算.免疫麻痹."
+  expanded_description: "主宰特性增强接触类招式,将使用者20%的防御能力值加入攻击计算.防止麻痹状态,并在陷入麻痹时立即治愈."
+}
+ability {
+  id: ABILITY_SHORT_CIRCUIT
+  name: "短路"
+  description: "电属性招式威力×1.2；HP低于1/3时改为×1.5。"
+  expanded_description: "电属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_MAJESTIC_BIRD
+  name: "华贵之鸟"
+  description: "自身的特攻能力提升至1.5倍.提升最终能力值,而非基础能力值."
+  expanded_description: "华贵之鸟使该宝可梦的特攻能力值提升50%.与其他伤害加成效果乘法叠加."
+}
+ability {
+  id: ABILITY_PHANTOM
+  name: "幻影"
+  description: "出场时添加幽灵属性."
+  expanded_description: "进入战斗时,为使用者的当前属性添加幽灵属性.即使失去此特性,添加的幽灵属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_INTOXICATE
+  name: "醉人"
+  description: "一般属性招式变为毒属性.毒属性招式得到强化."
+  expanded_description: "将该宝可梦的一般属性招式变为毒属性.如果该宝可梦是毒属性,其毒属性招式有10%的几率造成剧毒；否则,它获得毒属性的本系加成."
+}
+ability {
+  id: ABILITY_IMPENETRABLE
+  name: "坚不可摧"
+  description: "仅受攻击伤害."
+  expanded_description: "坚不可摧特性使该宝可梦免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害."
+}
+ability {
+  id: ABILITY_HYPNOTIST
+  name: "催眠师"
+  description: "该宝可梦使用的催眠术命中率为90%."
+  expanded_description: "将催眠术的命中率提升至90%.不锁定为90%,该招式仍会受到命中率/闪避率变化的影响."
+}
+ability {
+  id: ABILITY_OVERWHELM
+  name: "压倒"
+  description: "龙属性招式可以命中妖精属性.免疫威吓和惊吓."
+  expanded_description: "允许龙属性招式以普通效果命中妖精属性宝可梦,而非无效.此外,使用者免疫威吓和惊吓."
+}
+ability {
+  id: ABILITY_SCARE
+  name: "惊吓"
+  description: "出场时，降低对方特攻一级."
+  expanded_description: "上场时使所有对手的特攻降低1级。"
+}
+ability {
+  id: ABILITY_MAJESTIC_MOTH
+  name: "华贵之蛾"
+  description: "出场时,自身最高的计算后能力值提升1级."
+  expanded_description: "华贵之蛾在进入战斗时,使该宝可梦最高的计算后基础能力值提升1级."
+}
+ability {
+  id: ABILITY_SOUL_EATER
+  name: "噬魂"
+  description: "击倒对手时,回复该宝可梦1/4的最大HP."
+  expanded_description: "当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+}
+ability {
+  id: ABILITY_SOUL_LINKER
+  name: "灵魂链接"
+  description: "攻击者受到对自身造成的所有伤害,自身攻击时也受影响."
+  expanded_description: "当使用者受到直接攻击时,对手受到等量伤害.当使用者造成直接攻击伤害时,自身也受到等量伤害.当任意一方濒死、通过痛平分受到伤害或对另一个拥有灵魂链接特性的宝可梦时,此特性不会触发."
+}
+ability {
+  id: ABILITY_SWEET_DREAMS
+  name: "美梦"
+  description: "处于睡眠状态时,每回合回复1/8的最大HP.免疫梦魇."
+  expanded_description: "美梦特性在使用者处于睡眠状态或拥有绝对睡眠特性时,每回合结束时回复1/8的最大HP.此外,它免疫梦魇特性的伤害."
+}
+ability {
+  id: ABILITY_BAD_LUCK
+  name: "厄运"
+  description: "对手无法会心一击,命中率降低5%,且无法触发追加效果."
+  expanded_description: "对手无法造成击中要害,总是造成最低伤害（85%而非85-100%）,无法触发非必定触发的追加效果,并且有5%的几率招式落空."
+}
+ability {
+  id: ABILITY_HAUNTED_SPIRIT
+  name: "作祟的魂魄"
+  description: "当该宝可梦被击倒时,对攻击者施加诅咒."
+  expanded_description: "当被直接攻击击倒时,对攻击者施加诅咒.诅咒每回合造成其最大HP25%的伤害,直到被诅咒的宝可梦替换下场或濒死.幽灵属性的攻击者免疫此诅咒."
+}
+ability {
+  id: ABILITY_ELECTRIC_BURST
+  name: "电爆"
+  description: "电属性招式造成1.35倍伤害,但有10%的反伤."
+  expanded_description: "电爆使电属性招式威力提升35%,但会造成基于伤害值10%的反伤（最少1点HP）.反伤不会导致使用者濒死."
+}
+ability {
+  id: ABILITY_RAW_WOOD
+  name: "原木"
+  description: "受到的草属性伤害减半.自身的草属性招式威力提升1.2倍."
+  expanded_description: "受到的草属性攻击伤害降低50%,同时使用者自身的草属性招式威力提升20%.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_SOLENOGLYPHS
+  name: "毒牙"
+  description: "啃咬类招有50%几率使目标陷入剧毒状态."
+  expanded_description: "毒牙特性使所有啃咬类招式在命中时有50%的几率使目标陷入剧毒状态."
+}
+ability {
+  id: ABILITY_SPIDER_LAIR
+  name: "蜘蛛巢"
+  description: "出场时设置黏黏网,持续5回合."
+  expanded_description: "使用者进入战斗时,在对手场上设置黏黏网.持续5回合,使任何替换上场的接地宝可梦速度降低1级.如果对手场上已有黏黏网,则无法激活."
+}
+ability {
+  id: ABILITY_FATAL_PRECISION
+  name: "致命精准"
+  description: "效果绝佳的招式必定命中且必定会心一击."
+  expanded_description: "效果绝佳的攻击招式必定命中,并且必定造成击中要害."
+}
+ability {
+  id: ABILITY_FORT_KNOX
+  name: "坚壁"
+  description: "阻挡大多数伤害增益和连续攻击特性."
+  expanded_description: "免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+}
+ability {
+  id: ABILITY_SEAWEED
+  name: "海草"
+  description: "草属性时受火伤害减半。\n草属性对火造成2倍伤害。"
+  expanded_description: "如果使用者是草属性,其受到的火属性攻击伤害减半,并且使用草属性招式对火属性宝可梦造成2倍伤害.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_PSYCHIC_MIND
+  name: "超能之心"
+  description: "超能力属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+  expanded_description: "超能力属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_POISON_ABSORB
+  name: "毒吸收"
+  description: "引导并吸收毒属性招式；在剧毒场地中回复HP。"
+  expanded_description: "该宝可梦会吸引毒属性招式,并对其免疫,转而回复最大HP的1/4.此外,在剧毒地形上,每回合回复1/8的最大HP."
+}
+ability {
+  id: ABILITY_SCAVENGER
+  name: "拾荒者"
+  description: "击倒对手时,回复该宝可梦1/4的最大HP."
+  expanded_description: "当该宝可梦通过直接攻击击败对手时,立即恢复其最大HP的25%."
+}
+ability {
+  id: ABILITY_TWISTED_DIMENSION
+  name: "扭曲空间"
+  description: "出场时设置戏法空间,持续3回合."
+}
+ability {
+  id: ABILITY_MULTI_HEADED
+  name: "多头龙"
+  description: "根据拥有的头数进行多次攻击."
+  expanded_description: "根据头数,每次攻击2-3次.双头宝可梦攻击两次（第一击100%,第二击25%）,三头宝可梦攻击三次（第一击100%,第二击20%,第三击15%）.每次攻击独立判定追加效果（畏缩除外）.可穿透坚壁/奇迹皮肤."
+}
+ability {
+  id: ABILITY_NORTH_WIND
+  name: "北风"
+  description: "出场时设置3回合的极光幕.免疫冰雹伤害."
+  expanded_description: "进入战斗时设置极光幕,使己方全队受到的物理和特殊伤害减半.极光幕持续3回合,携带光之黏土时为5回合.使用者同时免疫冰雹伤害.如果极光幕已激活,则无法再次触发."
+}
+ability {
+  id: ABILITY_OVERCHARGE
+  name: "过载"
+  description: "电属性招式对电属性效果绝佳.可以使电属性宝可梦麻痹."
+  expanded_description: "使用者的电属性招式对电属性宝可梦变得有效,造成2倍伤害而非0.5倍.同时允许使用者使电属性宝可梦陷入麻痹状态."
+}
+ability {
+  id: ABILITY_VIOLENT_RUSH
+  name: "狂暴突袭"
+  description: "上场的第一回合,速度提升50%,攻击提升20%."
+  expanded_description: "使用者替换上场后的第一回合,获得50%的速度加成和20%的攻击加成."
+}
+ability {
+  id: ABILITY_FLAMING_SOUL
+  name: "烈焰之魂"
+  description: "HP全满时，火属性招式优先度+1。"
+  expanded_description: "当HP全满时,赋予火属性招式+1优先度."
+}
+ability {
+  id: ABILITY_SAGE_POWER
+  name: "贤者之力"
+  description: "特攻提升50%,但锁定招式."
+  expanded_description: "特攻能力值提升50%,但会将使用者锁定在首次选择的招式上,直到替换下场."
+}
+ability {
+  id: ABILITY_BONE_ZONE
+  name: "骨区"
+  description: "骨类招式无视免疫,且对效果不好的目标造成2倍伤害."
+  expanded_description: "骨类招式可以穿透免疫造成正常伤害,而对被抵抗的目标则造成2倍伤害.普通/效果绝佳的伤害保持不变."
+}
+ability {
+  id: ABILITY_WEATHER_CONTROL
+  name: "天气控制"
+  description: "免疫所有与天气相关的招式。"
+  expanded_description: "免疫基于天气的招式：打雷、日光束/刃、暴风、暴风雪、银色旋风、气象球、所有风暴类招式（不包括岩浆风暴、飞叶风暴或钻石风暴）、绝对零度和誓约招式.不阻止天气的设置或其伤害."
+}
+ability {
+  id: ABILITY_SPEED_FORCE
+  name: "速度之力"
+  description: "物理招式额外\n使用20%速度能力。"
+  expanded_description: "使用接触类招式时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+}
+ability {
+  id: ABILITY_SEA_GUARDIAN
+  name: "海洋守护者"
+  description: "雨天下上场时，最高的一项能力提升1级。"
+  expanded_description: "在雨天天气下进入战斗时,海洋守护者使你最高的能力值提升1级.适用于任何形式的雨天.每次替换上场触发一次."
+}
+ability {
+  id: ABILITY_MOLTEN_DOWN
+  name: "熔解"
+  description: "火属性招式对岩石属性效果绝佳."
+  expanded_description: "熔解使火属性招式对岩石属性宝可梦变得效果绝佳,而非被抵抗."
+}
+ability {
+  id: ABILITY_HYPER_AGGRESSIVE
+  name: "极度好战"
+  description: "招式攻击两次.第二击造成25%伤害."
+  expanded_description: "使所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）."
+}
+ability {
+  id: ABILITY_FLOCK
+  name: "鸟群"
+  description: "飞行属性招式威力×1.2；HP低于1/3时改为×1.5。"
+  expanded_description: "飞行属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_FIELD_EXPLORER
+  name: "旷野探险家"
+  description: "野外场地招式威力提升50%.如居合劈、冲浪、怪力等."
+  expanded_description: "将在野外可以使用的招式威力提升50%.包括所有秘传技招式、（意念头锤/）头锤、冰旋、觉醒力量/自然之力和挖洞."
+}
+ability {
+  id: ABILITY_STRIKER
+  name: "前锋"
+  description: "踢腿类招式的威力提升至1.3倍."
+  expanded_description: "前锋使所有踢腿类招式的威力提升30%.包括火焰球."
+}
+ability {
+  id: ABILITY_FROZEN_SOUL
+  name: "冰霜之魂"
+  description: "HP全满时，冰属性招式优先度+1。"
+  expanded_description: "冰霜之魂在使用者HP全满时,赋予所有冰属性招式+1优先度."
+}
+ability {
+  id: ABILITY_PREDATOR
+  name: "掠食者"
+  description: "击倒对手时,回复该宝可梦1/4的最大HP."
+  expanded_description: "当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+}
+ability {
+  id: ABILITY_LOOTER
+  name: "掠夺者"
+  description: "击倒对手时,回复该宝可梦1/4的最大HP."
+  expanded_description: "当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+}
+ability {
+  id: ABILITY_LUNAR_ECLIPSE
+  name: "月食"
+  description: "妖精和恶属性招式获得本系加成.催眠术命中率提升至1.5倍."
+  expanded_description: "月食使妖精属性和恶属性招式获得本系加成,无论使用者的属性如何.将催眠术的命中率提升至90%."
+}
+ability {
+  id: ABILITY_SOLAR_FLARE
+  name: "太阳耀斑"
+  description: "叶绿体 + 献祭."
+  expanded_description: "将一般属性招式转变为火属性并获得火属性本系加成.如果使用者是火属性,其火属性招式有10%的几率造成灼伤.此外,为使用者的招式激活所有与大晴天相关的效果."
+}
+ability {
+  id: ABILITY_POWER_CORE
+  name: "动力核心"
+  description: "该宝可梦在使用招式时,额外使用20%的防御或特防."
+  expanded_description: "计算伤害时,物理攻击额外增加20%的防御能力值,特殊攻击额外增加20%的特防能力值."
+}
+ability {
+  id: ABILITY_SIGHTING_SYSTEM
+  name: "瞄准系统"
+  description: "招式必定命中.基础命中率低于80%的招式优先度降低."
+  expanded_description: "瞄准系统确保所有招式无视命中判定,必定命中.基础命中率低于80%的招式获得-3优先度."
+}
+ability {
+  id: ABILITY_BAD_COMPANY
+  name: "坏伙伴"
+  description: "目前未实装.无效果."
+  expanded_description: "未实装."
+}
+ability {
+  id: ABILITY_OPPORTUNIST
+  name: "机会主义者"
+  description: "对HP低于1/2的对手获得+1优先度."
+  expanded_description: "当目标对手的HP为50%或以下时,赋予所有招式+1优先度."
+}
+ability {
+  id: ABILITY_GIANT_WINGS
+  name: "巨翼"
+  description: "翅膀、风或空气类招式威力提升至1.3倍."
+  expanded_description: "巨翼使所有翅膀、风和空气类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_MOMENTUM
+  name: "动量"
+  description: "物理招式用速度计算伤害。"
+  expanded_description: "接触类招式使用速度能力值而非攻击/特攻进行伤害计算.讲究围巾的效果不影响此特性."
+}
+ability {
+  id: ABILITY_GRIP_PINCER
+  name: "钳制"
+  description: "50%几率束缚对手.之后无视防御和命中判定."
+  expanded_description: "接触类招式有50%几率束缚目标（如捆绑）,防止其逃跑或替换.对抗被束缚的目标时,使用者的招式无视其防御能力变化并必定命中.被束缚的目标每回合损失1/8的最大HP.束缚持续4-5回合（携带紧绑钩爪时为7回合）."
+}
+ability {
+  id: ABILITY_BIG_LEAVES
+  name: "大叶子"
+  description: "叶绿体 + 叶绿素 + 叶子防守 + 收获 + 太阳之力."
+  expanded_description: "为使用者的招式激活所有与大晴天相关的效果.在大晴天下速度提升50%.在大晴天下治愈异常状态.每回合结束时有50%几率回收树果,大晴天下为100%.在大晴天下,自身最高的攻击能力值提升50%."
+}
+ability {
+  id: ABILITY_PRECISE_FIST
+  name: "精密之拳"
+  description: "拳类招式+1击中要害率,且追加效果几率变为5倍."
+  expanded_description: "拳类招式获得+1击中要害率,并且其原本的追加效果触发几率变为5倍."
+}
+ability {
+  id: ABILITY_DEADEYE
+  name: "神枪手"
+  description: "箭矢和炮类招式必定命中.会心一击攻击最弱的防御."
+  expanded_description: "使用者不会打空箭矢类攻击和炮类招式（与超级发射器招式不同,包括被防弹阻挡的招式）.此外,当造成击中要害时,攻击目标改为对手较弱的防御能力值."
+}
+ability {
+  id: ABILITY_ARTILLERY
+  name: "炮术"
+  description: "超级发射器类招式必定命中,且同时攻击双方."
+  expanded_description: "超级发射器类招式必定命中,并同时攻击双方对手.所有脉冲、波导、波动、光环及其他爆裂相关招式不会打空."
+}
+ability {
+  id: ABILITY_AMPLIFIER
+  name: "扩音器"
+  description: "声音类招式威力提升30%,并同时攻击双方."
+  expanded_description: "扩音器使声音类招式威力提升30%.单体目标的声音类招式变为范围攻击,同时攻击双方对手.连续攻击招式不会变为范围攻击."
+}
+ability {
+  id: ABILITY_ICE_DEW
+  name: "冰露"
+  description: "吸引冰属性招式.吸收后提升自身最高的攻击能力."
+  expanded_description: "将所有冰属性招式吸引到该宝可梦身上并吸收.吸收冰属性招式时,提升攻击或特攻中较高的一项1级."
+}
+ability {
+  id: ABILITY_SUN_WORSHIP
+  name: "太阳崇拜"
+  description: "晴天下上场时，最高的一项能力提升1级。"
+  expanded_description: "在大晴天天气下进入战斗时,使使用者最高的能力值提升1级."
+}
+ability {
+  id: ABILITY_POLLINATE
+  name: "授粉"
+  description: "一般属性招式变为虫属性；自身为虫属性时免疫粉末类招式。"
+  expanded_description: "将该宝可梦的一般属性招式变为虫属性.如果该宝可梦是虫属性,它免疫粉末类招式；否则,它获得虫属性的本系加成."
+}
+ability {
+  id: ABILITY_VOLCANO_RAGE
+  name: "火山之怒"
+  description: "使用火属性招式后,触发威力50的喷火."
+  expanded_description: "使用任何火属性招式后,火山之怒会触发一次后续的喷火攻击,基础威力为50.伤害根据使用者当前的HP比例变化,满HP时威力为50."
+}
+ability {
+  id: ABILITY_COLD_REBOUND
+  name: "冰冷反击"
+  description: "受到接触招式攻击时,以冰息进行反击."
+  expanded_description: "受到任何接触招式攻击时,冰冷反击会以冰息（60威力）进行反击,并降低攻击者的速度1级."
+}
+ability {
+  id: ABILITY_LOW_BLOW
+  name: "下流打击"
+  description: "出场时,使用威力40的暗算."
+  expanded_description: "下流打击在替换上场时,使用威力40的暗算攻击随机一名对手.暗算是恶属性物理攻击,必定命中."
+}
+ability {
+  id: ABILITY_NOSFERATU
+  name: "诺斯费拉图"
+  description: "接触类招式造成+20%伤害,并回复伤害量的一半HP."
+  expanded_description: "造成接触的招式额外造成20%的伤害,并使使用者回复伤害量的一半HP.此回复在连续攻击的所有命中之后以及反伤结算之后生效."
+}
+ability {
+  id: ABILITY_SPECTRAL_SHROUD
+  name: "幽灵魂"
+  description: "幽灵魂化的效果；招式有30%概率使对手陷入剧毒。"
+  expanded_description: "将使用者的一般属性招式变为幽灵属性.如果使用者是幽灵属性,其幽灵属性招式有10%的几率造成恐惧；否则,它获得幽灵属性的本系加成.其所有招式（包括变化招式）有30%的几率使目标陷入剧毒."
+}
+ability {
+  id: ABILITY_DISCIPLINE
+  name: "自律"
+  description: "可以在暴走时替换下场.不会混乱或被威吓."
+  expanded_description: "使用狂暴招式（如逆鳞、暴怒）期间\n可替换下场。免疫混乱、\n威吓与惊吓。获得此特性时\n立即解除混乱。"
+}
+ability {
+  id: ABILITY_THUNDERCALL
+  name: "雷召"
+  description: "使用电属性招式时,以20%的威力触发天谴."
+  expanded_description: "使用任何电属性招式后,雷召会自动触发一次后续的天谴攻击,威力为20%（基础威力24）这个物理电属性攻击命中率为80%,有20%的几率使目标麻痹,并施加击落效果使飞行属性宝可梦接地."
+}
+ability {
+  id: ABILITY_MARINE_APEX
+  name: "海洋霸主"
+  description: "对水属性宝可梦造成50%额外伤害 + 穿透特性."
+  expanded_description: "对水属性宝可梦造成1.5倍伤害,并穿透防御屏障（光墙、反射壁、极光幕）/替身."
+}
+ability {
+  id: ABILITY_MIGHTY_HORN
+  name: "强大之角"
+  description: "角类和钻类招式威力提升至1.3倍."
+  expanded_description: "强大之角使角类和钻类攻击的威力提升30%."
+}
+ability {
+  id: ABILITY_HARDENED_SHEATH
+  name: "硬化鞘"
+  description: "自身角类招式命中时，攻击提升1级。"
+  expanded_description: "每次成功的角类攻击命中后,使用者的攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_ARCTIC_FUR
+  name: "极地毛发"
+  description: "受到的物理和特殊招式伤害减弱35%."
+  expanded_description: "使受到的物理和特殊伤害降低35%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_SPECTRALIZE
+  name: "幽灵魂化"
+  description: "一般属性招式变为幽灵属性.幽灵属性招式得到强化."
+  expanded_description: "将使用者的一般属性招式变为幽灵属性.如果使用者是幽灵属性,其幽灵属性招式有10%的几率造成恐惧；否则,它获得幽灵属性的本系加成."
+}
+ability {
+  id: ABILITY_LETHARGY
+  name: "昏昏欲睡"
+  description: "每回合伤害降低20%,最多降至20%.替换上场时重置."
+  expanded_description: "每回合开始时,使用者的总伤害降低20%,最多降低80%.替换后重置."
+}
+ability {
+  id: ABILITY_IRON_BARRAGE
+  name: "钢铁弹幕"
+  description: "超级发射器 + 瞄准系统."
+  expanded_description: "使脉冲、波导、波动和光环类招式威力提升30%.确保所有招式无视命中判定,必定命中.基础命中率低于80%的招式获得-3优先度."
+}
+ability {
+  id: ABILITY_STEEL_BARREL
+  name: "钢桶"
+  description: "免疫反伤伤害,但不免疫大爆炸/撞击伤害."
+  expanded_description: "防止所有来自自身招式或特性的反伤伤害.同时免疫因愤怒产生的反伤伤害无法防止撞击伤害或大爆炸/自爆的伤害."
+}
+ability {
+  id: ABILITY_PYRO_SHELLS
+  name: "火焰弹"
+  description: "使用超级发射器增幅的招式后，追加威力50的大爆炸或蒸汽爆发。"
+  expanded_description: "火焰弹在任何超级发射器强化的招式后触发一个威力50的一般属性迸裂拳.迸裂拳没有追加效果,且攻击场上所有周围的宝可梦."
+}
+ability {
+  id: ABILITY_FUNGAL_INFECTION
+  name: "真菌感染"
+  description: "接触类招式对目标施加寄生种子."
+  expanded_description: "使用接触类招式时,对目标施加寄生种子,每回合结束时吸取目标1/8的最大HP."
+}
+ability {
+  id: ABILITY_PARRY
+  name: "招架"
+  description: "受接触攻击时反击音速拳。\n受到的伤害减少20%。"
+  expanded_description: "所有受到的伤害降低20%.与其他减伤来源乘法叠加.以威力20的音速拳反击接触类招式."
+}
+ability {
+  id: ABILITY_SCRAPYARD
+  name: "废料场"
+  description: "受到接触类招式攻击时，撒下一层撒菱。"
+  expanded_description: "当使用者成功被接触招式命中时,在对手场上设置一层撒菱.每层使替换上场的接地宝可梦分别损失最大HP的12.5%、16.7%或25%（对应1-3层）连续攻击招式的每一次命中都会设置一层."
+}
+ability {
+  id: ABILITY_LOOSE_QUILLS
+  name: "松散尖刺"
+  description: "受到接触类招式攻击时，撒下一层撒菱。"
+  expanded_description: "当使用者成功被接触招式命中时,在对手场上设置一层撒菱.每层使替换上场的接地宝可梦分别损失最大HP的12.5%、16.7%或25%（对应1-3层）连续攻击招式的每一次命中都会设置一层."
+}
+ability {
+  id: ABILITY_TOXIC_DEBRIS
+  name: "毒棘"
+  description: "受到接触类招式攻击时，撒下一层毒菱。"
+  expanded_description: "毒棘特性在受到接触招式攻击时,自动在对手场上设置一层毒菱.每层会使替换上场的接地宝可梦中毒：一层为普通中毒,两层为剧毒.连续攻击招式的每一次命中都会设置一层."
+}
+ability {
+  id: ABILITY_ROUNDHOUSE
+  name: "回旋踢"
+  description: "踢腿招式必定命中.攻击对手较弱的防御."
+  expanded_description: "回旋踢使所有踢腿类招式必定命中,并且攻击目标改为对手较弱的防御能力值."
+}
+ability {
+  id: ABILITY_MINERALIZE
+  name: "矿化"
+  description: "一般属性招式变为岩石属性.岩石属性招式得到强化."
+  expanded_description: "将使用者的一般属性招式变为岩石属性.如果使用者是岩石属性,其岩石属性招式有10%的几率造成流血；否则,它获得岩石属性的本系加成."
+}
+ability {
+  id: ABILITY_LOOSE_ROCKS
+  name: "松散岩石"
+  description: "受到接触类招式攻击时，布下隐形岩。"
+  expanded_description: "当使用者受到任何接触招式攻击时,在对手场上设置隐形岩.隐形岩在对手替换上场时造成其最大HP1/8的伤害.视为岩石属性伤害,受属性相性影响."
+}
+ability {
+  id: ABILITY_SPINNING_TOP
+  name: "旋转陀螺"
+  description: "使用格斗属性招式时,速度提升1级并清除场地状态."
+  expanded_description: "旋转陀螺在使用格斗属性招式时,使使用者速度提升1级,并移除己方场上的所有入场陷阱."
+}
+ability {
+  id: ABILITY_RETRIBUTION_BLOW
+  name: "报应打击"
+  description: "如果有对手使用能力提升招式,则使用破坏光线."
+  expanded_description: "自动对提升能力的对手使用威力150的破坏光线.触发的破坏光线没有休息回合,允许下回合正常行动."
+}
+ability {
+  id: ABILITY_FEARMONGER
+  name: "恐惧散布者"
+  description: "威吓 + 惊吓 + 接触类招式有10%几率造成恐惧."
+  expanded_description: "恐惧散布者在出场时降低所有对手宝可梦的攻击和特攻1级.此外,使用接触类招式命中时,有10%的几率造成恐惧."
+}
+ability {
+  id: ABILITY_KINGS_WRATH
+  name: "王之怒"
+  description: "己方场上任何能力被降低时,提升攻击和防御."
+  expanded_description: "王之怒在使用者或其同伴的能力被降低时触发,立即提升使用者的攻击和防御1级.不会因自身引起的能力降低而激活."
+}
+ability {
+  id: ABILITY_QUEENS_MOURNING
+  name: "后之哀"
+  description: "己方场上任何能力被降低时,提升特攻和特防."
+  expanded_description: "后之哀在使用者或其同伴的能力被降低时触发,立即提升使用者的特攻和特防1级.不会因自身引起的能力降低而激活."
+}
+ability {
+  id: ABILITY_TOXIC_SPILL
+  name: "毒溢"
+  description: "在场时,非毒属性宝可梦每回合损失1/8的HP."
+  expanded_description: "毒溢特性每回合伤害所有非毒属性宝可梦,造成其1/8的HP损失.拥有毒疗特性的宝可梦反而会回复.使用者下场时效果消失."
+}
+ability {
+  id: ABILITY_DESERT_CLOAK
+  name: "沙漠披风"
+  description: "在沙暴中,保护己方不受异常状态和追加效果影响."
+  expanded_description: "在沙暴生效时,所有同伴免疫异常状态和来自敌人的招式追加效果."
+}
+ability {
+  id: ABILITY_DRACONIZE
+  name: "龙化"
+  description: "一般属性招式变为龙属性.龙属性招式得到强化."
+  expanded_description: "将使用者的一般属性招式变为龙属性.如果使用者是龙属性,其龙属性招式对妖精属性造成普通伤害；否则,它获得龙属性的本系加成."
+}
+ability {
+  id: ABILITY_PRETTY_PRINCESS
+  name: "漂亮公主"
+  description: "如果目标有任何能力降低,造成50%额外伤害."
+  expanded_description: "漂亮公主使使用者对拥有任何负向能力等级的目标造成50%额外伤害."
+}
+ability {
+  id: ABILITY_SELF_REPAIR
+  name: "自我修复"
+  description: "自给自足 + 自然回复."
+  expanded_description: "每回合结束时回复1/16的最大HP,并且替换下场时治愈所有异常状态."
+}
+ability {
+  id: ABILITY_ATOMIC_BURST
+  name: "原子爆炸"
+  description: "电力转换 + 电气皮肤."
+  expanded_description: "受到任何招式攻击时,使用者会进入充电状态,使下一次电属性招式威力加倍.将所有一般属性招式转变为电属性招式,并为电属性招式提供本系加成.如果使用者是电属性,其电属性招式有10%的几率造成麻痹."
+}
+ability {
+  id: ABILITY_HELLBLAZE
+  name: "地狱烈焰"
+  description: "火属性招式威力×1.3；HP低于1/3时改为×1.8。"
+  expanded_description: "火属性招式威力提升30%,当HP低于1/3时提升80%."
+}
+ability {
+  id: ABILITY_RIPTIDE
+  name: "暗涌"
+  description: "水属性招式威力×1.3；HP低于1/3时改为×1.8。"
+  expanded_description: "水属性招式威力提升30%,当HP低于1/3时提升80%."
+}
+ability {
+  id: ABILITY_FOREST_RAGE
+  name: "森林之怒"
+  description: "草属性招式威力×1.3；HP低于1/3时改为×1.8。"
+  expanded_description: "草属性招式威力提升30%,当HP低于1/3时提升80%."
+}
+ability {
+  id: ABILITY_PRIMAL_MAW
+  name: "原始颚"
+  description: "啃咬类招式攻击两次.第二击造成0.4倍伤害."
+  expanded_description: "原始颚使所有啃咬类招式攻击两次.第一击造成100%伤害,第二击造成40%伤害.每次攻击独立判定追加效果（畏缩除外）."
+}
+ability {
+  id: ABILITY_SWEEPING_EDGE
+  name: "横扫利刃"
+  description: "切割类招式必定命中，并攻击对方两只宝可梦。"
+  expanded_description: "横扫利刃使所有锐利刀刃类招式必定命中,并在双打对战中同时攻击双方对手.连续攻击招式对每个目标只攻击一次."
+}
+ability {
+  id: ABILITY_GIFTED_MIND
+  name: "天赋异禀"
+  description: "消除超能力弱点,变化招式必定命中."
+  expanded_description: "天赋异禀使该宝可梦免疫恶、幽灵和虫属性招式,同时其使用的所有变化招式必定命中.此免疫效果无视奇妙空间."
+}
+ability {
+  id: ABILITY_HYDRO_CIRCUIT
+  name: "水力循环"
+  description: "电属性招式+50%威力,水属性招式吸取25%的伤害."
+  expanded_description: "水力循环使电属性招式威力提升50%,并使用水属性招式时,回复造成伤害25%的HP."
+}
+ability {
+  id: ABILITY_EQUINOX
+  name: "昼夜平分"
+  description: "每次攻击使用攻击或特攻中较高的能力值."
+  expanded_description: "昼夜平分为每次攻击选择较高的进攻能力值.如果攻击较高,物理和特殊招式都使用攻击能力值；如果特攻较高,则都使用特攻能力值."
+}
+ability {
+  id: ABILITY_ABSORBANT
+  name: "吸收"
+  description: "吸取类招式的回复量增加50%，并施加寄生种子。"
+  expanded_description: "吸收特性使吸取类招式的HP回复量提升50%,并在命中时对目标施加寄生种子,每回合结束时吸取目标1/8的最大HP."
+}
+ability {
+  id: ABILITY_CLUELESS
+  name: "无知的"
+  description: "在场时,无效化天气、房间和场地效果."
+  expanded_description: "无知的特性在该宝可梦在场时,无效化所有天气、场地和房间效果."
+}
+ability {
+  id: ABILITY_CHEATING_DEATH
+  name: "逃过一死"
+  description: "前两次受到的伤害无效."
+  expanded_description: "使前两次受到的伤害变为0.招式仍会连接且附加效果生效,但伤害变为0."
+}
+ability {
+  id: ABILITY_CHEAP_TACTICS
+  name: "廉价战术"
+  description: "出场时,使用抓进行攻击."
+  expanded_description: "廉价战术在替换上场时,使用抓（40威力,一般属性物理招式）攻击随机一名对手."
+}
+ability {
+  id: ABILITY_COWARD
+  name: "懦夫"
+  description: "出场时设置保护.仅生效一次."
+  expanded_description: "懦夫特性在出场时自动激活保护每场战斗仅生效一次."
+}
+ability {
+  id: ABILITY_VOLT_RUSH
+  name: "伏特冲击"
+  description: "HP全满时，电属性招式优先度+1。"
+  expanded_description: "伏特冲击在该宝可梦HP全满时,赋予所有电属性招式+1优先度."
+}
+ability {
+  id: ABILITY_DUNE_TERROR
+  name: "沙丘恐惧"
+  description: "在沙暴中,受到的伤害降低35%,地面属性招式威力提升20%."
+  expanded_description: "沙丘恐惧在沙暴中使受到的伤害降低35%,并使地面属性招式威力提升20%.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_INFERNAL_RAGE
+  name: "地狱之怒"
+  description: "火属性招式伤害×1.35，但有5%的反作用力伤害。"
+  expanded_description: "地狱之怒使火属性招式威力提升35%,但使用后会造成5%的反伤.反伤基于造成的伤害量计算,最少损失1HP.此反伤不会导致使用者濒死."
+}
+ability {
+  id: ABILITY_DUAL_WIELD
+  name: "双持"
+  description: "超级发射器或锋锐增幅的招式攻击两次，每次造成70%伤害。"
+  expanded_description: "通常只命中一次的超级发射器和锐利刀刃类招式现在会攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+}
+ability {
+  id: ABILITY_ELEMENTAL_CHARGE
+  name: "元素充能"
+  description: "根据招式属性,有20%几率造成灼伤/冻伤/麻痹."
+  expanded_description: "元素充能使攻击招式有20%的几率根据招式属性施加异常状态：电属性招式造成麻痹,火属性招式造成灼伤,冰属性招式造成冻伤."
+}
+ability {
+  id: ABILITY_AMBUSH
+  name: "埋伏"
+  description: "上场的第一回合必定会心一击."
+  expanded_description: "埋伏特性在使用者替换上场后或战斗开始的第一回合,必定造成击中要害."
+}
+ability {
+  id: ABILITY_ATLAS
+  name: "阿特拉斯"
+  description: "出场时设置重力,持续8回合."
+  expanded_description: "阿特拉斯在进入战斗时设置重力,持续8回合.重力防止飞翔等飘浮招式,使所有宝可梦接地从而易受地面属性招式、沙穴和场地状态影响使重力苹果的伤害提升50%,并使招式命中率提升66%."
+}
+ability {
+  id: ABILITY_RADIANCE
+  name: "光辉"
+  description: "命中率×1.2；在场时，恶属性招式使用失败。"
+  expanded_description: "光辉使使用者的所有招式命中率提升20%,并使恶属性招式失效."
+}
+ability {
+  id: ABILITY_JAWS_OF_CARNAGE
+  name: "杀戮之颚"
+  description: "击倒目标后回复最大HP的1/4；使用咬类招式击倒时改为1/2。"
+  expanded_description: "使用啃咬类招式击败对手时,回复50%最大HP；使用其他招式击败时,回复25%.仅当通过直接攻击击倒目标时触发."
+}
+ability {
+  id: ABILITY_ANGELS_WRATH
+  name: "天使之怒"
+  description: "大幅改变使用者的所有招式."
+  expanded_description: "撞击进行再来一次+封印,吐丝设置所有场地状态,变硬全能力提升1级,铁壁变为王者盾牌并降低所有能力,电网束缚目标,虫咬回复造成的伤害,毒针造成剧毒且对钢属性效果绝佳.所有强化后的攻击获得大幅伤害加成."
+}
+ability {
+  id: ABILITY_PRISMATIC_FUR
+  name: "棱彩毛发"
+  description: "变色 + 变幻自如 + 毛皮大衣 + 冰鳞粉."
+  expanded_description: "受到攻击前变为抵抗的属性,攻击前变为与招式匹配的属性,物理伤害减半,特殊伤害减半.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_SHOCKING_JAWS
+  name: "电击之颚"
+  description: "咬类招式有50%概率使目标麻痹。"
+  expanded_description: "电击之颚使所有啃咬类招式在命中时有50%的几率使目标陷入麻痹状态.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_FAE_HUNTER
+  name: "妖精猎人"
+  description: "对妖精造成1.5倍伤害。\n受妖精伤害减半。"
+  expanded_description: "对妖精属性宝可梦造成1.5倍伤害,并且受到妖精属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_GRAVITY_WELL
+  name: "引力井"
+  description: "出场时设置重力,持续5回合."
+  expanded_description: "在进入战斗时设置重力,持续5回合.重力防止飞翔等飘浮招式,使所有宝可梦接地从而易受地面属性招式、沙穴和场地状态影响,使重力苹果的伤害提升50%,并使招式命中率提升66%."
+}
+ability {
+  id: ABILITY_EVAPORATE
+  name: "蒸发"
+  description: "受到水属性攻击时不受伤害并设置白雾."
+  expanded_description: "蒸发特性使受到的水属性招式伤害无效,并在受到水属性招式攻击时,为己方场上设置持续5回合的白雾.白雾保护全队免受能力降低,包括自身引起的降低."
+}
+ability {
+  id: ABILITY_LUMBERJACK
+  name: "伐木工"
+  description: "对草属性造成1.5倍伤害。\n受草属性伤害减半。"
+  expanded_description: "对草属性宝可梦造成1.5倍伤害,并且受到草属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_WELL_BAKED_BODY
+  name: "好烤的身体"
+  description: "受到火属性招式攻击时,大幅提升防御而非受到伤害."
+  expanded_description: "好烤的身体使该宝可梦免疫火属性招式,并在受到火属性攻击时,防御能力值提升2级."
+}
+ability {
+  id: ABILITY_FURNACE
+  name: "熔炉"
+  description: "受到岩石属性招式或出场有隐形岩时速度提升2级."
+  expanded_description: "熔炉特性在受到岩石属性招式攻击时,或在存在隐形岩的情况下替换上场时,速度能力值提升2级."
+}
+ability {
+  id: ABILITY_ELECTROMORPHOSIS
+  name: "电力转换"
+  description: "受到攻击时进入充电状态."
+  expanded_description: "受到任何招式攻击时,使用者会进入充电状态,使下一次电属性招式威力加倍.充电状态在使用一次电属性招式后消耗."
+}
+ability {
+  id: ABILITY_ROCKY_PAYLOAD
+  name: "岩石载荷"
+  description: "岩石属性和投掷类招式威力提升至1.5倍."
+  expanded_description: "岩石载荷使岩石属性和投掷类招式威力提升50%.投掷类招式包括投球、投蛋、岩崩、击落、投掷、岩石炮、重力苹果和星碎."
+}
+ability {
+  id: ABILITY_EARTH_EATER
+  name: "食土"
+  description: "受到地面属性招式攻击时，回复最大HP的25%。"
+  expanded_description: "食土特性在受到地面属性招式攻击时,为该宝可梦回复其最大HP的25%."
+}
+ability {
+  id: ABILITY_LINGERING_AROMA
+  name: "余香"
+  description: "受到接触攻击时,使攻击者的特性变为余香."
+  expanded_description: "余香特性在受到接触招式攻击时,将攻击者的特性（非先天特性）改变为余香."
+}
+ability {
+  id: ABILITY_FAIRY_TALE
+  name: "童话"
+  description: "出场时添加妖精属性."
+  expanded_description: "进入战斗时,为使用者的当前属性添加妖精属性.即使失去此特性,添加的妖精属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_RAGING_MOTH
+  name: "暴怒飞蛾"
+  description: "火属性招式攻击两次,每次造成70%伤害."
+  expanded_description: "火属性招式攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+}
+ability {
+  id: ABILITY_ADRENALINE_RUSH
+  name: "肾上腺素冲击"
+  description: "击倒对手时,速度提升1级."
+  expanded_description: "每当使用者通过直接攻击击倒对手时,其速度能力值提升1级."
+}
+ability {
+  id: ABILITY_ARCHMAGE
+  name: "大法师"
+  description: "30%几率给每个招式添加一个与属性相关的效果."
+  expanded_description: "30%几率添加基于属性的效果：毒系：剧毒,冰：冻伤,水：混乱,火：灼伤,电/超能力/妖精/草:设置对应场地,一般:再来一次,岩石:隐形岩,幽灵:封印,恶:流血,格斗:+特攻,飞行:+速度,龙:-攻击,地面:束缚,钢:+防御."
+}
+ability {
+  id: ABILITY_CRYOMANCY
+  name: "冰霜占卜"
+  description: "招式的冻伤几率变为5倍."
+  expanded_description: "冰霜占卜将所有招式的冻伤几率乘以5倍.与冻结点特性不叠加."
+}
+ability {
+  id: ABILITY_PHANTOM_PAIN
+  name: "幻痛"
+  description: "幽灵属性招式对一般属性造成正常伤害."
+  expanded_description: "幻痛特性移除一般属性对幽灵属性招式的免疫,允许幽灵属性攻击以1倍效果命中一般属性宝可梦."
+}
+ability {
+  id: ABILITY_PURGATORY
+  name: "炼狱"
+  description: "幽灵属性招式威力×1.3；HP低于1/3时改为×1.8。"
+  expanded_description: "幽灵属性招式威力提升30%,当HP低于1/3时提升80%."
+}
+ability {
+  id: ABILITY_EMANATE
+  name: "散发"
+  description: "一般属性招式变为超能力属性.超能力属性招式得到强化."
+  expanded_description: "将使用者的一般属性招式变为超能力属性.如果使用者是超能力属性,其超能力属性招式有10%的几率造成混乱；否则,它获得超能力属性的本系加成."
+}
+ability {
+  id: ABILITY_KUNOICHI_BLADE
+  name: "忍者之刃"
+  description: "技术高手 + 连续攻击."
+  expanded_description: "使威力小于等于60的招式威力提升1.5倍.对于基础威力可能超过60的招式（如复仇或毒击）,即使当前威力小于等于60,也不会获得提升.使连续攻击招式必定打出5次.对于仅能攻击3次或使用大扫荡时,所有攻击进行一次命中判定."
+}
+ability {
+  id: ABILITY_MONKEY_BUSINESS
+  name: "猴子把戏"
+  description: "出场时使用挠痒."
+  expanded_description: "猴子把戏在替换上场时自动使用挠痒,降低对手宝可梦的攻击和防御各1级."
+}
+ability {
+  id: ABILITY_COMBAT_SPECIALIST
+  name: "格斗专家"
+  description: "拳类和踢腿类招式威力提升至1.3倍."
+  expanded_description: "格斗专家使拳类和踢腿类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_JUNGLES_GUARD
+  name: "丛林守卫"
+  description: "保护草属性的同伴免受异常状态和能力降低."
+  expanded_description: "丛林守卫保护使用者和草属性同伴免受异常状态和能力降低影响,并在大晴天时每回合结束时治愈使用者的异常状态."
+}
+ability {
+  id: ABILITY_HUNTERS_HORN
+  name: "猎人之角"
+  description: "增强角类招式,击败敌人时回复1/4的HP."
+  expanded_description: "使角和钻类攻击的威力提升30%.当使用者通过直接攻击击倒对手时,立即回复其最大HP的25%."
+}
+ability {
+  id: ABILITY_PIXIE_POWER
+  name: "小精灵之力"
+  description: "1.2倍命中率.所有宝可梦的妖精属性招式威力提升至1.33倍."
+  expanded_description: "使用者、其同伴以及对手的所有妖精属性招式获得1.33倍的威力提升.此加成会被气场破坏反转.所有招式获得1.2倍命中率提升."
+}
+ability {
+  id: ABILITY_PLASMA_LAMP
+  name: "等离子灯"
+  description: "火属性和电属性招式的命中率和威力提升1.2倍."
+  expanded_description: "等离子灯使火属性和电属性招式的威力和命中率各提升20%."
+}
+ability {
+  id: ABILITY_MAGMA_EATER
+  name: "岩浆食者"
+  description: "掠食者 + 熔解."
+  expanded_description: "当使用者通过直接攻击击倒对手时,立即回复其最大HP的25%.火属性招式对岩石属性宝可梦变得效果绝佳,而非被抵抗."
+}
+ability {
+  id: ABILITY_SUPER_HOT_GOO
+  name: "超热黏胶"
+  description: "火焰之躯与黏滑的效果。"
+  expanded_description: "接触类招式有30%几率造成灼伤,并且使用者在受到接触类招式攻击时,降低攻击者的速度1级."
+}
+ability {
+  id: ABILITY_NIKA
+  name: "尼卡"
+  description: "铁拳的效果；晴天下水属性招式也能正常发挥。"
+  expanded_description: "拳类招式威力提升30%.水属性招式在大晴天时不受威力降低的惩罚."
+}
+ability {
+  id: ABILITY_ARCHER
+  name: "弓箭手"
+  description: "箭矢类招式威力提升至1.3倍."
+  expanded_description: "弓箭手使箭矢类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_COLD_PLASMA
+  name: "冷等离子体"
+  description: "电属性招式现在造成灼伤而非麻痹."
+  expanded_description: "使电属性招式造成灼伤效果,而非麻痹."
+}
+ability {
+  id: ABILITY_SUPER_SLAMMER
+  name: "超级重击者"
+  description: "锤类和重击类招式威力提升至1.3倍."
+  expanded_description: "超级重击者使锤类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_INVERSE_ROOM
+  name: "反转"
+  description: "出场时设置奇妙空间,持续3回合."
+}
+ability {
+  id: ABILITY_ACCELERATE
+  name: "免蓄力"
+  description: "需要蓄力的招式现在可以立即使用."
+  expanded_description: "加速特性消除了两回合招式的蓄力回合要求,使其可以立即使用."
+}
+ability {
+  id: ABILITY_FROST_BURN
+  name: "霜焰"
+  description: "使用火属性招式后,触发威力40的冰冻光束."
+  expanded_description: "使用任何火属性招式后,立即触发一次威力40的冰冻光束."
+}
+ability {
+  id: ABILITY_ITCHY_DEFENSE
+  name: "发痒防御"
+  description: "受到接触招式攻击时,引起纠缠不休."
+  expanded_description: "发痒防御在使用者成功被接触招式命中时,以纠缠不休束缚攻击者.被束缚的对手每回合损失1/8的最大HP,持续4-5回合,且无法替换下场."
+}
+ability {
+  id: ABILITY_GENERATOR
+  name: "发电机"
+  description: "出场时或电气场地激活时进入充电状态."
+  expanded_description: "发电机在替换上场时使使用者进入充电状态,下一次电属性招式威力加倍.在战斗中电气场地激活时再次充电.充电状态在替换下场或使用一次电属性招式后消失."
+}
+ability {
+  id: ABILITY_MOON_SPIRIT
+  name: "月之魂"
+  description: "妖精和恶属性招式获得本系加成.月光回复75%的HP."
+  expanded_description: "月之魂使所有妖精和恶属性招式获得本系加成,无论使用者的属性如何.使用月光时,回复量提升至最大HP的75%,而非通常的50%或受天气影响的数值."
+}
+ability {
+  id: ABILITY_DUST_CLOUD
+  name: "尘云"
+  description: "出场时使用泼沙."
+  expanded_description: "替换上场时对对手使用泼沙,降低其命中率1级."
+}
+ability {
+  id: ABILITY_BERSERKER_RAGE
+  name: "狂战士之怒"
+  description: "临界点 + 暴走."
+  expanded_description: "受到攻击时,特攻提升1级；受到击中要害时,特攻提升至最大.击倒对手时,立即从休息状态中恢复,允许立即使用破坏光线等招式而无需等待."
+}
+ability {
+  id: ABILITY_TRICKSTER
+  name: "诡计师"
+  description: "出场时使用封印."
+  expanded_description: "出场时使用封印.封印阻止目标使用其最后使用的招式,持续4回合.如果目标尚未行动,则失败."
+}
+ability {
+  id: ABILITY_SAND_GUARD
+  name: "沙之守卫"
+  description: "在沙暴中,阻挡先制招式并使特殊伤害减半."
+  expanded_description: "沙之守卫在沙暴中阻挡先制招式,并使特殊攻击伤害降低50%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_NATURAL_RECOVERY
+  name: "自然恢复"
+  description: "自然回复 + 再生力."
+  expanded_description: "替换下场时,治愈所有异常状态,并回复33%的最大HP."
+}
+ability {
+  id: ABILITY_WIND_RIDER
+  name: "乘风"
+  description: "在顺风中出场或被风类招式命中时,提升攻击能力."
+  expanded_description: "在顺风状态下进入战斗时,提升使用者最高的攻击能力值.受到风类招式攻击时,吸收该攻击并使最高的攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_SOOTHING_AROMA
+  name: "舒缓香气"
+  description: "出场时治愈全队的异常状态."
+  expanded_description: "出场时,治愈使用者队伍中所有宝可梦（包括场上和后备）的异常状态."
+}
+ability {
+  id: ABILITY_PRIM_AND_PROPER
+  name: "一本正经"
+  description: "奇迹皮肤 + 迷人之躯."
+  expanded_description: "受到接触攻击时（无论攻防）,有50%几率使攻击者着迷（将其攻击和特攻减半）.仅对异性宝可梦生效.免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+}
+ability {
+  id: ABILITY_SUPER_STRAIN
+  name: "超负荷"
+  description: "击倒对手时攻击降低1级.承受25%的反伤."
+  expanded_description: "使用者的招式会造成伤害量25%的反伤.当使用者通过直接攻击击倒对手时,其攻击能力值降低1级."
+}
+ability {
+  id: ABILITY_TIPPING_POINT
+  name: "临界点"
+  description: "受到攻击时,特攻提升1级.受到击中要害时提升至最大."
+  expanded_description: "受到攻击时,该宝可梦的特攻提升1级；若受到击中要害的攻击,则特攻能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_ENLIGHTENED
+  name: "开悟"
+  description: "散发 + 精神力."
+  expanded_description: "将所有一般属性招式转变为超能力属性,并为超能力属性招式提供本系加成,无论使用者的属性如何.真气弹必定命中.不受畏缩、威吓或惊吓的影响."
+}
+ability {
+  id: ABILITY_PEACEFUL_SLUMBER
+  name: "安眠"
+  description: "美梦 + 自给自足."
+  expanded_description: "美梦特性在使用者处于睡眠状态或拥有绝对睡眠特性时,每回合结束时回复1/8的最大HP.此外,它免疫梦魇特性的伤害.每回合结束时回复1/16的最大HP."
+}
+ability {
+  id: ABILITY_AFTERSHOCK
+  name: "余震"
+  description: "使用造成伤害的招式后,触发震级4-7."
+  expanded_description: "在使用造成伤害的招式命中后,使用者紧接着使用震级,威力为10、30、50或70.攻击所有相邻的宝可梦."
+}
+ability {
+  id: ABILITY_FREEZING_POINT
+  name: "冻结点"
+  description: "接触时有20%概率使目标冻伤，非接触时为30%。"
+  expanded_description: "与该宝可梦发生接触有20%几率造成冻伤.非接触攻击有30%几率.无论攻击方还是被攻击方均会生效.冻伤的宝可梦每回合损失1/8的最大HP,且特攻减半."
+}
+ability {
+  id: ABILITY_CRYO_PROFICIENCY
+  name: "低温熟练"
+  description: "受到攻击时降下冰雹；同时具有冻结点的效果。"
+  expanded_description: "与该宝可梦发生接触有30%几率造成冻伤.非接触攻击有20%几率.无论攻击方还是被攻击方均会生效.冻伤的宝可梦每回合损失1/8的最大HP,且特攻减半.受到攻击后设置冰雹.免疫冰雹伤害."
+}
+ability {
+  id: ABILITY_ARCANE_FORCE
+  name: "奥术之力"
+  description: "所有招式获得本系加成.效果绝佳的招式威力提升10%."
+  expanded_description: "使所有招式获得1.5倍的本系加成,无论属性是否匹配.不会增强已经获得本系加成的招式.此外,效果绝佳的招式威力提升10%."
+}
+ability {
+  id: ABILITY_DOOMBRINGER
+  name: "末日使者"
+  description: "出场时使用破灭之愿."
+  expanded_description: "出场时使用破灭之愿.破灭之愿是钢属性招式,基础威力140,两回合后攻击目标,可穿透替身和其他保护效果.一旦施放必定命中,无视命中判定.无法对同一目标施放两次."
+}
+ability {
+  id: ABILITY_WISHMAKER
+  name: "许愿星"
+  description: "出场时使用祈愿.每场战斗可使用3次."
+  expanded_description: "出场时使用祈愿,设置延迟治疗,在下回合为当前同伴回复其最大HP的一半.每场战斗可激活3次."
+}
+ability {
+  id: ABILITY_YUKI_ONNA
+  name: "雪女"
+  description: "威吓与惊吓的效果；接触时有30%概率使目标着迷。"
+  expanded_description: "出场时降低所有对手宝可梦的攻击和特攻1级.此外,接触攻击时有30%几率使目标着迷（将其攻击和特攻减半）.无论攻击方还是被攻击方均会生效.仅对异性宝可梦生效."
+}
+ability {
+  id: ABILITY_SUPPRESS
+  name: "施压"
+  description: "出场时使用无理取闹."
+  expanded_description: "出场时使用无理取闹,阻止对手连续使用相同的招式."
+}
+ability {
+  id: ABILITY_REFRIGERATOR
+  name: "冷藏箱"
+  description: "过滤 + 发光."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤来源乘法叠加.使使用者的招式命中率提升1.2倍.攻击命中时,移除目标的幽灵属性."
+}
+ability {
+  id: ABILITY_HEAVEN_ASUNDER
+  name: "天崩地裂"
+  description: "亚空裂斩必定会心一击.其他招式击中要害率+1."
+  expanded_description: "确保亚空裂斩总是造成击中要害,并使所有其他招式的击中要害率提升1级."
+}
+ability {
+  id: ABILITY_PURIFYING_WATERS
+  name: "净化之水"
+  description: "湿润之躯 + 水幕."
+  expanded_description: "出场时制造水流环,每回合回复1/16的HP.免疫灼伤状态,并在替换上场时解除灼伤.下雨天气时,每回合结束时治愈所有异常状态."
+}
+ability {
+  id: ABILITY_SEABORNE
+  name: "海生"
+  description: "降雨 + 悠游自如."
+  expanded_description: "出场时降下雨水,持续8回合.下雨天气时,使用者的速度提升50%."
+}
+ability {
+  id: ABILITY_HIGH_TIDE
+  name: "涨潮"
+  description: "使用水属性招式后,触发威力50的冲浪."
+  expanded_description: "在使用水属性攻击（包括浸水等变化招式）命中后,触发一次威力50的冲浪.冲浪攻击所有相邻的宝可梦."
+}
+ability {
+  id: ABILITY_CHANGE_OF_HEART
+  name: "变心"
+  description: "出场时使用心灵互换."
+  expanded_description: "出场时使用心灵互换.与正对面的宝可梦交换能力等级无视命中判定."
+}
+ability {
+  id: ABILITY_MYSTIC_BLADES
+  name: "神秘刀锋"
+  description: "切割类招式变为特殊招式，并多造成30%伤害。"
+  expanded_description: "锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害."
+}
+ability {
+  id: ABILITY_DETERMINATION
+  name: "决心"
+  description: "处于异常状态时，特攻提升50%。"
+  expanded_description: "当该宝可梦处于任何异常状态时,其特攻能力值提升50%.同时防止冻伤状态降低特攻."
+}
+ability {
+  id: ABILITY_FERTILIZE
+  name: "施肥"
+  description: "一般属性招式变为草属性.草属性招式得到强化."
+  expanded_description: "将使用者的一般属性招式变为草属性.如果使用者是草属性,其草属性招式会回复造成伤害10%的HP；否则,它获得草属性的本系加成."
+}
+ability {
+  id: ABILITY_PURE_LOVE
+  name: "纯洁的爱"
+  description: "迷人之躯 + 攻击着迷目标时,回复25%伤害量."
+  expanded_description: "接触攻击时有50%几率使目标着迷（将其攻击和特攻减半）.攻击着迷的目标时,回复造成伤害25%的HP."
+}
+ability {
+  id: ABILITY_FIGHTER
+  name: "斗士"
+  description: "格斗属性招式威力×1.2；HP低于1/3时改为×1.5。"
+  expanded_description: "格斗属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_MYCELIUM_MIGHT
+  name: "菌丝之力"
+  description: "变化招式无视免疫,但必定后手."
+  expanded_description: "允许变化招式穿透所有免疫和属性抗性,但会强制其在当前优先度层级内最后行动."
+}
+ability {
+  id: ABILITY_TELEKINETIC
+  name: "念动力"
+  description: "出场时使用念动力."
+  expanded_description: "出场时使用念动力.所有针对目标的招式不会打空,但目标会免疫地面属性招式和其他需要接地的效果.对扎根或携带黑色铁球的宝可梦无效.在重力下或被击落命中后失效.持续3回合."
+}
+ability {
+  id: ABILITY_COMBUSTION
+  name: "燃烧"
+  description: "火属性招式威力提升至1.5倍."
+  expanded_description: "燃烧使所有火属性招式的威力提升50%."
+}
+ability {
+  id: ABILITY_PONY_POWER
+  name: "刀刃精华"
+  description: "锋锐与神秘刀锋的效果。"
+  expanded_description: "锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害.并且为锐利刀刃类招式再提供30%威力加成."
+}
+ability {
+  id: ABILITY_POWDER_BURST
+  name: "粉末爆炸"
+  description: "出场时使用粉尘."
+  expanded_description: "出场时使用粉尘,在本回合内覆盖目标.如果被覆盖的目标使用任何火属性招式,其损失25%的最大HP,且粉尘被消耗."
+}
+ability {
+  id: ABILITY_RETRIEVER
+  name: "寻回犬"
+  description: "替换下场时取回物品."
+  expanded_description: "替换下场时,如果未携带物品,则取回原本携带的物品.必须在未濒死时才能激活."
+}
+ability {
+  id: ABILITY_MONSTER_MASH
+  name: "怪物混音"
+  description: "出场时使用不给糖就捣蛋."
+  expanded_description: "出场时使用不给糖就捣蛋,为目标添加幽灵属性.目标不会从雾中受益.效果持续到目标替换下场."
+}
+ability {
+  id: ABILITY_TWO_STEP
+  name: "两步"
+  description: "使用舞蹈类招式后,触发威力50的启示之舞."
+  expanded_description: "在使用舞蹈类招式后,自动接续一次威力50的启示之舞.后续的启示之舞属性与使用者的首要属性一致."
+}
+ability {
+  id: ABILITY_SPITEFUL
+  name: "怨恨"
+  description: "受到接触攻击时,减少攻击者的PP."
+  expanded_description: "怨恨特性在受到接触招式攻击时,减少攻击者最后使用招式的PP4点.如果攻击者已无PP或尚未使用任何招式,则失败."
+}
+ability {
+  id: ABILITY_FORTITUDE
+  name: "刚毅"
+  description: "受到攻击时特防提升1级；受到击中要害时特防升至最高。"
+  expanded_description: "受到攻击时,该宝可梦的特防提升1级；若受到击中要害的攻击,则特防能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_DEVOURER
+  name: "吞噬者"
+  description: "强壮之颚 + 原始颚."
+  expanded_description: "使啃咬类招式威力提升30%.所有啃咬类招式攻击两次.第一击造成100%伤害,第二击造成40%伤害.每次攻击独立判定追加效果."
+}
+ability {
+  id: ABILITY_PHANTOM_THIEF
+  name: "幽灵窃贼"
+  description: "出场时,使用威力40的幽灵窃贼进行攻击."
+  expanded_description: "替换上场时,使用威力40的幽灵窃贼（幽灵属性招式）攻击正对面的对手.窃取目标所有的正向能力提升（在造成伤害前）,并将其赋予使用者.必定命中且无视替身."
+}
+ability {
+  id: ABILITY_EARLY_GRAVE
+  name: "早夭"
+  description: "HP全满时，幽灵属性招式优先度+1。"
+  expanded_description: "当HP全满时,幽灵属性招式获得+1优先度."
+}
+ability {
+  id: ABILITY_GRAPPLER
+  name: "擒拿手"
+  description: "束缚类招式持续6回合,每回合造成1/6的HP伤害."
+  expanded_description: "束缚类招式持续6回合而非4-5回合,并且每回合结束时的伤害提升至目标最大HP的1/6."
+}
+ability {
+  id: ABILITY_BASS_BOOSTED
+  name: "低音增强"
+  description: "扩音器 + 庞克摇滚."
+  expanded_description: "使声音类招式威力提升30%.单体目标的声音类招式变为范围攻击,同时攻击双方对手.连续攻击招式不会变为范围攻击同时使使用者的声音类招式再获得30%威力提升,并使受到的声音类招式伤害降低50%.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_FLAMING_JAWS
+  name: "烈焰之颚"
+  description: "咬类招式有50%概率使目标灼伤。"
+  expanded_description: "啃咬类招式在命中时有50%的几率使目标灼伤.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_MONSTER_HUNTER
+  name: "怪物猎人"
+  description: "对恶属性宝可梦造成1.5倍伤害.受到恶属性宝可梦攻击伤害减半."
+  expanded_description: "对恶属性宝可梦造成1.5倍伤害,并且受到恶属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_CROWNED_SWORD
+  name: "冠之剑"
+  description: "不挠之剑 + 愤怒穴位."
+  expanded_description: "替换上场时,攻击提升1级.受到攻击时,攻击提升1级；受到击中要害时,攻击提升至最大.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_CROWNED_SHIELD
+  name: "冠之盾"
+  description: "不屈之盾 + 持久力."
+  expanded_description: "替换上场时,防御提升1级.受到攻击时,防御提升1级；受到击中要害时,防御提升至最大.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_BERSERK_DNA
+  name: "狂暴DNA"
+  description: "上场时，攻击与特攻中较高的一项提升2级，但会陷入狂怒。"
+  expanded_description: "出场时,使用者最高的攻击能力值提升2级,但会陷入愤怒,所有攻击附加33%的反伤.即使无法陷入愤怒,能力提升依然生效."
+}
+ability {
+  id: ABILITY_CROWNED_KING
+  name: "冠之王"
+  description: "紧张感 + 漆黑嘶鸣 +苍白嘶鸣."
+  expanded_description: "阻止所有对手宝可梦消耗其携带的物品.当使用者通过直接攻击击倒对手时,其攻击和特攻能力值各提升1级."
+}
+ability {
+  id: ABILITY_SNAP_TRAP_WHEN_HIT
+  name: "夹子陷阱"
+  description: "受到接触类招式攻击时，使用威力50的捕兽夹。"
+  expanded_description: "当使用者受到接触招式攻击时,以威力50的夹住进行反击.这个钢属性招式会束缚对手4-5回合,每回合造成其1/8的最大HP伤害."
+}
+ability {
+  id: ABILITY_PERMANENCE
+  name: "恒久"
+  description: "对手无法以任何方式回复HP."
+  expanded_description: "阻止所有对手宝可梦通过任何方式回复HP.阻挡回复类招式如自我再生,吸取类招式如吸取拳,剩饭等被动回复和再生力等特性,并阻止树果和其他物品的HP回复."
+}
+ability {
+  id: ABILITY_HUBRIS
+  name: "傲慢"
+  description: "击倒对手时,特攻提升1级."
+  expanded_description: "每当使用者通过直接攻击击倒对手时,其特攻能力值提升1级."
+}
+ability {
+  id: ABILITY_COSMIC_DAZE
+  name: "宇宙迷乱"
+  description: "对混乱或愤怒的对手造成2倍伤害."
+  expanded_description: "对处于混乱或愤怒状态的目标,攻击造成双倍伤害.此外,混乱或愤怒的敌人因此状态伤害自身时,受到的伤害也加倍."
+}
+ability {
+  id: ABILITY_MINDS_EYE
+  name: "心眼"
+  description: "可以命中幽灵属性宝可梦.命中率不会被降低."
+  expanded_description: "心眼允许一般属性和格斗属性招式以普通效果命中幽灵属性宝可梦.此外,此特性防止使用者的命中率被对手的招式或特性降低."
+}
+ability {
+  id: ABILITY_BLOOD_PRICE
+  name: "血价"
+  description: "造成30%额外伤害,但攻击时损失10%的HP."
+  expanded_description: "血价使所有攻击招式威力提升30%,但使用者在攻击命中时损失其最大HP的10%."
+}
+ability {
+  id: ABILITY_SPIKE_ARMOR
+  name: "尖刺盔甲"
+  description: "接触时有30%概率使目标流血；主动攻击时也能触发。"
+  expanded_description: "尖刺盔甲无论攻击方还是被攻击方,在使用接触类招式时有30%的几率造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+}
+ability {
+  id: ABILITY_VOODOO_POWER
+  name: "巫毒之力"
+  description: "受到特殊攻击时,有30%几率造成流血."
+}
+ability {
+  id: ABILITY_CHROME_COAT
+  name: "铬涂层"
+  description: "受到的特殊伤害减少40%，速度×0.9，体重变为3倍。"
+  expanded_description: "铬涂层使受到的特殊伤害降低40%,但速度降低10%.同时使使用者的重量变为3倍.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_BANSHEE
+  name: "女妖"
+  description: "声音类招式获得1.2倍威力加成,若为一般属性则变为幽灵属性."
+  expanded_description: "使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为幽灵属性."
+}
+ability {
+  id: ABILITY_WEB_SPINNER
+  name: "吐丝者"
+  description: "出场时使用吐丝."
+  expanded_description: "替换上场时使用吐丝,大幅降低所有对手的速度2级."
+}
+ability {
+  id: ABILITY_SHOWDOWN_MODE
+  name: "决胜模式"
+  description: "埋伏 + 狂暴突袭."
+  expanded_description: "替换上场后的一回合内,必定造成击中要害,同时攻击提升20%,速度提升50%."
+}
+ability {
+  id: ABILITY_SEED_SOWER
+  name: "播种者"
+  description: "受到攻击时设置青草场地.同时治愈全队异常状态."
+  expanded_description: "当该宝可梦受到直接攻击伤害时,激活青草场地,持续5回合（携带场地制造机时为8回合）.同时治愈己方所有宝可梦的异常状态."
+}
+ability {
+  id: ABILITY_AIRBORNE
+  name: "空中"
+  description: "提升自身和同伴的飞行属性招式威力至1.3倍."
+  expanded_description: "在战斗中使使用者及其同伴的飞行属性招式威力提升30%."
+}
+ability {
+  id: ABILITY_PARROTING
+  name: "模仿"
+  description: "模仿其他宝可梦使用的声音类招式."
+  expanded_description: "当场上任何宝可梦使用声音类招式后,该宝可梦会立即使用相同的招式每回合对每个招式触发一次."
+}
+ability {
+  id: ABILITY_SALT_CIRCLE
+  name: "盐圈"
+  description: "出场时阻止对手宝可梦逃走."
+  expanded_description: "当使用者进入战斗时,阻止所有对手宝可梦逃跑或替换效果持续到使用者下场.强制替换和快速折返等替换招式仍然有效."
+}
+ability {
+  id: ABILITY_PURIFYING_SALT
+  name: "净化之盐"
+  description: "免疫异常状态；受到的幽灵属性招式伤害减半。"
+  expanded_description: "免疫所有异常状态.此外,受到的幽灵属性伤害降低50%.如果在获得此特性时已处于异常状态,则立即治愈."
+}
+ability {
+  id: ABILITY_PROTOSYNTHESIS
+  name: "古代活性"
+  description: "在大晴天或携带驱劲能量时,提升最高的能力."
+  expanded_description: "在大晴天下,使用者最高的能力值提升（速度提升50%,其他提升30%）.大晴天结束时,如果携带驱劲能量则激活.此效果视为原始能力提升而非能力等级变化.除非被单纯光束或烦恼种子影响,否则无法被复制、压制或替换."
+}
+ability {
+  id: ABILITY_QUARK_DRIVE
+  name: "夸克充能"
+  description: "在电气场地或携带驱劲能量时,提升最高的能力."
+  expanded_description: "在电气场地中,使用者最高的能力值提升（速度提升50%,其他提升30%）.场地结束时,如果携带驱劲能量则激活.此效果视为原始能力提升而非能力等级变化.除非被单纯光束或烦恼种子影响,否则无法被复制、压制或替换."
+}
+ability {
+  id: ABILITY_WIND_POWER
+  name: "风力发电"
+  description: "受到风类招式或在顺风中出场时进入充电状态."
+  expanded_description: "受到基于风的招式攻击或在顺风中进入战斗时,获得充电状态.充电状态使下一次电属性招式威力加倍,直到使用为止."
+}
+ability {
+  id: ABILITY_IMPULSE
+  name: "脉冲"
+  description: "特殊招式用速度计算伤害。"
+  expanded_description: "非接触类招式使用速度能力值而非攻击/特攻进行伤害计算.讲究围巾的效果不影响此特性."
+}
+ability {
+  id: ABILITY_TERMINAL_VELOCITY
+  name: "终端速度"
+  description: "特殊招式额外使用20%的速度能力值."
+  expanded_description: "使用非接触类招式时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+}
+ability {
+  id: ABILITY_GUARD_DOG
+  name: "看门狗"
+  description: "不会被强制换下；威吓的效果反转。"
+  expanded_description: "看门狗防止因招式或红牌被强制替换.受到威吓或惊吓影响时,改为提升相应能力1级而非降低."
+}
+ability {
+  id: ABILITY_ANGER_SHELL
+  name: "愤怒甲壳"
+  description: "当HP降至1/2以下时,触发破壳."
+  expanded_description: "当HP降至50%以下时,使用者触发破壳效果：攻击、特攻和速度各提升2级,同时防御和特防各降低1级.每场战斗仅触发一次.在连续攻击的最后一击后触发."
+}
+ability {
+  id: ABILITY_EGOIST
+  name: "利己主义者"
+  description: "当对手提升能力时,自身也提升相同的能力."
+  expanded_description: "利己主义者复制敌人宝可梦获得的能力提升,并应用于自身.不会复制其他利己主义者的增益."
+}
+ability {
+  id: ABILITY_SUBDUE
+  name: "制服"
+  description: "该宝可梦造成的能力降低效果加倍."
+  expanded_description: "使招式造成的能力降低效果加倍不影响自身引起的能力降低或敌人的特性."
+}
+ability {
+  id: ABILITY_READIED_ACTION
+  name: "准备就绪"
+  description: "上场的第一回合攻击加倍."
+  expanded_description: "使用者的攻击能力值在上场的第一回合变为2倍.与其他伤害加成效果乘法叠加.替换下场后再次上场可重新触发."
+}
+ability {
+  id: ABILITY_DARK_GALE_WINGS
+  name: "冥河冲刺"
+  description: "HP全满时，恶属性招式优先度+1。"
+  expanded_description: "当HP全满时,赋予恶属性招式+1优先度."
+}
+ability {
+  id: ABILITY_GUILT_TRIP
+  name: "愧疚"
+  description: "濒死时,大幅降低攻击者的攻击和特攻."
+  expanded_description: "给予使用者最后一击的攻击者,其攻击和特攻降低2级.仅当因直接伤害而濒死时生效."
+}
+ability {
+  id: ABILITY_WATER_GALE_WINGS
+  name: "潮汐冲击"
+  description: "HP全满时，水属性招式优先度+1。"
+  expanded_description: "当HP全满时,赋予水属性招式+1优先度."
+}
+ability {
+  id: ABILITY_ZERO_TO_HERO
+  name: "从零到英雄"
+  description: "替换下场后改变形态."
+  expanded_description: "替换下场后,再次上场时变身为英雄形态,持续到战斗结束.无法被压制、交换、复制或覆盖."
+}
+ability {
+  id: ABILITY_COSTAR
+  name: "同台共演"
+  description: "出场时复制同伴的能力变化."
+  expanded_description: "在双打对战中替换上场时,同台共演复制同伴的所有能力等级变化（包括正向和负向）."
+}
+ability {
+  id: ABILITY_COMMANDER
+  name: "指挥官"
+  description: "进入同伴吃吼霸体内,强化同伴但自身无法行动."
+  expanded_description: "允许米立龙进入同伴吃吼霸体内并变得无法被选中.吃吼霸获得全能力+2,无法替换或被强制替换,同时米立龙变得无法使用.如果吃吼霸濒死,米立龙重新出现并可正常行动.无法被交换、复制或压制."
+}
+ability {
+  id: ABILITY_EJECT_PACK_ABILITY
+  name: "战术撤退"
+  description: "能力被降低时逃走."
+  expanded_description: "当使用者的任何能力被降低时（包括自身引起的能力降低）,自动替换下场.每场战斗触发一次."
+}
+ability {
+  id: ABILITY_VENGEFUL_SPIRIT
+  name: "复仇之魂"
+  description: "作祟的魂魄 + 复仇."
+  expanded_description: "当被直接攻击击倒时,对攻击者施加诅咒.诅咒每回合造成其最大HP25%的伤害,直到被诅咒的宝可梦替换下场或濒死.幽灵属性的攻击者免疫此诅咒.幽灵属性招式威力提升30%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_CUD_CHEW
+  name: "反刍"
+  description: "消耗树果后,在下一回合结束时再次食用."
+  expanded_description: "消耗树果时,使用者在下一回合结束时再次食用该树果."
+}
+ability {
+  id: ABILITY_ARMOR_TAIL
+  name: "尾甲"
+  description: "保护自身及同伴免受先制招式影响."
+  expanded_description: "防止使用者和它的同伴成为优先度大于0的先制招式的目标."
+}
+ability {
+  id: ABILITY_MIND_CRUSH
+  name: "精神咬碎"
+  description: "咬类招式使用特攻计算伤害，并多造成30%伤害。"
+  expanded_description: "啃咬类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+}
+ability {
+  id: ABILITY_SUPREME_OVERLORD
+  name: "至高之主"
+  description: "每只濒死的同伴使攻击和特攻提升10%."
+  expanded_description: "己方每有一只濒死的同伴,攻击和特攻提升10%,最多5只同伴可使两项能力各提升50%.与其他伤害加成效果加法叠加."
+}
+ability {
+  id: ABILITY_ILL_WILL
+  name: "恶意"
+  description: "删除导致该宝可梦濒死的招式的PP."
+  expanded_description: "恶意特性会消耗击败使用者的招式的PP.必须是直接攻击."
+}
+ability {
+  id: ABILITY_FIRE_SCALES
+  name: "火鳞"
+  description: "受到的特殊招式伤害减半.不会加倍特防."
+  expanded_description: "所有受到的特殊攻击伤害减半.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_WATCH_YOUR_STEP
+  name: "注意脚下"
+  description: "出场时撒下两层撒菱."
+}
+ability {
+  id: ABILITY_RAPID_RESPONSE
+  name: "快速响应"
+  description: "上场的第一回合,速度提升50%,特攻提升20%."
+  expanded_description: "使用者替换上场后的第一回合,获得50%的速度加成和20%的特攻加成."
+}
+ability {
+  id: ABILITY_DOUBLE_IRON_BARBS
+  name: "锋利的边缘"
+  description: "受到接触类招式攻击时，攻击者损失最大HP的1/6。"
+  expanded_description: "对使用接触类招式的攻击者造成其最大HP1/6的伤害.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_THERMAL_EXCHANGE
+  name: "热交换"
+  description: "受到火属性攻击时,攻击提升.免疫灼伤."
+  expanded_description: "受到火属性招式攻击时,攻击提升1级,并且免疫灼伤状态.攻击提升在受到火属性攻击的伤害后立即生效.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_GOOD_AS_GOLD
+  name: "黄金之躯"
+  description: "免疫所有变化招式,除非影响全场."
+  expanded_description: "黄金之躯免疫所有直接以该宝可梦为目标的变化招式.但仍会受到影响全场的黑雾等变化招式影响."
+}
+ability {
+  id: ABILITY_SHARING_IS_CARING
+  name: "分享即是关爱"
+  description: "所有参战者的能力变化共享."
+  expanded_description: "场上所有宝可梦的能力变化（正向和负向）都会在彼此间共享."
+}
+ability {
+  id: ABILITY_TABLETS_OF_RUIN
+  name: "灾祸之简"
+  description: "降低其他宝可梦的攻击25%."
+  expanded_description: "在使用者在场时,降低所有其他宝可梦的攻击能力值25%.多个相同的灾祸特性效果不叠加与攻击降低效果乘法叠加."
+}
+ability {
+  id: ABILITY_SWORD_OF_RUIN
+  name: "灾祸之剑"
+  description: "降低其他宝可梦的防御25%."
+  expanded_description: "在使用者在场时,降低所有其他宝可梦的防御能力值25%.多个相同的灾祸特性效果不叠加与防御降低效果乘法叠加."
+}
+ability {
+  id: ABILITY_VESSEL_OF_RUIN
+  name: "灾祸之鼎"
+  description: "降低其他宝可梦的特攻25%."
+  expanded_description: "在使用者在场时,降低所有其他宝可梦的特攻能力值25%.多个相同的灾祸特性效果不叠加与特攻降低效果乘法叠加."
+}
+ability {
+  id: ABILITY_BEADS_OF_RUIN
+  name: "灾祸之珠"
+  description: "降低其他宝可梦的特防25%."
+  expanded_description: "在使用者在场时,降低所有其他宝可梦的特防能力值25%.多个相同的灾祸特性效果不叠加与特防降低效果乘法叠加."
+}
+ability {
+  id: ABILITY_PERMAFROST_CLONE
+  name: "厚皮"
+  description: "受到效果绝佳的招式攻击时,伤害降低35%."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_GALLANTRY
+  name: "英勇"
+  description: "第一次受到的伤害无效."
+  expanded_description: "使第一次受到的伤害变为0.招式仍会连接且附加效果生效,但伤害变为0."
+}
+ability {
+  id: ABILITY_ORICHALCUM_PULSE
+  name: "绯红脉动"
+  description: "出场时降下大晴天.在大晴天下,攻击提升至1.33倍."
+  expanded_description: "出场时降下大晴天,持续8回合（携带炎热岩石时为12回合）.在大晴天下,使用者的攻击能力值提升33%."
+}
+ability {
+  id: ABILITY_SUN_BASKING
+  name: "日光浴"
+  description: "在大晴天下,阻挡先制招式并使物理伤害减半."
+  expanded_description: "在晴天时，阻挡先制招式，\n且受到的物理攻击伤害减半。\n与其他伤害减免相乘。"
+}
+ability {
+  id: ABILITY_WINGED_KING
+  name: "羽之王"
+  description: "效果绝佳的招式威力提升33%."
+  expanded_description: "效果绝佳的攻击威力提升33%."
+}
+ability {
+  id: ABILITY_HADRON_ENGINE
+  name: "强子引擎"
+  description: "出场时制造电气场地.在电气场地上,特攻提升33%."
+  expanded_description: "出场时制造电气场地,持续8回合（携带场地制造机时为12回合）.在电气场地上,使用者的特攻能力值提升33%."
+}
+ability {
+  id: ABILITY_IRON_SERPENT
+  name: "钢之蛇"
+  description: "效果绝佳的招式威力提升33%."
+  expanded_description: "效果绝佳的攻击威力提升33%."
+}
+ability {
+  id: ABILITY_WEATHER_DOUBLE_BOOST
+  name: "大灾变"
+  description: "晴天时水属性招式增强。\n雨天时火属性招式增强。"
+  expanded_description: "在大晴天下,水属性招式获得通常只在雨天才有的威力提升.在雨天下,火属性招式获得通常只在晴天才有的威力提升."
+}
+ability {
+  id: ABILITY_SWEEPING_EDGE_PLUS
+  name: "剑术大师"
+  description: "横扫利刃与锋锐的效果。"
+  expanded_description: "使所有锐利刀刃类招式必定命中,并在双打对战中同时攻击双方对手.连续攻击招式对每个目标只攻击一次.同时使锐利刀刃类招式威力提升30%."
+}
+ability {
+  id: ABILITY_CELESTIAL_BLESSING
+  name: "天之恩泽"
+  description: "在薄雾场地中,每回合回复1/12的HP."
+  expanded_description: "在薄雾场地中,每回合结束时回复使用者最大HP的1/12."
+}
+ability {
+  id: ABILITY_MINION_CONTROL
+  name: "仆从控制"
+  description: "根据队伍中健康的成员数量,招式额外攻击数次."
+  expanded_description: "招式每有一个健康的队伍成员（最多6次）,就额外攻击一次.处于濒死或异常状态的成员不计数.第一击造成全额伤害,每次额外攻击造成10%伤害.每次攻击独立判定追加效果."
+}
+ability {
+  id: ABILITY_MOLTEN_BLADES
+  name: "熔岩之刃"
+  description: "锋锐的效果；切割类招式有20%概率使目标灼伤。"
+  expanded_description: "锐利刀刃类招式威力提升30%,并有20%的几率在命中时造成灼伤."
+}
+ability {
+  id: ABILITY_HAUNTING_FRENZY
+  name: "萦绕狂暴"
+  description: "20%几率使对手畏缩.击倒对手时,速度+1."
+  expanded_description: "攻击有20%的几率造成畏缩.通过直接攻击击败敌人时,使用者获得+1速度."
+}
+ability {
+  id: ABILITY_NOISE_CANCEL
+  name: "噪音消除"
+  description: "保护己方队伍免受声音类招式影响."
+  expanded_description: "防止使用者和它的同伴成为声音类招式的目标."
+}
+ability {
+  id: ABILITY_RADIO_JAM
+  name: "无线电干扰"
+  description: "声音类招式有20%几率造成封印效果."
+  expanded_description: "使用声音类招式命中后,有20%几率封印目标最后使用的招式,持续4回合."
+}
+ability {
+  id: ABILITY_OLE
+  name: "¡Olé!"
+  description: "20%几率闪避单体招式."
+  expanded_description: "使所有以使用者为目标的单体招式的命中率降低20%.热风等范围招式保持正常命中率."
+}
+ability {
+  id: ABILITY_MALICIOUS
+  name: "恶毒"
+  description: "出场时,降低对手最高的攻击和防御能力."
+  expanded_description: "替换上场时,降低所有对手宝可梦最高的进攻能力（攻击或特攻）和最高的防御能力（防御或特防）各1级."
+}
+ability {
+  id: ABILITY_DEAD_POWER
+  name: "死亡之力"
+  description: "攻击提升1.5倍.接触类招式有20%几率施加诅咒."
+  expanded_description: "使用者的攻击能力值提升50%,并且接触类招式有20%的几率施加诅咒.诅咒每回合造成目标最大HP25%的伤害,直到被诅咒的宝可梦替换下场或濒死.攻击提升与其他伤害加成效果乘法叠加."
+}
+ability {
+  id: ABILITY_BRAWLING_WYVERN
+  name: "搏斗飞龙"
+  description: "无防守 + 龙属性招式变为拳类招式."
+  expanded_description: "确保该宝可梦使用的所有招式以及所有对该宝可梦使用的招式必定命中.龙属性招式被视为拳类招式."
+}
+ability {
+  id: ABILITY_MYTHICAL_ARROWS
+  name: "神话之箭"
+  description: "箭矢类招式变为特殊,且造成30%额外伤害."
+  expanded_description: "箭矢类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害."
+}
+ability {
+  id: ABILITY_LAWNMOWER
+  name: "割草机"
+  description: "上场时移除场地，然后提升防御或特防。"
+  expanded_description: "替换上场时,移除任何激活的场地,并获得能力提升：移除青草或电气场地时,防御+1；移除薄雾、精神或剧毒场地时,特防+1."
+}
+ability {
+  id: ABILITY_FLOURISH
+  name: "茂密丛林"
+  description: "在青草场地中,草属性招式威力提升50%."
+  expanded_description: "当青草场地激活时,草属性招式威力提升50%."
+}
+ability {
+  id: ABILITY_DESERT_SPIRIT
+  name: "沙漠之魂"
+  description: "出场时引发沙暴.在沙暴中,地面属性招式可以命中飘浮的宝可梦."
+  expanded_description: "出场时引发沙暴,持续8回合（携带光滑岩石时为12回合）.在沙暴中,使用者的地面属性招式可以穿透免疫,以普通效果命中飘浮的宝可梦.使用者免疫沙暴伤害."
+}
+ability {
+  id: ABILITY_CONTEMPT
+  name: "蔑视"
+  description: "纯朴 + 不服输."
+  expanded_description: "进行伤害计算时,完全无视对手的所有能力等级变化.当该宝可梦的能力被其他宝可梦降低时,其攻击能力提升2级."
+}
+ability {
+  id: ABILITY_AERIALIST
+  name: "空中飞人"
+  description: "飘浮 + 鸟群."
+  expanded_description: "该宝可梦免疫地面属性招式以及其他地面效果,如撒菱和场地状态.飞行属性招式伤害提升25%.此外,飞行属性招式威力再提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_TERA_SHELL
+  name: "太晶甲壳"
+  description: "HP全满时,所有攻击都将变得效果不好."
+  expanded_description: "当HP全满时,所有对该宝可梦的攻击都将造成效果不好的伤害,无论属性相性如何.与其他类似特性不同,此效果在连续攻击的每次命中都会激活."
+}
+ability {
+  id: ABILITY_TOXIC_CHAIN
+  name: "毒锁链"
+  description: "攻击有30%概率使目标陷入剧毒。"
+  expanded_description: "使用者在使用任何招式命中后,有30%的几率使目标陷入剧毒连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_PARASITIC_SPORES
+  name: "寄生孢子"
+  description: "每回合对非幽灵属性造成1/8HP伤害.接触时传播."
+  expanded_description: "出场时获得寄生孢子.每回合,受影响的宝可梦损失1/8最大HP（幽灵属性免疫）.使用接触招式时,将孢子传播给目标.孢子持续到替换下场."
+}
+ability {
+  id: ABILITY_POISON_PUPPETEER
+  name: "毒操偶师"
+  description: "使目标中毒时，也会使其混乱。"
+  expanded_description: "当使用者施加中毒时,也同时施加混乱.不会因毒菱而触发."
+}
+ability {
+  id: ABILITY_ENTRANCE
+  name: "着迷"
+  description: "施加混乱时也施加着迷."
+  expanded_description: "当使用者使对手混乱时,如果对手是异性,则也使其着迷（将其攻击和特攻减半）."
+}
+ability {
+  id: ABILITY_REJECTION
+  name: "拒绝"
+  description: "出场时使用延后."
+  expanded_description: "出场时使用延后.延后使大多数改变速度的效果无效,包括顺风、戏法空间、正向优先度、速度能力提升等.负向优先度正常工作.持续5回合."
+}
+ability {
+  id: ABILITY_APPLE_ENLIGHTENMENT
+  name: "苹果启示"
+  description: "毛皮大衣 + 魔法防守."
+  expanded_description: "所有受到的物理攻击伤害减半.与其他减伤来源乘法叠加.同时免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害."
+}
+ability {
+  id: ABILITY_BALLOON_BOMBER
+  name: "气球炸弹"
+  description: "引爆 + 充气."
+  expanded_description: "当该宝可梦被击倒时,使用威力100的大爆炸或迸裂拳（取两者中威力更高者）.使用爆炸类招式时,必定使目标畏缩.受到任何火属性或飞行属性招式攻击时,防御和特防能力值各提升1级.对于连续攻击招式,每次命中都会触发.能力提升效果在攻击命中后生效."
+}
+ability {
+  id: ABILITY_FLAMING_MAW
+  name: "烈焰巨颚"
+  description: "强壮之颚 + 烈焰之颚."
+  expanded_description: "啃咬类招式威力提升30%,并在命中时有50%的几率使目标灼伤.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_DEMOLITIONIST
+  name: "爆破专家"
+  description: "准备就绪 + 无视保护 + 在准备回合击破屏障."
+  expanded_description: "使用者的攻击能力值在一回合内变为2倍,击破屏障,并无视保护效果.与其他伤害加成效果乘法叠加.替换下场后再次上场可重新触发."
+}
+ability {
+  id: ABILITY_ROCKHARD_WILL
+  name: "磐石意志"
+  description: "岩石属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+  expanded_description: "岩石属性招式威力提升20%,当HP低于1/3时提升50%."
+}
+ability {
+  id: ABILITY_FRAGRANT_DAZE
+  name: "芳香迷乱"
+  description: "接触攻击有30%几率造成混乱."
+  expanded_description: "无论攻击方还是被攻击方,使用接触类招式时有30%的几率造成混乱."
+}
+ability {
+  id: ABILITY_LOW_VISIBILITY
+  name: "低能见度"
+  description: "上场时召唤持续8回合的雾。"
+  expanded_description: "出场时召唤诡异迷雾,持续8回合（携带烟雾球时为12回合）.迷雾每回合减少非幽灵/超能力属性宝可梦的1级能力提升,使基于天气的回复效果减半,给予幽灵/超能力属性宝可梦20%的伤害减免,并将所有诅咒转变为幽灵属性的诅咒."
+}
+ability {
+  id: ABILITY_OLD_MARINER
+  name: "老水手"
+  description: "海草 + 水系本系."
+  expanded_description: "如果使用者是草属性,其受到的火属性攻击伤害减半,并且使用草属性招式对火属性宝可梦造成2倍伤害.伤害减免与其他来源乘法叠加.使水属性招式获得本系加成,无论使用者的属性如何.同时免疫浸水状态."
+}
+ability {
+  id: ABILITY_ECTOPLASM
+  name: "灵质"
+  description: "在雾中,自身最高的攻击能力提升至1.5倍."
+  expanded_description: "在迷雾中时,该宝可梦最高的攻击能力值提升50%."
+}
+ability {
+  id: ABILITY_BEAUTIFUL_MUSIC
+  name: "美妙音乐"
+  description: "声音类招式有50%几率造成着迷,无视性别."
+  expanded_description: "声音类招式在命中时有50%的几率使目标着迷（将其攻击和特攻减半）."
+}
+ability {
+  id: ABILITY_SURPRISE
+  name: "惊喜！"
+  description: "在雾中,惊吓使用高优先度招式的使用者."
+  expanded_description: "在迷雾中,以惊吓反击优先度招式.惊吓是威力40的幽灵属性攻击,拥有+3优先度且必定造成畏缩此能力会在对手的优先度招式使出前激活."
+}
+ability {
+  id: ABILITY_SNOW_SONG
+  name: "雪之歌"
+  description: "声音类招式获得1.2倍威力加成,若为一般属性则变为冰属性."
+  expanded_description: "使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为冰属性."
+}
+ability {
+  id: ABILITY_GREATER_SPIRIT
+  name: "崇高精神"
+  description: "在雾中出场时,自身最高的能力值提升1级."
+  expanded_description: "在迷雾中进入战斗时,使使用者最高的能力值提升1级."
+}
+ability {
+  id: ABILITY_RESONANCE
+  name: "共鸣"
+  description: "声音类招式有50%几率造成流血."
+  expanded_description: "声音类招式在命中时有50%的几率造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+}
+ability {
+  id: ABILITY_ETHEREAL_RUSH
+  name: "飘渺冲刺"
+  description: "在雾中,速度提升至1.5倍."
+  expanded_description: "在迷雾中,该宝可梦的速度能力值提升50%."
+}
+ability {
+  id: ABILITY_CUTE_ANTECEDENCE
+  name: "漂亮特权"
+  description: "HP全满时，妖精属性招式优先度+1。"
+  expanded_description: "当HP全满时,赋予妖精属性招式+1优先度."
+}
+ability {
+  id: ABILITY_RECURRING_NIGHTMARE
+  name: "浅坟"
+  description: "在雾中濒死后,复活一次,HP为25%."
+  expanded_description: "在迷雾激活时濒死后,当派出下一只宝可梦时,使用者以25%的最大HP复活即使使用者是在迷雾的最后一回合濒死,此效果仍会激活."
+}
+ability {
+  id: ABILITY_MENACING_SITUATION
+  name: "恐惧症"
+  description: "接触时有30%概率使目标恐惧；主动攻击时也能触发。"
+  expanded_description: "无论攻击方还是被攻击方,使用接触类招式时有30%的几率造成恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+}
+ability {
+  id: ABILITY_SHINY_LIGHTNING
+  name: "闪光闪电"
+  description: "获得1.2倍的命中率提升.打雷必定命中."
+  expanded_description: "该宝可梦的招式命中率变为1.2倍,且打雷必定命中."
+}
+ability {
+  id: ABILITY_TERRIFY
+  name: "恐怖"
+  description: "出场时,降低所有对手的特攻2级."
+  expanded_description: "进入战斗时,降低所有对手宝可梦的特攻能力值2级."
+}
+ability {
+  id: ABILITY_ICE_DOWNFALL
+  name: "冰崩"
+  description: "受到接触类招式攻击时，使用威力60的冰柱坠击。"
+  expanded_description: "受到接触招式攻击时,使用者以威力60的冰锥进行反击.冰锥有20%的几率造成畏缩."
+}
+ability {
+  id: ABILITY_LAST_STAND
+  name: "背水一战"
+  description: "防御和特防随HP降低而提升,最高1.6倍."
+  expanded_description: "防御和特防能力值随HP降低线性提升.倍率从HP全满时的1.0倍提升至HP0%时的1.6倍.HP50%时提供1.3倍加成,HP25%时提供1.45倍加成."
+}
+ability {
+  id: ABILITY_PYROCLASTIC_FLOW
+  name: "火山碎屑流"
+  description: "熔解 + 腐蚀."
+  expanded_description: "使火属性招式对岩石属性宝可梦变得效果绝佳,而非被抵抗.使毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态."
+}
+ability {
+  id: ABILITY_BLOOD_BATH
+  name: "血浴"
+  description: "免疫流血.造成流血时施加恐惧."
+  expanded_description: "免疫流血状态.当该宝可梦成功使对手流血时,也使其陷入恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+}
+ability {
+  id: ABILITY_BATTLE_AURA
+  name: "战斗气场"
+  description: "使所有参战者的击中要害率提升2级."
+  expanded_description: "使每只宝可梦的击中要害率提升2级.包括同伴和对手."
+}
+ability {
+  id: ABILITY_BLOODLUST
+  name: "嗜血"
+  description: "血浴 + 噬魂."
+  expanded_description: "免疫流血状态.当该宝可梦成功使对手流血时,也使其陷入恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧.通过直接攻击击倒对手时,回复25%的最大HP."
+}
+ability {
+  id: ABILITY_PIERCING_SOLO
+  name: "独奏穿刺"
+  description: "声音类招式造成流血."
+  expanded_description: "使用声音类招式命中时,使用者造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+}
+ability {
+  id: ABILITY_RHYTHMIC
+  name: "韵律"
+  description: "连续使用同一招式时,每次伤害提高10%."
+  expanded_description: "连续使用同一招式,每次伤害提高10%.无上限.切换招式或招式失败时重置."
+}
+ability {
+  id: ABILITY_CHUNKY_BASS_LINE
+  name: "厚重低音"
+  description: "使用声音类招式后,触发威力40的地震."
+  expanded_description: "在使用任何声音类招式命中后,使用者紧接着使用威力40的地震,攻击所有相邻的宝可梦."
+}
+ability {
+  id: ABILITY_DUAL_HAMMER
+  name: "手提钻"
+  description: "锤类招式攻击两次,每次造成70%伤害."
+  expanded_description: "锤类招式攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+}
+ability {
+  id: ABILITY_DENTING_BLOWS
+  name: "凹陷打击"
+  description: "锤类招式降低对手防御."
+  expanded_description: "使用锤类攻击命中时,降低目标防御1级.每个目标每回合只能被影响一次防御降低在伤害之后生效."
+}
+ability {
+  id: ABILITY_ICE_COLD_HUNTER
+  name: "冰冷猎人"
+  description: "在冰雹中,冰属性招式攻击两次."
+  expanded_description: "在冰雹中,冰属性招式攻击两次,两次均造成全额伤害.使用者免疫冰雹伤害.两次攻击独立判定追加效果（畏缩除外）."
+}
+ability {
+  id: ABILITY_SOUL_CRUSHER
+  name: "灵魂粉碎者"
+  description: "锤类招式攻击特防,并获得1.1倍威力加成."
+  expanded_description: "锤类招式获得10%的伤害加成,并且伤害计算时目标改为特防而非防御."
+}
+ability {
+  id: ABILITY_ARC_FLASH
+  name: "弧光闪烁"
+  description: "受到攻击时50%几率灼伤,造成伤害时50%几率麻痹."
+  expanded_description: "当使用者攻击时,接触目标有50%的几率使其麻痹.当受到伤害时,有50%的几率使攻击者灼伤."
+}
+ability {
+  id: ABILITY_UNICORN
+  name: "独角兽"
+  description: "强大之角 + 妖精皮肤."
+  expanded_description: "使角和钻类攻击的威力提升30%.将一般属性招式转变为妖精属性并获得妖精属性本系加成.如果使用者是妖精属性,其妖精属性招式有10%的几率造成着迷."
+}
+ability {
+  id: ABILITY_ON_THE_PROWL
+  name: "潜行"
+  description: "上场的第一回合获得+1优先度.负向优先度变为0."
+  expanded_description: "在使用者上场的第一回合,所有优先度为0或更高的招式获得+1优先度.负向优先度招式变为优先度0,而非获得+1."
+}
+ability {
+  id: ABILITY_PRETENTIOUS
+  name: "自命不凡"
+  description: "击倒对手时,击中要害率提升1级."
+  expanded_description: "每当使用者通过直接攻击击倒对手时,其击中要害率提升1级."
+}
+ability {
+  id: ABILITY_VENOBLAZE_PINCERS
+  name: "毒焰钳"
+  description: "物理招式威力提升1.2倍,并有20%几率造成灼伤或中毒."
+  expanded_description: "所有物理招式威力提升20%,并且接触时有20%的几率造成灼伤或中毒."
+}
+ability {
+  id: ABILITY_ETERNAL_BLESSING
+  name: "永恒祝福"
+  description: "天之恩泽 + 再生力."
+  expanded_description: "在薄雾场地中,每回合结束时回复使用者最大HP的1/12.替换下场时,回复33%的最大HP.此回复效果不受回复封锁影响."
+}
+ability {
+  id: ABILITY_SUGAR_RUSH
+  name: "糖分冲击"
+  description: "轻装 + 熟成."
+  expanded_description: "当消耗或失去携带的物品时,该宝可梦的基础速度能力值变为2倍.当替换下场、获得新物品或失去此特性时,速度加成消失.使所有树果的有益效果加倍."
+}
+ability {
+  id: ABILITY_PEACEFUL_REST
+  name: "安息"
+  description: "在雾中,每回合回复1/8的最大HP."
+  expanded_description: "在迷雾中时,每回合结束时回复使用者最大HP的1/8."
+}
+ability {
+  id: ABILITY_WHITE_NOISE
+  name: "白噪音"
+  description: "静电 + 安息."
+  expanded_description: "无论该宝可梦是攻击方还是被攻击方,都有几率使对手陷入麻痹.非接触攻击有10%几率麻痹,接触攻击有30%几率麻痹.在迷雾中时,每回合结束时回复使用者最大HP的1/8."
+}
+ability {
+  id: ABILITY_SMOKEY_MANEUVERS
+  name: "烟雾机动"
+  description: "在雾中,闪避率提升至1.25倍."
+  expanded_description: "迷雾使以使用者为目标的招式命中率降低25%."
+}
+ability {
+  id: ABILITY_TAG
+  name: "标签"
+  description: "攻击替换下场的对手,使用威力20的追打."
+  expanded_description: "当敌人试图替换下场时,自动触发威力20的追打以防止其离开."
+}
+ability {
+  id: ABILITY_POWER_METAL
+  name: "力量金属"
+  description: "声音类招式获得1.2倍威力加成,若为一般属性则变为钢属性."
+  expanded_description: "使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为钢属性."
+}
+ability {
+  id: ABILITY_POWER_EDGE
+  name: "力量之刃"
+  description: "切割类招式以目标特防计算伤害，威力×1.3。"
+  expanded_description: "锐利刀刃类招式获得30%的伤害加成,并且伤害计算时目标改为特防而非防御."
+}
+ability {
+  id: ABILITY_SUPERCONDUCTOR
+  name: "超导体"
+  description: "钢属性招式变为电属性,并获得1.1倍威力加成."
+  expanded_description: "所有钢属性招式转变为电属性,并获得10%的威力提升."
+}
+ability {
+  id: ABILITY_ULTRA_INSTINCT
+  name: "自在极意功"
+  description: "受到接触类招式攻击时，使用威力20的真空波；受到的伤害×0.8。"
+  expanded_description: "所有受到的伤害降低20%.与其他减伤来源乘法叠加.以威力20的真空波反击接触类招式."
+}
+ability {
+  id: ABILITY_UNLOCKED_POTENTIAL
+  name: "解锁潜力"
+  description: "精神力 + 怒火冲天."
+  expanded_description: "真气弹必定命中.不受畏缩、威吓或惊吓的影响.当该宝可梦因对手的攻击而使HP降至一半或以下时,其最高的攻击能力值提升1级.每场战斗仅触发一次.其他伤害来源使HP降至一半或以下不会触发此特性."
+}
+ability {
+  id: ABILITY_HIGHER_RANK
+  name: "更高阶层"
+  description: "先制招式的威力×1.2。"
+  expanded_description: "拥有提升优先度（+1或更高）的招式获得20%的伤害加成."
+}
+ability {
+  id: ABILITY_FUNERAL_PYRE
+  name: "火葬柴堆"
+  description: "非幽灵和恶属性宝可梦每回合损失1/4HP."
+}
+ability {
+  id: ABILITY_FLAME_BUBBLE
+  name: "火焰气泡"
+  description: "水泡 + 烈焰之魂."
+}
+ability {
+  id: ABILITY_ELEMENTAL_VORTEX
+  name: "元素漩涡"
+  description: "引火 + 储水."
+  expanded_description: "免疫火属性和水属性招式.受到火属性招式攻击时,自身该类招式威力提升50%,直到下场.受到水属性招式攻击时,回复最大HP的25%."
+}
+ability {
+  id: ABILITY_SNOWY_WRATH
+  name: "雪之怒"
+  description: "降雪 + 冰霜占卜."
+  expanded_description: "出场时引发冰雹,持续8回合（携带冰冷岩石时为12回合）.冰雹每回合对非冰属性宝可梦造成1/16的HP伤害,并使场上冰属性宝可梦的防御提升50%.所有招式的冻伤几率变为5倍.与冻结点特性不叠加."
+}
+ability {
+  id: ABILITY_PATTERN_CHANGE
+  name: "模式切换"
+  description: "变幻自如 + 蜕皮."
+  expanded_description: "每次攻击前,该宝可梦的属性会变为与所用招式相同的属性.每回合结束时,该宝可梦有30%的几率治愈自身所受到的异常状态."
+}
+ability {
+  id: ABILITY_NO_TURNING_BACK
+  name: "义无反顾"
+  description: "当HP低于1/2时,全能力提升,但无法撤退."
+  expanded_description: "当HP首次降至一半或以下时,所有能力提升1级,且使用者无法替换或逃走.常规的绕过此效果的方式（如逃脱按键或逃脱按键）仍然允许替换."
+}
+ability {
+  id: ABILITY_FLAMMABLE_COAT
+  name: "易燃外套"
+  description: "使用或受到火属性招式时改变形态."
+  expanded_description: "当受到火属性招式攻击或使用火属性招式时,将怠惰树懒变身为燃烧形态.无法被复制或压制."
+}
+ability {
+  id: ABILITY_DRACO_MORALE
+  name: "龙之士气"
+  description: "出场时使用龙之鼓舞."
+  expanded_description: "进入战斗时,自动使用龙之鼓舞,为你和你的同伴提升1级击中要害率.龙属性宝可梦提升2级."
+}
+ability {
+  id: ABILITY_BAD_OMEN
+  name: "恶兆"
+  description: "对手总是造成最小伤害.受到击中要害时,伤害变为1/4."
+  expanded_description: "对手攻击时总是造成最小伤害,强制造成85%伤害而非85-100%的浮动.对该宝可梦的击中要害伤害仅为其正常伤害的25%,而非150-200%."
+}
+ability {
+  id: ABILITY_MOSH_PIT
+  name: "音乐节"
+  description: "同伴的攻击获得1.25倍加成.如果招式会造成反伤,则加成1.5倍."
+  expanded_description: "使同伴的攻击威力提升25%,如果该招式是反伤招式,则提升50%.使用者自身不受此加成."
+}
+ability {
+  id: ABILITY_BLOOD_STAIN
+  name: "血渍"
+  description: "如果不免疫,则始终处于流血状态.接触时传播."
+  expanded_description: "拥有此特性的宝可梦获得一个无法移除的流血状态.当使用者与另一只不具有此特性的宝可梦发生接触时（无论攻防）,会将其当前特性替换为此特性并造成流血."
+}
+ability {
+  id: ABILITY_BLOOD_STIGMA
+  name: "血之烙印"
+  description: "免疫异常状态.对流血的对手造成2倍伤害."
+  expanded_description: "对处于流血状态的目标造成双倍伤害,并且使用者免疫异常状态."
+}
+ability {
+  id: ABILITY_MAXIMUM_ACCELERATION
+  name: "最大加速"
+  description: "加速 + 滑流."
+  expanded_description: "该宝可梦每在场完成一个完整的回合,其速度在回合结束时提升1级.入场的当回合不会触发.使用攻击时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+}
+ability {
+  id: ABILITY_SIDEWINDER
+  name: "响尾蛇"
+  description: "每次出场第一次使用的啃咬类招式获得+1优先度.击倒对手时重置."
+  expanded_description: "出场时,赋予第一次使用的啃咬类招式+1优先度.在使用任何啃咬类招式命中后,该优先度加成即被消耗.通过直接攻击击倒对手后,重新获得优先度增益."
+}
+ability {
+  id: ABILITY_PETRIFY
+  name: "石化"
+  description: "上场时清除对手的能力提升，再使其速度降低1级。"
+  expanded_description: "移除对手宝可梦的能力提升,然后降低其速度1级."
+}
+ability {
+  id: ABILITY_FLUFFIEST
+  name: "最毛茸茸"
+  description: "受到的接触类招式伤害变为1/4；受到的火属性招式伤害变为4倍。"
+  expanded_description: "使受到的接触类招式伤害降低75%.火属性招式对该宝可梦造成4倍伤害.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_WAY_OF_PRECISION
+  name: "精密之道"
+  description: "精神力 + 精密之拳."
+  expanded_description: "真气弹必定命中.不受畏缩、威吓或惊吓的影响.拳类招式获得+1击中要害率,并且其原本的追加效果触发几率变为5倍."
+}
+ability {
+  id: ABILITY_WAY_OF_SWIFTNESS
+  name: "迅捷之道"
+  description: "自命不凡 + 悠游自如."
+  expanded_description: "每当使用者通过直接攻击击倒对手时,其击中要害率提升1级.下雨天气时,该宝可梦的速度提升50%."
+}
+ability {
+  id: ABILITY_ATOMIC_PUNCH
+  name: "原子拳"
+  description: "铁拳的效果；钢属性招式威力×1.3。"
+  expanded_description: "铁拳 + 30%钢属性伤害."
+}
+ability {
+  id: ABILITY_IRON_GIANT
+  name: "铁巨人"
+  description: "耐热 + 主宰."
+  expanded_description: "受到的火属性招式伤害减半.免疫灼伤伤害以及灼伤状态带来的攻击力降低效果.接触类招式将20%的防御加入攻击计算.防止麻痹状态,并在陷入麻痹时立即治愈."
+}
+ability {
+  id: ABILITY_MASTER_HAND
+  name: "大师之手"
+  description: "超级发射器 + 暴走."
+  expanded_description: "使脉冲、波导、波动和光环类招式威力提升30%.击倒对手时,立即从休息状态中恢复,允许立即使用破坏光线等招式而无需等待."
+}
+ability {
+  id: ABILITY_FINAL_BLOW
+  name: "最终一击"
+  description: "无形拳 + 致命精准."
+  expanded_description: "允许所有接触类招式穿透保护类招式,并忽略与其相关的任何附加效果效果绝佳的攻击招式必定命中,并且必定造成击中要害."
+}
+ability {
+  id: ABILITY_HOSPITALITY
+  name: "热情好客"
+  description: "替换上场时,为同伴回复其最大HP的25%."
+  expanded_description: "当该宝可梦替换上场时,为同伴回复其最大HP的25%."
+}
+ability {
+  id: ABILITY_BUTTER_UP
+  name: "奉承"
+  description: "热情好客 + 舒缓香气."
+  expanded_description: "出场时,治愈使用者队伍中所有宝可梦（包括场上和后备）的异常状态,并为同伴回复其最大HP的25%."
+}
+ability {
+  id: ABILITY_VITALITY_STRIKE
+  name: "活力打击"
+  description: "使用拳类招式造成伤害时,回复伤害量10%的HP."
+  expanded_description: "使用拳类招式造成伤害时,回复相当于伤害量10%的HP."
+}
+ability {
+  id: ABILITY_HUGE_WINGS
+  name: "威严之翼"
+  description: "巨翼 + 飘浮."
+  expanded_description: "使所有翅膀、风和空气类招式的威力提升30%.该宝可梦免疫地面属性招式以及其他地面效果,如撒菱或场地状态,并使飞行属性招式伤害提升25%."
+}
+ability {
+  id: ABILITY_SWORD_OF_DAMNATION
+  name: "诅咒之剑"
+  description: "纯朴 + 灾祸之剑."
+  expanded_description: "在使用者在场时,降低所有其他宝可梦的防御能力值25%.多个相同的灾祸特性效果不叠加进行伤害计算时,完全无视对手的所有能力等级变化."
+}
+ability {
+  id: ABILITY_RESTRAINING_ORDER
+  name: "限制令"
+  description: "受到接触攻击时,迫使攻击者替换下场,每次上场仅触发一次."
+  expanded_description: "当使用者受到接触招式攻击时,迫使攻击者替换下场为随机同伴每次上场仅触发一次."
+}
+ability {
+  id: ABILITY_ASSASSINS_TOOLS
+  name: "刺客工具"
+  description: "接触类招式有30%几率造成中毒、麻痹或流血."
+  expanded_description: "当使用者使用接触类招式命中时,有30%的几率随机使目标陷入中毒、麻痹或流血状态.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_FROSTMAW
+  name: "霜冻之颚"
+  description: "啃咬类招式有50%几率造成冻伤."
+  expanded_description: "啃咬类招式在命中时有50%的几率使目标灼伤.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_PATCHWORK
+  name: "拼凑"
+  description: "画皮 + 画皮被打破时诅咒对手."
+  expanded_description: "抵挡第一个命中该宝可梦的造成伤害的招式,之后改变形态.仅能抵挡非变化招式.在雾中,每次替换上场或当雾重新出现时,画皮会立即恢复.当画皮被打破时,攻击者被诅咒."
+}
+ability {
+  id: ABILITY_BLIND_RAGE
+  name: "盲目狂怒"
+  description: "胆量 + 破格."
+  expanded_description: "该宝可梦使用的一般和格斗属性招式能够以普通效果命中幽灵属性宝可梦.免疫威吓和惊吓.允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过会修改基础能力值的特性,如草之皮毛."
+}
+ability {
+  id: ABILITY_SLIPSTREAM
+  name: "滑流"
+  description: "使用攻击时,额外使用20%的速度能力值."
+  expanded_description: "使用攻击时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+}
+ability {
+  id: ABILITY_APEX_PREDATOR
+  name: "顶级掠食者"
+  description: "坚硬爪子 + 掠食者."
+  expanded_description: "接触类招式的威力提升30%.当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+}
+ability {
+  id: ABILITY_DRAGONS_RITUAL
+  name: "龙之仪式"
+  description: "击倒对手时,攻击和速度各提升1级."
+  expanded_description: "每当使用者通过直接攻击击倒对手时,其攻击和速度能力值各提升1级."
+}
+ability {
+  id: ABILITY_PINNACLE_BLADE
+  name: "巅峰之刃"
+  description: "劈开类招式必定命中,且能穿透保护和屏障."
+  expanded_description: "所有锐利刀刃类招式必定命中,并且可以穿透保护类招式,忽略与其相关的任何附加效果."
+}
+ability {
+  id: ABILITY_ENERGIZED
+  name: "充能"
+  description: "发电机 + 使用电属性招式击倒对手时充电."
+  expanded_description: "替换上场时使使用者进入充电状态,下一次电属性招式威力加倍.在战斗中电气场地激活时再次充电.充电状态在替换下场或使用一次电属性招式后消失.使用电属性招式直接击倒对手时重新充电."
+}
+ability {
+  id: ABILITY_COLOR_SPECTRUM
+  name: "光谱"
+  description: "同属性攻击获得1.2倍加成.每回合改变属性."
+  expanded_description: "本系招式获得20%威力提升.使用者在每回合开始时随机变为一种纯属性."
+}
+ability {
+  id: ABILITY_STEEL_BEETLE
+  name: "钢甲虫"
+  description: "狂暴拳手 + 授粉."
+  expanded_description: "使拳类招式攻击两次,第一击造成100%伤害,第二击造成40%伤害.一般属性招式变为虫属性并获得本系加成.如果使用者是虫属性,则免疫粉末类招式."
+}
+ability {
+  id: ABILITY_FROM_THE_SHADOWS
+  name: "来自暗影"
+  description: "先手攻击时,有20%几率造成畏缩并束缚目标."
+  expanded_description: "当使用者在一回合中先出手时,攻击有20%的几率造成畏缩,并且在命中时束缚目标.束缚效果与畏缩是否成功无关.畏缩几率仅对连续攻击的第一击有效."
+}
+ability {
+  id: ABILITY_RAGE_POINT
+  name: "怒穴"
+  description: "处于异常状态时伤害×1.5；受到击中要害时提升攻击与特攻。"
+  expanded_description: "当使用者处于任何异常状态时,其攻击招式威力提升50%.当该宝可梦受到击中要害时,其攻击和特攻各提升1级.同时无视灼伤带来的攻击降低和冰冻带来的特攻降低."
+}
+ability {
+  id: ABILITY_HOT_COALS
+  name: "热煤"
+  description: "设置一个陷阱,使下一个替换上场的对手灼伤."
+  expanded_description: "使用者替换上场时,在对手场上设置一个灼伤陷阱.下一个替换上场的对手如果接地且可被灼伤,则会被灼伤.触发后陷阱消失.多个陷阱不会叠加."
+}
+ability {
+  id: ABILITY_TERASTAL_TREASURE
+  name: "太晶宝藏"
+  description: "受到的伤害降低40%,但速度降低20%."
+  expanded_description: "受到的伤害降低40%,同时该宝可梦的速度降低20%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_SHOCKING_MAW
+  name: "电击巨颚"
+  description: "强壮之颚与电击之颚的效果。"
+  expanded_description: "使啃咬类招式威力提升30%,并在命中时有50%的几率使目标麻痹."
+}
+ability {
+  id: ABILITY_GLEAM_EYES
+  name: "微光之眼"
+  description: "察觉 + 惊吓."
+  expanded_description: "进入战斗时,揭示对手的物品,并使其效果失效2回合,同时降低所有对手宝可梦的特攻1级.不会阻止超级石及其他类似物品的运作."
+}
+ability {
+  id: ABILITY_ROUSED_FANGS
+  name: "巨咬"
+  description: "啃咬类招式使用特攻,并造成30%额外伤害."
+  expanded_description: "啃咬类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+}
+ability {
+  id: ABILITY_DREAM_STATE
+  name: "梦境"
+  description: "免疫击中要害.受到的招式伤害降低20%."
+  expanded_description: "受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+}
+ability {
+  id: ABILITY_DREAM_WHIMSY
+  name: "梦幻奇想"
+  description: "出场时使用哈欠."
+  expanded_description: "替换上场时使用哈欠,以对手宝可梦为目标.哈欠使目标陷入瞌睡,并在下一回合结束时睡眠.替换下场可以防止睡眠."
+}
+ability {
+  id: ABILITY_LUNAR_AFFINITY
+  name: "月之亲和"
+  description: "模仿其他宝可梦使用的月亮相关招式."
+  expanded_description: "当其他宝可梦在战斗中使用月亮相关招式时,进行模仿.包括月光、月亮之力、月之舞和月之祝福.每回合对每个招式触发一次."
+}
+ability {
+  id: ABILITY_FLAME_SHIELD
+  name: "火焰盾"
+  description: "受到效果绝佳的招式攻击时,伤害降低35%."
+  expanded_description: "受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_AQUATIC_DWELLER
+  name: "水栖居民"
+  description: "水生 + 水属性招式威力提升1.5倍."
+  expanded_description: "进入战斗时,为使用者的当前属性添加水属性即使失去此特性,添加的水属性在替换下场前依然保留.同时水属性招式威力提升50%."
+}
+ability {
+  id: ABILITY_APPLE_PIE
+  name: "苹果蛋糕"
+  description: "自给自足与熟成的效果。"
+  expanded_description: "每回合结束时回复1/16的最大HP.熟成使所有树果的有益效果加倍回复类树果回复量加倍,提升能力的树果改为提升2级,抵抗树果将效果绝佳的伤害降低75%,回复PP的树果回复20 PP."
+}
+ability {
+  id: ABILITY_HOVER
+  name: "悬浮"
+  description: "为自身添加超能力属性.回避地面属性攻击."
+  expanded_description: "进入战斗时,为使用者的当前属性添加超能力属性.即使失去此特性,添加的超能力属性在替换下场前依然保留.使用者免疫地面属性招式以及撒菱和场地状态等其他地面效果."
+}
+ability {
+  id: ABILITY_DEPRAVITY
+  name: "堕落"
+  description: "不仁不义 + 过载."
+  expanded_description: "对处于中毒、麻痹、流血或速度降低状态的目标,必定造成击中要害.使用者的电属性招式对电属性宝可梦变得有效,造成2倍伤害而非0.5倍.同时允许使用者使电属性宝可梦陷入麻痹状态."
+}
+ability {
+  id: ABILITY_WILDFIRE
+  name: "野火"
+  description: "出场时使用火焰旋涡."
+  expanded_description: "替换上场时使用火焰旋涡,威力50的火属性特殊招式,束缚对手4-5回合.目标每回合损失1/8最大HP,且在束缚结束前无法替换下场."
+}
+ability {
+  id: ABILITY_JUMP_SCARE
+  name: "突然惊吓"
+  description: "首次替换上场时,使用惊吓进行攻击."
+  expanded_description: "替换上场时使用惊吓,威力40的幽灵属性物理招式,拥有+3优先度且必定造成畏缩每场战斗仅触发一次."
+}
+ability {
+  id: ABILITY_TAR_TOSS
+  name: "焦油投掷"
+  description: "出场时使用掷焦油."
+  expanded_description: "替换上场时使用掷焦油,降低目标速度1级,并使其受到的火属性伤害变为2倍.后续使用不会叠加火属性伤害的负面效果."
+}
+ability {
+  id: ABILITY_STUN_SHOCK
+  name: "惊愕冲击"
+  description: "攻击有60%几率造成麻痹或中毒."
+  expanded_description: "当使用者攻击命中时,有60%的几率随机使目标陷入中毒或麻痹状态.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_RAGING_GODDESS
+  name: "狂怒女神"
+  description: "暴走 + 极度好战."
+  expanded_description: "击倒对手时,立即从休息状态中恢复.所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）."
+}
+ability {
+  id: ABILITY_WHIPLASH
+  name: "鞭打"
+  description: "物理攻击降低对手防御."
+  expanded_description: "使用物理攻击命中时,降低目标防御1级.每个目标每回合只能被影响一次防御降低在伤害之后生效."
+}
+ability {
+  id: ABILITY_SUPERSWEET_SYRUP
+  name: "超甜糖浆"
+  description: "黏着 + 接触时使对手物品失效2回合."
+  expanded_description: "该宝可梦携带的物品不会被强制移除或偷走.发生接触时,对手的物品失效2回合."
+}
+ability {
+  id: ABILITY_LUCKY_HALO
+  name: "幸运光环"
+  description: "不会因自身招式而降低能力；可承受一次致命攻击。"
+  expanded_description: "防止使用者自身引起的能力降低,并允许其承受一次会使其濒死的攻击,留下1点HP."
+}
+ability {
+  id: ABILITY_TRASH_HEAP
+  name: "垃圾堆"
+  description: "腐蚀 + 毒溢."
+  expanded_description: "毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态.每回合伤害所有非毒属性宝可梦,造成其1/8的HP损失.拥有毒疗特性的宝可梦反而会回复.使用者下场时效果消失."
+}
+ability {
+  id: ABILITY_SLUDGY_MIX
+  name: "污泥混合"
+  description: "醉人 + 庞克摇滚."
+  expanded_description: "将所有一般属性招式转变为毒属性,并为毒属性招式提供本系加成.如果使用者是毒属性,其毒属性招式有10%的几率造成剧毒.使使用者的声音类招式威力提升30%,并使受到的声音类招式伤害降低50%.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_OVERWATCH
+  name: "守望"
+  description: "潜行 + 蹲守."
+  expanded_description: "在使用者上场的第一回合,所有优先度为0或更高的招式获得+1优先度.负向优先度招式变为优先度0,而非获得+1.对刚替换上场的对手造成双倍伤害.仅在对手替换上场后的第一回合内生效."
+}
+ability {
+  id: ABILITY_WIND_RAGE
+  name: "风怒"
+  description: "出场时使用清除浓雾.空气类招式获得1.3倍威力加成."
+  expanded_description: "替换上场时使用清除浓雾.降低对手闪避率1级,并清除所有入场陷阱、屏障、神秘守护和白雾.此外,所有空气类招式获得1.3倍伤害加成."
+}
+ability {
+  id: ABILITY_VICTORY_BOMB
+  name: "胜利炸弹"
+  description: "濒死时,使用威力100的火属性大爆炸."
+  expanded_description: "濒死时,以威力100的火属性大爆炸反击所有相邻的宝可梦.必定命中.无论使用者如何被击倒都会生效."
+}
+ability {
+  id: ABILITY_RAZOR_SHARP
+  name: "削铁如泥"
+  description: "击中要害时也造成流血."
+  expanded_description: "造成击中要害时施加流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+}
+ability {
+  id: ABILITY_TO_THE_BONE
+  name: "至骨"
+  description: "击中要害获得1.5倍加成,并造成流血."
+}
+ability {
+  id: ABILITY_BLADE_DANCE
+  name: "刀舞"
+  description: "使用舞蹈类招式后,触发威力50的叶刃."
+  expanded_description: "使用任何舞蹈类招式后,立即触发一次威力50的叶刃（草属性,物理）作为后续攻击."
+}
+ability {
+  id: ABILITY_TAEKKYEON
+  name: "跆跟"
+  description: "所有攻击都视为舞蹈."
+  expanded_description: "使所有非变化招式都被视为舞蹈类招式,可以触发舞者等特性以及与舞蹈相关的效果."
+}
+ability {
+  id: ABILITY_APE_SHIFT
+  name: "猿之变"
+  description: "HP低于50%时变身,治愈异常状态且攻击必定会心一击."
+  expanded_description: "当HP降至50%或以下时变身,变身完成后自动治愈所有异常状态.变身后,所有攻击都变为击中要害.在出场时、战斗中及回合结束时均可触发."
+}
+ability {
+  id: ABILITY_KNOW_YOUR_PLACE
+  name: "识相点"
+  description: "接触类招式使目标在接下来的5回合最后行动。"
+  expanded_description: "使用接触类招式命中后,使目标在5回合内无论优先度、速度或其他效果如何,总是最后行动.效果不会叠加,也不会对已受影响的目标刷新."
+}
+ability {
+  id: ABILITY_DEEP_CUTS
+  name: "深割"
+  description: "劈开类招式有50%几率造成流血."
+  expanded_description: "锐利刀刃类招式命中时有50%的几率造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_LIFE_STEAL
+  name: "生命偷取"
+  description: "每回合从对手吸取1/10的HP."
+  expanded_description: "每回合结束时,从每个在场的对手吸取其最大HP的1/10,并回复给使用者.无视替身."
+}
+ability {
+  id: ABILITY_RUDE_AWAKENING
+  name: "粗暴唤醒"
+  description: "醒来后,全能力提升,并永久免疫睡眠."
+  expanded_description: "从睡眠中醒来时,使用者永久获得睡眠免疫,且所有能力提升1级.每场战斗仅触发一次."
+}
+ability {
+  id: ABILITY_TERAFORM_ZERO
+  name: "太晶归零"
+  description: "太晶甲壳 + 首次出场时清除天气和场地."
+  expanded_description: "当HP全满时,所有对该宝可梦的攻击都将造成效果不好的伤害,无论属性相性如何.与其他类似特性不同,此效果在连续攻击的每次命中都会激活.出场时清除普通天气和场地."
+}
+ability {
+  id: ABILITY_SET_ABLAZE
+  name: "点燃"
+  description: "造成灼伤时也施加恐惧."
+  expanded_description: "当使用者施加灼伤时,也同时施加恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+}
+ability {
+  id: ABILITY_BREAKWATER
+  name: "防波堤"
+  description: "悠游自如 + 后攻."
+  expanded_description: "下雨天气时,速度提升50%.在对手之前行动时,受到的伤害降低30%.当该宝可梦在回合中替换上场时也生效."
+}
+ability {
+  id: ABILITY_MAGICAL_FISTS
+  name: "魔法之拳"
+  description: "拳类招式使用特攻计算伤害，并多造成30%伤害。"
+  expanded_description: "拳类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+}
+ability {
+  id: ABILITY_CUTTHROAT
+  name: "凶手"
+  description: "每次上场使用的首个切割类招式优先度+1。"
+  expanded_description: "出场时,赋予第一次使用的锐利刀刃类招式+1优先度.在使用任何锐利刀刃类招式命中后,该优先度加成即被消耗.使用磨砺可重置此特性."
+}
+ability {
+  id: ABILITY_SAND_BENDER
+  name: "沙之操控者"
+  description: "扬沙 + 沙之力."
+  expanded_description: "出场时引发沙暴,持续8回合（携带光滑岩石时为12回合）.在沙暴中,该宝可梦最高的攻击能力值提升50%.同时免疫沙暴伤害."
+}
+ability {
+  id: ABILITY_SAND_PIT
+  name: "沙坑"
+  description: "出场时使用威力20的沙穴."
+  expanded_description: "替换上场时使用威力20的沙穴攻击所有对手宝可梦,束缚它们4-5回合,使其每回合损失1/8最大HP必定命中,无视命中判定."
+}
+ability {
+  id: ABILITY_DESOLATE_SUN
+  name: "荒芜太阳"
+  description: "终结之地 + 食土."
+  expanded_description: "创造终焉大晴天,持续到使用者下场.具有标准晴天效果,并使所有水属性招式无效.此外,使用者受到地面属性招式攻击时,回复其最大HP的25%而非受到伤害."
+}
+ability {
+  id: ABILITY_DAYBREAK
+  name: "破晓"
+  description: "接触时使对手灼伤.攻击时也生效."
+  expanded_description: "使用者接触时使对手灼伤.无论攻击方还是被攻击方均会生效."
+}
+ability {
+  id: ABILITY_ENERGY_SIPHON
+  name: "能量虹吸"
+  description: "回复造成伤害的1/4."
+  expanded_description: "回复使用者对对手造成伤害的25%.回复在伤害造成后立即生效.最少回复1点HP."
+}
+ability {
+  id: ABILITY_RESERVOIR
+  name: "水库"
+  description: "储水 + 引水."
+  expanded_description: "该宝可梦会吸引水属性招式,并对其免疫.此外,吸收水属性招式时,使用者最高的攻击能力值提升1级,并回复其最大HP的25%."
+}
+ability {
+  id: ABILITY_NEUROTOXIN
+  name: "神经毒素"
+  description: "造成中毒时,降低对手的攻击、特攻和速度."
+  expanded_description: "当使对手中毒时,立即降低其攻击、特攻和速度各1级."
+}
+ability {
+  id: ABILITY_ENERGIZED_HORNS
+  name: "能量角"
+  description: "角类招式变为特殊招式,并造成30%额外伤害."
+  expanded_description: "角类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害."
+}
+ability {
+  id: ABILITY_SPIDER_LAIR_UPGRADE
+  name: "生面团"
+  description: "出场时设置黏黏网,持续7回合."
+  expanded_description: "使用者进入战斗时,在对手场上设置黏黏网.持续7回合,使任何替换上场的接地宝可梦速度降低1级.如果对手场上已有黏黏网,则无法激活."
+}
+ability {
+  id: ABILITY_CRUST_COAT
+  name: "硬壳"
+  description: "免疫击中要害.受到的招式伤害降低20%."
+  expanded_description: "受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+}
+ability {
+  id: ABILITY_PUFFY
+  name: "蓬松"
+  description: "受到的接触类招式伤害减半,但火属性招式会造成2倍伤害."
+  expanded_description: "使受到的接触类招式伤害降低50%.火属性招式对该宝可梦造成双倍伤害.与其他减伤效果乘法叠加."
+}
+ability {
+  id: ABILITY_BALLOON_BLITZ
+  name: "气球突击"
+  description: "充气 + 极度好战."
+  expanded_description: "受到任何火属性或飞行属性招式攻击时,防御和特防各提升1级.对于连续攻击招式,每次命中都会触发.能力提升效果在攻击命中后生效.所有攻击命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）."
+}
+ability {
+  id: ABILITY_STRIKER_PIXILATE
+  name: "纤巧脚尖"
+  description: "前锋与妖精皮肤的效果。"
+  expanded_description: "使所有踢腿类招式的威力提升30%.一般属性招式变为妖精属性,使用者获得妖精属性本系加成.如果使用者是妖精属性,其妖精属性招式有10%的几率造成着迷."
+}
+ability {
+  id: ABILITY_DOOM_BLAST
+  name: "末日爆裂"
+  description: "恶属性招式造成1.35倍伤害,但有10%的反伤."
+  expanded_description: "使恶属性招式威力提升35%,但会造成基于伤害值10%的反伤（最少1点HP）.反伤不会导致使用者濒死."
+}
+ability {
+  id: ABILITY_BRUTEFORCE
+  name: "蛮力"
+  description: "坚硬脑袋 + 舍身."
+  expanded_description: "会造成反伤伤害的招式威力提升20%.处于愤怒状态时,此加成适用于所有招式.防止所有来自自身招式或特性的反伤伤害.同时免疫因愤怒产生的反伤伤害无法防止撞击伤害或大爆炸/自爆的伤害."
+}
+ability {
+  id: ABILITY_FARADAY_CAGE
+  name: "法拉第笼"
+  description: "战斗盔甲 + 受到接触攻击时使用威力50的雷电笼."
+  expanded_description: "受到的伤害降低20%,与其他减伤来源乘法叠加.免疫击中要害.受到接触招式攻击时,使用雷电笼进行反击,威力50的电属性特殊招式,束缚对手4-5回合.目标每回合损失1/8最大HP,且在束缚结束前无法替换下场."
+}
+ability {
+  id: ABILITY_ACIDIC_SLIME
+  name: "酸性黏液"
+  description: "腐蚀 + 毒属性本系."
+  expanded_description: "毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态.同时为毒属性招式提供本系加成."
+}
+ability {
+  id: ABILITY_ROSE_GARDEN
+  name: "玫瑰园"
+  description: "出场时撒下两层毒菱."
+  expanded_description: "出场时在对手场上撒下两层毒菱任何非毒或钢属性的接地敌人替换上场时,都会陷入剧毒."
+}
+ability {
+  id: ABILITY_QIGONG
+  name: "气功"
+  description: "必定命中.斗争精神 + 暴走."
+  expanded_description: "使用者总是能命中目标.将所有一般属性招式转变为格斗属性招式,并为格斗属性攻击提供本系加成如果使用者是格斗属性,其格斗属性招式可以击破屏障.击倒对手时,立即从休息状态中恢复."
+}
+ability {
+  id: ABILITY_CONJOURER_OF_DECEIT
+  name: "欺诈魔术师"
+  description: "魔法防守 + 魔法镜."
+  expanded_description: "免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害.在大部分变化招式生效前,将其反弹回原使用者.被反弹的招式作用于原使用者.无法反弹已被反弹的招式."
+}
+ability {
+  id: ABILITY_DEEP_FREEZE
+  name: "深度冻结"
+  description: "水、冰属性招式威力×1.25；受到的火属性伤害减半。"
+  expanded_description: "水属性和冰属性招式威力提升25%.受到的火属性招式伤害减半.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_SOUL_DEVOURER
+  name: "灵魂吞噬者"
+  description: "噬魂 + 幻痛."
+  expanded_description: "当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%.移除一般属性对幽灵属性招式的免疫,允许幽灵属性攻击以1倍效果命中一般属性宝可梦."
+}
+ability {
+  id: ABILITY_CHAMPIONS_ENTRANCE
+  name: "冠军登场"
+  description: "威吓 + 狂暴突袭."
+  expanded_description: "进入战斗时,降低所有对手宝可梦的攻击能力值1级.使用者替换上场后的第一回合,获得50%的速度加成和20%的攻击加成."
+}
+ability {
+  id: ABILITY_PRESTO
+  name: "急板"
+  description: "HP全满时,声音类招式获得+1优先度."
+  expanded_description: "当HP全满时,赋予声音类招式+1优先度."
+}
+ability {
+  id: ABILITY_SAMBA
+  name: "桑巴"
+  description: "前锋 + 舞者."
+  expanded_description: "使所有踢腿类招式的威力提升30%.包括火焰球.当场上任何宝可梦使用舞蹈类招式后,该宝可梦会立即使用相同的招式每回合对每个招式触发一次."
+}
+ability {
+  id: ABILITY_JUNSHI_SANDA
+  name: "拳跆双修"
+  description: "拳类招式同时视为踢类，踢类招式同时视为拳类。"
+  expanded_description: "拳类招式也被视为踢腿类招式,可从前锋类特性中受益.踢腿类招式也被视为拳类招式,可从铁拳类特性中受益."
+}
+ability {
+  id: ABILITY_GLADIATOR
+  name: "角斗士"
+  description: "格斗属性招式威力×1.3；HP低于1/3时改为×1.8。"
+  expanded_description: "格斗属性招式威力提升30%,当HP低于1/3时提升80%."
+}
+ability {
+  id: ABILITY_FORSAKEN_HEART
+  name: "弃心"
+  description: "场上任何宝可梦被击倒时,攻击提升1级."
+  expanded_description: "当战场上任何宝可梦（包括同伴和对手）濒死时,该宝可梦的攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_RELENTLESS
+  name: "无情"
+  description: "弱点利用 + 不仁不义."
+  expanded_description: "当攻击处于异常状态的对手时,造成1.25倍伤害并自动针对其较低的防御能力值.对处于中毒、麻痹、流血或速度降低状态的目标,必定造成击中要害."
+}
+ability {
+  id: ABILITY_SOOTHSAYER
+  name: "预言家"
+  description: "首次出场时,三回合内所有攻击效果不好."
+  expanded_description: "出场时,在3回合内,使用者受到的所有攻击都被视为效果不好.替换下场时效果解除."
+}
+ability {
+  id: ABILITY_CORRUPTED_MIND
+  name: "扭曲心灵"
+  description: "超能力属性招式无视抗性与免疫，追加效果概率×1.4。"
+  expanded_description: "超能力属性招式无视属性抗性和免疫,无论目标属性如何,至少造成普通伤害.此外,所有超能力招式的追加效果触发几率提升40%."
+}
+ability {
+  id: ABILITY_FLAME_COAT
+  name: "火焰外套"
+  description: "在场时,非火属性宝可梦每回合损失1/8HP."
+}
+ability {
+  id: ABILITY_UNOWN_POWER
+  name: "未知之力"
+  description: "神秘力量 + 觉醒力量/自然之力总是效果绝佳."
+  expanded_description: "使所有招式获得1.5倍的本系加成,无论属性是否匹配.不会增强已经获得本系加成的招式.觉醒力量/自然之力总是效果绝佳（x2）.详细机制解释"
+}
+ability {
+  id: ABILITY_SUPER_SCOPE
+  name: "超级瞄准器"
+  description: "超级发射器 + 炮术."
+  expanded_description: "使脉冲、波导、波动和光环类招式威力提升30%.超级发射器类招式必定命中,并同时攻击双方对手.所有脉冲、波导、波动、光环及其他爆裂相关招式不会打空."
+}
+ability {
+  id: ABILITY_VENOM_CROWN
+  name: "毒冠"
+  description: "毒刺 + 强大之角."
+  expanded_description: "无论攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒.使角和钻类攻击的威力提升30%."
+}
+ability {
+  id: ABILITY_BLIGHT_SCALE
+  name: "疫病鳞片"
+  description: "多重鳞片 + 毒刺."
+  expanded_description: "当该宝可梦HP全满时,受到的所有伤害降低50%.与其他减伤来源乘法叠加.无论攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒."
+}
+ability {
+  id: ABILITY_GUNMAN
+  name: "枪手"
+  description: "超级发射器 + 变化招式被视为超级发射器招式."
+  expanded_description: "使脉冲、波导、波动和光环类招式威力提升30%.此外,所有变化招式都被视为超级发射器招式,可从相关特性中获得加成."
+}
+ability {
+  id: ABILITY_HUNTERS_MARK
+  name: "猎人印记"
+  description: "埋伏 + 神枪手."
+  expanded_description: "在使用者替换上场后的第一回合或战斗开始时,必定造成击中要害.使用者不会打空箭矢类攻击和炮类招式（仅限被防弹阻挡的招式）.此外,造成击中要害时,攻击目标改为对手较弱的防御能力值."
+}
+ability {
+  id: ABILITY_HEMOLYSIS
+  name: "溶血"
+  description: "中毒的对手失去所有能力提升,且无法回复."
+  expanded_description: "当使用者使宝可梦中毒时,中毒的目标被清除所有能力提升,并且无法通过任何方式回复HP."
+}
+ability {
+  id: ABILITY_CARETAKER
+  name: "守护者"
+  description: "治愈之心 + 友情防守."
+  expanded_description: "在双打对战中,每回合结束时,有30%的几率治愈自身和场上同伴的异常状态.对两只宝可梦分别进行几率判定在双打对战中,该宝可梦的同伴受到的伤害降低50%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_POSEIDONS_DOMINION
+  name: "波塞冬之域"
+  description: "出场时使用潮旋."
+  expanded_description: "替换上场时使用潮旋,威力50的水属性特殊招式,束缚对手4-5回合.目标每回合损失1/8最大HP,且在束缚结束前无法替换下场."
+}
+ability {
+  id: ABILITY_DUAL_SHADOW
+  name: "双面"
+  description: "饱了又饿 + 电和恶属性招式造成1.35倍伤害,但有10%反伤."
+  expanded_description: "每回合结束时自动在吃饱形态和饥饿形态之间切换.电属性和恶属性招式威力提升35%,但会造成基于伤害值10%的反伤（最少1点HP）.反伤不会导致使用者濒死.无法以任何方式覆盖、压制、交换或复制."
+}
+ability {
+  id: ABILITY_LULLABY
+  name: "摇篮曲"
+  description: "该宝可梦使用的唱歌命中率为90%."
+  expanded_description: "将唱歌的命中率提升至90%.不锁定为90%,该招式仍会受到命中率/闪避率变化的影响."
+}
+ability {
+  id: ABILITY_CRYO_ARCHITECT
+  name: "冰晶建筑师"
+  description: "受水攻击攻防各+1。\n受冰攻击两项全+1。"
+  expanded_description: "受到水属性攻击时,攻击提升1级,并在下一回合防御提升1级.受到冰属性攻击时,当回合攻击和防御各提升1级.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_GLACIAL_RAGE
+  name: "冰川之怒"
+  description: "使用冰属性招式后，追加威力50的暴风雪。"
+  expanded_description: "使用冰属性招式后,使用者紧接着使用威力50的暴风雪（冰属性,85%命中率,攻击双方,20%冻伤几率,基于天气）."
+}
+ability {
+  id: ABILITY_IMMOVABLE_OBJECT
+  name: "不动之物"
+  description: "坚不可摧 + 结实."
+  expanded_description: "免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害.当HP全满时,该宝可梦能够承受任何一次攻击并至少留下1点HP."
+}
+ability {
+  id: ABILITY_FRENZIED_PHANTOM
+  name: "狂乱魅影"
+  description: "极度好战 + 影子游戏."
+  expanded_description: "所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）.阻止所有不具有影子游戏特性或非幽灵属性的对手替换下场.伏特替换等替换招式仍允许他们替换."
+}
+ability {
+  id: ABILITY_DNA_SCRAMBLE
+  name: "DNA重组"
+  description: "根据使用的招式改变形态."
+  expanded_description: "根据使用的招式改变代欧奇希斯的形态.攻击招式触发攻击形态,自我再生触发防御形态,其他变化招式触发速度形态.形态变化在攻击前发生."
+}
+ability {
+  id: ABILITY_METALLIC_JAWS
+  name: "金属之颚"
+  description: "金属化 + 原始颚."
+  expanded_description: "进入战斗时,为使用者的当前属性添加钢属性.即使失去此特性,添加的钢属性在替换下场前依然保留.所有啃咬类招式攻击两次.第一击造成100%伤害,第二击造成40%伤害.每次攻击独立判定追加效果（畏缩除外）."
+}
+ability {
+  id: ABILITY_CALCULATIVE
+  name: "精于算计"
+  description: "分析 + 脑核之力."
+  expanded_description: "当该宝可梦在目标之后行动时,攻击威力提升30%.效果绝佳的攻击威力提升35%."
+}
+ability {
+  id: ABILITY_DEADLY_PRECISION
+  name: "夺命精准"
+  description: "效果绝佳的招式必定命中,且无视特性."
+  expanded_description: "总是能对对手命中效果绝佳的攻击.允许效果绝佳的攻击无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性."
+}
+ability {
+  id: ABILITY_EMBODY_ASPECT
+  name: "体现形态"
+  description: "上场时速度提升1级。"
+  expanded_description: "替换上场时,该宝可梦的速度能力值提升1级."
+}
+ability {
+  id: ABILITY_EMBODY_ASPECT_HEARTHFLAME
+  name: "体现形态"
+  description: "出场时,攻击提升1级."
+  expanded_description: "替换上场时,该宝可梦的攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_EMBODY_ASPECT_CORNERSTONE
+  name: "体现形态"
+  description: "出场时,防御提升1级."
+  expanded_description: "替换上场时,该宝可梦的防御能力值提升1级."
+}
+ability {
+  id: ABILITY_EMBODY_ASPECT_WELLSPRING
+  name: "体现形态"
+  description: "上场时特防提升1级。"
+  expanded_description: "替换上场时,该宝可梦的特防能力值提升1级."
+}
+ability {
+  id: ABILITY_ROCKHARD_SHAFT
+  name: "我们将震撼你"
+  description: "岩石属性招式威力×1.3；HP低于1/3时改为×1.8。"
+  expanded_description: "岩石属性招式威力提升30%,当HP低于1/3时提升80%."
+}
+ability {
+  id: ABILITY_DEVIATE
+  name: "偏离"
+  description: "一般属性招式变为恶属性.恶属性招式得到强化."
+  expanded_description: "将使用者的一般属性招式变为恶属性.如果使用者是恶属性,其恶属性招式有10%的几率造成愤怒；否则,它获得恶属性的本系加成."
+}
+ability {
+  id: ABILITY_SUNS_BOUNTY
+  name: "太阳的恩赐"
+  description: "叶子防守 + 收获."
+  expanded_description: "在大晴天下,每回合结束时治愈所有异常状态,并且每回合结束时有50%几率回收树果,大晴天下为100%.包括用于投掷、自然之恩或被吃掉的树果."
+}
+ability {
+  id: ABILITY_RITE_OF_SPRING
+  name: "春日仪式"
+  description: "叶绿素 + 太阳之力."
+  expanded_description: "大晴天激活时,使用者的速度和最高的攻击能力值提升50%."
+}
+ability {
+  id: ABILITY_HEADSTRONG
+  name: "刚愎自用"
+  description: "上场时特防提升1级。"
+  expanded_description: "替换上场时,该宝可梦的特防能力值提升1级."
+}
+ability {
+  id: ABILITY_FIREFIGHTER
+  name: "消防员"
+  description: "对火属性造成1.5倍伤害。\n受火属性伤害减半。"
+  expanded_description: "对火属性宝可梦造成1.5倍伤害,并且受到火属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+}
+ability {
+  id: ABILITY_SEPIA_LENS
+  name: "棕褐色镜片"
+  description: "有色眼镜 + 沙之守卫."
+  expanded_description: "结合有色眼镜和沙之守卫.攻击被抵抗时造成双倍伤害.在沙暴中,阻挡对手的先制招式,并使受到的特殊攻击伤害减半.同时像其他地面属性一样免疫沙暴伤害."
+}
+ability {
+  id: ABILITY_SUPER_SNIPER
+  name: "超级狙击手"
+  description: "狙击手 + 攻击替换下场的对手,威力为1/2."
+  expanded_description: "击中要害时的伤害倍率从1.5倍提升至2.25倍,即额外增加50%的伤害加成.在对手替换下场前以50%的威力攻击他们,在其离开前造成伤害."
+}
+ability {
+  id: ABILITY_WOODLAND_CURSE
+  name: "林地诅咒"
+  description: "出场时使用森林诅咒.接触时添加草属性."
+  expanded_description: "进入战斗时,对随机一名对手使用森林诅咒,为其添加草属性.当对手与使用者发生接触时,他们也会被添加草属性作为额外属性.仅影响非草属性目标.效果持续到替换下场."
+}
+ability {
+  id: ABILITY_MALODOR
+  name: "浊臭"
+  description: "接触时压制攻击者的特性."
+  expanded_description: "受到接触招式攻击时,使用者压制攻击者的特性和先天特性,直到他们替换下场."
+}
+ability {
+  id: ABILITY_BLUR
+  name: "模糊"
+  description: "受物理攻击时用速度作防御。"
+  expanded_description: "当受到接触招式攻击时,该宝可梦使用其速度能力值而非防御或特防进行伤害计算.讲究围巾的效果不影响此特性."
+}
+ability {
+  id: ABILITY_ELUDE
+  name: "规避"
+  description: "受特殊攻击时用速度作防御。"
+  expanded_description: "受特殊招式攻击时，用速度而非防御或特防计算伤害。讲究围巾不影响此特性。"
+}
+ability {
+  id: ABILITY_DRAKE_OF_RAGE
+  name: "暴怒之龙"
+  description: "有色眼镜 + 暴走."
+  expanded_description: "攻击被抵抗时,伤害加倍.如果招式被抵抗（0.5倍伤害或更低）,则最终伤害乘以2倍.当使用者通过直接攻击击倒对手时,立即从休息状态中恢复."
+}
+ability {
+  id: ABILITY_REVERBATE
+  name: "混响"
+  description: "一般属性招式变为声音类招式."
+  expanded_description: "将所有一般属性招式转变为声音类招式,使其能够受益于基于声音的特性和互动."
+}
+ability {
+  id: ABILITY_MIXED_MARTIAL_ARTS
+  name: "综合格斗"
+  description: "一般属性招式被视为拳和腿类招式."
+  expanded_description: "将所有一般属性招式转变为铁拳和前锋类招式,使其能够受益于相关特性和互动."
+}
+ability {
+  id: ABILITY_STRATEGIC_PAUSE
+  name: "战略停顿"
+  description: "后手攻击时+2击中要害率 + 分析."
+  expanded_description: "当使用者后手攻击时,击中要害率提升2级,攻击威力提升30%."
+}
+ability {
+  id: ABILITY_OVERRULE
+  name: "否决"
+  description: "击中要害时无视特性,且对被抵抗的目标造成2倍伤害."
+  expanded_description: "当该宝可梦的招式造成击中要害时,它们会无视通常会降低伤害的防御性特性,并且如果招式被抵抗,则造成双倍伤害.对于连续攻击招式,如果第一击是击中要害,则所有攻击都无视特性,否则都不无视."
+}
+ability {
+  id: ABILITY_MENTAL_POLLUTION
+  name: "精神污染"
+  description: "当自身混乱时,压制其他宝可梦的特性."
+  expanded_description: "当它陷入混乱时,对其他宝可梦施加特性压制.压制效果在这些宝可梦在场期间持续.拥有精神污染特性的宝可梦不受影响."
+}
+ability {
+  id: ABILITY_MADNESS_ENHANCEMENT
+  name: "狂化增强"
+  description: "雾中陷入狂怒；狂怒时受到的伤害减少20%。"
+  expanded_description: "进入迷雾时陷入愤怒.当使用者愤怒时,所有受到的伤害降低50%,且不会受到愤怒伤害."
+}
+ability {
+  id: ABILITY_TENTALOCK
+  name: "触手束缚"
+  description: "擒拿手 + 蛇缚."
+  expanded_description: "束缚类招式持续6回合而非4-5回合,并且每回合结束时的伤害提升至目标最大HP的1/6.攻击有50%几率束缚目标6回合,防止逃跑或替换.一旦被束缚,目标每在场一回合速度降低1级."
+}
+ability {
+  id: ABILITY_SERPENT_BIND
+  name: "蛇缚"
+  description: "有50%概率束缚目标；被束缚的对手每回合速度降低1级。"
+  expanded_description: "攻击有50%几率束缚目标4-5回合,防止逃跑或替换.一旦被束缚,目标每在场一回合速度降低1级."
+}
+ability {
+  id: ABILITY_SOUL_TAP
+  name: "灵魂之触"
+  description: "在雾中,每回合结束时从对手吸取10%的HP."
+  expanded_description: "在迷雾激活时,每回合结束时,从每个在场的对手吸取其最大HP的1/10,并回复给使用者.无视替身."
+}
+ability { 
+  id: ABILITY_SCARECROW
+  name: "稻草人"
+  description: "惊吓与棉絮的效果。"
+  expanded_description: "进入战斗时,降低所有对手宝可梦的特攻1级对手无法造成击中要害,总是造成最低伤害（85%而非85-100%）,无法触发非必定触发的追加效果,并且有5%的几率招式落空."
+}
+ability {
+  id: ABILITY_OMINOUS_SHROUD
+  name: "不祥之幕"
+  description: "幻影 + 幻影防守."
+  expanded_description: "进入战斗时,为使用者的当前属性添加幽灵属性.即使失去此特性,添加的幽灵属性在替换下场前依然保留.当HP全满时,所有受到的攻击伤害减半.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_CHILLING_PRESENCE
+  name: "寒意逼人"
+  description: "上场时使用威力10的冰冻之风。"
+  expanded_description: "出场时使用威力10的冰息（冰属性,特殊,空气类）,攻击所有对手并降低其速度1级."
+}
+ability {
+  id: ABILITY_FROSTBIND
+  name: "冰封禁锢"
+  description: "造成冻伤时也施加封印."
+  expanded_description: "当造成冻伤时,使用者也会施加封印.封印阻止目标使用其最后使用的招式,持续4回合.如果目标尚未行动,则失败."
+}
+ability {
+  id: ABILITY_GLACIAL_GHOST
+  name: "冰川鬼影"
+  description: "拨雪 + 雪隐."
+  expanded_description: "在冰雹中,该宝可梦的速度提升50%,并且对手的命中率降低25%.免疫冰雹伤害."
+}
+ability {
+  id: ABILITY_TENDER_AFFECTION
+  name: "温柔爱意"
+  description: "迷人之躯 + 妖精属性本系."
+  expanded_description: "受到接触招式攻击时,有50%几率使攻击者着迷（将其攻击和特攻减半）.同时为妖精属性招式提供本系加成."
+}
+ability {
+  id: ABILITY_WONDER_SCALE
+  name: "奇异鳞片"
+  description: "蜕皮 + 奇迹皮肤."
+  expanded_description: "每回合结束时,该宝可梦有30%的几率治愈自身所受到的异常状态.免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+}
+ability {
+  id: ABILITY_OVERZEALOUS
+  name: "过度狂热 (N)"
+  description: "使用者的效果绝佳招式拥有+1优先度."
+  expanded_description: "不会实装."
+}
+ability {
+  id: ABILITY_STAINLESS_STEEL
+  name: "不锈钢"
+  description: "坚壁 + 钢能力士."
+  expanded_description: "使用者无视大多数增加伤害或额外攻击次数的特性.将使用者的一般属性招式变为钢属性.如果使用者是钢属性,它抵抗幽灵和钢属性；否则,它获得钢属性的本系加成."
+}
+ability {
+  id: ABILITY_TEMPORAL_RUPTURE
+  name: "时空断裂"
+  description: "时光咆哮被大幅改变."
+  expanded_description: "时光咆哮变为威力100,优先度0的攻击,将目标的特性变为慢启动（攻击、特攻和速度减半5回合）,但不再强制目标替换."
+}
+ability {
+  id: ABILITY_GRASS_FLUTE
+  name: "草笛"
+  description: "声音类招式造成恐惧."
+  expanded_description: "声音类招式命中时造成恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+}
+ability {
+  id: ABILITY_HEMOTOXIN
+  name: "溶血毒素"
+  description: "目标中毒时，压制其特性。"
+  expanded_description: "当使用者成功使对手中毒时,压制对手的特性和先天特性.压制效果在他们替换下场后解除."
+}
+ability {
+  id: ABILITY_HARUKAZE
+  name: "春风"
+  description: "设置青草场地时也设置顺风,反之亦然."
+  expanded_description: "设置顺风时也会设置青草场地,设置青草场地时也会设置顺风.如果其中一种效果已激活,则不会刷新其持续时间."
+}
+ability {
+  id: ABILITY_TOXIC_SURGE
+  name: "毒沼制造者"
+  description: "上场时展开持续8回合的剧毒场地。"
+  expanded_description: "替换上场时设置剧毒场地,持续8回合（携带场地制造机时为12回合）.激活时,非毒或钢属性的接地宝可梦每回合损失1/16最大HP,毒属性招式威力提升30%,撒菱会转变为毒菱."
+}
+ability {
+  id: ABILITY_ATLANTIC_RULER
+  name: "大西洋统治者"
+  description: "水栖居民 + 悠游自如."
+  expanded_description: "进入战斗时,为使用者的当前属性添加水属性即使失去此特性,添加的水属性在替换下场前依然保留.同时水属性招式威力提升50%.下雨天气时,速度提升50%."
+}
+ability {
+  id: ABILITY_BIOFILM
+  name: "生物膜"
+  description: "剧毒场地中，特防提升50%。"
+  expanded_description: "在剧毒场地中,使用者的特防能力值提升50%."
+}
+ability {
+  id: ABILITY_CHOKEHOLD
+  name: "扼喉"
+  description: "束缚类招式使目标麻痹，并使其每回合速度降低1级。"
+  expanded_description: "当使用者束缚目标时,它们造成麻痹,并且在被束缚期间每回合降低其速度1级."
+}
+ability {
+  id: ABILITY_GUARDIAN_COAT
+  name: "守护者外套"
+  description: "免疫天气伤害和粉末类招式.受到的物理伤害降低20%."
+  expanded_description: "免疫沙暴和冰雹的天气伤害,并阻挡所有粉末类招式,包括催眠粉、麻痹粉、毒粉、蘑菇孢子、棉孢子、愤怒粉、粉末和魔法粉.同时,受到的物理伤害降低20%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_NEUTRALIZING_FOG
+  name: "中和雾气"
+  description: "出场时使用清除浓雾."
+  expanded_description: "替换上场时使用清除浓雾,清除所有入场陷阱、屏障、神秘守护和白雾.同时降低对手的闪避率1级."
+}
+ability {
+  id: ABILITY_POISON_QUILLS
+  name: "毒羽刺"
+  description: "粗糙皮肤 + 毒刺."
+  expanded_description: "对使用接触类招式的攻击者造成其最大HP1/8的伤害.同时,无论攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒.对于连续攻击招式,每次命中都会触发."
+}
+ability {
+  id: ABILITY_DRACONIC_MIGHT
+  name: "龙之威仪"
+  description: "龙化 + 半龙."
+  expanded_description: "将所有一般属性招式转变为龙属性招式,并为龙属性招式提供本系加成.如果使用者是龙属性,其龙属性招式对妖精属性造成普通伤害.出场时,为使用者的当前属性添加龙属性即使失去此特性,添加的龙属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_FESTIVITIES
+  name: "庆典"
+  description: "声音类招式同时视为舞蹈类，舞蹈类招式同时视为声音类。"
+  expanded_description: "声音类招式也被视为舞蹈类招式,可从舞者类特性中受益.舞蹈类招式也被视为声音类招式,可从基于声音的特性中受益."
+}
+ability {
+  id: ABILITY_FEY_FLIGHT
+  name: "妖精飞行"
+  description: "妖精传说与飘浮的效果。"
+  expanded_description: "进入战斗时,为使用者的当前属性添加妖精属性.即使失去此特性,添加的妖精属性在替换下场前依然保留.使用者免疫地面属性招式以及其他地面效果,如撒菱和场地状态.飞行属性招式伤害提升25%."
+}
+ability {
+  id: ABILITY_BEST_OFFENSE
+  name: "最佳攻势"
+  description: "切割类招式变为特殊招式，并使用增加20%的特防计算攻击。"
+  expanded_description: "锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并在攻击计算中使用使用者20%的特防能力值."
+}
+ability {
+  id: ABILITY_IMPALER
+  name: "穿刺者"
+  description: "强大之角的效果；角类招式有30%概率使目标流血。"
+  expanded_description: "使角和钻类攻击的威力提升30%,并且有30%的几率使目标流血流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+}
+ability {
+  id: ABILITY_MAGUS_BLADES
+  name: "魔导剑"
+  description: "最佳攻势的效果；切割类招式攻击两次，每次造成60%伤害。"
+  expanded_description: "锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并在攻击计算中使用使用者20%的特防能力值.同时,锐利刀刃类招式攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+}
+ability {
+  id: ABILITY_LIGHTNING_BORN
+  name: "闪电之躯"
+  description: "出场时添加电属性."
+  expanded_description: "进入战斗时,为使用者的当前属性添加电属性即使失去此特性,添加的电属性在替换下场前依然保留."
+}
+ability {
+  id: ABILITY_SUPERHEAVY
+  name: "超重"
+  description: "不屈之心的效果；不会被强制换下。"
+  expanded_description: "当陷入畏缩状态时,速度提升1级.防止因招式或红牌被强制替换."
+}
+ability {
+  id: ABILITY_WORLD_SERPENT
+  name: "世界之蛇"
+  description: "蛇缚与钳制的效果。"
+  expanded_description: "物理非接触类招式造成20%额外伤害.接触类招式有50%几率束缚目标4-5回合."
+}
+ability {
+  id: ABILITY_LUCKY_WINGS
+  name: "幸运之翼"
+  description: "天恩 + 巨翼."
+  expanded_description: "自身招式的追加效果触发几率加倍.使所有翅膀、风和空气类招式的威力提升30%."
+}
+ability {
+  id: ABILITY_KOMODO
+  name: "科莫多"
+  description: "增加龙属性；攻击有30%概率使目标陷入剧毒。"
+  expanded_description: "进入战斗时,为使用者的当前属性添加龙属性.即使失去此特性,添加的龙属性在替换下场前依然保留.使用者在使用任何招式命中后,有30%的几率使目标陷入剧毒连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_ENVENOM
+  name: "施毒"
+  description: "攻击有30%概率使目标中毒。"
+  expanded_description: "使用者在使用任何招式命中后,有30%的几率使目标中毒.连续攻击的每一击都会独立判定."
+}
+ability {
+  id: ABILITY_PURPLE_HAZE
+  name: "紫色迷雾"
+  description: "使用攻击招式后，追加威力20的毒瓦斯。"
+  expanded_description: "使用招式后,紧接着使用威力20的毒瓦斯（毒属性,特殊,20%几率中毒,对飞行属性效果绝佳）."
+}
+ability {
+  id: ABILITY_GNASHING_CANNON
+  name: "咬牙加农"
+  description: "超级发射器 + 精神咬碎."
+  expanded_description: "使脉冲、波导、波动和光环类招式威力提升30%.啃咬类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+}
+ability {
+  id: ABILITY_HYPER_CLEANSE
+  name: "超净"
+  description: "免疫异常状态；受到的毒属性招式伤害减半。"
+}
+ability {
+  id: ABILITY_MOLTEN_COAT
+  name: "熔岩外套"
+  description: "矿化 + 岩石属性招式有50%几率造成灼伤."
+}
+ability {
+  id: ABILITY_ROYAL_DECREE
+  name: "王室敕令"
+  description: "女王威严 + 出场时使用一次大蛇瞪眼."
+  expanded_description: "防止使用者和它的同伴成为优先度大于0的先制招式的目标.出场时使用大蛇瞪眼,使目标麻痹.每场战斗仅触发一次."
+}
+ability {
+  id: ABILITY_BREEZY_NEIGH
+  name: "轻风嘶鸣"
+  description: "击倒对手时,速度提升1级."
+  expanded_description: "当该宝可梦通过直接攻击使对手濒死时,其速度能力值提升1级."
+}
+ability {
+  id: ABILITY_DREAMSCAPE
+  name: "梦境领域"
+  description: "绝对睡眠 + 捕梦人 + 造成20%额外伤害."
+  expanded_description: "该宝可梦在招式和状态判定中被视为处于睡眠状态.可以正常行动,并且免疫所有异常状态.当场上任何宝可梦处于睡眠时,招式威力加倍.攻击会对正在替换下场的睡眠中对手造成1倍伤害,在其离开前造成伤害.伤害提升20%."
+}
+ability {
+  id: ABILITY_HASTE_MAKES_WASTE
+  name: "欲速则不达"
+  description: "后攻 + 分析."
+  expanded_description: "如果该宝可梦本回合还未行动,则受到的伤害降低30%.与其他减伤来源乘法叠加.当该宝可梦在回合中替换上场时也生效.如果目标本回合已行动,则造成的伤害提升30%."
+}
+ability {
+  id: ABILITY_HUNGRY_MAWS
+  name: "饥饿之颚"
+  description: "强壮之颚 + 杀戮之颚."
+  expanded_description: "使啃咬和颚类招式威力提升30%.使用啃咬类招式击败对手时,回复50%最大HP；使用其他招式击败时,回复25%.仅当通过直接攻击击倒目标时触发."
+}
+ability {
+  id: ABILITY_THERMAL_SLIDE
+  name: "热滑"
+  description: "在大晴天或冰雹中,速度提升50%."
+  expanded_description: "在冰雹或大晴天下,该宝可梦的速度提升50%.同时免疫冰雹伤害."
+}
+ability {
+  id: ABILITY_THERMOMANCY
+  name: "热力占卜"
+  description: "火焰占卜 + 冰霜占卜."
+  expanded_description: "将所有招式的灼伤或冻伤几率乘以5倍.与火焰之躯或冻结点特性不叠加."
+}
+ability {
+  id: ABILITY_CHUCKSTER
+  name: "强投手"
+  description: "每次上场限一次：受到的接触伤害减半，并强制攻击者换下。"
+  expanded_description: "每次上场,在受到接触招式攻击时,获得50%伤害减免并强制替换攻击者.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_HEAT_SINK
+  name: "散热器"
+  description: "吸引火属性招式.吸收后,提升自身最高的攻击能力."
+  expanded_description: "吸引火属性招式并对其免疫.此外,受到火属性招式攻击后,自身最高的攻击能力值提升1级."
+}
+ability {
+  id: ABILITY_RELIC_STONE
+  name: "遗石"
+  description: "其他参战者无法从本系加成中受益."
+  expanded_description: "在使用者在场时,所有其他宝可梦无法从属性或特性中获得本系加成."
+}
+ability {
+  id: ABILITY_SUPERCELL
+  name: "超级单体"
+  description: "降雨 + 电气制造者."
+  expanded_description: "出场时降下雨水并制造电气场地,持续8回合（携带潮湿岩石/场地制造机时为12回合）.水属性招式威力提升50%,火属性伤害降低50%.地面上的宝可梦不会陷入睡眠,且电属性招式威力提升30%."
+}
+ability {
+  id: ABILITY_LIGHTNING_ASPECT
+  name: "闪电形态"
+  description: "吸收电属性招式,然后最高的能力值提升1级."
+  expanded_description: "吸收电属性招式以免疫,并提升较高的攻击能力值1级.比较攻击与特攻以决定提升目标非常适合在对抗电属性攻击时进行强化,同时提供防御免疫和进攻增益."
+}
+ability {
+  id: ABILITY_FIRE_ASPECT
+  name: "火焰形态"
+  description: "吸收火属性招式,且火属性招式必定灼伤."
+  expanded_description: "创造终焉大晴天,持续到使用者下场.使所有造成伤害的水属性招式无效.火属性招式获得50%威力提升.除其他原始天气外,无法被覆盖.激活与大晴天相关招式的额外效果.出场时设置3回合的顺风.使所有同伴速度加倍."
+}
+ability {
+  id: ABILITY_ICE_PLUMES
+  name: "冰羽"
+  description: "受到的特殊招式伤害减半.不会加倍特防."
+  expanded_description: "受到岩石属性招式攻击或在有隐形岩的情况下替换上场时,速度提升2级.同时,吸收任何岩石属性招式或隐形岩伤害,并回复其最大HP的25%."
+}
+ability {
+  id: ABILITY_BLISTERING_SUN
+  name: "灼日"
+  description: "终结之地 + 吹气筒."
+  expanded_description: "使用者免疫火属性招式,并在受到火属性招式攻击时回复其最大HP的25%.能够触发灼伤的招式使用时必定造成灼伤."
+}
+ability {
+  id: ABILITY_MOLTEN_CORE
+  name: "熔核"
+  description: "熔炉 + 吸收岩石属性招式/隐形岩."
+  expanded_description: "使用者的特攻能力值提升50%.与其他伤害加成效果乘法叠加.出场时设置极光幕,使同伴受到的物理和特殊伤害减半.持续5回合,携带光之黏土时为8回合.免疫冰雹伤害."
+}
+ability {
+  id: ABILITY_AURORAS_GALE
+  name: "极光之风"
+  description: "华贵之鸟 + 北风."
+  expanded_description: "所有受到的特殊攻击伤害减半.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_WINTER_THRONE
+  name: "寒冬王座"
+  description: "每回合非冰属性损失1/8HP.冰属性每回合回复1/8HP."
+  expanded_description: "所有非冰属性宝可梦每回合结束时损失1/8的最大HP.每回合结束时为冰属性宝可梦回复1/8的最大HP."
+}
+ability {
+  id: ABILITY_ENERGY_TAP
+  name: "能量之触"
+  description: "回复造成伤害的1/8."
+  expanded_description: "回复使用者对对手造成伤害的1/8.回复在伤害造成后立即生效.最少回复1点HP."
+}
+ability {
+  id: ABILITY_SLUDGE_SPIT
+  name: "污泥喷吐"
+  description: "使用招式后，追加威力35的毒液箭矢。"
+}
+ability {
+  id: ABILITY_SWAMP_THING
+  name: "沼泽生物"
+  description: "上场时展开誓约组合招式的湿地效果。"
+}
+ability {
+  id: ABILITY_FROSTY_PRESCENCE
+  name: "霜寒降临"
+  description: "上场时使用白雾。"
+}
+ability {
+  id: ABILITY_CHILLING_PELLETS
+  name: "寒冰弹"
+  description: "受到接触攻击时,使用威力13的冰锥."
+}
+ability {
+  id: ABILITY_PAINT_SHOT
+  name: "颜料射击"
+  description: "超级发射器类招式将目标的属性改变为所用招式的属性."
+}
+ability {
+  id: ABILITY_STONECUTTER
+  name: "石匠"
+  description: "化石 + 岩石属性招式无视特性."
+}
+ability {
+  id: ABILITY_EDGELORD
+  name: "边缘领主"
+  description: "每次上场使用的首个切割类招式优先度+1；击倒目标后重置。"
+}
+ability {
+  id: ABILITY_WARMONGER
+  name: "战争贩子"
+  description: "自身岩石、钢、格斗属性招式威力提升30%。"
+}
+ability {
+  id: ABILITY_LOCUST_SWARM
+  name: "蝗群"
+  description: "变身为蜂群形态,直到HP降至1/4或以下."
+}
+ability {
+  id: ABILITY_REVELATION
+  name: "天启"
+  description: "变身为天启形态,直到HP降至1/4或以下."
+}
+ability {
+  id: ABILITY_CURSE_OF_FAMINE
+  name: "饥荒诅咒"
+  description: "吞噬场地,回复HP,并提升一项防御能力."
+}
+ability {
+  id: ABILITY_CRYSTALLINE_ARMOR
+  name: "水晶铠甲"
+  description: "反弹能力降低,并免疫击中要害."
+}
+ability {
+  id: ABILITY_SOUL_HARVEST
+  name: "灵魂收割"
+  description: "每只倒下的宝可梦使自身攻击、特攻、特防提高5%。"
+}
+ability {
+  id: ABILITY_THICK_BLUBBER
+  name: "厚脂"
+  description: "受到的火、冰属性攻击伤害变为1/4；速度减半。"
+}
+ability {
+  id: ABILITY_CRAVING
+  name: "渴望"
+  description: "每回合结束时随机吃一个树果."
+  expanded_description: "每回合结束时随机吃一个以下树果：利木果、文柚果、枝荔果、龙晴果、沙鳞果、龙火果、杏仔果、兰萨果、星桃果、嘉珍果或随机一个危机回复树果."
+}
+ability {
+  id: ABILITY_RAT_KING
+  name: "鼠王"
+  description: "种族值总和低于400的同伴,其能力值提升50%."
+}
+ability {
+  id: ABILITY_CRISPY_CREAM
+  name: "酥脆奶油"
+  description: "受到接触攻击时,有30%几率造成灼伤或冻伤."
+}
+ability {
+  id: ABILITY_DEEP_FRIED
+  name: "油炸"
+  description: "上场时展开誓约组合招式的火海效果。"
+}
+ability {
+  id: ABILITY_FOOD_LOVERS
+  name: "美食家"
+  description: "热情好客 + 友情防守."
+  expanded_description: "热情好客 + 友情防守."
+}
+ability {
+  id: ABILITY_LUNAR_WRATH
+  name: "月之怒"
+  description: "使用幽灵属性招式后，追加威力50的暗影之光。"
+}
+ability {
+  id: ABILITY_SPYWARE
+  name: "间谍软件"
+  description: "根据对手的强项,大幅提升一项能力."
+}
+ability {
+  id: ABILITY_VIRUS
+  name: "病毒"
+  description: "电属性招式有30%的几率同时造成中毒."
+}
+ability {
+  id: ABILITY_POWER_LEAK
+  name: "电力泄漏"
+  description: "受到攻击时展开电气场地。"
+}
+ability {
+  id: ABILITY_BACKUP_POWER
+  name: "备用电源"
+  description: "在电气场地中濒死后,复活一次,HP为25%."
+}
+ability {
+  id: ABILITY_SAND_FIEND
+  name: "沙之魔"
+  description: "沙之力 + 沙之守卫."
+}
+ability {
+  id: ABILITY_MOUSTACHE
+  name: "胡子"
+  description: "卷发 + 持久力."
+}
+ability {
+  id: ABILITY_DEPTH_EXPLORER
+  name: "深度探险家"
+  description: "野外探索者 + 发光."
+}
+ability {
+  id: ABILITY_DUNE_VEIL
+  name: "沙丘帷幕"
+  description: "沙漠披风 + 自给自足."
+  expanded_description: "在沙暴激活时,所有同伴免疫异常状态和来自敌人招式的追加效果.每回合结束时回复该宝可梦1/16的最大HP."
+}
+ability {
+  id: ABILITY_STRONG_FOUNDATION
+  name: "坚实基础"
+  description: "受到的地面、水属性招式伤害减半；不会被强制换下。"
+}
+ability {
+  id: ABILITY_FOG_MACHINE
+  name: "造雾机"
+  description: "受到攻击时起雾。"
+}
+ability {
+  id: ABILITY_DROP_BLOCKS
+  name: "落块"
+  description: "受到攻击招式伤害时，撒下一层撒菱。"
+}
+ability {
+  id: ABILITY_TURF_WAR
+  name: "地盘争夺"
+  description: "上场时移除场地，然后最高的一项能力提升1级。"
+}
+ability {
+  id: ABILITY_GREEDY
+  name: "贪婪"
+  description: "失去物品时使用偷窃."
+}
+ability {
+  id: ABILITY_LIGHT_SABER
+  name: "光剑"
+  description: "增加火属性；切割类招式有25%概率造成灼伤或麻痹。"
+}
+ability {
+  id: ABILITY_LOOSE_THORNS
+  name: "松散荆棘"
+  description: "受到接触攻击时,设置蔓延荆棘."
+}
+ability {
+  id: ABILITY_MUSICAL_NOTES
+  name: "音符"
+  description: "变化招式变为声音类."
+}
+ability {
+  id: ABILITY_LASER_DRILL
+  name: "激光钻"
+  description: "角类招式有50%几率造成灼伤."
+}
+ability {
+  id: ABILITY_STRIKEOUT
+  name: "三振出局"
+  description: "如果对手连续3回合不攻击,则强制其替换下场."
+}
+ability {
+  id: ABILITY_HOME_RUN
+  name: "本垒打"
+  description: "造成击中要害时,每回合一次提升你最低的三项能力."
+}
+ability {
+  id: ABILITY_BRUISER
+  name: "壮汉"
+  description: "出场时添加格斗属性."
+}
+ability {
+  id: ABILITY_NARCISSIST
+  name: "自恋者"
+  description: "当一项能力被降低时,大幅提升双攻."
+}
+ability {
+  id: ABILITY_LETS_DANCE
+  name: "来跳舞吧"
+  description: "出场时使用摇摆舞,使全场混乱."
+}
+ability {
+  id: ABILITY_DRAGONFRUIT
+  name: "火龙果"
+  description: "半龙 + 粗糙皮肤."
+}
+ability {
+  id: ABILITY_ROCKY_EXTERIOR
+  name: "岩石外表"
+  description: "出场时添加岩石属性."
+}
+ability {
+  id: ABILITY_LEAD_CLAWS
+  name: "铅爪"
+  description: "坚硬爪子 + 矿化."
+}
+ability {
+  id: ABILITY_FLAWLESS_PRECISION
+  name: "无瑕精准"
+  description: "致命精准 + 致命精准."
+}
+ability {
+  id: ABILITY_CHAINSAW
+  name: "链锯"
+  description: "切割类招式使目标防御降低1级。"
+}
+ability {
+  id: ABILITY_GALEFORCE_WINGS
+  name: "飓风之翼"
+  description: "飞行属性招式优先度+1。"
+}
+ability {
+  id: ABILITY_EMPRESS
+  name: "女皇"
+  description: "女王威严 + 斗争心."
+}
+ability {
+  id: ABILITY_MASHED_POTATO
+  name: "土豆泥"
+  description: "对敌人施加蜜糖炸弹效果,持续3回合."
+}
+ability {
+  id: ABILITY_RAINBOW_SCALES
+  name: "彩虹鳞"
+  description: "火鳞 + 品味彩虹."
+}
+ability {
+  id: ABILITY_TASTE_THE_RAINBOW
+  name: "品味彩虹"
+  description: "出场时召唤彩虹誓约效果."
+}
+ability {
+  id: ABILITY_HYPNOTIC_TOUCH
+  name: "催眠之触"
+  description: "接触攻击有20%几率造成睡眠.攻击时也生效."
+}
+ability {
+  id: ABILITY_HYDRA
+  name: "九头蛇"
+  description: "多头龙 + 傲慢."
+  expanded_description: "每当使用者通过直接攻击击倒对手时,其特攻能力值提升1级.根据头数,每次攻击2-3次.2头总倍率1.25倍,3头总倍率1.35倍."
+}
+ability {
+  id: ABILITY_WINGS_OF_PESTILENCE
+  name: "恶咒"
+  description: "每次攻击有20%概率造成流血，10%概率造成诅咒。"
+}
+ability {
+  id: ABILITY_SUNDAE
+  name: "圣代"
+  description: "降雪 + 冰冻之躯."
+}
+ability {
+  id: ABILITY_ICE_PICK
+  name: "冰镐"
+  description: "坚硬爪子 + 拨雪."
+}
+ability {
+  id: ABILITY_HAMMER_FIST
+  name: "锤拳"
+  description: "拳类与锤类招式威力×1.25。"
+}
+ability {
+  id: ABILITY_MACH_3
+  name: "3马赫"
+  description: "致命精准 + 滑流."
+}
+ability {
+  id: ABILITY_RAGING_STORM
+  name: "暴风雨"
+  description: "在雨中,自身最高的攻击能力提升至1.5倍."
+}
+ability {
+  id: ABILITY_SUMO_GUARD
+  name: "相扑守卫"
+  description: "主宰 + 厚脂肪."
+}
+ability {
+  id: ABILITY_SUMO_WRESTLER
+  name: "相扑手"
+  description: "每两个回合结束时,使用威力20的巴投."
+}
+ability {
+  id: ABILITY_COSMIC_WINGS
+  name: "宇宙之翼"
+  description: "飞行属性招式变为妖精属性."
+}
+ability {
+  id: ABILITY_COSMIC_DUST
+  name: "宇宙尘埃"
+  description: "魔法防守 + 宇宙迷乱."
+}
+ability {
+  id: ABILITY_COOL_EXIT
+  name: "酷炫离场"
+  description: "第2回合结束时使用冷笑话；每场战斗限一次。"
+}
+ability {
+  id: ABILITY_DEVIOUS_PRESENT
+  name: "恶作剧礼物"
+  description: "冰属性与投掷类招式威力提升50%。"
+}
+ability {
+  id: ABILITY_CHRISTMAS_NIGHTMARE
+  name: "圣诞噩梦"
+  description: "在冰雹中,敌人每回合损失1/8HP."
+}
+ability {
+  id: ABILITY_SAP_TRAP
+  name: "树液陷阱"
+  description: "每回合结束时降低对手速度.降至-3时束缚目标."
+}
+ability {
+  id: ABILITY_BARK_SKIN
+  name: "枯树皮"
+  description: "添加幽灵属性.受到的伤害降低15%.如果效果绝佳,则降低30%."
+}
+ability {
+  id: ABILITY_ECHOLOCATION
+  name: "回声定位"
+  description: "在雾中,造成20%额外伤害且必定命中."
+}
+ability {
+  id: ABILITY_MASSIVE_PELT
+  name: "厚重毛皮"
+  description: "卷发 + 毛茸茸."
+}
+ability {
+  id: ABILITY_I_AM_STEVE
+  name: "我是史蒂夫"
+  description: "出场时使用背水一战."
+}
+ability {
+  id: ABILITY_TANGLED_TAILS
+  name: "缠尾"
+  description: "识相点 + 擒拿手."
+  expanded_description: "使用接触类招式命中后,使目标在5回合内无论优先度、速度或其他效果如何,总是最后行动.效果不会叠加,也不会对已受影响的目标刷新.束缚类招式持续6回合而非4-5回合,并且每回合结束时的伤害提升至目标最大HP的1/6."
+}
+ability {
+  id: ABILITY_FOAMY_WEB
+  name: "泡沫网"
+  description: "出场时设置无法移除的黏黏网.持续5回合."
+  expanded_description: "使用者进入战斗时,在对手场上设置黏黏网.持续5回合,使任何替换上场的接地宝可梦速度降低1级.如果对手场上已有黏黏网,则无法激活."
+}
+ability {
+  id: ABILITY_SHARP_TALONS
+  name: "锐爪"
+  description: "踢腿类招式有50%几率造成流血."
+}
+ability {
+  id: ABILITY_ZEN_GARDEN
+  name: "禅意花园"
+  description: "携带对应种子上场时，展开青草场地或精神场地。"
+  expanded_description: "出场时随机设置青草或精神场地,几率各50%.携带青草种子必定触发青草场地,携带精神种子必定触发精神场地."
+}
+ability {
+  id: ABILITY_TUMMYACHE
+  name: "胃痛"
+  description: "厚脂肪 + 腐蚀."
+}
+ability {
+  id: ABILITY_HYPNOTIC_TRANCE
+  name: "催眠恍惚"
+  description: "催眠术必定命中,且同时造成混乱."
+}
+ability {
+  id: ABILITY_BRAIN_OVERLOAD
+  name: "大脑过载"
+  description: "受到攻击时展开精神场地。"
+}
+ability {
+  id: ABILITY_BRAIN_MASS
+  name: "脑容量"
+  description: "HP全满时,受到的伤害减半."
+}
+ability {
+  id: ABILITY_CHESTNUT_SHIELD
+  name: "栗子盾"
+  description: "坚不可摧 + 防弹."
+}
+ability {
+  id: ABILITY_CHESTNUT_AXE
+  name: "栗子斧"
+  description: "锋锐的效果；草属性招式也受锋锐增幅。"
+}
+ability {
+  id: ABILITY_GIANT_SHURIKEN
+  name: "巨型手里剑"
+  description: "水手里剑攻击一次,威力100,且+1击中要害率."
+}
+ability {
+  id: ABILITY_RAIN_SHROUD
+  name: "雨幕"
+  description: "雨天下闪避率×1.3。"
+}
+ability {
+  id: ABILITY_WITCH_BROOM
+  name: "女巫扫帚"
+  description: "极度好战 + 悬浮."
+}
+ability {
+  id: ABILITY_ANGELIC_WINGS
+  name: "天使之翼"
+  description: "棱镜鳞片与威严之翼的\n效果叠加。"
+}
+ability {
+  id: ABILITY_WRESTLE_SHOWMAN
+  name: "摔跤表演家"
+  description: "飞身重压威力+10，并使目标陷入挑衅。"
+}
+ability {
+  id: ABILITY_FIRE_RULER
+  name: "火之统治者"
+  description: "王之怒 + 火焰盾."
+  expanded_description: "当使用者或其同伴的能力被降低时,提升攻击和防御.受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤来源乘法叠加."
+}
+ability {
+  id: ABILITY_CHANDELIER
+  name: "枝形吊灯"
+  description: "发光 + 火焰占卜."
+}
+ability {
+  id: ABILITY_FOGGY_EYE
+  name: "雾眼"
+  description: "在雾中,幽灵属性招式威力提升50%,并且抵抗幽灵属性招式."
+}
+ability {
+  id: ABILITY_TOXIC_SHELL
+  name: "毒壳"
+  description: "硬壳盔甲 + 毒刺."
+}
+ability {
+  id: ABILITY_HAND_BARNACLES
+  name: "手藤壶"
+  description: "多头龙 + 水属性本系."
+}
+ability {
+  id: ABILITY_VOLTRON
+  name: "战神金刚"
+  description: "金属化 + 战斗盔甲."
+}
+ability {
+  id: ABILITY_FIRES_WRATH
+  name: "火之怒"
+  description: "威吓与惊吓的效果；非接触时有10%概率使目标灼伤。"
+}
+ability {
+  id: ABILITY_EMPERORS_WRATH
+  name: "帝王之怒"
+  description: "王之怒 + 后之哀."
+}
+ability {
+  id: ABILITY_LEPIDOPTERAN
+  name: "鳞翅目"
+  description: "虫之预感 + 纯朴."
+}
+ability {
+  id: ABILITY_BREAK_IT_DOWN
+  name: "分解"
+  description: "使用攻击招式后，追加威力20的高速旋转。"
+}
+ability {
+  id: ABILITY_TALON_TRAP
+  name: "爪钩陷阱"
+  description: "接触时有50%几率束缚目标.如果本回合刚上场,则几率为100%."
+  expanded_description: "无论攻击方还是被攻击方,发生接触时有50%几率束缚对手,效果类似于夹住.如果使用者本回合刚替换上场或通过超级进化等方式获得此特性,则几率提升至100%."
+}
+ability {
+  id: ABILITY_BACKSTREET_BOY
+  name: "后街男孩"
+  description: "前锋 + 踢腿类招式被视为舞蹈类招式,反之亦然."
+}
+ability {
+  id: ABILITY_BACKFLIP
+  name: "后空翻"
+  description: "使用舞蹈类招式后，追加威力50的逐步击破。"
+}
+ability {
+  id: ABILITY_CRUSHING_JAW
+  name: "粉碎之颚"
+  description: "强壮之颚 + 啃咬类招式有50%几率降低防御."
+}
+ability {
+  id: ABILITY_ETERNAL_FLOWER
+  name: "永恒之花"
+  description: "使其他超级进化宝可梦的能力值降低20%."
+}
+ability {
+  id: ABILITY_NIHIL_BLASTER
+  name: "虚无一击"
+  description: "气场破坏 + 超级发射器."
+}
+ability {
+  id: ABILITY_HOLLOW_ICE_ZONE
+  name: "冰窟地带"
+  description: "冰属性招式施加冰雕状态,然后使使用者替换下场."
+  expanded_description: "使用者的冰属性招式对目标施加冰雕状态,使其变为冰属性,失去所有抗性和冻伤免疫.如果施加了冰雕状态,使用者会替换下场."
+}
+ability {
+  id: ABILITY_OVERCAST
+  name: "阴天"
+  description: "低能见度与霜寒降临的效果。"
+}
+ability {
+  id: ABILITY_CRYOSTASIS
+  name: "低温休眠"
+  description: "冰霜占卜 + 冻伤造成畏缩."
+}
+ability {
+  id: ABILITY_FLOWER_NECKLACE
+  name: "花项链"
+  description: "青草场地中，特防提升50%。"
+}
+ability {
+  id: ABILITY_MEGA_DRILL
+  name: "巨型钻头"
+  description: "强大之角 + 所有钻类招式威力提升30%."
+}
+ability {
+  id: ABILITY_MUCUS_MEMBRANE
+  name: "黏液膜"
+  description: "受到的攻击伤害降低30% + 黏滑."
+}
+ability {
+  id: ABILITY_LUCHA_LIBRE
+  name: "自由式摔跤"
+  description: "棱镜装甲 + 不服输."
+}
+ability {
+  id: ABILITY_CURLIPEDE
+  name: "卷曲蜈蚣"
+  description: "我们滚吧 + 盘卷."
+}
+ability {
+  id: ABILITY_STORM_CLOUD
+  name: "积雨云"
+  description: "上场时召唤持续8回合的雨；获得电属性一致加成。"
+}
+ability {
+  id: ABILITY_WATERBORNE
+  name: "水传播"
+  description: "水合与适应力的效果。"
+}
+ability {
+  id: ABILITY_DRAKELP_HEAD
+  name: "龙首藻"
+  description: "首次受到的攻击伤害减少35%，之后攻击降低1级。"
+}
+ability {
+  id: ABILITY_POLARITY
+  name: "极性"
+  description: "使己方队伍最高的能力值提升30%."
+}
+ability {
+  id: ABILITY_RESILIENCE
+  name: "韧性"
+  description: "每当HP低于1/2时,回复1/4的最大HP."
+}
+ability {
+  id: ABILITY_GOING_BERSERK
+  name: "进入狂暴"
+  description: "怒火冲天 + 暴走."
+}
+ability {
+  id: ABILITY_THUNDER_CLOUDS
+  name: "雷云"
+  description: "使用特殊招式后，追加威力35的十万伏特。"
+}
+ability {
+  id: ABILITY_UNRELENTING
+  name: "不屈不挠"
+  description: "所有攻击招式可以攻击2-5次."
+}
+ability {
+  id: ABILITY_ELEMENTAL_AEGIS
+  name: "元素庇护"
+  description: "受到的火、电和水属性招式伤害减半."
+}
+ability {
+  id: ABILITY_AEGIS_WARD
+  name: "守护结界"
+  description: "受到的恶、幽灵和超能力属性招式伤害减半."
+}
+ability {
+  id: ABILITY_SHATTERED_ARMOR
+  name: "破碎铠甲"
+  description: "战斗盔甲 + 废料场."
+}
+ability {
+  id: ABILITY_ACID_REFLUX
+  name: "胃酸反流"
+  description: "受到任何伤害时，使用威力20的溶解液。"
+}
+ability {
+  id: ABILITY_GHOST_FRENZY
+  name: "幽灵狂乱"
+  description: "极度好战 + 噬魂."
+}
+ability {
+  id: ABILITY_SURVIVOR_BIAS
+  name: "幸存者偏差"
+  description: "不会被效果不好的招式击倒。"
+}
+ability {
+  id: ABILITY_BANDIT
+  name: "强盗"
+  description: "拾荒者 + 技术高手."
+}
+ability {
+  id: ABILITY_FORTRESS
+  name: "堡垒"
+  description: "过滤 + 战斗盔甲."
+}
+ability {
+  id: ABILITY_BIRD_OF_PREY
+  name: "猛禽"
+  description: "健壮胸肌 + 胆量."
+}
+ability {
+  id: ABILITY_FEATHERCOAT
+  name: "羽衣"
+  description: "受到的攻击伤害减少15%；若有抗性则减少30%。"
+  expanded_description: "受到的所有攻击伤害降低10%.被抵抗时降低20%."
+}
+ability {
+  id: ABILITY_POWER_OUTAGE
+  name: "停电"
+  description: "首次电属性攻击威力翻倍，但自身失去电属性。"
+  expanded_description: "第一次电属性攻击威力提升2倍,之后失去电属性."
+}
+ability {
+  id: ABILITY_ELECTRO_BOOSTER
+  name: "电击助推器"
+  description: "出场时使用电磁飘浮."
+}
+ability {
+  id: ABILITY_CURRENT_CRASH
+  name: "电流冲击"
+  description: "舍身 + 雷召."
+}
+ability {
+  id: ABILITY_DAREDEVIL
+  name: "冒失鬼"
+  description: "使用反作用力招式时，攻击提升1级；反作用力伤害减半。"
+  expanded_description: "使用反伤招式后,攻击+1.反伤伤害减半."
+}
+ability {
+  id: ABILITY_FROST_DRAGON
+  name: "霜龙"
+  description: "使用龙或冰属性招式后,触发威力50的暴风雪."
+}
+ability {
+  id: ABILITY_THERMAL_ENTROPY
+  name: "热熵"
+  description: "热交换 + 耐热."
+}
+ability {
+  id: ABILITY_SINISTER_CLAWS
+  name: "阴险之爪"
+  description: "神秘刀锋的效果；切割类招式降低目标特防。"
+  expanded_description: "锐利刀刃类招式造成1.3倍伤害,变为特殊招式,使用特攻能力值并攻击特防.同时降低目标特防1级（每回合每个目标最多一次）."
+}
+ability {
+  id: ABILITY_PETAL_SHIELD
+  name: "花瓣盾"
+  description: "上场时防御提升6级；每次受击后防御降低1级。"
+  expanded_description: "出场时防御提升至+6级.受到攻击后防御降低1级.连续攻击会多次降低防御."
+}
+ability {
+  id: ABILITY_MOB_BOSS
+  name: "黑帮老大"
+  description: "恐怖 + 偏离."
+  expanded_description: "出场时降低所有对手的特攻2级将使用者的一般属性招式变为恶属性.如果使用者是恶属性,其恶属性招式有10%的几率造成愤怒；否则,它获得恶属性的本系加成."
+}
+ability {
+  id: ABILITY_GHOST_PEPPER
+  name: "幽灵辣椒"
+  description: "草属性招式有30%概率使目标灼伤。"
+}
+ability {
+  id: ABILITY_DROIDEKA
+  name: "毁灭者"
+  description: "耐热 + 战斗盔甲."
+}
+ability {
+  id: ABILITY_3_GT_1
+  name: "3 ョ 1"
+  description: "多头龙 + 激流."
+}
+ability {
+  id: ABILITY_ICICLE_FIST
+  name: "冰柱拳"
+  description: "铁拳的效果；拳类招式有30%概率使目标冻伤。"
+}
+ability {
+  id: ABILITY_ABOMINABLE_MONSTER
+  name: "可憎怪物"
+  description: "冰雹天气中特防×1.5。"
+  expanded_description: "受到冰雹影响时特防提升50%。\n此提升适用于所有\n依赖防御的效果。"
+}
+ability {
+  id: ABILITY_WIND_CHIMES
+  name: "风铃"
+  description: "扩音器的效果；受击时使用威力30的巨声。"
+}
+ability {
+  id: ABILITY_UNSTABLE_CORE
+  name: "不稳定核心"
+  description: "动力核心 + 引爆."
+}
+ability {
+  id: ABILITY_AURA_ARMOR
+  name: "气场铠甲"
+  description: "受到的攻击伤害减少35%。"
+}
+ability {
+  id: ABILITY_DEFLECT
+  name: "偏斜"
+  description: "受到攻击时使用威力20的真空波；受到的伤害减少20%。"
+}
+ability {
+  id: ABILITY_OVERWHELMING_MIND
+  name: "压倒性思维"
+  description: "超能力属性招式威力×1.3；HP低于1/3时改为×1.8。"
+}
+ability {
+  id: ABILITY_DUALITY
+  name: "二元性"
+  description: "穿透 + 好胜."
+}
+ability {
+  id: ABILITY_REAPERS_EMBARCE
+  name: "死神拥抱"
+  description: "坚硬爪子 + 邪恶能量."
+}
+ability {
+  id: ABILITY_FOUL_ENERGY
+  name: "邪恶能量"
+  description: "恶属性招式威力×1.2，HP低于1/3时×1.5。"
+}
+ability {
+  id: ABILITY_JUNGLE_FEVER
+  name: "丛林热"
+  description: "在青草场地中,该宝可梦的速度提升至1.5倍."
+  expanded_description: "丛林热在青草场地激活时,该宝可梦的速度能力值提升50%.场地开始时立即生效,场地结束时加成消失."
+}
+ability {
+  id: ABILITY_KING_OF_THE_JUNGLE
+  name: "丛林之王"
+  description: "青草制造者与穿透的效果。"
+  expanded_description: "出场时创造青草场地，\n持续8回合(携带大地膜为12回合)。\n自身招式可穿透光墙、\n神秘守护、白雾与替身。"
+}
+ability {
+  id: ABILITY_WARRIORS_SPEAR
+  name: "勇士之矛"
+  description: "强大之角 + 斗争精神."
+}
+ability {
+  id: ABILITY_SLEEK_SCALES
+  name: "光滑鳞片"
+  description: "防御时，额外使用自身速度的15%。"
+}
+ability {
+  id: ABILITY_ROCK_ARMOR
+  name: "岩石铠甲"
+  description: "岩石外表的效果；受到的攻击伤害减少10%。"
+}
+ability {
+  id: ABILITY_SMOLDERING_WOOD
+  name: "余烬木"
+  description: "原木与火焰之躯的效果。"
+}
+ability {
+  id: ABILITY_SLIME_MOLD
+  name: "黏菌"
+  description: "黏着与黏滑的效果。"
+}
+ability {
+  id: ABILITY_BUTTERFLY_WINGS
+  name: "蝴蝶之翼"
+  description: "授粉与巨翼的效果。"
+  expanded_description: "自己的一般属性招\n式变为虫属性。\n如果自己是虫属性则\n免疫粉末类招式，\n否则获得虫属性本系加成。\n所有翼、风、\n空气类招式的威力提升30%。"
+}
+ability {
+  id: ABILITY_SAND_TITAN
+  name: "沙之巨人"
+  description: "主宰与扬沙的效果。"
+  expanded_description: "接触类招式计算时\n额外加入自身20%防御。\n免疫麻痹,若已麻痹则立即治愈。\n出场时召唤沙暴,持续8回合\n(携带沙沙岩石为12回合)。\n免疫沙暴伤害。"
+}
+ability {
+  id: ABILITY_FAMILIA_BOND
+  name: "家族纽带"
+  description: "招式攻击两次；第一次威力100%，第二次50%。"
+  expanded_description: "所有攻击连续命中两次:\n第一次100%,第二次50%。\n每次命中独立判定追加效果\n(畏缩除外)。\n可无视坚壁/奇迹皮肤。"
+}
+ability {
+  id: ABILITY_MEGA_SOL
+  name: "超级太阳"
+  description: "叶绿体与青草制造者的效果。"
+  expanded_description: "自身使用的招式\n视同处于强烈阳光下。\n出场时创造青草场地,持续8回合\n(携带大地膜为12回合)。"
+}
+ability {
+  id: ABILITY_PETROLEUM_JELLY
+  name: "凡士林"
+  description: "超净与液化的效果。"
+  expanded_description: "免疫异常状态。\n受到毒属性招式和接触\n类招式的伤害减半，\n但受到水属性招\n式的伤害翻倍。"
+}
+ability {
+  id: ABILITY_SPICY_SPRAY
+  name: "辛辣喷雾"
+  description: "受到招式伤害时，使攻击者灼伤。"
+  expanded_description: "当自己受到任何伤\n害招式攻击时，\n攻击方会陷入灼伤。"
+}
+ability {
+  id: ABILITY_CRIMSON_CROWN
+  name: "绯红王冠"
+  description: "尖刺盔甲与强大之角的效果。"
+  expanded_description: "接触类招式有30%\n几率使对手流血，\n攻击和被攻击时均有效。\n角类和钻类招式\n的威力提升30%。"
+}
+ability {
+  id: ABILITY_MANA_COAT
+  name: "魔力外衣"
+  description: "精神场地中，物理攻击多造成30%伤害。"
+  expanded_description: "超能力场地激活时，自己\n的物理招式伤害提升30%。\n即使自己不接地也有效。"
+}
+ability {
+  id: ABILITY_HEMORRHAGE
+  name: "大出血"
+  description: "自身使目标流血时，压制目标的特性。"
+  expanded_description: "当自己成功使对手流血时，\n无效化对手的特性和天赋。\n压制效果在对手替\n换下场后消失。"
+}
+ability {
+  id: ABILITY_OVERCLOCK
+  name: "超频"
+  description: "大地冲击与过载的\n效果叠加。"
+  expanded_description: "自己的电属性招式对\n地面属性造成效果不\n佳的伤害而非无效，\n对电属性造成效果绝佳\n的伤害而非效果不佳。\n自己可以使电属性麻痹。"
+}
+ability {
+  id: ABILITY_BAD_GUY
+  name: "坏家伙"
+  description: "上场时增加恶属性。"
+  expanded_description: "上场时为此宝可梦追加\n恶属性。即使失去此特\n性也保留恶属性，\n仅在替换下场时消失。"
+}
+
+ability {
+  id: ABILITY_IGNITION
+  name: "点火"
+  description: "上场时增加火属性。"
+  expanded_description: "上场时为此宝可梦追加\n火属性。即使失去此特\n性也保留火属性，\n仅在替换下场时消失。"
+}
+
+ability {
+  id: ABILITY_SMARTY_PANTS
+  name: "聪明鬼"
+  description: "上场时增加超能力属性。"
+  expanded_description: "上场时为此宝可梦\n追加超能力属性。\n即使失去此特性也\n保留超能力属性，\n仅在替换下场时消失。"
+}
+
+ability {
+  id: ABILITY_BIRD_TYPE
+  name: "鸟属性"
+  description: "上场时增加飞行属性。"
+  expanded_description: "上场时为此宝可梦\n追加飞行属性。\n即使失去此特性也\n保留飞行属性，\n仅在替换下场时消失。"
+}
+
+ability {
+  id: ABILITY_INSECTEATER
+  name: "食虫者"
+description: "对虫属性目标造成的伤害×1.5；受到虫属性目标的伤害×0.5。"
+expanded_description: "对虫属性宝可梦造成1.5\n倍伤害，被虫属性宝可梦\n攻击时受到的伤害减半。\n基于攻击方与防守方的宝\n可梦属性，而非招式属性。\n减伤与其他来源乘算。"
+}
+
+ability {
+  id: ABILITY_CREEPYCRAWLIE
+  name: "爬行怪虫"
+  description: "上场时增加虫属性。"
+  expanded_description: "上场时为此宝可\n梦追加虫属性。\n即使失去此特性\n也保留虫属性，\n仅在替换下场时消失。"
+}
+
+ability {
+  id: ABILITY_THIRDDEGREEBURN
+  name: "三度烧伤"
+  description: "可使任何属性的目标灼伤；火属性招式无视特性。"
+  expanded_description: "此宝可梦可以灼伤火属性宝可梦，\n无视灼伤免疫。\n火属性招式无视对手干扰\n效果或减伤的特性和天赋。"
+}
+
+ability {
+  id: ABILITY_ENGULF
+  name: "吞没"
+  description: "50%几率束缚对手.之后无视防御和命中判定."
+  expanded_description: "接触类招式有50%几率束缚目标（如捆绑）,防止其逃跑或替换.对抗被束缚的目标时,使用者的招式无视其防御能力变化并必定命中.被束缚的目标每回合损失1/8的最大HP.束缚持续4-5回合（携带紧绑钩爪时为7回合）."
+}
+
+ability {
+  id: ABILITY_GRIMACE
+  name: "狰狞面容"
+  description: "上场时使用黑色目光。"
+  expanded_description: "上场时自动对对手\n施加黑色目光。\n黑色目光使对手\n无法替换下场。"
+}
+
+ability {
+  id: ABILITY_THERMALDWELLER
+  name: "热域栖居"
+  description: "耐热与献祭的效果。"
+}
+
+ability {
+  id: ABILITY_LETHALTOUCH
+  name: "致命之触"
+  description: "毒锁链与锋利的边缘的效果。"
+}
+
+ability {
+  id: ABILITY_FROSTY
+  name: "冰寒"
+  description: "冰属性招式威力×1.2；HP低于1/3时改为×1.5。"
+  expanded_description: "冰属性招式的威力提升20%，\nHP低于1/3时提升50%。"
+}
+
+ability {
+  id: ABILITY_POISON_UPSURGE
+  name: "毒性涌动"
+  description: "毒属性招式威力×1.2；HP低于1/3时改为×1.5。"
+  expanded_description: "毒属性招式的威力提升20%，\nHP低于1/3时提升50%。"
+}
+
+ability {
+  id: ABILITY_PACKEDICE
+  name: "坚冰"
+  description: "免疫冰属性招式，并大幅提升防御。"
+  expanded_description: "受到冰属性招式攻击时，\n免疫冰属性招式并\n使防御提升2级。"
+}
+
+ability {
+  id: ABILITY_BUSHRUSH
+  name: "丛林突袭"
+  description: "HP全满时，草属性招式优先度+1。"
+  expanded_description: "HP全满时，\n草属性招式获得先制+1。"
+}
+ability {
+  id: ABILITY_GUERILLA_FIGHTER
+  name: "游击战士"
+  description: "丛林突袭与斗争精神的效果。"
+}
+ability {
+  id: ABILITY_SOUR_APPLE
+  name: "酸苹果"
+  description: "腐蚀与芳香幕的效果；自身悬浮。"
+}
+ability {
+  id: ABILITY_SEARCHLIGHT
+  name: "探照灯"
+  description: "察觉与发光的效果。"
+}
+
+ability {
+  id: ABILITY_LIGHT_WIELD
+  name: "御光"
+  description: "上场时设置持续3回合的光墙。"
+}
+
+ability {
+  id: ABILITY_PHOTOKINESIS
+  name: "光能操控"
+  description: "光类招式威力×1.3。"
+}
+
+ability {
+  id: ABILITY_PHOTON_BURST
+  name: "光子爆发"
+  description: "光类招式以目标防御计算伤害，威力×1.3。"
+}
+
+ability {
+  id: ABILITY_RIPPLING_PUNCH
+  name: "波动拳"
+  description: "拳类招式同时视为声音类招式。"
+}
+
+ability {
+  id: ABILITY_CACKLING
+  name: "怪笑"
+  description: "上场时使用诡笑；每场战斗最多触发两次。"
+}
+
+ability {
+  id: ABILITY_FRESH_SNOWFALL
+  name: "新雪"
+  description: "受到特殊攻击时，使用威力30的细雪。"
+}
+
+ability {
+  id: ABILITY_STICKY_SITUATION
+  name: "黏滞困境"
+  description: "虫属性招式降低目标速度。"
+}
+
+ability {
+  id: ABILITY_BIOLUMINESCENT
+  name: "生物荧光"
+  description: "自身增加电属性，并具有发光的效果。"
+}
+
+ability {
+  id: ABILITY_BLINKING_FLASH
+  name: "闪烁光辉"
+  description: "光类招式有10%概率降低目标命中率。"
+}
+
+ability {
+  id: ABILITY_BRAIN_FREEZE
+  name: "脑冻结"
+  description: "超能力属性招式有30%概率造成冻伤。"
+}
+
+ability {
+  id: ABILITY_BLUESCREEN
+  name: "蓝屏"
+  description: "脑冻结与除障的效果。"
+}
+
+ability {
+  id: ABILITY_CHLOROPHYLLO
+  name: "叶绿附生"
+  description: "上场时增加草属性。"
+  expanded_description: "上场时为此宝可梦追加草属性。即使失去此特性也保留草属性，仅在替换下场时消失。"
+}
+
+ability {
+  id: ABILITY_CHARGE_SPORES
+  name: "充能孢子"
+  description: "闪电之躯与孢子的效果。"
+}
+
+ability {
+  id: ABILITY_STATIC_BLOOM
+  name: "静电绽放"
+  description: "电气场地中，电属性招式威力提升50%。"
+  expanded_description: "电气场地激活时，\n电属性招式威力提升50%。"
+}
+
+ability {
+  id: ABILITY_DAZZLING_WINGS
+  name: "炫目之翼"
+  description: "鲜艳之躯与巨翼的效果。"
+}
+
+ability {
+  id: ABILITY_FEARLESS
+  name: "无畏"
+  description: "免疫恐惧与威吓。"
+}
+
+ability {
+  id: ABILITY_GNAWING_AWAY
+  name: "啃噬"
+  description: "咬类招式有50%概率降低目标防御。"
+}
+
+ability {
+  id: ABILITY_VERSATILE
+  name: "多才多艺"
+  description: "使用招式前变为该招式的属性。"
+}
+
+ability {
+  id: ABILITY_POWER_SHOES
+  name: "力量鞋"
+  description: "踢类招式以目标特防计算伤害，威力×1.3。"
+}
+
+ability {
+  id: ABILITY_CLEANSE
+  name: "净化"
+  description: "上场时使用治愈铃声；每场战斗限两次。"
+}
+
+ability {
+  id: ABILITY_SHARPSHOOTER
+  name: "神射手"
+  description: "狙击手与超级发射器的效果。"
+}
+
+ability {
+  id: ABILITY_HIGH_RISE
+  name: "高楼"
+  description: "钢能力者与镜甲的效果。"
+}
+
+ability {
+  id: ABILITY_EARTH_WIRE
+  name: "接地线"
+  description: "电属性招式对地面属性效果绝佳。"
+  expanded_description: "自身电属性招式对地面属性宝可梦\n造成效果绝佳的伤害，而非无效。"
+}
+
+ability {
+  id: ABILITY_UNERRING
+  name: "精准无误"
+  description: "变化招式必定命中。"
+  expanded_description: "自身变化招式必定命中，\n无论命中与闪避等级如何。"
+}
+
+ability {
+  id: ABILITY_TIDAL_FORCE
+  name: "潮汐力"
+  description: "水属性招式伤害翻倍。"
+  expanded_description: "自身水属性招式的伤害翻倍。"
+}
+
+ability {
+  id: ABILITY_FIGHT_CLUB
+  name: "格斗俱乐部"
+  description: "格斗属性招式伤害翻倍。"
+  expanded_description: "自身格斗属性招式的伤害翻倍。"
+}
+
+ability {
+  id: ABILITY_MARTIAL_ARTS
+  name: "武术"
+  description: "拳击与踢击招式伤害1.5倍。"
+  expanded_description: "拳击与踢击招式伤害提升50%，\n与铁拳、踢击效果叠加。"
+}
+
+ability {
+  id: ABILITY_BONE_MASTER
+  name: "骨骼大师"
+  description: "自身所有招式都视为骨系招式。"
+  expanded_description: "自身使用的所有招式都视为骨系招式，\n因此骨之领域等特性对全部招式生效。"
+}
+
+ability {
+  id: ABILITY_EXECUTIONER
+  name: "刽子手"
+  description: "暴击可直接击倒目标。"
+  expanded_description: "自身击中要害时，\n造成等于目标剩余HP的伤害。\n结实、气势披带与挺住仍可撑住。"
+}
+
+ability {
+  id: ABILITY_PERFECT_PITCH
+  name: "绝对音感"
+  description: "音波招式必定击中要害。"
+  expanded_description: "自身所有音波招式必定击中要害，\n除非目标免疫要害\n(战斗盔甲、贝壳盔甲等)。"
+}

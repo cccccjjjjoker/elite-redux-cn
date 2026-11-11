@@ -1,0 +1,363 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_HONEY
+  name: "甜甜蜜"
+  description: "吸引野生宝可梦。蜜蜂可用其回复HP。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 25
+  use_type: ITEM_USE_FIELD
+  image: "honey"
+  palette: "honey"
+  field_use_func: "Honey"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_IRON_PILL
+  name: "钢铁药剂"
+  description: "将速度个体值设为0，再次使用恢复为31。"
+  grouping: POCKET_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "iron_pill"
+  palette: "iron_pill"
+  field_use_func: "IronPill"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SOUL_DEW
+  name: "心之水滴"
+  description: "携带道具提升拉帝欧斯/拉帝亚斯的特攻和特防。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 50
+  image: "soul_dew"
+  palette: "soul_dew"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DEEP_SEA_SCALE
+  name: "深海鳞片"
+  description: "提升珍珠贝特防的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "deep_sea_scale"
+  palette: "deep_sea_scale"
+  field_use_func: "EvolutionStone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DEEP_SEA_TOOTH
+  name: "深海之牙"
+  description: "提升珍珠贝特攻的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "deep_sea_tooth"
+  palette: "deep_sea_tooth"
+  field_use_func: "EvolutionStone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LIGHT_BALL
+  name: "电气球"
+  description: "提升皮卡丘和雷丘威力的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "light_ball"
+  palette: "light_ball"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LEEK
+  name: "大葱"
+  description: "提升大葱鸭击中要害率的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "stick"
+  palette: "stick"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LUCKY_PUNCH
+  name: "吉利拳"
+  description: "提升吉利蛋击中要害率的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "lucky_punch"
+  palette: "lucky_punch"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_THICK_CLUB
+  name: "粗骨头"
+  description: "提升卡拉卡拉或嘎啦嘎啦攻击的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "thick_club"
+  palette: "thick_club"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_METAL_POWDER
+  name: "金属粉"
+  description: "提升百变怪防御的携带道具。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "metal_powder"
+  palette: "metal_powder"
+}
+item {
+  id: ITEM_NORMAL_GEM
+  name: "一般宝石"
+  description: "携带后，一般属性招式的威力会提高。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_NORMAL
+  use_type: ITEM_USE_PARTY_MENU
+  image: "normal_gem"
+  palette: "normal_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FIGHTING_GEM
+  name: "格斗宝石"
+  description: "提升格斗属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_FIGHTING
+  use_type: ITEM_USE_PARTY_MENU
+  image: "fighting_gem"
+  palette: "fighting_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FLYING_GEM
+  name: "飞行宝石"
+  description: "提升飞行属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_FLYING
+  use_type: ITEM_USE_PARTY_MENU
+  image: "flying_gem"
+  palette: "flying_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_POISON_GEM
+  name: "毒之宝石"
+  description: "提升毒属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_POISON
+  use_type: ITEM_USE_PARTY_MENU
+  image: "poison_gem"
+  palette: "poison_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GROUND_GEM
+  name: "地面宝石"
+  description: "提升地面属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_GROUND
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ground_gem"
+  palette: "ground_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ROCK_GEM
+  name: "岩石宝石"
+  description: "携带后，岩石属性招式的威力会提高。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_ROCK
+  use_type: ITEM_USE_PARTY_MENU
+  image: "rock_gem"
+  palette: "rock_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BUG_GEM
+  name: "虫之宝石"
+  description: "提升虫属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_BUG
+  use_type: ITEM_USE_PARTY_MENU
+  image: "bug_gem"
+  palette: "bug_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GHOST_GEM
+  name: "幽灵宝石"
+  description: "提升幽灵属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_GHOST
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ghost_gem"
+  palette: "ghost_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_STEEL_GEM
+  name: "钢之宝石"
+  description: "提升钢属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_STEEL
+  use_type: ITEM_USE_PARTY_MENU
+  image: "steel_gem"
+  palette: "steel_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FIRE_GEM
+  name: "火之宝石"
+  description: "提升火属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_FIRE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "fire_gem"
+  palette: "fire_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_WATER_GEM
+  name: "水之宝石"
+  description: "提升水属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_WATER
+  use_type: ITEM_USE_PARTY_MENU
+  image: "water_gem"
+  palette: "water_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GRASS_GEM
+  name: "草之宝石"
+  description: "提升草属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_GRASS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "grass_gem"
+  palette: "grass_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ELECTRIC_GEM
+  name: "电之宝石"
+  description: "提升电属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_ELECTRIC
+  use_type: ITEM_USE_PARTY_MENU
+  image: "electric_gem"
+  palette: "electric_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_PSYCHIC_GEM
+  name: "超能力宝石"
+  description: "提升超能力属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_PSYCHIC
+  use_type: ITEM_USE_PARTY_MENU
+  image: "psychic_gem"
+  palette: "psychic_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ICE_GEM
+  name: "冰之宝石"
+  description: "提升冰属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_ICE
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ice_gem"
+  palette: "ice_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DRAGON_GEM
+  name: "龙之宝石"
+  description: "提升龙属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_DRAGON
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dragon_gem"
+  palette: "dragon_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DARK_GEM
+  name: "恶之宝石"
+  description: "携带后，恶属性招式的威力会提高。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_DARK
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dark_gem"
+  palette: "dark_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FAIRY_GEM
+  name: "妖精宝石"
+  description: "提升妖精属性招式的威力。"
+  grouping: POCKET_ITEMS
+  hold_effect: HOLD_EFFECT_GEMS
+  hold_effect_strength: 50
+  hold_effect_type: TYPE_FAIRY
+  use_type: ITEM_USE_PARTY_MENU
+  image: "fairy_gem"
+  palette: "fairy_gem"
+  field_use_func: "TypeGems"
+  talk_to_nurse_joy: true
+}

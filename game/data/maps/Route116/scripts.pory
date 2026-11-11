@@ -1,0 +1,627 @@
+raw `
+.set LOCALID_BRINEY, 9
+.set LOCALID_WANDAS_BF_OUTSIDE, 17
+
+Route116_MapScripts:: @ 81F2C0C
+	map_script MAP_SCRIPT_ON_TRANSITION, Route116_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, Route116_OnLoad
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route116_OnFrame
+	.byte 0
+
+Route116_OnTransition: @ 81F2C1C
+	call_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_SetWandasBoyfriendPos
+	compare VAR_SHOULD_END_ABNORMAL_WEATHER, 1
+	call_if_eq AbnormalWeather_EventScript_HideMapNamePopup
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH
+	call_if_eq AbnormalWeather_StartGroudonWeather
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH
+	call_if_eq AbnormalWeather_StartGroudonWeather
+	end
+
+Route116_EventScript_SetWandasBoyfriendPos:: @ 81F2C47
+	setobjectxyperm LOCALID_WANDAS_BF_OUTSIDE, 38, 10
+	return
+
+Route116_OnLoad: @ 81F2C4F
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute116North
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute116South
+	end
+
+Route116_OnFrame: @ 81F2C66
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	.2byte 0
+
+Route116_EventScript_WandasBoyfriend:: @ 81F2C70
+	lock
+	faceplayer
+	goto_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_BoyfriendGruntLeftTunnel
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, Route116_EventScript_BoyfriendGruntInTunnel
+	msgbox Route116_Text_WantToDigTunnel, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_BoyfriendGruntLeftTunnel:: @ 81F2C8E
+	msgbox Route116_Text_GoonHightailedItOutOfTunnel, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_BoyfriendGruntInTunnel:: @ 81F2C98
+	msgbox Route116_Text_DiggingTunnelWhenGoonOrderedMeOut, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_DevonEmployee:: @ 81F2CA2
+	lock
+	faceplayer
+	goto_if_set FLAG_MET_DEVON_EMPLOYEE, Route116_EventScript_TryGiveAggroniteAgain
+	msgbox Route116_Text_ThankYouTokenOfAppreciation, MSGBOX_DEFAULT
+	goto Route116_EventScript_GiveAggronite
+	end
+
+Route116_EventScript_GiveAggronite:: @ 81F2CBB
+	setflag FLAG_MET_DEVON_EMPLOYEE
+	givecustommon SPECIES_AGGRON, 30, ITEM_AGGRONITE, ITEM_HEAVY_BALL, NATURE_ADAMANT, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_HEAVY_SLAM, MOVE_ICE_PUNCH, MOVE_SLACK_OFF, MOVE_HIGH_HORSEPOWER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route116_EventScript_Text_Got_Aggron
+	waitfanfare
+	msgbox Route116_Text_AlsoNeedKeystone, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq Route116_EventScript_DevonEmployeeExit
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq Route116_EventScript_DevonEmployeeExit
+	compare VAR_FACING, DIR_WEST
+	call_if_eq Route116_EventScript_DevonEmployeeExit
+	compare VAR_FACING, DIR_EAST
+	call_if_eq Route116_EventScript_DevonEmployeeExitEast
+	removeobject VAR_LAST_TALKED
+	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+	setflag FLAG_RECEIVED_AGGRONITE
+	release
+	end
+
+Route116_EventScript_DevonEmployeeExit:: @ 81F2D15
+	applymovement VAR_LAST_TALKED, Route116_Movement_DevonEmployeeExit
+	waitmovement 0
+	return
+
+Route116_EventScript_DevonEmployeeExitEast:: @ 81F2D20
+	applymovement VAR_LAST_TALKED, Route116_Movement_DevonEmployeeExitEast
+	waitmovement 0
+	return
+
+Route116_EventScript_TryGiveAggroniteAgain:: @ 81F2D2B
+	msgbox Route116_Text_TokenOfAppreciation, MSGBOX_DEFAULT
+	goto Route116_EventScript_GiveAggronite
+	end
+
+Route116_EventScript_NoRoomForAggronite:: @ 81F2D39
+	msgbox Route116_Text_BagIsJamPacked, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_Movement_DevonEmployeeExit: @ 81F2D43
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Route116_Movement_DevonEmployeeExitEast: @ 81F2D4C
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Route116_EventScript_RouteSignRustboro:: @ 81F2D57
+	msgbox Route116_Text_RouteSignRustboro, MSGBOX_SIGN
+	end
+
+Route116_EventScript_RusturfTunnelSign:: @ 81F2D60
+	msgbox Route116_Text_RusturfTunnelSign, MSGBOX_SIGN
+	end
+
+Route116_EventScript_TunnelersRestHouseSign:: @ 81F2D69
+	msgbox Route116_Text_TunnelersRestHouse, MSGBOX_SIGN
+	end
+
+Route116_EventScript_TrainerTipsBToStopEvolution:: @ 81F2D72
+	msgbox Route116_Text_TrainerTipsBToStopEvolution, MSGBOX_SIGN
+	end
+
+Route116_EventScript_TrainerTipsBagHasPockets:: @ 81F2D7B
+	msgbox Route116_Text_TrainerTipsBagHasPockets, MSGBOX_SIGN
+	end
+
+Route116_EventScript_Briney:: @ 81F2D84
+	lock
+	faceplayer
+	msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT
+	setvar VAR_ROUTE116_STATE, 2
+	release
+	end
+
+Route116_EventScript_BrineyTrigger:: @ 81F2D95
+	lockall
+	applymovement LOCALID_BRINEY, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT
+	setvar VAR_ROUTE116_STATE, 2
+	releaseall
+	end
+
+Route116_EventScript_GlassesMan:: @ 81F2DB6
+	lock
+	faceplayer
+	checkitem ITEM_BLACK_GLASSES, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route116_EventScript_PlayerHasGlasses
+	specialvar VAR_RESULT, FoundBlackGlasses
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route116_EventScript_FoundGlassesNotOnPlayer
+	msgbox Route116_Text_CanYouHelpMeFindGlasses, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_FoundGlassesNotOnPlayer:: @ 81F2DE2
+	msgbox Route116_Text_CantFindGlassesNotHere, MSGBOX_DEFAULT
+	closemessage
+	goto Route116_EventScript_GlassesManExit
+	end
+
+Route116_EventScript_PlayerHasGlasses:: @ 81F2DF1
+	msgbox Route116_Text_CanYouHelpMeFindGlasses, MSGBOX_DEFAULT
+	msgbox Route116_Text_MayISeeThoseGlasses, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, FoundBlackGlasses
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route116_EventScript_FoundGlassesOnPlayer
+	msgbox Route116_Text_NotWhatImLookingFor, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_FoundGlassesOnPlayer:: @ 81F2E1B
+	msgbox Route116_Text_NotWhatImLookingForMaybeTheyArentHere, MSGBOX_DEFAULT
+	closemessage
+	goto Route116_EventScript_GlassesManExit
+	end
+
+Route116_EventScript_GlassesManExit:: @ 81F2E2A
+	delay 20
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq Route116_EventScript_GlassesManExitNormal
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq Route116_EventScript_GlassesManExitNormal
+	compare VAR_FACING, DIR_WEST
+	call_if_eq Route116_EventScript_GlassesManExitNormal
+	compare VAR_FACING, DIR_EAST
+	call_if_eq Route116_EventScript_GlassesManExitEast
+	removeobject VAR_LAST_TALKED
+	release
+	end
+
+Route116_EventScript_GlassesManExitNormal:: @ 81F2E5E
+	applymovement VAR_LAST_TALKED, Route116_Movement_GlassesManExit
+	waitmovement 0
+	return
+
+Route116_EventScript_GlassesManExitEast:: @ 81F2E69
+	applymovement VAR_LAST_TALKED, Route116_Movement_GlassesManExitEast
+	waitmovement 0
+	return
+
+Route116_Movement_GlassesManExit: @ 81F2E74
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Route116_Movement_GlassesManExitEast: @ 81F2E7E
+	walk_up
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Route116_EventScript_Joey:: @ 81F2E89
+	trainerbattle_single TRAINER_JOEY, Route116_Text_JoeyIntro, Route116_Text_JoeyDefeat
+	msgbox Route116_Text_JoeyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Jose:: @ 81F2EA0
+	trainerbattle_single TRAINER_JOSE, Route116_Text_JoseIntro, Route116_Text_JoseDefeat
+	msgbox Route116_Text_JosePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Jerry:: @ 81F2EB7
+	trainerbattle_single TRAINER_JERRY_1, Route116_Text_JerryIntro, Route116_Text_JerryDefeat, Route116_EventScript_TryRegisterJerryAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route116_EventScript_RematchJerry
+	setvar VAR_0x8004, TRAINER_JERRY_1
+	specialvar VAR_RESULT, IsTrainerRegistered
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route116_EventScript_TryRegisterJerry
+	msgbox Route116_Text_JerryPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_TryRegisterJerryAfterBattle:: @ 81F2EF8
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_RegisterJerryAfterBattle
+	release
+	end
+
+Route116_EventScript_RegisterJerryAfterBattle:: @ 81F2F03
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route116_Text_JerryRegister2, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JERRY_1
+	release
+	end
+
+Route116_EventScript_TryRegisterJerry:: @ 81F2F22
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_RegisterJerry
+	msgbox Route116_Text_JerryPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_RegisterJerry:: @ 81F2F35
+	msgbox Route116_Text_JerryRegister1, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JERRY_1
+	release
+	end
+
+Route116_EventScript_RematchJerry:: @ 81F2F4E
+	trainerbattle_rematch TRAINER_JERRY_1, Route116_Text_JerryRematchIntro, Route116_Text_JerryRematchDefeat
+	msgbox Route116_Text_JerryPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Clark:: @ 81F2F65
+	trainerbattle_single TRAINER_CLARK, Route116_Text_ClarkIntro, Route116_Text_ClarkDefeat
+	msgbox Route116_Text_ClarkPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Janice:: @ 81F2F7C
+	trainerbattle_single TRAINER_JANICE, Route116_Text_JaniceIntro, Route116_Text_JaniceDefeat
+	msgbox Route116_Text_JanicePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Karen:: @ 81F2F93
+	trainerbattle_single TRAINER_KAREN_1, Route116_Text_KarenIntro, Route116_Text_KarenDefeat, Route116_EventScript_TryRegisterKarenAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route116_EventScript_RematchKaren
+	setvar VAR_0x8004, TRAINER_KAREN_1
+	specialvar VAR_RESULT, IsTrainerRegistered
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route116_EventScript_TryRegisterKaren
+	msgbox Route116_Text_KarenPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_TryRegisterKarenAfterBattle:: @ 81F2FD4
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_RegisterKarenAfterBattle
+	release
+	end
+
+Route116_EventScript_RegisterKarenAfterBattle:: @ 81F2FDF
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route116_Text_KarenRegister2, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_KAREN_1
+	release
+	end
+
+Route116_EventScript_TryRegisterKaren:: @ 81F2FFE
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_RegisterKaren
+	msgbox Route116_Text_KarenPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_EventScript_RegisterKaren:: @ 81F3011
+	msgbox Route116_Text_KarenRegister1, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_KAREN_1
+	release
+	end
+
+Route116_EventScript_RematchKaren:: @ 81F302A
+	trainerbattle_rematch TRAINER_KAREN_1, Route116_Text_KarenRematchIntro, Route116_Text_KarenRematchDefeat
+	msgbox Route116_Text_KarenPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Sarah:: @ 81F3041
+	trainerbattle_single TRAINER_SARAH, Route116_Text_SarahIntro, Route116_Text_SarahDefeat
+	msgbox Route116_Text_SarahPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Dawson:: @ 81F3058
+	trainerbattle_single TRAINER_DAWSON, Route116_Text_DawsonIntro, Route116_Text_DawsonDefeat
+	msgbox Route116_Text_DawsonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Devan:: @ 81F306F
+	trainerbattle_single TRAINER_DEVAN, Route116_Text_DevanIntro, Route116_Text_DevanDefeat
+	msgbox Route116_Text_DevanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_EventScript_Johnson:: @ 81F3086
+	trainerbattle_single TRAINER_JOHNSON, Route116_Text_JohnsonIntro, Route116_Text_JohnsonDefeat
+	msgbox Route116_Text_JohnsonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route116_Text_ScoundrelMadeOffWithPeeko: @ 81F309D
+	.string "哦哦哦，这可怎么办啊？\p"
+	.string "我和皮可正在散步，\n"
+	.string "突然被一个奇怪的混混拦住了……\p"
+	.string "那混蛋把我心爱的皮可\n"
+	.string "抢走了！\p"
+	.string "呜嗷嗷嗷嗷嗷嗷！皮可！$"
+
+Route116_Text_WantToDigTunnel: @ 81F3140
+	.string "嗯……吼！\n"
+	.string "我想挖通那条隧道！$"
+
+Route116_Text_DiggingTunnelWhenGoonOrderedMeOut: @ 81F3166
+	.string "嗯……吼！\n"
+	.string "怎么回事？\p"
+	.string "我正徒手挖着隧道，\n"
+	.string "突然有个混混叫我滚出去！\p"
+	.string "那条隧道里全是宝可梦，\n"
+	.string "它们对巨响特别敏感，\p"
+	.string "一受惊就会大闹起来。\p"
+	.string "所以我们才停用了\n"
+	.string "重型挖掘设备……\p"
+	.string "我怕那混混干出蠢事，\n"
+	.string "惊得宝可梦们闹起来。$"
+
+Route116_Text_GoonHightailedItOutOfTunnel: @ 81F32C1
+	.string "嗯……吼！\p"
+	.string "那个蠢混混从隧道里\n"
+	.string "溜走了！我可以继续挖了！$"
+
+Route116_Text_ThankYouTokenOfAppreciation: @ 81F3317
+	.string "哦！是你！\p"
+	.string "你就是那位在橙华森林帮了我，\n"
+	.string "还夺回了我被抢的包裹，\p"
+	.string "甚至好心送到凯那市的人！\p"
+	.string "施坦恩船长也通知我们\n"
+	.string "包裹已经送到了！\p"
+	.string "真是太感谢你了！\p"
+	.string "如果我是雨云，我一定要\n"
+	.string "把感谢化作大雨淋你一身，\p"
+	.string "再高呼你是英雄！\p"
+	.string "对于你这位最棒的训练家，\n"
+	.string "我有一份礼物！\p"
+	.string "这是一只波士可多拉，\n"
+	.string "带着波士可多拉进化石，\p"
+	.string "可以在对战中超级进化。\p"
+	.string "作为我们的谢意，\n"
+	.string "这份礼物就送给最棒的你！$"
+
+Route116_Text_AlsoNeedKeystone: @ 81F3521
+	.string "要使用它还需要一块钥石，\n"
+	.string "不过我猜你早就知道了！\p"
+	.string "请务必试试看！\n"
+	.string "谢谢，再见！$"
+
+Route116_Text_BagIsJamPacked: @ 81F3593
+	.string "你的包包已经满了。\n"
+	.string "这块波士可多拉进化石没法给你。$"
+
+Route116_Text_TokenOfAppreciation: @ 81F35CE
+	.string "为了感谢你送来我们的包裹，\n"
+	.string "我要送给最棒的你一份礼物：\p"
+	.string "一块超级进化石！$"
+
+Route116_Text_CanYouHelpMeFindGlasses: @ 81F3657
+	.string "我把眼镜掉在这儿了……\n"
+	.string "你能帮我找找吗？$"
+
+Route116_Text_MayISeeThoseGlasses: @ 81F3688
+	.string "那副眼镜！\n"
+	.string "能让我看一下吗？$"
+
+Route116_Text_NotWhatImLookingForMaybeTheyArentHere: @ 81F36B4
+	.string "嗯……这是黑色眼镜。\n"
+	.string "不是我要找的那副……\p"
+	.string "我的眼镜也许不在这附近……$"
+
+Route116_Text_CantFindGlassesNotHere: @ 81F3718
+	.string "嗯……我到处都找不到眼镜……\n"
+	.string "也许不在这附近……$"
+
+Route116_Text_NotWhatImLookingFor: @ 81F375E
+	.string "嗯……这是黑色眼镜。\n"
+	.string "不是我要找的那副……$"
+
+Route116_Text_RouteSignRustboro: @ 81F379D
+	.string "116 号道路\n"
+	.string "{LEFT_ARROW} 卡那兹市$"
+
+Route116_Text_RusturfTunnelSign: @ 81F37B7
+	.string "卡绿隧道\n"
+	.string "“连接卡那兹与绿茵镇\p"
+	.string "“隧道工程已中止。”$"
+
+Route116_Text_TunnelersRestHouse: @ 81F380F
+	.string "隧道工人之家$"
+
+Route116_Text_TrainerTipsBToStopEvolution: @ 81F3825
+	.string "训练家小贴士\p"
+	.string "如果想让宝可梦停止进化，\n"
+	.string "在它进化时按 B 键。\p"
+	.string "受惊的宝可梦就会停下来。\p"
+	.string "这就叫“取消进化”。$"
+
+Route116_Text_TrainerTipsBagHasPockets: @ 81F38D4
+	.string "训练家小贴士\p"
+	.string "你的包包分有好几个口袋。\p"
+	.string "获得的道具会自动\n"
+	.string "放进对应的口袋里。\p"
+	.string "没有哪个训练家\n"
+	.string "能不带包包上路。$"
+`
+script Route116_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("贤者：虽然你年纪轻轻，\n却似乎总在日常琐事中\p寻求深意……我说得对吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("果然……年轻的训练家，\n我感觉到你对非凡之物的好奇。\p但要当心，你踏在圣地上。\p传说中创造三神的气息\n笼罩着这里。\p它们在寻找能与它们\n力量相通的人，\p但你还未准备好。\p等你取得宝可梦联盟的\n非凡成就后，再来吧。$"))
+	}
+	else{
+		if(defeated(TRAINER_JOEY)  &&
+		   defeated(TRAINER_JOSE)  &&
+		   defeated(TRAINER_JERRY_1)  &&
+		   defeated(TRAINER_CLARK)  &&
+		   defeated(TRAINER_JANICE)  &&
+		   defeated(TRAINER_KAREN_1)  &&
+		   defeated(TRAINER_SARAH)  &&
+		   defeated(TRAINER_DAWSON)  &&
+		   defeated(TRAINER_DEVAN)  &&
+		   defeated(TRAINER_JOHNSON)){
+			msgbox(format("啊，年轻的训练家，\n你的潜力如微光穿透暗影。\p我感觉得到：\p创造三神已认定\n你值得它们一见。\p用图鉴导航器去与它们相会吧。$"))
+		}
+		else{
+			msgbox(format("你几乎够格了。\n击败这里所有剩下的训练家，\p彻底证明你的实力！$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("你本有那么多潜力……\n真令人失望。$"))
+	}
+    release
+    end
+}
+
+script Route116_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+		if(defeated(TRAINER_JOEY)  &&
+		   defeated(TRAINER_JOSE)  &&
+		   defeated(TRAINER_JERRY_1)  &&
+		   defeated(TRAINER_CLARK)  &&
+		   defeated(TRAINER_JANICE)  &&
+		   defeated(TRAINER_KAREN_1)  &&
+		   defeated(TRAINER_SARAH)  &&
+		   defeated(TRAINER_DAWSON)  &&
+		   defeated(TRAINER_DEVAN)  &&
+		   defeated(TRAINER_JOHNSON)){
+		// when you defeat every trainer
+		msgbox(format("收下这只来自伽勒尔的宝可梦。\n你想要多少只都行！$"))
+		givemon(SPECIES_FARFETCHD_GALARIAN, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}伽勒尔大葱鸭{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("如果你能击败这里所有训练家，\n我就送你一只来自伽勒尔地区的\p稀有宝可梦：\n一位英勇的长剑使者！$"))
+	}
+    release
+    end
+}
+
+text Route116_EventScript_Text_Got_Aggron{
+	format("{PLAYER}获得了{COLOR BLUE}波士可多拉{COLOR DARK_GRAY}，\n这是礼物！$")
+}
+
+script Route116_EventScript_MegaNidos_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE06_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF) // Only For testing
+		if (!defeated(TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF)) { // asking for battle
+			msgbox(format("哈！看看你。喂，平民。\n我无聊了，陪我打一场。\p赢了还有奖励哦！$"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("那就开始吧。$"), MSGBOX_NPC) // When the player accepts the battle
+				// trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+				trainerbattle_no_intro(TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF, format("什么？怎么会？$")) // in-battle, player wins
+				msgbox(format("难以置信。我居然输给你这种人？\n算了，说好的就是说好的。\p拿着这些石头，\n滚出我的视线。$"), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_NIDOKINGITE, 1) // Item given to the player
+				giveitem(ITEM_NIDOQUEENITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("不要？啧。\n我就知道你会这样。$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("我不是叫你滚出我的视线吗？$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("你还不配跟我说话。\n连娜琪都没打赢的乡巴佬，\p没资格站在这里。$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}
+
+const LOCALID_JOEY = 3
+const LOCALID_JOSE = 6
+script Route116_EventScript_TriggerTrainersJoeyJose {
+	setvar(VAR_TEMP_0, 1)
+	setobjectmovementtype2(LOCALID_JOEY, MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP)
+	setobjectmovementtype2(LOCALID_JOSE, MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_LEFT_DOWN)
+}
+
+const LOCALID_DAWNSON = 20
+const LOCALID_JERRY = 15
+script Route116_EventScript_TriggerTrainersDawsonJerry {
+	setvar(VAR_TEMP_1, 1)
+	setobjectmovementtype2(LOCALID_DAWNSON, MOVEMENT_TYPE_WALK_SEQUENCE_DOWN_RIGHT_LEFT_UP)
+	setobjectmovementtype2(LOCALID_JERRY, MOVEMENT_TYPE_WALK_SEQUENCE_UP_RIGHT_DOWN_LEFT)
+}
+
+const LOCALID_JANICE = 13
+const LOCALID_SARAH = 19
+
+script Route116_EventScript_TriggerTrainersJaniceSarah {
+	setvar(VAR_TEMP_2, 1)
+	setobjectmovementtype2(LOCALID_JANICE, MOVEMENT_TYPE_WALK_SEQUENCE_UP_LEFT_DOWN_RIGHT)
+	setobjectmovementtype2(LOCALID_SARAH, MOVEMENT_TYPE_WALK_SEQUENCE_UP_LEFT_DOWN_RIGHT)
+}
+
+const LOCALID_KAREN = 14
+const LOCALID_CLARK = 11 
+
+script Route116_EventScript_TriggerTrainersKarenClark {
+	setvar(VAR_TEMP_3, 1)
+	setobjectmovementtype2(LOCALID_KAREN, MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_UP_RIGHT)
+	setobjectmovementtype2(LOCALID_CLARK, MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_DOWN_LEFT)
+}
+
+const LOCALID_DEVAN = 24 
+const LOCALID_JOHNSON = 23 
+
+script Route116_EventScript_TriggerTrainersDevanJohnson {
+	setvar(VAR_TEMP_4, 1)
+	setobjectmovementtype2(LOCALID_DEVAN, MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_DOWN_UP_LEFT)
+	setobjectmovementtype2(LOCALID_JOHNSON, MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_LEFT_DOWN)
+}

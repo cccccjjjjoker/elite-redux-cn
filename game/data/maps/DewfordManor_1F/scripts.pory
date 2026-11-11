@@ -1,0 +1,39 @@
+raw `
+DewfordManor_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, DewfordManor_1F_OnTransition
+	.byte 0
+
+DewfordManor_1F_OnTransition:
+	setflag FLAG_LANDMARK_DEWFORD_MANOR
+	end
+`
+
+script DewfordManor_1F_EventScript_Crobatite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_CROBATITE_DEWFORD_MANOR) // Only For testing
+		if (!defeated(TRAINER_CROBATITE_DEWFORD_MANOR)) { // asking for battle
+			msgbox(format("孩子，敢跟一个老灵魂打一场吗？$"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("哦呵呵，亲爱的！就算上了年纪，\n我也不会躲开决斗。小心点，\p当年这个老灵魂可是个了不起的训练\n家！$"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_CROBATITE_DEWFORD_MANOR, format("哎呀呀！年轻人，你的实力真惊人！$")) // in-battle, player wins
+				msgbox(format("你这么年轻就这么强。\n请收下这个吧，\p一个为这点兴奋而感激的老姑娘送的\n。$"), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_CROBATITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("我明白了。$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("抱歉，亲爱的。\n这个老灵魂已经没有更多能给你了。$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("旅行者，是吧？在这种地方，\n你看着太年轻了。你要是找宝可梦，\p这里有不少在等新训练家。\n你听说过绿岭市那对超能力双胞胎吗\p？打败他们之后，再回这里来。$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

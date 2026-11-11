@@ -1,0 +1,58 @@
+raw `
+SeafloorCavern_Room3_MapScripts:: @ 8234937
+	.byte 0
+
+SeafloorCavern_Room3_EventScript_Shelly:: @ 8234938
+	trainerbattle_single TRAINER_SHELLY_SEAFLOOR_CAVERN, SeafloorCavern_Room3_Text_ShellyIntro, SeafloorCavern_Room3_Text_ShellyDefeat
+	msgbox SeafloorCavern_Room3_Text_ShellyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SeafloorCavern_Room3_EventScript_Grunt5:: @ 823494F
+	trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_5, SeafloorCavern_Room3_Text_Grunt5Intro, SeafloorCavern_Room3_Text_Grunt5Defeat
+	msgbox SeafloorCavern_Room3_Text_Grunt5PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SeafloorCavern_Room3_Text_ShellyIntro: @ 8234966
+	.string "啊哈哈哈！\n"
+	.string "你没有潜艇是怎么到这里的？\p"
+	.string "真是个了不起的孩子！\n"
+	.string "不过……让你在这里乱来\p"
+	.string "可不行。\n"
+	.string "而且，气象研究所那笔账\p"
+	.string "我也想讨回来……\n"
+	.string "就让你尝点苦头！\p"
+	.string "认命吧！$"
+
+SeafloorCavern_Room3_Text_ShellyDefeat: @ 8234A79
+	.string "啊哈哈哈！\n"
+	.string "哎哟！$"
+
+SeafloorCavern_Room3_Text_ShellyPostBattle: @ 8234A8A
+	.string "啊哈哈哈！\n"
+	.string "你真是强得过分。\p"
+	.string "你不是水舰队的成员，\n"
+	.string "这实在太遗憾了。\p"
+	.string "要是你成了我们的一员，\n"
+	.string "就能一起享受首领许诺的\p"
+	.string "美好世界了……$"
+
+SeafloorCavern_Room3_Text_Grunt5Intro: @ 8234B3A
+	.string "要让梦想成真，\n"
+	.string "我们需要宝可梦的力量。\p"
+	.string "可像你这样的多事者，\n"
+	.string "就连在这种地方也要用宝可梦\p"
+	.string "的力量来碍我们的事！\n"
+	.string "事情怎么就不能顺我们的意！$"
+
+SeafloorCavern_Room3_Text_Grunt5Defeat: @ 8234BFE
+	.string "哇！$"
+
+SeafloorCavern_Room3_Text_Grunt5PostBattle: @ 8234C04
+	.string "你知道吗，我们从不敢质疑\n"
+	.string "首领的动机。\p"
+	.string "可你这个小鬼，\n"
+	.string "却敢正面挑战我们的首领。\p"
+	.string "也许……\n"
+	.string "你一定不是普通人……$"
+
+`

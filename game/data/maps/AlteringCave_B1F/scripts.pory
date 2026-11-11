@@ -1,0 +1,115 @@
+raw `
+.set LOCALID_LEAF, 11
+
+AlteringCave_B1F_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, Common_EventScript_RemoveOverworldAfterBattle
+	.byte 0
+
+AlteringCave_B1F_EventScript_Mewtwo::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_MEWTWO, 2
+	delay 40
+	waitmoncry
+	specialvar VAR_RESULT, GetHighestLevelInPlayerParty
+	copyvar VAR_0x800A, VAR_RESULT
+	setwildbattle SPECIES_MEWTWO, VAR_0x800A, ITEM_PSYCHIC_GEM
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_eq AlteringCave_B1F_EventScript_DefeatedMewtwo
+	compare VAR_RESULT, B_OUTCOME_RAN
+	goto_if_eq AlteringCave_B1F_EventScript_RanFromMewtwo
+	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
+	goto_if_eq AlteringCave_B1F_EventScript_RanFromMewtwo
+	setflag FLAG_DEFEATED_MEWTWO
+	release
+	end
+
+AlteringCave_B1F_EventScript_DefeatedMewtwo::
+	setflag FLAG_DEFEATED_MEWTWO
+	goto Common_EventScript_RemoveStaticPokemon
+	end
+
+AlteringCave_B1F_EventScript_RanFromMewtwo::
+	setvar VAR_0x8004, SPECIES_MEWTWO
+	goto Common_EventScript_LegendaryFlewAway
+	end
+
+AlteringCave_B1F_EventScript_Leaf::
+	lockall
+	playse SE_PIN
+	applymovement LOCALID_LEAF, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_LEAF, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	delay 40
+	msgbox AlteringCave_Text_LeafPreBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_LEAF, AlteringCave_Movement_Leaf
+	applymovement OBJ_EVENT_ID_PLAYER, AlteringCave_Movement_Player
+	waitmovement 0
+	trainerbattle_no_intro TRAINER_LEAF_ALTERING_CAVE, AlteringCave_Text_LeafDefeated
+	setvar VAR_LEAF_STATE, 1
+	msgbox AlteringCave_Text_LeafGift, MSGBOX_DEFAULT
+	giveitem ITEM_BOTTLE_CAP, 30
+	msgbox AlteringCave_Text_LeafExit, MSGBOX_DEFAULT
+	closemessage
+	applymovement  OBJ_EVENT_ID_PLAYER, AlteringCave_Movement_GiveWay
+	applymovement  LOCALID_LEAF, AlteringCave_Movement_LeafLeaves
+	waitmovement 0
+	removeobject LOCALID_LEAF
+	releaseall
+	end
+
+AlteringCave_Text_LeafPreBattle:
+	.string "？？？：你是来找什么的吗？\n"
+	.string "也许是某只传说的宝可梦？\p"
+	.string "那么，你来对地方了。\n"
+	.string "超梦就在前面！\p"
+	.string "哦，顺便说，我是小绿！\n"
+	.string "很高兴认识你！\p"
+	.string "不过想见超梦，\n"
+	.string "得先过我这关！$"
+
+AlteringCave_Text_LeafDefeated:
+	.string "哇，你很强！$"
+
+AlteringCave_Text_LeafGift:
+	.string "小绿：好吧，那就这样吧！\n"
+	.string "来，收下这些。$"
+
+AlteringCave_Text_LeafExit:
+	.string "这次就告别了，{PLAYER}。\n"
+	.string "但我相信我们还会再见！$"
+
+AlteringCave_Movement_Leaf:
+	walk_down
+	step_end
+
+AlteringCave_Movement_Player:
+	walk_up
+	step_end
+
+AlteringCave_Movement_GiveWay:
+	walk_left
+	walk_in_place_fast_right
+	step_end
+
+AlteringCave_Movement_LeafLeaves:
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+`

@@ -1,0 +1,23 @@
+raw `
+LilycoveCity_House4_MapScripts:: @ 821F5B4
+	.byte 0
+
+LilycoveCity_House4_EventScript_Man1:: @ 821F5B5
+	msgbox LilycoveCity_House4_Text_MysteriesAtBottomOfSea, MSGBOX_NPC
+	end
+
+LilycoveCity_House4_EventScript_Man2:: @ 821F5BE
+	msgbox LilycoveCity_House4_Text_UnderwaterTrenchMossdeepSootopolis, MSGBOX_NPC
+	end
+
+LilycoveCity_House4_Text_MysteriesAtBottomOfSea: @ 821F5C7
+	.string "这颗星球最大的谜团\n"
+	.string "在海底。\p"
+	.string "有人这么说过，不过我不清楚……$"
+
+LilycoveCity_House4_Text_UnderwaterTrenchMossdeepSootopolis: @ 821F62B
+	.string "绿岭市和琉璃市之间\n"
+	.string "有一道很深的海沟。\p"
+	.string "至少有人这么告诉过我。$"
+
+`

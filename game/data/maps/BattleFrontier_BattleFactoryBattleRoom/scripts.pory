@@ -1,0 +1,338 @@
+raw `
+.set LOCALID_SCIENTIST_1, 1
+.set LOCALID_OPPONENT, 2
+.set LOCALID_SCIENTIST_2, 3
+.set LOCALID_SCIENTIST_3, 4
+.set LOCALID_SCIENTIST_4, 5
+.set LOCALID_SCIENTIST_5, 6
+.set LOCALID_SCIENTIST_6, 7
+.set LOCALID_PLAYER, 8
+
+BattleFrontier_BattleFactoryBattleRoom_MapScripts:: @ 825ADAB
+	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattleFactoryBattleRoom_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattleFactoryBattleRoom_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleFactoryBattleRoom_OnFrame
+	.byte 0
+
+	@ On this map the player (OBJ_EVENT_ID_PLAYER) is hidden
+	@ The player is represented instead by LOCALID_PLAYER, which has the gfx id VAR_OBJ_GFX_ID_F
+
+BattleFrontier_BattleFactoryBattleRoom_OnTransition: @ 825ADBB
+	frontier_settrainers
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale
+	frontier_getbrainstatus
+	copyvar VAR_TEMP_F, VAR_RESULT
+	compare VAR_RESULT, FRONTIER_BRAIN_NOT_READY
+	goto_if_ne BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj
+	end
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_SetUpFactoryHeadObj:: @ 825ADF3
+	call BattleFrontier_EventScript_SetBrainObjectGfx
+	setobjectxyperm LOCALID_OPPONENT, 7, 9
+	end
+
+BattleFrontier_BattleFactoryBattleRoom_OnWarp: @ 825AE00
+	map_script_2 VAR_TEMP_1, 0, BattleFrontier_BattleFactoryBattleRoom_EventScript_HideObjects
+	.2byte 0
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_HideObjects:: @ 825AE0A
+	setvar VAR_TEMP_1, 1
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM
+	compare VAR_TEMP_F, FRONTIER_BRAIN_NOT_READY
+	goto_if_ne BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects
+	hideobjectat LOCALID_OPPONENT, MAP_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM
+BattleFrontier_BattleFactoryBattleRoom_EventScript_EndHideObjects:: @ 825AE24
+	end
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxMale:: @ 825AE25
+	setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
+	return
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_SetPlayerGfxFemale:: @ 825AE2B
+	setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
+	return
+
+BattleFrontier_BattleFactoryBattleRoom_OnFrame: @ 825AE31
+	map_script_2 VAR_TEMP_0, 0, BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom
+	.2byte 0
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle:: @ 825AE3B
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_OPPONENT, BattleFrontier_BattleFactoryBattleRoom_Movement_NolandMoveToBattle
+	applymovement LOCALID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom
+	waitmovement 0
+	call BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent
+	end
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoom:: @ 825AE67
+	compare VAR_TEMP_F, FRONTIER_BRAIN_NOT_READY
+	goto_if_ne BattleFrontier_BattleFactoryBattleRoom_EventScript_EnterRoomFactoryHeadBattle
+	applymovement LOCALID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom
+	waitmovement 0
+	call BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle
+	factory_setopponentgfx
+	removeobject LOCALID_OPPONENT
+	setobjectxyperm LOCALID_OPPONENT, 7, 1
+	addobject LOCALID_OPPONENT
+	applymovement LOCALID_OPPONENT, BattleFrontier_BattleFactoryBattleRoom_Movement_OpponentEnter
+	waitmovement 0
+BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleOpponent:: @ 825AEA7
+	compare VAR_TEMP_F, FRONTIER_BRAIN_NOT_READY
+	goto_if_ne BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland
+	palace_getopponentintro
+	lockall
+	msgbox gStringVar4, MSGBOX_DEFAULT
+	waitmessage
+	closemessage
+	frontier_set FRONTIER_DATA_RECORD_DISABLED, FALSE
+	special HealPlayerParty
+	setvar VAR_0x8004, SPECIAL_BATTLE_FACTORY
+	setvar VAR_0x8005, 0
+	special DoSpecialTrainerBattle
+	waitstate
+	switch VAR_RESULT
+	case 1, BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedOpponent
+BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost:: @ 825AEF8
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedOpponent:: @ 825AF0F
+	factory_get FACTORY_DATA_WIN_STREAK_SWAPS
+	compare VAR_RESULT, MAX_STREAK
+	goto_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak
+	addvar VAR_RESULT, 1
+	setorcopyvar VAR_0x8006, VAR_RESULT
+	factory_set FACTORY_DATA_WIN_STREAK_SWAPS  @ uses VAR_0x8006 above
+BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak:: @ 825AF3E
+	call BattleFrontier_EventScript_IncrementWinStreak
+BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum:: @ 825AF43
+	frontier_get FRONTIER_DATA_BATTLE_NUM
+	addvar VAR_RESULT, 1
+	frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT
+	switch VAR_RESULT
+	case 7, BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon
+	setvar VAR_0x8006, 1
+	warp MAP_BATTLE_FRONTIER_BATTLE_FACTORY_PRE_BATTLE_ROOM, 255, 8, 8
+	waitstate
+BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon:: @ 825AF85
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_WON
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNoland:: @ 825AF9C
+	switch VAR_TEMP_F
+	case FRONTIER_BRAIN_GOLD, BattleFrontier_BattleFactoryBattleRoom_EventScript_IntroNolandGold
+	case FRONTIER_BRAIN_STREAK, BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver
+	case FRONTIER_BRAIN_STREAK_LONG, BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold
+	frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+	compare VAR_RESULT, FALSE
+	goto_if_ne BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead, MSGBOX_DEFAULT
+	frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandSilver:: @ 825AFEF
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn, MSGBOX_DEFAULT
+	call BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle
+	compare VAR_RESULT, 1
+	goto_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandSilver:: @ 825B00C
+	frontier_getsymbols
+	compare VAR_RESULT, 0
+	goto_if_ne BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland
+	waitmovement 0
+	playfanfare MUS_OBTAIN_SYMBOL
+	message BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol
+	waitmessage
+	waitfanfare
+	frontier_givesymbol
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred, MSGBOX_DEFAULT
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_IntroNolandGold:: @ 825B051
+	frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+	compare VAR_RESULT, FALSE
+	goto_if_ne BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime, MSGBOX_DEFAULT
+	frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+BattleFrontier_BattleFactoryBattleRoom_EventScript_BattleNolandGold:: @ 825B07E
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn, MSGBOX_DEFAULT
+	call BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle
+	compare VAR_RESULT, 1
+	goto_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyLost
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNolandGold:: @ 825B09B
+	frontier_getsymbols
+	compare VAR_RESULT, 2
+	goto_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass, MSGBOX_DEFAULT
+	waitmessage
+	applymovement LOCALID_PLAYER, BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland
+	waitmovement 0
+	playfanfare MUS_OBTAIN_SYMBOL
+	message BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine
+	waitmessage
+	waitfanfare
+	frontier_givesymbol
+	msgbox BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou, MSGBOX_DEFAULT
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_DoNolandBattle:: @ 825B0E0
+	closemessage
+	frontier_set FRONTIER_DATA_RECORD_DISABLED, FALSE
+	special HealPlayerParty
+	setvar VAR_0x8004, SPECIAL_BATTLE_FACTORY
+	setvar VAR_0x8005, 0
+	special DoSpecialTrainerBattle
+	waitstate
+	return
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_DefeatedNoland:: @ 825B105
+	factory_get FACTORY_DATA_WIN_STREAK_SWAPS
+	compare VAR_RESULT, MAX_STREAK
+	goto_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementWinStreak
+	addvar VAR_RESULT, 1
+	setorcopyvar VAR_0x8006, VAR_RESULT
+	factory_set FACTORY_DATA_WIN_STREAK_SWAPS  @ uses VAR_0x8006 above
+	factory_get FACTORY_DATA_WIN_STREAK
+	compare VAR_RESULT, MAX_STREAK
+	goto_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_IncrementBattleNum
+	addvar VAR_RESULT, 1
+	factory_set FACTORY_DATA_WIN_STREAK, VAR_RESULT
+	frontier_get FRONTIER_DATA_BATTLE_NUM
+	addvar VAR_RESULT, 1
+	goto BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyWon
+	end
+
+BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerEnterRoom: @ 825B17B
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	face_right
+	step_end
+
+BattleFrontier_BattleFactoryBattleRoom_Movement_PlayerApproachNoland: @ 825B182
+	walk_right
+	step_end
+
+BattleFrontier_BattleFactoryBattleRoom_Movement_OpponentEnter: @ 825B184
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	face_left
+	step_end
+
+BattleFrontier_BattleFactoryBattleRoom_Movement_NolandMoveToBattle: @ 825B18B
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobby:: @ 825B190
+	copyvar VAR_RESULT, VAR_FRONTIER_BATTLE_MODE
+	compare VAR_RESULT, FRONTIER_MODE_DOUBLES
+	goto_if_eq BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles
+	warp MAP_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY, 255, 4, 8
+	waitstate
+	end
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_WarpToLobbyDoubles:: @ 825B1AA
+	warp MAP_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY, 255, 14, 8
+	waitstate
+	end
+
+BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle:: @ 825B1B4
+	applymovement LOCALID_SCIENTIST_1, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_SCIENTIST_2, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_SCIENTIST_3, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_SCIENTIST_4, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_SCIENTIST_5, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_SCIENTIST_6, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	return
+
+BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn: @ 825B1E2
+	.string "喂，喂！\n"
+	.string "快点动起来！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead: @ 825B1FB
+	.string "喂，我叫诺兰德！\n"
+	.string "这里基本由我负责，\p"
+	.string "所以我是工厂头目！\n"
+	.string "我看过你的对战交换数据。\p"
+	.string "你好像抓对了方向，\n"
+	.string "但脑袋还是太死板！\p"
+	.string "听好了，行吗？知识不只是\n"
+	.string "读书或者坐在桌前做事。\p"
+	.string "只做那些……\n"
+	.string "根本没用！\p"
+	.string "必须用你的心和身体\n"
+	.string "去体验，明白吗？\p"
+	.string "我会在和你的同样条件下\n"
+	.string "接受你的挑战。\p"
+	.string "我也是用租来的宝可梦！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn: @ 825B3F1
+	.string "把你最后一点知识都抖出来，\n"
+	.string "尽管放马过来！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass: @ 825B42D
+	.string "诺兰德：聪明之举！\n"
+	.string "让我看看你的开拓通行证。$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol: @ 825B460
+	.string "知识象征被印在了\n"
+	.string "开拓通行证上！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred: @ 825B498
+	.string "呵……\n"
+	.string "你还真是个聪明小子……\p"
+	.string "下次我会狠狠地追着你打。\n"
+	.string "绝不留情，明白吗？\p"
+	.string "继续好好学吧！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime: @ 825B517
+	.string "诺兰德：喂，喂！怎么样？\n"
+	.string "你的学习还顺利吗？\p"
+	.string "……哦？\n"
+	.string "你看起来比上次见你时\p"
+	.string "强了不少。\n"
+	.string "这下有意思了！\p"
+	.string "我兴奋起来了，喂！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn: @ 825B5CF
+	.string "好！\n"
+	.string "放马过来！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass: @ 825B5E7
+	.string "诺兰德：什么……\n"
+	.string "你已经超出我的水平了！\p"
+	.string "哎！\n"
+	.string "让我看看那本开拓通行证！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine: @ 825B640
+	.string "知识象征泛起了\n"
+	.string "金色的光辉！$"
+
+BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou: @ 825B66D
+	.string "唉，兄弟！\n"
+	.string "这绝对是我最后一次输给你！\p"
+	.string "我们一定要再打一场，喂？$"
+
+`

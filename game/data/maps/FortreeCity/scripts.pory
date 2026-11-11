@@ -1,0 +1,155 @@
+raw `
+FortreeCity_MapScripts:: @ 81E25A4
+	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, FortreeCity_OnResume
+	.byte 0
+
+FortreeCity_OnTransition: @ 81E25AF
+	setflag FLAG_VISITED_FORTREE_CITY
+	end
+
+FortreeCity_OnResume: @ 81E25B3
+	setstepcallback STEP_CB_FORTREE_BRIDGE
+	end
+
+FortreeCity_EventScript_Man:: @ 81E25B6
+	msgbox FortreeCity_Text_SawGiganticPokemonInSky, MSGBOX_NPC
+	end
+
+FortreeCity_EventScript_Woman:: @ 81E25BF
+	lock
+	faceplayer
+	goto_if_set FLAG_KECLEON_FLED_FORTREE, FortreeCity_EventScript_WomanGymAccessible
+	msgbox FortreeCity_Text_SomethingBlockingGym, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_EventScript_WomanGymAccessible:: @ 81E25D4
+	msgbox FortreeCity_Text_ThisTimeIllBeatWinona, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_EventScript_Girl:: @ 81E25DE
+	msgbox FortreeCity_Text_TreesGrowByDrinkingRainwater, MSGBOX_NPC
+	end
+
+FortreeCity_EventScript_OldMan:: @ 81E25E7
+	msgbox FortreeCity_Text_EveryoneHealthyAndLively, MSGBOX_NPC
+	end
+
+FortreeCity_EventScript_Boy:: @ 81E25F0
+	msgbox FortreeCity_Text_BugPokemonComeThroughWindow, MSGBOX_NPC
+	end
+
+FortreeCity_EventScript_GameboyKid:: @ 81E25F9
+	msgbox FortreeCity_Text_PokemonThatEvolveWhenTraded, MSGBOX_NPC
+	end
+
+FortreeCity_EventScript_CitySign:: @ 81E2602
+	msgbox FortreeCity_Text_CitySign, MSGBOX_SIGN
+	end
+
+FortreeCity_EventScript_GymSign:: @ 81E260B
+	msgbox FortreeCity_Text_GymSign, MSGBOX_SIGN
+	end
+
+FortreeCity_EventScript_Kecleon:: @ 81E2614
+	lock
+	faceplayer
+	checkitem ITEM_DEVON_SCOPE, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq FortreeCity_EventScript_AskUseDevonScope
+	msgbox FortreeCity_Text_SomethingUnseeable, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_EventScript_AskUseDevonScope:: @ 81E2630
+	msgbox FortreeCity_Text_UnseeableUseDevonScope, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq FortreeCity_EventScript_UseDevonScope
+	release
+	end
+
+FortreeCity_EventScript_UseDevonScope:: @ 81E2645
+	msgbox FortreeCity_Text_UsedDevonScopePokemonFled, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Movement_KecleonAppears
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_KECLEON, 2
+	delay 40
+	waitmoncry
+	applymovement VAR_LAST_TALKED, FortreeCity_Movement_KecleonFlee
+	waitmovement 0
+	removeobject VAR_LAST_TALKED
+	setflag FLAG_KECLEON_FLED_FORTREE
+	release
+	end
+
+FortreeCity_Movement_KecleonFlee: @ 81E2674
+	walk_right
+	step_end
+
+FortreeCity_Text_SawGiganticPokemonInSky: @ 81E2676
+	.string "没人信我，\n"
+	.string "但我在天上看到一只巨大的宝可梦。\p"
+	.string "它一边飞一边扭动，\n"
+	.string "朝131号道路去了。\p"
+	.string "对了……嗅嗅……\n"
+	.string "嗯……你身上有点烧焦的味道。\p"
+	.string "你去过火山什么的吗？$"
+
+FortreeCity_Text_SomethingBlockingGym: @ 81E2738
+	.string "我想去宝可梦道馆，\n"
+	.string "但有什么东西挡着路。\p"
+	.string "亏我在120号道路上\n"
+	.string "辛苦训练了那么久……$"
+
+FortreeCity_Text_ThisTimeIllBeatWinona: @ 81E27B6
+	.string "我带着我最自豪的宝可梦。\n"
+	.string "这次我一定要打败娜琪。$"
+
+FortreeCity_Text_TreesGrowByDrinkingRainwater: @ 81E27FE
+	.string "地面吸收雨水，\n"
+	.string "树木喝了这些水才长起来……\p"
+	.string "我们茵郁市能存在，\n"
+	.string "就是因为既有水又有土。$"
+
+FortreeCity_Text_EveryoneHealthyAndLively: @ 81E2880
+	.string "这座城市由建在树上的家组成。\n"
+	.string "也许是因为这样的生活方式，\p"
+	.string "大家都健康有活力。\n"
+	.string "就连我，都觉得自己年轻了三十岁。$"
+
+FortreeCity_Text_BugPokemonComeThroughWindow: @ 81E292E
+	.string "住在树顶倒还好。\n"
+	.string "不过有时虫子属性的宝可梦会从窗户\p"
+	.string "进来，\n"
+	.string "真会被吓一跳。$"
+
+FortreeCity_Text_PokemonThatEvolveWhenTraded: @ 81E299D
+	.string "有些宝可梦会通过交换进化！\n"
+	.string "我是这么听说的。$"
+
+FortreeCity_Text_SomethingUnseeable: @ 81E29E5
+	.string "有个看不见的东西挡着路。$"
+
+FortreeCity_Text_UnseeableUseDevonScope: @ 81E2A08
+	.string "有个看不见的东西挡着路。\n"
+	.string "要使用得文观测镜吗？$"
+
+FortreeCity_Text_UsedDevonScopePokemonFled: @ 81E2A48
+	.string "{PLAYER}使用了得文观测镜。\n"
+	.string "一只隐形的宝可梦完全现形了！\p"
+	.string "受到惊吓的宝可梦逃走了！$"
+
+FortreeCity_Text_CitySign: @ 81E2AAC
+	.string "茵郁市\n"
+	.string "“与自然嬉戏的树冠之城。”$"
+
+FortreeCity_Text_GymSign: @ 81E2AE6
+	.string "茵郁市宝可梦道馆\n"
+	.string "馆主：娜琪\p"
+	.string "“飞向世界的鸟之使者。”$"
+
+`

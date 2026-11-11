@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package er;
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+enum HelpMenuColors {
+  DARK = 0;
+  BLUE = 1;
+  RED = 2;
+  YELLOW = 3;
+  GREEN = 4;
+}
+
+message HelpArticles {
+  repeated HelpCategory help_category = 1;
+
+  message HelpCategory {
+    string title = 1;
+    HelpMenuColors color = 2;
+    repeated HelpArticle help_article = 3;
+
+    message HelpArticle {
+      string title = 1;
+      repeated string page = 2;
+    }
+  }
+}

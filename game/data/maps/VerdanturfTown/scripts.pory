@@ -1,0 +1,126 @@
+raw `
+.set LOCALID_TWIN, 2
+
+VerdanturfTown_MapScripts:: @ 81EB566
+	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition
+	.byte 0
+
+VerdanturfTown_OnTransition: @ 81EB56C
+	setflag FLAG_VISITED_VERDANTURF_TOWN
+	setvar VAR_CONTEST_HALL_STATE, 0
+	end
+
+VerdanturfTown_EventScript_Twin:: @ 81EB575
+	lock
+	faceplayer
+	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_TwinTunnelOpen
+	msgbox VerdanturfTown_Text_ManTryingToDigTunnel, MSGBOX_DEFAULT
+	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+VerdanturfTown_EventScript_TwinTunnelOpen:: @ 81EB594
+	msgbox VerdanturfTown_Text_ManDugTunnelForLove, MSGBOX_DEFAULT
+	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+VerdanturfTown_EventScript_Man:: @ 81EB5A8
+	msgbox VerdanturfTown_Text_AirCleanHere, MSGBOX_NPC
+	end
+
+VerdanturfTown_EventScript_Camper:: @ 81EB5B1
+	msgbox VerdanturfTown_Text_MakeBattleTentDebut, MSGBOX_NPC
+	end
+
+VerdanturfTown_EventScript_Boy:: @ 81EB5BA
+	lock
+	faceplayer
+	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_BoyTunnelOpen
+	msgbox VerdanturfTown_Text_GuyTryingToBustThroughCave, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_EventScript_BoyTunnelOpen:: @ 81EB5CF
+	msgbox VerdanturfTown_Text_EasyToGetToRustboroNow, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_EventScript_TownSign:: @ 81EB5D9
+	msgbox VerdanturfTown_Text_TownSign, MSGBOX_SIGN
+	end
+
+VerdanturfTown_EventScript_WandasHouseSign:: @ 81EB5E2
+	msgbox VerdanturfTown_Text_WandasHouse, MSGBOX_SIGN
+	end
+
+VerdanturfTown_EventScript_BattleTentSign:: @ 81EB5EB
+	msgbox VerdanturfTown_Text_BattleTentSign, MSGBOX_SIGN
+	end
+
+VerdanturfTown_EventScript_RusturfTunnelSign:: @ 81EB5F4
+	msgbox VerdanturfTown_Text_RusturfTunnelSign, MSGBOX_SIGN
+	end
+
+VerdanturfTown_Text_ManTryingToDigTunnel: @ 81EB5FD
+	.string "我爸爸告诉我的。\n"
+	.string "他说这条隧道里全是很胆小的宝可梦\p"
+	.string "。\n"
+	.string "它们一听到大声响就会害怕，\p"
+	.string "闹得天翻地覆。\n"
+	.string "所以那个大隧道工程只好停了。\p"
+	.string "但有一个男人，\n"
+	.string "他想一个人把隧道挖通！$"
+
+VerdanturfTown_Text_ManDugTunnelForLove: @ 81EB6E0
+	.string "从前有个男人，\n"
+	.string "为了他心爱的女士挖了一条隧道。\p"
+	.string "我不太懂，不过嘛！$"
+
+VerdanturfTown_Text_AirCleanHere: @ 81EB736
+	.string "按风向来看，\n"
+	.string "火山灰从来不会吹到这个方向。\p"
+	.string "这里的空气干净又清甜。\n"
+	.string "住在这里，\p"
+	.string "连体弱多病的人都会好起来。$"
+
+VerdanturfTown_Text_MakeBattleTentDebut: @ 81EB7E2
+	.string "我和我的宝可梦正处在连胜的热潮中\n"
+	.string "。\p"
+	.string "所以我决定在这个小镇初次挑战对战\n"
+	.string "帐篷。$"
+
+VerdanturfTown_Text_GuyTryingToBustThroughCave: @ 81EB854
+	.string "你看到宝可梦商店旁边那个洞窟了吗\n"
+	.string "？\p"
+	.string "里面有个男人正想砸开岩石，\n"
+	.string "好打通到另一头。\p"
+	.string "要是能过去就好了……\n"
+	.string "去卡那兹市就方便了。$"
+
+VerdanturfTown_Text_EasyToGetToRustboroNow: @ 81EB935
+	.string "宝可梦商店旁边的那个洞窟，\n"
+	.string "现在成了一条通到对面的隧道。\p"
+	.string "太棒了，现在去卡那兹市\n"
+	.string "买得文的新产品很方便。$"
+
+VerdanturfTown_Text_TownSign: @ 81EB9C4
+	.string "绿茵镇\n"
+	.string "“风吹的高地，\p"
+	.string "带着青草的甜香。”$"
+
+VerdanturfTown_Text_WandasHouse: @ 81EBA11
+	.string "旺达的家$"
+
+VerdanturfTown_Text_BattleTentSign: @ 81EBA1F
+	.string "对战帐篷 绿茵会场\n"
+	.string "“大饱眼福的对战！”$"
+
+VerdanturfTown_Text_RusturfTunnelSign: @ 81EBA59
+	.string "卡那兹隧道\n"
+	.string "“连接卡那兹市与绿茵镇”\p"
+	.string "“隧道工程已取消。”$"
+
+`

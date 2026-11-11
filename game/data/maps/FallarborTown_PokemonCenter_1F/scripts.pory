@@ -1,0 +1,136 @@
+raw `
+.set LOCALID_NURSE, 1
+.set LOCALID_LANETTE, 6
+
+FallarborTown_PokemonCenter_1F_MapScripts:: @ 8200BCD
+	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+FallarborTown_PokemonCenter_1F_OnTransition: @ 8200BD8
+	setrespawn HEAL_LOCATION_FALLARBOR_TOWN
+	call Common_EventScript_UpdateBrineyLocation
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_Nurse:: @ 8200BE1
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_Girl:: @ 8200BEF
+	msgbox FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown, MSGBOX_NPC
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_ExpertM:: @ 8200BF8
+	msgbox FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees, MSGBOX_NPC
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_Lanette:: @ 8200C01
+	lock
+	faceplayer
+	msgbox FallarborTown_PokemonCenter_1F_Text_LanetteGreeting, MSGBOX_DEFAULT
+	closemessage
+	switch VAR_FACING
+	case DIR_NORTH, FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth
+	case DIR_WEST, FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest
+	case DIR_EAST, FallarborTown_PokemonCenter_1F_EventScript_LanetteExitEast
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_LanetteExitNorth:: @ 8200C28
+	applymovement LOCALID_LANETTE, FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth
+	waitmovement 0
+	goto FallarborTown_PokemonCenter_1F_EventScript_LanetteExited
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_LanetteExitWest:: @ 8200C38
+	applymovement LOCALID_LANETTE, FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth
+	waitmovement 0
+	goto FallarborTown_PokemonCenter_1F_EventScript_LanetteExited
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_LanetteExitEast::
+	applymovement 6, FallarborTown_PokemonCenter_1F_Movement_LanetteExitEast
+	waitmovement 0
+	goto FallarborTown_PokemonCenter_1F_EventScript_LanetteExited
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_LanetteExited:: @ 8200C48
+	playse SE_SLIDING_DOOR
+	removeobject LOCALID_LANETTE
+	clearflag FLAG_HIDE_LANETTES_HOUSE_LANETTE
+	release
+	end
+
+FallarborTown_PokemonCenter_1F_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart PokeMart_PokeCenterFallarborTown
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+PokeMart_PokeCenterFallarborTown::
+	.2byte ITEM_QUICK_BALL
+	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_DIVE_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
+FallarborTown_PokemonCenter_1F_Movement_LanetteExitNorth:
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	delay_8
+	step_end
+
+FallarborTown_PokemonCenter_1F_Movement_LanetteExitEast:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	delay_8
+	step_end
+
+FallarborTown_PokemonCenter_1F_Text_LanetteGreeting: @ 8200C6B
+	.string "哦，你好。\n"
+	.string "你是？\p"
+	.string "好，你叫{PLAYER}{KUN}。\n"
+	.string "我看得出你是训练家。\p"
+	.string "也就是说，你在用我开发的\n"
+	.string "宝可梦寄存系统。\p"
+	.string "我怎么得出这个结论的？\n"
+	.string "不过是简单的推理。\p"
+	.string "你跟我说话，是因为你想用\n"
+	.string "这台电脑存取东西。\p"
+	.string "哦，抱歉。我是拉奈特。\n"
+	.string "老实说，很高兴见到你……\p"
+	.string "你能用寄存系统真好。\n"
+	.string "有空请到我家来玩。\p"
+	.string "我家在114号道路。$"
+
+FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown: @ 8200E22
+	.string "不知道很久很久以前的\n"
+	.string "宝可梦长什么样？\p"
+	.string "也许镇边那位化石迷\n"
+	.string "会知道。$"
+
+FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees: @ 8200E8B
+	.string "在秋叶的田里，我们种下\n"
+	.string "即使在火山灰中也能长好的\p"
+	.string "耐寒树苗。$"
+
+`

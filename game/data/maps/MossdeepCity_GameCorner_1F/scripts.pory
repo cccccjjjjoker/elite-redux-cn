@@ -1,0 +1,87 @@
+raw `
+MossdeepCity_GameCorner_1F_MapScripts:: @ 8224B27
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_GameCorner_1F_OnFrame
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, MossdeepCity_GameCorner_1F_OnWarp
+	map_script MAP_SCRIPT_ON_LOAD, CableClub_OnLoad
+	.byte 0
+
+MossdeepCity_GameCorner_1F_OnWarp: @ 8224B37
+	map_script_2 VAR_CABLE_CLUB_STATE, USING_MINIGAME, CableClub_EventScript_CheckTurnAttendant
+	.2byte 0
+
+MossdeepCity_GameCorner_1F_OnFrame: @ 8224B41
+	map_script_2 VAR_CABLE_CLUB_STATE, USING_MINIGAME, CableClub_EventScript_ExitMinigameRoom
+	.2byte 0
+
+@ Script is redundant, the label in the goto also does lock and faceplayer
+MossdeepCity_GameCorner_1F_EventScript_InfoMan:: @ 8224B4B
+	lock
+	faceplayer
+	goto MossdeepCity_GameCorner_1F_EventScript_InfoMan2
+	release
+	end
+
+@ Script is redundant, the label in the goto also does lock and faceplayer
+MossdeepCity_GameCorner_1F_EventScript_OldMan:: @ 8224B54
+	lock
+	faceplayer
+	goto MossdeepCity_GameCorner_1F_EventScript_OldMan2
+	release
+	end
+
+
+@ Everything below is leftover from RS
+@ The house that was here in RS was moved to Sootopolis and replaced by the Game Corner
+@ The text below is unused and duplicated in its replacement in Sootopolis City
+@ And the BG Door event was moved inaccessibly into a wall
+
+RS_MysteryEventsHouse_EventScript_Door:: @ 8224B5D
+	msgbox RS_MysteryEventsHouse_Text_DoorIsLocked, MSGBOX_SIGN
+	end
+
+RS_MysteryEventsHouse_Text_OldManGreeting: @ 8224B66
+	.string "我年轻时曾作为宝可梦训练家\n"
+	.string "走遍世界。\p"
+	.string "如今我成了个老头子，\n"
+	.string "唯一的乐趣就是看年轻的\p"
+	.string "训练家对战。$"
+
+RS_MysteryEventsHouse_Text_DoorIsLocked: @ 8224BFD
+	.string "门好像锁着。$"
+
+RS_MysteryEventsHouse_Text_ChallengeVisitingTrainer: @ 8224C1C
+	.string "有位叫{STR_VAR_1}的训练家\n"
+	.string "正在我家做客。\p"
+	.string "你要向{STR_VAR_1}挑战吗？$"
+
+RS_MysteryEventsHouse_Text_YouWontBattle: @ 8224C64
+	.string "不对战吗？看不成你们对战，\n"
+	.string "我好失望……$"
+
+RS_MysteryEventsHouse_Text_KeepItToA3On3: @ 8224CA4
+	.string "哦，好，好！\n"
+	.string "不过我这房子不太结实。\p"
+	.string "能不能请你们就打3对3？$"
+
+RS_MysteryEventsHouse_Text_SaveYourProgress: @ 8224D0B
+	.string "在你们俩对战之前，\n"
+	.string "最好先保存进度。$"
+
+RS_MysteryEventsHouse_Text_HopeToSeeAGoodMatch: @ 8224D41
+	.string "希望能看到一场好比赛！$"
+
+RS_MysteryEventsHouse_Text_BattleTie: @ 8224D5D
+	.string "于是就这样僵持住了。\n"
+	.string "双方一步不让，\p"
+	.string "真是场精彩的比赛！$"
+
+RS_MysteryEventsHouse_Text_BattleWon: @ 8224DB7
+	.string "太精彩了！\n"
+	.string "简直就像看到了年轻时的\p"
+	.string "我自己！$"
+
+RS_MysteryEventsHouse_Text_BattleLost: @ 8224DFF
+	.string "啊，真可惜！\n"
+	.string "不过这是场好比赛。\p"
+	.string "希望你下次能赢。$"
+`

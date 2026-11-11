@@ -1,0 +1,38 @@
+raw `
+SeafloorCavern_Room4_MapScripts:: @ 8234C9B
+	.byte 0
+
+SeafloorCavern_Room4_EventScript_Grunt3:: @ 8234C9C
+	trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_3, SeafloorCavern_Room4_Text_Grunt3Intro, SeafloorCavern_Room4_Text_Grunt3Defeat
+	msgbox SeafloorCavern_Room4_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SeafloorCavern_Room4_EventScript_Grunt4:: @ 8234CB3
+	trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_4, SeafloorCavern_Room4_Text_Grunt4Intro, SeafloorCavern_Room4_Text_Grunt4Defeat
+	msgbox SeafloorCavern_Room4_Text_Grunt4PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SeafloorCavern_Room4_Text_Grunt3Intro: @ 8234CCA
+	.string "你是谁？\n"
+	.string "你从哪儿进来的？$"
+
+SeafloorCavern_Room4_Text_Grunt3Defeat: @ 8234CF3
+	.string "迷路了……$"
+
+SeafloorCavern_Room4_Text_Grunt3PostBattle: @ 8234CFC
+	.string "我找不到出口！\n"
+	.string "我不是害怕。别误会！$"
+
+SeafloorCavern_Room4_Text_Grunt4Intro: @ 8234D3A
+	.string "你是谁？\n"
+	.string "你以为你要往哪儿走？$"
+
+SeafloorCavern_Room4_Text_Grunt4Defeat: @ 8234D68
+	.string "我没打赢！$"
+
+SeafloorCavern_Room4_Text_Grunt4PostBattle: @ 8234D79
+	.string "我同伴把地图忘在那艘\n"
+	.string "潜艇里了！\p"
+	.string "你说这算不算没用？$"
+
+`

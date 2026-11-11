@@ -1,0 +1,786 @@
+raw `
+DewfordTown_Gym_MapScripts:: @ 81FC63C
+	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_Gym_OnTransition
+	.byte 0
+
+DewfordTown_Gym_OnTransition: @ 81FC642
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	end
+
+DewfordTown_Gym_EventScript_SetFlashRadius:: @ 81FC648
+	@ temporary should remove
+	goto DewfordTown_Gym_EventScript_SetLightsOn
+	goto_if_defeated TRAINER_BRAWLY_1, DewfordTown_Gym_EventScript_SetLightsOn
+	call DewfordTown_Gym_EventScript_CountTrainersDefeated
+	copyvar VAR_0x8001, VAR_0x8000
+	compare VAR_0x8000, 0
+	goto_if_eq DewfordTown_Gym_EventScript_SetFlashRadius7
+	compare VAR_0x8000, 1
+	goto_if_eq DewfordTown_Gym_EventScript_SetFlashRadius6
+	compare VAR_0x8000, 2
+	goto_if_eq DewfordTown_Gym_EventScript_SetFlashRadius5
+	compare VAR_0x8000, 3
+	goto_if_eq DewfordTown_Gym_EventScript_SetFlashRadius4
+	compare VAR_0x8000, 4
+	goto_if_eq DewfordTown_Gym_EventScript_SetFlashRadius3
+	compare VAR_0x8000, 5
+	goto_if_eq DewfordTown_Gym_EventScript_SetFlashRadius2
+	goto DewfordTown_Gym_EventScript_SetFlashRadius1
+
+DewfordTown_Gym_EventScript_SetLightsOn:: @ 81FC6A2
+	setflashradius 0
+	return
+
+DewfordTown_Gym_EventScript_SetFlashRadius1:: @ 81FC6A6
+	setflashradius 1
+	return
+
+DewfordTown_Gym_EventScript_SetFlashRadius2:: @ 81FC6AA
+	setflashradius 2
+	return
+
+DewfordTown_Gym_EventScript_SetFlashRadius3:: @ 81FC6AE
+	setflashradius 3
+	return
+
+DewfordTown_Gym_EventScript_SetFlashRadius4:: @ 81FC6B2
+	setflashradius 4
+	return
+
+DewfordTown_Gym_EventScript_SetFlashRadius5:: @ 81FC6B6
+	setflashradius 5
+	return
+
+DewfordTown_Gym_EventScript_SetFlashRadius6:: @ 81FC6BA
+	setflashradius 6
+	return
+
+DewfordTown_Gym_EventScript_SetFlashRadius7:: @ 81FC6BE
+	setflashradius 7
+	return
+
+DewfordTown_Gym_EventScript_BrightenRoom:: @ 81FC6C2
+	call DewfordTown_Gym_EventScript_CountTrainersDefeated
+	nop1
+	compare VAR_0x8000, VAR_0x8001
+	goto_if_eq DewfordTown_Gym_EventScript_NoLightChange
+	copyvar VAR_0x8001, VAR_0x8000
+	compare VAR_0x8000, 1
+	goto_if_eq DewfordTown_Gym_EventScript_AnimateFlash1Trainer
+	compare VAR_0x8000, 2
+	goto_if_eq DewfordTown_Gym_EventScript_AnimateFlash2Trainers
+	compare VAR_0x8000, 3
+	goto_if_eq DewfordTown_Gym_EventScript_AnimateFlash3Trainers
+	compare VAR_0x8000, 4
+	goto_if_eq DewfordTown_Gym_EventScript_AnimateFlash4Trainers
+	compare VAR_0x8000, 5
+	goto_if_eq DewfordTown_Gym_EventScript_AnimateFlash5Trainers
+	compare VAR_0x8000, 6
+	goto_if_eq DewfordTown_Gym_EventScript_AnimateFlash6Trainers
+
+DewfordTown_Gym_EventScript_NoLightChange:: @ 81FC71A
+	return
+
+@ NOTE: A little confusingly, a larger animateflash param value is a smaller flash radius
+DewfordTown_Gym_EventScript_AnimateFlash1Trainer:: @ 81FC71B
+	playse SE_SWITCH
+	animateflash 6
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	return
+
+DewfordTown_Gym_EventScript_AnimateFlash2Trainers:: @ 81FC726
+	playse SE_SWITCH
+	animateflash 5
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	return
+
+DewfordTown_Gym_EventScript_AnimateFlash3Trainers:: @ 81FC731
+	playse SE_SWITCH
+	animateflash 4
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	return
+
+DewfordTown_Gym_EventScript_AnimateFlash4Trainers:: @ 81FC73C
+	playse SE_SWITCH
+	animateflash 3
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	return
+
+DewfordTown_Gym_EventScript_AnimateFlash5Trainers:: @ 81FC747
+	playse SE_SWITCH
+	animateflash 2
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	return
+
+DewfordTown_Gym_EventScript_AnimateFlash6Trainers:: @ 81FC752
+	playse SE_SWITCH
+	animateflash 1
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	return
+
+DewfordTown_Gym_EventScript_AnimateFlashFullBrightness:: @ 81FC75D
+	playse SE_SWITCH
+	animateflash 0
+	call DewfordTown_Gym_EventScript_SetFlashRadius
+	return
+
+DewfordTown_Gym_EventScript_CountTrainersDefeated:: @ 81FC768
+	setvar VAR_0x8000, 0
+	goto_if_not_defeated TRAINER_TAKAO, DewfordTown_Gym_EventScript_CheckJocelyn
+	addvar VAR_0x8000, 1
+DewfordTown_Gym_EventScript_CheckJocelyn:: @ 81FC77B
+	goto_if_not_defeated TRAINER_JOCELYN, DewfordTown_Gym_EventScript_CheckLaura
+	addvar VAR_0x8000, 1
+DewfordTown_Gym_EventScript_CheckLaura:: @ 81FC789
+	goto_if_not_defeated TRAINER_LAURA, DewfordTown_Gym_EventScript_CheckBrenden
+	addvar VAR_0x8000, 1
+DewfordTown_Gym_EventScript_CheckBrenden:: @ 81FC797
+	goto_if_not_defeated TRAINER_BRENDEN, DewfordTown_Gym_EventScript_CheckCristian
+	addvar VAR_0x8000, 1
+DewfordTown_Gym_EventScript_CheckCristian:: @ 81FC7A5
+	goto_if_not_defeated TRAINER_CRISTIAN, DewfordTown_Gym_EventScript_CheckLilith
+	addvar VAR_0x8000, 1
+DewfordTown_Gym_EventScript_CheckLilith:: @ 81FC7B3
+	goto_if_not_defeated TRAINER_LILITH, DewfordTown_Gym_EventScript_StopCountingTrainers
+	addvar VAR_0x8000, 1
+DewfordTown_Gym_EventScript_StopCountingTrainers:: @ 81FC7C1
+	return
+
+
+DewfordTown_Gym_EventScript_BrawlyDefeated:: @ 81FC7F7
+	goto_if_unset FLAG_DEFEATED_DEWFORD_GYM, DewfordTown_Gym_EventScript_BrawlyDefeatedFirstTime
+	release
+	end
+DewfordTown_Gym_EventScript_BrawlyDefeatedFirstTime:: @ 81FC7F7
+	//call DewfordTown_Gym_EventScript_AnimateFlashFullBrightness
+	message DewfordTown_Gym_Text_ReceivedKnuckleBadge
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	msgbox DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis, MSGBOX_DEFAULT
+	setflag FLAG_DEFEATED_DEWFORD_GYM
+	setflag FLAG_BADGE02_GET
+	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+	call_if_eq Common_EventScript_ReadyPetalburgGymForBattle
+	setvar VAR_0x8008, 2
+	call Common_EventScript_SetGymTrainers
+	call DewfordTown_Gym_EventScript_GiveBulkUp
+	closemessage
+	delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox DewfordTown_Gym_Text_RegisteredBrawly, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
+	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
+	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	release
+	end
+
+DewfordTown_Gym_EventScript_BrawlyRematch::
+	message DewfordTown_Gym_Text_BrawlyChooseFormat
+	waitmessage
+	multichoice 17, 6, MULTI_REMATCH_BATTLE_MODE, 0
+	switch VAR_RESULT
+	case 0, DewfordTown_Gym_EventScript_SetSingles
+	case 1, DewfordTown_Gym_EventScript_SetDoubles
+	case 2, DewfordTown_Gym_EventScript_Exit
+	case 127, DewfordTown_Gym_EventScript_Exit
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_SetSingles::
+	msgbox DewfordTown_Gym_Text_BrawlyAllowLegends, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq DewfordTown_Gym_EventScript_BrawlySinglesRematch
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_BRAWLY_3, DewfordTown_Gym_Text_BrawlyRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_SetDoubles::
+	msgbox DewfordTown_Gym_Text_BrawlyAllowLegends, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq DewfordTown_Gym_EventScript_BrawlyDoublesRematch
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_BRAWLY_5, DewfordTown_Gym_Text_BrawlyRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_BrawlySinglesRematch::
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_BRAWLY_2, DewfordTown_Gym_Text_BrawlyRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_BrawlyDoublesRematch::
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_BRAWLY_4, DewfordTown_Gym_Text_BrawlyRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_AlreadyRematched::
+	msgbox DewfordTown_Gym_Text_BrawlyPostRematch, MSGBOX_AUTOCLOSE
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_Exit::
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_TakaoBrightenRoom:: @ 81FC8D2
+	call DewfordTown_Gym_EventScript_BrightenRoom
+	release
+	end
+
+DewfordTown_Gym_EventScript_JocelynBrightenRoom:: @ 81FC8F4
+	call DewfordTown_Gym_EventScript_BrightenRoom
+	release
+	end
+
+DewfordTown_Gym_EventScript_LauraBrightenRoom:: @ 81FC916
+	call DewfordTown_Gym_EventScript_BrightenRoom
+	release
+	end
+
+DewfordTown_Gym_EventScript_BrendenBrightenRoom:: @ 81FC938
+	call DewfordTown_Gym_EventScript_BrightenRoom
+	release
+	end
+
+DewfordTown_Gym_EventScript_CristianBrightenRoom:: @ 81FC95A
+	call DewfordTown_Gym_EventScript_BrightenRoom
+	release
+	end
+
+DewfordTown_Gym_EventScript_LilithBrightenRoom:: @ 81FC97C
+	call DewfordTown_Gym_EventScript_BrightenRoom
+	release
+	end
+
+DewfordTown_Gym_EventScript_GymGuide:: 
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_DEWFORD_GYM, DewfordTown_Gym_EventScript_AskResetTrainers
+	msgbox DewfordTown_Gym_Text_Guide2, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Gym_Guide2::
+	msgbox DewfordTown_Gym_Text_Guide2, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Gym_EventScript_GymGuidePostVictory:: @ 81FC998
+	msgbox DewfordTown_Gym_Text_GymGuidePostVictory, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Gym_EventScript_LeftGymStatue:: @ 81FC9A2
+	lockall
+	goto_if_set FLAG_BADGE02_GET, DewfordTown_Gym_EventScript_GymStatueCertified
+	goto DewfordTown_Gym_EventScript_GymStatue
+	end
+
+DewfordTown_Gym_EventScript_RightGymStatue:: @ 81FC9B2
+	lockall
+	goto_if_set FLAG_BADGE02_GET, DewfordTown_Gym_EventScript_GymStatueCertified
+	goto DewfordTown_Gym_EventScript_GymStatue
+	end
+
+DewfordTown_Gym_EventScript_GymStatueCertified:: @ 81FC9C2
+	msgbox DewfordTown_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DewfordTown_Gym_EventScript_GymStatue:: @ 81FC9CC
+	msgbox DewfordTown_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DewfordTown_Gym_Text_Guide1::
+	.string "哟，向着冠军前进的{PLAYER}，\n"
+	.string "过得怎么样？$"
+
+DewfordTown_Gym_Text_Guide2::
+	.string "武斗镇的馆主藤树操纵格斗属性宝可\n"
+	.string "梦。\p"
+	.string "他最强的宝可梦是快拳郎，\n"
+	.string "其余队员也不是好惹的！\p"
+	.string "带上幽灵属性的宝可梦\n"
+	.string "或许能占点便宜。\p"
+	.string "在石之洞窟、橙华森林\n"
+	.string "或武斗庄园都能找到。\p"
+	.string "还有，这道馆像海底一样黑。\n"
+	.string "但打败挡路的训练家后就会亮起来。\p"
+	.string "喂，好了，去吧！$"
+
+DewfordTown_Gym_Text_GymGuidePostVictory: @ 81FCB5C
+	.string "哇！这里变得太亮了！\n"
+	.string "你的前途也很亮！$"
+
+DewfordTown_Gym_Text_TakaoIntro: @ 81FCB9F
+	.string "力即是正义！来吧！$"
+
+DewfordTown_Gym_Text_TakaoDefeat: @ 81FCBB8
+	.string "力量不够……$"
+
+DewfordTown_Gym_Text_TakaoPostBattle: @ 81FCBCA
+	.string "你的技巧压过了我的力量！\n"
+	.string "你的手法值得称赞！$"
+
+DewfordTown_Gym_Text_JocelynIntro: @ 81FCC0A
+	.string "不用藤树出马！\n"
+	.string "我来碾碎你！$"
+
+DewfordTown_Gym_Text_JocelynDefeat: @ 81FCC45
+	.string "可是……怎么会？\n"
+	.string "我怎么会输得这么轻松？$"
+
+DewfordTown_Gym_Text_JocelynPostBattle: @ 81FCC6B
+	.string "我不会白输这一场。\n"
+	.string "我要把它当成训练的动力！\p"
+	.string "总有一天我要当上馆主……\n"
+	.string "不，我要当上宝可梦联盟冠军！$"
+
+DewfordTown_Gym_Text_LauraIntro: @ 81FCD01
+	.string "别想敷衍我！\n"
+	.string "你哭了可别怪我！$"
+
+DewfordTown_Gym_Text_LauraDefeat: @ 81FCD3C
+	.string "哇啊啊啊！我输了！$"
+
+DewfordTown_Gym_Text_LauraPostBattle: @ 81FCD4F
+	.string "我在黑暗中对战，是为了让心更强。\n"
+	.string "但这里太黑了，\p"
+	.string "我从来没见过藤树的脸……$"
+
+DewfordTown_Gym_Text_BrendenAndLilithIntro:
+    .string "呵呵……\n"
+    .string "你在黑暗里摸索吗？\p"
+    .string "让你看看水手的胆气！$"
+
+
+DewfordTown_Gym_Text_LilithIntro: @ 81FCDB8
+	.string "呵呵……你在黑暗里摸索吗？$"
+
+DewfordTown_Gym_Text_LilithDefeat:: @ 81FCDE5
+	.string "哦，你……我不想认识你！$"
+
+DewfordTown_Gym_Text_LilithPostBattle: @ 81FCE08
+	.string "你就该迷路，然后被送回入口去！$"
+
+DewfordTown_Gym_Text_BrendenIntro: @ 81FCE48
+	.string "让你看看水手的胆气！$"
+
+DewfordTown_Gym_Text_BrendenDefeat:: @ 81FCE75
+	.string "怎么会这样？\n"
+	.string "输成这样可不像我！$"
+
+DewfordTown_Gym_Text_BrendenPostBattle: @ 81FCEAB
+	.string "哦，好！你有资格见我们馆主了。$"
+
+DewfordTown_Gym_Text_CristianIntro: @ 81FCEDC
+	.string "想过去，得先过我这一关！$"
+
+DewfordTown_Gym_Text_CristianDefeat: @ 81FCF0A
+	.string "唔唔唔！被彻底压倒了！$"
+
+DewfordTown_Gym_Text_CristianPostBattle: @ 81FCF26
+	.string "你赢了！去拿那枚徽章吧！$"
+
+DewfordTown_Gym_Text_BrawlyIntro: @ 81FCF44
+	.string "我是藤树！\n"
+	.string "武斗镇的道馆馆主！\p"
+	.string "我在这一带的大浪里翻滚过，\n"
+	.string "在漆黑的洞窟里练硬了骨头！\p"
+	.string "所以你想挑战我？\n"
+	.string "让我看看你有什么本事！$"
+
+DewfordTown_Gym_Text_BrawlyDefeat: @ 81FD008
+	.string "哇，哇！你掀起的水花比我预想的大\n"
+	.string "多了！\p"
+	.string "我被你淹没了！\n"
+	.string "好，你赢了。\p"
+	.string "收下这枚道馆徽章！$"
+
+DewfordTown_Gym_Text_ReceivedKnuckleBadge: @ 81FD07D
+	.string "{PLAYER}从藤树那里得到了拳击徽\n"
+	.string "章。$"
+
+DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis: @ 81FD0A8
+	.string "有了拳击徽章，40级以下的宝可梦，\n"
+	.string "连别人交换给你的，\p"
+	.string "都会无条件听话。\n"
+	.string "而且，能在战斗外使用秘传招式闪光\p"
+	.string "。\n"
+	.string "哦，对了。\p"
+	.string "不用让宝可梦学闪光也能用。\n"
+	.string "只要你的宝可梦能学闪光，\p"
+	.string "就能随时在战斗外使用。\n"
+	.string "愿意的话，我这只了不起的快拳郎\p"
+	.string "也送给你。$"
+
+DewfordTown_Gym_Text_RegisteredBrawly: @ 81FD1E0
+	.string "在宝可梦导航器里登录了馆主藤树。$"
+
+DewfordTown_Gym_Text_BrawlyPostBattle: @ 81FD20D
+	.string "我看得出，\n"
+	.string "你的才能总有一天会变成巨浪，\p"
+	.string "在训练家之间掀起惊叹的风暴！$"
+
+DewfordTown_Gym_Text_GymStatue: @ 81FD272
+	.string "武斗镇宝可梦道馆$"
+
+DewfordTown_Gym_Text_GymStatueCertified: @ 81FD28B
+	.string "武斗镇宝可梦道馆\n"
+	.string "藤树的认定训练家：\p"
+	.string "{PLAYER}$"
+
+DewfordTown_Gym_Text_BrawlyPreRematch: @ 81FD2C4
+	.string "藤树：让我看看你又进步了多少！$"
+
+DewfordTown_Gym_Text_BrawlyRematchDefeat: @ 81FD367
+	.string "哇！又被淹没了！$"
+
+DewfordTown_Gym_Text_BrawlyPostRematch: @ 81FD37B
+	.string "藤树：对战既辽阔又深邃。\n"
+	.string "看不到底。\p"
+	.string "就像丰缘的大海一样！$"
+
+DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons: @ 81FD3DE
+	.string "哦？你能对战的宝可梦只有一只。\n"
+	.string "抱歉，希望你至少带两只宝可梦再来\p"
+	.string "。$"
+
+DewfordTown_Gym_Text_BrawlyChooseFormat:
+	.string "藤树：浪会退，但总会回到岸边。\n"
+	.string "像你这样巨大的才能之浪……\p"
+	.string "我就知道你会回来！\n"
+	.string "那么，再战要单打还是双打？$"
+
+DewfordTown_Gym_Text_BrawlyAllowLegends:
+	.string "藤树：那要不要和我的传说宝可梦打\n"
+	.string "一场？\p"
+	.string "觉得自己行吗？$"
+`
+script DewfordTown_Gym_EventScript_GiveBulkUp{
+	msgbox(format("这只特别的宝可梦，\n就当作我送你的礼物！$"))
+	givecustommon(SPECIES_HITMONCHAN, 20, ITEM_COBA_BERRY, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DRAIN_PUNCH, MOVE_RAPID_SPIN, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH, FALSE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER}得到了藤树的{COLOR BLUE}快拳郎{COLOR DARK_GRAY}！$"))
+	waitfanfare
+	setflag(FLAG_RECEIVED_TM08)
+	msgbox(DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script DewfordTown_Gym_EventScript_Laura{
+    lock
+    faceplayer
+    if (defeated(TRAINER_LAURA)){
+        msgbox(DewfordTown_Gym_Text_LauraPostBattle, MSGBOX_AUTOCLOSE)
+    } else {
+        yesnobattle(format("希望你别以为带了幽灵属性就能赢我\n！多亏我的气，{COLOR GREEN}连幽灵都没机会{COLOR DARK_GRAY}！$"))
+        if (var(VAR_RESULT)){
+            trainerbattle_single(TRAINER_LAURA, DewfordTown_Gym_Text_LauraIntro , DewfordTown_Gym_Text_LauraDefeat)
+        }
+    }
+    release
+    end
+}
+
+
+script DewfordTown_Gym_EventScript_Takao{
+    lock
+    faceplayer
+    if (defeated(TRAINER_TAKAO)){
+        msgbox(DewfordTown_Gym_Text_TakaoPostBattle, MSGBOX_AUTOCLOSE)
+    } else {
+        yesnobattle(format("对战前不好好拉伸，\n可是会受重伤的，\p最糟的情况你可能会{COLOR GREEN}麻痹{COLOR DARK_GRAY}！$"))
+        if (var(VAR_RESULT)){
+            trainerbattle_single(TRAINER_TAKAO, DewfordTown_Gym_Text_TakaoIntro , DewfordTown_Gym_Text_TakaoDefeat)
+        }
+    }
+    release
+    end
+}
+
+script DewfordTown_Gym_EventScript_Cristian{
+    lock
+    faceplayer
+    if (defeated(TRAINER_CRISTIAN)){
+        msgbox(DewfordTown_Gym_Text_CristianPostBattle, MSGBOX_AUTOCLOSE)
+    } else {
+        yesnobattle(format("走过{COLOR GREEN}满地尖刺{COLOR DARK_GRAY}能训练专注力，\n看看你练得怎么样。$"))
+        if (var(VAR_RESULT)){
+            trainerbattle_single(TRAINER_CRISTIAN, DewfordTown_Gym_Text_CristianIntro , DewfordTown_Gym_Text_CristianDefeat)
+        }
+    }
+    release
+    end
+}
+
+script DewfordTown_Gym_EventScript_Jocelyn{
+    lock
+    faceplayer
+    if (defeated(TRAINER_JOCELYN)){
+        msgbox(DewfordTown_Gym_Text_JocelynPostBattle, MSGBOX_AUTOCLOSE)
+    } else {
+        yesnobattle(format("什么，对战？行啊，但快点，\n我还得{COLOR GREEN}把这块垫子收起来{COLOR DARK_GRAY}。$"))
+        if (var(VAR_RESULT)){
+            trainerbattle_single(TRAINER_JOCELYN, DewfordTown_Gym_Text_JocelynIntro , DewfordTown_Gym_Text_JocelynDefeat)
+        }
+    }
+    release
+    end
+}
+
+script DewfordTown_Gym_EventScript_BrendenAndLilith{
+    yesnobattle(
+		format("我刚拉伸完，正手痒。\n希望你准备好了，\p我感觉自己{COLOR GREEN}状态拉满{COLOR DARK_GRAY}！\n我的打法擅长{COLOR GREEN}复制对手的长处！\p{COLOR DARK_GRAY}看看你怎么应付！$"))
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_LILITH, TRAINER_BRENDEN, TAG_TEAM_BRENDEN_LILITH, 0, DewfordTown_Gym_Text_BrendenAndLilithIntro)
+    }
+    release
+    end
+}
+
+script DewfordTown_Gym_EventScript_Brenden{
+    lock
+    faceplayer
+    if (defeated(TRAINER_BRENDEN)){
+        msgbox(DewfordTown_Gym_Text_BrendenPostBattle, MSGBOX_AUTOCLOSE)
+    } else {
+        goto(DewfordTown_Gym_EventScript_BrendenAndLilith)
+    }
+    release
+    end
+}
+
+script DewfordTown_Gym_EventScript_Lilith{
+    lock
+    faceplayer
+    if (defeated(TRAINER_LILITH)){
+        msgbox(DewfordTown_Gym_Text_LilithPostBattle, MSGBOX_AUTOCLOSE)
+    } else {
+        goto(DewfordTown_Gym_EventScript_BrendenAndLilith)
+    }
+    release
+    end
+}
+
+movement DewfordTown_Gym_Movement_PlayerWalksOut{
+    walk_left
+}
+
+const LOCALID_BRAWLY = 1
+
+movement DewfordTown_Gym_Movement_BrawlyAskPlayer{
+    jump_in_place_left
+}
+
+movement DewfordTown_Gym_Movement_BrawlyEntersTheRingJump{
+	jump_left
+}
+
+script DewfordTown_Gym_Movement_BrawlyEntersTheRing{
+	applymovement(LOCALID_BRAWLY, DewfordTown_Gym_Movement_BrawlyEntersTheRingJump)
+	playSE(SE_LEDGE)
+	waitse
+	waitmovement(0)
+	playSE(SE_LEDGE)
+	applymovement(LOCALID_BRAWLY, DewfordTown_Gym_Movement_BrawlyEntersTheRingJump)
+	waitmovement(0)
+	playSE(SE_LEDGE)
+	applymovement(LOCALID_BRAWLY, DewfordTown_Gym_Movement_BrawlyEntersTheRingJump)
+	waitmovement(0)
+	waitse
+}
+
+
+script DewfordTown_Gym_EventScript_EnteredTheRing{
+    lock
+    if (defeated(TRAINER_BRAWLY_1)){
+        msgbox(format("我已经被打败了，去找别人吧。$"))
+        applymovement(OBJ_EVENT_ID_PLAYER, DewfordTown_Gym_Movement_PlayerWalksOut)
+        waitmovement(0)
+        release
+        end
+    }
+	playSE(SE_LEDGE)
+    applymovement(LOCALID_BRAWLY, DewfordTown_Gym_Movement_BrawlyAskPlayer)
+    waitmovement(0)
+    msgbox(format("准备好面对我了吗？$"), MSGBOX_YESNO)
+    if (!var(VAR_RESULT)){
+        applymovement(OBJ_EVENT_ID_PLAYER, DewfordTown_Gym_Movement_PlayerWalksOut)
+        waitmovement(0)
+        release
+        end
+    }
+    call(DewfordTown_Gym_Movement_BrawlyEntersTheRing)
+    setvar(VAR_TEMP_0, 1)
+    goto(DewfordTown_Gym_EventScript_BrawlyEngage)
+    release
+    end
+}
+
+
+text DewfordTown_Gym_Text_BrawlyIntro0{
+    format("好啊，你一路冲过道馆，\n这可糊弄不了我，对吧？\p希望你准备好开战，\n因为你马上就要被清场了！$")
+}
+
+text DewfordTown_Gym_Text_BrawlyIntro1{
+    format("哇哦！急什么？你要这么想跟我打，\n直接说不就行了……$")
+}
+
+text DewfordTown_Gym_Text_BrawlyIntroAll{
+    format("热身好了？是吧？\n那就来一场干净利落的对决！$")
+}
+
+text DewfordTown_Gym_Text_BrawlyDefeat0{
+	format("我还以为那个挑战能难住你，\n我把难度拉到了顶。\p看来我小看你了，是吧？\n你赢得了我的尊敬！$")
+}
+text DewfordTown_Gym_Text_BrawlyDefeat1{
+	format("得服你，你把我打崩了。\n被揍了有点郁闷，\p但你赢得光明正大！$")
+}
+text DewfordTown_Gym_Text_BrawlyDefeatAll{
+	format("打得好！你连汗都没出就赢了我。\n看来我想进步得好好训练了。$")
+}
+script DewfordTown_Gym_EventScript_CheckTrainers{
+    if (defeated(TRAINER_BRAWLY_1)) {
+		msgbox(DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT)
+		release
+		end
+	}
+	// set battle event flags
+	if (!defeated(TRAINER_LAURA)){
+		registerbattleevent(BATTLE_EVENT_ONSTAY_FORESIGHT, 1)
+	}
+	if (!defeated(TRAINER_TAKAO)){
+		registerbattleevent(BATTLE_EVENT_LAST_PARALYZED, 2)
+	}
+	if (!defeated(TRAINER_CRISTIAN)){
+		registerbattleevent(BATTLE_EVENT_SPIKES, 2)
+	}
+	if (!defeated(TRAINER_JOCELYN)){
+		registerbattleevent(BATTLE_EVENT_ONSWITCH_MAT_BLOCK, 1)
+	}
+	if (!defeated(TRAINER_BRENDEN)){ // by entension TRAINER_LILITH too
+		registerbattleevent(BATTLE_EVENT_POSTURE_OFFENSE)
+
+	}
+	return
+}
+
+script DewfordTown_Gym_EventScript_BrawlyEngage{
+    goto_if_set(FLAG_SYS_GAME_CLEAR, DewfordTown_Gym_EventScript_BrawlyRematch)
+    call(DewfordTown_Gym_EventScript_CheckTrainers)
+	setvar(VAR_0x8004, 15)
+	registerbattleevent(BATTLE_EVENT_TENSE_BATTLE)
+	// count the number of trainer defeated, and tell a different line
+	// brenden is a tag battle so you know the lillith flag throught it.
+	adddefeatedcount(TRAINER_TAKAO, 1)
+	adddefeatedcount(TRAINER_JOCELYN)
+	adddefeatedcount(TRAINER_LAURA) 
+	adddefeatedcount(TRAINER_BRENDEN) // TRAINER_LILITH
+	adddefeatedcount(TRAINER_CRISTIAN) 
+	switch (var(VAR_RESULT)) {
+		case 0:
+			trainerbattle_single(TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro0, DewfordTown_Gym_Text_BrawlyDefeat0, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC)
+		break
+		case 5:
+			trainerbattle_single(TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntroAll, DewfordTown_Gym_Text_BrawlyDefeatAll, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC)
+		break
+		default:
+			trainerbattle_single(TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro1, DewfordTown_Gym_Text_BrawlyDefeat1, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC)
+    	}
+	
+	goto_if_unset(FLAG_RECEIVED_TM08, DewfordTown_Gym_EventScript_GiveBulkUp)
+	release
+	end
+}
+
+script DewfordTown_Gym_EventScript_Brawly{
+    lock
+    faceplayer
+    msgbox(format("想打的话，就面对我，走进擂台，\n站到中央。\p这样我才知道谁准备好了。$"), MSGBOX_DEFAULT)
+    release
+}
+
+
+
+script DewfordTown_Gym_EventScript_AskResetTrainers{
+	lock
+	clydeaskresettrainers(DewfordTown_Gym_EventScript_ResetAllTrainers, DewfordTown_Gym_EventScript_SelectTrainers)
+	release
+	end
+}
+
+script DewfordTown_Gym_EventScript_ResetAllTrainers{
+	cleartrainerflag(TRAINER_TAKAO)
+	cleartrainerflag(TRAINER_CRISTIAN)
+	cleartrainerflag(TRAINER_LAURA)
+	cleartrainerflag(TRAINER_BRENDEN)
+	cleartrainerflag(TRAINER_LILITH)
+	cleartrainerflag(TRAINER_JOCELYN)
+	cleartrainerflag(TRAINER_BRAWLY_1)
+	setvar(VAR_TEMP_0, 0)//So you can reset refight brawly
+	return
+}
+
+movement DewfordTown_Gym_Movement_Takao{
+	walk_fastest_left * 1
+	walk_fastest_up * 5
+}
+
+movement DewfordTown_Gym_Movement_Cristian{
+	walk_fastest_right * 1
+}
+
+movement DewfordTown_Gym_Movement_Laura{
+	walk_fastest_right * 7
+}
+
+movement DewfordTown_Gym_Movement_BrendenAndLilith{
+	walk_fastest_up * 2
+	walk_fastest_left * 6
+	walk_fastest_up * 4
+}
+
+movement DewfordTown_Gym_Movement_Jocelyn{
+	walk_fastest_right * 4
+	walk_fastest_up * 1
+}
+
+movement DewfordTown_Gym_Movement_Brawly{
+	walk_fastest_right * 2
+	walk_fastest_down * 4
+}
+
+// don't forget to bring you back to the player
+movement DewfordTown_Gym_Movement_Clyde{
+	walk_fastest_left * 6
+	walk_fastest_down * 8
+}
+
+script DewfordTown_Gym_EventScript_SelectTrainers{
+	special(SpawnCameraObject)
+	selecttrainercameraoffset()
+	selecttrainer(DewfordTown_Gym_Movement_Takao, "Takao", TRAINER_TAKAO)
+	selecttrainer(DewfordTown_Gym_Movement_Cristian, "Christian", TRAINER_CRISTIAN)
+	selecttrainer(DewfordTown_Gym_Movement_Laura, "Laura", TRAINER_LAURA)
+	selecttrainer(DewfordTown_Gym_Movement_BrendenAndLilith, "Brenden & Lilith", TRAINER_BRENDEN, TRAINER_LILITH)
+	selecttrainer(DewfordTown_Gym_Movement_Jocelyn, "Jocelyn", TRAINER_JOCELYN)
+	selecttrainer(DewfordTown_Gym_Movement_Brawly, "brawly", TRAINER_BRAWLY_1)
+	applymovement(OBJ_EVENT_ID_CAMERA, DewfordTown_Gym_Movement_Clyde)
+	waitmovement(0)
+	selecttrainercameraoffset(TRUE)
+	special(RemoveCameraObject)
+	return
+}

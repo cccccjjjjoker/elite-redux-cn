@@ -1,0 +1,158 @@
+raw `
+Route132_MapScripts:: @ 81F74E9
+	.byte 0
+
+Route132_EventScript_Gilbert:: @ 81F74EA
+	trainerbattle_single TRAINER_GILBERT, Route132_Text_GilbertIntro, Route132_Text_GilbertDefeat
+	msgbox Route132_Text_GilbertPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route132_EventScript_Dana:: @ 81F7501
+	trainerbattle_single TRAINER_DANA, Route132_Text_DanaIntro, Route132_Text_DanaDefeat
+	msgbox Route132_Text_DanaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route132_EventScript_Ronald:: @ 81F7518
+	trainerbattle_single TRAINER_RONALD, Route132_Text_RonaldIntro, Route132_Text_RonaldDefeat
+	msgbox Route132_Text_RonaldPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route132_EventScript_Kiyo:: @ 81F752F
+	trainerbattle_single TRAINER_KIYO, Route132_Text_KiyoIntro, Route132_Text_KiyoDefeat
+	msgbox Route132_Text_KiyoPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route132_EventScript_Paxton:: @ 81F7546
+	trainerbattle_single TRAINER_PAXTON, Route132_Text_PaxtonIntro, Route132_Text_PaxtonDefeat
+	msgbox Route132_Text_PaxtonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route132_EventScript_Darcy:: @ 81F755D
+	trainerbattle_single TRAINER_DARCY, Route132_Text_DarcyIntro, Route132_Text_DarcyDefeat
+	msgbox Route132_Text_DarcyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route132_EventScript_Jonathan:: @ 81F7574
+	trainerbattle_single TRAINER_JONATHAN, Route132_Text_JonathanIntro, Route132_Text_JonathanDefeat
+	msgbox Route132_Text_JonathanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route132_EventScript_Makayla:: @ 81F758B
+	trainerbattle_single TRAINER_MAKAYLA, Route132_Text_MakaylaIntro, Route132_Text_MakaylaDefeat
+	msgbox Route132_Text_MakaylaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+`
+script Route132_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：我是究极异兽安息之地的守\n门人。别误会：\p尽管它们身上还留着蕾冠王与卡璞们\n留下的战伤，它们的力量依然巨大，\p在它们面前要多加小心。\n想知道它们是怎么来到这里的吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("究极异兽是来自我们星系之外世界的\n生物。它们来到地球并非出于选择，\p而是迫于必要：\n奈克洛兹玛的饥饿没有放过它们的星\p球，于是它们四处流浪，\n直到找到一处能栖身的地方。\p那些没有立刻逃走的，要么被吞噬，\n要么被变成奈克洛兹玛星际军队的士\p兵。许多究极异兽在卡璞们与蕾冠王\n发动的战争中死去，\p但看起来有些藏在这些小岛上活了下\n来。这些生物一生受尽苦难，\p我觉得它们该有个守护者照料。\n你的心似乎是正的。\p等你配得上它们时，再来找我。$"))
+	}
+	else{
+		if(defeated(TRAINER_MAKAYLA)  &&
+		   defeated(TRAINER_JONATHAN) &&
+		   defeated(TRAINER_DARCY)    &&
+		   defeated(TRAINER_PAXTON)   &&
+		   defeated(TRAINER_KIYO)     &&
+		   defeated(TRAINER_RONALD)   &&
+		   defeated(TRAINER_DANA)     &&
+		   defeated(TRAINER_GILBERT)){
+			msgbox(format("你的心是正的，\n你的力量也属于一位了不起的训练家\p。我已把一些究极异兽的位置加进你\n的图鉴导航。\p其他路上可能还有更多：\n试着把它们全都收服吧！$"))
+		}
+		else{
+			msgbox(format("你至今展现出了强大的实力。\n但我想亲眼看看！\p打败最后这几名训练家，\n我就告诉你究极异兽栖息的地方。$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("路上小心。$"))
+	}
+    release
+    end
+}
+
+script Route132_EventScript_Gyarados{
+	lock
+	faceplayer
+    goto_if_set(FLAG_DEFEATED_ROUTE132_GYARADOS, Route132_EventScript_Gyarados_Join)
+    goto_if_unset(FLAG_BADGE07_GET, Route132_EventScript_Gyarados_PreTateLiza)
+    playmoncry(SPECIES_GYARADOS, 2)
+    msgbox(format("暴鲤龙与你目光相接，\n它充满挑衅的凝视清楚地邀你一战。\p你有勇气接受挑战吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+        playmoncry(SPECIES_GYARADOS, 2)
+        msgbox(format("暴鲤龙：鲤！$"), MSGBOX_DEFAULT)
+        delay(40)
+        waitmoncry
+        setflag(FLAG_TOTEM_BATTLE)
+        setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      0)
+        setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      3)
+        setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   1)
+        setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   3)
+        setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    1)
+        setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
+        setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
+        setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_GYARADOS)
+        setflag(FLAG_SHINY_CREATION)
+		setflag(FLAG_ALPHA_CREATION)
+        setwildbattlewithcustommoves(SPECIES_GYARADOS, 0, ITEM_GYARADOSITE_Y, MOVE_BOOMBURST, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HURRICANE, 0, NATURE_TIMID, 252, 252, 252, 252, 252, 252)
+        setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+        dowildbattle
+        clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+        specialvar(VAR_RESULT, GetBattleOutcome)
+        switch(var(VAR_RESULT)){
+            case B_OUTCOME_CAUGHT:
+            case B_OUTCOME_WON:
+                goto(Route132_EventScript_Gyarados_Join)
+            break
+            case B_OUTCOME_RAN:
+            case B_OUTCOME_PLAYER_TELEPORTED:
+                setvar(VAR_0x8004, SPECIES_GYARADOS)
+                fadescreenswapbuffers(FADE_TO_BLACK)
+                removeobject(VAR_LAST_TALKED)
+                fadescreenswapbuffers(FADE_FROM_BLACK)
+                bufferspeciesname(0, VAR_0x8004)
+                msgbox(format("{STR_VAR_1}逃走了！$"), MSGBOX_DEFAULT)
+            break
+        }
+    }
+    else{
+        playmoncry(SPECIES_GYARADOS, 2)
+        msgbox(format("暴鲤龙：鲤……$"), MSGBOX_DEFAULT)
+    }
+	release
+	end
+}
+
+script Route132_EventScript_Gyarados_PreTateLiza{
+    message(format("暴鲤龙视你如无物般望向你的身后，\n似乎在说，\p等你有了能与它抗衡的实力再来吧。{PAUSE_UNTIL_PRESS}$"))
+    release
+    end	
+}
+
+script Route132_EventScript_Gyarados_Join{
+    msgbox(format("暴鲤龙似乎想加入你的队伍，\n要让这只暴鲤龙加入吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		setflag(FLAG_OBTAINED_ROUTE132_GYARADOS)
+		setflag(FLAG_ALPHA_CREATION)
+		givecustommon(SPECIES_GYARADOS, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_TIMID, 0, 252, 0, 0, 4, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_BOOMBURST, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HURRICANE, TRUE)
+		clearflag(FLAG_ALPHA_CREATION)
+        playfanfare(MUS_OBTAIN_ITEM)
+        message(format("{PLAYER}得到了暴鲤龙！$"))
+        waitfanfare
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		removeobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+	if(!flag(FLAG_DEFEATED_ROUTE132_GYARADOS)){
+    	setflag(FLAG_DEFEATED_ROUTE132_GYARADOS)
+		playfanfare(MUS_OBTAIN_ITEM)
+        giveitem(ITEM_GYARADOSITE_Y, 1)
+        message(format("{PLAYER}得到了暴鲤龙进化石Y！$"))
+        waitfanfare
+	}
+	release
+	end
+}

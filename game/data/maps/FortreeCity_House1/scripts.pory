@@ -1,0 +1,104 @@
+raw `
+FortreeCity_House1_MapScripts:: @ 82162BA
+	.byte 0
+
+FortreeCity_House1_EventScript_ExpertF:: @ 821635F
+	msgbox FortreeCity_House1_Text_TradingMemoriesWithOthers, MSGBOX_NPC
+	end
+
+FortreeCity_House1_EventScript_Zigzagoon:: @ 8216368
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_ZIGZAGOON, 0
+	msgbox FortreeCity_House1_Text_Zigzagoon, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+FortreeCity_House1_EventScript_Trader:: @ 8264FED
+	lock
+	faceplayer
+	goto_if_set FLAG_BATTLE_FRONTIER_TRADE_DONE, FortreeCity_House1_EventScript_TradeCompleted
+	setvar VAR_0x8008, INGAME_TRADE_KARRABLAST
+	copyvar VAR_0x8004, VAR_0x8008
+	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	copyvar VAR_0x8009, VAR_RESULT
+	msgbox FortreeCity_House1_Text_WouldYouLikeToTrade, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq FortreeCity_House1_EventScript_DeclineTrade
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_0x800A, VAR_0x8004
+	compare VAR_0x8004, 255
+	goto_if_eq FortreeCity_House1_EventScript_DeclineTrade
+	copyvar VAR_0x8005, VAR_0x800A
+	specialvar VAR_RESULT, GetTradeSpecies
+	copyvar VAR_0x800B, VAR_RESULT
+	compare VAR_RESULT, VAR_0x8009
+	goto_if_ne FortreeCity_House1_EventScript_NotRequestedMon
+	copyvar VAR_0x8004, VAR_0x8008
+	copyvar VAR_0x8005, VAR_0x800A
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	msgbox FortreeCity_House1_Text_PromiseIllBeGoodToIt, MSGBOX_DEFAULT
+	setflag FLAG_BATTLE_FRONTIER_TRADE_DONE
+	release
+	end
+
+FortreeCity_House1_EventScript_DeclineTrade:: @ 826506B
+	msgbox FortreeCity_House1_Text_WellThatsFineToo, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House1_EventScript_NotRequestedMon:: @ 8265075
+	bufferspeciesname 0, VAR_0x8009
+	msgbox FortreeCity_House1_Text_DontTradeForAnythingButMon, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House1_EventScript_TradeCompleted:: @ 8265083
+	msgbox FortreeCity_House1_Text_SkittySoMuchCuterThanImagined, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_House1_Text_WouldYouLikeToTrade: @ 826508D
+	.string "我的宝可梦是{STR_VAR_2}。\n"
+	.string "你知道它吗？\p"
+	.string "它挺可爱，也挺乖。\n"
+	.string "这只小家伙，我可以很自豪地\p"
+	.string "拿来交换！\n"
+	.string "你愿意用{STR_VAR_1}\p"
+	.string "换我的{STR_VAR_2}吗？$"
+
+FortreeCity_House1_Text_PromiseIllBeGoodToIt: @ 8265128
+	.string "哦，真可爱！\n"
+	.string "谢谢你！\p"
+	.string "我保证会好好对它！\n"
+	.string "哦！希望你也好好对待\p"
+	.string "我的{STR_VAR_2}！$"
+
+FortreeCity_House1_Text_DontTradeForAnythingButMon: @ 826518D
+	.string "哦，抱歉！\n"
+	.string "除了{STR_VAR_1}，我不想\p"
+	.string "换任何别的东西。$"
+
+FortreeCity_House1_Text_WellThatsFineToo: @ 82651CB
+	.string "哦，你不换？\n"
+	.string "那也没关系。\p"
+	.string "请再来玩啊。$"
+
+FortreeCity_House1_Text_SkittySoMuchCuterThanImagined: @ 826520E
+	.string "嘻嘻！\n"
+	.string "你知道盖盖虫会进化吗？\p"
+	.string "你的小嘴蜗也进化了！$"
+
+FortreeCity_House1_Text_Zigzagoon: @ 8216597
+	.string "蛇纹熊：咕莫莫？$"
+
+FortreeCity_House1_Text_TradingMemoriesWithOthers: @ 821653B
+	.string "和别人交换宝可梦……\n"
+	.string "就像是在把自己的回忆\p"
+	.string "和别人交换一样。$"
+`

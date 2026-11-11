@@ -1,0 +1,53 @@
+raw `
+LavaridgeTown_House_MapScripts::
+	.byte 0
+
+LavaridgeTown_House_EventScript_OldMan:: @ 81FF912
+	msgbox LavaridgeTown_House_Text_WifeWarmingEggInHotSprings, MSGBOX_NPC
+	end
+
+LavaridgeTown_House_EventScript_Zigzagoon:: @ 81FF91B
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_ZIGZAGOON, 0
+	msgbox LavaridgeTown_House_Text_Zigzagoon, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+LavaridgeTown_House_EventScript_SuckerPunchTM::
+	lock
+	faceplayer
+	msgbox LavaridgeTown_House_Text_HaveTM94, MSGBOX_DEFAULT
+	release
+	end
+
+MoveTutor_EventScript_MimicDeclined::
+	msgbox MoveTutor_MimicDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+LavaridgeTown_House_EventScript_ReceivedTM94::
+	msgbox LavaridgeTown_House_Text_HaveTM94, MSGBOX_DEFAULT
+	release
+	end
+
+LavaridgeTown_House_Text_HaveTM94::
+	.string "我最喜欢的恶属性招式是突袭。\n"
+	.string "如果目标宝可梦正要攻击，\p"
+	.string "这招就能抢先出手。$"
+
+LavaridgeTown_House_Text_GiveTM94::
+	.string "真可惜！\n"
+	.string "那这本招式学习器就给你吧。$"
+
+LavaridgeTown_House_Text_WifeWarmingEggInHotSprings:
+	.string "我妻子在温泉里孵着一颗蛋。\n"
+	.string "这是她告诉我的。\p"
+	.string "她把两只宝可梦寄放在培育屋，\n"
+	.string "它们就发现了那颗蛋！$"
+
+LavaridgeTown_House_Text_Zigzagoon: @ 81FF9BB
+	.string "蛇纹熊：噗咻！$"
+`

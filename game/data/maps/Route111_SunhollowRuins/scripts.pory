@@ -1,0 +1,281 @@
+mapscripts Route111_SunhollowRuins_MapScripts {
+    
+}
+
+const OBJECT_EVENT_MAGMA_GRUNT_1 = 7
+const OBJECT_EVENT_MAGMA_GRUNT_2 = 8
+const OBJECT_EVENT_MAGMA_GRUNT_3 = 10
+const OBJECT_EVENT_MAGMA_GRUNT_4 = 9
+const OBJECT_EVENT_MAGMA_GRUNT_5 = 6
+
+script Route111_SunhollowRuins_EventScript_PlayerFound_Talk{
+    lock
+    faceplayer
+    playse(SE_PIN)
+	applymovement (VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+    goto(Route111_SunhollowRuins_EventScript_PlayerFound_Global)
+    end
+}
+
+script Route111_SunhollowRuins_EventScript_PlayerFound_Global{
+    random (10)
+    switch (var(VAR_RESULT)) {
+        case 0: msgbox(format("入侵者！滚出去，我们正忙着。$"), MSGBOX_AUTOCLOSE)
+        case 1: msgbox(format("这儿没你的事，太危险了。\n快走吧，小鬼。$"), MSGBOX_AUTOCLOSE)
+        case 2: msgbox(format("好了，把你送回帐篷去……\n等等，你是入侵者！滚！$"), MSGBOX_AUTOCLOSE)
+        case 3: msgbox(format("水舰队现在连制服\n都置办不起了？\p去去去，滚远点！$"), MSGBOX_AUTOCLOSE)
+        case 4: msgbox(format("听着，我懒得跟你打。\n就……走吧。别逼我。$"), MSGBOX_AUTOCLOSE)
+        case 5: msgbox(format("啊啊啊！入侵者！\n滚滚滚滚滚出去！$"), MSGBOX_AUTOCLOSE)
+        case 6: msgbox(format("真不敢相信小孩子\n也能拿到砂护目镜……\p回家去吧，这儿不安全。$"), MSGBOX_AUTOCLOSE)
+        case 7: msgbox(format("快跑，快跑，是……\n等等，你不是千里！\p别这么吓我，小鬼！$"), MSGBOX_AUTOCLOSE)
+        case 8: msgbox(format("我一定是出现幻觉了……\n滚开，幻影小孩，\p我在盯着入侵者呢。$"), MSGBOX_AUTOCLOSE)
+        case 9: msgbox(format("偏偏在换班前？\n你挑错时间了。$"), MSGBOX_AUTOCLOSE)
+        case 10: msgbox(format("我们是不是在哪儿见过……？\n呃，不重要。走吧，快走。$"), MSGBOX_AUTOCLOSE)
+    }
+    waitmessage
+    warp(MAP_ROUTE111_SUNHOLLOW_RUINS, 0xFF, 51, 40)
+    release
+    end
+}
+
+const OBJECT_EVENT_NORMAN         = 31
+const OBJECT_EVENT_SLAKING        = 34
+const OBJECT_EVENT_ENTRANCE_GRUNT = 32
+const OBJECT_EVENT_EXCADRILL      = 33
+
+script Route111_SunhollowRuins_EventScript_Pre_EntranceScript_1{
+    lock
+    if(flag(FLAG_HIDE_SUNHOLLOW_ENTRANCE_CHARACTERS)){
+        goto(Route111_SunhollowRuins_EventScript_Norman_Entrance)
+    }
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_right * 2
+        face_up
+        step_end
+    ))
+    goto(Route111_SunhollowRuins_EventScript_EntranceScript)
+}
+
+script Route111_SunhollowRuins_EventScript_Pre_EntranceScript_2{
+    lock
+    if(flag(FLAG_HIDE_SUNHOLLOW_ENTRANCE_CHARACTERS)){
+        goto(Route111_SunhollowRuins_EventScript_Norman_Entrance)
+    }
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_right
+        face_up
+        step_end
+    ))
+    goto(Route111_SunhollowRuins_EventScript_EntranceScript)
+}
+
+script Route111_SunhollowRuins_EventScript_Pre_EntranceScript_3{
+    lock
+    if(flag(FLAG_HIDE_SUNHOLLOW_ENTRANCE_CHARACTERS)){
+        goto(Route111_SunhollowRuins_EventScript_Norman_Entrance)
+    }
+    goto(Route111_SunhollowRuins_EventScript_EntranceScript)
+}
+
+script Route111_SunhollowRuins_EventScript_Pre_EntranceScript_4{
+    lock
+    if(flag(FLAG_HIDE_SUNHOLLOW_ENTRANCE_CHARACTERS)){
+        goto(Route111_SunhollowRuins_EventScript_Norman_Entrance)
+    }
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_left
+        face_up
+        step_end
+    ))
+    goto(Route111_SunhollowRuins_EventScript_EntranceScript)
+}
+
+script Route111_SunhollowRuins_EventScript_Pre_EntranceScript_5{
+    lock
+    if(flag(FLAG_HIDE_SUNHOLLOW_ENTRANCE_CHARACTERS)){
+        goto(Route111_SunhollowRuins_EventScript_Norman_Entrance)
+    }
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_left* 2
+        face_up
+        step_end
+    ))
+    goto(Route111_SunhollowRuins_EventScript_EntranceScript)
+}
+
+script Route111_SunhollowRuins_EventScript_Pre_EntranceScript_6{
+    lock
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_left* 3
+        face_up
+        step_end
+    ))
+    goto(Route111_SunhollowRuins_EventScript_EntranceScript)
+}
+
+script Route111_SunhollowRuins_EventScript_EntranceScript{
+    applymovement(OBJECT_EVENT_SLAKING, moves(walk_right step_end))
+    waitmovement(0)
+    delay(30)
+
+    playmoncry(SPECIES_ZIGZAGOON, 0)
+    delay(60)
+    applymovement(OBJECT_EVENT_SLAKING, moves(walk_in_place_fastest_right step_end))
+    playse(SE_SUPER_EFFECTIVE)
+    waitmovement(0)
+
+    delay(60)
+    playmoncry(SPECIES_POOCHYENA, 1)
+    delay(60)
+    playse(SE_FAINT)
+    hideobjectat(OBJECT_EVENT_EXCADRILL, MAP_ROUTE111_SUNHOLLOW_RUINS)
+    removeobject(OBJECT_EVENT_EXCADRILL,  MAP_ROUTE111_SUNHOLLOW_RUINS)
+	setobjectxyperm(OBJECT_EVENT_EXCADRILL, 1, 1)
+
+    delay(60)
+    applymovement(OBJECT_EVENT_SLAKING, moves(walk_left face_right step_end))
+    waitmovement(0)
+
+    playse(SE_PIN)
+	applymovement(OBJECT_EVENT_ENTRANCE_GRUNT, moves(
+        emote_exclamation_mark
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    msgbox(format("又一个入侵者？$"))
+    closemessage
+
+	applymovement(OBJECT_EVENT_NORMAN, moves(
+        emote_question_mark
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    delay(60)
+    playse(SE_PIN)
+	applymovement(OBJECT_EVENT_NORMAN, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    waitmovement(0)
+    delay(60)
+
+    msgbox(format("千里：{PLAYER}，见到你太好了！$"))
+    msgbox(format("替我接手，好吗？$"))
+    closemessage
+
+    playse(SE_BALL_OPEN)
+    hideobjectat(OBJECT_EVENT_SLAKING, MAP_ROUTE111_SUNHOLLOW_RUINS)
+    removeobject(OBJECT_EVENT_SLAKING,  MAP_ROUTE111_SUNHOLLOW_RUINS)
+	setobjectxyperm(OBJECT_EVENT_SLAKING, 1, 1)
+    delay(60)
+
+    msgbox(format("火岩队手下：等等，慢着：！$"))
+    closemessage
+    delay(10)
+
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_up * 3
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+    applymovement(OBJECT_EVENT_ENTRANCE_GRUNT, moves(face_left step_end))
+    waitmovement(0)
+    applymovement(OBJECT_EVENT_NORMAN, moves(face_right step_end))
+    waitmovement(0)
+
+    msgbox(format("火岩队手下：我不但要打道馆馆主，\n他中途还换人上？$"))
+    closemessage
+    msgbox(format("太离谱了！$"))
+    closemessage
+    trainerbattle_no_intro(TRAINER_GRUNT_SUNHOLLOW_1, format("这一天真是越来越糟了……$"))
+    goto(Route111_SunhollowRuins_EventScript_EntranceScript_Part_2)
+    release
+    end
+}
+
+script Route111_SunhollowRuins_EventScript_EntranceScript_Part_2{
+    msgbox(format("我完蛋了……$"))
+    closemessage
+	applymovement(OBJECT_EVENT_ENTRANCE_GRUNT, moves(
+        walk_down * 8
+        step_end
+    ))
+    waitmovement(0)
+    hideobjectat(OBJECT_EVENT_ENTRANCE_GRUNT, MAP_ROUTE111_SUNHOLLOW_RUINS)
+    removeobject(OBJECT_EVENT_ENTRANCE_GRUNT, MAP_ROUTE111_SUNHOLLOW_RUINS)
+	setobjectxyperm(OBJECT_EVENT_ENTRANCE_GRUNT, 1, 1)
+	applymovement(OBJECT_EVENT_NORMAN, moves(face_right step_end))
+    waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(face_left step_end))
+    waitmovement(0)
+    msgbox(format("千里：在这儿见到你有点意外，\n{PLAYER}。\p我以为来的是亚莎。$"))
+    closemessage
+    msgbox(format("哦，她派你来了？嗯。\n回头我得跟她谈谈……$"))
+    closemessage
+    msgbox(format("不过现在没时间说这个！$"))
+    closemessage
+
+	applymovement(OBJECT_EVENT_NORMAN, moves(
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+    msgbox(format("千里：火岩队正在潜入金字塔。$"))
+    closemessage
+    msgbox(format("我有个老朋友要来，\n但你要硬闯太危险了。$"))
+    closemessage
+
+	applymovement(OBJECT_EVENT_NORMAN, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+    msgbox(format("不过东边的人似乎少些。\n也许你能悄悄穿过去？$"))
+    closemessage
+    msgbox(format("别让他们抓住你！\n他们知道我在，\p但不会想到你。$"))
+    closemessage
+
+    setflag(FLAG_HIDE_SUNHOLLOW_ENTRANCE_CHARACTERS)
+    msgbox(format("你觉得自己行吗？$"), MSGBOX_YESNO)
+    goto(Route111_SunhollowRuins_EventScript_Norman_Question)
+    release
+    end
+}
+
+script Route111_SunhollowRuins_EventScript_Norman_Question {
+    if(var(VAR_RESULT) == YES){
+        msgbox(format("千里：这才像我的孩子。\n祝你好运！$"))
+        closemessage
+	    fadescreen(FADE_TO_BLACK)
+        hideobjectat(OBJECT_EVENT_NORMAN, MAP_ROUTE111_SUNHOLLOW_RUINS)
+        removeobject(OBJECT_EVENT_NORMAN, MAP_ROUTE111_SUNHOLLOW_RUINS)
+        setobjectxyperm(OBJECT_EVENT_NORMAN, 1, 1)
+        setflag(FLAG_HIDE_SUNHOLLOW_NORMAN)
+        setvar(VAR_SUNHOLLOW_STATE, 1)
+        playse(SE_EXIT)
+        delay(10)
+	    fadescreen(FADE_FROM_BLACK)
+    }
+    else{
+        msgbox(format("千里：我明白。\n去准备一下吧，但要快！$"))
+        closemessage
+        warp(MAP_ROUTE111_SUNHOLLOW_RUINS, 0xFF, 51, 46)
+    }
+    release
+    end
+}
+
+script Route111_SunhollowRuins_EventScript_Norman_Entrance {
+    playse(SE_PIN)
+	applymovement(OBJECT_EVENT_NORMAN, moves(
+        emote_exclamation_mark
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    msgbox(format("你回来了！准备好了吗？$"), MSGBOX_YESNO)
+    goto(Route111_SunhollowRuins_EventScript_Norman_Question)
+}

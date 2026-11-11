@@ -1,0 +1,59 @@
+raw `
+.set LOCALID_NURSE, 1
+
+MossdeepCity_PokemonCenter_1F_MapScripts:: @ 822223F
+	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+MossdeepCity_PokemonCenter_1F_OnTransition: @ 822224A
+	setrespawn HEAL_LOCATION_MOSSDEEP_CITY
+	end
+
+MossdeepCity_PokemonCenter_1F_EventScript_Nurse:: @ 822224E
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+MossdeepCity_PokemonCenter_1F_EventScript_Woman:: @ 822225C
+	msgbox MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable, MSGBOX_NPC
+	end
+
+MossdeepCity_PokemonCenter_1F_EventScript_Girl:: @ 8222265
+	msgbox MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves, MSGBOX_NPC
+	end
+
+MossdeepCity_PokemonCenter_1F_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart PokeMart_PokeCenterMossdeepCity
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+PokeMart_PokeCenterMossdeepCity::
+	.2byte ITEM_DIVE_BALL
+	.2byte ITEM_NET_BALL
+	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
+MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable:
+	.string "这座镇的道馆馆主是\n"
+	.string "一对厉害的组合。\p"
+	.string "他们的合击，真是\n"
+	.string "又精彩又惊人！$"
+
+MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves:
+	.string "根据宝可梦的特性，\n"
+	.string "有些招式会发生变化，\p"
+	.string "或者完全不起作用。$"
+
+`

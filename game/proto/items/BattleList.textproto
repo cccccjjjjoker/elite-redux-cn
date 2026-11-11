@@ -1,0 +1,1205 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_EVIOLITE
+  name: "进化奇石"
+  description: "提升能进化的宝可梦的防御和特防"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 50
+  image: "eviolite"
+  palette: "eviolite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LEFTOVERS
+  name: "吃剩的东西"
+  description: "携带道具，战斗中逐渐回复HP。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 10
+  image: "leftovers"
+  palette: "leftovers"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BLACK_SLUDGE
+  name: "黑色污泥"
+  description: "逐渐回复毒系宝可梦，伤害其他属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "black_sludge"
+  palette: "black_sludge"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FOCUS_SASH
+  name: "气势披带"
+  description: "携带者HP全满时，受到濒死攻击会以1HP撑住。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "focus_sash"
+  palette: "focus_sash"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_TOXIC_ORB
+  name: "剧毒宝珠"
+  description: "一个奇异的宝珠，在战斗中使携带者陷入剧毒。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "toxic_orb"
+  palette: "toxic_orb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FLAME_ORB
+  name: "火焰宝珠"
+  description: "古怪的宝珠，战斗中会使携带者灼伤。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "flame_orb"
+  palette: "flame_orb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FROST_ORB
+  name: "冰霜宝珠"
+  description: "古怪的宝珠，战斗中会使携带者冻伤。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "frost_orb"
+  palette: "frost_orb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LIFE_ORB
+  name: "生命宝珠"
+  description: "以HP为代价，提升招式威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "life_orb"
+  palette: "life_orb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CHOICE_BAND
+  name: "讲究头带"
+  description: "提高招式威力，但只能使用该招式。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "choice_band"
+  palette: "choice_band"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CHOICE_SPECS
+  name: "讲究眼镜"
+  description: "提高特攻，但只能使用一个招式。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "choice_specs"
+  palette: "choice_specs"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CHOICE_SCARF
+  name: "讲究围巾"
+  description: "提高速度，但只能使用一个招式"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "choice_scarf"
+  palette: "choice_scarf"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ROCKY_HELMET
+  name: "凸凸头盔"
+  description: "对手接触携带者时会受到伤害。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "rocky_helmet"
+  palette: "rocky_helmet"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ASSAULT_VEST
+  name: "突击背心"
+  description: "提高特防但无法使用变化类招式。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 50
+  image: "assault_vest"
+  palette: "assault_vest"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_TACTICAL_VEST
+  name: "战术背心"
+  description: "提升防御，但无法使用变化招式。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 50
+  image: "physical_vest"
+  palette: "physical_vest"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LIGHT_CLAY
+  name: "光之黏土"
+  description: "携带时延长屏障类招式的持续时间。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "light_clay"
+  palette: "light_clay"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_HEAVY_DUTY_BOOTS
+  name: "厚底靴"
+  description: "使携带者免疫战斗中的场地危害。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "heavy_duty_boots"
+  palette: "heavy_duty_boots"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_AIR_BALLOON
+  name: "气球"
+  description: "让携带者浮空，被击中时该道具会破裂。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "air_balloon"
+  palette: "air_balloon"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_WEAKNESS_POLICY
+  name: "弱点保险"
+  description: "被效果绝佳的招式击中时，提升攻击和特攻。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "weakness_policy"
+  palette: "weakness_policy"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_WIDE_LENS
+  name: "广角镜"
+  description: "放大镜，提高招式的命中率。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 12
+  image: "wide_lens"
+  palette: "wide_lens"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DAMP_ROCK
+  name: "潮湿岩石"
+  description: "携带时延长求雨的持续时间。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "damp_rock"
+  palette: "damp_rock"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_HEAT_ROCK
+  name: "炽热岩石"
+  description: "携带时延长大晴天的持续时间。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "heat_rock"
+  palette: "heat_rock"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ICY_ROCK
+  name: "冰冷岩石"
+  description: "携带时延长冰雹的持续时间。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "icy_rock"
+  palette: "icy_rock"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SMOOTH_ROCK
+  name: "沙沙岩石"
+  description: "携带时延长沙暴的持续时间。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "smooth_rock"
+  palette: "smooth_rock"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SMOKE_BALL
+  name: "烟雾球"
+  description: "携带时延长诡异迷雾的持续时间。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "smoke_ball"
+  palette: "smoke_ball"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_EXPERT_BELT
+  name: "达人带"
+  description: "腰带，能提升效果绝佳招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 30
+  image: "expert_belt"
+  palette: "expert_belt"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SCOPE_LENS
+  name: "焦点镜"
+  description: "携带道具，提高击中要害率。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_SCOPE_LENS
+  image: "scope_lens"
+  palette: "scope_lens"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_PROTECTIVE_PADS
+  name: "部位护具"
+  description: "保护携带者免受接触类招式的效果。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "protective_pads"
+  palette: "protective_pads"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SHELL_BELL
+  name: "贝壳之铃"
+  description: "携带道具，击中对手时回复HP。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 2
+  image: "shell_bell"
+  palette: "shell"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LAGGING_TAIL
+  name: "后攻之尾"
+  description: "携带后，使携带者行动变慢的道具。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_LAGGING_TAIL
+  image: "lagging_tail"
+  palette: "lagging_tail"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SHED_SHELL
+  name: "美丽空壳"
+  description: "使携带者必定能从战斗中逃脱。使用后结束。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "shed_shell"
+  palette: "shed_shell"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_TERRAIN_EXTENDER
+  name: "大地膜"
+  description: "延长当前场地效果的持续时间。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "terrain_extender"
+  palette: "terrain_extender"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BRIGHT_POWDER
+  name: "光粉"
+  description: "携带道具，投出刺眼光芒降低命中率。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_EVASION_UP
+  hold_effect_strength: 10
+  image: "bright_powder"
+  palette: "bright_powder"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BINDING_BAND
+  name: "紧绑束带"
+  description: "携带后，提升束缚类招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "binding_band"
+  palette: "binding_band"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SAFETY_GOGGLES
+  name: "防尘护目镜"
+  description: "保护携带者免受天气伤害和粉末类招式。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "safety_goggles"
+  palette: "safety_goggles"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_EJECT_BUTTON
+  name: "逃脱按键"
+  description: "携带者被击中时会自动替换。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "eject_button"
+  palette: "eject_button"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_EJECT_PACK
+  name: "避难背包"
+  description: "携带者的能力被降低时，将其替换下场。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "eject_pack"
+  palette: "eject_pack"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_RED_CARD
+  name: "红牌"
+  description: "对手击中携带者时，将其替换下场。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "red_card"
+  palette: "red_card"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_IRON_BALL
+  name: "黑色铁球"
+  description: "降低速度，并让飞行属性被地面招式击中"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "iron_ball"
+  palette: "iron_ball"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_QUICK_CLAW
+  name: "先制之爪"
+  description: "携带道具，偶尔能抢先攻击。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 20
+  image: "quick_claw"
+  palette: "quick_claw"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_KINGS_ROCK
+  name: "王者之证"
+  description: "携带道具，击中对手时可能使其畏缩。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_FLINCH
+  hold_effect_strength: 10
+  use_type: ITEM_USE_PARTY_MENU
+  image: "kings_rock"
+  palette: "kings_rock"
+  field_use_func: "EvolutionStone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MUSCLE_BAND
+  name: "力量头带"
+  description: "头带，能提升物理招式威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 15
+  image: "muscle_band"
+  palette: "muscle_band"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_WISE_GLASSES
+  name: "博识眼镜"
+  description: "眼镜，能提升特殊招式威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 15
+  image: "wise_glasses"
+  palette: "wise_glasses"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ABILITY_SHIELD
+  name: "特性护具"
+  description: "防止此道具携带者的特性被改变。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "ability_shield"
+  palette: "ability_shield"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CLEAR_AMULET
+  name: "清净坠饰"
+  description: "防止此道具携带者的能力被降低。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "clear_amulet"
+  palette: "clear_amulet"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_PUNCHING_GLOVE
+  name: "拳击手套"
+  description: "强化拳类招式，并使其不再接触。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "punching_glove"
+  palette: "punching_glove"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_COVERT_CLOAK
+  name: "密探斗篷"
+  description: "保护自己免受招式的追加效果影响。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "covert_cloak"
+  palette: "covert_cloak"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LOADED_DICE
+  name: "机变骰子"
+  description: "容易掷出高点数。连续招式攻击次数增加。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "loaded_dice"
+  palette: "loaded_dice"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SWIRLY_GLASSES
+  name: "旋涡眼镜"
+  description: "交换攻击招式的物理/特殊分类。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "swirly_glasses"
+  palette: "swirly_glasses"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SILK_SCARF
+  name: "丝绸围巾"
+  description: "携带道具，提高一般属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_NORMAL
+  image: "silk_scarf"
+  palette: "silk_scarf"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BLACK_BELT
+  name: "黑带"
+  description: "携带道具，提高格斗属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FIGHTING
+  image: "black_belt"
+  palette: "black_type_enhancing_item"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SHARP_BEAK
+  name: "锐利鸟嘴"
+  description: "携带道具，提高飞行属性招式的威力"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FLYING
+  image: "sharp_beak"
+  palette: "sharp_beak"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_POISON_BARB
+  name: "毒针"
+  description: "带上后能增加毒系招式威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_POISON
+  image: "poison_barb"
+  palette: "poison_barb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SOFT_SAND
+  name: "柔软沙子"
+  description: "携带道具，提高地面属性招式的威力"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_GROUND
+  image: "soft_sand"
+  palette: "soft_sand"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ROCK_INCENSE
+  name: "岩石熏香"
+  description: "带上后能增加岩石系招式威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_ROCK
+  image: "rock_incense"
+  palette: "rock_incense"
+}
+item {
+  id: ITEM_HARD_STONE
+  name: "硬石头"
+  description: "带上后能增加岩石系招式威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_ROCK
+  image: "hard_stone"
+  palette: "hard_stone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SILVER_POWDER
+  name: "银粉"
+  description: "携带道具，提高虫属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_BUG
+  image: "silver_powder"
+  palette: "silver_powder"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SPELL_TAG
+  name: "诅咒之符"
+  description: "携带道具，提高幽灵属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_GHOST
+  image: "spell_tag"
+  palette: "spell_tag"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_METAL_COAT
+  name: "金属膜"
+  description: "携带道具，提高钢属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_STEEL
+  use_type: ITEM_USE_PARTY_MENU
+  image: "metal_coat"
+  palette: "metal_coat"
+  field_use_func: "EvolutionStone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CHARCOAL
+  name: "木炭"
+  description: "携带道具，提高火属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FIRE
+  image: "charcoal"
+  palette: "charcoal"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SEA_INCENSE
+  name: "海潮熏香"
+  description: "略微提升水属性招式威力的携带道具。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_WATER
+  image: "sea_incense"
+  palette: "sea_incense"
+}
+item {
+  id: ITEM_WAVE_INCENSE
+  name: "涟漪熏香"
+  description: "略微提升水属性招式威力的携带道具。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_WATER
+  image: "wave_incense"
+  palette: "wave_incense"
+}
+item {
+  id: ITEM_MYSTIC_WATER
+  name: "神秘水滴"
+  description: "携带道具，提高水属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_WATER
+  image: "mystic_water"
+  palette: "mystic_water"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ROSE_INCENSE
+  name: "花朵熏香"
+  description: "携带道具，提高草属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_GRASS
+  image: "rose_incense"
+  palette: "rose_incense"
+}
+item {
+  id: ITEM_MIRACLE_SEED
+  name: "奇迹种子"
+  description: "携带道具，提高草属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_GRASS
+  image: "miracle_seed"
+  palette: "miracle_seed"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MAGNET
+  name: "磁铁"
+  description: "携带道具，提高电属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_ELECTRIC
+  image: "magnet"
+  palette: "magnet"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ODD_INCENSE
+  name: "奇异熏香"
+  description: "携带后，超能力属性招式的威力会提高。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_PSYCHIC
+  image: "odd_incense"
+  palette: "odd_incense"
+}
+item {
+  id: ITEM_TWISTED_SPOON
+  name: "弯曲的汤匙"
+  description: "携带后，超能力属性招式的威力会提高。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_PSYCHIC
+  image: "twisted_spoon"
+  palette: "twisted_spoon"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_NEVER_MELT_ICE
+  name: "不融冰"
+  description: "带上后能增加冰系招式威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_ICE
+  image: "never_melt_ice"
+  palette: "never_melt_ice"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DRAGON_FANG
+  name: "龙之牙"
+  description: "携带道具，提高龙属性招式的威力。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_DRAGON
+  image: "dragon_fang"
+  palette: "dragon_fang"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BLACK_GLASSES
+  name: "黑色眼镜"
+  description: "携带道具，提高恶属性招式的威力"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_DARK
+  image: "black_glasses"
+  palette: "black_type_enhancing_item"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_FAIRY_FEATHER
+  name: "妖精之羽"
+  description: "提升妖精属性招式威力的携带道具。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_TYPE_POWER
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FAIRY
+  image: "fairy_feather"
+  palette: "fairy_feather"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BURN_DRIVE
+  name: "火焰卡带"
+  description: "将盖诺赛克特的技术爆破变为火属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_DRIVE
+  hold_effect_type: TYPE_FIRE
+  image: "burn_drive"
+  palette: "burn_drive"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_DOUSE_DRIVE
+  name: "水流卡带"
+  description: "将盖诺赛克特的技术高手的属性变为水"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_DRIVE
+  hold_effect_type: TYPE_WATER
+  image: "douse_drive"
+  palette: "douse_drive"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_SHOCK_DRIVE
+  name: "闪电卡带"
+  description: "将盖诺赛克特的技术高手的属性变为电"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_DRIVE
+  hold_effect_type: TYPE_ELECTRIC
+  image: "shock_drive"
+  palette: "shock_drive"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_CHILL_DRIVE
+  name: "冰冻卡带"
+  description: "将盖诺赛克特的技术爆破变为冰属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_DRIVE
+  hold_effect_type: TYPE_ICE
+  image: "chill_drive"
+  palette: "chill_drive"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_FIST_PLATE
+  name: "拳头石板"
+  description: "提升格斗属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FIGHTING
+  image: "fist_plate"
+  palette: "fist_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_SKY_PLATE
+  name: "蓝天石板"
+  description: "提升飞行属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FLYING
+  image: "sky_plate"
+  palette: "sky_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_TOXIC_PLATE
+  name: "剧毒石板"
+  description: "提升毒属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_POISON
+  image: "toxic_plate"
+  palette: "toxic_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_EARTH_PLATE
+  name: "大地石板"
+  description: "提升地面属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_GROUND
+  image: "earth_plate"
+  palette: "earth_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_STONE_PLATE
+  name: "岩石石板"
+  description: "提升岩石属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_ROCK
+  image: "stone_plate"
+  palette: "stone_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_INSECT_PLATE
+  name: "玉虫石板"
+  description: "提升虫属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_BUG
+  image: "insect_plate"
+  palette: "insect_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_SPOOKY_PLATE
+  name: "妖怪石板"
+  description: "提升幽灵属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_GHOST
+  image: "spooky_plate"
+  palette: "spooky_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_IRON_PLATE
+  name: "钢铁石板"
+  description: "提升钢属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_STEEL
+  image: "iron_plate"
+  palette: "iron_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_FLAME_PLATE
+  name: "火球石板"
+  description: "提升火属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FIRE
+  image: "flame_plate"
+  palette: "flame_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_SPLASH_PLATE
+  name: "水滴石板"
+  description: "提升水属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_WATER
+  image: "splash_plate"
+  palette: "splash_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_MEADOW_PLATE
+  name: "碧绿石板"
+  description: "提升草属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_GRASS
+  image: "meadow_plate"
+  palette: "meadow_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_ZAP_PLATE
+  name: "雷电石板"
+  description: "提升电属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_ELECTRIC
+  image: "zap_plate"
+  palette: "zap_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_MIND_PLATE
+  name: "神奇石板"
+  description: "提升超能力属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_PSYCHIC
+  image: "mind_plate"
+  palette: "mind_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_ICICLE_PLATE
+  name: "冰柱石板"
+  description: "提升冰属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_ICE
+  image: "icicle_plate"
+  palette: "icicle_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_DRACO_PLATE
+  name: "龙之石板"
+  description: "提升龙属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_DRAGON
+  image: "draco_plate"
+  palette: "draco_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_DREAD_PLATE
+  name: "恶颜石板"
+  description: "提升恶属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_DARK
+  image: "dread_plate"
+  palette: "dread_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_PIXIE_PLATE
+  name: "妖精石板"
+  description: "提升妖精属性招式威力的石板。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_PLATE
+  hold_effect_strength: 30
+  hold_effect_type: TYPE_FAIRY
+  image: "pixie_plate"
+  palette: "pixie_plate"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_FIGHTING_MEMORY
+  name: "格斗存储碟"
+  description: "带有格斗属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_FIGHTING
+  image: "fighting_memory"
+  palette: "fighting_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_FLYING_MEMORY
+  name: "飞行记忆"
+  description: "带有飞行属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_FLYING
+  image: "flying_memory"
+  palette: "flying_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_POISON_MEMORY
+  name: "毒之存储碟"
+  description: "带有毒属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_POISON
+  image: "poison_memory"
+  palette: "poison_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_GROUND_MEMORY
+  name: "地面存储碟"
+  description: "带有地面属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_GROUND
+  image: "ground_memory"
+  palette: "ground_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_ROCK_MEMORY
+  name: "岩石存储碟"
+  description: "带有岩石属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_ROCK
+  image: "rock_memory"
+  palette: "rock_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_BUG_MEMORY
+  name: "虫子存储碟"
+  description: "带有虫属性数据的圆盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_BUG
+  image: "bug_memory"
+  palette: "bug_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_GHOST_MEMORY
+  name: "幽灵存储碟"
+  description: "带有幽灵属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_GHOST
+  image: "ghost_memory"
+  palette: "ghost_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_STEEL_MEMORY
+  name: "钢记忆碟"
+  description: "带有钢属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_STEEL
+  image: "steel_memory"
+  palette: "steel_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_FIRE_MEMORY
+  name: "火焰存储碟"
+  description: "带有火属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_FIRE
+  image: "fire_memory"
+  palette: "fire_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_WATER_MEMORY
+  name: "清水存储碟"
+  description: "带有水属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_WATER
+  image: "water_memory"
+  palette: "water_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_GRASS_MEMORY
+  name: "青草存储碟"
+  description: "带有草属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_GRASS
+  image: "grass_memory"
+  palette: "grass_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_ELECTRIC_MEMORY
+  name: "电气记忆"
+  description: "带有电属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_ELECTRIC
+  image: "electric_memory"
+  palette: "electric_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_PSYCHIC_MEMORY
+  name: "超能存储碟"
+  description: "带有超能力属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_PSYCHIC
+  image: "psychic_memory"
+  palette: "psychic_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_ICE_MEMORY
+  name: "冰冻存储碟"
+  description: "带有冰属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_ICE
+  image: "ice_memory"
+  palette: "ice_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_DRAGON_MEMORY
+  name: "龙之记忆"
+  description: "带有龙属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_DRAGON
+  image: "dragon_memory"
+  palette: "dragon_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_DARK_MEMORY
+  name: "黑暗存储碟"
+  description: "带有恶属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_DARK
+  image: "dark_memory"
+  palette: "dark_memory"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_FAIRY_MEMORY
+  name: "妖精存储碟"
+  description: "带有妖精属性数据的光盘。可改变银伴战兽的属性。"
+  grouping: POCKET_BATTLE
+  hold_effect: HOLD_EFFECT_MEMORY
+  hold_effect_type: TYPE_FAIRY
+  image: "fairy_memory"
+  palette: "fairy_memory"
+  talk_to_legendary_sage: true
+}

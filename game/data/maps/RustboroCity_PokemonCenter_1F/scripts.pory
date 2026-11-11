@@ -1,0 +1,69 @@
+raw `
+.set LOCALID_NURSE, 1
+
+RustboroCity_PokemonCenter_1F_MapScripts:: @ 8214D62
+	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+RustboroCity_PokemonCenter_1F_OnTransition: @ 8214D6D
+	setrespawn HEAL_LOCATION_RUSTBORO_CITY
+	call Common_EventScript_UpdateBrineyLocation
+	end
+
+RustboroCity_PokemonCenter_1F_EventScript_Nurse:: @ 8214D76
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+RustboroCity_PokemonCenter_1F_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart PokeMart_PokeCenterRustboro
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+PokeMart_PokeCenterRustboro::
+	.2byte ITEM_REPEAT_BALL
+	.2byte ITEM_TIMER_BALL
+	.2byte ITEM_NEST_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
+RustboroCity_PokemonCenter_1F_EventScript_Man:: @ 8214D84
+	msgbox RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonCenter_1F_EventScript_Boy:: @ 8214D8D
+	msgbox RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonCenter_1F_EventScript_Girl:: @ 8214D96
+	msgbox RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities: @ 8214D9F
+	.string "我的宝可梦是天真性格，\n"
+	.string "我朋友的是爽朗性格。\p"
+	.string "宝可梦也有个性，真有意思！$"
+
+RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon: @ 8214E13
+	.string "和人一样，宝可梦也分\n"
+	.string "雄性和雌性。\p"
+	.string "但好像谁也不知道\n"
+	.string "它们哪里不一样。$"
+
+RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor: @ 8214E81
+	.string "隔壁那位男士给了我一个秘传机！\n"
+	.string "我用它教会了宝可梦\p"
+	.string "砍倒细小的树。$"
+
+`

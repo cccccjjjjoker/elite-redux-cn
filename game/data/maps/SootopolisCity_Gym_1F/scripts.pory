@@ -1,0 +1,653 @@
+raw `
+SootopolisCity_Gym_1F_MapScripts:: @ 8224E4C
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, SootopolisCity_Gym_1F_OnFrame
+	map_script MAP_SCRIPT_ON_RESUME, SootopolisCity_Gym_1F_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, SootopolisCity_Gym_1F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_Gym_1F_OnTransition
+	.byte 0
+
+SootopolisCity_Gym_1F_OnTransition: @ 8224E61
+	setvar VAR_ICE_STEP_COUNT, 1
+	end
+
+SootopolisCity_Gym_1F_OnResume: @ 8224E67
+	setstepcallback STEP_CB_SOOTOPOLIS_ICE
+	end
+
+SootopolisCity_Gym_1F_OnLoad: @ 8224E6A
+	@ call SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+	@ special SetSootopolisGymCrackedIceMetatiles
+	end
+
+SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles:: @ 8224E73
+	compare VAR_ICE_STEP_COUNT, 8
+	goto_if_lt SootopolisCity_Gym_1F_EventScript_StopCheckingStairs  @ All stairs ice
+	compare VAR_ICE_STEP_COUNT, 28
+	goto_if_lt SootopolisCity_Gym_1F_EventScript_OpenFirstStairs
+	compare VAR_ICE_STEP_COUNT, 67
+	goto_if_lt SootopolisCity_Gym_1F_EventScript_OpenFirstAndSecondStairs
+	setmetatile 8, 4, METATILE_SootopolisGym_Stairs, 0
+	setmetatile 8, 5, METATILE_SootopolisGym_Stairs, 0
+SootopolisCity_Gym_1F_EventScript_OpenFirstAndSecondStairs:: @ 8224EA6
+	setmetatile 8, 10, METATILE_SootopolisGym_Stairs, 0
+	setmetatile 8, 11, METATILE_SootopolisGym_Stairs, 0
+SootopolisCity_Gym_1F_EventScript_OpenFirstStairs:: @ 8224EB8
+	setmetatile 8, 15, METATILE_SootopolisGym_Stairs, 0
+	setmetatile 8, 16, METATILE_SootopolisGym_Stairs, 0
+SootopolisCity_Gym_1F_EventScript_StopCheckingStairs:: @ 8224ECA
+	return
+
+SootopolisCity_Gym_1F_OnFrame: @ 8224ECB
+	map_script_2 VAR_ICE_STEP_COUNT, 8, SootopolisCity_Gym_1F_EventScript_UnlockFirstStairs
+	map_script_2 VAR_ICE_STEP_COUNT, 28, SootopolisCity_Gym_1F_EventScript_UnlockSecondStairs
+	map_script_2 VAR_ICE_STEP_COUNT, 67, SootopolisCity_Gym_1F_EventScript_UnlockThirdStairs
+	map_script_2 VAR_ICE_STEP_COUNT, 0, SootopolisCity_Gym_1F_EventScript_FallThroughIce
+	.2byte 0
+
+SootopolisCity_Gym_1F_EventScript_UnlockFirstStairs:: @ 8224EED
+	addvar VAR_ICE_STEP_COUNT, 1
+	delay 40
+	playse SE_ICE_STAIRS
+	call SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+	special DrawWholeMapView
+	end
+
+SootopolisCity_Gym_1F_EventScript_UnlockSecondStairs:: @ 8224F01
+	addvar VAR_ICE_STEP_COUNT, 1
+	delay 40
+	playse SE_ICE_STAIRS
+	call SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+	special DrawWholeMapView
+	end
+
+SootopolisCity_Gym_1F_EventScript_UnlockThirdStairs:: @ 8224F15
+	addvar VAR_ICE_STEP_COUNT, 1
+	delay 40
+	playse SE_ICE_STAIRS
+	call SootopolisCity_Gym_1F_EventScript_CheckSetStairMetatiles
+	special DrawWholeMapView
+	end
+
+SootopolisCity_Gym_1F_EventScript_FallThroughIce:: @ 8224F29
+	lockall
+	delay 20
+	applymovement OBJ_EVENT_ID_PLAYER, SootopolisCity_Gym_1F_Movement_FallThroughIce
+	waitmovement 0
+	playse SE_FALL
+	delay 60
+	warphole MAP_SOOTOPOLIS_CITY_GYM_B1F
+	waitstate
+	end
+
+SootopolisCity_Gym_1F_Movement_FallThroughIce: @ 8224F42
+	set_invisible
+	step_end
+
+SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge:: @ 822501B
+	msgbox SootopolisCity_Gym_1F_Text_GoGetFortreeBadge, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_Gym_1F_EventScript_SetDoubles::
+	msgbox SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq SootopolisCity_Gym_1F_EventScript_JuanDoublesRematch
+	trainerbattle_no_intro TRAINER_JUAN_5, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_JUAN
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_EventScript_JuanSinglesRematch::
+	trainerbattle_no_intro TRAINER_JUAN_2, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_JUAN
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_EventScript_JuanDoublesRematch::
+	trainerbattle_no_intro TRAINER_JUAN_3, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_JUAN
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_EventScript_AlreadyRematched::
+	msgbox SootopolisCity_Gym_1F_Text_JuanPostRematch, MSGBOX_AUTOCLOSE
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_EventScript_Exit::
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_EventScript_GymGuide:: @ 8225040
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_SOOTOPOLIS_GYM, SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory
+	msgbox SootopolisCity_Gym_1F_Text_GymGuideAdvice, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory:: @ 8225055
+	msgbox SootopolisCity_Gym_1F_Text_GymGuidePostVictory, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_Gym_1F_EventScript_LeftGymStatue:: @ 822505F
+	lockall
+	goto_if_set FLAG_BADGE08_GET, SootopolisCity_Gym_1F_EventScript_GymStatueCertified
+	goto SootopolisCity_Gym_1F_EventScript_GymStatue
+	end
+
+SootopolisCity_Gym_1F_EventScript_RightGymStatue:: @ 822506F
+	lockall
+	goto_if_set FLAG_BADGE08_GET, SootopolisCity_Gym_1F_EventScript_GymStatueCertified
+	goto SootopolisCity_Gym_1F_EventScript_GymStatue
+	end
+
+SootopolisCity_Gym_1F_EventScript_GymStatueCertified:: @ 822507F
+	msgbox SootopolisCity_Gym_1F_Text_GymStatueCertified, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_EventScript_GymStatue:: @ 8225089
+	msgbox SootopolisCity_Gym_1F_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_Text_GymGuideAdvice: @ 8225093
+	.string "哟！向着冠军前进的{PLAYER}，\n"
+	.string "过得怎么样？\p"
+	.string "琉璃市的馆主亚当是水属性宝可梦的\n"
+	.string "高手。\p"
+	.string "而且，要走到亚当那里，\n"
+	.string "一层冰面会挡住你的路……\p"
+	.string "听我说，抱歉，我只能告诉你这些。\n"
+	.string "剩下的路，你得自己去闯！$"
+
+SootopolisCity_Gym_1F_Text_GymGuidePostVictory: @ 82251AF
+	.string "哟！你连号称全丰缘最强的亚当\n"
+	.string "都打赢了！\p"
+	.string "好！看看你的训练家卡。\n"
+	.string "要是徽章都收齐了，\p"
+	.string "你就可以去挑战宝可梦联盟了！$"
+
+@ NOTE: This defeat text actually causes a buffer overflow. It's about 50 bytes too long for
+@ the gDisplayedStringBattle buffer that it's put into, and it stomps all over the gBattleTextBuffs
+@ after, as well as the otherwise unused array after that. One wonders if that's the reason for
+@ the existence of that unused array of ints.
+
+SootopolisCity_Gym_1F_Text_ReceivedRainBadge: @ 8225598
+	.string "{PLAYER}从亚当那里得到了雨滴徽\n"
+	.string "章。$"
+
+SootopolisCity_Gym_1F_Text_TakeThis:
+	.string "还有，为了让你永远记得\n"
+	.string "我们这场对战，收下这个……$"
+
+SootopolisCity_Gym_1F_Text_ExplainScald: @ 82256C1
+	.string "我给你的那个招式学习器里装着热水\n"
+	.string "。\p"
+	.string "使用时会用滚烫的水，\n"
+	.string "偶尔让对手灼伤。\p"
+	.string "…… …… …… ……$"
+
+SootopolisCity_Gym_1F_Text_RegisteredJuan: @ 822574D
+	.string "在宝可梦导航器里登录了馆主亚当。$"
+
+SootopolisCity_Gym_1F_Text_JuanPostBattle: @ 8225778
+	.string "收齐丰缘所有道馆徽章的训练家，\n"
+	.string "该前往最终的目的地了。\p"
+	.string "宝可梦联盟。\n"
+	.string "去丰缘最东端，\p"
+	.string "去彩悠岛。\n"
+	.string "在那里，你会找到宝可梦联盟。$"
+
+SootopolisCity_Gym_1F_Text_GoGetFortreeBadge: @ 8225865
+	.string "丰缘还剩一枚徽章没拿到。\n"
+	.string "想挑战宝可梦联盟，\p"
+	.string "你得先去茵郁的道馆\n"
+	.string "拿到最后一枚徽章。$"
+
+SootopolisCity_Gym_1F_Text_GymStatue: @ 82258FA
+	.string "琉璃市宝可梦道馆$"
+
+SootopolisCity_Gym_1F_Text_GymStatueCertified: @ 8225916
+	.string "琉璃市宝可梦道馆\n"
+	.string "亚当的认定训练家：\p"
+	.string "{PLAYER}$"
+
+SootopolisCity_Gym_1F_Text_JuanPreRematch: @ 8225950
+	.string "亚当：很好！\n"
+	.string "让舞蹈开始吧！$"
+
+SootopolisCity_Gym_1F_Text_JuanRematchDefeat: @ 8225A2E
+	.string "啊哈哈哈，你是赢家！\n"
+	.string "你又打败我了！$"
+
+SootopolisCity_Gym_1F_Text_JuanPostRematch: @ 8225A67
+	.string "亚当：我要收你当徒弟，\n"
+	.string "你肯定会拒绝。\p"
+	.string "我想把这件外套送给你。\n"
+	.string "但你也会拒绝。\p"
+	.string "我想一定是这样。\n"
+	.string "朋友，而这正是高贵的明证！$"
+
+SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons: @ 8225B48
+	.string "亚当：啊，不不不。\n"
+	.string "你身上只有一只宝可梦。\p"
+	.string "我希望你带两只，\n"
+	.string "或者更多，再来，拜托了。$"
+
+SootopolisCity_Gym_1F_Text_JuanChooseFormat:
+	.string "亚当：啊，这道馆本来已恢复了\n"
+	.string "往日的宁静……\p"
+	.string "但我们年轻的台风又回来了，\n"
+	.string "再次来考验我们！\p"
+	.string "那么，朋友，当然可以！\n"
+	.string "你想跳多少支舞，\p"
+	.string "我都乐意奉陪！\n"
+	.string "那么，我们怎么来？$"
+
+SootopolisCity_Gym_1F_Text_JuanAllowLegends:
+	.string "那要不要让我和更强的\n"
+	.string "传说宝可梦共舞？$"
+`
+script Common_EventScript_Lost{
+	fadescreen(FADE_TO_BLACK)
+	special(SetCB2WhiteOut)
+	waitstate
+}
+
+script SootopolisCity_Gym_1F_EventScript_Juan{
+	if(flag(FLAG_BADGE08_GET)){
+		goto_if_set(FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch)
+	}
+	else{
+		call(SootopolisCity_Gym_EventScript_CheckTrainers)
+		registerbattleevent(BATTLE_EVENT_TENSE_BATTLE)
+		special(HealPlayerParty)
+		setflag(FLAG_SYS_DISABLE_AUTOHEAL)
+		setvar(VAR_0x8004, 15)
+		starttagbattle(TRAINER_JUAN_1, TRAINER_WALLACE, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_EventScript_Juan_Battle_2)
+		clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+	}
+	goto(SootopolisCity_Gym_1F_EventScript_AfterBattle)
+	release
+	end
+}
+
+script SootopolisCity_Gym_1F_EventScript_Juan_Battle_2{
+	setvar(VAR_0x8004, 15)
+	starttagbattle(TRAINER_JUAN_5, TRAINER_WALLACE_5, TAG_TEAM_WALLACE_JUAN_2, 0, SootopolisCity_Gym_1F_Text_JuanIntro_2, SootopolisCity_Gym_1F_EventScript_Juan_Defeated)
+	release
+	end
+}
+
+script SootopolisCity_Gym_1F_EventScript_AfterBattle{
+	goto_if_unset(FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald)
+	goto_if_unset(FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge)
+	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_NPC)
+}
+
+script SootopolisCity_Gym_1F_EventScript_Juan_Defeated{
+	if(!flag(FLAG_BADGE08_GET)){
+		clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+		message(SootopolisCity_Gym_1F_Text_ReceivedRainBadge)
+		call(Common_EventScript_PlayGymBadgeFanfare)
+		waitmessage
+		closemessage
+		waitfanfare
+		msgbox(SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis, MSGBOX_DEFAULT)
+		msgbox(format"亚当：还有，米可利？\n非常感谢你来。\p米可利：不客气，这是我的荣幸……\n米可利：等等。\p我们没给你机会回复，对吧？\n亚当：哎呀。真是太抱歉了，\p{PLAYER}！但你还是赢了，\n你真是不可阻挡。那么，\p去宝可梦联盟吧！$", MSGBOX_DEFAULT)
+		delay(30)
+		playfanfare(MUS_REGISTER_MATCH_CALL)
+		msgbox(SootopolisCity_Gym_1F_Text_RegisteredKabutops, MSGBOX_DEFAULT)
+		waitfanfare
+		closemessage
+		delay(30)
+		setflag(FLAG_DEFEATED_SOOTOPOLIS_GYM)
+		setflag(FLAG_BADGE08_GET)
+		setflag(FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS)
+		setflag(FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN)
+		setflag(FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE)
+		setvar(VAR_SOOTOPOLIS_CITY_STATE, 6)
+		clearflag(FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1)
+		setvar(VAR_0x8008, 8)
+		call(Common_EventScript_SetGymTrainers)
+		closemessage
+		delay(30)
+		playfanfare(MUS_REGISTER_MATCH_CALL)
+		msgbox(SootopolisCity_Gym_1F_Text_RegisteredJuan, MSGBOX_DEFAULT)
+		waitfanfare
+		closemessage
+		delay(30)
+		setflag(FLAG_ENABLE_JUAN_MATCH_CALL)
+		// new, if you fought the rival 2, you get the skip to evergreen city
+		if(flag(FLAG_DEFEATED_RIVAL_RUSTBORO)){
+			clearflag(FLAG_HIDE_RIVAL_SOOTOPOLIS_EVERGRANDE)
+		}
+	}
+	goto(SootopolisCity_Gym_1F_EventScript_AfterBattle)
+}
+
+script SootopolisCity_Gym_1F_EventScript_JuanRematch{
+	//All of these are double battles so it needs to be redone
+	message(SootopolisCity_Gym_1F_Text_JuanChooseFormat)
+	waitmessage
+	multichoice(17, 6, MULTI_REMATCH_BATTLE_MODE, 0)
+	switch(var(VAR_RESULT)){
+		case 0:
+			setvar(VAR_0x8004, 10)
+			msgbox(SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO)
+			if(var(VAR_RESULT) == NO){
+				starttagbattle(TRAINER_JUAN_2, TRAINER_WALLACE_2, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+			else{
+				starttagbattle(TRAINER_JUAN_4, TRAINER_WALLACE_4, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+		break
+		case 1:
+			setvar(VAR_0x8004, 10)
+			msgbox(SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO)
+			if(var(VAR_RESULT) == NO){
+				starttagbattle(TRAINER_JUAN_3, TRAINER_WALLACE_3, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+			else{
+				starttagbattle(TRAINER_JUAN_5, TRAINER_WALLACE_5, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+		break
+		case 2:
+		case 127:
+			goto(SootopolisCity_Gym_1F_EventScript_Exit)
+		break
+	}
+	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT)
+	releaseall
+	end
+}
+
+//First Intro
+text SootopolisCity_Gym_1F_Text_JuanIntro{
+	format("亚当：让我问你。你知道吗？啊，\n我不该这么含蓄。这里的米可利，\p关于宝可梦的一切都是我教的。\n我曾一度放弃馆主之位，\p把道馆托付给米可利。\n但后来出现了不得不复出的理由。\p米可利：既然我正好在这儿，\n亚当就邀我一起上！\p毕竟在宝可梦联盟之前，\n你需要一场严格的考验，对吧？\p亚当：啊，闲话到此为止。\n开始我们的对战吧。\p请见证我们的艺术。\n一场由宝可梦和我雕琢的水之幻象！\p米可利：准备好了？上！$")
+}
+
+//Juan First Defeat Text SootopolisCity_Gym_1F_Text_JuanDefeat
+text SootopolisCity_Gym_1F_Text_JuanDefeat{
+	format("你的力量正是我所期望的！\n真令人兴奋！干得漂亮。$")
+}
+
+//Wallace First Defeat Text SootopolisCity_Gym_1F_Text_WallaceDefeat
+text SootopolisCity_Gym_1F_Text_WallaceDefeat{
+	format("哇，你的实力是货真价实的！$")
+}
+
+//Second Round Intro
+text SootopolisCity_Gym_1F_Text_JuanIntro_2{
+	format( "亚当：看来你该去联盟了。\n米可利：亚当，\p我们不用你的计划吗？\n亚当：……米可利，那是开玩笑的。\p米可利：是啊，\n不过我觉得那主意很棒。\p米可利：宝可梦联盟可不会手下留情\n！我们为什么要留？\p亚当：说得对，\n我也确实想给{PLAYER}一场独特的\p挑战。\n亚当：很好！{PLAYER}，\p你赢了一次，\n但你能跟上我们的王牌队伍吗？\p我们再来！$")
+}
+
+//Juan Second Round Defeat Text
+text SootopolisCity_Gym_1F_Text_Juan_Round_2{
+	"Ahahaha, excellent!\n"
+	"Very well, you are the winner.\p"
+	"I am satisfied with this outcome.\p"
+	"From you, I sense the brilliant shine\n"
+	"of skill that will overcome all.\p"
+	"However, compared with me or even\n"
+	"Wallace, you are lacking in elegance.\p"
+	"Perhaps I should make you a loan\n"
+	"of my outfit?\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"Hahaha, I merely jest!\p"
+	"Rather than my clothes, I shall reward\n"
+	"you with this, the Rain Badge!"
+}
+
+//Wallace Second Round Defeat Text
+text SootopolisCity_Gym_1F_Text_Wallace_Round_2{
+	format("你的力量正是我所期望的！\n真令人兴奋！干得漂亮。$")
+}
+
+//Rematch Defeat Text
+text SootopolisCity_Gym_1F_Text_JuanDefeatRematch{ 
+	"Ahahaha, excellent!\n"
+	"Very well, you are the winner.\p"
+	"From you, I sense the brilliant shine\n"
+	"of skill that will overcome all.\p"
+	"However, compared with me or even\n"
+	"Wallace, you are lacking in elegance.\p"
+	"Perhaps I should make you a loan\n"
+	"of my outfit?\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"Hahaha, I merely jest!\p"
+	"Rather than my clothes, I shall reward\n"
+	"you with this, the Rain Badge!"
+}
+
+//Rematch Defeat Text
+text SootopolisCity_Gym_1F_Text_WallaceDefeatRematch{
+	format("你的力量正是我所期望的！\n真令人兴奋！干得漂亮。$")
+}
+
+text SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis{
+	format( "亚当：有了雨滴徽章，\n你所有的宝可梦都会完全听从你的每\p个命令。\n米可利：雨滴徽章还能使用秘传招式\p瀑布攀爬，爬上倾泻的水墙。$")
+}
+
+text SootopolisCity_Gym_1F_Text_RegisteredKabutops{
+	format( "亚当：如果需要找宝可梦帮你用瀑布\n攀爬，可以借我的镰刀盔。\p…… …… …… ……\n在宝可梦导航器里登录了亚当的镰刀\p盔。$")
+}
+
+script SootopolisCity_Gym_1F_EventScript_GiveScald{
+	msgbox(SootopolisCity_Gym_1F_Text_TakeThis, MSGBOX_DEFAULT)
+	msgbox(format("这只特别的宝可梦，\n就当作我送你的礼物！$"))
+	givecustommon(SPECIES_KINGDRA, 70, ITEM_KINGDRANITE, ITEM_CHERISH_BALL, NATURE_MODEST, 0, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, FALSE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER}得到了亚当的{COLOR BLUE}刺龙王{COLOR DARK_GRAY}！$"))
+	waitfanfare
+	setflag(FLAG_RECEIVED_TM03)
+	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script SootopolisCity_Gym_EventScript_CheckTrainers{
+	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
+	if(((!defeated(TRAINER_ANDREA)  || 
+		 !defeated(TRAINER_CONNIE)  || 
+		 !defeated(TRAINER_ANNIKA)  || 
+		 !defeated(TRAINER_DAPHNE)  || 
+		 !defeated(TRAINER_BRIDGET) ||
+		 !defeated(TRAINER_TIFFANY) ||
+	     !defeated(TRAINER_CRISSY)  || 
+		 !defeated(TRAINER_BRIANNA) || 
+	     !defeated(TRAINER_OLIVIA)  || 
+		 !defeated(TRAINER_BETHANY)
+		 ) &&
+		 !flag(FLAG_BADGE08_GET))){
+		msgbox(format("亚当：抱歉，\n你得先打败这道馆里的每一位训练家\p，才能与我们交战。$"), MSGBOX_NPC)
+		release
+		end
+	}
+	else{
+		//If you have beaten every trainer or you have the badge just return to the previous script
+		return
+	}
+}
+
+script SootopolisCity_Gym_EventScript_PleaseWalkOnTile{
+    msgbox(format("训练家，想与我们交战的话，\n请走到这块菱形地砖上。$"), MSGBOX_DEFAULT)
+    release
+	end
+}
+
+movement SootopolisCity_Gym_Movement_PlayerWalksAway{
+    walk_up
+}
+script SootopolisCity_Gym_EventScript_PlayerWalksAway{
+    applymovement(OBJ_EVENT_ID_PLAYER, SootopolisCity_Gym_Movement_PlayerWalksAway)
+	waitmovement(0)
+    release
+    end
+}
+movement SootopolisCity_Gym_Movement_BottomBattlePlayerWalksIn{
+    walk_down * 2
+}
+text MultiChoice_BottomBattle{
+    "Nevermind$"
+    "1 v 1 times 3 but no heal$"
+    "miss Bridget then 1 v 2$"
+    "miss Bethany then 1 v 2$"
+    "miss Crissy  then 1 v 2$"
+	"$"
+}
+
+script SootopolisCity_Gym_EventScript_TriggerBottomBattle{
+    if (defeated(TRAINER_BRIDGET) && defeated(TRAINER_BETHANY) && defeated(TRAINER_CRISSY)){
+		setvar(VAR_TEMP_0, 1)
+        //end
+    }
+    lock
+    msgbox(format("准备好和我们三人对战了吗？$"), MSGBOX_YESNO)
+    if (!var(VAR_RESULT)){
+        goto(SootopolisCity_Gym_EventScript_PlayerWalksAway)
+    }
+    msgbox(format("我们礼貌地给你几个对战选项，\n你选哪个？$"), MSGBOX_DEFAULT)
+    multichoice2(0, 0, MultiChoice_BottomBattle)
+    switch(var(VAR_RESULT)){
+        case 0:
+            goto(SootopolisCity_Gym_EventScript_PlayerWalksAway)
+        break
+        case 1:
+            trainerbattle_no_intro(TRAINER_BRIDGET, SootopolisCity_Gym_B1F_Text_BridgetDefeat)
+			setflag(FLAG_SYS_DISABLE_AUTOHEAL)
+            trainerbattle_no_intro(TRAINER_CRISSY, SootopolisCity_Gym_B1F_Text_CrissyDefeat)
+            trainerbattle_no_intro(TRAINER_BETHANY, SootopolisCity_Gym_B1F_Text_BethanyDefeat)
+			clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+        break
+        case 2:
+            trainerbattle_no_intro(TRAINER_BRIDGET, SootopolisCity_Gym_B1F_Text_BridgetDefeat)
+			starttagbattle(TRAINER_CRISSY, TRAINER_BETHANY, TAG_TEAM_CRISSY_BETHANY, 0)
+        break
+        case 3:
+			trainerbattle_no_intro(TRAINER_BETHANY, SootopolisCity_Gym_B1F_Text_BethanyDefeat)
+            starttagbattle(TRAINER_BRIDGET, TRAINER_CRISSY, TAG_TEAM_BRIDGET_CRISSY,0)
+        break
+        case 4:
+			trainerbattle_no_intro(TRAINER_CRISSY, SootopolisCity_Gym_B1F_Text_CrissyDefeat)
+			starttagbattle(TRAINER_BRIDGET, TRAINER_BETHANY, TAG_TEAM_BRIDGET_BETHANY, 0)
+        break
+    }
+    release
+    end
+}
+script SootopolisCity_Gym_EventScript_AskForHealMiddleBattle{ // Unused
+	if (var(VAR_TEMP_A) == 0){
+		msgbox(format("你想用掉你唯一的一次回复吗？$"), MSGBOX_YESNO)
+		if (var(VAR_RESULT)){
+			playfanfare(MUS_HEAL)
+			waitfanfare
+			special(HealPlayerParty)
+			setvar(VAR_TEMP_A, 1)
+		}
+	}
+}
+text MultiChoice_MiddleBattle{
+    "Nevermind$"
+    "1v1 3 times no heal$"
+    "miss Daphnee and 2v1$"
+	"miss Connie  and 2v1$"
+	"miss Andrea  and 2v1$$"
+	"$"
+}
+script SootopolisCity_Gym_EventScript_TriggerMiddleBattle{
+    lock
+	if (defeated(TRAINER_DAPHNE) && defeated(TRAINER_CONNIE) && defeated(TRAINER_ANDREA)){
+		setvar(VAR_TEMP_1, 1)
+        end
+    }
+	msgbox(format("准备好和我们三人对战了吗？$"), MSGBOX_YESNO)
+    if (!var(VAR_RESULT)){
+        goto(SootopolisCity_Gym_EventScript_PlayerWalksAway)
+    }
+	msgbox(format("出于对我们价值观的尊重，\n我们给你几个决定对战顺序的选项。$"), MSGBOX_DEFAULT)
+    multichoice2(0, 0, MultiChoice_MiddleBattle)
+	switch(var(VAR_RESULT)){
+        case 0:
+            goto(SootopolisCity_Gym_EventScript_PlayerWalksAway)
+        break
+        case 1:
+			trainerbattle_no_intro(TRAINER_DAPHNE, SootopolisCity_Gym_B1F_Text_DaphneDefeat)
+			setflag(FLAG_SYS_DISABLE_AUTOHEAL)
+			trainerbattle_no_intro(TRAINER_CONNIE, SootopolisCity_Gym_B1F_Text_ConnieDefeat)
+			trainerbattle_no_intro(TRAINER_ANDREA, SootopolisCity_Gym_B1F_Text_AndreaDefeat)
+			clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+        break
+        case 2:
+            trainerbattle_no_intro(TRAINER_DAPHNE, SootopolisCity_Gym_B1F_Text_DaphneDefeat)
+			starttagbattle(TRAINER_CONNIE, TRAINER_ANDREA, TAG_TEAM_CONNIE_ANDREA, 0)
+        break
+        case 3:
+			trainerbattle_no_intro(TRAINER_CONNIE, SootopolisCity_Gym_B1F_Text_ConnieDefeat)
+			starttagbattle(TRAINER_ANDREA, TRAINER_DAPHNE, TAG_TEAM_ANDREA_DAPHNE, 0)
+        break
+        case 4:
+			trainerbattle_no_intro(TRAINER_ANDREA, SootopolisCity_Gym_B1F_Text_AndreaDefeat)
+			starttagbattle(TRAINER_DAPHNE, TRAINER_CONNIE, TAG_TEAM_DAPHNE_CONNIE, 0)
+        break
+    }
+    setvar(VAR_TEMP_1, 1)
+    release
+    end
+}
+
+text MultiChoice_TopBattle{
+    "Nevermind$"
+    "1 v 1 times 3 but no heal$"
+    "miss Olivia  then 1 v 2$"
+    "miss Brianna then 1 v 2$"
+    "miss Annika  then 1 v 2$"
+	"$"
+}
+script SootopolisCity_Gym_EventScript_TriggerTopBattle{
+	if (defeated(TRAINER_OLIVIA) && defeated(TRAINER_ANNIKA) && defeated(TRAINER_BRIANNA)){
+		setvar(VAR_TEMP_2, 1)
+        end
+    }
+    lock
+    msgbox(format("准备好和我们三人对战了吗？$"), MSGBOX_YESNO)
+    if (!var(VAR_RESULT)){
+        goto(SootopolisCity_Gym_EventScript_PlayerWalksAway)
+    }
+	msgbox(format("和这竞技场里其他同伴一样，\n我们给你一些选择。$"), MSGBOX_DEFAULT)
+    multichoice2(0, 0, MultiChoice_TopBattle)
+	switch(var(VAR_RESULT)){
+        case 0:
+            goto(SootopolisCity_Gym_EventScript_PlayerWalksAway)
+        break
+        case 1:
+			trainerbattle_no_intro(TRAINER_OLIVIA, SootopolisCity_Gym_B1F_Text_OliviaDefeat)
+			setflag(FLAG_SYS_DISABLE_AUTOHEAL)
+            trainerbattle_no_intro(TRAINER_BRIANNA, SootopolisCity_Gym_B1F_Text_BriannaDefeat)
+            trainerbattle_no_intro(TRAINER_ANNIKA, SootopolisCity_Gym_B1F_Text_AnnikaDefeat)
+			clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+        break
+        case 2:
+			trainerbattle_no_intro(TRAINER_OLIVIA, SootopolisCity_Gym_B1F_Text_OliviaDefeat)
+            starttagbattle(TRAINER_ANNIKA, TRAINER_BRIANNA, TAG_TEAM_ANNIKA_BRIANNA, 0)
+        break
+        case 3:
+			trainerbattle_no_intro(TRAINER_BRIANNA, SootopolisCity_Gym_B1F_Text_BriannaDefeat)
+			starttagbattle(TRAINER_OLIVIA, TRAINER_ANNIKA, TAG_TEAM_OLIVIA_ANNIKA, 0)
+        break
+        case 4:
+			trainerbattle_no_intro(TRAINER_ANNIKA, SootopolisCity_Gym_B1F_Text_AnnikaDefeat)
+			starttagbattle(TRAINER_BRIANNA, TRAINER_OLIVIA, TAG_TEAM_BRIANNA_OLIVIA, 0)
+        break
+    }
+	setvar(VAR_TEMP_2, 1)
+	release
+	end
+}
+
+

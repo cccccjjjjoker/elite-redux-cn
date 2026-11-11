@@ -1,0 +1,196 @@
+raw `
+VerdanturfTown_WandasHouse_MapScripts:: @ 82028BE
+	.byte 0
+
+VerdanturfTown_WandasHouse_EventScript_Wally:: @ 82028BF
+	lock
+	faceplayer
+	goto_if_set FLAG_WALLY_SPEECH, VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
+	msgbox VerdanturfTown_WandasHouse_Text_StrongerSpeech, MSGBOX_DEFAULT
+	setflag FLAG_WALLY_SPEECH
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech:: @ 82028D7
+	msgbox VerdanturfTown_WandasHouse_Text_StrongerSpeechShort, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallysUncle:: @ 82028E1
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, VerdanturfTown_WandasHouse_EventScript_WallysUncleEverGrande
+	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WallysUncleSlippedOff
+	msgbox VerdanturfTown_WandasHouse_Text_WallysNextDoor, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallysUncleSlippedOff:: @ 82028FF
+	msgbox VerdanturfTown_WandasHouse_Text_WallySlippedOff, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallysUncleEverGrande:: @ 8202909
+	msgbox VerdanturfTown_WandasHouse_Text_WallyGoneThatFar, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WandasBoyfriend:: @ 8202913
+	msgbox VerdanturfTown_WandasHouse_Text_CanSeeGirlfriendEveryDay, MSGBOX_NPC
+	end
+
+VerdanturfTown_WandasHouse_EventScript_Wanda::
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WandaDontWorry
+	goto_if_set FLAG_DEFEATED_WALLY_MAUVILLE, VerdanturfTown_WandasHouse_EventScript_MeetWanda
+	msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_MeetWanda::
+	msgbox VerdanturfTown_WandasHouse_Text_MeetWanda, MSGBOX_DEFAULT
+	goto_if_set FLAG_RECEIVED_HM04, VerdanturfTown_WandasHouse_EventScript_WandaGardevoirite
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WandaDontWorry::
+	msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
+	goto_if_set FLAG_RECEIVED_HM04, VerdanturfTown_WandasHouse_EventScript_WandaGardevoirite
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WandaGardevoirite::
+	goto_if_set FLAG_WANDA_GARDEVOIRITE, VerdanturfTown_WandasHouse_EventScript_WandaGaveStone
+	playse SE_PIN
+	applymovement 5, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 5, Common_Movement_Delay48
+	waitmovement 0
+	msgbox VerdanturfTown_WandasHouse_Text_ReceiveGardevoirite, MSGBOX_DEFAULT
+	givecustommon SPECIES_GARDEVOIR, 40, ITEM_CHOICE_SCARF, ITEM_POKE_BALL, NATURE_TIMID, 1, 4, 0, 0, 252, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_DAZZLING_GLEAM, MOVE_MYSTICAL_FIRE, MOVE_THUNDERBOLT, MOVE_PSYCHIC, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message VerdanturfTown_WandasHouse_Text_Got_Gardevoir
+	waitfanfare
+	setflag FLAG_WANDA_GARDEVOIRITE
+	msgbox VerdanturfTown_WandasHouse_Text_PrettyStone, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WandaGaveStone::
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallysAunt::
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande
+	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened
+	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen
+	msgbox VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendDriven, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen:: @ 8202975
+	msgbox VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendWasDigging, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened:: @ 820297F
+	msgbox VerdanturfTown_WandasHouse_Text_IfAnythingHappenedToWally, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande:: @ 8202989
+	msgbox VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_WandasHouse_Text_StrongerSpeech: @ 8202993
+	.string "小胜：{PLAYER}，我输给了你，\n"
+	.string "但我已经不沮丧了。\p"
+	.string "因为我人生有了新的目标。\n"
+	.string "我要和我的沙奈朵一起挑战宝可梦道\p"
+	.string "馆，\n"
+	.string "成为了不起的训练家。\p"
+	.string "请看着我，{PLAYER}。\n"
+	.string "我要变得比你更强。\p"
+	.string "到那时，我要再向你挑战一场。$"
+
+VerdanturfTown_WandasHouse_Text_StrongerSpeechShort: @ 8202ABE
+	.string "小胜：请看着我，{PLAYER}。\n"
+	.string "我要变得比你更强。\p"
+	.string "到那时，我要再向你挑战一场。$"
+
+VerdanturfTown_WandasHouse_Text_WallysNextDoor: @ 8202B37
+	.string "舅舅：哦！{PLAYER}{KUN}！\n"
+	.string "小胜在隔壁。\p"
+	.string "不过，孩子，有件事我得告诉你。\n"
+	.string "这自然环境对小胜的健康大有好处。\p"
+	.string "也许不只是环境。\n"
+	.string "也许是宝可梦给了这孩子希望。$"
+
+VerdanturfTown_WandasHouse_Text_WallySlippedOff: @ 8202C20
+	.string "小胜走了……\n"
+	.string "他一个人偷偷溜出去了……$"
+
+VerdanturfTown_WandasHouse_Text_WallyGoneThatFar: @ 8202C4E
+	.string "舅舅：是吗？\n"
+	.string "小胜一个人跑到那么远的地方去了…\p"
+	.string "…\n"
+	.string "唉，得承认，他是我弟弟的儿子。$"
+
+VerdanturfTown_WandasHouse_Text_MeetWanda:
+	.string "旺达：你是？\n"
+	.string "哦，对了，我知道了！\p"
+	.string "你就是小胜跟我说过的{PLAYER}。\n"
+	.string "我是小胜的表姐。\p"
+	.string "很高兴见到你！\n"
+	.string "我觉得小胜来这里之后活泼健康多了\p"
+	.string "。$"
+
+VerdanturfTown_WandasHouse_Text_ReceiveGardevoirite:
+	.string "你帮忙砸开隧道里那些岩石的时候，\n"
+	.string "我没能好好谢你。\p"
+	.string "我一直在想，想把这只{COLOR BLUE}沙奈朵{COLOR DARK_GRAY}送给你\n"
+	.string "……$"
+
+VerdanturfTown_WandasHouse_Text_PrettyStone:
+	.string "这是只漂亮的宝可梦，\n"
+	.string "希望你喜欢它就像我喜欢它一样。$"
+
+VerdanturfTown_WandasHouse_Text_DontWorryAboutWally: @ 8202D91
+	.string "旺达：别担心小胜。他会好起来的。\n"
+	.string "我了解我这个小表弟，\p"
+	.string "而且他身边还有宝可梦。$"
+
+VerdanturfTown_WandasHouse_Text_CanSeeGirlfriendEveryDay: @ 8202E00
+	.string "多亏你，我每天都能见到女朋友。\n"
+	.string "开心？当然开心！$"
+
+VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendDriven: @ 8202E47
+	.string "我女儿的男朋友是个很有干劲、\n"
+	.string "很热情的人。\p"
+	.string "他为了见我女儿，一直在挖隧道，\n"
+	.string "一刻不停。\p"
+	.string "我女儿有点担心，\n"
+	.string "所以常去隧道那边。$"
+
+VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendWasDigging: @ 8202F19
+	.string "真了不起。我女儿的男朋友\n"
+	.string "是用手挖那条隧道的！\p"
+	.string "太惊人了！$"
+
+VerdanturfTown_WandasHouse_Text_IfAnythingHappenedToWally: @ 8202F73
+	.string "小胜要是出了什么事，\n"
+	.string "我就再也没脸去见他在橙华市的父母\p"
+	.string "了……$"
+
+VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande: @ 8202FDB
+	.string "小胜去了彩悠？\n"
+	.string "他橙华市的父母听到一定会吓一跳！$"
+
+`
+text VerdanturfTown_WandasHouse_Text_Got_Gardevoir{
+	format("{PLAYER}获得了{COLOR BLUE}沙奈朵{COLOR DARK_GRAY}，\n这是礼物！$")
+}

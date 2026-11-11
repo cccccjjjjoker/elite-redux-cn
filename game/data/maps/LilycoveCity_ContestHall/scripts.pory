@@ -1,0 +1,543 @@
+raw `
+@ VAR_LAST_TALKED would have made all these direct references unnecessary
+.set LOCALID_SMART_MC, 4
+.set LOCALID_SMART_JUDGE, 5
+.set LOCALID_SMART_CONTESTANT_1, 6
+.set LOCALID_SMART_CONTESTANT_2, 7
+.set LOCALID_SMART_CONTESTANT_3, 8
+.set LOCALID_SMART_CONTESTANT_4, 9
+.set LOCALID_SMART_AUDIENCE_4, 11
+.set LOCALID_SMART_AUDIENCE_2, 12
+.set LOCALID_BEAUTY_MC, 13
+.set LOCALID_BEAUTY_JUDGE, 14
+.set LOCALID_BEAUTY_CONTESTANT_1, 15
+.set LOCALID_BEAUTY_CONTESTANT_2, 16
+.set LOCALID_BEAUTY_CONTESTANT_3, 17
+.set LOCALID_BEAUTY_CONTESTANT_4, 18
+.set LOCALID_BEAUTY_AUDIENCE_1, 19
+.set LOCALID_BEAUTY_AUDIENCE_3, 20
+.set LOCALID_BEAUTY_AUDIENCE_2, 21
+.set LOCALID_SMART_AUDIENCE_3, 22
+.set LOCALID_CUTE_MC, 23
+.set LOCALID_CUTE_JUDGE, 24
+.set LOCALID_CUTE_CONTESTANT_1, 25
+.set LOCALID_CUTE_CONTESTANT_2, 26
+.set LOCALID_CUTE_CONTESTANT_3, 27
+.set LOCALID_CUTE_CONTESTANT_4, 28
+.set LOCALID_CUTE_AUDIENCE_1, 29
+.set LOCALID_CUTE_AUDIENCE_3, 30
+.set LOCALID_CUTE_AUDIENCE_2, 31
+
+LilycoveCity_ContestHall_MapScripts:: @ 821B484
+	.byte 0
+
+LilycoveCity_ContestHall_EventScript_Boy1:: @ 821B485
+	msgbox LilycoveCity_ContestHall_Text_TodayWonSmartnessContest, MSGBOX_NPC
+	end
+
+LilycoveCity_ContestHall_EventScript_Boy2:: @ 821B48E
+	msgbox LilycoveCity_ContestHall_Text_EnteredBunchOfContests, MSGBOX_NPC
+	end
+
+LilycoveCity_ContestHall_EventScript_Girl:: @ 821B497
+	msgbox LilycoveCity_ContestHall_Text_ManWhoWonEarlierHadPokeblocks, MSGBOX_NPC
+	end
+
+LilycoveCity_ContestHall_EventScript_Sailor:: @ 821B4A0
+	msgbox LilycoveCity_ContestHall_Text_IsntThisPlaceHumongous, MSGBOX_NPC
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestMC:: @ 821B4A9
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_GiveItBestSmartAppeal, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_MC, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestJudge:: @ 821B4C0
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_AreYouEnjoyingThisContest, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_JUDGE, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestant1:: @ 821B4D7
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_EnteredWrongContest, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_CONTESTANT_1, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestant2:: @ 821B4EE
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_RaisedMonToBeSmart, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_CONTESTANT_2, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestant3:: @ 821B505
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_IfMonPullsSmartMoveNext, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_CONTESTANT_3, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestant4:: @ 821B51C
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_DontAppreciateCuteLeechLife, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_CONTESTANT_4, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestAudience1:: @ 821B533
+	msgbox LilycoveCity_ContestHall_Text_YoureBeautifulGrandpa, MSGBOX_SIGN
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestAudience2:: @ 821B53C
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_AllSeemToUseDifferentMoves, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_AUDIENCE_2, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestAudience3:: @ 821B553
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_PokemonSmarterThanTrainers, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_AUDIENCE_3, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartContestAudience4:: @ 821B56A
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_StillLoveSmartnessContests, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SMART_AUDIENCE_4, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestMC:: @ 821B581
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_AreYouEnteringBeautyContest, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_MC, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestJudge:: @ 821B598
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_EveryPokemonPristineBeauty, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_JUDGE, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestant1:: @ 821B5AF
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_EyesWillBeGluedToMyBeauty, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_CONTESTANT_1, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestant2:: @ 821B5C6
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_OverdidGrooming, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_CONTESTANT_2, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestant3:: @ 821B5DD
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_JudgeWontSeeAuroraBeam, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_CONTESTANT_3, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestant4:: @ 821B5F4
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_PokemonLooksLikeYoungerMe, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_CONTESTANT_4, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestAudience1:: @ 821B60B
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_WinBeautyContestMakesMeHappy, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_AUDIENCE_1, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestAudience2:: @ 821B622
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_GanderAtAllThosePrettyPokemon, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_AUDIENCE_2, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyContestAudience3:: @ 821B639
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_CantWinOnBeautyAlone, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_BEAUTY_AUDIENCE_3, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestMC:: @ 821B650
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_InTheMiddleOfContest, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_MC, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestJudge:: @ 821B667
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_SuchCharmingCuteAppeals, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_JUDGE, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestant1:: @ 821B67E
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_MyAzurillWasDistracted, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_CONTESTANT_1, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestant2:: @ 821B695
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_NeverWonBattleButContest, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_CONTESTANT_2, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestant3:: @ 821B6AC
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_PetalDanceIsMarvel, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_CONTESTANT_3, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestant4:: @ 821B6C3
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_MyMonAppealSoMuchCuter, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_CONTESTANT_4, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestAudience1:: @ 821B6DA
+	lockall
+	applymovement LOCALID_CUTE_AUDIENCE_1, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox LilycoveCity_ContestHall_Text_MyChildIsInContest, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_AUDIENCE_1, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	delay 25
+	msgbox LilycoveCity_ContestHall_Text_ComeOnDear, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestAudience2:: @ 821B705
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_WantCuteMonOfMyOwn, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_AUDIENCE_2, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteContestAudience3:: @ 821B71C
+	lock
+	faceplayer
+	msgbox LilycoveCity_ContestHall_Text_ThatGirlThereIsCutest, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_CUTE_AUDIENCE_3, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_ContestHall_EventScript_BeautyStageSign:: @ 821B733
+	msgbox LilycoveCity_ContestHall_Text_BeautyContestStage, MSGBOX_SIGN
+	end
+
+LilycoveCity_ContestHall_EventScript_CuteStageSign:: @ 821B73C
+	msgbox LilycoveCity_ContestHall_Text_CuteContestStage, MSGBOX_SIGN
+	end
+
+LilycoveCity_ContestHall_EventScript_SmartStageSign:: @ 821B745
+	msgbox LilycoveCity_ContestHall_Text_SmartContestStage, MSGBOX_SIGN
+	end
+
+LilycoveCity_ContestHall_Text_TodayWonSmartnessContest: @ 821B74E
+	.string "这只宝可梦以前在这里\n"
+	.string "赢过美丽大赛。\p"
+	.string "你猜怎么着？今天我又让它\n"
+	.string "赢了聪明大赛！\p"
+	.string "连我自己都怕自己的本事……$"
+
+LilycoveCity_ContestHall_Text_EnteredBunchOfContests: @ 821B7D7
+	.string "我参加过不少华丽大赛，\n"
+	.string "所以看得出门道。\p"
+	.string "在帅气大赛里，\n"
+	.string "帅气的招式就很受欢迎。\p"
+	.string "可聪明招式和可爱招式，\n"
+	.string "就不太受欢迎。$"
+
+LilycoveCity_ContestHall_Text_ManWhoWonEarlierHadPokeblocks: @ 821B899
+	.string "刚才获胜的那位年轻人，\n"
+	.string "带了一大堆各种各样的\p"
+	.string "宝可方块。\n"
+	.string "有那么多那种东西，\p"
+	.string "就能赢吗？$"
+
+LilycoveCity_ContestHall_Text_IsntThisPlaceHumongous: @ 821B911
+	.string "哇，这地方真大！\n"
+	.string "这里的气氛……\p"
+	.string "和乡下的大赛会场完全不同。$"
+
+LilycoveCity_ContestHall_Text_GiveItBestSmartAppeal: @ 821B977
+	.string "主持人：好，聪明的宝可梦\n"
+	.string "和它们的训练家，准备好了吗？！\p"
+	.string "拿出最好的表现！\n"
+	.string "开始表演！$"
+
+LilycoveCity_ContestHall_Text_AreYouEnjoyingThisContest: @ 821B9DC
+	.string "评审委员：这场华丽大赛\n"
+	.string "玩得开心吗？\p"
+	.string "带上三个朋友一起来，\n"
+	.string "你们都能参赛！$"
+
+LilycoveCity_ContestHall_Text_EnteredWrongContest: @ 821BA44
+	.string "哎呀呀呀……\n"
+	.string "我报错比赛了。\p"
+	.string "我把这只强壮的宝可梦\n"
+	.string "带来参加聪明大赛……\p"
+	.string "来吧，用看起来挺聪明的\n"
+	.string "碎岩震住他们。$"
+
+LilycoveCity_ContestHall_Text_RaisedMonToBeSmart: @ 821BAD5
+	.string "我花了好多年，倾尽所有\n"
+	.string "智慧，才把这只宝可梦\p"
+	.string "培养得这么聪明。\n"
+	.string "它可不会被哪个小毛孩的\p"
+	.string "宝可梦轻易比下去。\n"
+	.string "亲爱的老婆，你看到了吗？$"
+
+LilycoveCity_ContestHall_Text_IfMonPullsSmartMoveNext: @ 821BB84
+	.string "就是现在！\n"
+	.string "如果我的宝可梦接下来使出\p"
+	.string "聪明招式，观众会热到顶点！$"
+
+LilycoveCity_ContestHall_Text_DontAppreciateCuteLeechLife: @ 821BBDD
+	.string "哦，天啊，不不！\n"
+	.string "我宝贝超音蝠的吸血太可爱了，\p"
+	.string "我就一直一直用！\n"
+	.string "可这些无情的人\p"
+	.string "一点也不欣赏！$"
+
+LilycoveCity_ContestHall_Text_YoureBeautifulGrandpa: @ 821BC65
+	.string "呀啊！\n"
+	.string "爷爷你真帅！$"
+
+LilycoveCity_ContestHall_Text_AllSeemToUseDifferentMoves: @ 821BC89
+	.string "就算是同一种宝可梦，\n"
+	.string "不同训练家似乎也会用\p"
+	.string "不同的招式来表演。\n"
+	.string "就像人们对战时的风格\p"
+	.string "也各不相同。$"
+
+LilycoveCity_ContestHall_Text_PokemonSmarterThanTrainers: @ 821BD30
+	.string "我觉得这些宝可梦\n"
+	.string "比它们的训练家聪明多了。\p"
+	.string "聪明得多了。$"
+
+LilycoveCity_ContestHall_Text_StillLoveSmartnessContests: @ 821BD70
+	.string "说到底，我还是最喜欢\n"
+	.string "聪明大赛。\p"
+	.string "那种知性的绿色……\n"
+	.string "真是……真是……帅。$"
+
+LilycoveCity_ContestHall_Text_AreYouEnteringBeautyContest: @ 821BDDD
+	.string "主持人：你也要参加\n"
+	.string "美丽大赛吗？祝你好运！$"
+
+LilycoveCity_ContestHall_Text_EveryPokemonPristineBeauty: @ 821BE16
+	.string "评审委员：啊，这里每只宝可梦\n"
+	.string "都是无瑕之美的典范！\p"
+	.string "哎呀，我差点忘了打分！$"
+
+LilycoveCity_ContestHall_Text_EyesWillBeGluedToMyBeauty: @ 821BE77
+	.string "这么美的宝可梦……\n"
+	.string "再也找不出第二只。\p"
+	.string "所有人的目光都会\n"
+	.string "黏在我的宝贝身上。$"
+
+LilycoveCity_ContestHall_Text_OverdidGrooming: @ 821BEDE
+	.string "哇啊啊！\n"
+	.string "为了这场比赛，我仔细\p"
+	.string "给宝可梦刷毛梳理……\n"
+	.string "可我做得太过头了……\p"
+	.string "它的毛全变得乱糟糟……\n"
+	.string "我该怎么办？$"
+
+LilycoveCity_ContestHall_Text_JudgeWontSeeAuroraBeam: @ 821BF6E
+	.string "这招极光光束太耀眼了，\n"
+	.string "评审委员都看不清。\p"
+	.string "呃，等等……\n"
+	.string "那不就毫无意义了吗！$"
+
+LilycoveCity_ContestHall_Text_PokemonLooksLikeYoungerMe: @ 821BFE3
+	.string "这只漂亮的宝可梦\n"
+	.string "就跟我年轻时一样。\p"
+	.string "我刚说完，我丈夫\n"
+	.string "就把嘴里的咖啡喷出来了。\p"
+	.string "我说了什么好笑的话吗？$"
+
+LilycoveCity_ContestHall_Text_WinBeautyContestMakesMeHappy: @ 821C07F
+	.string "你知道吗，要是在美丽大赛\n"
+	.string "赢了，当然会让我高兴。\p"
+	.string "总之是比平时更高兴。$"
+
+LilycoveCity_ContestHall_Text_GanderAtAllThosePrettyPokemon: @ 821C0D8
+	.string "哇哈哈哈！\n"
+	.string "你看看这些漂亮的宝可梦！\p"
+	.string "我就爱这种华丽劲儿！$"
+
+LilycoveCity_ContestHall_Text_CantWinOnBeautyAlone: @ 821C137
+	.string "光靠漂亮可不一定总能赢。\n"
+	.string "你得把宝可梦梳理得\p"
+	.string "像我的一样光亮顺滑。$"
+
+LilycoveCity_ContestHall_Text_InTheMiddleOfContest: @ 821C1A4
+	.string "主持人：哎呀！你好！\n"
+	.string "我们正在比赛呢！\p"
+	.string "请先到报名处登记\n"
+	.string "再上场，好吗？$"
+
+LilycoveCity_ContestHall_Text_SuchCharmingCuteAppeals: @ 821C215
+	.string "评审委员：哦，多么迷人\n"
+	.string "又可爱的表演！\p"
+	.string "天啊！这招水之游玩的表演\n"
+	.string "可爱得完美！$"
+
+LilycoveCity_ContestHall_Text_MyAzurillWasDistracted: @ 821C27F
+	.string "哦，不……我可爱的露力丽\n"
+	.string "被别的宝可梦分了心。$"
+
+LilycoveCity_ContestHall_Text_NeverWonBattleButContest: @ 821C2BB
+	.string "我的宝可梦在对战里\n"
+	.string "从没赢过，可一放进华丽大赛，\p"
+	.string "你等着瞧！$"
+
+LilycoveCity_ContestHall_Text_PetalDanceIsMarvel: @ 821C307
+	.string "我宝可梦的花之舞\n"
+	.string "优雅得令人惊叹。\p"
+	.string "我不会让任何人\n"
+	.string "打扰它的表演。$"
+
+LilycoveCity_ContestHall_Text_MyMonAppealSoMuchCuter: @ 821C365
+	.string "大家的宝可梦都很可爱。\n"
+	.string "不过，要是我的宝可梦\p"
+	.string "做出可爱的表演……\n"
+	.string "我相信它一定比其他的\p"
+	.string "可爱得多。$"
+
+LilycoveCity_ContestHall_Text_MyChildIsInContest: @ 821C3F4
+	.string "我的孩子也参加这场比赛。$"
+
+LilycoveCity_ContestHall_Text_ComeOnDear: @ 821C411
+	.string "加油，亲爱的。上吧！\n"
+	.string "你的宝可梦最棒！$"
+
+LilycoveCity_ContestHall_Text_ThatGirlThereIsCutest: @ 821C445
+	.string "我觉得那边那个女孩\n"
+	.string "是这里最可爱的。\p"
+	.string "什么？他们评的是\n"
+	.string "宝可梦的长相？$"
+
+LilycoveCity_ContestHall_Text_WantCuteMonOfMyOwn: @ 821C4B1
+	.string "哦，看到这么多可爱的宝可梦，\n"
+	.string "我也想去抓一只！\p"
+	.string "我这就去抓几只！$"
+
+LilycoveCity_ContestHall_Text_BeautyContestStage: @ 821C512
+	.string "美丽大赛 舞台\n"
+	.string "被美丽的宝可梦迷住吧！$"
+
+LilycoveCity_ContestHall_Text_CuteContestStage: @ 821C548
+	.string "可爱大赛 舞台\n"
+	.string "被可爱的宝可梦打动吧！$"
+
+LilycoveCity_ContestHall_Text_SmartContestStage: @ 821C57B
+	.string "聪明大赛 舞台\n"
+	.string "为聪明的宝可梦惊叹吧！$"
+
+`

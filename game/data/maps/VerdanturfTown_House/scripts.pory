@@ -1,0 +1,25 @@
+raw `
+VerdanturfTown_House_MapScripts:: @ 820335E
+	.byte 0
+
+VerdanturfTown_House_EventScript_Woman1:: @ 820335F
+	msgbox VerdanturfTown_House_Text_TrainersGatherAtPokemonLeague, MSGBOX_NPC
+	end
+
+VerdanturfTown_House_EventScript_Woman2:: @ 8203368
+	msgbox VerdanturfTown_House_Text_DefeatEliteFourInARow, MSGBOX_NPC
+	end
+
+VerdanturfTown_House_Text_TrainersGatherAtPokemonLeague: @ 8203371
+	.string "遥远的地方，彩悠市深处，\n"
+	.string "就是宝可梦联盟。\p"
+	.string "聚集在那里的训练家\n"
+	.string "个个都强得吓人。$"
+
+VerdanturfTown_House_Text_DefeatEliteFourInARow: @ 82033EE
+	.string "在宝可梦联盟，我记得规则是\n"
+	.string "必须连续挑战四天王。\p"
+	.string "要是输给其中任何一位，\n"
+	.string "就得从第一位重新开始挑战。$"
+
+`

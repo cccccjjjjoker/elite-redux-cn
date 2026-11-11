@@ -1,0 +1,466 @@
+raw `
+BattleFrontier_Lounge3_MapScripts:: @ 8261D82
+	.byte 0
+
+	.set BET_AMOUNT_5,  5
+	.set BET_AMOUNT_10, 10
+	.set BET_AMOUNT_15, 15
+
+BattleFrontier_Lounge3_EventScript_Gambler:: @ 8261D83
+	lock
+	faceplayer
+	goto_if_set FLAG_MET_BATTLE_FRONTIER_GAMBLER, BattleFrontier_Lounge3_EventScript_AlreadyMetGambler
+	call BattleFrontier_Lounge3_EventScript_CountSilverSymbols
+	compare VAR_0x8004, 2
+	goto_if_le BattleFrontier_Lounge3_EventScript_NotEnoughSilverSymbols
+	setflag FLAG_MET_BATTLE_FRONTIER_GAMBLER
+	msgbox BattleFrontier_Lounge3_Text_YouLookToughExplainGambling, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge3_EventScript_AskToEnterChallenge
+	end
+
+BattleFrontier_Lounge3_EventScript_AskToEnterChallenge:: @ 8261DAF
+	special ShowFrontierGamblerLookingMessage
+	waitmessage
+	waitbuttonpress
+	msgbox BattleFrontier_Lounge3_Text_HowAboutEnteringEventForMe, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BattleFrontier_Lounge3_EventScript_DeclineChallenge
+	msgbox BattleFrontier_Lounge3_Text_SpotMeSomeBattlePoints, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BattleFrontier_Lounge3_EventScript_DeclineChallenge
+	message BattleFrontier_Lounge3_Text_HowMuchCanYouSpot
+	waitmessage
+	special ShowBattlePointsWindow
+	goto BattleFrontier_Lounge3_EventScript_ChooseBetAmount
+	end
+
+BattleFrontier_Lounge3_EventScript_ChooseBetAmount:: @ 8261DE9
+	multichoice 20, 4, MULTI_FRONTIER_GAMBLER_BET, FALSE
+	copyvar VAR_FRONTIER_GAMBLER_AMOUNT_BET, VAR_RESULT
+	switch VAR_RESULT
+	case FRONTIER_GAMBLER_BET_5, BattleFrontier_Lounge3_EventScript_Bet5
+	case FRONTIER_GAMBLER_BET_10, BattleFrontier_Lounge3_EventScript_Bet10
+	case FRONTIER_GAMBLER_BET_15, BattleFrontier_Lounge3_EventScript_Bet15
+	case FRONTIER_GAMBLER_BET_CANCEL, BattleFrontier_Lounge3_EventScript_CancelBet
+	case MULTI_B_PRESSED, BattleFrontier_Lounge3_EventScript_CancelBet
+	end
+
+BattleFrontier_Lounge3_EventScript_Bet5:: @ 8261E30
+	setvar VAR_0x8008, BET_AMOUNT_5
+	goto BattleFrontier_Lounge3_EventScript_TryPlaceBet
+	end
+
+BattleFrontier_Lounge3_EventScript_Bet10:: @ 8261E3B
+	setvar VAR_0x8008, BET_AMOUNT_10
+	goto BattleFrontier_Lounge3_EventScript_TryPlaceBet
+	end
+
+BattleFrontier_Lounge3_EventScript_Bet15:: @ 8261E46
+	setvar VAR_0x8008, BET_AMOUNT_15
+	goto BattleFrontier_Lounge3_EventScript_TryPlaceBet
+	end
+
+BattleFrontier_Lounge3_EventScript_TryPlaceBet:: @ 8261E51
+	specialvar VAR_TEMP_1, GetFrontierBattlePoints
+	compare VAR_TEMP_1, VAR_0x8008
+	goto_if_ge BattleFrontier_Lounge3_EventScript_PlaceBet
+	msgbox BattleFrontier_Lounge3_Text_YouDontHaveEnoughPoints, MSGBOX_DEFAULT
+	message BattleFrontier_Lounge3_Text_HowMuchCanYouSpot
+	waitmessage
+	goto BattleFrontier_Lounge3_EventScript_ChooseBetAmount
+	end
+
+BattleFrontier_Lounge3_EventScript_PlaceBet:: @ 8261E75
+	copyvar VAR_0x8004, VAR_0x8008
+	special TakeFrontierBattlePoints
+	setvar VAR_FRONTIER_GAMBLER_STATE, FRONTIER_GAMBLER_PLACED_BET
+	special UpdateBattlePointsWindow
+	playse SE_SHOP
+	msgbox BattleFrontier_Lounge3_Text_ThanksOffYouGo, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge3_EventScript_FinishBet
+	end
+
+BattleFrontier_Lounge3_EventScript_FinishBet:: @ 8261E96
+	special ShowFrontierGamblerGoMessage
+	waitmessage
+	waitbuttonpress
+	special CloseBattlePointsWindow
+	release
+	end
+
+BattleFrontier_Lounge3_EventScript_CountSilverSymbols:: @ 8261EA0
+	setvar VAR_0x8004, 0
+	call_if_set FLAG_SYS_TOWER_SILVER, BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
+	call_if_set FLAG_SYS_DOME_SILVER, BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
+	call_if_set FLAG_SYS_PALACE_SILVER, BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
+	call_if_set FLAG_SYS_ARENA_SILVER, BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
+	call_if_set FLAG_SYS_FACTORY_SILVER, BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
+	call_if_set FLAG_SYS_PIKE_SILVER, BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
+	call_if_set FLAG_SYS_PYRAMID_SILVER, BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount
+	return
+
+BattleFrontier_Lounge3_EventScript_AddSilverSymbolCount:: @ 8261EE5
+	addvar VAR_0x8004, 1
+	return
+
+BattleFrontier_Lounge3_EventScript_NotEnoughSilverSymbols:: @ 8261EEB
+	msgbox BattleFrontier_Lounge3_Text_CantYouSeeWereBusyHere, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
+	end
+
+BattleFrontier_Lounge3_EventScript_AlreadyMetGambler:: @ 8261EF9
+	msgbox BattleFrontier_Lounge3_Text_Oh, MSGBOX_DEFAULT
+	compare VAR_FRONTIER_GAMBLER_STATE, FRONTIER_GAMBLER_PLACED_BET
+	goto_if_ge BattleFrontier_Lounge3_EventScript_CheckBetResults
+	goto BattleFrontier_Lounge3_EventScript_AskToEnterChallenge
+	end
+
+BattleFrontier_Lounge3_EventScript_CheckBetResults:: @ 8261F12
+	compare VAR_FRONTIER_GAMBLER_STATE, FRONTIER_GAMBLER_PLACED_BET
+	goto_if_eq BattleFrontier_Lounge3_EventScript_ChallengeNotAttempted
+	compare VAR_FRONTIER_GAMBLER_STATE, FRONTIER_GAMBLER_WON
+	goto_if_eq BattleFrontier_Lounge3_EventScript_WonChallenge
+	goto BattleFrontier_Lounge3_EventScript_LostChallenge
+	end
+
+BattleFrontier_Lounge3_EventScript_WonChallenge:: @ 8261F2E
+	msgbox BattleFrontier_Lounge3_Text_HelloChampHeresYourPoints, MSGBOX_DEFAULT
+	compare VAR_FRONTIER_GAMBLER_AMOUNT_BET, FRONTIER_GAMBLER_BET_5
+	call_if_eq BattleFrontier_Lounge3_EventScript_RewardBet5
+	compare VAR_FRONTIER_GAMBLER_AMOUNT_BET, FRONTIER_GAMBLER_BET_10
+	call_if_eq BattleFrontier_Lounge3_EventScript_RewardBet10
+	compare VAR_FRONTIER_GAMBLER_AMOUNT_BET, FRONTIER_GAMBLER_BET_15
+	call_if_eq BattleFrontier_Lounge3_EventScript_RewardBet15
+	msgbox BattleFrontier_Lounge3_Text_ObtainedBattlePoints, MSGBOX_GETPOINTS
+	special GiveFrontierBattlePoints
+	msgbox BattleFrontier_Lounge3_Text_ThinkOfMeForAnotherChallenge, MSGBOX_DEFAULT
+	setvar VAR_FRONTIER_GAMBLER_STATE, FRONTIER_GAMBLER_WAITING
+	release
+	end
+
+BattleFrontier_Lounge3_EventScript_LostChallenge:: @ 8261F71
+	msgbox BattleFrontier_Lounge3_Text_NiceTryCantReturnPoints, MSGBOX_DEFAULT
+	setvar VAR_FRONTIER_GAMBLER_STATE, FRONTIER_GAMBLER_WAITING
+	release
+	end
+
+BattleFrontier_Lounge3_EventScript_RewardBet5:: @ 8261F80
+	buffernumberstring 0, (BET_AMOUNT_5 * 2)
+	setvar VAR_0x8004, (BET_AMOUNT_5 * 2)
+	return
+
+BattleFrontier_Lounge3_EventScript_RewardBet10:: @ 8261F8A
+	buffernumberstring 0, (BET_AMOUNT_10 * 2)
+	setvar VAR_0x8004, (BET_AMOUNT_10 * 2)
+	return
+
+BattleFrontier_Lounge3_EventScript_RewardBet15:: @ 8261F94
+	buffernumberstring 0, (BET_AMOUNT_15 * 2)
+	setvar VAR_0x8004, (BET_AMOUNT_15 * 2)
+	return
+
+BattleFrontier_Lounge3_EventScript_ChallengeNotAttempted:: @ 8261F9E
+	special ShowFrontierGamblerGoMessage
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+BattleFrontier_Lounge3_EventScript_DeclineChallenge:: @ 8261FA5
+	msgbox BattleFrontier_Lounge3_Text_NotInterested, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge3_EventScript_CancelBet:: @ 8261FAF
+	special CloseBattlePointsWindow
+	goto BattleFrontier_Lounge3_EventScript_DeclineChallenge
+	end
+
+BattleFrontier_Lounge3_EventScript_Man:: @ 8261FB8
+	msgbox BattleFrontier_Lounge3_Text_ShouldBeTakingChallenges, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge3_EventScript_Woman:: @ 8261FC1
+	lock
+	faceplayer
+	msgbox BattleFrontier_Lounge3_Text_BackedWrongTrainer, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
+	end
+
+BattleFrontier_Lounge3_EventScript_PokefanF:: @ 8261FD1
+	lock
+	faceplayer
+	msgbox BattleFrontier_Lounge3_Text_KnowWinnerWhenISeeOne, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
+	end
+
+BattleFrontier_Lounge3_EventScript_FatMan:: @ 8261FE1
+	lock
+	faceplayer
+	msgbox BattleFrontier_Lounge3_Text_TrainerGoodButRattled, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge3_EventScript_FaceOriginalDirection
+	end
+
+BattleFrontier_Lounge3_EventScript_FaceOriginalDirection:: @ 8261FF1
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+BattleFrontier_Lounge3_Text_CantYouSeeWereBusyHere:: @ 8261FFE
+	.string "……你想要什么？\n"
+	.string "你看不出来我们正忙着吗？\p"
+	.string "你的事不能等等再说吗？$"
+
+BattleFrontier_Lounge3_Text_YouLookToughExplainGambling:: @ 8262061
+	.string "……咦？\n"
+	.string "我看你像个强悍的训练家。\p"
+	.string "嘿嘿……\n"
+	.string "听着，我有个提议。\p"
+	.string "我们这儿有个小圈子，\n"
+	.string "拿对战开拓区里的事\p"
+	.string "玩个小游戏。\n"
+	.string "规则很简单。\p"
+	.string "首先，我们挑一座\n"
+	.string "对战开拓区的设施。\p"
+	.string "然后各自挑一位正在挑战那座\n"
+	.string "设施的不同训练家，\p"
+	.string "用对战点数下注。\n"
+	.string "押中战绩最好的训练家的人，\p"
+	.string "拿走池子里所有的对战点数。\n"
+	.string "很简单吧？\p"
+	.string "所以，总之……$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleTowerSingle:: @ 8262261
+	.string "我在找一位要去挑战对战塔\n"
+	.string "单打对战房间的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleTowerDouble:: @ 826230D
+	.string "我在找一位要去挑战对战塔\n"
+	.string "双打对战房间的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleTowerMulti:: @ 82623B9
+	.string "我在找一位要去挑战对战塔\n"
+	.string "多人对战房间的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleDomeSingle:: @ 8262464
+	.string "我在找一位要参加对战巨蛋\n"
+	.string "单打对战大赛的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleDomeDouble:: @ 826250E
+	.string "我在找一位要参加对战巨蛋\n"
+	.string "双打对战大赛的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleFactorySingle:: @ 82625B8
+	.string "我在找一位要参加对战工厂\n"
+	.string "对战交换单打大赛的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleFactoryDouble:: @ 826266A
+	.string "我在找一位要参加对战工厂\n"
+	.string "对战交换双打大赛的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattlePalaceSingle:: @ 826271C
+	.string "我在找一位要去挑战对战宫殿\n"
+	.string "单打对战厅的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattlePalaceDouble:: @ 82627C9
+	.string "我在找一位要去挑战对战宫殿\n"
+	.string "双打对战厅的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattleArena:: @ 8262876
+	.string "我在找一位要参加对战竞技场\n"
+	.string "Set KO大赛的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattlePike:: @ 826291A
+	.string "我在找一位要参加对战管道\n"
+	.string "对战选择的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_ChallengeBattlePyramid:: @ 82629BC
+	.string "我在找一位要参加对战金字塔\n"
+	.string "对战寻宝的训练家。\p"
+	.string "可到现在，我还没见到一位\n"
+	.string "有那种赢家素质的训练家。$"
+
+BattleFrontier_Lounge3_Text_HowAboutEnteringEventForMe:: @ 8262A60
+	.string "我也会让你得到好处。\n"
+	.string "所以怎么样？\p"
+	.string "替我去参加那个项目吧？$"
+
+BattleFrontier_Lounge3_Text_SpotMeSomeBattlePoints:: @ 8262ABD
+	.string "好，太完美了。\n"
+	.string "那么，呃……能先借我一点\p"
+	.string "你的对战点数吗？\n"
+	.string "相信我，事后我会好好谢你。$"
+
+BattleFrontier_Lounge3_Text_HowMuchCanYouSpot:: @ 8262B42
+	.string "很好，很好！\n"
+	.string "那么，你能借我多少？$"
+
+BattleFrontier_Lounge3_Text_YouDontHaveEnoughPoints:: @ 8262B6E
+	.string "哦，不不不！\n"
+	.string "你的对战点数不够！\p"
+	.string "希望你别瞎胡闹，\n"
+	.string "浪费大家的时间！$"
+
+BattleFrontier_Lounge3_Text_ThanksOffYouGo:: @ 8262BE0
+	.string "嘿嘿！多谢了！\n"
+	.string "那么，走吧！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleTowerSingle:: @ 8262C04
+	.string "快去对战塔的\n"
+	.string "单打对战房间！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleTowerDouble:: @ 8262C90
+	.string "快去对战塔的\n"
+	.string "双打对战房间！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleTowerMulti:: @ 8262D1C
+	.string "快去对战塔的\n"
+	.string "多人对战房间！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleDomeSingle:: @ 8262DA7
+	.string "快去对战巨蛋的\n"
+	.string "单打对战大赛！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleDomeDouble:: @ 8262E34
+	.string "快去对战巨蛋的\n"
+	.string "双打对战大赛！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleFactorySingle:: @ 8262EC1
+	.string "快去对战工厂的\n"
+	.string "对战交换单打大赛！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleFactoryDouble:: @ 8262F56
+	.string "快去对战工厂的\n"
+	.string "对战交换双打大赛！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattlePalaceSingle:: @ 8262FEB
+	.string "快去对战宫殿的\n"
+	.string "单打对战厅！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattlePalaceDouble:: @ 8263078
+	.string "快去对战宫殿的\n"
+	.string "双打对战厅！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattleArena:: @ 8263105
+	.string "快去对战竞技场的\n"
+	.string "Set KO大赛！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattlePike:: @ 826318C
+	.string "快去对战管道的\n"
+	.string "对战选择！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_GetToBattlePyramid:: @ 8263211
+	.string "快去对战金字塔的\n"
+	.string "对战寻宝！\p"
+	.string "非赢不可！\n"
+	.string "别把机会搞砸了！\p"
+	.string "我们俩的前途都靠你了！$"
+
+BattleFrontier_Lounge3_Text_NiceTryCantReturnPoints:: @ 8263298
+	.string "哦，是你……\n"
+	.string "可惜了……\p"
+	.string "我不想告诉你，但我没法\n"
+	.string "把你的对战点数还你……\p"
+	.string "看来只能让它激励我们\n"
+	.string "下次更努力！$"
+
+BattleFrontier_Lounge3_Text_HelloChampHeresYourPoints:: @ 8263334
+	.string "哦，太好了！\n"
+	.string "你好啊，冠军！\p"
+	.string "我就知道你能行！\n"
+	.string "我就知道你会赢！\p"
+	.string "我们都是大赢家！\n"
+	.string "我把对战点数还你，\p"
+	.string "当然，还额外加一点我的心意！$"
+
+BattleFrontier_Lounge3_Text_ObtainedBattlePoints:: @ 82633D4
+	.string "{PLAYER}获得了\n"
+	.string "{STR_VAR_1}枚对战点数。$"
+
+BattleFrontier_Lounge3_Text_ThinkOfMeForAnotherChallenge:: @ 82633F2
+	.string "要是你还想再挑战，\n"
+	.string "请务必想起我！$"
+
+BattleFrontier_Lounge3_Text_NotInterested:: @ 826342D
+	.string "不感兴趣？！\n"
+	.string "你不该这么怕冒险！$"
+
+BattleFrontier_Lounge3_Text_Oh:: @ 826346B
+	.string "哦……$"
+
+BattleFrontier_Lounge3_Text_BackedWrongTrainer:: @ 826346F
+	.string "我又押错训练家了！\n"
+	.string "也许我该像大家一样\p"
+	.string "正常地去对战……$"
+
+BattleFrontier_Lounge3_Text_TrainerGoodButRattled:: @ 82634C9
+	.string "那位训练家……\n"
+	.string "他很强，但太容易慌，\p"
+	.string "在对战巨蛋活不下来……$"
+
+BattleFrontier_Lounge3_Text_KnowWinnerWhenISeeOne:: @ 826351D
+	.string "嘻嘻！\n"
+	.string "我一眼就能看出谁会是赢家！$"
+
+BattleFrontier_Lounge3_Text_ShouldBeTakingChallenges:: @ 8263545
+	.string "那些训练家……\n"
+	.string "他们在干什么？\p"
+	.string "他们该去接受挑战才是。$"
+`

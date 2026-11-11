@@ -1,0 +1,575 @@
+raw `
+FortreeCity_Gym_MapScripts:: @ 82165AB
+	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_Gym_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, FortreeCity_Gym_OnWarp
+	.byte 0
+
+FortreeCity_Gym_OnTransition: @ 82165B6
+	special RotatingGate_InitPuzzle
+	end
+
+FortreeCity_Gym_OnWarp: @ 82165BA
+	map_script_2 VAR_TEMP_0, VAR_TEMP_0, FortreeCity_Gym_EventScript_InitRotatingGates
+	.2byte 0
+
+FortreeCity_Gym_EventScript_InitRotatingGates:: @ 82165C4
+	special RotatingGate_InitPuzzleAndGraphics
+	end
+
+FortreeCity_Gym_EventScript_WinonaDefeated:: @ 82165FD
+	goto_if_unset FLAG_DEFEATED_FORTREE_GYM, FortreeCity_Gym_EventScript_WinonaDefeatedFirstTime
+	release
+	end
+
+FortreeCity_Gym_EventScript_WinonaDefeatedFirstTime:
+	message FortreeCity_Gym_Text_ReceivedFeatherBadge
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	msgbox FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis, MSGBOX_DEFAULT
+	setflag FLAG_DEFEATED_FORTREE_GYM
+	setflag FLAG_BADGE06_GET
+	setvar VAR_0x8008, 6
+	call Common_EventScript_SetGymTrainers
+	call FortreeCity_Gym_EventScript_GiveRoost
+	closemessage
+	@ delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox FortreeCity_Gym_Text_RegisteredWinona, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_ENABLE_WINONA_MATCH_CALL
+	setvar VAR_SCOTT_FORTREE_CALL_STEP_COUNTER, 0
+	setflag FLAG_SCOTT_CALL_FORTREE_GYM
+	release
+	end
+
+FortreeCity_Gym_EventScript_WinonaRematch::
+	message FortreeCity_Gym_Text_WinonaChooseFormat
+	waitmessage
+	multichoice 17, 6, MULTI_REMATCH_BATTLE_MODE, 0
+	switch VAR_RESULT
+	case 0, FortreeCity_Gym_EventScript_SetSingles
+	case 1, FortreeCity_Gym_EventScript_SetDoubles
+	case 2, FortreeCity_Gym_EventScript_Exit
+	case 127, FortreeCity_Gym_EventScript_Exit
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_SetSingles::
+	msgbox FortreeCity_Gym_Text_WinonaAllowLegends, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq FortreeCity_Gym_EventScript_WinonaSinglesRematch
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_WINONA_4, FortreeCity_Gym_Text_WinonaRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_WINONA
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_SetDoubles::
+	msgbox FortreeCity_Gym_Text_WinonaAllowLegends, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq FortreeCity_Gym_EventScript_WinonaDoublesRematch
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_WINONA_5, FortreeCity_Gym_Text_WinonaRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_WINONA
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_WinonaSinglesRematch::
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_WINONA_2, FortreeCity_Gym_Text_WinonaRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_WINONA
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_WinonaDoublesRematch::
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_WINONA_3, FortreeCity_Gym_Text_WinonaRematchDefeat
+	//setflag FLAG_DAILY_REMATCH_WINONA
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_AlreadyRematched::
+	msgbox FortreeCity_Gym_Text_WinonaPostRematch, MSGBOX_AUTOCLOSE
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_Exit::
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_GymGuide:: @ 8216732
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_FORTREE_GYM, FortreeCity_Gym_EventScript_AskResetTrainers
+	goto_if_set FLAG_MOVE_FORTREE_GYM_ENERGY_ROOT, FortreeCity_GymGuide_2
+	msgbox FortreeCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
+	giveitem ITEM_ENERGY_ROOT, 10
+	setflag FLAG_MOVE_FORTREE_GYM_ENERGY_ROOT
+	msgbox FortreeCity_Gym_Text_GymGuideAdvice2, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_GymGuide_2::
+	msgbox FortreeCity_Gym_Text_GymGuideAdvice2, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_Gym_EventScript_GymGuidePostVictory:: @ 8216747
+	msgbox FortreeCity_Gym_Text_GymGuidePostVictory, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_Gym_EventScript_LeftGymStatue:: @ 8216751
+	lockall
+	goto_if_set FLAG_BADGE06_GET, FortreeCity_Gym_EventScript_GymStatueCertified
+	goto FortreeCity_Gym_EventScript_GymStatue
+	end
+
+FortreeCity_Gym_EventScript_RightGymStatue:: @ 8216761
+	lockall
+	goto_if_set FLAG_BADGE06_GET, FortreeCity_Gym_EventScript_GymStatueCertified
+	goto FortreeCity_Gym_EventScript_GymStatue
+	end
+
+FortreeCity_Gym_EventScript_GymStatueCertified:: @ 8216771
+	msgbox FortreeCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+	releaseall
+	end
+
+FortreeCity_Gym_EventScript_GymStatue:: @ 821677B
+	msgbox FortreeCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
+	end
+
+FortreeCity_Gym_Text_GymGuideAdvice: @ 8216785
+	.string "哟，向着冠军前进的{PLAYER}，\n"
+	.string "过得怎么样？\p"
+	.string "请收下这些力量根，\n"
+	.string "对你的挑战会有帮助！$"
+
+
+FortreeCity_Gym_Text_GymGuideAdvice2:
+	.string "茵郁道馆的馆主娜琪是飞行属性宝可\n"
+	.string "梦的高手。\p"
+	.string "她在这道馆的最深处，\n"
+	.string "在那些旋转门后面等着。\p"
+	.string "她在等着想振翅高飞的新挑战者！\n"
+	.string "好，去吧！$"
+
+FortreeCity_Gym_Text_GymGuidePostVictory: @ 821687D
+	.string "你做到了！\n"
+	.string "你成功起飞了！$"
+
+FortreeCity_Gym_Text_JaredIntro: @ 82168A2
+	.string "看看鸟宝可梦优雅的对战风格！$"
+
+FortreeCity_Gym_Text_JaredDefeat:: @ 82168D3
+	.string "你……\n"
+	.string "你很强……$"
+
+FortreeCity_Gym_Text_JaredPostBattle: @ 82168E7
+	.string "训练家得聪明，\n"
+	.string "才跟得上突如其来的变化。\p"
+	.string "你有那个脑子走到我们馆主面前吗？$"
+
+FortreeCity_Gym_Text_EdwardoAndFlintIntro: @ 821695A
+	.string "热爱鸟宝可梦的人都向往加入这个道\n"
+	.string "馆。\p"
+	.string "身为茵郁道馆的一员，\n"
+	.string "我不能输！\p"
+	.string "不用我们馆主娜琪出手！\n"
+	.string "我一个人就够对付你了！$"
+
+FortreeCity_Gym_Text_EdwardoIntro: @ 821695A
+	.string "热爱鸟宝可梦的人都向往加入这个道\n"
+	.string "馆。\p"
+	.string "身为茵郁道馆的一员，我不能输！$"
+
+FortreeCity_Gym_Text_EdwardoDefeat:: @ 82169C7
+	.string "这副担子对我来说太重了……$"
+
+FortreeCity_Gym_Text_EdwardoPostBattle: @ 82169F1
+	.string "世界很大，\n"
+	.string "厉害的训练家多得数不清。\p"
+	.string "我要继续训练，让自己更强。$"
+
+FortreeCity_Gym_Text_FlintIntro: @ 8216A66
+	.string "不用我们馆主娜琪出手！\n"
+	.string "我一个人就够对付你了！$"
+
+FortreeCity_Gym_Text_FlintDefeat:: @ 8216AC4
+	.string "娜琪，我……我输了！$"
+
+FortreeCity_Gym_Text_FlintPostBattle: @ 8216AD7
+	.string "娜琪又可爱又强。\n"
+	.string "她是独一无二的馆主！\p"
+	.string "脸红了……$"
+
+FortreeCity_Gym_Text_AshleyAndJaredIntro: @ 8216B1A
+	.string "娜琪亲自教过我！\n"
+	.string "你不可能轻易赢我！\p"
+	.string "看看鸟宝可梦优雅的对战风格！$"
+
+FortreeCity_Gym_Text_AshleyIntro: @ 8216B1A
+	.string "娜琪亲自教过我！\n"
+	.string "你不可能轻易赢我！$"
+
+FortreeCity_Gym_Text_AshleyDefeat:: @ 8216B51
+	.string "我被打败了……$"
+
+FortreeCity_Gym_Text_AshleyPostBattle: @ 8216B5F
+	.string "多亏娜琪，\n"
+	.string "茵郁市的人才能安心生活。$"
+
+FortreeCity_Gym_Text_HumbertoIntro: @ 8216B9E
+	.string "娜琪一投入对战，脸上就会闪着\n"
+	.string "美丽的决心……\p"
+	.string "我才不让你看到那么美的画面！$"
+
+FortreeCity_Gym_Text_HumbertoDefeat: @ 8216C18
+	.string "呃！我拦不住你。$"
+
+FortreeCity_Gym_Text_HumbertoPostBattle: @ 8216C32
+	.string "你最好小心点！\n"
+	.string "别盯着娜琪看到走神，\p"
+	.string "不然你会一头摔下来！$"
+
+FortreeCity_Gym_Text_DariusIntro: @ 8216C96
+	.string "你最好知道，\n"
+	.string "飞行属性的宝可梦有很多种。\p"
+	.string "你知道的吧？$"
+
+FortreeCity_Gym_Text_DariusDefeat: @ 8216CF2
+	.string "看来你懂行！$"
+
+FortreeCity_Gym_Text_DariusPostBattle: @ 8216D0F
+	.string "你是赢了我没错。\n"
+	.string "但你最好小心！\p"
+	.string "我们馆主娜琪的宝可梦\n"
+	.string "可都是来真的。$"
+
+FortreeCity_Gym_Text_WinonaIntro: @ 8216D75
+	.string "我是娜琪。\n"
+	.string "茵郁宝可梦道馆的馆主。\p"
+	.string "我已与鸟宝可梦融为一体，\n"
+	.string "翱翔天际……\p"
+	.string "不管对战多艰难，\n"
+	.string "我们都以优雅取胜……\p"
+	.string "来见证鸟宝可梦与我\n"
+	.string "优雅的编舞吧！$"
+
+FortreeCity_Gym_Text_WinonaDefeat: @ 8216E60
+	.string "我从没见过比我更优雅地\n"
+	.string "指挥宝可梦的训练家……\p"
+	.string "为认可你的实力，\n"
+	.string "我把这枚道馆徽章给你。$"
+
+FortreeCity_Gym_Text_ReceivedFeatherBadge: @ 8216EEC
+	.string "{PLAYER}从娜琪那里得到了羽翼徽\n"
+	.string "章。$"
+
+FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis: @ 8216F17
+	.string "有了羽翼徽章，80级以下的宝可梦，\n"
+	.string "连通过交换得到的，\p"
+	.string "都会听从你的每个命令。\n"
+	.string "还有这个……\p"
+	.string "这是我给你的礼物。$"
+
+FortreeCity_Gym_Text_ExplainRoost: @ 8216FEC
+	.string "羽栖……\n"
+	.string "使用这招式，\p"
+	.string "宝可梦可以落到地面休息，\n"
+	.string "回复最多一半的HP。\p"
+	.string "不过在那一回合里，\n"
+	.string "它会失去飞行属性，要小心。$"
+
+FortreeCity_Gym_Text_RegisteredWinona: @ 8217044
+	.string "在宝可梦导航器里登录了馆主娜琪。$"
+
+FortreeCity_Gym_Text_WinonaPostBattle: @ 8217071
+	.string "虽然我输给了你，\n"
+	.string "但我仍会忠于鸟宝可梦。$"
+
+FortreeCity_Gym_Text_GymStatue: @ 82170AE
+	.string "茵郁市宝可梦道馆$"
+
+FortreeCity_Gym_Text_GymStatueCertified: @ 82170C7
+	.string "茵郁市宝可梦道馆\n"
+	.string "娜琪的认定训练家：\p"
+	.string "{PLAYER}$"
+
+FortreeCity_Gym_Text_WinonaPreRematch: @ 8217100
+	.string "娜琪：请让我看看你全力飞翔的力量\n"
+	.string "！$"
+
+FortreeCity_Gym_Text_WinonaRematchDefeat: @ 82171E6
+	.string "我又没能飞到你的高度……$"
+
+FortreeCity_Gym_Text_WinonaPostRematch: @ 821720B
+	.string "娜琪：虽然我输了，\n"
+	.string "但我心中的翅膀没有折断。\p"
+	.string "我可以一次又一次地\n"
+	.string "重新起飞、重新翱翔。\p"
+	.string "我确信如此！$"
+
+FortreeCity_Gym_Text_WinonaRematchNeedTwoMons: @ 8217292
+	.string "哦，不……你只带了一只宝可梦？\n"
+	.string "请至少带两只再来。$"
+
+FortreeCity_Gym_Text_WinonaChooseFormat:
+	.string "娜琪：我们人类永远逃不开\n"
+	.string "地面重力的牵引。\p"
+	.string "但只要追求卓越，\n"
+	.string "我们就有力量翱翔！\p"
+	.string "你已经登上顶峰，\n"
+	.string "成为在任的冠军。\p"
+	.string "请让我看看你全力飞翔的力量！\n"
+	.string "那么，请告诉我，你想怎么打？$"
+
+FortreeCity_Gym_Text_WinonaAllowLegends:
+	.string "娜琪：还有，要不要挑战我更强的\n"
+	.string "传说宝可梦？$"
+`
+script FortreeCity_Gym_EventScript_GiveRoost{
+	msgbox(format("这只特别的宝可梦，\n就当作我送你的礼物！$"))
+	givecustommon(SPECIES_DRAGONITE, 55, ITEM_ASSAULT_VEST, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_WINGBEAT, MOVE_DRAGON_RUSH, MOVE_FIRE_PUNCH, MOVE_EXTREME_SPEED, FALSE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER}得到了娜琪的{COLOR BLUE}快龙{COLOR DARK_GRAY}！$"))
+	waitfanfare
+	msgbox(format("这颗稀有的进化石也拿去吧！$"))
+	giveitem(ITEM_TOUCANNONITE, 1)
+	playfanfare(MUS_OBTAIN_ITEM)
+	waitfanfare
+	setflag(FLAG_RECEIVED_TM51)
+	msgbox(FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script FortreeCity_Gym_EventScript_Humberto{
+	lock
+	faceplayer
+	if (defeated(TRAINER_HUMBERTO)){
+		msgbox(FortreeCity_Gym_Text_HumbertoPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		yesnobattle(format("这道馆里的风乱得很！\n我的宝可梦能用它{COLOR GREEN}保护自己{COLOR DARK_GRAY}不受攻击\p，希望你知道自己在做什么！$"))
+		if (var(VAR_RESULT)){
+			trainerbattle_single(TRAINER_HUMBERTO, FortreeCity_Gym_Text_HumbertoIntro , FortreeCity_Gym_Text_HumbertoDefeat)
+		}
+	}
+	release
+	end
+}
+
+script FortreeCity_Gym_EventScript_Edwardo{
+	lock
+	faceplayer
+	if (defeated(TRAINER_EDWARDO)){
+		msgbox(FortreeCity_Gym_Text_EdwardoPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(FortreeCity_Gym_EventScript_EdwardoAndFlint)
+	}
+	release
+	end
+}
+script FortreeCity_Gym_EventScript_Flint{
+	lock
+	faceplayer
+	if (defeated(TRAINER_FLINT)){
+		msgbox(FortreeCity_Gym_Text_FlintPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(FortreeCity_Gym_EventScript_EdwardoAndFlint)
+	}
+	release
+	end
+}
+
+script FortreeCity_Gym_EventScript_EdwardoAndFlint{
+    yesnobattle(format("你不能指望天一直晴着。\n让我看看你在{COLOR GREEN}冬季狂风{COLOR DARK_GRAY}里能打得多好\p！$"))
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_EDWARDO, TRAINER_FLINT, TAG_TEAM_EDUARDO_FLINT, 0, FortreeCity_Gym_Text_EdwardoAndFlintIntro)
+    }
+    release
+    end
+}
+
+
+script FortreeCity_Gym_EventScript_Ashley{
+	lock
+	faceplayer
+	if (defeated(TRAINER_ASHLEY)){
+		msgbox(FortreeCity_Gym_Text_AshleyPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+	    goto(FortreeCity_Gym_EventScript_AshleyAndJared)
+	}
+	release
+	end
+}
+script FortreeCity_Gym_EventScript_Jared{
+	lock
+	faceplayer
+	if (defeated(TRAINER_JARED)){
+		msgbox(FortreeCity_Gym_Text_JaredPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+	    goto(FortreeCity_Gym_EventScript_AshleyAndJared)
+
+	}
+	release
+	end
+}
+script FortreeCity_Gym_EventScript_AshleyAndJared{
+    yesnobattle(format("小心这里的风，\n它们可能{COLOR GREEN}把你的道具吹走{COLOR DARK_GRAY}，\p让你两手空空！$"))
+    if (var(VAR_RESULT)){
+        starttagbattle(TRAINER_ASHLEY, TRAINER_JARED, TAG_TEAM_ASHLEY_JARED, 0, FortreeCity_Gym_Text_AshleyAndJaredIntro)
+    }
+    release
+    end
+}
+
+script FortreeCity_Gym_EventScript_Darius{
+	lock
+	faceplayer
+	if (defeated(TRAINER_DARIUS)){
+		msgbox(FortreeCity_Gym_Text_DariusPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		yesnobattle(format("在强风里活下来，\n让我的宝可梦{COLOR GREEN}身体变硬{COLOR DARK_GRAY}了，\p现在它们比谁都耐打。$"))
+		if (var(VAR_RESULT)){
+			trainerbattle_single(TRAINER_DARIUS, FortreeCity_Gym_Text_DariusIntro , FortreeCity_Gym_Text_DariusDefeat)
+		}
+	}
+	release
+	end
+}
+
+text FortreeCity_Gym_Text_WinonaIntro0{
+    format("聪明的鸟通常会等风暴过去，\n但我看你是直接飞进来了，\p让我看看你有没有相应的本事。$")
+}
+
+text FortreeCity_Gym_Text_WinonaIntro1{
+    format("你经历了风暴，\n却急得没等它完全过去，\p希望你准备好迎接狂风了！$")
+}
+
+text FortreeCity_Gym_Text_WinonaIntroAll{
+    format("风暴过去了，\n也不代表你不会被吹走。我们上天，\p来一场公平的对决！$")
+}
+
+text FortreeCity_Gym_Text_WinonaDefeat0{
+	format("看来你确实有在火力下穿行的本事。\n干得漂亮！$")
+}
+text FortreeCity_Gym_Text_WinonaDefeat1{
+	format("一场风暴，成功渡过。\n愿它长久如此，挑战者。$")
+}
+text FortreeCity_Gym_Text_WinonaDefeatAll{
+	format("被智取、被压制，最后被甩在身后。\n干得漂亮。$")
+}
+script FortreeCity_Gym_EventScript_CheckTrainers{
+    if (defeated(TRAINER_WINONA_1)) {
+        msgbox(FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT)
+        release
+        end
+    }
+    // set battle event flags
+    if (!defeated(TRAINER_JARED)){ //TRAINER_ASHLEY
+		registerbattleevent(BATTLE_EVENT_POSTURE_SPDEF)
+    }
+    if (!defeated(TRAINER_FLINT)){ // TRAINER_EDWARDO
+    	registerbattleevent(BATTLE_EVENT_LAST_FROSTBITE, 4)
+    }
+    if (!defeated(TRAINER_HUMBERTO)){
+		registerbattleevent(BATTLE_EVENT_EMBARGO, 4)
+    }
+    if (!defeated(TRAINER_DARIUS)){
+		registerbattleevent(BATTLE_EVENT_POSTURE_DEFENSE)
+    }
+    return
+}
+
+script FortreeCity_Gym_EventScript_Winona{
+    goto_if_set(FLAG_SYS_GAME_CLEAR, FortreeCity_Gym_EventScript_WinonaRematch)
+    call(FortreeCity_Gym_EventScript_CheckTrainers)
+    setvar(VAR_0x8004, 15)
+	registerbattleevent(BATTLE_EVENT_TENSE_BATTLE)
+	adddefeatedcount(TRAINER_JARED, 1)  //TRAINER_ASHLEY
+	adddefeatedcount(TRAINER_FLINT) // TRAINER_EDWARDO
+	adddefeatedcount(TRAINER_HUMBERTO) 
+	adddefeatedcount(TRAINER_DARIUS)
+    switch (var(VAR_RESULT)) {
+        case 0:
+            trainerbattle_single(TRAINER_WINONA_1 FortreeCity_Gym_Text_WinonaIntro0, FortreeCity_Gym_Text_WinonaDefeat0, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC)
+        break
+        case 4:
+            trainerbattle_single(TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntroAll, FortreeCity_Gym_Text_WinonaDefeat1, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC)
+        break
+        default:
+            trainerbattle_single(TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntro1, FortreeCity_Gym_Text_WinonaDefeatAll, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC)
+    }
+    goto_if_unset(FLAG_RECEIVED_TM51, FortreeCity_Gym_EventScript_GiveRoost)
+}
+
+script FortreeCity_Gym_EventScript_AskResetTrainers{
+	lock
+	clydeaskresettrainers(FortreeCity_Gym_EventScript_ResetAllTrainers, FortreeCity_Gym_EventScript_SelectTrainers)
+	release
+	end
+}
+
+
+script FortreeCity_Gym_EventScript_ResetAllTrainers{
+	cleartrainerflag(TRAINER_JARED)
+	cleartrainerflag(TRAINER_ASHLEY)
+	cleartrainerflag(TRAINER_FLINT)
+	cleartrainerflag(TRAINER_EDWARDO)
+	cleartrainerflag(TRAINER_HUMBERTO)
+	cleartrainerflag(TRAINER_DARIUS)
+	cleartrainerflag(TRAINER_WINONA_1)
+	setvar(VAR_TEMP_5, 0) // so you can refight winona with the reset
+	return
+}
+
+movement FortreeCity_Gym_Movement_Humberto{
+	walk_fastest_left * 10
+	walk_fastest_up * 5
+}
+
+movement FortreeCity_Gym_Movement_Darius{
+	walk_fastest_left * 2
+	walk_fastest_up * 5
+}
+
+movement FortreeCity_Gym_Movement_FlintAndEdwardo{
+	walk_fastest_right * 7
+	walk_fastest_up * 4
+}
+
+movement FortreeCity_Gym_Movement_JaredAndAshley{
+	walk_fastest_down * 8
+	walk_fastest_right * 10
+}
+
+movement FortreeCity_Gym_Movement_Winona{
+	walk_fastest_left * 4
+}
+
+// don't forget to bring you back to the player
+movement FortreeCity_Gym_Movement_Clyde{
+	walk_fastest_left * 1
+	walk_fastest_down * 6
+}
+
+
+script FortreeCity_Gym_EventScript_SelectTrainers{
+	special(SpawnCameraObject)
+	selecttrainercameraoffset()
+	selecttrainer(FortreeCity_Gym_Movement_Humberto, "Humberto", TRAINER_HUMBERTO)
+	selecttrainer(FortreeCity_Gym_Movement_Darius, "Darius", TRAINER_DARIUS)
+	selecttrainer(FortreeCity_Gym_Movement_FlintAndEdwardo, "Flint & Edwardo", TRAINER_FLINT, TRAINER_EDWARDO)
+	selecttrainer(FortreeCity_Gym_Movement_JaredAndAshley, "Jared & Ashley", TRAINER_JARED, TRAINER_ASHLEY)
+	selecttrainer(FortreeCity_Gym_Movement_Winona, "Winona", TRAINER_WINONA_1)
+	applymovement(OBJ_EVENT_ID_CAMERA, FortreeCity_Gym_Movement_Clyde)
+	waitmovement(0)
+	selecttrainercameraoffset(TRUE)
+	special(RemoveCameraObject)
+	return
+}

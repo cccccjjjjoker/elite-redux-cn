@@ -1,0 +1,1082 @@
+raw `
+.set LOCALID_CHALLENGE_BIKER, 19
+.set LOCALID_RIVAL, 26
+.set LOCALID_RIVAL_ON_BIKE, 27
+.set LOCALID_BIRCH, 33
+
+Route110_MapScripts:: @ 81EF269
+	map_script MAP_SCRIPT_ON_RESUME, Route110_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Route110_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route110_OnFrame
+	.byte 0
+
+Route110_OnResume: @ 81EF279
+	special UpdateCyclingRoadState
+	end
+
+Route110_OnTransition: @ 81EF27D
+	call Common_EventScript_SetupRivalGfxId
+	call Common_EventScript_SetupRivalOnBikeGfxId
+	compare VAR_CYCLING_CHALLENGE_STATE, 1
+	call_if_eq Route110_EventScript_SaveCyclingMusic
+	end
+
+Route110_EventScript_SaveCyclingMusic:: @ 81EF293
+	savebgm MUS_CYCLING
+	return
+
+Route110_OnFrame: @ 81EF297
+	map_script_2 VAR_CYCLING_CHALLENGE_STATE, 1, Route110_EventScript_BeginCylcingRoadChallenge
+	.2byte 0
+
+Route110_EventScript_BeginCylcingRoadChallenge:: @ 81EF2A1
+	special Special_BeginCyclingRoadChallenge
+	setvar VAR_CYCLING_CHALLENGE_STATE, 2
+	return
+
+Route110_EventScript_AquaGrunt1:: @ 81EF2AA
+	lock
+	faceplayer
+	msgbox Route110_Text_WeCantTalkAboutAquaActivities, MSGBOX_DEFAULT
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route110_EventScript_AquaGrunt2:: @ 81EF2C0
+	lock
+	faceplayer
+	msgbox Route110_Text_KickUpARuckus, MSGBOX_DEFAULT
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route110_EventScript_AquaGrunt3:: @ 81EF2D6
+	lock
+	faceplayer
+	msgbox Route110_Text_MyFirstJobInAqua, MSGBOX_DEFAULT
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route110_EventScript_AquaGrunt4:: @ 81EF2EC
+	lock
+	faceplayer
+	msgbox Route110_Text_AquaActionsBringSmiles, MSGBOX_DEFAULT
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route110_EventScript_Boy1:: @ 81EF302
+	msgbox Route110_Text_RideBikeAtFullSpeed, MSGBOX_NPC
+	end
+
+Route110_EventScript_CyclingGirl1:: @ 81EF30B
+	msgbox Route110_Text_HairStreamsBehindMe, MSGBOX_NPC
+	end
+
+Route110_EventScript_CyclingGuy1:: @ 81EF314
+	msgbox Route110_Text_YouGotBikeFromRydel, MSGBOX_NPC
+	end
+
+Route110_EventScript_OldMan:: @ 81EF31D
+	msgbox Route110_Text_TwoRoads, MSGBOX_NPC
+	end
+
+Route110_EventScript_OldWoman:: @ 81EF326
+	msgbox Route110_Text_WalkOnTheLowRoad, MSGBOX_NPC
+	end
+
+Route110_EventScript_CyclingGuy2:: @ 81EF32F
+	msgbox Route110_Text_BikeTechniques, MSGBOX_NPC
+	end
+
+Route110_EventScript_Boy2:: @ 81EF338
+	msgbox Route110_Text_WhichShouldIChoose, MSGBOX_NPC
+	end
+
+Route110_EventScript_SlateportCitySign:: @ 81EF341
+	msgbox Route110_Text_SlateportCitySign, MSGBOX_SIGN
+	end
+
+Route110_EventScript_CyclingRoadSign:: @ 81EF34A
+	msgbox Route110_Text_CyclingRoadSign, MSGBOX_SIGN
+	end
+
+Route110_EventScript_VandalizedSign:: @ 81EF353
+	msgbox Route110_Text_AquaWasHere, MSGBOX_SIGN
+	end
+
+Route110_EventScript_Route103Sign:: @ 81EF35C
+	msgbox Route110_Text_Route103Sign, MSGBOX_SIGN
+	end
+
+Route110_EventScript_SeasideParkingSign:: @ 81EF365
+	msgbox Route110_Text_SeasideParkingSign, MSGBOX_SIGN
+	end
+
+Route110_EventScript_MauvilleCitySign:: @ 81EF36E
+	msgbox Route110_Text_MauvilleCitySign, MSGBOX_SIGN
+	end
+
+Route110_EventScript_TrainerTipsPrlzSleep:: @ 81EF377
+	msgbox Route110_Text_TrainerTipsPrlzSleep, MSGBOX_SIGN
+	end
+
+Route110_EventScript_TrainerTipsRegisterItems:: @ 81EF380
+	msgbox Route110_Text_TrainerTipsRegisterItems, MSGBOX_SIGN
+	end
+
+Route110_EventScript_TrickHouseSign:: @ 81EF389
+	msgbox Route110_Text_TrickHouseSign, MSGBOX_SIGN
+	end
+
+Route110_EventScript_CyclingRoadResultsSign:: @ 81EF392
+	lockall
+	specialvar VAR_RESULT, GetRecordedCyclingRoadResults
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route110_EventScript_NoRecordSet
+	msgbox Route110_Text_BestRecord, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route110_EventScript_NoRecordSet:: @ 81EF3AD
+	msgbox Route110_Text_ThereIsNoRecord, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route110_EventScript_ChallengeGuy:: @ 81EF3B7
+	lock
+	faceplayer
+	specialvar VAR_RESULT, GetPlayerAvatarBike
+	compare VAR_RESULT, 1
+	goto_if_eq Route110_EventScript_PlayerRidingAcroBike
+	compare VAR_CYCLING_CHALLENGE_STATE, 0
+	goto_if_eq Route110_EventScript_PlayerNotRidingBike
+	msgbox Route110_Text_AlwaysAimHigher, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_PlayerNotRidingBike:: @ 81EF3DE
+	msgbox Route110_Text_RatedForNumberOfCollisions, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_PlayerRidingAcroBike:: @ 81EF3E8
+	msgbox Route110_Text_AcroBikesDoNotQualify, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_Edward:: @ 81EF3F2
+	trainerbattle_single TRAINER_EDWARD, Route110_Text_EdwardIntro, Route110_Text_EdwardDefeated
+	msgbox Route110_Text_EdwardPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Jaclyn:: @ 81EF409
+	trainerbattle_single TRAINER_JACLYN, Route110_Text_JaclynIntro, Route110_Text_JaclynDefeated
+	msgbox Route110_Text_JaclynPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Edwin:: @ 81EF420
+	trainerbattle_single TRAINER_EDWIN_1, Route110_Text_EdwinIntro, Route110_Text_EdwinDefeated, Route110_EventScript_EdwinRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route110_EventScript_EdwinRematch
+	msgbox Route110_Text_EdwinPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_EdwinRegisterMatchCallAfterBattle:: @ 81EF44C
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route110_Text_EdwinRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_EDWIN_1
+	release
+	end
+
+Route110_EventScript_EdwinRematch:: @ 81EF46B
+	trainerbattle_rematch TRAINER_EDWIN_1, Route110_Text_EdwinRematchIntro, Route110_Text_EdwinRematchDefeated
+	msgbox Route110_Text_EdwinRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Dale:: @ 81EF482
+	trainerbattle_single TRAINER_DALE, Route110_Text_DaleIntro, Route110_Text_DaleDefeated
+	msgbox Route110_Text_DalePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Jacob:: @ 81EF499
+	trainerbattle_single TRAINER_JACOB, Route110_Text_JacobIntro, Route110_Text_JacobDefeated
+	msgbox Route110_Text_JacobPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Anthony:: @ 81EF4B0
+	trainerbattle_single TRAINER_ANTHONY, Route110_Text_AnthonyIntro, Route110_Text_AnthonyDefeated
+	msgbox Route110_Text_AnthonyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Benjamin:: @ 81EF4C7
+	trainerbattle_single TRAINER_BENJAMIN_1, Route110_Text_BenjaminIntro, Route110_Text_BenjaminDefeated, Route110_EventScript_BenjaminRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route110_EventScript_BenjaminRematch
+	msgbox Route110_Text_BenjaminPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_BenjaminRegisterMatchCallAfterBattle:: @ 81EF4F3
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route110_Text_BenjaminRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_BENJAMIN_1
+	release
+	end
+
+Route110_EventScript_BenjaminRematch:: @ 81EF512
+	trainerbattle_rematch TRAINER_BENJAMIN_1, Route110_Text_BenjaminRematchIntro, Route110_Text_BenjaminRematchDefeated
+	msgbox Route110_Text_BenjaminRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Jasmine:: @ 81EF529
+	trainerbattle_single TRAINER_JASMINE, Route110_Text_JasmineIntro, Route110_Text_JasmineDefeated
+	msgbox Route110_Text_JasminePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Abigail:: @ 81EF540
+	trainerbattle_single TRAINER_ABIGAIL_1, Route110_Text_AbigailIntro, Route110_Text_AbigailDefeated, Route110_EventScript_AbigailRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route110_EventScript_AbigailRematch
+	msgbox Route110_Text_AbigailPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_AbigailRegisterMatchCallAfterBattle:: @ 81EF56C
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route110_Text_AbigailRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ABIGAIL_1
+	release
+	end
+
+Route110_EventScript_AbigailRematch:: @ 81EF58B
+	trainerbattle_rematch TRAINER_ABIGAIL_1, Route110_Text_AbigailRematchIntro, Route110_Text_AbigailRematchDefeated
+	msgbox Route110_Text_AbigailRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Isabel:: @ 81EF5A2
+	trainerbattle_single TRAINER_ISABEL_1, Route110_Text_IsabelIntro, Route110_Text_IsabelDefeated, Route110_EventScript_IsabelRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route110_EventScript_IsabelRematch
+	msgbox Route110_Text_IsabelPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_IsabelRegisterMatchCallAfterBattle:: @ 81EF5CE
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route110_Text_IsabelRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ISABEL_1
+	release
+	end
+
+Route110_EventScript_IsabelRematch:: @ 81EF5ED
+	trainerbattle_rematch TRAINER_ISABEL_1, Route110_Text_IsabelRematchIntro, Route110_Text_IsabelRematchDefeated
+	msgbox Route110_Text_IsabelRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Timmy:: @ 81EF604
+	trainerbattle_single TRAINER_TIMMY, Route110_Text_TimmyIntro, Route110_Text_TimmyDefeated
+	msgbox Route110_Text_TimmyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Unused:: @ 81EF61B
+	end
+
+Route110_EventScript_Kaleb:: @ 81EF61C
+	trainerbattle_single TRAINER_KALEB, Route110_Text_KalebIntro, Route110_Text_KalebDefeated
+	msgbox Route110_Text_KalebPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Joseph:: @ 81EF633
+	trainerbattle_single TRAINER_JOSEPH, Route110_Text_JosephIntro, Route110_Text_JosephDefeated
+	msgbox Route110_Text_JosephPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_Alyssa:: @ 81EF64A
+	trainerbattle_single TRAINER_ALYSSA, Route110_Text_AlyssaIntro, Route110_Text_AlyssaDefeated
+	msgbox Route110_Text_AlyssaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_EventScript_CyclingChallengeEnd:: @ 81EF661
+	lockall
+	applymovement LOCALID_CHALLENGE_BIKER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	call Route110_EventScript_CyclingChallengeResults
+	releaseall
+	end
+
+Route110_EventScript_CyclingChallengeResults:: @ 81EF673
+	special FinishCyclingRoadChallenge
+	msgbox Route110_Text_CyclingChallengeResultSummary, MSGBOX_DEFAULT
+	switch VAR_RESULT
+	case 10, Route110_EventScript_ChallengeReactionBest
+	case 9, Route110_EventScript_ChallengeReactionGood
+	case 8, Route110_EventScript_ChallengeReactionGood
+	case 7, Route110_EventScript_ChallengeReactionGood
+	case 6, Route110_EventScript_ChallengeReactionOk
+	case 5, Route110_EventScript_ChallengeReactionOk
+	case 4, Route110_EventScript_ChallengeReactionOk
+	case 3, Route110_EventScript_ChallengeReactionBad
+	case 2, Route110_EventScript_ChallengeReactionBad
+	case 1, Route110_EventScript_ChallengeReactionBad
+	case 0, Route110_EventScript_ChallengeReactionWorst
+	end
+
+Route110_EventScript_ChallengeReactionBest:: @ 81EF6FD
+	msgbox Route110_Text_ChallengeReactionBest, MSGBOX_DEFAULT
+	msgbox Route110_Text_GiveTM83, MSGBOX_DEFAULT
+	givecustommon SPECIES_HELIOLISK, 25, ITEM_CHOICE_SPECS, ITEM_PREMIER_BALL, NATURE_TIMID, 2, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_THUNDERBOLT, MOVE_VOLT_SWITCH, MOVE_GRASS_KNOT, MOVE_FOCUS_BLAST, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_Text_ObtainedShinyHeliolisk
+	goto Route110_EventScript_EndChallenge
+	end
+
+Route110_EventScript_ChallengeReactionGood:: @ 81EF70B
+	msgbox Route110_Text_ChallengeReactionGood, MSGBOX_DEFAULT
+	msgbox Route110_Text_GiveTM83, MSGBOX_DEFAULT
+	givecustommon SPECIES_HELIOLISK, 20, ITEM_LIFE_ORB, ITEM_PREMIER_BALL, NATURE_TIMID, 0, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_SURF, MOVE_THUNDER, MOVE_HYPER_VOICE, MOVE_DRAGON_PULSE, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_Text_ObtainedHeliolisk
+	goto Route110_EventScript_EndChallenge
+	end
+
+Route110_EventScript_ChallengeReactionOk:: @ 81EF719
+	msgbox Route110_Text_ChallengeReactionOk, MSGBOX_DEFAULT
+	goto Route110_EventScript_EndChallenge
+	end
+
+Route110_EventScript_ChallengeReactionBad:: @ 81EF727
+	msgbox Route110_Text_ChallengeReactionBad, MSGBOX_DEFAULT
+	goto Route110_EventScript_EndChallenge
+	end
+
+Route110_EventScript_ChallengeReactionWorst:: @ 81EF735
+	msgbox Route110_Text_ChallengeReactionWorst, MSGBOX_DEFAULT
+	goto Route110_EventScript_EndChallenge
+	end
+
+Route110_EventScript_EndChallenge:: @ 81EF743
+	setvar VAR_CYCLING_CHALLENGE_STATE, 3
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	return
+
+Route110_EventScript_RivalTrigger1:: @ 81EF74D
+	setvar VAR_0x8008, 1
+	goto Route110_EventScript_RivalScene
+	end
+
+Route110_EventScript_RivalTrigger2:: @ 81EF758
+	setvar VAR_0x8008, 2
+	goto Route110_EventScript_RivalScene
+	end
+
+Route110_EventScript_RivalTrigger3:: @ 81EF763
+	setvar VAR_0x8008, 3
+	goto Route110_EventScript_RivalScene
+	end
+
+Route110_EventScript_RivalScene:: @ 81EF76E
+	lockall
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq Route110_EventScript_PlayMayMusic
+	compare VAR_RESULT, FEMALE
+	call_if_eq Route110_EventScript_PlayBrendanMusic
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	delay 30
+	compare VAR_0x8008, 1
+	call_if_eq Route110_EventScript_RivalApproachPlayer1
+	compare VAR_0x8008, 2
+	call_if_eq Route110_EventScript_RivalApproachPlayer2
+	compare VAR_0x8008, 3
+	call_if_eq Route110_EventScript_RivalApproachPlayer3
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Route110_EventScript_MayBattle
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route110_EventScript_BrendanBattle
+	releaseall
+	end
+
+Route110_EventScript_PlayMayMusic:: @ 81EF7E1
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	return
+
+Route110_EventScript_PlayBrendanMusic:: @ 81EF7E6
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	return
+
+Route110_EventScript_MayBattle:: @ 81EF7EB
+	msgbox Route110_Text_MayLetsBattle, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route110_EventScript_MayBattleTreecko
+	case 1, Route110_EventScript_MayBattleTorchic
+	case 2, Route110_EventScript_MayBattleMudkip
+	end
+
+Route110_EventScript_MayBattleTreecko:: @ 81EF81A
+	setvar VAR_0x8004, 15
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TREECKO, Route110_Text_MayDefeated
+	goto Route110_EventScript_MayDefeated
+	end
+
+Route110_EventScript_MayBattleTorchic:: @ 81EF82A
+	setvar VAR_0x8004, 15
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TORCHIC, Route110_Text_MayDefeated
+	goto Route110_EventScript_MayDefeated
+	end
+
+Route110_EventScript_MayBattleMudkip:: @ 81EF83A
+	setvar VAR_0x8004, 15
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_MUDKIP, Route110_Text_MayDefeated
+	goto Route110_EventScript_MayDefeated
+	end
+
+Route110_EventScript_MayDefeated:: @ 81EF84A
+	msgbox Route110_Text_MayTakeThis, MSGBOX_DEFAULT
+	call Route110_EventScript_GiveItemfinder
+	msgbox Route110_Text_MayExplainItemfinder, MSGBOX_DEFAULT
+	goto Route110_EventScript_RivalExit
+	end
+
+Route110_EventScript_BrendanBattle:: @ 81EF865
+	msgbox Route110_Text_BrendanLetsBattle, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route110_EventScript_BrendanBattleTreecko
+	case 1, Route110_EventScript_BrendanBattleTorchic
+	case 2, Route110_EventScript_BrendanBattleMudkip
+	end
+
+Route110_EventScript_BrendanBattleTreecko:: @ 81EF894
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TREECKO, Route110_Text_BrendanDefeated
+	goto Route110_EventScript_BrendanDefeated
+	end
+
+Route110_EventScript_BrendanBattleTorchic:: @ 81EF8A4
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TORCHIC, Route110_Text_BrendanDefeated
+	goto Route110_EventScript_BrendanDefeated
+	end
+
+Route110_EventScript_BrendanBattleMudkip:: @ 81EF8B4
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_MUDKIP, Route110_Text_BrendanDefeated
+	goto Route110_EventScript_BrendanDefeated
+	end
+
+Route110_EventScript_BrendanDefeated:: @ 81EF8C4
+	msgbox Route110_Text_BrendanTakeThis, MSGBOX_DEFAULT
+	call Route110_EventScript_GiveItemfinder
+	msgbox Route110_Text_BrendanExplainItemfinder, MSGBOX_DEFAULT
+	goto Route110_EventScript_RivalExit
+	end
+
+Route110_EventScript_GiveItemfinder:: @ 81EF8DF
+	giveitem ITEM_ITEMFINDER
+	return
+
+Route110_EventScript_RivalExit:: @ 81EF8EC
+	closemessage
+	compare VAR_0x8008, 1
+	call_if_eq Route110_EventScript_MoveRival1
+	compare VAR_0x8008, 2
+	call_if_eq Route110_EventScript_MoveRival2
+	compare VAR_0x8008, 3
+	call_if_eq Route110_EventScript_MoveRival3
+	setobjectmovementtype LOCALID_RIVAL, MOVEMENT_TYPE_FACE_RIGHT
+	setobjectmovementtype LOCALID_RIVAL_ON_BIKE, MOVEMENT_TYPE_FACE_RIGHT
+	removeobject LOCALID_RIVAL
+	addobject LOCALID_RIVAL_ON_BIKE
+	delay 45
+	compare VAR_0x8008, 1
+	call_if_eq Route110_EventScript_RivalExit1
+	compare VAR_0x8008, 2
+	call_if_eq Route110_EventScript_RivalExit2
+	compare VAR_0x8008, 3
+	call_if_eq Route110_EventScript_RivalExit3
+	removeobject LOCALID_RIVAL_ON_BIKE
+	setvar VAR_ROUTE110_STATE, 1
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
+
+Route110_EventScript_RivalApproachPlayer1:: @ 81EF94E
+	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer1
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalApproachPlayer2:: @ 81EF959
+	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer2
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalApproachPlayer3:: @ 81EF964
+	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer3
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalExit1:: @ 81EF96F
+	applymovement LOCALID_RIVAL_ON_BIKE, Route110_Movement_RivalExit1
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalExit2:: @ 81EF97A
+	applymovement LOCALID_RIVAL_ON_BIKE, Route110_Movement_RivalExit2
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalExit3:: @ 81EF985
+	applymovement LOCALID_RIVAL_ON_BIKE, Route110_Movement_RivalExit3
+	waitmovement 0
+	return
+
+Route110_EventScript_MoveRival1:: @ 81EF990
+	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 33, 55
+	return
+
+Route110_EventScript_MoveRival2:: @ 81EF998
+	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 34, 55
+	return
+
+Route110_EventScript_MoveRival3:: @ 81EF9A0
+	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 35, 55
+	return
+
+Route110_Movement_RivalApproachPlayer1: @ 81EF9A8
+	walk_down
+	walk_left
+	walk_in_place_fastest_down
+	step_end
+
+Route110_Movement_RivalApproachPlayer2: @ 81EF9AC
+	walk_down
+	step_end
+
+Route110_Movement_RivalApproachPlayer3: @ 81EF9AE
+	walk_down
+	walk_right
+	walk_in_place_fastest_down
+	step_end
+
+Route110_Movement_RivalExit1: @ 81EF9B2
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+Route110_Movement_RivalExit2: @ 81EF9BA
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_down
+	step_end
+
+Route110_Movement_RivalExit3: @ 81EF9C3
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+Route110_EventScript_BirchScene1:: @ 81EF9CB
+	lockall
+	setvar VAR_0x8008, 1
+	goto Route110_EventScript_BirchScene
+
+Route110_EventScript_BirchScene2:: @ 81EF9D6
+	lockall
+	setvar VAR_0x8008, 2
+	goto Route110_EventScript_BirchScene
+
+Route110_EventScript_BirchScene3:: @ 81EF9E1
+	lockall
+	setvar VAR_0x8008, 3
+	goto Route110_EventScript_BirchScene
+
+Route110_EventScript_BirchScene4:: @ 81EF9EC
+	lockall
+	setvar VAR_0x8008, 4
+	goto Route110_EventScript_BirchScene
+
+Route110_EventScript_BirchScene:: @ 81EF9F7
+	addobject LOCALID_BIRCH
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchEntrance
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_BIRCH, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_BIRCH, Common_Movement_Delay48
+	waitmovement 0
+	compare VAR_0x8008, 1
+	call_if_eq Route110_EventScript_BirchApproachPlayer1
+	compare VAR_0x8008, 2
+	call_if_eq Route110_EventScript_BirchApproachPlayer2
+	compare VAR_0x8008, 3
+	call_if_eq Route110_EventScript_BirchApproachPlayer3
+	compare VAR_0x8008, 4
+	call_if_eq Route110_EventScript_BirchApproachPlayer4
+	msgbox Route110_Text_ImagineSeeingYouHere, MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	delay 10
+	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	delay 20
+	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	delay 30
+	msgbox Route110_Text_HeardYouInstallMatchCall, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+	msgbox Route110_Text_KeepAnEyeOutForRival, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_0x8008, 1
+	call_if_eq Route110_EventScript_BirchExit1
+	compare VAR_0x8008, 2
+	call_if_eq Route110_EventScript_BirchExit2
+	compare VAR_0x8008, 3
+	call_if_eq Route110_EventScript_BirchExit3
+	compare VAR_0x8008, 4
+	call_if_eq Route110_EventScript_BirchExit4
+	removeobject LOCALID_BIRCH
+	setvar VAR_REGISTER_BIRCH_STATE, 2
+	releaseall
+	end
+
+Route110_EventScript_BirchApproachPlayer1:: @ 81EFAD8
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer1
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchApproachPlayer2:: @ 81EFAE3
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer2
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchApproachPlayer3:: @ 81EFAEE
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer3
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchApproachPlayer4:: @ 81EFAF9
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer4
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchExit1:: @ 81EFB04
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit1
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchExit2:: @ 81EFB0F
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit2
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchExit3:: @ 81EFB1A
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit3
+	waitmovement 0
+	return
+
+Route110_EventScript_BirchExit4:: @ 81EFB25
+	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit4
+	waitmovement 0
+	return
+
+Route110_Movement_BirchEntrance: @ 81EFB30
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route110_Movement_BirchApproachPlayer1: @ 81EFB34
+	walk_down
+	walk_left
+	walk_left
+	walk_down
+	step_end
+
+Route110_Movement_BirchApproachPlayer2: @ 81EFB39
+	walk_down
+	walk_left
+	walk_down
+	step_end
+
+Route110_Movement_BirchApproachPlayer3: @ 81EFB3D
+	walk_down
+	walk_down
+	step_end
+
+Route110_Movement_BirchApproachPlayer4: @ 81EFB40
+	walk_down
+	walk_right
+	walk_down
+	step_end
+
+Route110_Movement_BirchExit1: @ 81EFB44
+	walk_up
+	walk_up
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route110_Movement_BirchExit2: @ 81EFB4B
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route110_Movement_BirchExit3: @ 81EFB51
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route110_Movement_BirchExit4: @ 81EFB57
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route110_Text_WeCantTalkAboutAquaActivities: @ 81EFB5D
+	.string "水舰队的行动……\n"
+	.string "这个现在还不能说。$"
+
+Route110_Text_KickUpARuckus: @ 81EFB93
+	.string "我想赶紧去凯那市\n"
+	.string "大闹一场！$"
+
+Route110_Text_MyFirstJobInAqua: @ 81EFBCA
+	.string "这是我加入水舰队后的\n"
+	.string "第一份差事。有点吓人。$"
+
+Route110_Text_AquaActionsBringSmiles: @ 81EFC0D
+	.string "水舰队的行动应该\n"
+	.string "让人们露出笑容！$"
+
+Route110_Text_MayLetsBattle: @ 81EFC48
+	.string "小遥：嗨，{PLAYER}{KUN}，好久不见！\p"
+	.string "我在找其他宝可梦的时候，\n"
+	.string "我的宝可梦也变强了。\p"
+	.string "那么……\n"
+	.string "来场小对战怎么样？$"
+
+Route110_Text_MayDefeated: @ 81EFCCB
+	.string "哇！你比我想的厉害！$"
+
+Route110_Text_MayTakeThis: @ 81EFCF1
+	.string "小遥：{PLAYER}{KUN}，\n"
+	.string "你也一直在努力训练吧？\p"
+	.string "我觉得你该得个奖励！\n"
+	.string "这个给你！$"
+
+Route110_Text_MayExplainItemfinder: @ 81EFD58
+	.string "小遥：那是道具探测器。\p"
+	.string "试试看吧。附近有看不见的道具时，\n"
+	.string "它会发出声音。\p"
+	.string "好，{PLAYER}{KUN}，下次再见！\p"
+	.string "我知道这话由我说有点怪，\n"
+	.string "不过下次见面之前，\p"
+	.string "你该更努力地训练哦。$"
+
+Route110_Text_BrendanLetsBattle: @ 81EFE3F
+	.string "祐树：嘿，{PLAYER}。\n"
+	.string "你在这儿啊。怎么样？\p"
+	.string "有好好培养宝可梦吗？\n"
+	.string "我来检查一下。$"
+
+Route110_Text_BrendanDefeated: @ 81EFEB4
+	.string "嗯……你还挺不错。$"
+
+Route110_Text_BrendanTakeThis: @ 81EFECD
+	.string "祐树：{PLAYER}，你不知不觉\n"
+	.string "就练到这个程度了……\p"
+	.string "够格了！来，拿着这个。$"
+
+Route110_Text_BrendanExplainItemfinder: @ 81EFF1C
+	.string "祐树：那是道具探测器。\p"
+	.string "用它来找看不见的道具。\p"
+	.string "一旦感应到什么，\n"
+	.string "它就会发出声音。\p"
+	.string "总之，我去找新宝可梦了。$"
+
+Route110_Text_RideBikeAtFullSpeed: @ 81EFFC3
+	.string "在自行车道上全速骑行，\n"
+	.string "是不是很棒？$"
+
+Route110_Text_HairStreamsBehindMe: @ 81F0006
+	.string "我这头乌黑的长发\n"
+	.string "在身后飘起来的样子，怎么样？\p"
+	.string "我留长头发就是为了这个。$"
+
+Route110_Text_YouGotBikeFromRydel: @ 81F006A
+	.string "哦，嘿，那辆自行车\n"
+	.string "是从利德尔那儿拿的！\p"
+	.string "哦，太明显了。\n"
+	.string "车上写得清清楚楚……\p"
+	.string "利德尔、利德尔、利德尔、\n"
+	.string "利德尔、利德尔、利德尔……\p"
+	.string "到处都是这个名字。\p"
+	.string "你应该骑着它到处跑：\n"
+	.string "这是很好的广告！$"
+
+Route110_Text_TwoRoads: @ 81F0261
+	.string "上下两条路……\p"
+	.string "人和宝可梦各走一条。\n"
+	.string "也许这样才对，才公平。$"
+
+Route110_Text_WalkOnTheLowRoad: @ 81F02CA
+	.string "我没有自行车，\n"
+	.string "就慢慢走下面那条路吧。$"
+
+Route110_Text_BikeTechniques: @ 81F030E
+	.string "学会技巧，骑车会更有趣。\p"
+	.string "有些地方只有用技巧\n"
+	.string "才能到达。$"
+
+Route110_Text_WhichShouldIChoose: @ 81F0390
+	.string "我该选哪条呢？\p"
+	.string "是沿自行车道直奔紫堇市，\n"
+	.string "还是走下面那条路找宝可梦？$"
+
+Route110_Text_CyclingChallengeResultSummary: @ 81F03FF
+	.string "碰撞次数：\n"
+	.string "…… {STR_VAR_1}！\p"
+	.string "总用时：\n"
+	.string "…… {STR_VAR_2}！$"
+
+Route110_Text_ChallengeReactionBest: @ 81F0431
+	.string "太棒了！精彩的表现！\p"
+	.string "你对骑行的热爱发自内心深处。\n"
+	.string "你震撼了我的灵魂！$"
+
+Route110_Text_GiveTM93:
+	.string "请收下这个招式学习器，\n"
+	.string "作为你骑行造诣的奖赏！$"
+
+Route110_Text_ChallengeReactionGood: @ 81F04A4
+	.string "你的技巧很出色。\p"
+	.string "我建议你在避免碰撞的同时\n"
+	.string "再加快一点速度。$"
+
+Route110_Text_GiveTM83:
+	.string "来，收下这只宝可梦，\n"
+	.string "纪念你的成功。$"
+
+Route110_Text_ChallengeReactionOk: @ 81F0500
+	.string "我认为你还有进步空间。\p"
+	.string "不过，希望你别忘了\n"
+	.string "骑行本身的纯粹乐趣。$"
+
+Route110_Text_ChallengeReactionBad: @ 81F0567
+	.string "天哪……你的骑行技术\n"
+	.string "简直有点吓人。\p"
+	.string "你肯定还需要更多练习。$"
+
+Route110_Text_ChallengeReactionWorst: @ 81F05CE
+	.string "……我惊呆了……\p"
+	.string "你也许不适合这项\n"
+	.string "不幸的骑行事业。\p"
+	.string "你该认真考虑\n"
+	.string "把那辆自行车还给利德尔。$"
+
+Route110_Text_RatedForNumberOfCollisions: @ 81F0661
+	.string "这里是自行车道。\p"
+	.string "如果骑音速自行车从紫堇市\n"
+	.string "到凯那市，\p"
+	.string "会根据碰撞次数和总用时评分。$"
+
+Route110_Text_AlwaysAimHigher: @ 81F06FB
+	.string "不管成绩如何，\n"
+	.string "我都期待你再来挑战。\p"
+	.string "永远瞄准更高！$"
+
+Route110_Text_AcroBikesDoNotQualify: @ 81F0755
+	.string "在这条自行车道上，\n"
+	.string "骑音速自行车的人\p"
+	.string "会按碰撞次数和总用时评分。\p"
+	.string "飞跃自行车不参与评分。\n"
+	.string "它转向太灵活，不公平。$"
+
+Route110_Text_SlateportCitySign: @ 81F0812
+	.string "110 号道路\n"
+	.string "{DOWN_ARROW} 凯那市$"
+
+Route110_Text_CyclingRoadSign: @ 81F082D
+	.string "海边自行车道$"
+
+Route110_Text_AquaWasHere: @ 81F0842
+	.string "“水舰队到此一游！”\p"
+	.string "有人把这句话涂在牌子上，\n"
+	.string "后来又有人覆盖掉了。\p"
+	.string "现在写的是：\n"
+	.string "“火岩队最棒！”$"
+
+Route110_Text_Route103Sign: @ 81F08CD
+	.string "110 号道路\n"
+	.string "{LEFT_ARROW} 103 号道路$"
+
+Route110_Text_SeasideParkingSign: @ 81F08E3
+	.string "海边停车场$"
+
+Route110_Text_MauvilleCitySign: @ 81F08F3
+	.string "110 号道路\n"
+	.string "{UP_ARROW} 紫堇市$"
+
+Route110_Text_TrainerTipsPrlzSleep: @ 81F090D
+	.string "训练家小贴士\p"
+	.string "让对手麻痹或睡着，\n"
+	.string "就能使它无法行动。\p"
+	.string "这是宝可梦对战中\n"
+	.string "很重要的技巧。$"
+
+Route110_Text_TrainerTipsRegisterItems: @ 81F0992
+	.string "训练家小贴士\p"
+	.string "按 Select 键可以\n"
+	.string "重新整理包包里的道具。$"
+
+Route110_Text_TrickHouseSign: @ 81F09DB
+	.string "“向右三步，向上两步，\n"
+	.string "就能到达神奇的戏法屋。”$"
+
+Route110_Text_BestRecord: @ 81F0A1E
+	.string "目前最佳纪录……\p"
+	.string "碰撞次数：{STR_VAR_1}\p"
+	.string "用时：{STR_VAR_2}$"
+
+Route110_Text_ThereIsNoRecord: @ 81F0A5E
+	.string "目前最佳纪录……\p"
+	.string "似乎还没有人挑战过。\n"
+	.string "暂无纪录……$"
+
+Route110_Text_ImagineSeeingYouHere: @ 81F0AB5
+	.string "小田卷博士：哦，{PLAYER}{KUN}！\n"
+	.string "真没想到在这儿遇见你！\p"
+	.string "我那{RIVAL}在哪儿呢？$"
+
+Route110_Text_HeardYouInstallMatchCall: @ 81F0AFF
+	.string "哦，原来如此！\n"
+	.string "你们俩分开跑了。那也好。\p"
+	.string "对了，我听说你的宝可梦领航器\n"
+	.string "装了通讯呼叫系统。\p"
+	.string "那么，我也该把你\n"
+	.string "登记到我的领航器里。\p"
+	.string "这样即使我们分开，\n"
+	.string "我也能随时评价你的图鉴。\p"
+	.string "…… …… ……$"
+
+Route110_Text_RegisteredBirchInPokenav: @ 81F0C0C
+	.string "已将小田卷博士\n"
+	.string "登记到宝可梦领航器中。$"
+
+Route110_Text_KeepAnEyeOutForRival: @ 81F0C33
+	.string "小田卷博士：{PLAYER}{KUN}……\p"
+	.string "请帮我留意一下我的{RIVAL}。\p"
+	.string "…… …… ……\p"
+	.string "好了，我该走了。\n"
+	.string "再见，{PLAYER}{KUN}！$"
+
+`
+script Route110_Walking_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_ISABEL_1) &&
+	   defeated(TRAINER_KALEB) &&
+	   defeated(TRAINER_TIMMY) &&
+	   defeated(TRAINER_EDWIN_1) &&
+	   defeated(TRAINER_JOSEPH) &&
+	   defeated(TRAINER_ALYSSA) &&
+	   defeated(TRAINER_EDWARD) &&
+	   defeated(TRAINER_DALE)){
+		// when you defeat every trainer
+		msgbox(format("嘿，你现在是摇滚明星了！$"))
+		givemon(SPECIES_TOXEL, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}电音婴{COLOR DARK_GRAY}，\n这是打败所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("有人曾对我说：\n“训练家会把它们全打趴！”\p打起精神，去玩一场吧！$"))
+	}
+    release
+    end
+}
+
+script Route110_CyclingRoad_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_ABIGAIL_1) &&
+	   defeated(TRAINER_ANTHONY) &&
+	   defeated(TRAINER_BENJAMIN_1) &&
+	   defeated(TRAINER_JASMINE) &&
+	   defeated(TRAINER_JACOB)){
+		// when you defeat every trainer
+		msgbox(format("蒸汽又赢了！\p来，收下这件自然与科技的奇迹，\n作为感谢与认可的证明！$"))
+		givemon(SPECIES_ROLYCOLY, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}小炭仔{COLOR DARK_GRAY}，\n这是打败自行车道上所有训练家的礼\p物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("你知道吗？伽勒尔人以前\n会用宝可梦驱动机械！\p你也能拥有一只蒸汽动力的宝可梦，\n不过得先给这些只会蹬自行车的\p丰缘人上一课！$"))
+	}
+    release
+    end
+}
+
+
+text Route110_Text_ObtainedHeliolisk{
+	format("{PLAYER}获得了{COLOR BLUE}光电伞蜥{COLOR DARK_GRAY}。$")
+}
+
+text Route110_Text_ObtainedShinyHeliolisk{
+	format("{PLAYER}获得了异色{COLOR BLUE}光电伞蜥{COLOR DARK_GRAY}。$")
+}

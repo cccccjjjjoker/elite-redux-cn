@@ -1,0 +1,25 @@
+raw `
+PacifidlogTown_House1_MapScripts:: @ 820365C
+	.byte 0
+
+PacifidlogTown_House1_EventScript_Man:: @ 820365D
+	msgbox PacifidlogTown_House1_Text_RegiStory, MSGBOX_NPC
+	end
+
+PacifidlogTown_House1_EventScript_Woman:: @ 8203666
+	msgbox PacifidlogTown_House1_Text_SixDotsOpenThreeDoors, MSGBOX_NPC
+	end
+
+PacifidlogTown_House1_Text_RegiStory: @ 820366F
+	.string "在丰缘地区，有三只宝可梦\n"
+	.string "分别代表岩石、冰和钢的力量。\p"
+	.string "据说它们各自藏在\n"
+	.string "洞窟深处。\p"
+	.string "这是我小时候听来的故事。$"
+
+PacifidlogTown_House1_Text_SixDotsOpenThreeDoors: @ 820373A
+	.string "“六个点开启三扇门。”\n"
+	.string "爷爷以前常这么说，\p"
+	.string "可我不懂他的意思。$"
+
+`

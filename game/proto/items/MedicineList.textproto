@@ -1,0 +1,133 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_BERRY_JUICE
+  name: "树果汁"
+  description: "100%纯果汁，回复20点HP。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_RESTORE_HP
+  hold_effect_strength: 20
+  use_type: ITEM_USE_PARTY_MENU
+  image: "berry_juice"
+  palette: "berry_juice"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_THROAT_SPRAY
+  name: "爽喉喷雾"
+  description: "携带者使用声音类招式时，提升特攻。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "throat_spray"
+  palette: "throat_spray"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BIG_ROOT
+  name: "大根茎"
+  description: "提升携带者吸取HP招式的威力。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 30
+  image: "big_root"
+  palette: "big_root"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MENTAL_HERB
+  name: "心灵香草"
+  description: "治愈宝可梦的部分异常状态。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "in_battle_herb"
+  palette: "mental_herb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_POWER_HERB
+  name: "强力香草"
+  description: "可立即使用需要蓄力的招式。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "power_herb"
+  palette: "power_herb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_WHITE_HERB
+  name: "白色香草"
+  description: "携带道具，回复所有下降的能力。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "RESTORE_STATS"
+  image: "in_battle_herb"
+  palette: "white_herb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MIRROR_HERB
+  name: "模仿香草"
+  description: "复制对手的能力提升，但仅限一次。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "mirror_herb"
+  palette: "mirror_herb"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ELECTRIC_SEED
+  name: "电气种子"
+  description: "在电气场地上提升防御，但仅限一次。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_SEEDS
+  hold_effect_misc_param: "HOLD_EFFECT_PARAM_ELECTRIC_TERRAIN"
+  image: "electric_seed"
+  palette: "electric_seed"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_PSYCHIC_SEED
+  name: "精神种子"
+  description: "在精神场地上特防提升，但仅限一次"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_SEEDS
+  hold_effect_misc_param: "HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN"
+  image: "psychic_seed"
+  palette: "psychic_seed"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MISTY_SEED
+  name: "薄雾种子"
+  description: "在薄雾场地上提升特防，但仅限一次。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_SEEDS
+  hold_effect_misc_param: "HOLD_EFFECT_PARAM_MISTY_TERRAIN"
+  image: "misty_seed"
+  palette: "misty_seed"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GRASSY_SEED
+  name: "青草种子"
+  description: "在青草场地上提升防御，但仅限一次。"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_SEEDS
+  hold_effect_misc_param: "HOLD_EFFECT_PARAM_GRASSY_TERRAIN"
+  image: "grassy_seed"
+  palette: "grassy_seed"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BOOSTER_ENERGY
+  name: "驱劲能量"
+  description: "封装能量，提升拥有特定特性的宝可梦"
+  grouping: POCKET_MEDICINE
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "booster_energy"
+  palette: "booster_energy"
+  talk_to_nurse_joy: true
+}

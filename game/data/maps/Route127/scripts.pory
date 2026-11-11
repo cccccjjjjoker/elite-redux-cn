@@ -1,0 +1,153 @@
+raw `
+Route127_MapScripts:: @ 81F69D9
+	map_script MAP_SCRIPT_ON_TRANSITION, Route127_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, Route127_OnLoad
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route127_OnFrame
+	.byte 0
+
+Route127_OnTransition: @ 81F69E9
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	compare VAR_SHOULD_END_ABNORMAL_WEATHER, 1
+	call_if_eq AbnormalWeather_EventScript_HideMapNamePopup
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_127_NORTH
+	call_if_eq AbnormalWeather_StartKyogreWeather
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_127_SOUTH
+	call_if_eq AbnormalWeather_StartKyogreWeather
+	end
+
+Route127_OnLoad: @ 81F6A14
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_127_NORTH
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute127North
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_127_SOUTH
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute127South
+	end
+
+Route127_OnFrame: @ 81F6A2B
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	.2byte 0
+
+Route127_EventScript_Camden:: @ 81F6A35
+	trainerbattle_single TRAINER_CAMDEN, Route127_Text_CamdenIntro, Route127_Text_CamdenDefeat
+	msgbox Route127_Text_CamdenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route127_EventScript_Donny:: @ 81F6A4C
+	trainerbattle_single TRAINER_DONNY, Route127_Text_DonnyIntro, Route127_Text_DonnyDefeat
+	msgbox Route127_Text_DonnyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route127_EventScript_Jonah:: @ 81F6A63
+	trainerbattle_single TRAINER_JONAH, Route127_Text_JonahIntro, Route127_Text_JonahDefeat
+	msgbox Route127_Text_JonahPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route127_EventScript_Henry:: @ 81F6A7A
+	trainerbattle_single TRAINER_HENRY, Route127_Text_HenryIntro, Route127_Text_HenryDefeat
+	msgbox Route127_Text_HenryPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route127_EventScript_Roger:: @ 81F6A91
+	trainerbattle_single TRAINER_ROGER, Route127_Text_RogerIntro, Route127_Text_RogerDefeat
+	msgbox Route127_Text_RogerPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route127_EventScript_Aidan:: @ 81F6AA8
+	trainerbattle_single TRAINER_AIDAN, Route127_Text_AidanIntro, Route127_Text_AidanDefeat
+	msgbox Route127_Text_AidanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route127_EventScript_Athena:: @ 81F6ABF
+	trainerbattle_single TRAINER_ATHENA, Route127_Text_AthenaIntro, Route127_Text_AthenaDefeat
+	msgbox Route127_Text_AthenaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route127_EventScript_Koji:: @ 81F6AD6
+	trainerbattle_single TRAINER_KOJI_1, Route127_Text_KojiIntro, Route127_Text_KojiDefeat, Route127_EventScript_RegisterKoji
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route127_EventScript_RematchKoji
+	msgbox Route127_Text_KojiPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route127_EventScript_RegisterKoji:: @ 81F6B02
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route127_Text_KojiRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_KOJI_1
+	release
+	end
+
+Route127_EventScript_RematchKoji:: @ 81F6B21
+	trainerbattle_rematch TRAINER_KOJI_1, Route127_Text_KojiRematchIntro, Route127_Text_KojiRematchDefeat
+	msgbox Route127_Text_KojiPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+`
+
+script Route127_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：这里是几位非常不幸的魂灵\n的安息之地，也就是“机械奇迹”。\p请不要亵渎这里。如果你有兴趣，\n我可以告诉你它们是怎么来到这里的\p。$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("在追求力量的过程中，\n人类常常误入道德的错误选择。\p唯一的法则？强者为尊。\n对一些人来说，只要有利可图，\p什么都做得出来。\n安息在这片海岸的机械奇迹就是如此\p。盖诺赛克特、波尔凯尼恩、\n玛机雅娜。\p它们强大到让制造者害怕遭到报复。\n它们被迫成为大规模杀伤性武器，\p身心都被玷污。\n没有什么能抵挡它们的力量，\p于是它们最终失去了利用价值。\n它们挣脱囚禁，\p逃到了这片宁静之地，寻求安宁，\n为自己的可怕行径忏悔。如今，\p为了赎罪，它们守护着这片净土，\n确保再没有别的生物遭此命运。\p只有真正的冠军才能赢得它们的信任\n。准备好了再来吧。$"))
+	}
+	else{
+		if(defeated(TRAINER_KOJI_1) &&
+		   defeated(TRAINER_ATHENA) &&
+		   defeated(TRAINER_AIDAN)  &&
+		   defeated(TRAINER_ROGER)  &&
+		   defeated(TRAINER_HENRY)  &&
+		   defeated(TRAINER_JONAH)  &&
+		   defeated(TRAINER_DONNY)  &&
+		   defeated(TRAINER_CAMDEN)){
+			msgbox(format("你已经展现出与这些生物建立牢不可\n破羁绊所需的力量与慈悲。\p我已把它们的所在地更新到你的图鉴\n导航里。去吧，它们在等你。$"))
+		}
+		else{
+			msgbox(format("你身上有机械奇迹所看重的好奇心。\n在这条路上展示你的实力：\p先打败最后这几名训练家，\n我就告诉你它们的位置。$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("小心脚下。$"))
+	}
+    release
+    end
+}
+
+script Route127_EventScript_Neo{
+	trainerbattle_single(TRAINER_ACE_TRAINER_NEO, format("我来了，该对战了！$"), format("Didn't expect to meet a big shot like you!"))
+	msgbox(format("唉，我只是来绿岭市兜一圈的……$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route127_EventScript_Leela{
+	trainerbattle_single(TRAINER_ACE_TRAINER_LEELA, format("快点结束吧，我的护目镜裂了，\n得赶紧走。$"), format("Ending on a loss...\nGreat."))
+	msgbox(format("雪光太刺眼，我有点看不清……$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route127_EventScript_Guin{
+	trainerbattle_single(TRAINER_SKIER_GUIN, format("这是丰缘最冷的地方！我爱这里！$"), format("Skidded right to a halt..."))
+	msgbox(format("你居然把这种环境应付得这么好。$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route127_EventScript_Mike{
+	trainerbattle_single(TRAINER_ACE_TRAINER_MIKE, format("别在意，我只是个占位符。$"), format("I guess even placeholders can be defeated"))
+	msgbox(format("这是假文本，对吧？$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route127_EventScript_Ashley{
+	trainerbattle_single(TRAINER_ACE_TRAINER_ASHLEY, format("别在意，我只是个占位符。$"), format("I guess even placeholders can be defeated"))
+	msgbox(format("这是假文本，对吧？$"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route127_EventScript_Pagani{
+	trainerbattle_single(TRAINER_ACE_TRAINER_PAGANI, format("别在意，我只是个占位符。$"), format("I guess even placeholders can be defeated"))
+	msgbox(format("这是假文本，对吧？$"), MSGBOX_AUTOCLOSE)
+	end
+}

@@ -1,0 +1,45 @@
+raw `
+SootopolisCity_House3_MapScripts:: @ 8226B71
+	.byte 0
+
+SootopolisCity_House3_EventScript_Woman:: @ 8226B72
+	lock
+	faceplayer
+	msgbox SootopolisCity_House3_Text_JuanHasManyFansDoYou, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq SootopolisCity_House3_EventScript_HaveFans
+	msgbox SootopolisCity_House3_Text_LonesomeTryWorkingHarder, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_House3_EventScript_HaveFans:: @ 8226B91
+	msgbox SootopolisCity_House3_Text_YouMustBePrettyStrong, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_House3_EventScript_Girl:: @ 8226B9B
+	msgbox SootopolisCity_House3_Text_TrainerFanClubWasWild, MSGBOX_NPC
+	end
+
+SootopolisCity_House3_Text_JuanHasManyFansDoYou: @ 8226BA4
+	.string "你是宝可梦训练家吧？\n"
+	.string "琉璃市的亚当有很多粉丝。\p"
+	.string "比他的学生米可利还多！\n"
+	.string "你有吗？$"
+
+SootopolisCity_House3_Text_YouMustBePrettyStrong: @ 8226C20
+	.string "哦，那你一定相当强。$"
+
+SootopolisCity_House3_Text_LonesomeTryWorkingHarder: @ 8226C44
+	.string "哎呀……\n"
+	.string "那有点寂寞啊。\p"
+	.string "再多努力一点，\n"
+	.string "争取一批粉丝吧。$"
+
+SootopolisCity_House3_Text_TrainerFanClubWasWild: @ 8226C9C
+	.string "忠实的粉丝甚至会从丰缘以外来。\n"
+	.string "我去水静市的训练家发烧友俱乐部时\p"
+	.string "，\n"
+	.string "那里真是热闹得厉害。$"
+
+`

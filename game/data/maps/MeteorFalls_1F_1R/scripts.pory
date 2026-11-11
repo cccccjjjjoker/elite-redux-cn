@@ -1,0 +1,624 @@
+raw `
+.set LOCALID_MAGMA_GRUNT_1, 1
+.set LOCALID_MAGMA_GRUNT_2, 2
+.set LOCALID_ARCHIE, 3
+.set LOCALID_AQUA_GRUNT_1, 4
+.set LOCALID_AQUA_GRUNT_2, 5
+.set LOCALID_PROF_COSMO, 6
+.set LOCALID_RIVAL, 7
+.set LOCALID_ACE_TRAINER, 8
+
+MeteorFalls_1F_1R_MapScripts:: @ 822BD2A
+	map_script MAP_SCRIPT_ON_LOAD, MeteorFalls_1F_1R_OnLoad
+	.byte 0
+
+MeteorFalls_1F_1R_OnLoad:
+	call_if_set FLAG_SYS_GAME_CLEAR, MeteorFalls_1F_1R_EventScript_OpenStevensCave
+	call_if_set FLAG_BADGE07_GET, MeteorFalls_1F_1R_EventScript_MoveAceTrainer
+	call Common_EventScript_SetupRivalGfxId
+	end
+
+MeteorFalls_1F_1R_EventScript_OpenStevensCave:: @ 822BD3A
+	setmetatile 4, 1, METATILE_MeteorFalls_CaveEntrance_Top, 1
+	setmetatile 3, 2, METATILE_MeteorFalls_CaveEntrance_Left, 1
+	setmetatile 4, 2, METATILE_MeteorFalls_CaveEntrance_Bottom, 0
+	setmetatile 5, 2, METATILE_MeteorFalls_CaveEntrance_Right, 1
+	return
+
+MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
+	lockall
+	playbgm MUS_ENCOUNTER_MAGMA, FALSE
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	delay 30
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, MeteorFalls_1F_1R_Movement_WalkDown2
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq MeteorFalls_1F_1R_EventScript_May
+	compare VAR_RESULT, FEMALE
+	goto_if_eq MeteorFalls_1F_1R_EventScript_Brendan
+MeteorFalls_1F_1R_EventScript_MagmaAfterBattle::
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_WithThisMeteorite, MSGBOX_DEFAULT
+	closemessage
+	msgbox MeteorFalls_1F_1R_Text_HoldItRightThereMagma, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	addobject LOCALID_ARCHIE
+	addobject LOCALID_AQUA_GRUNT_1
+	addobject LOCALID_AQUA_GRUNT_2
+	playbgm MUS_ENCOUNTER_AQUA, FALSE
+	applymovement LOCALID_ARCHIE, MeteorFalls_1F_1R_Movement_ArchieArrive
+	applymovement LOCALID_AQUA_GRUNT_1, MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive
+	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive
+	waitmovement 0
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
+	applymovement LOCALID_RIVAL, MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
+	applymovement LOCALID_MAGMA_GRUNT_1, MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit
+	applymovement LOCALID_MAGMA_GRUNT_2, MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit
+	waitmovement 0
+	removeobject LOCALID_MAGMA_GRUNT_1
+	removeobject LOCALID_MAGMA_GRUNT_2
+	applymovement LOCALID_ARCHIE, MeteorFalls_1F_1R_Movement_ArchieApproachPlayer
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_ArchieSeenYouBefore, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_AQUA_GRUNT_1, MeteorFalls_1F_1R_Movement_AquaGrunt1ApproachArchie
+	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_BossWeShouldChaseMagma, MSGBOX_DEFAULT
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_ArchieYesNoTellingWhatMagmaWillDo, MSGBOX_DEFAULT
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_ArchieFarewell, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_ARCHIE, MeteorFalls_1F_1R_Movement_ArchieExit
+	applymovement LOCALID_AQUA_GRUNT_1, MeteorFalls_1F_1R_Movement_AquaGrunt1Exit
+	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2Exit
+	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_WatchAquaLeave
+	applymovement LOCALID_RIVAL, MeteorFalls_1F_1R_Movement_WatchAquaLeave
+	waitmovement 0
+	fadedefaultbgm
+	removeobject LOCALID_ARCHIE
+	removeobject LOCALID_AQUA_GRUNT_1
+	removeobject LOCALID_AQUA_GRUNT_2
+	special RemoveCameraObject
+	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+	setflag FLAG_MET_ARCHIE_METEOR_FALLS
+	setflag FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT
+	setvar VAR_METEOR_FALLS_STATE, 1
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+    playse SE_PIN
+	waitmovement LOCALID_RIVAL
+	goto MeteorFalls_1F_1R_EventScript_RivalAskYouToBringYouToTeamMagma
+	end
+
+MeteorFalls_1F_1R_EventScript_May::
+	msgbox MeteorFalls_1F_1R_Text_MayBozos, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_Brat, MSGBOX_DEFAULT
+	closemessage
+MeteorFalls_1F_1R_EventScript_MayAfterCancel::
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_WalkDown2
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_MayPlayerHere, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, MeteorFalls_1F_1R_EventScript_CancelMultiBattle
+	case YES, MeteorFalls_1F_1R_EventScript_MultiMay
+	end
+
+MeteorFalls_1F_1R_EventScript_Brendan::
+	msgbox MeteorFalls_1F_1R_Text_BrendanJerks, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_Brat, MSGBOX_DEFAULT
+	closemessage
+MeteorFalls_1F_1R_EventScript_BrendanAfterCancel::
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_WalkDown2
+	waitmovement 0
+	msgbox MeteorFalls_1F_1R_Text_BrendanPlayerHere, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, MeteorFalls_1F_1R_EventScript_CancelMultiBattle
+	case YES, MeteorFalls_1F_1R_EventScript_MultiBrendan
+	end
+
+MeteorFalls_1F_1R_EventScript_MultiMay::
+	msgbox MeteorFalls_1F_1R_Text_MayLetsBattle, MSGBOX_DEFAULT
+	applymovement LOCALID_MAGMA_GRUNT_1, MeteorFalls_1F_1R_Movement_WalkRight1
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	special HealPlayerParty
+	msgbox MeteorFalls_1F_1R_Text_CourtneyLetsBattle, MSGBOX_DEFAULT
+	choose_mons
+    compare VAR_RESULT, 0
+    call_if_eq MeteorFalls_1F_1R_EventScript_ChooseMons
+	switch VAR_STARTER_MON
+	case 0, MeteorFalls_1F_1R_EventScript_MayBattleTreecko
+	case 1, MeteorFalls_1F_1R_EventScript_MayBattleTorchic
+	case 2, MeteorFalls_1F_1R_EventScript_MayBattleMudkip
+	end
+
+MeteorFalls_1F_1R_EventScript_MultiBrendan::
+	msgbox MeteorFalls_1F_1R_Text_BrendayLetsBattle, MSGBOX_DEFAULT
+	applymovement LOCALID_MAGMA_GRUNT_1, MeteorFalls_1F_1R_Movement_WalkRight1
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	special HealPlayerParty
+	msgbox MeteorFalls_1F_1R_Text_CourtneyLetsBattle, MSGBOX_DEFAULT
+	choose_mons
+    compare VAR_RESULT, 0
+    call_if_eq MeteorFalls_1F_1R_EventScript_ChooseMons
+	switch VAR_STARTER_MON
+	case 0, MeteorFalls_1F_1R_EventScript_BrendanBattleTreecko
+	case 1, MeteorFalls_1F_1R_EventScript_BrendanBattleTorchic
+	case 2, MeteorFalls_1F_1R_EventScript_BrendanBattleMudkip
+	end
+
+MeteorFalls_1F_1R_EventScript_MayBattleTreecko::
+    multi_2_vs_2 TRAINER_COURTNEY_METEOR_FALLS, MeteorFalls_1F_1R_Text_CourtneyLose, TRAINER_GRUNT_METEOR_FALLS, MeteorFalls_1F_1R_Text_GruntLose, MAY_TREECKO_METEOR_FALLS, TRAINER_BACK_PIC_MAY
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_LOST
+	goto_if_eq MeteorFalls_1F_1R_EventScript_Lost
+	goto MeteorFalls_1F_1R_EventScript_MagmaAfterBattle
+    releaseall
+    end
+
+MeteorFalls_1F_1R_EventScript_MayBattleTorchic::
+    multi_2_vs_2 TRAINER_COURTNEY_METEOR_FALLS, MeteorFalls_1F_1R_Text_CourtneyLose, TRAINER_GRUNT_METEOR_FALLS, MeteorFalls_1F_1R_Text_GruntLose, MAY_TORCHIC_METEOR_FALLS, TRAINER_BACK_PIC_MAY
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_LOST
+	goto_if_eq MeteorFalls_1F_1R_EventScript_Lost
+	goto MeteorFalls_1F_1R_EventScript_MagmaAfterBattle
+    releaseall
+    end
+
+MeteorFalls_1F_1R_EventScript_MayBattleMudkip::
+    multi_2_vs_2 TRAINER_COURTNEY_METEOR_FALLS, MeteorFalls_1F_1R_Text_CourtneyLose, TRAINER_GRUNT_METEOR_FALLS, MeteorFalls_1F_1R_Text_GruntLose, MAY_MUDKIP_METEOR_FALLS, TRAINER_BACK_PIC_MAY
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_LOST
+	goto_if_eq MeteorFalls_1F_1R_EventScript_Lost
+	goto MeteorFalls_1F_1R_EventScript_MagmaAfterBattle
+    releaseall
+    end
+
+MeteorFalls_1F_1R_EventScript_BrendanBattleTreecko::
+    multi_2_vs_2 TRAINER_COURTNEY_METEOR_FALLS, MeteorFalls_1F_1R_Text_CourtneyLose, TRAINER_GRUNT_METEOR_FALLS, MeteorFalls_1F_1R_Text_GruntLose, BRENDAN_TREECKO_METEOR_FALLS, TRAINER_BACK_PIC_BRENDAN
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_LOST
+	goto_if_eq MeteorFalls_1F_1R_EventScript_Lost
+	goto MeteorFalls_1F_1R_EventScript_MagmaAfterBattle
+    releaseall
+    end
+
+MeteorFalls_1F_1R_EventScript_BrendanBattleTorchic::
+    multi_2_vs_2 TRAINER_COURTNEY_METEOR_FALLS, MeteorFalls_1F_1R_Text_CourtneyLose, TRAINER_GRUNT_METEOR_FALLS, MeteorFalls_1F_1R_Text_GruntLose, BRENDAN_TORCHIC_METEOR_FALLS, TRAINER_BACK_PIC_BRENDAN
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_LOST
+	goto_if_eq MeteorFalls_1F_1R_EventScript_Lost
+	goto MeteorFalls_1F_1R_EventScript_MagmaAfterBattle
+    releaseall
+    end
+
+MeteorFalls_1F_1R_EventScript_BrendanBattleMudkip::
+    multi_2_vs_2 TRAINER_COURTNEY_METEOR_FALLS, MeteorFalls_1F_1R_Text_CourtneyLose, TRAINER_GRUNT_METEOR_FALLS, MeteorFalls_1F_1R_Text_GruntLose, BRENDAN_MUDKIP_METEOR_FALLS, TRAINER_BACK_PIC_BRENDAN
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_LOST
+	goto_if_eq MeteorFalls_1F_1R_EventScript_Lost
+	goto MeteorFalls_1F_1R_EventScript_MagmaAfterBattle
+    releaseall
+    end
+
+MeteorFalls_1F_1R_EventScript_ChooseMons::
+    msgbox MeteorFalls_1F_1R_Text_ChooseMons, MSGBOX_DEFAULT
+    choose_mons
+    compare VAR_RESULT, 0
+    goto_if_eq MeteorFalls_1F_1R_EventScript_CancelMultiBattle
+    return
+
+MeteorFalls_1F_1R_EventScript_CancelMultiBattle::
+    msgbox MeteorFalls_1F_1R_Text_CancelMultiBattle, MSGBOX_DEFAULT
+	setvar VAR_METEOR_FALLS_STATE, 2
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp4
+	applymovement OBJ_EVENT_ID_CAMERA, MeteorFalls_1F_1R_Movement_Camera2
+	waitmovement 0
+	special RemoveCameraObject
+	fadedefaultbgm
+    releaseall
+    end
+
+MeteorFalls_1F_1R_EventScript_Lost::
+	fadescreen FADE_TO_BLACK
+	special SetCB2WhiteOut
+	waitstate
+
+MeteorFalls_1F_1R_EventScript_MultiCancelled::
+	lockall
+	playbgm MUS_ENCOUNTER_MAGMA, 0
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, MeteorFalls_1F_1R_Movement_WalkDown2
+	waitmovement 0
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq MeteorFalls_1F_1R_EventScript_MayAfterCancel
+	compare VAR_RESULT, FEMALE
+	goto_if_eq MeteorFalls_1F_1R_EventScript_BrendanAfterCancel
+
+MeteorFalls_1F_1R_EventScript_RivalTalkAfterBattle::
+	lock
+	faceplayer
+	msgbox MeteorFalls_1F_1R_Text_RivalAfterBattle, MSGBOX_DEFAULT
+	goto MeteorFalls_1F_1R_EventScript_RivalAskYouToBringYouToTeamMagma
+	release
+	end
+
+MeteorFalls_1F_1R_Movement_WalkDown2:
+	walk_down
+	walk_down
+	step_end
+
+MeteorFalls_1F_1R_Movement_Camera2:
+	walk_up
+	walk_up
+	step_end
+
+MeteorFalls_1F_1R_Movement_WalkRight1:
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit: @ 822BEC4
+	delay_16
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit: @ 822BECE
+	walk_fast_right
+	walk_fast_up
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_ArchieArrive: @ 822BED9
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive: @ 822BEE0
+	delay_16
+	delay_16
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive: @ 822BEE8
+	delay_16
+	delay_16
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_ArchieExit: @ 822BEF0
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_ArchieApproachPlayer: @ 822BEF8
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_AquaGrunt1Exit: @ 822BEFE
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_AquaGrunt1ApproachArchie: @ 822BF08
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_AquaGrunt2Exit: @ 822BF0D
+	walk_right
+	walk_right
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie: @ 822BF18
+	walk_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay:
+	walk_in_place_fastest_left
+	delay_4
+	walk_in_place_fastest_up
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+	face_right
+	step_end
+
+MeteorFalls_1F_1R_Movement_WatchAquaLeave:
+	delay_16
+	delay_16
+	walk_in_place_fastest_up
+	delay_16
+	delay_16
+	walk_in_place_fastest_right
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	step_end
+
+MeteorFalls_1F_1R_EventScript_ProfCozmo:: @ 822BF25
+	lock
+	faceplayer
+	goto_if_set FLAG_MET_PROF_COZMO, MeteorFalls_1F_1R_EventScript_MetCozmo
+	setflag FLAG_MET_PROF_COZMO
+	msgbox MeteorFalls_1F_1R_Text_MeetProfCozmo, MSGBOX_DEFAULT
+	release
+	end
+
+MeteorFalls_1F_1R_EventScript_MetCozmo:: @ 822BF3D
+	msgbox MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney, MSGBOX_DEFAULT
+	release
+	end
+
+MeteorFalls_1F_1R_Text_MayBozos:
+	.string "小遥：放弃吧，你们这些笨蛋！\n"
+	.string "放开博士！$"
+
+MeteorFalls_1F_1R_Text_BrendanJerks:
+	.string "祐树：喂！你们这些混蛋！\n"
+	.string "放开索蓝斯博士！$"
+
+MeteorFalls_1F_1R_Text_Brat:
+	.string "嗯？\n"
+	.string "这是怎么回事？\p"
+	.string "这小鬼是谁？$"
+
+MeteorFalls_1F_1R_Text_MayPlayerHere:
+	.string "小遥：{PLAYER}{KUN}！你来了！\n"
+	.string "我们得从这些人手里救出索蓝斯博士\p"
+	.string "！\n"
+	.string "他们有两个人……\p"
+	.string "我们也是两个人……\n"
+	.string "{PLAYER}{KUN}，求你！\p"
+	.string "跟我一起打！$"
+
+MeteorFalls_1F_1R_Text_BrendanPlayerHere:
+	.string "祐树：{PLAYER}！你终于来了！\n"
+	.string "我们得保护博士，\p"
+	.string "别让这些疯子得手！\n"
+	.string "他们有两个人……\p"
+	.string "我们也是两个人，对吧？\n"
+	.string "抱歉，{PLAYER}，不过……\p"
+	.string "跟我一起上！$"
+
+MeteorFalls_1F_1R_Text_MayLetsBattle:
+	.string "多谢了！$"
+
+MeteorFalls_1F_1R_Text_BrendayLetsBattle:
+	.string "谢了，伙计！$"
+
+MeteorFalls_1F_1R_Text_CourtneyLetsBattle:
+	.string "啊哈哈哈哈哈！\n"
+	.string "你们这些小崽子不是火岩队干部的对\p"
+	.string "手！\n"
+	.string "我来教你们认清自己的位置！$"
+
+MeteorFalls_1F_1R_Text_CourtneyLose:
+	.string "啊？！我对你们是不是太手下留情了\n"
+	.string "？！$"
+
+MeteorFalls_1F_1R_Text_GruntLose:
+	.string "你是说你们这么强，还只是小孩？！$"
+
+MeteorFalls_1F_1R_Text_ChooseMons:
+	.string "选择要出战的宝可梦。$"
+
+MeteorFalls_1F_1R_Text_CancelMultiBattle:
+	.string "哦，你还要先准备一下？\n"
+	.string "好，但请快点！$"
+
+MeteorFalls_1F_1R_Text_WithThisMeteorite: @ 822BF47
+	.string "啊哈哈哈哈哈！\n"
+	.string "这可真丢人。\p"
+	.string "不过无所谓。\n"
+	.string "有了这块陨石，\p"
+	.string "烟囱山里的那东西就会……$"
+
+MeteorFalls_1F_1R_Text_HoldItRightThereMagma: @ 822BFE4
+	.string "站住，火岩队！\n"
+	.string "你们要是以为能随心所欲改变世界，\p"
+	.string "那就大错特错了！$"
+
+MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua: @ 822C04E
+	.string "啊哈哈哈哈哈！\n"
+	.string "连水舰队都来凑热闹！\p"
+	.string "不过也没办法……\n"
+	.string "陨石在我们手上，\p"
+	.string "我们这就去烟囱山！\n"
+	.string "后会有期，小鬼们，还有水舰队！$"
+
+MeteorFalls_1F_1R_Text_ArchieSeenYouBefore: @ 822C11C
+	.string "水梧桐：我是不是在哪儿见过你？\n"
+	.string "在凯那市的博物馆？\p"
+	.string "啊，原来你叫{PLAYER}。\n"
+	.string "当时我还以为你是火岩队的爪牙。\p"
+	.string "哼……\n"
+	.string "你这孩子真怪。\p"
+	.string "火岩队是一群危险的狂人。\n"
+	.string "他们打着扩大陆地的旗号四处破坏。\p"
+	.string "他们是我们这些爱海的水舰队的对手\n"
+	.string "！$"
+
+MeteorFalls_1F_1R_Text_BossWeShouldChaseMagma: @ 822C268
+	.string "老大，我们该去追火岩队……$"
+
+MeteorFalls_1F_1R_Text_ArchieYesNoTellingWhatMagmaWillDo: @ 822C292
+	.string "水梧桐：对，对，必须去！\n"
+	.string "我们得快点。\p"
+	.string "谁也不知道火岩队会在烟囱山干什么\n"
+	.string "！$"
+
+MeteorFalls_1F_1R_Text_ArchieFarewell: @ 822C2FC
+	.string "水梧桐：{PLAYER}，\n"
+	.string "你也该提防火岩队。\p"
+	.string "再会！$"
+
+MeteorFalls_1F_1R_Text_MeetProfCozmo: @ 822C342
+	.string "我……我是索蓝斯……\n"
+	.string "我是博士……\p"
+	.string "火岩队让我带他们去流星瀑布……\n"
+	.string "可他们骗了我。\p"
+	.string "还把我的陨石抢走了……\n"
+	.string "然后另一伙差不多的家伙，\p"
+	.string "水舰队也出现了。\n"
+	.string "之后的事……\p"
+	.string "我完全搞不懂。\n"
+	.string "不过那个火岩队……\p"
+	.string "他们要在烟囱山用那块陨石干什么？$"
+
+MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney: @ 822C47D
+	.string "索蓝斯博士：不过那个火岩队……\n"
+	.string "他们要在烟囱山用那块陨石干什么？$"
+
+MeteorFalls_1F_1R_Text_RivalAfterBattle:
+	.string "别管发生了什么！\n"
+	.string "我得把博士送回秋叶镇的实验室！$"
+`
+script MeteorFalls_1F_1R_EventScript_AceTrainer_Block{
+	lock
+	faceplayer
+	if(flag(FLAG_BADGE04_GET)){
+		msgbox(format("嗯……你看起来很能打。\n我觉得你可以进去。不过提醒你！\p那只宝可梦可不是开玩笑的。$"), MSGBOX_NPC)
+	}
+	else{
+		msgbox(format("喂，孩子，你不能进来！\n里面有一只宝可梦在暴走！\p只有至少拿到四枚徽章的训练家才能\n来帮忙。$"), MSGBOX_NPC)
+	}
+	release
+	end
+}
+
+script MeteorFalls_1F_1R_EventScript_MoveAceTrainer{
+	setobjectxyperm(LOCALID_ACE_TRAINER, 11, 27)
+}
+
+script MeteorFalls_1F_1R_EventScript_RivalAskYouToBringYouToTeamMagma{
+    applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceUp)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown)
+	waitmovement(0)
+    msgbox(format("我知道一条近路。需要的话，\n我可以让我的宝可梦把你送到烟囱山\p附近。$"), MSGBOX_YESNO)
+    if (var(VAR_RESULT)){
+        warp(MAP_ROUTE112, 255, 24, 33)
+        waitstate
+    }
+    releaseall
+}

@@ -1,0 +1,71 @@
+raw `
+Route110_TrickHousePuzzle4_MapScripts:: @ 826C860
+	.byte 0
+
+Route110_TrickHousePuzzle4_EventScript_Scroll:: @ 826C861
+	lockall
+	compare VAR_TRICK_HOUSE_PUZZLE_4_STATE, 0
+	goto_if_eq Route110_TrickHousePuzzle4_EventScript_FoundScroll
+	goto Route110_TrickHousePuzzle_EventScript_ReadScrollAgain
+	end
+
+Route110_TrickHousePuzzle4_EventScript_FoundScroll:: @ 826C873
+	setvar VAR_TRICK_HOUSE_PUZZLE_4_STATE, 1
+	goto Route110_TrickHousePuzzle_EventScript_FoundScroll
+	end
+
+Route110_TrickHousePuzzle4_EventScript_Cora:: @ 826C87E
+	trainerbattle_single TRAINER_CORA, Route110_TrickHousePuzzle4_Text_CoraIntro, Route110_TrickHousePuzzle4_Text_CoraDefeat
+	msgbox Route110_TrickHousePuzzle4_Text_CoraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle4_EventScript_Yuji:: @ 826C895
+	trainerbattle_single TRAINER_YUJI, Route110_TrickHousePuzzle4_Text_YujiIntro, Route110_TrickHousePuzzle4_Text_YujiDefeat
+	msgbox Route110_TrickHousePuzzle4_Text_YujiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle4_EventScript_Paula:: @ 826C8AC
+	trainerbattle_single TRAINER_PAULA, Route110_TrickHousePuzzle4_Text_PaulaIntro, Route110_TrickHousePuzzle4_Text_PaulaDefeat
+	msgbox Route110_TrickHousePuzzle4_Text_PaulaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route110_TrickHousePuzzle4_Text_WroteSecretCodeLockOpened: @ 826C8C3
+	.string "{PLAYER}在门上写下了密码。\p"
+	.string "“戏法大师真是酷。”\p"
+	.string "…… …… …… ……\p"
+	.string "锁咔嗒一声开了！$"
+
+Route110_TrickHousePuzzle4_Text_CoraIntro: @ 826C92D
+	.string "想这些太麻烦了。\n"
+	.string "我本来只想对战！$"
+
+Route110_TrickHousePuzzle4_Text_CoraDefeat: @ 826C96E
+	.string "虽然输了，\n"
+	.string "我还是最喜欢对战！$"
+
+Route110_TrickHousePuzzle4_Text_CoraPostBattle: @ 826C9A2
+	.string "你不觉得吗？只要有训练家，\n"
+	.string "去哪儿都行。$"
+
+Route110_TrickHousePuzzle4_Text_YujiIntro: @ 826C9E4
+	.string "嘿！这种岩石，\n"
+	.string "我一根手指就能推开！$"
+
+Route110_TrickHousePuzzle4_Text_YujiDefeat: @ 826CA20
+	.string "我能推岩石，\n"
+	.string "却解不开谜题……$"
+
+Route110_TrickHousePuzzle4_Text_YujiPostBattle: @ 826CA53
+	.string "光有肌肉不够……\n"
+	.string "得动脑子。要聪明！$"
+
+Route110_TrickHousePuzzle4_Text_PaulaIntro: @ 826CA9C
+	.string "戏法屋越来越难了吧？$"
+
+Route110_TrickHousePuzzle4_Text_PaulaDefeat: @ 826CACB
+	.string "啊！$"
+
+Route110_TrickHousePuzzle4_Text_PaulaPostBattle: @ 826CAD1
+	.string "有人走到最后过吗？$"
+
+`

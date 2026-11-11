@@ -1,0 +1,276 @@
+raw `
+.set LOCALID_GRUNT_1, 12
+.set LOCALID_GRUNT_2, 13
+.set LOCALID_GRUNT_3, 14
+
+Route121_MapScripts:: @ 81F5DFC
+	.byte 0
+
+Route121_EventScript_Skitty::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_SKITTY, 0
+	msgbox Route121_Text_Skitty, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+Route121_EventScript_Nurse::
+	lock
+	faceplayer
+	msgbox Route121_Nurse_Text_YouNeedHealing, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route121_Nurse_EventScript_PlayerIsGenji
+	compare VAR_RESULT, NO
+	goto_if_eq Route121_Nurse_EventScript_PlayerNotGenji
+	end
+
+Route121_Nurse_EventScript_PlayerIsGenji::
+	closemessage
+	call Common_EventScript_OutOfCenterPartyHeal
+	msgbox Route121_Nurse_Text_AllBetter, MSGBOX_DEFAULT
+	release
+	end
+
+Route121_Nurse_EventScript_PlayerNotGenji::
+	msgbox Route121_Nurse_Text_GoodLuck, MSGBOX_DEFAULT
+	release
+	end
+
+Route121_EventScript_Woman:: @ 81F5DFD
+	msgbox Route121_Text_AheadLoomsMtPyre, MSGBOX_NPC
+	end
+
+Route121_EventScript_MtPyrePierSign:: @ 81F5E06
+	msgbox Route121_Text_MtPyrePierSign, MSGBOX_SIGN
+	end
+
+Route121_EventScript_SafariZoneSign:: @ 81F5E0F
+	msgbox Route121_Text_SafariZoneSign, MSGBOX_SIGN
+	end
+
+Route121_EventScript_AquaGruntsMoveOut:: @ 81F5E18
+	lockall
+	playbgm MUS_ENCOUNTER_AQUA, FALSE
+	applymovement LOCALID_GRUNT_2, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	msgbox Route121_Text_OkayMoveOutToMtPyre, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_GRUNT_1, Route121_Movement_Grunt1Exit
+	applymovement LOCALID_GRUNT_2, Route121_Movement_Grunt2Exit
+	applymovement LOCALID_GRUNT_3, Route121_Movement_Grunt3Exit
+	waitmovement 0
+	fadedefaultbgm
+	removeobject LOCALID_GRUNT_1
+	removeobject LOCALID_GRUNT_2
+	removeobject LOCALID_GRUNT_3
+	setvar VAR_ROUTE121_STATE, 1
+	releaseall
+	end
+
+Route121_Movement_Grunt1Exit: @ 81F5E59
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route121_Movement_Grunt2Exit: @ 81F5E62
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route121_Movement_Grunt3Exit: @ 81F5E6B
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route121_EventScript_Vanessa:: @ 81F5E74
+	trainerbattle_single TRAINER_VANESSA, Route121_Text_VanessaIntro, Route121_Text_VanessaDefeat
+	msgbox Route121_Text_VanessaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Walter:: @ 81F5E8B
+	trainerbattle_single TRAINER_WALTER_1, Route121_Text_WalterIntro, Route121_Text_WalterDefeat, Route121_EventScript_RegisterWalter
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route121_EventScript_RematchWalter
+	msgbox Route121_Text_WalterPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route121_EventScript_RegisterWalter:: @ 81F5EB7
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route121_Text_WalterRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_WALTER_1
+	release
+	end
+
+Route121_EventScript_RematchWalter:: @ 81F5ED6
+	trainerbattle_rematch TRAINER_WALTER_1, Route121_Text_WalterRematchIntro, Route121_Text_WalterRematchDefeat
+	msgbox Route121_Text_WalterPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Tammy:: @ 81F5EED
+	trainerbattle_single TRAINER_TAMMY, Route121_Text_TammyIntro, Route121_Text_TammyDefeat
+	msgbox Route121_Text_TammyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Kate:: @ 81F5F04
+	trainerbattle_double TRAINER_KATE_AND_JOY, Route121_Text_KateIntro, Route121_Text_KateDefeat, Route121_Text_KateNotEnoughMons
+	msgbox Route121_Text_KatePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Joy:: @ 81F5F1F
+	trainerbattle_double TRAINER_KATE_AND_JOY, Route121_Text_JoyIntro, Route121_Text_JoyDefeat, Route121_Text_JoyNotEnoughMons
+	msgbox Route121_Text_JoyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Jessica:: @ 81F5F3A
+	trainerbattle_single TRAINER_JESSICA_1, Route121_Text_JessicaIntro, Route121_Text_JessicaDefeat, Route121_EventScript_RegisterJessica
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route121_EventScript_RematchJessica
+	msgbox Route121_Text_JessicaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route121_EventScript_RegisterJessica:: @ 81F5F66
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route121_Text_JessicaRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JESSICA_1
+	release
+	end
+
+Route121_EventScript_RematchJessica:: @ 81F5F85
+	trainerbattle_rematch TRAINER_JESSICA_1, Route121_Text_JessicaRematchIntro, Route121_Text_JessicaRematchDefeat
+	msgbox Route121_Text_JessicaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Cale:: @ 81F5F9C
+	trainerbattle_single TRAINER_CALE, Route121_Text_CaleIntro, Route121_Text_CaleDefeat
+	msgbox Route121_Text_CalePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Myles:: @ 81F5FB3
+	trainerbattle_single TRAINER_MYLES, Route121_Text_MylesIntro, Route121_Text_MylesDefeat
+	msgbox Route121_Text_MylesPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Pat:: @ 81F5FCA
+	trainerbattle_single TRAINER_PAT, Route121_Text_PatIntro, Route121_Text_PatDefeat
+	msgbox Route121_Text_PatPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Marcel:: @ 81F5FE1
+	trainerbattle_single TRAINER_MARCEL, Route121_Text_MarcelIntro, Route121_Text_MarcelDefeat
+	msgbox Route121_Text_MarcelPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route121_EventScript_Cristin:: @ 81F5FF8
+	trainerbattle_single TRAINER_CRISTIN_1, Route121_Text_CristinIntro, Route121_Text_CristinDefeat, Route121_EventScript_RegisterCristin
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route121_EventScript_RematchCristin
+	msgbox Route121_Text_CristinPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route121_EventScript_RegisterCristin:: @ 81F6024
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route121_Text_CristinRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CRISTIN_1
+	release
+	end
+
+Route121_EventScript_RematchCristin:: @ 81F6043
+	trainerbattle_rematch TRAINER_CRISTIN_1, Route121_Text_CristinRematchIntro, Route121_Text_CristinRematchDefeat
+	msgbox Route121_Text_CristinPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route121_Text_OkayMoveOutToMtPyre: @ 81F605A
+	.string "好！\n"
+	.string "我们出发去送神火山！$"
+
+Route121_Text_AheadLoomsMtPyre: @ 81F607F
+	.string "前方就是送神火山……\n"
+	.string "那是为离世宝可梦的灵魂\p"
+	.string "设立的自然纪念碑……$"
+
+Route121_Text_MtPyrePierSign: @ 81F60D3
+	.string "送神火山码头\n"
+	.string "……牌子又旧又破。\p"
+	.string "字迹几乎看不清了……$"
+
+Route121_Text_SafariZoneSign: @ 81F611E
+	.string "“聚集着珍稀宝可梦！”\n"
+	.string "狩猎地带$"
+
+Route121_Text_Skitty:
+	.string "向尾喵：喵？$"
+
+Route121_Nurse_Text_YouNeedHealing:
+	.string "我是四处巡游的\n"
+	.string "宝可梦中心员工。\p"
+	.string "要不要我马上\n"
+	.string "治好你的宝可梦？$"
+
+Route121_Nurse_Text_AllBetter:
+	.string "我一转眼就把你宝可梦的\n"
+	.string "毛病全治好了！$"
+
+Route121_Nurse_Text_GoodLuck:
+	.string "那好吧！\n"
+	.string "祝你旅途顺利！$"
+`
+script Route121_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：听我说，善良的旅人，\n我要讲一个关于勇气与力量的故事，\p说的是三把闪耀着正义之光的崇高之\n剑。$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("在正义之光照耀的国度，\n三把剑带着真实而强大的勇气现身。\p毕力吉翁、勾帕路翁、代拉基翁，\n它们挥舞刀刃，\p是最崇高正直的一群。毕力吉翁，\n如微风般轻捷优雅，\p带着翠绿的秀丽与敏锐的洞察；\n它的刃斩断谎言，带来解脱，\p让真相以全部的力量彰显。\n勾帕路翁，法律的坚实守护者，\p以钢铁的意志与美德为指引；\n它的剑毫无瑕疵地击倒邪恶，\p守护着四方无辜的灵魂。代拉基翁，\n力量不受拘束的化身，\p它的刃不屈不挠，永不退让；\n它为需要的人而战，无可指责，\p是明亮送出的正义灯塔。\n怀着坚定的心与相合的魂，\p你踏上了崇高的旅程。\n两个命运交缠，两种意志受试，\p去夺取正义之剑，这使命已然言明。$"))
+	}
+	else{
+		if(defeated(TRAINER_VANESSA)  &&
+		   defeated(TRAINER_WALTER_1)  &&
+		   defeated(TRAINER_TAMMY)  &&
+		   defeated(TRAINER_KATE_AND_JOY)  &&
+		   defeated(TRAINER_JESSICA_1)  &&
+		   defeated(TRAINER_CALE)  &&
+		   defeated(TRAINER_MYLES)  &&
+		   defeated(TRAINER_PAT)  &&
+		   defeated(TRAINER_MARCEL)  &&
+		   defeated(TRAINER_CRISTIN_1)){
+			msgbox(format("如今你凯旋，使命已成，\n努力得到回报，剑就在近处。\p现身吧，给它们一点甜头，\n胜利的拥抱，你的心珍藏着。$"))
+		}
+		else{
+			msgbox(format("你站在这条路的最后一个弯，\n旅程即将完成，胜利在望！\p要收服正义之剑，你必须超越，\n以力量战胜他人！$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("善良的旅人，\n我看你的心想走另一条路，\p不过再想想吧，\n这个故事或许会点燃长久的余波。$"))}
+    release
+    end
+}

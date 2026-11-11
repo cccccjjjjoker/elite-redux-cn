@@ -1,0 +1,53 @@
+raw `
+MossdeepCity_House3_MapScripts:: @ 82225C2
+	.byte 0
+
+MossdeepCity_House3_EventScript_SuperRodFisherman:: @ 82225C3
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_SUPER_ROD, MossdeepCity_House3_EventScript_ReceivedSuperRod
+	msgbox MossdeepCity_House3_Text_YouWantSuperRod, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_House3_EventScript_DeclineSuperRod
+	msgbox MossdeepCity_House3_Text_SuperRodIsSuper, MSGBOX_DEFAULT
+	giveitem ITEM_SUPER_ROD
+	setflag FLAG_RECEIVED_SUPER_ROD
+	msgbox MossdeepCity_House3_Text_TryDroppingRodInWater, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_House3_EventScript_ReceivedSuperRod:: @ 8222602
+	msgbox MossdeepCity_House3_Text_GoAfterSeafloorPokemon, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_House3_EventScript_DeclineSuperRod:: @ 822260C
+	msgbox MossdeepCity_House3_Text_DontYouLikeToFish, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_House3_Text_YouWantSuperRod: @ 8222616
+	.string "嘿，训练家！\n"
+	.string "厉害钓竿真的很厉害！\p"
+	.string "你尽管说，但这玩意儿能\n"
+	.string "从海底钓上宝可梦！\p"
+	.string "怎么样？\n"
+	.string "你想要吧？$"
+
+MossdeepCity_House3_Text_SuperRodIsSuper: @ 82226B6
+	.string "当然当然！\n"
+	.string "毕竟厉害钓竿真的很厉害！$"
+
+MossdeepCity_House3_Text_TryDroppingRodInWater: @ 82226F0
+	.string "只要有水，就把钓竿\n"
+	.string "放下去看看能钓到什么！$"
+
+MossdeepCity_House3_Text_DontYouLikeToFish: @ 8222733
+	.string "咦？\n"
+	.string "你不喜欢钓鱼？$"
+
+MossdeepCity_House3_Text_GoAfterSeafloorPokemon: @ 8222751
+	.string "用你的厉害钓竿\n"
+	.string "去钓海底的宝可梦吧。$"
+
+`

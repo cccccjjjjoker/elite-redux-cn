@@ -1,0 +1,231 @@
+raw `
+Route113_MapScripts:: @ 81F2153
+	map_script MAP_SCRIPT_ON_RESUME, Route113_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Route113_OnTransition
+	.byte 0
+
+Route113_OnResume: @ 81F215E
+	setstepcallback STEP_CB_ASH
+	end
+
+Route113_OnTransition: @ 81F2161
+	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
+	call Route113_EventScript_CheckSetAshWeather
+	end
+
+Route113_EventScript_CheckSetAshWeather:: @ 81F216A
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	compare VAR_TEMP_0, 19
+	goto_if_lt Route113_EventScript_DontSetAshWeather
+	compare VAR_TEMP_0, 84
+	goto_if_gt Route113_EventScript_DontSetAshWeather
+	setweather WEATHER_VOLCANIC_ASH
+	return
+
+Route113_EventScript_DontSetAshWeather:: @ 81F2189
+	return
+
+Route113_EventScript_Gentleman:: @ 81F218A
+	msgbox Route113_Text_AshCanBeFashionedIntoGlass, MSGBOX_NPC
+	end
+
+Route113_EventScript_NinjaBoy:: @ 81F2193
+	msgbox Route113_Text_FunWalkingThroughAsh, MSGBOX_NPC
+	end
+
+Route113_EventScript_RouteSign111:: @ 81F219C
+	msgbox Route113_Text_RouteSign111, MSGBOX_SIGN
+	end
+
+Route113_EventScript_RouteSignFallarbor:: @ 81F21A5
+	msgbox Route113_Text_RouteSignFallarbor, MSGBOX_SIGN
+	end
+
+Route113_EventScript_GlassWorkshopSign:: @ 81F21AE
+	msgbox Route113_Text_GlassWorkshopSign, MSGBOX_SIGN
+	end
+
+Route113_EventScript_TrainerTipsRegisterKeyItems:: @ 81F21B7
+	msgbox Route113_Text_TrainerTipsRegisterKeyItems, MSGBOX_SIGN
+	end
+
+Route113_EventScript_Jaylen:: @ 81F21C0
+	trainerbattle_single TRAINER_JAYLEN, Route113_Text_JaylenIntro, Route113_Text_JaylenDefeat
+	msgbox Route113_Text_JaylenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Dillon:: @ 81F21D7
+	trainerbattle_single TRAINER_DILLON, Route113_Text_DillonIntro, Route113_Text_DillonDefeat
+	msgbox Route113_Text_DillonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Madeline:: @ 81F21EE
+	trainerbattle_single TRAINER_MADELINE_1, Route113_Text_MadelineIntro, Route113_Text_MadelineDefeat, Route113_EventScript_RegisterMadeline
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route113_EventScript_RematchMadeline
+	msgbox Route113_Text_MadelinePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route113_EventScript_RegisterMadeline:: @ 81F221A
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route113_Text_MadelineRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_MADELINE_1
+	release
+	end
+
+Route113_EventScript_RematchMadeline:: @ 81F2239
+	trainerbattle_rematch TRAINER_MADELINE_1, Route113_Text_MadelineRematchIntro, Route113_Text_MadelineRematchDefeat
+	msgbox Route113_Text_MadelinePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Lao:: @ 81F2250
+	trainerbattle_single TRAINER_LAO_1, Route113_Text_LaoIntro, Route113_Text_LaoDefeat, Route113_EventScript_RegisterLao
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route113_EventScript_RematchLao
+	msgbox Route113_Text_LaoPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route113_EventScript_RegisterLao:: @ 81F227C
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route113_Text_LaoRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_LAO_1
+	release
+	end
+
+Route113_EventScript_RematchLao:: @ 81F229B
+	trainerbattle_rematch TRAINER_LAO_1, Route113_Text_LaoRematchIntro, Route113_Text_LaoRematchDefeat
+	msgbox Route113_Text_LaoPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Lung:: @ 81F22B2
+	trainerbattle_single TRAINER_LUNG, Route113_Text_LungIntro, Route113_Text_LungDefeat
+	msgbox Route113_Text_LungPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Tori:: @ 81F22C9
+	trainerbattle_double TRAINER_TORI_AND_TIA, Route113_Text_ToriIntro, Route113_Text_ToriDefeat, Route113_Text_ToriNotEnoughMons
+	msgbox Route113_Text_ToriPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Tia:: @ 81F22E4
+	trainerbattle_double TRAINER_TORI_AND_TIA, Route113_Text_TiaIntro, Route113_Text_TiaDefeat, Route113_Text_TiaNotEnoughMons
+	msgbox Route113_Text_TiaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Sophie:: @ 81F22FF
+	trainerbattle_single TRAINER_SOPHIE, Route113_Text_SophieIntro, Route113_Text_SophieDefeat
+	msgbox Route113_Text_SophiePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Coby:: @ 81F2316
+	trainerbattle_single TRAINER_COBY, Route113_Text_CobyIntro, Route113_Text_CobyDefeat
+	msgbox Route113_Text_CobyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Lawrence:: @ 81F232D
+	trainerbattle_single TRAINER_LAWRENCE, Route113_Text_LawrenceIntro, Route113_Text_LawrenceDefeat
+	msgbox Route113_Text_LawrencePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_EventScript_Wyatt:: @ 81F2344
+	trainerbattle_single TRAINER_WYATT, Route113_Text_WyattIntro, Route113_Text_WyattDefeat
+	msgbox Route113_Text_WyattPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route113_Text_AshCanBeFashionedIntoGlass: @ 81F235B
+	.string "哇哈哈哈！如今的科技真是了不起！\n"
+	.string "你看这火山灰，\p"
+	.string "它能做成玻璃。$"
+
+Route113_Text_FunWalkingThroughAsh: @ 81F23CA
+	.string "走在火山灰覆盖的地面和草丛上，\n"
+	.string "挺有意思的。\p"
+	.string "你能看到自己走过的脚印，\n"
+	.string "真不错！$"
+
+Route113_Text_RouteSign111: @ 81F2440
+	.string "113号道路\n"
+	.string "{RIGHT_ARROW} 111号道路$"
+
+Route113_Text_RouteSignFallarbor: @ 81F2456
+	.string "113号道路\n"
+	.string "{LEFT_ARROW} 秋叶镇$"
+
+Route113_Text_TrainerTipsRegisterKeyItems: @ 81F2471
+	.string "训练家提示\n"
+	.string "可以把背包里的一件重要道具\p"
+	.string "登记到Select键。\n"
+	.string "只要按下Select，\p"
+	.string "就能方便地使用登记的道具。$"
+
+Route113_Text_GlassWorkshopSign: @ 81F24F8
+	.string "玻璃工房\n"
+	.string "“把火山灰变成玻璃制品”$"
+
+`
+script Route113_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：我知道一些你可能听说过的\n传说之鸟的命运。想知道更多吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("这些火山灰似乎连最高贵的鸟类血脉\n也影响了：急冻鸟、\p闪电鸟和火焰鸟。\n它们的同类被看到在这片烟雾弥漫的\p土地上游荡，寻找一位勇敢的助手…\n…你会是它们要找的人吗？\p成为冠军后再来见它们吧。$"))
+	}
+		else{
+			if(defeated(TRAINER_JAYLEN) &&
+		   	defeated(TRAINER_DILLON) &&
+		   	defeated(TRAINER_MADELINE_1)  &&
+		   	defeated(TRAINER_LAO_1)  &&
+		   	defeated(TRAINER_LUNG)  &&
+		   	defeated(TRAINER_TORI_AND_TIA)  &&
+		   	defeated(TRAINER_SOPHIE)  &&
+		   	defeated(TRAINER_COBY)  &&
+		   	defeated(TRAINER_LAWRENCE)  &&
+		   	defeated(TRAINER_WYATT)){
+				msgbox(format("你现在有资格捕捉传说之鸟三兄弟了\n。用图鉴导航，它们就会现身。\p它们的样子说不定还会让你吃惊……$"))
+			}
+			else{
+				msgbox(format("我听说了你的成就，\n那些鸟一定也感觉到了。\p在这最后几名训练家面前展示你的实\n力，就能见到它们。$"))
+			}
+		}
+	}
+	else{
+		msgbox(format("显然你一定是孤陋寡闻……$"), MSGBOX_NPC)
+	}
+    release
+    end
+}
+
+script Route113_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+		if(defeated(TRAINER_JAYLEN) &&
+		   defeated(TRAINER_DILLON) &&
+		   defeated(TRAINER_MADELINE_1)  &&
+		   defeated(TRAINER_LAO_1)  &&
+		   defeated(TRAINER_LUNG)  &&
+		   defeated(TRAINER_TORI_AND_TIA)  &&
+		   defeated(TRAINER_SOPHIE)  &&
+		   defeated(TRAINER_COBY)  &&
+		   defeated(TRAINER_LAWRENCE)  &&
+		   defeated(TRAINER_WYATT)){
+		// when you defeat every trainer
+		msgbox(format("干得好，冠军！来，\n收下这只小生物好好培养，\p只要坚持，你能走到世界的尽头！$"))
+		givemon(SPECIES_DREEPY, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}多龙梅西亚{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("这座狂暴的火山需要一位狂暴的训练\n家！在对战中飞向新的高度，\p去会见一位强大守护者的亡灵吧！$"))
+	}
+    release
+    end
+}

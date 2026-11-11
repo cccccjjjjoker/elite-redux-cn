@@ -1,0 +1,78 @@
+raw `
+EverGrandeCity_MapScripts:: @ 81E7D1B
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_OnFrame
+	.byte 0
+
+EverGrandeCity_OnTransition: @ 81E7D21
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	end
+EverGrandeCity_OnFrame:
+    map_script_2 VAR_TEMP_A, 0, EverGrandeCity_EventScript_RivalTalk
+    .2byte 0
+EverGrandeCity_EventScript_VictoryRoadSign:: @ 81E7D2B
+	msgbox EverGrandeCity_Text_EnteringVictoryRoad, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_CitySign:: @ 81E7D34
+	msgbox EverGrandeCity_Text_CitySign, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_PokemonLeagueSign:: @ 81E7D3D
+	msgbox EverGrandeCity_Text_EnteringPokemonLeague, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_SetVisitedEverGrande:: @ 81E7D46
+	setflag FLAG_VISITED_EVER_GRANDE_CITY
+	setvar VAR_TEMP_1, 1
+	end
+
+EverGrandeCity_Text_EnteringVictoryRoad: @ 81E7D4F
+	.string "进入冠军之路$"
+
+EverGrandeCity_Text_EnteringPokemonLeague: @ 81E7D65
+	.string "进入宝可梦联盟\n"
+	.string "中央大门$"
+
+EverGrandeCity_Text_CitySign: @ 81E7D89
+	.string "彩悠市\n"
+	.string "“花、海与宝可梦的乐园。”$"
+
+`
+const LOCALID_RIVAL = 1
+
+script EverGrandeCity_EventScript_RivalTalk{
+    setvar(VAR_TEMP_A, 1)
+    if (!flag(FLAG_RIVAL_EVERGRANDE_ESCORT)){
+        return
+    }
+    // chit chat cutscene
+    lock
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
+    applymovement(LOCALID_RIVAL, Common_Movement_FaceLeft)
+    waitmovement(0)
+    delay(10)
+    applymovement(LOCALID_RIVAL, Common_Movement_FaceRight)
+    waitmovement(0)
+    delay(20)
+    applymovement(LOCALID_RIVAL, Common_Movement_FaceUp)
+    waitmovement(0)
+    delay(20)
+    applymovement(LOCALID_RIVAL, Common_Movement_FaceDown)
+    waitmovement(0)
+    delay(20)
+    applymovement(LOCALID_RIVAL, Common_Movement_FaceLeft)
+    msgbox(format(  "我喜欢这里，可惜它非得这么远。\n不过我想，\p这正是这地方迷人的原因。\n总之{PLAYER}，回头见，拜拜。$"))
+    closemessage
+    applymovement(LOCALID_RIVAL, EverGrandeCity_Movement_RivalExit)
+    waitmovement(0)
+    removeobject(LOCALID_RIVAL)
+    clearflag(FLAG_RIVAL_EVERGRANDE_ESCORT)
+    setflag(FLAG_HIDE_RIVAL_SOOTOPOLIS_EVERGRANDE)
+    setflag(FLAG_VISITED_EVER_GRANDE_CITY)
+    release
+}
+
+movement EverGrandeCity_Movement_RivalExit{
+    walk_up * 7
+}

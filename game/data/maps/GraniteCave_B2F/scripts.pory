@@ -1,0 +1,60 @@
+raw `
+GraniteCave_B2F_MapScripts::
+	.byte 0
+
+GraniteCave_B2F_SetFlashRadius:
+	end
+`
+
+
+script GraniteCave_B2F_EventScript_HitmonStone{
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE06_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_HITMONSTONE_BLACKBELT_1) // Only For testing
+		if (!flag(FLAG_OBTAINED_HITMON_MEGA_STONE)) { // asking for battle
+			msgbox(format("你好，年轻人。我看得出你\n身怀巨大的力量。提个建议如何？\p如果你只用一只自己的宝可梦，\n打败我的一只宝可梦，\p我就把这些超级石送给你。\n我的宝可梦全都是格斗属性，\p所以也请你只用格斗属性。$"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) { // When the player accepts the battle
+				checkpartyfortypeornumber(TYPE_FIGHTING, 1)
+				if(var(VAR_RESULT) == 1){//Check if you have 1 fighting type mon in your party
+					msgbox(format("那么，决斗开始！$"), MSGBOX_NPC)
+					random(3)
+					switch(var(VAR_RESULT)){
+						case 0:
+							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_1, format("你真是强得惊人。$")) // in-battle, player wins
+						break
+						case 1:
+							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_2, format("你真是强得惊人。$")) // in-battle, player wins
+						break
+						case 2:
+							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_3, format("你真是强得惊人。$")) // in-battle, player wins
+						break
+					}
+					msgbox(format("你的实力让我十分佩服。\n按照约定，这些超级石给你。$"), MSGBOX_NPC)
+					playfanfare(MUS_OBTAIN_ITEM)
+					giveitem(ITEM_HITMONCHANITE, 1)
+					giveitem(ITEM_HITMONLEENITE, 1)
+					giveitem(ITEM_HITMONTOPITE, 1)
+					setflag(FLAG_OBTAINED_HITMON_MEGA_STONE)
+					waitfanfare
+					msgbox(format("每一颗都对应巴尔郎三种进化\n中的一种。好好使用。$"), MSGBOX_NPC)
+					waitmessage
+				}
+				else{
+					msgbox(format("你没有符合条件的宝可梦。\n这场对战你只能带一只\p格斗属性的宝可梦。$"), MSGBOX_NPC)
+				}
+			}
+			else { // when refusing the battle
+				msgbox(format("我明白了。准备好了随时再来。$"), MSGBOX_NPC)
+			}
+		}
+		else { //After you defeat it and talk to the npc again
+			msgbox(format("抱歉，我这儿已经没有\n可以给你的了。$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("抱歉，你还不够格。\n等你打赢绿岭市那对双胞胎\p再来，我会跟你谈。$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

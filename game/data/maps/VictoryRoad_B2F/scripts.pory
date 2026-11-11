@@ -1,0 +1,133 @@
+raw `
+VictoryRoad_B2F_MapScripts:: @ 82368D4
+	.byte 0
+
+VictoryRoad_B2F_EventScript_Vito:: @ 82368D5
+	trainerbattle_single TRAINER_VITO, VictoryRoad_B2F_Text_VitoIntro, VictoryRoad_B2F_Text_VitoDefeat
+	msgbox VictoryRoad_B2F_Text_VitoPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B2F_EventScript_Owen:: @ 82368EC
+	trainerbattle_single TRAINER_OWEN, VictoryRoad_B2F_Text_OwenIntro, VictoryRoad_B2F_Text_OwenDefeat
+	msgbox VictoryRoad_B2F_Text_OwenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B2F_EventScript_Caroline:: @ 8236903
+	trainerbattle_single TRAINER_CAROLINE, VictoryRoad_B2F_Text_CarolineIntro, VictoryRoad_B2F_Text_CarolineDefeat
+	msgbox VictoryRoad_B2F_Text_CarolinePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B2F_EventScript_Julie:: @ 823691A
+	trainerbattle_single TRAINER_JULIE, VictoryRoad_B2F_Text_JulieIntro, VictoryRoad_B2F_Text_JulieDefeat
+	msgbox VictoryRoad_B2F_Text_JuliePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B2F_EventScript_Felix:: @ 8236931
+	trainerbattle_single TRAINER_FELIX, VictoryRoad_B2F_Text_FelixIntro, VictoryRoad_B2F_Text_FelixDefeat
+	msgbox VictoryRoad_B2F_Text_FelixPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B2F_EventScript_Dianne:: @ 8236948
+	trainerbattle_single TRAINER_DIANNE, VictoryRoad_B2F_Text_DianneIntro, VictoryRoad_B2F_Text_DianneDefeat
+	msgbox VictoryRoad_B2F_Text_DiannePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B2F_Text_VitoIntro: @ 823695F
+	.string "我是和全家人一起训练的，\n"
+	.string "每一个都上！\p"
+	.string "我不会输给任何人！$"
+
+VictoryRoad_B2F_Text_VitoDefeat: @ 82369B3
+	.string "比我全家都强？！这可能吗？！$"
+
+VictoryRoad_B2F_Text_VitoPostBattle: @ 82369DE
+	.string "我以前比家里所有人都强。\n"
+	.string "我从没输过……\p"
+	.string "我失去信心了……\n"
+	.string "也许我该回家……$"
+
+VictoryRoad_B2F_Text_OwenIntro: @ 8236A4C
+	.string "我听说这附近有个很厉害的小孩。\n"
+	.string "说的是你吗？$"
+
+VictoryRoad_B2F_Text_OwenDefeat: @ 8236A92
+	.string "这小不点真硬！$"
+
+VictoryRoad_B2F_Text_OwenPostBattle: @ 8236AAE
+	.string "我听说的那个厉害小孩，\n"
+	.string "是橙华市来的。$"
+
+VictoryRoad_B2F_Text_CarolineIntro: @ 8236AF0
+	.string "你该有点累了吧。$"
+
+VictoryRoad_B2F_Text_CarolineDefeat: @ 8236B14
+	.string "一点疲态都没有！$"
+
+VictoryRoad_B2F_Text_CarolinePostBattle: @ 8236B2F
+	.string "冠军之路和宝可梦联盟是漫长艰苦的\n"
+	.string "挑战。\p"
+	.string "小心疲劳！$"
+
+VictoryRoad_B2F_Text_JulieIntro: @ 8236B88
+	.string "别因为徽章多就自满。\n"
+	.string "总有人比你更强！$"
+
+VictoryRoad_B2F_Text_JulieDefeat: @ 8236C0A
+	.string "你比我强！$"
+
+VictoryRoad_B2F_Text_JuliePostBattle: @ 8236C21
+	.string "看看你收集的徽章，\n"
+	.string "想想你面对过的训练家。$"
+
+VictoryRoad_B2F_Text_FelixIntro: @ 8236C67
+	.string "我走到这里了，\n"
+	.string "但紧张得胃疼得厉害……$"
+
+VictoryRoad_B2F_Text_FelixDefeat: @ 8236CAB
+	.string "哦……好疼……$"
+
+VictoryRoad_B2F_Text_FelixPostBattle: @ 8236CBA
+	.string "一想到快到宝可梦联盟，\n"
+	.string "我就忍不住紧张。\p"
+	.string "我只能装出一副镇定的样子。$"
+
+VictoryRoad_B2F_Text_DianneIntro: @ 8236D27
+	.string "精英中的精英聚集在这个洞窟。\n"
+	.string "你觉得怎么样？$"
+
+VictoryRoad_B2F_Text_DianneDefeat: @ 8236D6E
+	.string "一点都没被吓到！$"
+
+VictoryRoad_B2F_Text_DiannePostBattle: @ 8236D8C
+	.string "你真有胆！我喜欢！继续保持！$"
+
+`
+
+script VictoryRoad_B2F_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：从前，\n我是这些土地的吟游诗人和传说守护\p者。现在我退休了，\n和我另一位同行一样，\p我们一起讲过蕾冠王的故事。\n我恰好知道故事的第二部分，\p那是不太光彩的一段。想听吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("你可能听过蕾冠王传说的第一部分。\n听过的话，让我讲讲后面那部分，\p很多人不知道的那部分。\n把奈克洛兹玛赶回外太空之后，\p阿罗拉仍被究极异兽入侵，\n数量多得无法应付。\p蕾冠王知道，若放任不管，\n它们最终会吞掉整个世界，\p把它变成枯白的荒原。\n他很强，但身边只有卡璞们，\p他知道自己毫无胜算。\n危急局面需要不留余地的手段。\p当时就是这样的局面。\n你看，国王此前只骑过雪暴马，\p那是他日常散步时的合法伙伴。\n但蕾冠王还有一张王牌：\p一匹阴森致命的坐骑，\n因为担心它失控，\p他亲手把它锁在城堡地牢里。\n它叫灵幽马：\p一匹纯粹由力量与邪恶构成的幽灵骏\n马。蕾冠王起初犹豫不愿，\p最后还是被迫把灵幽马带上了战场，\n为了保住阿罗拉剩下的一切。\p靠着伙伴的毁灭之力，他成功了，\n但付出了巨大的代价：\p灵幽马把这位国王从一个仁慈睿智的\n领袖，变成了满怀憎恨、愤世嫉俗、\p近乎野兽的存在，渴求力量、\n鲜血与死亡。\p卡璞们看到这突如其来的转变，\n决定不冒任何风险：\p它们用诡计骗蕾冠王下马，\n然后把这位曾经的国王和那匹骏马一\p起封进了大地最深处的深渊。\n据说他们至今仍在谋划向那些忘恩负\p义的残酷卡璞们复仇。\n束缚国王的咒语一千年只能解开一次\p，而命定之日终于到了。\n你若想放出蕾冠王和他的坐骑，\p就去打败宝可梦联盟，\n然后回来找我。$"))
+	}
+	else{
+		if(defeated(TRAINER_JULIE)    &&
+		   defeated(TRAINER_CAROLINE) &&
+		   defeated(TRAINER_OWEN)     &&
+		   defeated(TRAINER_VITO)     &&
+		   defeated(TRAINER_FELIX)    &&
+		   defeated(TRAINER_DIANNE)){
+			msgbox(format("成了：我已斩断卡璞束缚国王的咒语\n。用图鉴导航去见他吧。祝你好运。$"))
+		}
+		else{
+			msgbox(format("该让国王回到我们身边了。\n打败这条路线上所有的训练家，\p再回来找我：\n那时我就知道你能承受他的力量。$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("不是今天，不是今天，不是今天，\n不是今天，不是今天，不是今天……\p没人想听自己可能遭遇的不幸。\n蠢货。$"))
+	}
+    release
+    end
+}

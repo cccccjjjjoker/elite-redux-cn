@@ -1,0 +1,285 @@
+package er
+
+import com.google.protobuf.DescriptorProtos.EnumValueOptions
+import com.google.protobuf.DescriptorProtos.FieldOptions
+import com.google.protobuf.Descriptors.EnumValueDescriptor
+import com.google.protobuf.Descriptors.FieldDescriptor
+import com.google.protobuf.GeneratedMessage.GeneratedExtension
+import com.google.protobuf.ProtocolMessageEnum
+import com.google.protobuf.TextFormat
+import er.FileGenerator.IND
+import er.proto.*
+import er.proto.Species.Learnset
+import er.proto.Species.Learnset.UniversalTutors
+import er.proto.Species.RandomizeBanned.SPECIES_HIDDEN
+import java.io.File
+import java.io.OutputStreamWriter
+
+object GeneratorUtils {
+
+  val TRAINERS_LIST by lazy {
+    TextFormat.parse(File("../../proto/TrainerList.textproto").readText(), TrainerList::class.java)
+      .trainerList
+  }
+
+  val ITEMS_LIST by lazy {
+    (Pocket.entries
+        .filter { it != Pocket.POCKET_NONE && it != Pocket.UNRECOGNIZED }
+        .map {
+          it.name.removePrefix("POCKET_").split("_").joinToString("") { s ->
+            s.lowercase().replaceFirstChar { c -> c.uppercaseChar() }
+          }
+        } + "Unused")
+      .flatMap {
+        if (File("../../proto/items/${it}List.textproto").exists()) {
+          TextFormat.parse(
+              File("../../proto/items/${it}List.textproto").readText(),
+              ItemList::class.java,
+            )
+            .itemList
+        } else {
+          emptyList()
+        }
+      }
+      .filter { it.name.isNotEmpty() && it.image.isNotEmpty() && it.palette.isNotEmpty() }
+  }
+
+  val ABILITIES_LIST by lazy {
+    TextFormat.parse(File("../../proto/AbilityList.textproto").readText(), AbilityList::class.java)
+      .abilityList
+  }
+
+  val MOVES_LIST by lazy {
+    TextFormat.parse(File("../../proto/MoveList.textproto").readText(), MoveList::class.java)
+      .movesList
+  }
+
+  val FULL_SPECIES_LIST by lazy {
+    TextFormat.parse(File("../../proto/SpeciesList.textproto").readText(), SpeciesList::class.java)
+      .speciesList
+  }
+
+  val MOVE_BEHAVIOR_CONFIGS by lazy {
+    TextFormat.parse(
+        File("../../proto/MoveBehaviorConfigList.textproto").readText(),
+        MoveBehaviorConfigList::class.java,
+      )
+      .configList
+  }
+
+  val BATTLE_FRONTIER_SETS by lazy {
+    TextFormat.parse(
+        File("../../proto/BattleFrontierList.textproto").readText(),
+        BattleFrontierList::class.java,
+      )
+      .speciesList
+  }
+
+  val CUSTOM_BEHAVIORS by lazy {
+    MOVES_LIST.filter { it.hasCustomBehavior() }
+      .groupBy { it.customBehavior }
+      .mapValues { "EFFECT_" + it.value.first().id.name.removePrefix("MOVE_") }
+  }
+
+  val MOVE_BEHAVIORS by lazy {
+    val ordering = MOVE_BEHAVIOR_ORDER.withIndex().associate { it.value to it.index }
+    (MOVE_BEHAVIOR_CONFIGS.associateBy { it.id.name } +
+        CUSTOM_BEHAVIORS.asIterable().associate { it.value to it.key })
+      .toSortedMap(compareBy { ordering[it]!! })
+  }
+
+  private val MOVE_BEHAVIOR_ORDER by lazy {
+    (MoveBehavior.entries - MoveBehavior.UNRECOGNIZED)
+      .sortedBy { it.number }
+      .map { it.toString() } + CUSTOM_BEHAVIORS.values
+  }
+
+  private val BATTLE_SKILL_PROTO by lazy {
+    TextFormat.parse(
+      File("../../proto/BattleSkillList.textproto").readText(),
+      BattleSkillList::class.java,
+    )
+  }
+
+  val BATTLE_SKILLS by lazy {
+    BATTLE_SKILL_PROTO.skillList
+  }
+
+  val INLINE_SKILLS by lazy {
+    TRAINERS_LIST.flatMap { trainer ->
+        trainer.hell.inlineSkillList.mapIndexed { index, skill -> inlineSkillId(trainer, index) to skill }
+      }
+      .toMap()
+  }
+
+  val BATTLE_SKILL_TEMPLATES by lazy {
+    BATTLE_SKILL_PROTO.templateList
+  }
+
+  val SPECIES_LIST by lazy { FULL_SPECIES_LIST.filter { it.randomizerBanned != SPECIES_HIDDEN } }
+
+  val NO_EGG_LIST by lazy { SPECIES_LIST.filter { it.id != SpeciesEnum.SPECIES_EGG } }
+
+  val SPECIES_COUNT by lazy { SPECIES_LIST.maxOf { it.id.number } + 1 }
+
+  val REAL_SPECIES_COUNT by lazy { NO_EGG_LIST.maxOf { it.id.number } + 1 }
+
+  val SPECIES_MAP by lazy { SPECIES_LIST.associateBy { it.id } }
+
+  val SpeciesEnum.data: Species
+    get() = SPECIES_MAP[this]!!
+
+  val RANDOMIZER_CONFIG by lazy {
+    TextFormat.parse(
+      File("../../proto/LimitedRandomizerConfig.textproto").readText(),
+      LimitedRandomizerConfig::class.java,
+    )
+  }
+
+  // e.g. SKILL_INLINE_JOSH_1 for Josh first inline_skill 
+  fun inlineSkillId(trainer: Trainer, index: Int) =
+    "SKILL_INLINE_${trainer.id.name.removePrefix("TRAINER_")}_${index + 1}"
+
+  fun findLearnsetForSpecies(
+    species: Species,
+    learnsetChain: MutableList<SpeciesEnum> = mutableListOf(),
+  ): Learnset {
+    val id = species.id
+
+    check(id !in learnsetChain) {
+      "Self referential moveset found: ${learnsetChain.joinToString(" -> ")} -> $id"
+    }
+    learnsetChain += id
+
+    return when {
+      species.id == SpeciesEnum.SPECIES_NONE -> species.learnset
+      species.megaList.isNotEmpty() ->
+        findLearnsetForSpecies(SPECIES_MAP[species.megaList.first().from]!!, learnsetChain)
+      species.primalList.isNotEmpty() ->
+        findLearnsetForSpecies(SPECIES_MAP[species.primalList.first().from]!!, learnsetChain)
+      species.hasBattleForm() ->
+        findLearnsetForSpecies(SPECIES_MAP[species.battleForm.of]!!, learnsetChain)
+      species.hasLearnset() -> species.learnset
+      species.usesLearnset != SpeciesEnum.SPECIES_NONE ->
+        findLearnsetForSpecies(SPECIES_MAP[species.usesLearnset]!!, learnsetChain)
+      species.formShiftOf != SpeciesEnum.SPECIES_NONE ->
+        findLearnsetForSpecies(SPECIES_MAP[species.formShiftOf]!!, learnsetChain)
+      else -> findLearnsetForSpecies(SPECIES_MAP[species.formOf]!!, learnsetChain)
+    }
+  }
+
+  fun expandLearnset(learnset: Learnset, species: Species) =
+    UNIVERSAL_TUTORS +
+      UNIVERSAL_ATTACKS.takeIf { learnset.universalTutors != UniversalTutors.NO_ATTACKS }
+        .orEmpty() +
+      UNIVERSAL_GENDERED.takeIf { !species.genderless }.orEmpty() +
+      learnset.tutorList
+
+  private val UNIVERSAL_TUTORS =
+    MOVES_LIST.filter { it.tutor == TutorType.TUTOR_UNIVERSAL_STATUS }.map { it.id }
+  private val UNIVERSAL_ATTACKS =
+    MOVES_LIST.filter { it.tutor == TutorType.TUTOR_UNIVERSAL_ATTACK }.map { it.id }
+  private val UNIVERSAL_GENDERED =
+    MOVES_LIST.filter { it.tutor == TutorType.TUTOR_UNIVERSAL_STATUS_GENDERED }.map { it.id }
+
+  fun Species.resolveVisuals(): Visuals =
+    if (hasReuseVisuals()) SPECIES_MAP[reuseVisuals]!!.resolveVisuals() else this.visuals
+
+  fun <T> ProtocolMessageEnum.getOption(extension: GeneratedExtension<EnumValueOptions, T>): T =
+    valueDescriptor.getOption(extension)
+
+  fun <T> EnumValueDescriptor.getOption(extension: GeneratedExtension<EnumValueOptions, T>): T =
+    options.getExtension(extension)
+
+  fun <T> FieldDescriptor.getOption(extension: GeneratedExtension<FieldOptions, T>): T =
+    toProto().options.getExtension(extension)
+
+  fun String.fileID() =
+    lowercase().replace("[^a-z0-9_]".toRegex()) { "E${it.value.replace("\\", "/").single().code}" }
+
+  /**
+   * Takes a list of key-value pairs and creates a set of mappings of keys/values to a shared index
+   * value.
+   */
+  fun <Key, Value> List<Pair<Key, Value>>.createDedupMaps(): Pair<Map<Key, Int>, Map<Value, Int>> {
+    val groups = groupBy({ it.first }, { it.second })
+
+    val keyIds = groups.keys.withIndex().associate { it.value to it.index }
+    val valueIds = groups.flatMap { (key, values) -> values.map { it to keyIds[key]!! } }.toMap()
+    return keyIds to valueIds
+  }
+
+  fun Map<*, Int>.printLookupTable(
+    tableSignature: String,
+    prefix: String,
+    writer: OutputStreamWriter,
+  ) {
+    writer.appendLine(
+      """
+            |$tableSignature = {
+            |$IND${entries.joinToString("\n$IND") { "[${it.key}] = $prefix${it.value}," }}
+            |};
+            |"""
+        .trimMargin()
+    )
+  }
+
+  enum class PrintMode {
+    FILE,
+    STRING,
+  }
+
+  /**
+   * Lookup table definition for deduping
+   *
+   * @param signature signature for the table to print, will have const prepended and '= {' appended
+   * @param data list of keys to string values
+   * @param entryFunction transforms a key plus dedup entry name to a table entry. Has indentation
+   *   prepended and ',' appended.
+   */
+  data class LookupTable<T>(
+    val signature: String,
+    val data: List<Pair<T, String?>>,
+    val entryFunction: (T, String) -> String = { key, name -> "[$key] = $name" },
+  )
+
+  /**
+   * Prints a set of lookup tables to string values with deduplicated strings.
+   *
+   * @param mode whether the string value is a filepath or a display string
+   * @param prefix prefix of the static dedup entries
+   * @param valueFunction method that generates the dedup entry, (field, string) -> code. Will be
+   *   prepended with static const and appended with ;.
+   * @param tables table entries to include. Entries included across tables will be deduped.
+   */
+  fun <T> printLookupTables(
+    writer: OutputStreamWriter,
+    mode: PrintMode,
+    prefix: String,
+    valueFunction: (String, String) -> String,
+    vararg tables: LookupTable<T>,
+  ) {
+    fun String.dedupEntry() =
+      prefix + if (mode == PrintMode.FILE) fileID() else TODO("String mode not implemented")
+
+    tables
+      .asSequence()
+      .flatMap { it.data }
+      .map { it.second }
+      .filterNotNull()
+      .filter { it.isNotBlank() }
+      .associateBy { it.dedupEntry() }
+      .entries
+      .forEach { writer.appendLine("static const ${valueFunction(it.key, it.value)};") }
+
+    for (table in tables) {
+      writer.appendLine("const ${table.signature} = {")
+      table.data
+        .filter { !it.second.isNullOrBlank() }
+        .forEach {
+          writer.appendLine("$IND${table.entryFunction(it.first, it.second!!.dedupEntry())},")
+        }
+      writer.appendLine("};\n")
+    }
+  }
+}

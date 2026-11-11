@@ -1,0 +1,306 @@
+raw `
+MauvilleCity_BikeShop_MapScripts:: @ 820EBBB
+	.byte 0
+
+MauvilleCity_BikeShop_EventScript_Rydel:: @ 820EBBC
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_BIKE, MauvilleCity_BikeShop_EventScript_AskSwitchBikes
+	goto_if_set FLAG_DECLINED_BIKE, MauvilleCity_BikeShop_EventScript_SkipGreeting
+	msgbox MauvilleCity_BikeShop_Text_RydelGreeting, MSGBOX_DEFAULT
+	msgbox MauvilleCity_BikeShop_Text_DidYouComeFromFarAway, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq MauvilleCity_BikeShop_EventScript_YesFar
+	compare VAR_RESULT, NO
+	goto_if_eq MauvilleCity_BikeShop_EventScript_NotFar
+	end
+
+MauvilleCity_BikeShop_EventScript_SkipGreeting:: @ 820EBF7
+	msgbox MauvilleCity_BikeShop_Text_DidYouComeFromFarAway, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq MauvilleCity_BikeShop_EventScript_YesFar
+	compare VAR_RESULT, NO
+	goto_if_eq MauvilleCity_BikeShop_EventScript_NotFar
+	end
+
+MauvilleCity_BikeShop_EventScript_ChooseBike:: @ 820EC16
+	msgbox MauvilleCity_BikeShop_Text_ExplainBikesChooseWhichOne, MSGBOX_DEFAULT
+	giveitem ITEM_ACRO_BIKE
+	giveitem ITEM_MACH_BIKE
+	release
+	end
+
+MauvilleCity_BikeShop_EventScript_NotFar:: @ 820EC3D
+	setflag FLAG_DECLINED_BIKE
+	msgbox MauvilleCity_BikeShop_Text_GuessYouDontNeedBike, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_BikeShop_EventScript_YesFar:: @ 820EC4A
+	setflag FLAG_RECEIVED_BIKE
+	goto MauvilleCity_BikeShop_EventScript_ChooseBike
+	end
+
+MauvilleCity_BikeShop_EventScript_GetMachBike:: @ 820EC53
+	msgbox MauvilleCity_BikeShop_Text_ChoseMachBike, MSGBOX_DEFAULT
+	giveitem ITEM_MACH_BIKE
+	goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+	end
+
+MauvilleCity_BikeShop_EventScript_GetAcroBike:: @ 820EC6D
+	msgbox MauvilleCity_BikeShop_Text_ChoseAcroBike, MSGBOX_DEFAULT
+	giveitem ITEM_ACRO_BIKE
+	goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
+	end
+
+MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes:: @ 820EC87
+	msgbox MauvilleCity_BikeShop_Text_ComeBackToSwitchBikes, MSGBOX_DEFAULT
+	special SwapRegisteredBike
+	release
+	end
+
+MauvilleCity_BikeShop_EventScript_AskSwitchBikes:: @ 820EC94
+	checkitem ITEM_ACRO_BIKE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne MauvilleCity_BikeShop_EventScript_SwitchMachForAcro
+	checkitem ITEM_MACH_BIKE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne MauvilleCity_BikeShop_EventScript_SwitchAcroForMach
+	msgbox MauvilleCity_BikeShop_Text_WantToSwitchBikes, MSGBOX_DEFAULT
+	release
+	end
+
+@ If the player does not have a bike on them Rydel assumes its stored in the PC
+MauvilleCity_BikeShop_EventScript_SwitchBikes:: @ 820ECB3
+	msgbox MauvilleCity_BikeShop_Text_IllSwitchBikes, MSGBOX_DEFAULT
+	checkitem ITEM_ACRO_BIKE, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq MauvilleCity_BikeShop_EventScript_SwitchAcroForMach
+	checkitem ITEM_MACH_BIKE, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq MauvilleCity_BikeShop_EventScript_SwitchMachForAcro
+	msgbox MauvilleCity_BikeShop_Text_OhYourBikeIsInPC, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_BikeShop_EventScript_KeepBike:: @ 820ECE5
+	msgbox MauvilleCity_BikeShop_Text_HappyYouLikeIt, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_BikeShop_EventScript_SwitchAcroForMach:: @ 820ECEF
+	incrementgamestat GAME_STAT_TRADED_BIKES
+	msgbox MauvilleCity_BikeShop_Text_ExchangedAcroForMach, MSGBOX_DEFAULT
+	giveitem ITEM_MACH_BIKE
+	return
+
+MauvilleCity_BikeShop_EventScript_SwitchMachForAcro:: @ 820ED10
+	incrementgamestat GAME_STAT_TRADED_BIKES
+	msgbox MauvilleCity_BikeShop_Text_ExchangedMachForAcro, MSGBOX_DEFAULT
+	giveitem ITEM_ACRO_BIKE
+	return
+
+MauvilleCity_BikeShop_EventScript_Assistant:: @ 820ED31
+	msgbox MauvilleCity_BikeShop_Text_HandbooksAreInBack, MSGBOX_NPC
+	end
+
+MauvilleCity_BikeShop_EventScript_MachBikeHandbook:: @ 820ED3A
+	message MauvilleCity_BikeShop_Text_MachHandbookWhichPage
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseMachHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_ChooseMachHandbookPage:: @ 820ED46
+	multichoice 0, 0, MULTI_MACH_BIKE_INFO, FALSE
+	switch VAR_RESULT
+	case 0, MauvilleCity_BikeShop_EventScript_HowToRide
+	case 1, MauvilleCity_BikeShop_EventScript_HowToTurn
+	case 2, MauvilleCity_BikeShop_EventScript_SandySlopes
+	case 3, MauvilleCity_BikeShop_EventScript_ExitMachHandbook
+	case MULTI_B_PRESSED, MauvilleCity_BikeShop_EventScript_ExitMachHandbook
+	end
+
+MauvilleCity_BikeShop_EventScript_HowToRide:: @ 820ED88
+	message MauvilleCity_BikeShop_Text_HowToRideMachBike
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseMachHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_HowToTurn:: @ 820ED94
+	message MauvilleCity_BikeShop_Text_HowToTurnMachBike
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseMachHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_SandySlopes:: @ 820EDA0
+	message MauvilleCity_BikeShop_Text_SandySlopes
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseMachHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_ExitMachHandbook:: @ 820EDAC
+	release
+	end
+
+MauvilleCity_BikeShop_EventScript_AcroBikeHandbook:: @ 820EDAE
+	message MauvilleCity_BikeShop_Text_AcroHandbookWhichPage
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseAcroHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_ChooseAcroHandbookPage:: @ 820EDBA
+	multichoice 0, 0, MULTI_ACRO_BIKE_INFO, FALSE
+	switch VAR_RESULT
+	case 0, MauvilleCity_BikeShop_EventScript_Wheelies
+	case 1, MauvilleCity_BikeShop_EventScript_BunnyHops
+	case 2, MauvilleCity_BikeShop_EventScript_Jumps
+	case 3, MauvilleCity_BikeShop_EventScript_ExitAcroHandbook
+	case MULTI_B_PRESSED, MauvilleCity_BikeShop_EventScript_ExitAcroHandbook
+	end
+
+MauvilleCity_BikeShop_EventScript_Wheelies:: @ 820EDFC
+	message MauvilleCity_BikeShop_Text_Wheelies
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseAcroHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_BunnyHops:: @ 820EE08
+	message MauvilleCity_BikeShop_Text_BunnyHops
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseAcroHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_Jumps:: @ 820EE14
+	message MauvilleCity_BikeShop_Text_Jumps
+	waitmessage
+	goto MauvilleCity_BikeShop_EventScript_ChooseAcroHandbookPage
+	end
+
+MauvilleCity_BikeShop_EventScript_ExitAcroHandbook:: @ 820EE20
+	release
+	end
+
+MauvilleCity_BikeShop_Text_RydelGreeting: @ 820EE22
+	.string "哎呀呀，这是哪位？\n"
+	.string "真是个精神十足的客人！\p"
+	.string "我？你可以叫我莱德。\n"
+	.string "我是这家自行车店的老板。$"
+
+MauvilleCity_BikeShop_Text_DidYouComeFromFarAway: @ 820EE99
+	.string "莱德：你的跑步鞋……脏得厉害。\n"
+	.string "你是从很远的地方来的？$"
+
+MauvilleCity_BikeShop_Text_GuessYouDontNeedBike: @ 820EEE8
+	.string "莱德：是吗？\n"
+	.string "那你大概不需要我的自行车了。$"
+
+MauvilleCity_BikeShop_Text_ExplainBikesChooseWhichOne: @ 820EF32
+	.string "莱德：嗯，嗯……\n"
+	.string "你说你是从未白镇一路过来的？\p"
+	.string "天啊！那可真够远的！\n"
+	.string "要是有我的一辆自行车，\p"
+	.string "你就能轻松去任何地方，\n"
+	.string "还能感受风的轻抚！\p"
+	.string "这样吧！我送你一辆自行车！\n"
+	.string "哦，等一下！\p"
+	.string "我忘了告诉你，自行车有两种！\n"
+	.string "分别是音速自行车和越野自行车！\p"
+	.string "音速自行车是给想用身体感受风的\n"
+	.string "骑手准备的！\p"
+	.string "越野自行车则是给喜欢技巧骑行的\n"
+	.string "人准备的！\p"
+	.string "我人很好，你喜欢哪辆就拿哪辆！\n"
+	.string "你要选哪……\p"
+	.string "等等，我认出你了！\n"
+	.string "你是千里的孩子！\p"
+	.string "别选了。两辆都给你！\n"
+	.string "作为交换，一定要\p"
+	.string "好好炫耀我们的自行车！$"
+
+MauvilleCity_BikeShop_Text_ChoseMachBike: @ 820F18D
+	.string "{PLAYER}选择了音速自行车。$"
+
+MauvilleCity_BikeShop_Text_ChoseAcroBike: @ 820F1A5
+	.string "{PLAYER}选择了越野自行车。$"
+
+MauvilleCity_BikeShop_Text_ComeBackToSwitchBikes: @ 820F1BD
+	.string "莱德：要是你想换自行车，\n"
+	.string "来找我就行！$"
+
+MauvilleCity_BikeShop_Text_WantToSwitchBikes: @ 820F1FB
+	.string "莱德：一定要好好炫耀我们的自行车\n"
+	.string "！$"
+
+MauvilleCity_BikeShop_Text_IllSwitchBikes: @ 820F22F
+	.string "莱德：好，没问题！\n"
+	.string "我帮你换自行车！$"
+
+MauvilleCity_BikeShop_Text_ExchangedMachForAcro: @ 820F263
+	.string "莱德：哦！你回来了！太好了！\n"
+	.string "上次我好像忘了给你这个。$"
+
+MauvilleCity_BikeShop_Text_ExchangedAcroForMach: @ 820F294
+	.string "莱德：哦！你回来了！太好了！\n"
+	.string "上次我忘了给你这个。$"
+
+MauvilleCity_BikeShop_Text_HappyYouLikeIt: @ 820F2C4
+	.string "莱德：好，好！你喜欢它我很高兴！$"
+
+MauvilleCity_BikeShop_Text_OhYourBikeIsInPC: @ 820F2F3
+	.string "哦？我给你的自行车怎么了？\n"
+	.string "哦，我知道了，你把它存进电脑了。\p"
+	.string "那就从电脑里取出来，\n"
+	.string "我很乐意跟你换！\p"
+	.string "愿风永远在你冒险的路上推着你！$"
+
+MauvilleCity_BikeShop_Text_HandbooksAreInBack: @ 820F3C3
+	.string "我在这儿工作，\n"
+	.string "同时在学自行车知识。\p"
+	.string "要是你需要骑车的建议，\n"
+	.string "后面有几本手册。$"
+
+MauvilleCity_BikeShop_Text_MachHandbookWhichPage: @ 820F445
+	.string "这是音速自行车的手册。\n"
+	.string "你想读哪一页？$"
+
+MauvilleCity_BikeShop_Text_HowToRideMachBike: @ 820F487
+	.string "自行车会朝按下十字键的方向前进。\n"
+	.string "一旦跑起来就会加速。\p"
+	.string "要停下就松开十字键。\n"
+	.string "自行车会慢下来停住。\p"
+	.string "要读别的页吗？$"
+
+MauvilleCity_BikeShop_Text_HowToTurnMachBike: @ 820F550
+	.string "音速自行车很快，但不太容易刹住。\n"
+	.string "转弯会有点难。\p"
+	.string "在弯道前一点松开十字键减速。\n"
+	.string "要读别的页吗？$"
+
+MauvilleCity_BikeShop_Text_SandySlopes: @ 820F61A
+	.string "丰缘地区到处都有小沙坡。\n"
+	.string "松散的沙子让人没法正常爬上去。\p"
+	.string "但如果你有音速自行车，\n"
+	.string "就能冲上沙坡。\p"
+	.string "要读别的页吗？$"
+
+MauvilleCity_BikeShop_Text_AcroHandbookWhichPage: @ 820F6ED
+	.string "这是越野自行车的手册。\n"
+	.string "你想读哪一页？$"
+
+MauvilleCity_BikeShop_Text_Wheelies: @ 820F72F
+	.string "骑行时按B键，前轮就会抬起。\n"
+	.string "你可以用十字键抬着前轮跑。\p"
+	.string "这个技巧叫翘前轮。\n"
+	.string "要读别的页吗？$"
+
+MauvilleCity_BikeShop_Text_BunnyHops: @ 820F7F5
+	.string "按住B键，自行车就能原地跳。\n"
+	.string "这个技巧叫兔子跳。\p"
+	.string "你也可以边跳边骑。\n"
+	.string "要读别的页吗？$"
+
+MauvilleCity_BikeShop_Text_Jumps: @ 820F898
+	.string "同时按B键和十字键就能跳。\n"
+	.string "按十字键的左右就能侧跳。\p"
+	.string "按反方向就能在跳跃中改变方向。$"
+`

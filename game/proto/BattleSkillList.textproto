@@ -1,0 +1,50 @@
+# proto-file: BattleSkillList.proto
+# proto-message: er.BattleSkillList
+
+template {
+  id: SKILL_TEMPLATE_EXTRA_ABILITY
+  name: "Extra Ability"
+  valid_params {
+    announce_string: "{B_TRAINER1_NAME}'s team gains the\\nability {B_BUFF1}!"
+    param {
+      ability: ABILITY_NONE
+    }
+  }
+  valid_params {
+    announce_string: "{B_TRAINER1_NAME}'s team gains the\\nabilities {B_BUFF1} and {B_BUFF2}!"
+    param {
+      ability: ABILITY_NONE
+    }
+    param {
+      ability: ABILITY_NONE
+    }
+  }
+  valid_params {
+    announce_string: "{B_TRAINER1_NAME}'s team gains the\\nabilities {B_BUFF1}, {B_BUFF2},\\pand {B_BUFF3}!"
+    param {
+      ability: ABILITY_NONE
+    }
+    param {
+      ability: ABILITY_NONE
+    }
+    param {
+      ability: ABILITY_NONE
+    }
+  }
+}
+
+skill {
+  id: SKILL_NONE
+  name: "---"
+}
+skill {
+  id: SKILL_PLAYER_LETHARGY
+  name: "Lethargy"
+  announce_string: "{B_STACK_1_NAME_WITH_PREFIX}'s ability\\nbecame Lethargy!"
+}
+skill {
+  id: SKILL_PLAYER_NORMALIZE
+  name: "Normalize"
+  announce_string: "{B_STACK_1_NAME_WITH_PREFIX}'s ability\\nbecame Normalize!"
+}
+# TODO: Make the weather strings better?

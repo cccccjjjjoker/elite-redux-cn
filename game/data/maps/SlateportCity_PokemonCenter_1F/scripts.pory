@@ -1,0 +1,43 @@
+raw `
+.set LOCALID_NURSE, 1
+
+SlateportCity_PokemonCenter_1F_MapScripts:: @ 820DABF
+	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+SlateportCity_PokemonCenter_1F_OnTransition: @ 820DACA
+	setrespawn HEAL_LOCATION_SLATEPORT_CITY
+	call Common_EventScript_UpdateBrineyLocation
+	end
+
+SlateportCity_PokemonCenter_1F_EventScript_Nurse:: @ 820DAD3
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+SlateportCity_PokemonCenter_1F_EventScript_Sailor:: @ 820DAE1
+	msgbox SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon, MSGBOX_NPC
+	end
+
+SlateportCity_PokemonCenter_1F_EventScript_Woman:: @ 820DAEA
+	msgbox SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend, MSGBOX_NPC
+	end
+
+SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon: @ 820DAF3
+	.string "想要对战的小建议吗？\n"
+	.string "我会说是均衡地培养\p"
+	.string "各种不同的宝可梦。\n"
+	.string "只把一只宝可梦练强可不行。\p"
+	.string "要是属性上不利，\n"
+	.string "它可能一点胜算都没有。$"
+
+SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend: @ 820DBBC
+	.string "我和朋友交换宝可梦。\n"
+	.string "要是交换来的宝可梦\p"
+	.string "还带着道具，我会加倍高兴！$"
+
+`

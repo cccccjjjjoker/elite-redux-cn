@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package er;
+
+import "MoveBehavior.proto";
+import "MoveEffect.proto";
+import "Types.proto";
+import "ScriptConditions.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+message MoveBehaviorConfigList {
+  repeated MoveBehaviorConfig config = 1;
+}
+
+message MoveBehaviorConfig {
+  message Attack {
+    message AttackMoveEffect {
+      MoveEffect effect = 1;
+      bool affects_user = 2;
+      bool certain = 3;
+    }
+
+    message AttackSecondaryEffect {
+      int32 chance = 1;
+      oneof attack_effect {
+        AttackMoveEffect move_effect = 3;
+        bool argument_effect = 4;
+      }
+    }
+
+    message DamageModifier {
+      repeated ScriptCondition condition = 1;
+      oneof modifier {
+        float multiply = 2;
+        int32 add = 3;
+        int32 set = 4;
+        bool custom = 5;
+        MoveBehavior custom_from = 6;
+      }
+    }
+
+    repeated AttackSecondaryEffect effect = 1;
+    oneof resistance_modifier {
+      Type super_effective_vs = 2;
+      bool ignore_type_immunity = 3;
+    }
+    int32 recoil_fraction = 4;
+    DamageModifier damage = 5;
+  }
+
+  MoveBehavior id = 1;
+  bool causes_flinch = 2;
+  bool trapping_effect = 3;
+  oneof config_type {
+    string legacy_config = 4;
+    Attack attack = 5;
+  }
+}

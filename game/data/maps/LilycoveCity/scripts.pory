@@ -1,0 +1,811 @@
+raw `
+.set LOCALID_WOMAN_1, 18
+.set LOCALID_MAN_1, 19
+
+LilycoveCity_MapScripts:: @ 81E2B3C
+	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_OnTransition
+	.byte 0
+
+LilycoveCity_OnTransition: @ 81E2B47
+	setflag FLAG_VISITED_LILYCOVE_CITY
+	setvar VAR_CONTEST_HALL_STATE, 0
+	setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	call Common_EventScript_SetupRivalGfxId
+	end
+
+LilycoveCity_OnLoad: @ Unused
+	call_if_unset FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_SetWailmerMetatiles
+	end
+
+LilycoveCity_EventScript_SetWailmerMetatiles:: @ 81E2B6B
+	setmetatile 76, 12, METATILE_Lilycove_Wailmer0, 1
+	setmetatile 77, 12, METATILE_Lilycove_Wailmer1, 1
+	setmetatile 76, 13, METATILE_Lilycove_Wailmer2, 1
+	setmetatile 77, 13, METATILE_Lilycove_Wailmer3, 1
+	setmetatile 76, 14, METATILE_Lilycove_Wailmer0_Alt, 1
+	setmetatile 77, 14, METATILE_Lilycove_Wailmer1_Alt, 1
+	setmetatile 76, 15, METATILE_Lilycove_Wailmer2, 1
+	setmetatile 77, 15, METATILE_Lilycove_Wailmer3, 1
+	setmetatile 77, 16, METATILE_Lilycove_Wailmer0_Alt, 1
+	setmetatile 78, 16, METATILE_Lilycove_Wailmer1_Alt, 1
+	setmetatile 77, 17, METATILE_Lilycove_Wailmer2, 1
+	setmetatile 78, 17, METATILE_Lilycove_Wailmer3, 1
+	return
+
+LilycoveCity_EventScript_BerryGentleman:: @ 81E2BD8
+	lock
+	faceplayer
+	dotimebasedevents
+	goto_if_set FLAG_DAILY_LILYCOVE_RECEIVED_BERRY, LilycoveCity_EventScript_ReceivedBerry
+	msgbox LilycoveCity_Text_BerrySuitsYou, MSGBOX_DEFAULT
+	random 10
+	addvar VAR_RESULT, FIRST_BERRY_INDEX
+	giveitem VAR_RESULT
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_DAILY_LILYCOVE_RECEIVED_BERRY
+	msgbox LilycoveCity_Text_BecauseYoureTrainer, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_ReceivedBerry:: @ 81E2C18
+	msgbox LilycoveCity_Text_PokeblocksSuitPokemon, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_Man3:: @ 81E2C22
+	msgbox LilycoveCity_Text_ContestHallInTown, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_Girl:: @ 81E2C2B
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE07_GET, LilycoveCity_EventScript_GirlAquaGone
+	msgbox LilycoveCity_Text_StrangeCaveInCove, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_GirlAquaGone:: @ 81E2C40
+	msgbox LilycoveCity_Text_GoingToMoveDeleterForHMs, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_RichBoy:: @ 81E2C4A
+	msgbox LilycoveCity_Text_ImFromKanto, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_Sailor2:: @ 81E2C53
+	lock
+	faceplayer
+	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_Sailor2AquaGone
+	msgbox LilycoveCity_Text_TeamAquaBeenTrainingWailmer, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_Sailor2AquaGone:: @ 81E2C68
+	msgbox LilycoveCity_Text_SomeonePuntedTeamAquaOut, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_Woman2:: @ 81E2C72
+	lock
+	faceplayer
+	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_Woman2AquaGone
+	msgbox LilycoveCity_Text_SomeoneStoleMyPokemon, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_Woman2AquaGone:: @ 81E2C87
+	msgbox LilycoveCity_Text_MissingPokemonCameBack, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_Man2:: @ 81E2C91
+	msgbox LilycoveCity_Text_ImArtDealer, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_ExpertM1:: @ 81E2C9A
+	msgbox LilycoveCity_Text_SeaRemainsForeverYoung, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_ExpertF:: @ 81E2CA3
+	msgbox LilycoveCity_Text_SixtyYearsAgoHusbandProposed, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_ExpertM2:: @ 81E2CAC
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE07_GET, LilycoveCity_EventScript_ExpertM2AquaGone
+	msgbox LilycoveCity_Text_TeamAquaRenovatedCavern, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_ExpertM2AquaGone:: @ 81E2CC1
+	msgbox LilycoveCity_Text_TeamAquaLotGoneForGood, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_EventScript_Sailor1:: @ 81E2CCB
+	msgbox LilycoveCity_Text_HeardTowerCalledSkyPillar, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_FatMan:: @ 81E2CD4
+	msgbox LilycoveCity_Text_SawTallTowerOnRoute131, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_Man1:: @ 81E2CDD
+	lockall
+	msgbox LilycoveCity_Text_JustArrivedAndSawRarePokemon, MSGBOX_NPC
+	applymovement LOCALID_MAN_1, Common_Movement_FaceOriginalDirection
+	end
+
+LilycoveCity_EventScript_Woman1:: @ 81E2CEE
+	lockall
+	msgbox LilycoveCity_Text_HoneymoonVowToSeeRarePokemon, MSGBOX_NPC
+	applymovement LOCALID_WOMAN_1, Common_Movement_FaceOriginalDirection
+	end
+
+LilycoveCity_EventScript_CitySign:: @ 81E2CFF
+	msgbox LilycoveCity_Text_CitySign, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_ContestHallSign:: @ 81E2D08
+	msgbox LilycoveCity_Text_ContestHallSign, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_MotelSign:: @ 81E2D11
+	msgbox LilycoveCity_Text_MotelSign, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_MuseumSign:: @ 81E2D1A
+	lockall
+	specialvar VAR_0x8004, CountPlayerMuseumPaintings
+	switch VAR_0x8004
+	case 0, LilycoveCity_EventScript_MuseumSignNoPaintings
+	msgbox LilycoveCity_Text_MuseumSignPlayersExhibit, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_EventScript_MuseumSignNoPaintings:: @ 81E2D3A
+	msgbox LilycoveCity_Text_MuseumSign, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_EventScript_HarborSign:: @ 81E2D44
+	lockall
+	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_HarborSignFerryReady
+	msgbox LilycoveCity_Text_HarborSignUnderConstruction, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_EventScript_HarborSignFerryReady:: @ 81E2D58
+	msgbox LilycoveCity_Text_HarborSign, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_EventScript_TrainerFanClubSign:: @ 81E2D62
+	msgbox LilycoveCity_Text_TrainerFanClubSign, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_DepartmentStoreSign:: @ 81E2D6B
+	msgbox LilycoveCity_Text_DepartmentStoreSign, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_BallSwappersHouseSign::
+	msgbox LilycoveCity_Text_BallSwappersHouseSign, MSGBOX_SIGN
+	end
+
+LilycoveCity_EventScript_WailmerTrainerGrunt:: @ 81E2D7D
+	lockall
+	goto_if_set FLAG_MET_WAILMER_TRAINER, LilycoveCity_EventScript_MetWailmerTrainer
+	msgbox LilycoveCity_Text_WailmerLeapOutOfWater, MSGBOX_DEFAULT
+	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox LilycoveCity_Text_GetLostMessingUpTraining, MSGBOX_DEFAULT
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	setflag FLAG_MET_WAILMER_TRAINER
+	releaseall
+	end
+
+LilycoveCity_EventScript_MetWailmerTrainer:: @ 81E2DB0
+	msgbox LilycoveCity_Text_WailmerLeapOutOfWater, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_EventScript_AquaGrunt1:: @ 81E2DBA
+	msgbox LilycoveCity_Text_MovedLootIntoHideoutToday, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_AquaGrunt2:: @ 81E2DC3
+	msgbox LilycoveCity_Text_ChanceToDoBigThings, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_AquaGrunt3:: @ 81E2DCC
+	msgbox LilycoveCity_Text_DontGoNearCaveInCove, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_AquaGrunt4:: @ 81E2DD5
+	msgbox LilycoveCity_Text_IfWorldBecomesOurs, MSGBOX_NPC
+	end
+
+LilycoveCity_EventScript_Rival:: @ 81E2DDE
+	lock
+	faceplayer
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq LilycoveCity_EventScript_May
+	compare VAR_RESULT, FEMALE
+	goto_if_eq LilycoveCity_EventScript_Brendan
+	end
+
+LilycoveCity_EventScript_May:: @ 81E2DF8
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattleAgain
+	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattle
+	compare VAR_RESULT, NO
+	goto_if_eq LilycoveCity_EventScript_DeclineMayBattle
+	msgbox LilycoveCity_Text_MayWontBeBeaten, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, LilycoveCity_EventScript_BattleMayTreecko
+	case 1, LilycoveCity_EventScript_BattleMayTorchic
+	case 2, LilycoveCity_EventScript_BattleMayMudkip
+	end
+
+LilycoveCity_EventScript_MayAskToBattleAgain:: @ 81E2E48
+	msgbox LilycoveCity_Text_MayBattleMe, MSGBOX_YESNO
+	return
+
+LilycoveCity_EventScript_MayAskToBattle:: @ 81E2E51
+	msgbox LilycoveCity_Text_MayShoppingLetsBattle, MSGBOX_YESNO
+	return
+
+LilycoveCity_EventScript_DeclineMayBattle:: @ 81E2E5A
+	setflag FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE
+	msgbox LilycoveCity_Text_MayNotRaisingPokemon, MSGBOX_DEFAULT
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	release
+	end
+
+LilycoveCity_EventScript_Brendan:: @ 81E2E6B
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattleAgain
+	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattle
+	compare VAR_RESULT, NO
+	goto_if_eq LilycoveCity_EventScript_DeclineBrendanBattle
+	msgbox LilycoveCity_Text_BrendanWontBeBeaten, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, LilycoveCity_EventScript_BattleBrendanTreecko
+	case 1, LilycoveCity_EventScript_BattleBrendanTorchic
+	case 2, LilycoveCity_EventScript_BattleBrendanMudkip
+	end
+
+LilycoveCity_EventScript_BrendanAskToBattleAgain:: @ 81E2EBB
+	msgbox LilycoveCity_Text_BrendanBattleMe, MSGBOX_YESNO
+	return
+
+LilycoveCity_EventScript_BrendanAskToBattle:: @ 81E2EC4
+	msgbox LilycoveCity_Text_BrendanShoppingLetsBattle, MSGBOX_YESNO
+	return
+
+LilycoveCity_EventScript_DeclineBrendanBattle:: @ 81E2ECD
+	setflag FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE
+	msgbox LilycoveCity_Text_BrendanNoConfidence, MSGBOX_DEFAULT
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	release
+	end
+
+LilycoveCity_EventScript_BattleMayTreecko:: @ 81E2EDE
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TREECKO, LilycoveCity_Text_MayDefeat
+	goto LilycoveCity_EventScript_DefeatedMay
+	end
+
+LilycoveCity_EventScript_BattleMayTorchic:: @ 81E2EEE
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TORCHIC, LilycoveCity_Text_MayDefeat
+	goto LilycoveCity_EventScript_DefeatedMay
+	end
+
+LilycoveCity_EventScript_BattleMayMudkip:: @ 81E2EFE
+	setvar VAR_0x8004, 5
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_MUDKIP, LilycoveCity_Text_MayDefeat
+	goto LilycoveCity_EventScript_DefeatedMay
+	end
+
+LilycoveCity_EventScript_BattleBrendanTreecko:: @ 81E2F0E
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TREECKO, LilycoveCity_Text_BrendanDefeat
+	goto LilycoveCity_EventScript_DefeatedBrendan
+	end
+
+LilycoveCity_EventScript_BattleBrendanTorchic:: @ 81E2F1E
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TORCHIC, LilycoveCity_Text_BrendanDefeat
+	goto LilycoveCity_EventScript_DefeatedBrendan
+	end
+
+LilycoveCity_EventScript_BattleBrendanMudkip:: @ 81E2F2E
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_MUDKIP, LilycoveCity_Text_BrendanDefeat
+	goto LilycoveCity_EventScript_DefeatedBrendan
+	end
+
+LilycoveCity_EventScript_DefeatedMay:: @ 81E2F3E
+	msgbox LilycoveCity_Text_MayGoingBackToLittleroot, MSGBOX_DEFAULT
+	setvar VAR_RESULT, FALSE
+	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_CheckFinalBadge
+	compare VAR_RESULT, FALSE
+	call_if_eq LilycoveCity_EventScript_MayCollectBadges
+	compare VAR_RESULT, TRUE
+	call_if_eq LilycoveCity_EventScript_MayPokemonLeague
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
+	goto LilycoveCity_EventScript_RivalFlyAway
+	end
+
+LilycoveCity_EventScript_CheckFinalBadge:: @ 81E2F76
+	goto_if_set FLAG_BADGE08_GET, LilycoveCity_EventScript_HasFinalBadge
+	return
+
+LilycoveCity_EventScript_HasFinalBadge:: @ 81E2F80
+	setvar VAR_RESULT, TRUE
+	return
+
+LilycoveCity_EventScript_MayCollectBadges:: @ 81E2F86
+	msgbox LilycoveCity_Text_MayYouGoingToCollectBadges, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_MayPokemonLeague:: @ 81E2F8F
+	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_MayBattleFrontier
+	msgbox LilycoveCity_Text_MayYouGoingToPokemonLeague, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_MayBattleFrontier:: @ 81E2FA1
+	msgbox LilycoveCity_Text_MayYouGoingToBattleFrontier, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_DefeatedBrendan:: @ 81E2FAA
+	msgbox LilycoveCity_Text_BrendanGoingBackToLittleroot, MSGBOX_DEFAULT
+	setvar VAR_RESULT, FALSE
+	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_CheckFinalBadge
+	compare VAR_RESULT, FALSE
+	call_if_eq LilycoveCity_EventScript_BrendanCollectBadges
+	compare VAR_RESULT, TRUE
+	call_if_eq LilycoveCity_EventScript_BrendanPokemonLeague
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL
+	goto LilycoveCity_EventScript_RivalFlyAway
+	end
+
+LilycoveCity_EventScript_BrendanCollectBadges:: @ 81E2FE2
+	msgbox LilycoveCity_Text_BrendanYouGoingToCollectBadges, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_BrendanPokemonLeague:: @ 81E2FEB
+	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_BrendanBattleFrontier
+	msgbox LilycoveCity_Text_BrendanYouGoingToPokemonLeague, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_BrendanBattleFrontier:: @ 81E2FFD
+	msgbox LilycoveCity_Text_BrendanYouGoingToBattleFrontier, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_RivalFlyAway:: @ 81E3006
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	delay 50
+	setfieldeffectargument 0, 1
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	delay 15
+	removeobject VAR_LAST_TALKED
+	waitfieldeffect FLDEFF_NPCFLY_OUT
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	setflag FLAG_MET_RIVAL_LILYCOVE
+	release
+	end
+
+LilycoveCity_EventScript_SchoolKidM:: @ 81E302D
+	lock
+	faceplayer
+	msgbox LilycoveCity_Text_DoYouKnowAboutBerryBlender, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	call_if_eq LilycoveCity_EventScript_KnowAboutBerryBlender
+	compare VAR_RESULT, NO
+	call_if_eq LilycoveCity_EventScript_DontKnowAboutBerryBlender
+	release
+	end
+
+LilycoveCity_EventScript_KnowAboutBerryBlender:: @ 81E304F
+	msgbox LilycoveCity_Text_FasterSpinBetterPokeblocks, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_DontKnowAboutBerryBlender:: @ 81E3058
+	msgbox LilycoveCity_Text_ExplainBerryBlender, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_EventScript_GiveAltarianite::
+	lockall
+	faceplayer
+	goto_if_set FLAG_ITEM_LILYCOVE_CITY_ALTARIANITE, LilycoveCity_EventScript_ExplainAltarianite
+	msgbox LilycoveCity_Text_CloudDragon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LilycoveCity_EventScript_AltariaRefuse
+	goto LilycoveCity_EventScript_YesAltaria
+	releaseall
+	end
+
+LilycoveCity_EventScript_YesAltaria::
+	msgbox LilycoveCity_Text_YesAltaria, MSGBOX_DEFAULT
+	givecustommon SPECIES_ALTARIA, 55, ITEM_LEFTOVERS, ITEM_POKE_BALL, NATURE_TIMID, 1, 76, 0, 0, 180, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_BOOMBURST, MOVE_FIERY_DANCE, MOVE_QUIVER_DANCE, MOVE_ROOST, TRUE
+	playfanfare MUS_OBTAIN_ITEM 
+	message LilycoveCity_Text_Got_Altaria
+	waitfanfare
+	setflag FLAG_ITEM_LILYCOVE_CITY_ALTARIANITE
+LilycoveCity_EventScript_ExplainAltarianite::
+	msgbox LilycoveCity_Text_ExplainAltarianite, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_EventScript_AltariaRefuse::
+	msgbox LilycoveCity_Text_AltariaRefuse, MSGBOX_DEFAULT
+	releaseall
+	end
+
+LilycoveCity_Text_MayShoppingLetsBattle: @ 81E3061
+	.string "小遥：哦，嗨？\n"
+	.string "{PLAYER}{KUN}，你也在购物吗？\p"
+	.string "我买了一大堆玩偶和海报。\p"
+	.string "当然，我也抓了很多宝可梦，\n"
+	.string "而且都好好培养着。\p"
+	.string "其实我更担心的是\n"
+	.string "你有没有好好培养宝可梦，\p"
+	.string "{PLAYER}{KUN}。\p"
+	.string "跟我打一场吧，\n"
+	.string "让我看看你的宝可梦，\p"
+	.string "{PLAYER}{KUN}。$"
+
+LilycoveCity_Text_MayNotRaisingPokemon: @ 81E318D
+	.string "小遥：哦，为什么？{PLAYER}{KUN}，\n"
+	.string "你没有好好培养宝可梦吗？\p"
+	.string "这样可不像个合格的训练家……$"
+
+LilycoveCity_Text_MayBattleMe: @ 81E31F5
+	.string "小遥：来嘛，跟我打一场，\n"
+	.string "让我看看你的宝可梦！$"
+
+LilycoveCity_Text_MayWontBeBeaten: @ 81E3234
+	.string "小遥：我培养的宝可梦，\n"
+	.string "可不会被你的打败，{PLAYER}{KUN}！$"
+
+LilycoveCity_Text_MayDefeat: @ 81E3275
+	.string "…… …… …… ……\p"
+	.string "我还记得在 103 号道路\n"
+	.string "和你打的那一场，{PLAYER}{KUN}。\p"
+	.string "就是那场对战让你变得这么强，\n"
+	.string "{PLAYER}{KUN}，对吧？$"
+
+LilycoveCity_Text_MayGoingBackToLittleroot: @ 81E32FB
+	.string "小遥：我在考虑不久后\n"
+	.string "回未白镇一趟。\p"
+	.string "我抓了一群不错的宝可梦，\n"
+	.string "图鉴也快完成了，\p"
+	.string "所以想回去给我爸看看。$"
+
+LilycoveCity_Text_MayYouGoingToCollectBadges: @ 81E3398
+	.string "{PLAYER}{KUN}，你打算怎么做？\p"
+	.string "收集所有道馆徽章，\n"
+	.string "去挑战宝可梦联盟吗？\p"
+	.string "那么，在你收集徽章的时候，\n"
+	.string "{PLAYER}{KUN}，\p"
+	.string "我要专心完成图鉴。\n"
+	.string "我会比你先完成！\p"
+	.string "再见！$"
+
+LilycoveCity_Text_MayYouGoingToPokemonLeague: @ 81E346D
+	.string "{PLAYER}{KUN}，你打算怎么做？\p"
+	.string "你要挑战宝可梦联盟吗？\p"
+	.string "还是说，你要完成图鉴？\p"
+	.string "对战上我可能输给了你，\n"
+	.string "但图鉴我会比你先完成！\p"
+	.string "再见！$"
+
+LilycoveCity_Text_MayYouGoingToBattleFrontier: @ 81E353A
+	.string "{PLAYER}{KUN}，你打算怎么做？\p"
+	.string "你要挑战对战开拓区吗？\p"
+	.string "还是说，你要完成图鉴？\p"
+	.string "对战上我可能输给了你，\n"
+	.string "但图鉴我会比你先完成！\p"
+	.string "再见！$"
+
+LilycoveCity_Text_BrendanShoppingLetsBattle: @ 81E3608
+	.string "祐树：哦，嘿，是{PLAYER}啊。\p"
+	.string "我在帮我爸跑腿。\n"
+	.string "不，我不是来买玩偶的。\p"
+	.string "总之，好久不见了。\p"
+	.string "要不要打一场，\n"
+	.string "看谁把宝可梦培养得更好？$"
+
+LilycoveCity_Text_BrendanNoConfidence: @ 81E36BF
+	.string "祐树：哦，怎么了？\p"
+	.string "没信心吗？$"
+
+LilycoveCity_Text_BrendanBattleMe: @ 81E36FA
+	.string "祐树：想打一场，\n"
+	.string "看谁培养得更好吗？$"
+
+LilycoveCity_Text_BrendanWontBeBeaten: @ 81E373C
+	.string "祐树：唉，可你知道\n"
+	.string "我是不会输给{PLAYER}的。$"
+
+LilycoveCity_Text_BrendanDefeat: @ 81E3777
+	.string "哼……\p"
+	.string "你培养得真不少。\p"
+	.string "这有点扎心：\n"
+	.string "我当训练家可比你早……$"
+
+LilycoveCity_Text_BrendanGoingBackToLittleroot: @ 81E37D7
+	.string "祐树：我……\n"
+	.string "我打算回未白镇一趟。\p"
+	.string "你知道我在帮我爸做图鉴。\n"
+	.string "进展还不错，\p"
+	.string "该回去给他看看。$"
+
+LilycoveCity_Text_BrendanYouGoingToCollectBadges: @ 81E3876
+	.string "{PLAYER}，你打算怎么做？\p"
+	.string "收集所有道馆徽章，\n"
+	.string "去挑战宝可梦联盟？\p"
+	.string "也许我也会那么做……\p"
+	.string "总之，加油吧！$"
+
+LilycoveCity_Text_BrendanYouGoingToPokemonLeague: @ 81E390C
+	.string "{PLAYER}，你打算怎么做？\p"
+	.string "既然你这么强，\n"
+	.string "是要挑战宝可梦联盟吗？\p"
+	.string "呵，就算是我，\n"
+	.string "只要再多训练一点，\p"
+	.string "也会比你强的，{PLAYER}。\p"
+	.string "总之，加油吧！$"
+
+LilycoveCity_Text_BrendanYouGoingToBattleFrontier: @ 81E39E3
+	.string "{PLAYER}，你打算怎么做？\p"
+	.string "你要挑战对战开拓区吗？\p"
+	.string "还是说，你要完成图鉴？\p"
+	.string "既然你这么强，\n"
+	.string "该考虑去对战开拓区。\p"
+	.string "呵，只要我再多训练一点，\n"
+	.string "就会比你强，{PLAYER}。\p"
+	.string "也许我该去对战开拓区。\p"
+	.string "总之，加油吧！$"
+
+LilycoveCity_Text_MovedLootIntoHideoutToday: @ 81E3B2C
+	.string "呵呵呵……\p"
+	.string "我们今天又往秘密基地\n"
+	.string "搬了更多赃物……\p"
+	.string "你、你是谁？！\p"
+	.string "我只是在自言自语！$"
+
+LilycoveCity_Text_ChanceToDoBigThings: @ 81E3B95
+	.string "我只是个手下，\n"
+	.string "不知道老大在想什么……\p"
+	.string "但在水舰队，\n"
+	.string "我知道我会有机会干大事！\p"
+	.string "你、你是谁？！\p"
+	.string "我只是在自言自语！$"
+
+LilycoveCity_Text_DontGoNearCaveInCove: @ 81E3C46
+	.string "喂，你！\p"
+	.string "别靠近小湾里的那个洞窟！\p"
+	.string "为什么？不需要理由！\n"
+	.string "我是大人，你听我的就对了！$"
+
+LilycoveCity_Text_IfWorldBecomesOurs: @ 81E3CBE
+	.string "如果这整个世界都成为我们的，\n"
+	.string "成为水舰队的，\p"
+	.string "对宝可梦来说也会更幸福。$"
+
+LilycoveCity_Text_WailmerLeapOutOfWater: @ 81E3D1F
+	.string "就那儿！吼吼鲸！\p"
+	.string "现在跳出水面！$"
+
+LilycoveCity_Text_GetLostMessingUpTraining: @ 81E3D4A
+	.string "嗯？你想干嘛？\p"
+	.string "你妨碍我们训练了，\n"
+	.string "能不能走开？$"
+
+LilycoveCity_Text_ContestHallInTown: @ 81E3D9E
+	.string "这个镇上就有宝可梦华丽大赛会场。\p"
+	.string "也就是说，全国培养得好的\n"
+	.string "宝可梦都会聚集过来。\p"
+	.string "我的心激动得要炸开了！$"
+
+LilycoveCity_Text_StrangeCaveInCove: @ 81E3E3C
+	.string "你看到镇子边小湾里\n"
+	.string "那个奇怪的洞窟了吗？$"
+
+LilycoveCity_Text_GoingToMoveDeleterForHMs: @ 81E3E7D
+	.string "我要教宝可梦一些新招式\n"
+	.string "来参加华丽大赛。\p"
+	.string "所以我要去找招式遗忘师，\n"
+	.string "让它忘掉秘传招式。$"
+
+LilycoveCity_Text_ImFromKanto: @ 81E3F05
+	.string "我从关都来的。\p"
+	.string "丰缘地区水多、自然苍翠，\n"
+	.string "真是美丽。\p"
+	.string "嗯？等等……\p"
+	.string "这里会不会有\n"
+	.string "只在这一带栖息的稀有宝可梦？$"
+
+LilycoveCity_Text_TeamAquaBeenTrainingWailmer: @ 81E3FAB
+	.string "水舰队一直在小湾里\n"
+	.string "训练他们的吼吼鲸。\p"
+	.string "它们挡着，我们的船出不了海！$"
+
+LilycoveCity_Text_SomeonePuntedTeamAquaOut: @ 81E4020
+	.string "哟嗬，你知道吗？\p"
+	.string "有人替我们把水舰队踢开了！\p"
+	.string "吼吼鲸也离开了小湾，\n"
+	.string "我们的船又能出海了。$"
+
+LilycoveCity_Text_SomeoneStoleMyPokemon: @ 81E40AD
+	.string "我在海边旅馆听着浪声\n"
+	.string "美美地打了个盹……\p"
+	.string "结果有人偷走了我的宝可梦！\p"
+	.string "是谁干的？\p"
+	.string "水舰队？是水舰队吗？$"
+
+LilycoveCity_Text_MissingPokemonCameBack: @ 81E4145
+	.string "我失踪的宝可梦……\p"
+	.string "不知不觉就回来了！$"
+
+LilycoveCity_Text_ImArtDealer: @ 81E417B
+	.string "我是艺术品商人。\p"
+	.string "我买卖精美的艺术品，\n"
+	.string "尤其是绘画。\p"
+	.string "听说这里的博物馆\n"
+	.string "展出了了不起的作品……$"
+
+LilycoveCity_Text_SeaRemainsForeverYoung: @ 81E420B
+	.string "就算我们变老起皱，\n"
+	.string "大海依旧年轻，\p"
+	.string "生命的光辉鲜明如初……\p"
+	.string "呼呵呵呵，呼呵呵呵呵……$"
+
+LilycoveCity_Text_SixtyYearsAgoHusbandProposed: @ 81E4283
+	.string "六十年前，我丈夫\n"
+	.string "就是在这里向我求婚的。\p"
+	.string "大海依旧那么美。\p"
+	.string "嗯呵呵呵，嗯呵呵呵呵……$"
+
+LilycoveCity_Text_TeamAquaRenovatedCavern: @ 81E42FC
+	.string "嗯，你知道这个小湾里\n"
+	.string "那个奇特的洞窟吗？\p"
+	.string "那本来是天然形成的，\n"
+	.string "后来水舰队那群人来了，\p"
+	.string "把它改造了一番。\p"
+	.string "他们自称\n"
+	.string "“热爱自然的水舰队”！\p"
+	.string "可他们做的和说的\n"
+	.string "完全对不上！$"
+
+LilycoveCity_Text_TeamAquaLotGoneForGood: @ 81E43FF
+	.string "小湾里那个洞窟……\p"
+	.string "我没马上注意到，\n"
+	.string "但它现在完全空了。\p"
+	.string "水舰队那群人，\n"
+	.string "应该是彻底走了。$"
+
+LilycoveCity_Text_CitySign: @ 81E448B
+	.string "水静市\p"
+	.string "“陆地终结、海洋开始之处。”$"
+
+LilycoveCity_Text_ContestHallSign: @ 81E44C3
+	.string "宝可梦华丽大赛会场\p"
+	.string "“训练家的聚集地！”$"
+
+LilycoveCity_Text_MotelSign: @ 81E44FC
+	.string "水静百合旅馆\p"
+	.string "“请记住水静市的水静百合。”$"
+
+LilycoveCity_Text_MuseumSign: @ 81E4534
+	.string "水静博物馆\p"
+	.string "“宝可梦名作收藏展\n"
+	.string "正在展出！”$"
+
+LilycoveCity_Text_MuseumSignPlayersExhibit: @ 81E4571
+	.string "水静博物馆\p"
+	.string "“{PLAYER}的宝可梦收藏\n"
+	.string "正在展出！”$"
+
+LilycoveCity_Text_HarborSignUnderConstruction: @ 81E45A7
+	.string "水静市港口\p"
+	.string "“渡轮“潮汐号”\n"
+	.string "正在凯那市建造中。\p"
+	.string "“预计近期开始运营。”$"
+
+LilycoveCity_Text_HarborSign: @ 81E4624
+	.string "水静市港口\p"
+	.string "“乘坐渡轮“潮汐号”，\n"
+	.string "享受愉快的航程。”$"
+
+LilycoveCity_Text_TrainerFanClubSign: @ 81E466E
+	.string "宝可梦训练家粉丝俱乐部\p"
+	.string "牌子上密密麻麻写满了\n"
+	.string "训练家的名字……$"
+
+LilycoveCity_Text_DepartmentStoreSign: @ 81E46BE
+	.string "水静百货\p"
+	.string "“商品丰富，令人兴奋！\p"
+	.string "“寻找你需要之物的好地方！”$"
+
+LilycoveCity_Text_BallSwappersHouseSign: @ 81E473D
+	.string "精灵球交换屋\p"
+	.string "“让你的宝可梦搬个新家！”$"
+
+LilycoveCity_Text_DoYouKnowAboutBerryBlender: @ 81E4774
+	.string "你知道树果搅拌机吗？$"
+
+LilycoveCity_Text_FasterSpinBetterPokeblocks: @ 81E47A1
+	.string "得大家合作才能让它转得更快。\p"
+	.string "听说转得越快，\n"
+	.string "做出的{POKEBLOCK}越好。$"
+
+LilycoveCity_Text_ExplainBerryBlender: @ 81E4824
+	.string "它用来制作一种叫\n"
+	.string "{POKEBLOCK}的糖果。\p"
+	.string "给宝可梦吃好的{POKEBLOCK}，\n"
+	.string "它的状态会大幅提升。$"
+
+LilycoveCity_Text_HeardTowerCalledSkyPillar: @ 81E48A5
+	.string "听说海上某条路线上\n"
+	.string "有一座塔。\p"
+	.string "好像叫天空之柱。$"
+
+LilycoveCity_Text_SawTallTowerOnRoute131: @ 81E4902
+	.string "我在 131 号道路附近\n"
+	.string "看到一座高塔。\p"
+	.string "那会不会就是……？$"
+
+LilycoveCity_Text_JustArrivedAndSawRarePokemon: @ 81E494D
+	.string "我们刚到这里度蜜月。\p"
+	.string "碰巧看见一只龙属性宝可梦\n"
+	.string "在高高的天上飞。\p"
+	.string "丰缘地区住着\n"
+	.string "那么酷的宝可梦吗？$"
+
+LilycoveCity_Text_HoneymoonVowToSeeRarePokemon: @ 81E49F4
+	.string "蜜月时我们发誓\n"
+	.string "要看遍尽可能多的稀有宝可梦。\p"
+	.string "所以一到就看见一只，\n"
+	.string "我们高兴极了。\p"
+	.string "我是说，我们太幸福了！$"
+
+LilycoveCity_Text_CloudDragon:
+	.string "你知道哪只龙属性宝可梦\n"
+	.string "长得像云吗？$"
+
+LilycoveCity_Text_YesAltaria:
+	.string "对！就是它！七夕青鸟，\n"
+	.string "和娜琪那只一样！\p"
+	.string "这只七夕青鸟就送给你！\p"
+	.string "它会一些特别的招式。$"
+
+LilycoveCity_Text_AltariaRefuse:
+	.string "真可惜。要是你改主意，\n"
+	.string "我会给你点好东西。$"
+
+LilycoveCity_Text_NotAltaria:
+	.string "嗯，不对。再想想！$"
+
+LilycoveCity_Text_ExplainAltarianite:
+	.string "如果你还不知道七夕青鸟多强，\n"
+	.string "娜琪可以示范给你看。\p"
+	.string "去挑战她打一场，\n"
+	.string "亲眼见识一下吧！$"
+`
+text LilycoveCity_Text_Got_Altaria{
+	format("{PLAYER}得到了\n{COLOR BLUE}七夕青鸟{COLOR DARK_GRAY}\p作为礼物！$")
+}

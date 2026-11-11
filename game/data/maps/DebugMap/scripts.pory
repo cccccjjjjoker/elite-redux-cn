@@ -1,0 +1,26 @@
+mapscripts DebugMap_MapScripts {}
+
+script DebugMap{
+
+}
+
+script DebugMapDewgong{
+    msgbox("小遥上啊！$", MSGBOX_DEFAULT)
+    release
+}
+
+script DebugMapPoochyena{
+    msgbox("祐树，就决定是你了！$", MSGBOX_DEFAULT)
+    release
+}
+
+script DebugMapMay{
+    msgbox("小遥！小遥！$", MSGBOX_DEFAULT)
+    release
+}
+
+
+script DebugMapBrendan{
+    msgbox("丹！丹！$", MSGBOX_DEFAULT)
+    release
+}

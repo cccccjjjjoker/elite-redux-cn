@@ -1,0 +1,47 @@
+raw `
+MauvilleCity_House1_MapScripts:: @ 820F975
+	.byte 0
+
+MauvilleCity_House1_EventScript_RockSmashDude:: @ 820F976
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_HM06, MauvilleCity_House1_EventScript_ReceivedRockSmash
+	msgbox MauvilleCity_House1_Text_ImRockSmashDudeTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_HM06_ROCK_SMASH
+	setflag FLAG_RECEIVED_HM06
+	msgbox MauvilleCity_House1_Text_ExplainRockSmash, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_House1_EventScript_ReceivedRockSmash:: @ 820F9A5
+	msgbox MauvilleCity_House1_Text_MonCanFlyOutOfSmashedRock, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_House1_Text_ImRockSmashDudeTakeThis: @ 820F9AF
+	.string "哇呼！\n"
+	.string "我听说有人叫我碎岩哥，\p"
+	.string "但我觉得那有点掉价。\n"
+	.string "我觉得我该得到更多尊重，\p"
+	.string "比如碎岩大哥。\n"
+	.string "哇呼！\p"
+	.string "总之，你的宝可梦看起来挺强。\n"
+	.string "我喜欢！\p"
+	.string "来，收下这个秘传学习器！$"
+
+MauvilleCity_House1_Text_ExplainRockSmash: @ 820FAA9
+	.string "那个秘传学习器里是碎岩。\n"
+	.string "要是碰上挡住去路的大石头……\p"
+	.string "就用那个秘传招式\n"
+	.string "把它们砸开！\p"
+	.string "没错！把石头砸一边去！\n"
+	.string "哇呼！$"
+
+MauvilleCity_House1_Text_MonCanFlyOutOfSmashedRock: @ 820FB67
+	.string "哦对，砸开石头，\n"
+	.string "可能会有宝可梦从藏身处飞出来。\p"
+	.string "有时还能找到道具，\n"
+	.string "甚至化石。\p"
+	.string "哇呼！$"
+
+`

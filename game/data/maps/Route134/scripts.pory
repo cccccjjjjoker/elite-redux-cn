@@ -1,0 +1,86 @@
+raw `
+Route134_MapScripts:: @ 81F7644
+	map_script MAP_SCRIPT_ON_RESUME, Route134_OnResume
+	.byte 0
+
+Route134_OnResume: @ 81F764A
+	setdivewarp MAP_UNDERWATER_ROUTE134, 255, 8, 6
+	end
+
+Route134_EventScript_Jack:: @ 81F7653
+	trainerbattle_single TRAINER_JACK, Route134_Text_JackIntro, Route134_Text_JackDefeat
+	msgbox Route134_Text_JackPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Laurel:: @ 81F766A
+	trainerbattle_single TRAINER_LAUREL, Route134_Text_LaurelIntro, Route134_Text_LaurelDefeat
+	msgbox Route134_Text_LaurelPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Alex:: @ 81F7681
+	trainerbattle_single TRAINER_ALEX, Route134_Text_AlexIntro, Route134_Text_AlexDefeat
+	msgbox Route134_Text_AlexPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Aaron:: @ 81F7698
+	trainerbattle_single TRAINER_AARON, Route134_Text_AaronIntro, Route134_Text_AaronDefeat
+	msgbox Route134_Text_AaronPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Hitoshi:: @ 81F76AF
+	trainerbattle_single TRAINER_HITOSHI, Route134_Text_HitoshiIntro, Route134_Text_HitoshiDefeat
+	msgbox Route134_Text_HitoshiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Hudson:: @ 81F76C6
+	trainerbattle_single TRAINER_HUDSON, Route134_Text_HudsonIntro, Route134_Text_HudsonDefeat
+	msgbox Route134_Text_HudsonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Reyna:: @ 81F76DD
+	trainerbattle_single TRAINER_REYNA, Route134_Text_ReynaIntro, Route134_Text_ReynaDefeat
+	msgbox Route134_Text_ReynaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Marley:: @ 81F76F4
+	trainerbattle_single TRAINER_MARLEY, Route134_Text_MarleyIntro, Route134_Text_MarleyDefeat
+	msgbox Route134_Text_MarleyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route134_EventScript_Kelvin:: @ 81F770B
+	trainerbattle_single TRAINER_KELVIN, Route134_Text_KelvinIntro, Route134_Text_KelvinDefeat
+	msgbox Route134_Text_KelvinPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+`
+script Route134_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：最后一批究极异兽就住在这\n里。你知道规矩：想知道更多吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("和其他地方一样，\n这条路上也住着一些来自外太空的究\p极异兽。我会告诉你它们的位置，\n但要等你成为冠军之后！$"))
+	}
+	else{
+		if(defeated(TRAINER_KELVIN)  &&
+		   defeated(TRAINER_MARLEY)  &&
+		   defeated(TRAINER_REYNA)   &&
+		   defeated(TRAINER_HUDSON)  &&
+		   defeated(TRAINER_HITOSHI) &&
+		   defeated(TRAINER_AARON)   &&
+		   defeated(TRAINER_ALEX)    &&
+		   defeated(TRAINER_LAUREL)  &&
+		   defeated(TRAINER_JACK)){
+			msgbox(format("你在旅途中展现出了强大的实力与坚\n定，我想你已经准备好与究极异兽见\p面了。电束木、\n垒磊石和砰头小丑就藏在这里：\p用图鉴导航看它们的位置。$"))
+		}
+		else{
+			msgbox(format("你是来找究极异兽的吗？我就知道。\n我会告诉你它们藏在哪儿，\p但先打败这条路上所有的训练家！$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("我可以忘记所有我想成为的东西，\n却忘不了我不想成为的东西：你！$"))
+	}
+    release
+    end
+}

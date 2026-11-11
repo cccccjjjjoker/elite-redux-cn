@@ -1,0 +1,23 @@
+raw `LilycoveCity_MossDeepCityTeleporter_MapScripts::
+	.byte 0
+`
+
+script LilycoveCity_MossDeepCityTeleporter_EventScript_NatuAskTeleport{
+    lock
+    faceplayer
+    msgbox(format("（心灵感应）\n你想被传送到绿岭市吗？$"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) != 1) {
+        msgbox(format("未来几乎没有改变。$"), MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox(format("未来就是现在，年轻的训练家。$"), MSGBOX_DEFAULT)
+    playse(SE_WARP_IN)
+    waitse
+    warp(MAP_MOSSDEEP_CITY, 255, 1, 21)
+    waitstate
+    release
+    end
+}
+
+

@@ -1,0 +1,21 @@
+raw `
+OldaleTown_House2_MapScripts:: @ 81FBF5A
+	.byte 0
+
+OldaleTown_House2_EventScript_Woman:: @ 81FBF5B
+	msgbox OldaleTown_House2_Text_PokemonLevelUp, MSGBOX_NPC
+	end
+
+OldaleTown_House2_EventScript_Man:: @ 81FBF64
+	msgbox OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon, MSGBOX_NPC
+	end
+
+OldaleTown_House2_Text_PokemonLevelUp: @ 81FBF6D
+	.string "宝可梦对战时，最终会\n"
+	.string "升级变强。$"
+
+OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon: @ 81FBFB0
+	.string "身边的宝可梦变强了，\n"
+	.string "你就能从这里去更远的地方。$"
+
+`

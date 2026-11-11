@@ -1,0 +1,26 @@
+raw `
+LilycoveCity_House2_MapScripts:: @ 821ED74
+	.byte 0
+
+LilycoveCity_House2_EventScript_FatMan:: @ 821ED75
+	lock
+	faceplayer
+	msgbox LilycoveCity_House2_Text_SleepIsEssential, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_House2_EventScript_ReceivedRest:: @ 821EDAC
+	msgbox LilycoveCity_House2_Text_SleepIsEssential, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_House2_Text_NotAwakeYetHaveThis: @ 821EDB6
+	.string "咦？什么？那是什么？\n"
+	.string "我还没睡醒……\p"
+	.string "这个给你吧……$"
+
+LilycoveCity_House2_Text_SleepIsEssential: @ 821EDF9
+	.string "哈啊……\n"
+	.string "睡眠对健康是必需的……\p"
+	.string "睡吧，然后恢复健康……$"
+`

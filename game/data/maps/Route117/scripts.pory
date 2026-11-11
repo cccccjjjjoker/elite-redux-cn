@@ -1,0 +1,274 @@
+raw `
+.set LOCALID_DAYCARE_MAN, 3
+
+Route117_MapScripts:: @ 81F397D
+	map_script MAP_SCRIPT_ON_TRANSITION, Route117_OnTransition
+	.byte 0
+
+Route117_OnTransition: @ 81F3983
+	call Route117_EventScript_TryMoveDayCareMan
+	end
+
+Route117_EventScript_TryMoveDayCareMan:: @ 81F3989
+	goto_if_unset FLAG_PENDING_DAYCARE_EGG, Route117_EventScript_StopMoveDayCareMan
+	setobjectxyperm LOCALID_DAYCARE_MAN, 47, 6
+Route117_EventScript_StopMoveDayCareMan:: @ 81F3999
+	return
+
+Route117_EventScript_Woman:: @ 81F399A
+	msgbox Route117_Text_ArentTheseFlowersPretty, MSGBOX_NPC
+	end
+
+Route117_EventScript_LittleBoy:: @ 81F39A3
+	msgbox Route117_Text_AirIsTastyHere, MSGBOX_NPC
+	end
+
+Route117_EventScript_Girl:: @ 81F39AC
+	msgbox Route117_Text_DayCarePokemonHadNewMove, MSGBOX_NPC
+	end
+
+Route117_EventScript_RouteSignVerdanturf:: @ 81F39B5
+	msgbox Route117_Text_RouteSignVerdanturf, MSGBOX_SIGN
+	end
+
+Route117_EventScript_RouteSignMauville:: @ 81F39BE
+	msgbox Route117_Text_RouteSignMauville, MSGBOX_SIGN
+	end
+
+Route117_EventScript_DayCareSign:: @ 81F39C7
+	msgbox Route117_Text_DayCareSign, MSGBOX_SIGN
+	end
+
+Route117_EventScript_Isaac:: @ 81F39D0
+	trainerbattle_single TRAINER_ISAAC_1, Route117_Text_IsaacIntro, Route117_Text_IsaacDefeat, Route117_EventScript_RegisterIsaac
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route117_EventScript_RematchIsaac
+	msgbox Route117_Text_IsaacPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_RegisterIsaac:: @ 81F39FC
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route117_Text_IsaacRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ISAAC_1
+	release
+	end
+
+Route117_EventScript_RematchIsaac:: @ 81F3A1B
+	trainerbattle_rematch TRAINER_ISAAC_1, Route117_Text_IsaacRematchIntro, Route117_Text_IsaacRematchDefeat
+	msgbox Route117_Text_IsaacPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Lydia:: @ 81F3A32
+	trainerbattle_single TRAINER_LYDIA_1, Route117_Text_LydiaIntro, Route117_Text_LydiaDefeat, Route117_EventScript_RegisterLydia
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route117_EventScript_RematchLydia
+	msgbox Route117_Text_LydiaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_RegisterLydia:: @ 81F3A5E
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route117_Text_LydiaRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_LYDIA_1
+	release
+	end
+
+Route117_EventScript_RematchLydia:: @ 81F3A7D
+	trainerbattle_rematch TRAINER_LYDIA_1, Route117_Text_LydiaRematchIntro, Route117_Text_LydiaRematchDefeat
+	msgbox Route117_Text_LydiaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Dylan:: @ 81F3A94
+	trainerbattle_single TRAINER_DYLAN_1, Route117_Text_DylanIntro, Route117_Text_DylanDefeat, Route117_EventScript_RegisterDylan
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route117_EventScript_RematchDylan
+	msgbox Route117_Text_DylanPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_RegisterDylan:: @ 81F3AC0
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route117_Text_DylanRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_DYLAN_1
+	release
+	end
+
+Route117_EventScript_RematchDylan:: @ 81F3ADF
+	trainerbattle_rematch TRAINER_DYLAN_1, Route117_Text_DylanRematchIntro, Route117_Text_DylanRematchDefeat
+	msgbox Route117_Text_DylanPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Maria:: @ 81F3AF6
+	trainerbattle_single TRAINER_MARIA_1, Route117_Text_MariaIntro, Route117_Text_MariaDefeat, Route117_EventScript_RegisterMaria
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route117_EventScript_RematchMaria
+	msgbox Route117_Text_MariaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_RegisterMaria:: @ 81F3B22
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route117_Text_MariaRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_MARIA_1
+	release
+	end
+
+Route117_EventScript_RematchMaria:: @ 81F3B41
+	trainerbattle_rematch TRAINER_MARIA_1, Route117_Text_MariaRematchIntro, Route117_Text_MariaRematchDefeat
+	msgbox Route117_Text_MariaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Derek:: @ 81F3B58
+	trainerbattle_single TRAINER_DEREK, Route117_Text_DerekIntro, Route117_Text_DerekDefeat
+	msgbox Route117_Text_DerekPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Anna:: @ 81F3B6F
+	trainerbattle_double TRAINER_ANNA_AND_MEG_1, Route117_Text_AnnaIntro, Route117_Text_AnnaDefeat, Route117_Text_AnnaNotEnoughMons, Route117_EventScript_RegisterAnna
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route117_EventScript_RematchAnna
+	msgbox Route117_Text_AnnaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_RegisterAnna:: @ 81F3B9F
+	msgbox Route117_Text_AnnaAndMegRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ANNA_AND_MEG_1
+	release
+	end
+
+Route117_EventScript_RematchAnna:: @ 81F3BB8
+	trainerbattle_rematch_double TRAINER_ANNA_AND_MEG_1, Route117_Text_AnnaRematchIntro, Route117_Text_AnnaRematchDefeat, Route117_Text_AnnaRematchNotEnoughMons
+	msgbox Route117_Text_AnnaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Meg:: @ 81F3BD3
+	trainerbattle_double TRAINER_ANNA_AND_MEG_1, Route117_Text_MegIntro, Route117_Text_MegDefeat, Route117_Text_MegNotEnoughMons, Route117_EventScript_RegisterMeg
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route117_EventScript_RematchMeg
+	msgbox Route117_Text_MegPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_RegisterMeg:: @ 81F3C03
+	msgbox Route117_Text_AnnaAndMegRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ANNA_AND_MEG_1
+	release
+	end
+
+Route117_EventScript_RematchMeg:: @ 81F3C1C
+	trainerbattle_rematch_double TRAINER_ANNA_AND_MEG_1, Route117_Text_MegRematchIntro, Route117_Text_MegRematchDefeat, Route117_Text_MegRematchNotEnoughMons
+	msgbox Route117_Text_MegPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Melina:: @ 81F3C37
+	trainerbattle_single TRAINER_MELINA, Route117_Text_MelinaIntro, Route117_Text_MelinaDefeat
+	msgbox Route117_Text_MelinaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Brandi:: @ 81F3C4E
+	trainerbattle_single TRAINER_BRANDI, Route117_Text_BrandiIntro, Route117_Text_BrandiDefeat
+	msgbox Route117_Text_BrandiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route117_EventScript_Aisha:: @ 81F3C65
+	trainerbattle_single TRAINER_AISHA, Route117_Text_AishaIntro, Route117_Text_AishaDefeat
+	msgbox Route117_Text_AishaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route117_Text_DayCarePokemonHadNewMove: @ 81F3C7C
+	.string "我把宝可梦寄放在培育屋。\p"
+	.string "取回来的时候，它学会了一招\n"
+	.string "我没教过它的招式。\p"
+	.string "我真的非常非常吃惊。$"
+
+Route117_Text_ArentTheseFlowersPretty: @ 81F3CFD
+	.string "你觉得怎么样？\n"
+	.string "这些花很漂亮吧？\p"
+	.string "全是我种的！$"
+
+Route117_Text_AirIsTastyHere: @ 81F3D41
+	.string "这里的空气真好喝！$"
+
+Route117_Text_RouteSignVerdanturf: @ 81F3D58
+	.string "117 号道路\n"
+	.string "{LEFT_ARROW} 绿茵镇$"
+
+Route117_Text_RouteSignMauville: @ 81F3D74
+	.string "117 号道路\n"
+	.string "{RIGHT_ARROW} 紫堇市$"
+
+Route117_Text_DayCareSign: @ 81F3D8E
+	.string "宝可梦培育屋\n"
+	.string "“把您的宝可梦交给我们养育吧。”$"
+
+`
+script Route117_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("贤者：我吟诵光、暗与正义的传说，\n也就是“百年之争”的传说。\p你愿意听吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("很久很久以前，\n抚慰受苦灵魂的克雷色利亚，\p遭到了达克莱伊的挑战：\n那是月亮最暗诱惑的化身。\p达克莱伊以为这是一场速战，\n却演变成长达百年的缠斗。\p它们的战斗蹂躏了整个世界。\p天空被永恒的黑暗笼罩。\n生命枯萎。城市崩塌。\p海洋翻涌不止。\p然而，当一切希望都失去时，\n不屈的勇者凯路迪欧\p向暗之王子挥出了剑，\n撕碎了他支配世界的野心，\p终结了这场百年之争。\p于是，失落的秩序终于恢复。\n达克莱伊败退，\p它的邪恶影响被驱逐，\n克雷色利亚的抚慰之光\p洒遍世界，\n治愈了漫长战斗留下的伤痕。\p于是，大地再度繁荣，\n证明了人类精神的坚韧，\p以及存在于所有人心中的\n永恒希望。\p如果你想见到这些传说生物，\n就去成为冠军，\p然后回来找我！$"))
+	}
+	else{
+		if(defeated(TRAINER_ISAAC_1)  &&
+		   defeated(TRAINER_LYDIA_1)  &&
+		   defeated(TRAINER_DYLAN_1)  &&
+		   defeated(TRAINER_MARIA_1)  &&
+		   defeated(TRAINER_DEREK)  &&
+		   defeated(TRAINER_ANNA_AND_MEG_1)  &&
+		   defeated(TRAINER_MELINA)  &&
+		   defeated(TRAINER_BRANDI)  &&
+		   defeated(TRAINER_AISHA)){
+			msgbox(format("正义与信念之力\n在你灵魂中闪耀。\p没有人比你更有资格\n见到达克莱伊、克雷色利亚\p和凯路迪欧。\p用图鉴导航器\n找出它们的准确位置。\p你会选择它们冲突的哪一方？$"))
+		}
+		else{
+			msgbox(format("我看到你的训练家卡上有颗星……\n你已经当上冠军了吧？\p凯路迪欧、达克莱伊和\n克雷色利亚即将现身。\p只要再击败最后几位训练家，\n你就能与它们相会。$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("啊，一颗躲避故事魅力的\n邪恶之心。\p愿你的道路找到自己的光。$"))
+	}
+    release
+    end
+}
+
+script Route117_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+		if(defeated(TRAINER_ISAAC_1)  &&
+		   defeated(TRAINER_LYDIA_1)  &&
+		   defeated(TRAINER_DYLAN_1)  &&
+		   defeated(TRAINER_MARIA_1)  &&
+		   defeated(TRAINER_DEREK)  &&
+		   defeated(TRAINER_ANNA_AND_MEG_1)  &&
+		   defeated(TRAINER_MELINA)  &&
+		   defeated(TRAINER_BRANDI)  &&
+		   defeated(TRAINER_AISHA)){
+		// when you defeat every trainer
+		msgbox(format("你提供的对战真是有品味！\n我爱极了甜美胜利的气味！$"))
+		givemon(SPECIES_APPLIN, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}啃果虫{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("这片草地真是赏心悦目，\n不过我也能给你点嘴上的享受……\p只要付钱。还有来场表演！$"))
+	}
+    release
+    end
+}

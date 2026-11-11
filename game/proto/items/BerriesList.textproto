@@ -1,0 +1,968 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_CHERI_BERRY
+  name: "樱子果"
+  description: "携带道具，战斗中治愈麻痹。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CURE_PAR"
+  use_type: ITEM_USE_PARTY_MENU
+  image: "cheri_berry"
+  palette: "cheri_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_ELECTRIC
+    effect: MOVE_EFFECT_PARALYSIS
+  }
+}
+item {
+  id: ITEM_CHESTO_BERRY
+  name: "零余果"
+  description: "携带后，战斗中能唤醒睡着的宝可梦。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CURE_SLP"
+  use_type: ITEM_USE_PARTY_MENU
+  image: "chesto_berry"
+  palette: "chesto_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_PSYCHIC
+    effect: MOVE_EFFECT_SLEEP
+  }
+}
+item {
+  id: ITEM_PECHA_BERRY
+  name: "桃桃果"
+  description: "让宝可梦带上能自动解除中毒。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CURE_PSN"
+  use_type: ITEM_USE_PARTY_MENU
+  image: "pecha_berry"
+  palette: "pecha_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_POISON
+    effect: MOVE_EFFECT_TOXIC
+  }
+}
+item {
+  id: ITEM_RAWST_BERRY
+  name: "莓莓果"
+  description: "携带道具，战斗中治愈灼伤。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CURE_BRN"
+  use_type: ITEM_USE_PARTY_MENU
+  image: "rawst_berry"
+  palette: "rawst_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_FIRE
+    effect: MOVE_EFFECT_BURN
+  }
+}
+item {
+  id: ITEM_ASPEAR_BERRY
+  name: "利木果"
+  description: "携带后，战斗中能治愈冰冻状态。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CURE_FRZ"
+  use_type: ITEM_USE_PARTY_MENU
+  image: "aspear_berry"
+  palette: "aspear_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_ICE
+    effect: MOVE_EFFECT_FROSTBITE
+  }
+}
+item {
+  id: ITEM_LEPPA_BERRY
+  name: "苹野果"
+  description: "携带道具，战斗中回复10点PP。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "RESTORE_PP"
+  hold_effect_strength: 10
+  use_type: ITEM_USE_PARTY_MENU
+  image: "leppa_berry"
+  palette: "leppa_berry"
+  field_use_func: "PPRecovery"
+  battle_use_func: "PPRecovery"
+  natural_gift {
+    power: 80
+    type: TYPE_FIRE
+    effect: MOVE_EFFECT_DISABLE
+  }
+}
+item {
+  id: ITEM_ORAN_BERRY
+  name: "橙橙果"
+  description: "携带道具，战斗中回复10点HP。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESTORE_HP
+  hold_effect_strength: 10
+  use_type: ITEM_USE_PARTY_MENU
+  image: "oran_berry"
+  palette: "oran_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  natural_gift {
+    power: 90
+    type: TYPE_NORMAL
+    effect: MOVE_EFFECT_WRAP
+  }
+}
+item {
+  id: ITEM_PERSIM_BERRY
+  name: "柿仔果"
+  description: "让宝可梦带上能自动解除混乱。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CURE_CONFUSION"
+  image: "persim_berry"
+  palette: "persim_berry"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 90
+    type: TYPE_FAIRY
+    effect: MOVE_EFFECT_CONFUSION
+  }
+}
+item {
+  id: ITEM_LUM_BERRY
+  name: "木子果"
+  description: "让宝可梦带上能自动解除所有异常状态。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CURE_STATUS"
+  use_type: ITEM_USE_PARTY_MENU
+  image: "lum_berry"
+  palette: "lum_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  natural_gift {
+    power: 90
+    type: TYPE_GRASS
+    effect: MOVE_EFFECT_TRI_ATTACK
+  }
+}
+item {
+  id: ITEM_SITRUS_BERRY
+  name: "文柚果"
+  description: "携带道具，战斗中回复最大HP的1/4。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "RESTORE_PCT_HP"
+  hold_effect_strength: 25
+  use_type: ITEM_USE_PARTY_MENU
+  image: "sitrus_berry"
+  palette: "sitrus_berry"
+  field_use_func: "Medicine"
+  battle_use_func: "Medicine"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 90
+    type: TYPE_NORMAL
+    effect: MOVE_EFFECT_PSYCHIC_NOISE
+  }
+}
+item {
+  id: ITEM_FIGY_BERRY
+  name: "勿花果"
+  description: "携带道具，回复HP但可能混乱。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CONFUSE_SPICY"
+  hold_effect_strength: 2
+  image: "figy_berry"
+  palette: "figy_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 90
+    type: TYPE_FIRE
+    effect: MOVE_EFFECT_CONFUSION
+  }
+}
+item {
+  id: ITEM_WIKI_BERRY
+  name: "异奇果"
+  description: "携带道具，回复HP但可能混乱。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CONFUSE_DRY"
+  hold_effect_strength: 2
+  image: "wiki_berry"
+  palette: "wiki_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 90
+    type: TYPE_WATER
+    effect: MOVE_EFFECT_CONFUSION
+  }
+}
+item {
+  id: ITEM_MAGO_BERRY
+  name: "芒芒果"
+  description: "携带道具，回复HP但可能混乱。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CONFUSE_SWEET"
+  hold_effect_strength: 2
+  image: "mago_berry"
+  palette: "mago_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 90
+    type: TYPE_FAIRY
+    effect: MOVE_EFFECT_CONFUSION
+  }
+}
+item {
+  id: ITEM_AGUAV_BERRY
+  name: "乐芭果"
+  description: "携带道具，回复HP但可能混乱。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CONFUSE_BITTER"
+  hold_effect_strength: 2
+  image: "aguav_berry"
+  palette: "aguav_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 90
+    type: TYPE_GROUND
+    effect: MOVE_EFFECT_CONFUSION
+  }
+}
+item {
+  id: ITEM_IAPAPA_BERRY
+  name: "芭亚果"
+  description: "携带道具，回复HP但可能混乱。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CONFUSE_SOUR"
+  hold_effect_strength: 2
+  image: "iapapa_berry"
+  palette: "iapapa_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 90
+    type: TYPE_BUG
+    effect: MOVE_EFFECT_CONFUSION
+  }
+}
+item {
+  id: ITEM_RAZZ_BERRY
+  name: "蔓莓果"
+  description: "种在肥沃土壤里，可长出蔓莓果。"
+  grouping: POCKET_BERRIES
+  image: "razz_berry"
+  palette: "razz_berry"
+  natural_gift {
+    power: 80
+    type: TYPE_GRASS
+    effect: MOVE_EFFECT_PREVENT_ESCAPE
+  }
+}
+item {
+  id: ITEM_BLUK_BERRY
+  name: "墨莓果"
+  description: "种在肥沃土壤里，可长出蓝莓果。"
+  grouping: POCKET_BERRIES
+  image: "bluk_berry"
+  palette: "bluk_berry"
+  natural_gift {
+    power: 80
+    type: TYPE_DARK
+    effect: MOVE_EFFECT_BLEED
+  }
+}
+item {
+  id: ITEM_NANAB_BERRY
+  name: "蕉香果"
+  description: "种在肥沃土壤里，可长出蕉香果。"
+  grouping: POCKET_BERRIES
+  image: "nanab_berry"
+  palette: "nanab_berry"
+  natural_gift {
+    power: 80
+    type: TYPE_WATER
+    effect: MOVE_EFFECT_EVS_MINUS_2
+  }
+}
+item {
+  id: ITEM_WEPEAR_BERRY
+  name: "西梨果"
+  description: "种沃土得西梨果"
+  grouping: POCKET_BERRIES
+  image: "wepear_berry"
+  palette: "wepear_berry"
+}
+item {
+  id: ITEM_PINAP_BERRY
+  name: "凰梨果"
+  description: "种沃土得凤梨果"
+  grouping: POCKET_BERRIES
+  image: "pinap_berry"
+  palette: "pinap_berry"
+  natural_gift {
+    power: 80
+    type: TYPE_ELECTRIC
+    effect: MOVE_EFFECT_STEAL_ITEM
+  }
+}
+item {
+  id: ITEM_POMEG_BERRY
+  name: "榴石果"
+  description: "变得亲近，但基础HP会降低。"
+  grouping: POCKET_BERRIES
+  use_type: ITEM_USE_PARTY_MENU
+  image: "pomeg_berry"
+  palette: "pomeg_berry"
+  field_use_func: "ReduceEV"
+}
+item {
+  id: ITEM_KELPSY_BERRY
+  name: "藻根果"
+  description: "让宝可梦变得友好，但降低基础攻击"
+  grouping: POCKET_BERRIES
+  use_type: ITEM_USE_PARTY_MENU
+  image: "kelpsy_berry"
+  palette: "kelpsy_berry"
+  field_use_func: "ReduceEV"
+}
+item {
+  id: ITEM_QUALOT_BERRY
+  name: "比巴果"
+  description: "让宝可梦变得友好，但降低基础防御"
+  grouping: POCKET_BERRIES
+  use_type: ITEM_USE_PARTY_MENU
+  image: "qualot_berry"
+  palette: "qualot_berry"
+  field_use_func: "ReduceEV"
+}
+item {
+  id: ITEM_HONDEW_BERRY
+  name: "哈密果"
+  description: "让宝可梦变得友好，但降低基础特攻"
+  grouping: POCKET_BERRIES
+  use_type: ITEM_USE_PARTY_MENU
+  image: "hondew_berry"
+  palette: "hondew_berry"
+  field_use_func: "ReduceEV"
+}
+item {
+  id: ITEM_GREPA_BERRY
+  name: "萄葡果"
+  description: "让宝可梦变得友好，但降低基础特防"
+  grouping: POCKET_BERRIES
+  use_type: ITEM_USE_PARTY_MENU
+  image: "grepa_berry"
+  palette: "grepa_berry"
+  field_use_func: "ReduceEV"
+}
+item {
+  id: ITEM_TAMATO_BERRY
+  name: "茄番果"
+  description: "让宝可梦变得友好，但降低基础速度"
+  grouping: POCKET_BERRIES
+  use_type: ITEM_USE_PARTY_MENU
+  image: "tamato_berry"
+  palette: "tamato_berry"
+  field_use_func: "ReduceEV"
+}
+item {
+  id: ITEM_CORNN_BERRY
+  name: "玉黍果"
+  description: "种沃土得玉黍果"
+  grouping: POCKET_BERRIES
+  image: "cornn_berry"
+  palette: "cornn_berry"
+}
+item {
+  id: ITEM_MAGOST_BERRY
+  name: "岳竹果"
+  description: "种沃土得岳竹果"
+  grouping: POCKET_BERRIES
+  image: "magost_berry"
+  palette: "magost_berry"
+}
+item {
+  id: ITEM_RABUTA_BERRY
+  name: "茸丹果"
+  description: "种沃土得茸丹果"
+  grouping: POCKET_BERRIES
+  image: "rabuta_berry"
+  palette: "rabuta_berry"
+}
+item {
+  id: ITEM_NOMEL_BERRY
+  name: "檬柠果"
+  description: "种沃土得檬柠果"
+  grouping: POCKET_BERRIES
+  image: "nomel_berry"
+  palette: "nomel_berry"
+}
+item {
+  id: ITEM_SPELON_BERRY
+  name: "刺角果"
+  description: "种沃土得刺角果"
+  grouping: POCKET_BERRIES
+  image: "spelon_berry"
+  palette: "spelon_berry"
+}
+item {
+  id: ITEM_PAMTRE_BERRY
+  name: "椰木果"
+  description: "种沃土得椰木果"
+  grouping: POCKET_BERRIES
+  image: "pamtre_berry"
+  palette: "pamtre_berry"
+}
+item {
+  id: ITEM_WATMEL_BERRY
+  name: "瓜西果"
+  description: "种在肥沃土壤里，可长出瓜西果。"
+  grouping: POCKET_BERRIES
+  image: "watmel_berry"
+  palette: "watmel_berry"
+}
+item {
+  id: ITEM_DURIN_BERRY
+  name: "金枕果"
+  description: "种在肥沃土壤里，可长出金枕果。"
+  grouping: POCKET_BERRIES
+  image: "durin_berry"
+  palette: "durin_berry"
+}
+item {
+  id: ITEM_BELUE_BERRY
+  name: "靛莓果"
+  description: "种在肥沃土壤里，可长出靛莓果。"
+  grouping: POCKET_BERRIES
+  image: "belue_berry"
+  palette: "belue_berry"
+}
+item {
+  id: ITEM_OCCA_BERRY
+  name: "巧可果"
+  description: "携带道具，若自身弱火则减弱火属性招式"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_FIRE
+  image: "occa_berry"
+  palette: "occa_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_FIRE
+    effect: MOVE_EFFECT_FLAME_BURST
+  }
+}
+item {
+  id: ITEM_PASSHO_BERRY
+  name: "千香果"
+  description: "携带时若弱化水系，减弱水系招式伤害。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_WATER
+  image: "passho_berry"
+  palette: "passho_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_WATER
+    effect: MOVE_EFFECT_SPD_MINUS_1
+  }
+}
+item {
+  id: ITEM_WACAN_BERRY
+  name: "烛木果"
+  description: "携带道具，若自身弱电属性则减弱电属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_ELECTRIC
+  image: "wacan_berry"
+  palette: "wacan_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_ELECTRIC
+    effect: MOVE_EFFECT_DISABLE
+  }
+}
+item {
+  id: ITEM_RINDO_BERRY
+  name: "罗子果"
+  description: "携带道具，若自身弱草属性则减弱草属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_GRASS
+  image: "rindo_berry"
+  palette: "rindo_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_GRASS
+    effect: MOVE_EFFECT_SYRUP
+  }
+}
+item {
+  id: ITEM_YACHE_BERRY
+  name: "番荔果"
+  description: "携带道具，若自身弱冰属性则减弱冰属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_ICE
+  image: "yache_berry"
+  palette: "yache_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_ICE
+    effect: MOVE_EFFECT_SP_DEF_MINUS_1
+  }
+}
+item {
+  id: ITEM_CHOPLE_BERRY
+  name: "莲蒲果"
+  description: "携带道具，若自身弱格斗属性则减弱格斗属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_FIGHTING
+  image: "chople_berry"
+  palette: "chople_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_FIGHTING
+    effect: MOVE_EFFECT_ATK_MINUS_1
+  }
+}
+item {
+  id: ITEM_KEBIA_BERRY
+  name: "通通果"
+  description: "携带道具，弱毒时减弱毒属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_POISON
+  image: "kebia_berry"
+  palette: "kebia_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_POISON
+    effect: MOVE_EFFECT_POISON
+  }
+}
+item {
+  id: ITEM_SHUCA_BERRY
+  name: "腰木果"
+  description: "携带道具，弱地面时减弱地面属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_GROUND
+  image: "shuca_berry"
+  palette: "shuca_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_GROUND
+    effect: MOVE_EFFECT_SMACK_DOWN
+  }
+}
+item {
+  id: ITEM_COBA_BERRY
+  name: "棱瓜果"
+  description: "携带道具，弱飞行时减弱飞行属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_FLYING
+  image: "coba_berry"
+  palette: "coba_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_FLYING
+    effect: MOVE_EFFECT_DEF_MINUS_1
+  }
+}
+item {
+  id: ITEM_PAYAPA_BERRY
+  name: "福禄果"
+  description: "携带道具，弱超能力时减弱超能力招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_PSYCHIC
+  image: "payapa_berry"
+  palette: "payapa_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_PSYCHIC
+    effect: MOVE_EFFECT_CONFUSION
+  }
+}
+item {
+  id: ITEM_TANGA_BERRY
+  name: "扁樱果"
+  description: "携带后，效果绝佳的虫属性招式伤害减半。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_BUG
+  image: "tanga_berry"
+  palette: "tanga_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_BUG
+    effect: MOVE_EFFECT_KNOCK_OFF
+  }
+}
+item {
+  id: ITEM_CHARTI_BERRY
+  name: "草蚕果"
+  description: "携带道具，自身弱岩石时减弱岩石属性招式"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_ROCK
+  image: "charti_berry"
+  palette: "charti_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_ROCK
+    effect: MOVE_EFFECT_DEF_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_KASIB_BERRY
+  name: "佛柑果"
+  description: "携带道具，弱幽灵时减弱幽灵属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_GHOST
+  image: "kasib_berry"
+  palette: "kasib_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_GHOST
+    effect: MOVE_EFFECT_FEAR
+  }
+}
+item {
+  id: ITEM_HABAN_BERRY
+  name: "莓榴果"
+  description: "携带道具，弱龙时减弱龙属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_DRAGON
+  image: "haban_berry"
+  palette: "haban_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_DRAGON
+    effect: MOVE_EFFECT_SP_ATK_MINUS_1
+  }
+}
+item {
+  id: ITEM_COLBUR_BERRY
+  name: "刺耳果"
+  description: "携带道具，弱恶时减弱恶招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_DARK
+  image: "colbur_berry"
+  palette: "colbur_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_DARK
+    effect: MOVE_EFFECT_STEAL_ITEM
+  }
+}
+item {
+  id: ITEM_BABIRI_BERRY
+  name: "霹霹果"
+  description: "携带道具，弱钢时减弱钢招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_STEEL
+  image: "babiri_berry"
+  palette: "babiri_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_STEEL
+    effect: MOVE_EFFECT_BLEED
+  }
+}
+item {
+  id: ITEM_CHILAN_BERRY
+  name: "灯浆果"
+  description: "携带道具，减弱一般属性招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_NORMAL
+  image: "chilan_berry"
+  palette: "chilan_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 150
+    type: TYPE_NORMAL
+    effect: MOVE_EFFECT_NONE
+  }
+}
+item {
+  id: ITEM_ROSELI_BERRY
+  name: "洛玫果"
+  description: "携带道具，弱妖精时减弱妖精招式。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_RESIST_BERRY
+  hold_effect_type: TYPE_FAIRY
+  image: "roseli_berry"
+  palette: "roseli_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_FAIRY
+    effect: MOVE_EFFECT_ATTRACT
+  }
+}
+item {
+  id: ITEM_LIECHI_BERRY
+  name: "枝荔果"
+  description: "携带道具，陷入危机时提高攻击。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "ATTACK_UP"
+  hold_effect_strength: 4
+  image: "liechi_berry"
+  palette: "liechi_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_NORMAL
+    effect: MOVE_EFFECT_ATK_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_GANLON_BERRY
+  name: "龙睛果"
+  description: "宝可梦带上，战斗时提升防御力。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "DEFENSE_UP"
+  hold_effect_strength: 4
+  image: "ganlon_berry"
+  palette: "ganlon_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_STEEL
+    effect: MOVE_EFFECT_DEF_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_SALAC_BERRY
+  name: "沙鳞果"
+  description: "宝可梦带上，战斗时提升速度。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "SPEED_UP"
+  hold_effect_strength: 4
+  image: "salac_berry"
+  palette: "salac_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_FLYING
+    effect: MOVE_EFFECT_SPD_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_PETAYA_BERRY
+  name: "龙火果"
+  description: "携带道具，陷入危机时提高特攻。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "SP_ATTACK_UP"
+  hold_effect_strength: 4
+  image: "petaya_berry"
+  palette: "petaya_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_DRAGON
+    effect: MOVE_EFFECT_SP_ATK_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_APICOT_BERRY
+  name: "杏仔果"
+  description: "携带道具，陷入危机时提高特防。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "SP_DEFENSE_UP"
+  hold_effect_strength: 4
+  image: "apicot_berry"
+  palette: "apicot_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_ROCK
+    effect: MOVE_EFFECT_SP_DEF_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_LANSAT_BERRY
+  name: "兰萨果"
+  description: "宝可梦带上，战斗时提升要害命中率"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "CRITICAL_UP"
+  hold_effect_strength: 4
+  image: "lansat_berry"
+  palette: "lansat_berry"
+  natural_gift {
+    power: 80
+    type: TYPE_DARK
+    effect: MOVE_EFFECT_CRIT_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_STARF_BERRY
+  name: "星桃果"
+  description: "携带道具，危机时大幅提升能力。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_alias: "RANDOM_STAT_UP"
+  hold_effect_strength: 4
+  image: "starf_berry"
+  palette: "starf_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_FAIRY
+    effect: MOVE_EFFECT_HIGHEST_STAT_EXCEPT_SPEED_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_MICLE_BERRY
+  name: "奇秘果"
+  description: "携带时在危机中提升招式的命中率。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 4
+  image: "micle_berry"
+  palette: "micle_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 80
+    type: TYPE_BUG
+    effect: MOVE_EFFECT_ACC_PLUS_1
+    affects_user: true
+  }
+}
+item {
+  id: ITEM_CUSTAP_BERRY
+  name: "释陀果"
+  description: "让宝可梦在危急时仅一次先制行动"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  hold_effect_strength: 4
+  image: "custap_berry"
+  palette: "custap_berry"
+  talk_to_nurse_joy: true
+  natural_gift {
+    power: 95
+    type: TYPE_NORMAL
+    priority: 1
+  }
+}
+item {
+  id: ITEM_JABOCA_BERRY
+  name: "嘉珍果"
+  description: "受到物理招式攻击时会反伤攻击者少量。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "jaboca_berry"
+  palette: "jaboca_berry"
+}
+item {
+  id: ITEM_ROWAP_BERRY
+  name: "雾莲果"
+  description: "若被特殊招式击中，会给予攻击者少量伤害。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "rowap_berry"
+  palette: "rowap_berry"
+}
+item {
+  id: ITEM_KEE_BERRY
+  name: "亚开果"
+  description: "受到物理招式攻击时略微提升防御。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "kee_berry"
+  palette: "kee_berry"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MARANGA_BERRY
+  name: "香罗果"
+  description: "受到特殊招式攻击时略微提升特防。"
+  grouping: POCKET_BERRIES
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "maranga_berry"
+  palette: "maranga_berry"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ENIGMA_BERRY
+  name: "谜芝果"
+  description: "种在肥沃土壤，长出神秘之物。"
+  grouping: POCKET_BERRIES
+  image: "enigma_berry"
+  palette: "enigma_berry"
+  field_use_func: "EnigmaBerry"
+  battle_use_func: "EnigmaBerry"
+  natural_gift {
+    power: 80
+    type: TYPE_GHOST
+    effect: MOVE_EFFECT_RAINBOW
+    affects_user: true
+  }
+}

@@ -1,0 +1,534 @@
+raw `
+.set LOCALID_GRUNT_1, 9
+.set LOCALID_GRUNT_2, 10
+.set LOCALID_GRUNT_3, 11
+.set LOCALID_GRUNT_4, 12
+.set LOCALID_MAXIE, 13
+.set LOCALID_SCOTT, 15
+
+MossdeepCity_MapScripts:: @ 81E4A96
+	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
+	.byte 0
+
+MossdeepCity_OnTransition: @ 81E4A9C
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	end
+
+MossdeepCity_EventScript_PokefanF:: @ 81E4AB2
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_HM08, MossdeepCity_EventScript_PokefanFMagmaGone
+	msgbox MossdeepCity_Text_SpaceCenterReceivedLetter, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_PokefanFMagmaGone:: @ 81E4AC7
+	msgbox MossdeepCity_Text_SpaceCenterLaunchingRockets, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_Sailor:: @ 81E4AD1
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_HM08, MossdeepCity_EventScript_SailorMagmaGone
+	msgbox MossdeepCity_Text_MossdeepTargetedByMagma, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_SailorMagmaGone:: @ 81E4AE6
+	msgbox MossdeepCity_Text_FeelReliefOnLand, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_NinjaBoy:: @ 81E4AF0
+	msgbox MossdeepCity_Text_WailmerWatching, MSGBOX_NPC
+	end
+
+MossdeepCity_EventScript_ExpertM:: @ 81E4AF9
+	msgbox MossdeepCity_Text_LifeNeedsSeaToLive, MSGBOX_NPC
+	end
+
+MossdeepCity_EventScript_Girl:: @ 81E4B02
+	msgbox MossdeepCity_Text_NiceIfWorldCoveredByFlowers, MSGBOX_NPC
+	end
+
+MossdeepCity_EventScript_Woman:: @ 81E4B0B
+	msgbox MossdeepCity_Text_SpecialSpaceCenterRock, MSGBOX_NPC
+	end
+
+MossdeepCity_EventScript_WhiteRock:: @ 81E4B14
+	msgbox MossdeepCity_Text_ItsAWhiteRock, MSGBOX_SIGN
+	end
+
+MossdeepCity_EventScript_GymSign:: @ 81E4B1D
+	msgbox MossdeepCity_Text_GymSign, MSGBOX_SIGN
+	end
+
+MossdeepCity_EventScript_CitySign:: @ 81E4B26
+	msgbox MossdeepCity_Text_CitySign, MSGBOX_SIGN
+	end
+
+MossdeepCity_EventScript_SpaceCenterSign:: @ 81E4B2F
+	msgbox MossdeepCity_Text_SpaceCenterSign, MSGBOX_SIGN
+	end
+
+MossdeepCity_EventScript_VisitedMossdeep:: @ 81E4B38
+	setflag FLAG_VISITED_MOSSDEEP_CITY
+	setvar VAR_TEMP_1, 1
+	end
+
+MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter:: @ 81E4B41
+	lockall
+	applymovement LOCALID_MAXIE, MossdeepCity_Movement_MaxieGestureToSpaceCenter
+	waitmovement 0
+	applymovement LOCALID_GRUNT_1, MossdeepCity_Movement_GruntFaceSpaceCenter
+	applymovement LOCALID_GRUNT_2, MossdeepCity_Movement_GruntFaceSpaceCenter
+	applymovement LOCALID_GRUNT_3, MossdeepCity_Movement_GruntFaceSpaceCenter
+	applymovement LOCALID_GRUNT_4, MossdeepCity_Movement_GruntFaceSpaceCenter
+	waitmovement 0
+	applymovement LOCALID_MAXIE, MossdeepCity_Movement_MaxieEnterSpaceCenter
+	applymovement LOCALID_GRUNT_1, MossdeepCity_Movement_Grunt1EnterSpaceCenter
+	applymovement LOCALID_GRUNT_2, MossdeepCity_Movement_Grunt2EnterSpaceCenter
+	applymovement LOCALID_GRUNT_3, MossdeepCity_Movement_Grunt3EnterSpaceCenter
+	applymovement LOCALID_GRUNT_4, MossdeepCity_Movement_Grunt4EnterSpaceCenter
+	waitmovement 0
+	removeobject LOCALID_MAXIE
+	removeobject LOCALID_GRUNT_1
+	removeobject LOCALID_GRUNT_2
+	removeobject LOCALID_GRUNT_3
+	removeobject LOCALID_GRUNT_4
+	delay 30
+	setvar VAR_MOSSDEEP_CITY_STATE, 2
+	setflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+	releaseall
+	end
+
+MossdeepCity_Movement_MaxieGestureToSpaceCenter: @ 81E4BAD
+	delay_16
+	face_right
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	face_left
+	delay_16
+	delay_16
+	step_end
+
+MossdeepCity_Movement_GruntFaceSpaceCenter: @ 81E4BB7
+	face_right
+	delay_16
+	delay_16
+	delay_16
+	step_end
+
+MossdeepCity_Movement_MaxieEnterSpaceCenter: @ 81E4BBC
+	walk_down
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MossdeepCity_Movement_Grunt1EnterSpaceCenter: @ 81E4BCA
+	delay_16
+	delay_8
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MossdeepCity_Movement_Grunt2EnterSpaceCenter: @ 81E4BDD
+	delay_16
+	delay_8
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MossdeepCity_Movement_Grunt3EnterSpaceCenter: @ 81E4BEF
+	delay_16
+	delay_8
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MossdeepCity_Movement_Grunt4EnterSpaceCenter: @ 81E4C00
+	delay_16
+	delay_8
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+MossdeepCity_EventScript_Man:: @ 81E4C10
+	lock
+	faceplayer
+	msgbox MossdeepCity_Text_SurfExhilarating, MSGBOX_DEFAULT
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+MossdeepCity_EventScript_KingsRockBoy:: @ 81E4C26
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_KINGS_ROCK, MossdeepCity_EventScript_ReceivedKingsRock
+	msgbox MossdeepCity_Text_WantKingsRockStevenGaveMe, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_EventScript_DeclineKingsRock
+	msgbox MossdeepCity_Text_YouCanKeepIt, MSGBOX_DEFAULT
+	giveitem ITEM_KINGS_ROCK
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_KINGS_ROCK
+	release
+	end
+
+MossdeepCity_EventScript_ReceivedKingsRock:: @ 81E4C68
+	msgbox MossdeepCity_Text_StevensHouseOverThere, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_DeclineKingsRock:: @ 81E4C72
+	msgbox MossdeepCity_Text_WhatToDoWithWeirdRock, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_BlackBelt:: @ 81E4C7C
+	msgbox MossdeepCity_Text_SootopolisNewGymLeader, MSGBOX_NPC
+	end
+
+MossdeepCity_EventScript_Scott:: @ 81E4C85
+	lock
+	faceplayer
+	msgbox MossdeepCity_Text_ScottSomethingWrongWithTown, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq MossdeepCity_EventScript_ScottExitNorth
+	compare VAR_FACING, DIR_EAST
+	call_if_eq MossdeepCity_EventScript_ScottExitEast
+	addvar VAR_SCOTT_STATE, 1
+	removeobject LOCALID_SCOTT
+	release
+	end
+
+MossdeepCity_EventScript_ScottExitNorth:: @ 81E4CB0
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Movement_PlayerWatchScottExit
+	applymovement LOCALID_SCOTT, MossdeepCity_Movement_ScottExitNorth
+	waitmovement 0
+	return
+
+MossdeepCity_EventScript_ScottExitEast:: @ 81E4CC2
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Movement_PlayerWatchScottExit
+	applymovement LOCALID_SCOTT, MossdeepCity_Movement_ScottExitEast
+	waitmovement 0
+	return
+
+MossdeepCity_EventScript_AvalancheTM::
+	lock
+	faceplayer
+	msgbox MossdeepCity_Text_HaveTM96, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_ReceivedTM96::
+	msgbox MossdeepCity_Text_HaveTM96, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_Movement_PlayerWatchScottExit: @ 81E4CD4
+	delay_16
+	delay_16
+	walk_in_place_fastest_left
+	step_end
+
+MossdeepCity_Movement_ScottExitNorth: @ 81E4CD8
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+MossdeepCity_Movement_ScottExitEast: @ 81E4CE2
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+MossdeepCity_Text_WantKingsRockStevenGaveMe: @ 81E4CED
+	.string "这是大吾给我的，\n"
+	.string "但我不知道它有什么用。\p"
+	.string "好像叫王者之证。\p"
+	.string "你想要吗？$"
+
+MossdeepCity_Text_YouCanKeepIt: @ 81E4D5B
+	.string "你要它干什么？\p"
+	.string "你真怪。\p"
+	.string "拿去就拿去吧，\n"
+	.string "不过要对大吾保密。$"
+
+MossdeepCity_Text_StevensHouseOverThere: @ 81E4DB3
+	.string "大吾的家就在那边！$"
+
+MossdeepCity_Text_WhatToDoWithWeirdRock: @ 81E4DD7
+	.string "对吧，你也这么想！\n"
+	.string "一块奇怪的石头能拿来干嘛？$"
+
+MossdeepCity_Text_WailmerWatching: @ 81E4E22
+	.string "在绿岭市附近，\n"
+	.string "能看到野生的吼吼鲸。\p"
+	.string "这叫做，呃……\p"
+	.string "那个词是什么来着……\p"
+	.string "吼、吼、吼……\p"
+	.string "吼吼鲸观赏！$"
+
+MossdeepCity_Text_SpaceCenterReceivedLetter: @ 81E4E90
+	.string "岛上的航天中心\n"
+	.string "一直在发射巨大的火箭。\p"
+	.string "最近他们收到一封信，\n"
+	.string "引起了不小的骚动。$"
+
+MossdeepCity_Text_SpaceCenterLaunchingRockets: @ 81E4F15
+	.string "岛上的航天中心\n"
+	.string "一直在发射巨大的火箭。$"
+
+MossdeepCity_Text_MossdeepTargetedByMagma: @ 81E4F50
+	.string "我听一个水手朋友说，\n"
+	.string "水舰队在水静市落脚了。\p"
+	.string "我还听说有人来了，\n"
+	.string "把他们打得满地找牙！\p"
+	.string "可绿岭市这边\n"
+	.string "被那个火岩队盯上了。\p"
+	.string "想知道他们在搞什么，\n"
+	.string "就去航天中心看看。$"
+
+MossdeepCity_Text_FeelReliefOnLand: @ 81E5051
+	.string "我是水手，海对我来说\n"
+	.string "当然更重要。\p"
+	.string "可你知道吗？远航之后\n"
+	.string "一回到陆地，\p"
+	.string "我还真觉得松了口气！$"
+
+MossdeepCity_Text_NiceIfWorldCoveredByFlowers: @ 81E50D9
+	.string "要是整个世界都像这座岛一样\n"
+	.string "长满花草树木，\p"
+	.string "那该多好啊？$"
+
+MossdeepCity_Text_LifeNeedsSeaToLive: @ 81E5135
+	.string "所有生命都要靠海才能活，\n"
+	.string "即使它安家在陆地上。\p"
+	.string "生命走完自己的路，\n"
+	.string "就化为泥土回到大地。\p"
+	.string "而海永远与陆地相连。\p"
+	.string "对，就像这里的海岸线。$"
+
+MossdeepCity_Text_SurfExhilarating: @ 81E5213
+	.string "坐船航行是不错。\p"
+	.string "但和宝可梦一起用冲浪\n"
+	.string "横渡大海……\p"
+	.string "那才是令人兴奋的旅程！\p"
+	.string "你不觉得吗，年轻人？$"
+
+MossdeepCity_Text_SpecialSpaceCenterRock: @ 81E529D
+	.string "这块石头对航天中心的人\n"
+	.string "有特别的意义。\p"
+	.string "他们把它放在这儿，\n"
+	.string "祈愿火箭能平安升空。\p"
+	.string "你许愿的时候用什么？\n"
+	.string "向星星许愿吗？\p"
+	.string "我是用许愿签来许愿的。\n"
+	.string "我就是这么做的。$"
+
+MossdeepCity_Text_ItsAWhiteRock: @ 81E5396
+	.string "是一块白色的石头。$"
+
+MossdeepCity_Text_GymSign: @ 81E53A9
+	.string "绿岭市宝可梦道馆\n"
+	.string "馆主：小枫和小南\p"
+	.string "“神秘的组合！”$"
+
+MossdeepCity_Text_CitySign: @ 81E53F2
+	.string "绿岭市\n"
+	.string "“我们的口号：珍爱宝可梦！”$"
+
+MossdeepCity_Text_SpaceCenterSign: @ 81E541F
+	.string "绿岭航天中心\n"
+	.string "“离宇宙最近的地方。”$"
+
+MossdeepCity_Text_ScottSomethingWrongWithTown: @ 81E5453
+	.string "斯科特：{PLAYER}{KUN}，感觉如何？\n"
+	.string "我很好！\p"
+	.string "我听说绿岭市的道馆馆主\n"
+	.string "挺强的，\p"
+	.string "就决定亲自来看看。\p"
+	.string "不过这镇上好像出了点事。\p"
+	.string "人们在议论一封信\n"
+	.string "和航天中心的事……\p"
+	.string "不过我想那跟我\n"
+	.string "没什么关系。$"
+
+MossdeepCity_Text_SootopolisNewGymLeader: @ 81E5581
+	.string "啊……让海浪冲刷双脚\n"
+	.string "真是舒服……\p"
+	.string "说到海浪，你知道\n"
+	.string "那座岛城琉璃市吗？\p"
+	.string "我听说那儿的道馆\n"
+	.string "来了位新馆主。\p"
+	.string "人家告诉我，\n"
+	.string "那位新馆主曾经\p"
+	.string "指导过米可利。$"
+
+MossdeepCity_Text_AvalancheNonsense:
+	.string "你是训练家？\p"
+	.string "拿招式学习器！$"
+
+MossdeepCity_Text_HaveTM96:
+	.string "…… …… …… ……\p"
+	.string "…… …… …… ……\p"
+	.string "（看来他没什么要说的……）$"
+`
+
+script MossdeepCity_EventScript_ScientistThrowPlayerRoute126 {
+    lock
+    faceplayer
+    if (flag(FLAG_DEFEATED_MOSSDEEP_GYM) == FALSE){
+        msgbox(format("火箭正在加注燃料，\n这要花点时间。\p推进剂装得越多，\n火箭就越重，\p也就越需要更多推进剂。$"), MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if (flag(FLAG_RECEIVED_HM08) == FALSE){
+        msgbox(format("请节约火箭燃料，\n啊啊啊啊。$"), MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox(format("谢谢你节约火箭燃料。\p我们还剩一些燃料，\n你想去琉璃市吗？$"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) != 1) {
+        msgbox(format("这很明智，祝你愉快。$"), MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox(format("这就是火箭科学，宝贝！$"), MSGBOX_DEFAULT)
+    goto(MossdeepCity_EventScript_RocketPlayer)
+}
+
+script MossdeepCity_EventScript_RocketPlayer{
+    playse(SE_M_FLAMETHROWER)
+    applymovement(OBJ_EVENT_ID_PLAYER, MossdeepCity_EventScript_BlowUpSpin)
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 64, 16)
+    applymovement(OBJ_EVENT_ID_PLAYER, MossdeepCity_EventScript_BlowUpSpin)
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 64, 15)
+    applymovement(OBJ_EVENT_ID_PLAYER, MossdeepCity_EventScript_BlowUpSpin)
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 64, 14)
+    applymovement(OBJ_EVENT_ID_PLAYER, MossdeepCity_EventScript_BlowUpSpin)
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 64, 13)
+    applymovement(OBJ_EVENT_ID_PLAYER, MossdeepCity_EventScript_BlowUpSpin)
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 64, 12)
+    playse(SE_M_COSMIC_POWER)
+    delay(40)
+    if (defeated(TRAINER_GRUNT_SPACE_CENTER_1) && defeated(TRAINER_GRUNT_SPACE_CENTER_2) && defeated(TRAINER_GRUNT_SPACE_CENTER_3) && defeated(TRAINER_GRUNT_SPACE_CENTER_4)){
+        goto(MossdeepCity_EventScript_ThrowPlayerCitySootopolis)
+    } else {
+        goto(MossdeepCity_EventScript_ThrowPlayerRoute126)
+    }
+    release
+    end
+}
+
+script MossdeepCity_EventScript_ThrowPlayerCitySootopolis {
+    warp(MAP_SOOTOPOLIS_CITY, 255, 28, 54)
+    waitstate
+    waitse
+    end
+}
+
+script MossdeepCity_EventScript_ThrowPlayerRoute126 {
+    warp(MAP_ROUTE126, 255, 43, 67)
+    waitstate
+    waitse
+    end
+}
+
+movement MossdeepCity_EventScript_BlowUpSpin{
+    face_down
+    face_left
+    face_up
+    face_right
+}
+

@@ -1,0 +1,499 @@
+raw `
+.set LOCALID_GREETER, 1
+.set LOCALID_GUIDE, 2
+.set LOCALID_SCOTT, 4
+
+BattleFrontier_ReceptionGate_MapScripts:: @ 82661DA
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_ReceptionGate_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_ReceptionGate_OnTransition
+	.byte 0
+
+BattleFrontier_ReceptionGate_OnTransition: @ 82661E5
+	setflag FLAG_LANDMARK_BATTLE_FRONTIER
+	end
+
+BattleFrontier_ReceptionGate_OnFrame: @ 82661E9
+	map_script_2 VAR_HAS_ENTERED_BATTLE_FRONTIER, 0, BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering
+	.2byte 0
+
+BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering:: @ 82661F3
+	lockall
+	setvar VAR_HAS_ENTERED_BATTLE_FRONTIER, 1
+	playse SE_PIN
+	applymovement LOCALID_GREETER, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_GREETER, Common_Movement_Delay48
+	waitmovement 0
+	msgbox BattleFrontier_ReceptionGate_Text_FirstTimeHereThisWay, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_ReceptionGate_Movement_PlayerApproachCounter
+	waitmovement 0
+	goto BattleFrontier_ReceptionGate_EventScript_ScottScene
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ScottScene:: @ 8266229
+	msgbox BattleFrontier_ReceptionGate_Text_WelcomeToBattleFrontier, MSGBOX_DEFAULT
+	msgbox BattleFrontier_ReceptionGate_Text_IssueFrontierPass, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message BattleFrontier_ReceptionGate_Text_ObtainedFrontierPass
+	waitfanfare
+	waitmessage
+	msgbox BattleFrontier_ReceptionGate_Text_PlacedTrainerCardInFrontierPass, MSGBOX_DEFAULT
+	setflag FLAG_SYS_FRONTIER_PASS
+	msgbox BattleFrontier_ReceptionGate_Text_EnjoyBattleFrontier, MSGBOX_DEFAULT
+	msgbox BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_GREETER, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_GUIDE, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_GREETER, Common_Movement_ExclamationMark
+	applymovement LOCALID_GUIDE, Common_Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox BattleFrontier_ReceptionGate_Text_OhMrScottGoodDay, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_GREETER, BattleFrontier_ReceptionGate_Movement_GreeterFaceScott
+	applymovement LOCALID_GUIDE, BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_ReceptionGate_Movement_PlayerFaceScott
+	applymovement LOCALID_SCOTT, BattleFrontier_ReceptionGate_Movement_ScottEnter
+	waitmovement 0
+	msgbox BattleFrontier_ReceptionGate_Text_ScottGreatToSeeYouHere, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SCOTT, BattleFrontier_ReceptionGate_Movement_ScottExit
+	waitmovement 0
+	removeobject LOCALID_SCOTT
+	releaseall
+	end
+
+BattleFrontier_ReceptionGate_Movement_PlayerApproachCounter: @ 82662D2
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	step_end
+
+BattleFrontier_ReceptionGate_Movement_PlayerFaceScott: @ 82662D7
+	delay_16
+	delay_16
+	delay_16
+	delay_8
+	walk_in_place_fastest_right
+	step_end
+
+@ Unused
+BattleFrontier_ReceptionGate_Movement_WalkDown: @ 82662DD
+	walk_down
+	walk_down
+	step_end
+
+BattleFrontier_ReceptionGate_Movement_ScottEnter: @ 82662E0
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	step_end
+
+BattleFrontier_ReceptionGate_Movement_ScottExit: @ 82662E8
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+BattleFrontier_ReceptionGate_Movement_GreeterFaceScott: @ 82662F0
+	delay_16
+	delay_16
+	delay_16
+	delay_8
+	walk_in_place_fastest_right
+	step_end
+
+BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott: @ 82662F6
+	delay_16
+	delay_16
+	delay_16
+	delay_8
+	walk_in_place_fastest_left
+	step_end
+
+BattleFrontier_ReceptionGate_EventScript_Greeter:: @ 82662FC
+	lock
+	faceplayer
+	msgbox BattleFrontier_ReceptionGate_Text_WelcomeToBattleFrontier, MSGBOX_DEFAULT
+	msgbox BattleFrontier_ReceptionGate_Text_EnjoyBattleFrontier, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_ReceptionGate_EventScript_FacilityGuide:: @ 8266310
+	lock
+	faceplayer
+	msgbox BattleFrontier_ReceptionGate_Text_YourGuideToFacilities, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout:: @ 8266320
+	message BattleFrontier_ReceptionGate_Text_LearnAboutWhich2
+	waitmessage
+	setvar VAR_0x8004, SCROLL_MULTI_BF_RECEPTIONIST
+	special ShowScrollableMultichoice
+	waitstate
+	switch VAR_RESULT
+	case 0, BattleFrontier_ReceptionGate_EventScript_BattleTower
+	case 1, BattleFrontier_ReceptionGate_EventScript_BattleDome
+	case 2, BattleFrontier_ReceptionGate_EventScript_BattlePalace
+	case 3, BattleFrontier_ReceptionGate_EventScript_BattleArena
+	case 4, BattleFrontier_ReceptionGate_EventScript_BattleFactory
+	case 5, BattleFrontier_ReceptionGate_EventScript_BattlePike
+	case 6, BattleFrontier_ReceptionGate_EventScript_BattlePyramid
+	case 7, BattleFrontier_ReceptionGate_EventScript_RankingHall
+	case 8, BattleFrontier_ReceptionGate_EventScript_ExchangeCorner
+	case 9, BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+	case MULTI_B_PRESSED, BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattleTower:: @ 82663AE
+	msgbox BattleFrontier_ReceptionGate_Text_BattleTowerInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattleDome:: @ 82663BC
+	msgbox BattleFrontier_ReceptionGate_Text_BattleDomeInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattlePalace:: @ 82663CA
+	msgbox BattleFrontier_ReceptionGate_Text_BattlePalaceInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattleArena:: @ 82663D8
+	msgbox BattleFrontier_ReceptionGate_Text_BattleArenaInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattleFactory:: @ 82663E6
+	msgbox BattleFrontier_ReceptionGate_Text_BattleFactoryInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattlePike:: @ 82663F4
+	msgbox BattleFrontier_ReceptionGate_Text_BattlePikeInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattlePyramid:: @ 8266402
+	msgbox BattleFrontier_ReceptionGate_Text_BattlePyramidInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_RankingHall:: @ 8266410
+	msgbox BattleFrontier_ReceptionGate_Text_RankingHallInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ExchangeCorner:: @ 826641E
+	msgbox BattleFrontier_ReceptionGate_Text_ExchangeCornerInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFacilityToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ExitFacilityGuide:: @ 826642C
+	msgbox BattleFrontier_ReceptionGate_Text_EnjoyBattleFrontier, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_ReceptionGate_EventScript_RulesGuide:: @ 8266436
+	lock
+	faceplayer
+	msgbox BattleFrontier_ReceptionGate_Text_YourGuideToRules, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout:: @ 8266446
+	message BattleFrontier_ReceptionGate_Text_LearnAboutWhat
+	waitmessage
+	multichoice 15, 0, MULTI_FRONTIER_RULES, FALSE
+	switch VAR_RESULT
+	case 0, BattleFrontier_ReceptionGate_EventScript_LevelMode
+	case 1, BattleFrontier_ReceptionGate_EventScript_Level50
+	case 2, BattleFrontier_ReceptionGate_EventScript_OpenLevel
+	case 3, BattleFrontier_ReceptionGate_EventScript_MonEntry
+	case 4, BattleFrontier_ReceptionGate_EventScript_HoldItems
+	case 5, BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+	case MULTI_B_PRESSED, BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide
+	end
+
+BattleFrontier_ReceptionGate_EventScript_LevelMode:: @ 82664A4
+	msgbox BattleFrontier_ReceptionGate_Text_LevelModeInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_Level50:: @ 82664B2
+	msgbox BattleFrontier_ReceptionGate_Text_Level50Info, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_OpenLevel:: @ 82664C0
+	msgbox BattleFrontier_ReceptionGate_Text_OpenLevelInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_MonEntry:: @ 82664CE
+	msgbox BattleFrontier_ReceptionGate_Text_MonEntryInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_HoldItems:: @ 82664DC
+	msgbox BattleFrontier_ReceptionGate_Text_HoldItemsInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ExitRulesGuide:: @ 82664EA
+	msgbox BattleFrontier_ReceptionGate_Text_EnjoyBattleFrontier, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide:: @ 82664F4
+	lock
+	faceplayer
+	msgbox BattleFrontier_ReceptionGate_Text_YourGuideToFrontierPass, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout:: @ 8266504
+	message BattleFrontier_ReceptionGate_Text_LearnAboutWhich1
+	waitmessage
+	multichoice 16, 4, MULTI_FRONTIER_PASS_INFO, FALSE
+	switch VAR_RESULT
+	case 0, BattleFrontier_ReceptionGate_EventScript_Symbols
+	case 1, BattleFrontier_ReceptionGate_EventScript_RecordBattle
+	case 2, BattleFrontier_ReceptionGate_EventScript_BattlePoints
+	case 3, BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+	case MULTI_B_PRESSED, BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+	end
+
+BattleFrontier_ReceptionGate_EventScript_Symbols:: @ 826654C
+	msgbox BattleFrontier_ReceptionGate_Text_SymbolsInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_RecordBattle:: @ 826655A
+	msgbox BattleFrontier_ReceptionGate_Text_RecordedBattleInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_BattlePoints:: @ 8266568
+	msgbox BattleFrontier_ReceptionGate_Text_BattlePointsInfo, MSGBOX_DEFAULT
+	goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
+	end
+
+BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide:: @ 8266576
+	msgbox BattleFrontier_ReceptionGate_Text_EnjoyBattleFrontier, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_ReceptionGate_Text_FirstTimeHereThisWay: @ 8266580
+	.string "是第一次来这里吗？\n"
+	.string "请往这边走！$"
+
+BattleFrontier_ReceptionGate_Text_WelcomeToBattleFrontier: @ 82665B2
+	.string "宝可梦对战的最前线！\n"
+	.string "欢迎来到对战开拓区！$"
+
+BattleFrontier_ReceptionGate_Text_IssueFrontierPass: @ 82665F7
+	.string "对初次来访的客人，我们会\n"
+	.string "发放开拓通行证。\p"
+	.string "在对战开拓区所有的设施\n"
+	.string "都能使用它。\p"
+	.string "给您！$"
+
+BattleFrontier_ReceptionGate_Text_ObtainedFrontierPass: @ 8266676
+	.string "{PLAYER}获得了\n"
+	.string "开拓通行证。$"
+
+BattleFrontier_ReceptionGate_Text_PlacedTrainerCardInFrontierPass: @ 8266695
+	.string "{PLAYER}把训练家卡\n"
+	.string "放进了开拓通行证。$"
+
+BattleFrontier_ReceptionGate_Text_EnjoyBattleFrontier: @ 82666C6
+	.string "祝您在对战开拓区\n"
+	.string "玩得尽兴！$"
+
+BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame: @ 8266703
+	.string "？？？：哟，这不是{PLAYER}{KUN}吗！\n"
+	.string "你也跑到这儿来了！$"
+
+BattleFrontier_ReceptionGate_Text_OhMrScottGoodDay: @ 8266733
+	.string "向导：哦！斯科特先生！\n"
+	.string "您好！$"
+
+BattleFrontier_ReceptionGate_Text_ScottGreatToSeeYouHere: @ 8266764
+	.string "斯科特：能在这儿见到你，\n"
+	.string "真是太好了！\p"
+	.string "希望你慢慢来，\n"
+	.string "把每个地方都逛一逛。\p"
+	.string "当然，我也希望你能体验\n"
+	.string "对战最纯粹的精华。\p"
+	.string "我在这里也有住处，\n"
+	.string "有空就来坐坐吧。$"
+
+BattleFrontier_ReceptionGate_Text_YourGuideToFacilities: @ 8266857
+	.string "我是为您介绍对战开拓区\n"
+	.string "各个设施的向导。$"
+
+BattleFrontier_ReceptionGate_Text_LearnAboutWhich2: @ 826689D
+	.string "您想了解哪一处？$"
+
+BattleFrontier_ReceptionGate_Text_BattleTowerInfo: @ 82668C2
+	.string "那是被视为对战开拓区象征的\n"
+	.string "巨大高塔。\p"
+	.string "塔内有四种对战房间：\n"
+	.string "单打、双打、多人，\p"
+	.string "还有通讯多人对战。$"
+
+BattleFrontier_ReceptionGate_Text_BattleDomeInfo: @ 826696F
+	.string "对战巨蛋是那座\n"
+	.string "形如巨蛋的大建筑。\p"
+	.string "这里会举办名为\n"
+	.string "“对战大赛”的活动。\p"
+	.string "对战大赛分为单打和双打\n"
+	.string "两种赛程。$"
+
+BattleFrontier_ReceptionGate_Text_BattlePalaceInfo: @ 8266A34
+	.string "对战宫殿是对战开拓区\n"
+	.string "右侧的红色建筑。\p"
+	.string "那里有两种对战厅：\n"
+	.string "单打和双打。$"
+
+BattleFrontier_ReceptionGate_Text_BattleArenaInfo: @ 8266AC2
+	.string "对战竞技场是对战开拓区\n"
+	.string "中右侧那座道场样的建筑。\p"
+	.string "那里会举办名为\n"
+	.string "“Set KO大赛”的活动。$"
+
+BattleFrontier_ReceptionGate_Text_BattleFactoryInfo: @ 8266B5D
+	.string "对战工厂是离我们最近的\n"
+	.string "那座大建筑。\p"
+	.string "那里会举办名为\n"
+	.string "“对战交换”的活动。\p"
+	.string "对战交换分为单打和双打\n"
+	.string "两种赛程。$"
+
+BattleFrontier_ReceptionGate_Text_BattlePikeInfo: @ 8266C24
+	.string "对战管道是对战开拓区\n"
+	.string "中左侧那座宝可梦形状的建筑。\p"
+	.string "那里会举办名为\n"
+	.string "“对战选择”的活动。$"
+
+BattleFrontier_ReceptionGate_Text_BattlePyramidInfo: @ 8266CBB
+	.string "对战金字塔是那座\n"
+	.string "巨大的金字塔。\p"
+	.string "那里会举办名为\n"
+	.string "“对战寻宝”的活动。$"
+
+BattleFrontier_ReceptionGate_Text_RankingHallInfo: @ 8266D1C
+	.string "排名大厅在对战塔附近。\n"
+	.string "在那里，您可以看到挑战过\p"
+	.string "对战开拓区各项考验的\n"
+	.string "训练家留下的最精彩纪录。$"
+
+BattleFrontier_ReceptionGate_Text_ExchangeCornerInfo: @ 8266DCB
+	.string "兑换服务角在对战塔附近。\n"
+	.string "您在对战开拓区赢得的\p"
+	.string "对战点数，可以在那里\n"
+	.string "兑换精美的奖品。$"
+
+BattleFrontier_ReceptionGate_Text_YourGuideToRules: @ 8266E66
+	.string "我是为您介绍对战开拓区\n"
+	.string "各设施共通的基本规则\p"
+	.string "的向导。$"
+
+BattleFrontier_ReceptionGate_Text_LearnAboutWhat: @ 8266EE0
+	.string "您想了解哪一项？$"
+
+BattleFrontier_ReceptionGate_Text_LevelModeInfo: @ 8266F04
+	.string "对战开拓区各设施的挑战\n"
+	.string "都分为两种级别：\p"
+	.string "50级和开放级别。$"
+
+BattleFrontier_ReceptionGate_Text_Level50Info: @ 8266F69
+	.string "50级级别只接受50级及以下的\n"
+	.string "宝可梦参加。\p"
+	.string "不过请记住，您面对的\n"
+	.string "训练家不会有任何\p"
+	.string "低于50级的宝可梦。\n"
+	.string "这个级别是对战开拓区\p"
+	.string "对战的入门级。\n"
+	.string "一开始，希望您先挑战\p"
+	.string "这个级别。$"
+
+BattleFrontier_ReceptionGate_Text_OpenLevelInfo: @ 8267080
+	.string "开放级别对参加挑战的\n"
+	.string "宝可梦等级没有限制。\p"
+	.string "对手的等级会调整到\n"
+	.string "与您的宝可梦相符。\p"
+	.string "不过，您面对的训练家\n"
+	.string "不会有任何低于60级的宝可梦。$"
+
+BattleFrontier_ReceptionGate_Text_MonEntryInfo: @ 826716A
+	.string "几乎所有种类的宝可梦都能\n"
+	.string "参加各设施的挑战。\p"
+	.string "但是，蛋和某些种类的\n"
+	.string "宝可梦不能参加。\p"
+	.string "挑战所需的宝可梦数量\n"
+	.string "会因设施而异。\p"
+	.string "不过，所有设施都不允许\n"
+	.string "带两只以上同种的宝可梦。$"
+
+BattleFrontier_ReceptionGate_Text_HoldItemsInfo: @ 8267298
+	.string "在对战开拓区设施参加挑战时，\n"
+	.string "宝可梦不能携带\p"
+	.string "相同种类的道具。\n"
+	.string "请确认所有参加挑战的\p"
+	.string "宝可梦携带的道具\n"
+	.string "都不相同。$"
+
+BattleFrontier_ReceptionGate_Text_YourGuideToFrontierPass: @ 8267357
+	.string "我是为您介绍开拓通行证\n"
+	.string "的向导。$"
+
+BattleFrontier_ReceptionGate_Text_LearnAboutWhich1: @ 826737C
+	.string "您想了解哪一项？$"
+
+BattleFrontier_ReceptionGate_Text_SymbolsInfo: @ 82673A1
+	.string "对战开拓区共有七处设施。\n"
+	.string "实力得到认可的训练家，\p"
+	.string "会从各设施获得象征作为奖励。\n"
+	.string "要获得象征，可能需要\p"
+	.string "连续击败其他训练家，\n"
+	.string "也可能需要反复赢下赛事。\p"
+	.string "赢得象征当然不容易。\n"
+	.string "祝您好运！$"
+
+BattleFrontier_ReceptionGate_Text_RecordedBattleInfo: @ 82674F3
+	.string "开拓通行证上可以记录\n"
+	.string "一场对战。\p"
+	.string "您可以记录与朋友\n"
+	.string "进行的对战。\p"
+	.string "也可以记录在对战开拓区\n"
+	.string "进行的对战，但不包括\p"
+	.string "对战管道和对战金字塔\n"
+	.string "的比赛。\p"
+	.string "您可以在对战结束时\n"
+	.string "选择是否记录。$"
+
+BattleFrontier_ReceptionGate_Text_BattlePointsInfo: @ 826761C
+	.string "对战点数是对在对战开拓区\n"
+	.string "表现杰出的训练家\p"
+	.string "给予的奖励。\n"
+	.string "您可以用对战点数在\p"
+	.string "兑换服务角换取奖品。$"
+
+`

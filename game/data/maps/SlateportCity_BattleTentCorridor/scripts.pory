@@ -1,0 +1,284 @@
+raw `
+.set LOCALID_ATTENDANT, 1
+
+SlateportCity_BattleTentCorridor_MapScripts:: @ 8208E26
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_BattleTentCorridor_OnFrame
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SlateportCity_BattleTentCorridor_OnWarp
+	.byte 0
+
+	@ This is Slateport Tent's version of the Battle Factory Pre-Battle Room
+
+SlateportCity_BattleTentCorridor_OnWarp: @ 8208E31
+	map_script_2 VAR_TEMP_1, 0, SlateportCity_BattleTentCorridor_EventScript_SetUpObjects
+	.2byte 0
+
+SlateportCity_BattleTentCorridor_EventScript_SetUpObjects:: @ 8208E3B
+	setvar VAR_TEMP_1, 1
+	compare VAR_0x8006, 1
+	goto_if_ne SlateportCity_BattleTentCorridor_EventScript_TurnPlayerNorth
+	setobjectxy LOCALID_ATTENDANT, 2, 2
+	turnobject LOCALID_ATTENDANT, DIR_SOUTH
+SlateportCity_BattleTentCorridor_EventScript_TurnPlayerNorth:: @ 8208E56
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+SlateportCity_BattleTentCorridor_OnFrame: @ 8208E5B
+	map_script_2 VAR_TEMP_0, 0, SlateportCity_BattleTentCorridor_EventScript_EnterCorridor
+	.2byte 0
+
+SlateportCity_BattleTentCorridor_EventScript_EnterCorridor:: @ 8208E65
+	compare VAR_0x8006, 1
+	goto_if_eq SlateportCity_BattleTentCorridor_EventScript_ReturnToRoomFromBattle
+	setvar VAR_TEMP_0, 1
+	applymovement LOCALID_ATTENDANT, SlateportCity_BattleTentCorridor_Movement_AttendantEnter
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_BattleTentCorridor_Movement_PlayerEnter
+	waitmovement 0
+	compare VAR_0x8006, 2
+	goto_if_eq SlateportCity_BattleTentCorridor_EventScript_ResumeChallenge
+	slateporttent_generaterentalmons
+	slateporttent_generateopponentmons
+	msgbox BattleFrontier_BattleFactoryPreBattleRoom_Text_HoldMonsChooseFromSelection, MSGBOX_DEFAULT
+	fadescreen FADE_TO_BLACK
+	slateporttent_rentmons
+	waitstate
+SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom:: @ 8208EB4
+	msgbox BattleFrontier_BattleFactoryPreBattleRoom_Text_RightThisWay, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_ATTENDANT, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	opendoor 2, 1
+	waitdooranim
+	applymovement LOCALID_ATTENDANT, SlateportCity_BattleTentCorridor_Movement_AttendantExit
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_BattleTentCorridor_Movement_PlayerExit
+	waitmovement 0
+	closedoor 2, 1
+	waitdooranim
+	warp MAP_SLATEPORT_CITY_BATTLE_TENT_BATTLE_ROOM, 255, 4, 4
+	waitstate
+	end
+
+SlateportCity_BattleTentCorridor_EventScript_ReturnToRoomFromBattle:: @ 8208EEE
+	factory_setopponentmons
+	factory_resethelditems
+	msgbox BattleFrontier_BattleFactoryPreBattleRoom_Text_LetUsRestoreMons, MSGBOX_DEFAULT
+	playfanfare MUS_HEAL
+	waitfanfare
+	special HealPlayerParty
+SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent:: @ 8208F0D
+	frontier_get FRONTIER_DATA_BATTLE_NUM
+	compare VAR_RESULT, 1
+	call_if_eq SlateportCity_BattleTentCorridor_EventScript_ReadyFor2ndOpponent
+	compare VAR_RESULT, 2
+	call_if_eq SlateportCity_BattleTentCorridor_EventScript_ReadyFor3rdOpponent
+	multichoice 20, 6, MULTI_GO_ON_REST_RETIRE, TRUE
+	switch VAR_RESULT
+	case 0, SlateportCity_BattleTentCorridor_EventScript_AskSwapMon
+	case 1, SlateportCity_BattleTentCorridor_EventScript_AskPauseChallenge
+	case 2, SlateportCity_BattleTentCorridor_EventScript_AskRetireChallenge
+
+SlateportCity_BattleTentCorridor_EventScript_AskPauseChallenge:: @ 8208F5B
+	msgbox BattleFrontier_BattleFactoryPreBattleRoom_Text_SaveAndQuitGame, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+	case YES, SlateportCity_BattleTentCorridor_EventScript_PauseChallenge
+	case MULTI_B_PRESSED, SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+
+SlateportCity_BattleTentCorridor_EventScript_AskRetireChallenge:: @ 8208F89
+	message BattleFrontier_BattleFactoryPreBattleRoom_Text_RetireFromChallenge
+	waitmessage
+	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
+	switch VAR_RESULT
+	case 1, SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+	case 0, SlateportCity_BattleTent_EventScript_WarpToLobbyLost
+	case MULTI_B_PRESSED, SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+
+SlateportCity_BattleTentCorridor_EventScript_AskSwapMon:: @ 8208FBB
+	slateporttent_generateopponentmons
+	msgbox BattleFrontier_BattleFactoryPreBattleRoom_Text_LikeToSwapMon, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+	case YES, SlateportCity_BattleTentCorridor_EventScript_SwapMons
+	case MULTI_B_PRESSED, SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+
+SlateportCity_BattleTentCorridor_EventScript_SwapMons:: @ 8208FF1
+	fadescreen FADE_TO_BLACK
+	slateporttent_swapmons
+	waitstate
+	compare VAR_RESULT, 1
+	goto_if_eq SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+	msgbox BattleFrontier_BattleFactoryPreBattleRoom_Text_YourSwapIsComplete, MSGBOX_DEFAULT
+	goto SlateportCity_BattleTentCorridor_EventScript_EnterBattleRoom
+
+SlateportCity_BattleTentCorridor_EventScript_ReadyFor2ndOpponent:: @ 8209014
+	message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor2ndOpponent
+	waitmessage
+	return
+
+SlateportCity_BattleTentCorridor_EventScript_ReadyFor3rdOpponent:: @ 820901B
+	message BattleFrontier_BattleFactoryPreBattleRoom_Text_ReadyFor3rdOpponent
+	waitmessage
+	return
+
+SlateportCity_BattleTentCorridor_EventScript_PauseChallenge:: @ 8209022
+	message BattleFrontier_BattleFactoryPreBattleRoom_Text_SavingDataPleaseWait
+	waitmessage
+	slateporttent_save CHALLENGE_STATUS_PAUSED
+	playse SE_SAVE
+	waitse
+	fadescreen FADE_TO_BLACK
+	frontier_reset
+	end
+
+SlateportCity_BattleTentCorridor_EventScript_ResumeChallenge:: @ 8209044
+	special SavePlayerParty
+	factory_setparties 0
+	goto SlateportCity_BattleTentCorridor_EventScript_AskReadyForOpponent
+
+SlateportCity_BattleTentCorridor_Movement_PlayerEnter: @ 8209059
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+SlateportCity_BattleTentCorridor_Movement_PlayerExit: @ 820905E
+	walk_up
+	walk_up
+	set_invisible
+	step_end
+
+SlateportCity_BattleTentCorridor_Movement_AttendantEnter: @ 8209062
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_in_place_fastest_down
+	step_end
+
+SlateportCity_BattleTentCorridor_Movement_AttendantExit: @ 8209068
+	walk_up
+	set_invisible
+	step_end
+
+@ Leftover text from when this was a Contest Hall in R/S
+@ Unused
+SlateportCity_ContestHall_Text_AdviceForContests: @ 820906B
+	.string "想听一点关于华丽大赛的\n"
+	.string "小建议吗？\p"
+	.string "在某种招式之后接着使用\n"
+	.string "特定招式，有时能赢得\p"
+	.string "额外的关注。\n"
+	.string "只要懂得诀窍，\p"
+	.string "你就能拿到很高的表演分。\n"
+	.string "当然，对手也可能会想办法\p"
+	.string "打断你宝可梦的表演。$"
+
+@ Unused
+SlateportCity_ContestHall_Text_MyPapaIsContestJudge: @ 820917A
+	.string "我爸爸是华丽大赛的\n"
+	.string "评审委员。\p"
+	.string "我长大以后该当什么呢，\n"
+	.string "评审委员还是道馆馆主？$"
+
+@ Unused
+SlateportCity_ContestHall_Text_ImLikeMajorlyCheesed: @ 82091DC
+	.string "哎，兄弟，我真是超级火大，\n"
+	.string "你知道吗。我就是想知道，\p"
+	.string "为什么我的宝可梦从来没赢过，\n"
+	.string "你懂吧？\p"
+	.string "所以我就去跟评审委员\n"
+	.string "说了两句，反正也不要钱。\p"
+	.string "结果他根本不听我说，哎！\n"
+	.string "真是郁闷死了，兄弟！\p"
+	.string "喂，就是你！闭嘴吧，行吗？\n"
+	.string "这个，你拿着！$"
+
+@ Unused
+SlateportCity_ContestHall_Text_ExplainTorment: @ 8209322
+	.string "那是招式学习器41，知道吧？\n"
+	.string "喂，是“折磨”，听见没有？\p"
+	.string "它能让对手没法连续\n"
+	.string "使用同一招，明白吗？\p"
+	.string "喂，听好了，我可不是\n"
+	.string "在折磨你！$"
+
+@ Unused
+SlateportCity_ContestHall_Text_MCStepUpTakePartInContest: @ 82093ED
+	.string "主持人：哦，天啊天啊！\n"
+	.string "这不是很棒的宝可梦吗？\p"
+	.string "来吧！请上前参加\n"
+	.string "我们精彩的华丽大赛！\p"
+	.string "你会表现得很好的！我保证！\n"
+	.string "我的眼睛从没看错过！$"
+
+@ Unused
+SlateportCity_ContestHall_Text_JudgeWouldntDoToMissContest: @ 82094A1
+	.string "评审委员：哦，你好啊！\n"
+	.string "我看你是个训练家！\p"
+	.string "那你可不能错过\n"
+	.string "宝可梦华丽大赛！\p"
+	.string "去绿茵镇领一张大赛通行证，\n"
+	.string "随时都能参赛！$"
+
+@ Unused
+SlateportCity_ContestHall_Text_ItsAppealTime: @ 820954E
+	.string "到表演时间了！\n"
+	.string "该用什么开场？$"
+
+@ Unused
+SlateportCity_ContestHall_Text_DidntPayAttentionToAppeal: @ 8209579
+	.string "他们根本没怎么注意\n"
+	.string "我宝可梦的表演……\p"
+	.string "哼，那个评审委员，\n"
+	.string "好东西摆在眼前也看不出来。$"
+
+@ Unused
+SlateportCity_ContestHall_Text_RewardWithSageAdvice: @ 82095F1
+	.string "哦，你好！能靠得这么近，\n"
+	.string "你一定是真粉丝。\p"
+	.string "我就用这条宝贵的建议\n"
+	.string "回报你的热情。\p"
+	.string "如果某个招式反响很好，\n"
+	.string "观众就会热起来。\p"
+	.string "要是在大家都热起来的时候\n"
+	.string "让宝可梦表演……\p"
+	.string "那你想，肯定会发生\n"
+	.string "好事吧！$"
+
+@ Unused
+SlateportCity_ContestHall_Text_MoreFreakedOutThanMon: @ 8209718
+	.string "我做不到！我比我的宝可梦\n"
+	.string "还要慌。\p"
+	.string "我在发抖，心都快跳出来了！$"
+
+@ Unused
+SlateportCity_ContestHall_Text_BattleAndContestAlike: @ 8209775
+	.string "对战和华丽大赛并不相同，\n"
+	.string "但也有相似之处。\p"
+	.string "你需要努力，还要相信\n"
+	.string "自己培养的宝可梦。$"
+
+@ Unused
+SlateportCity_ContestHall_Text_MonLooksOnTopOfGame: @ 82097F6
+	.string "那只宝可梦看起来\n"
+	.string "状态正好，对吧？\p"
+	.string "在二次评审中表现好的宝可梦，\n"
+	.string "在表演时好像也更从容。$"
+
+@ Unused
+SlateportCity_ContestHall_Text_MyMonBetterThanThatLot: @ 8209890
+	.string "你看看那副惨样？\n"
+	.string "哼，我的宝可梦比那群\p"
+	.string "强得多了！$"
+
+@ Unused
+SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon: @ 82098E6
+	.string "看到宝可梦做出充满活力的\n"
+	.string "表演，你不也会想跟着动吗？$"
+
+@ Unused
+SlateportCity_ContestHall_Text_HyperRankStage: @ 820993D
+	.string "宝可梦华丽大赛\n"
+	.string "超级级别舞台！$"
+
+`

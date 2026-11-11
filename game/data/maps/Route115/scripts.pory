@@ -1,0 +1,214 @@
+raw `
+Route115_MapScripts:: @ 81F2920
+	map_script MAP_SCRIPT_ON_LOAD, Route115_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, Route115_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route115_OnFrame
+	.byte 0
+
+Route115_OnLoad: @ 81F2930
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_WEST
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute115West
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_EAST
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute115East
+	end
+
+Route115_OnTransition: @ 81F2947
+	compare VAR_SHOULD_END_ABNORMAL_WEATHER, 1
+	call_if_eq AbnormalWeather_EventScript_HideMapNamePopup
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_WEST
+	call_if_eq AbnormalWeather_StartGroudonWeather
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_EAST
+	call_if_eq AbnormalWeather_StartGroudonWeather
+	end
+
+Route115_OnFrame: @ 81F2969
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	.2byte 0
+
+Route115_EventScript_Woman:: @ 81F2973
+	msgbox Route115_Text_NeverKnowWhenCavePokemonWillAppear, MSGBOX_NPC
+	end
+
+Route115_EventScript_RouteSignRustboro:: @ 81F297C
+	msgbox Route115_Text_RouteSignRustboro, MSGBOX_SIGN
+	end
+
+Route115_EventScript_MeteorFallsSign:: @ 81F2985
+	msgbox Route115_Text_MeteorFallsSign, MSGBOX_SIGN
+	end
+
+Route115_EventScript_Timothy:: @ 81F298E
+	trainerbattle_single TRAINER_TIMOTHY_1, Route115_Text_TimothyIntro, Route115_Text_TimothyDefeat, Route115_EventScript_RegisterTimothy
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route115_EventScript_RematchTimothy
+	msgbox Route115_Text_TimothyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route115_EventScript_RegisterTimothy:: @ 81F29BA
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route115_Text_TimothyRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_TIMOTHY_1
+	release
+	end
+
+Route115_EventScript_RematchTimothy:: @ 81F29D9
+	trainerbattle_rematch TRAINER_TIMOTHY_1, Route115_Text_TimothyRematchIntro, Route115_Text_TimothyRematchDefeat
+	msgbox Route115_Text_TimothyPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Koichi:: @ 81F29F0
+	trainerbattle_single TRAINER_KOICHI, Route115_Text_KoichiIntro, Route115_Text_KoichiDefeat
+	msgbox Route115_Text_KoichiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Nob:: @ 81F2A07
+	trainerbattle_single TRAINER_NOB_1, Route115_Text_NobIntro, Route115_Text_NobDefeat, Route115_EventScript_RegisterNob
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route115_EventScript_RematchNob
+	msgbox Route115_Text_NobPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route115_EventScript_RegisterNob:: @ 81F2A33
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route115_Text_NobRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_NOB_1
+	release
+	end
+
+Route115_EventScript_RematchNob:: @ 81F2A52
+	trainerbattle_rematch TRAINER_NOB_1, Route115_Text_NobRematchIntro, Route115_Text_NobRematchDefeat
+	msgbox Route115_Text_NobPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Cyndy:: @ 81F2A69
+	trainerbattle_single TRAINER_CYNDY_1, Route115_Text_CyndyIntro, Route115_Text_CyndyDefeat, Route115_EventScript_RegisterCyndy
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route115_EventScript_RematchCyndy
+	msgbox Route115_Text_CyndyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route115_EventScript_RegisterCyndy:: @ 81F2A95
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route115_Text_CyndyRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CYNDY_1
+	release
+	end
+
+Route115_EventScript_RematchCyndy:: @ 81F2AB4
+	trainerbattle_rematch TRAINER_CYNDY_1, Route115_Text_CyndyRematchIntro, Route115_Text_CyndyRematchDefeat
+	msgbox Route115_Text_CyndyPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Hector:: @ 81F2ACB
+	trainerbattle_single TRAINER_HECTOR, Route115_Text_HectorIntro, Route115_Text_HectorDefeat
+	msgbox Route115_Text_HectorPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Kyra:: @ 81F2AE2
+	trainerbattle_single TRAINER_KYRA, Route115_Text_KyraIntro, Route115_Text_KyraDefeat
+	msgbox Route115_Text_KyraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Jaiden:: @ 81F2AF9
+	trainerbattle_single TRAINER_JAIDEN, Route115_Text_JaidenIntro, Route115_Text_JaidenDefeat
+	msgbox Route115_Text_JaidenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Alix:: @ 81F2B10
+	trainerbattle_single TRAINER_ALIX, Route115_Text_AlixIntro, Route115_Text_AlixDefeat
+	msgbox Route115_Text_AlixPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Helene:: @ 81F2B27
+	trainerbattle_single TRAINER_HELENE, Route115_Text_HeleneIntro, Route115_Text_HeleneDefeat
+	msgbox Route115_Text_HelenePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route115_EventScript_Marlene:: @ 81F2B3E
+	trainerbattle_single TRAINER_MARLENE, Route115_Text_MarleneIntro, Route115_Text_MarleneDefeat
+	msgbox Route115_Text_MarlenePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route115_Text_NeverKnowWhenCavePokemonWillAppear: @ 81F2B55
+	.string "探索洞窟和走在路上不一样。\p"
+	.string "你永远不知道野生宝可梦\n"
+	.string "什么时候会冒出来。充满悬念。$"
+
+Route115_Text_RouteSignRustboro: @ 81F2BC9
+	.string "115 号道路\n"
+	.string "{DOWN_ARROW} 卡那兹市$"
+
+Route115_Text_MeteorFallsSign: @ 81F2BE3
+	.string "流星瀑布\n"
+	.string "由此前往秋叶镇$"
+
+`
+script Route115_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("贤者：理解、情感、意志。\n我为愿意倾听的人吟唱\p湖之守护者赐予我们的祝福。$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+			msgbox(format("知识、情感、意志。\n沉睡的湖之守护者\p等待着能洞察其深意的人。\p只有理解它们的旨意，\n你才能成为它们力量的通道。\p接受它们的召唤吧，\n年轻的训练家，然后再来找我。$"))
+	}
+	else{
+		if(defeated(TRAINER_TIMOTHY_1) &&
+		   defeated(TRAINER_KOICHI) &&
+		   defeated(TRAINER_NOB_1)  &&
+		   defeated(TRAINER_CYNDY_1)  &&
+		   defeated(TRAINER_HECTOR)  &&
+		   defeated(TRAINER_KYRA)  &&
+		   defeated(TRAINER_JAIDEN)  &&
+		   defeated(TRAINER_ALIX)  &&
+		   defeated(TRAINER_HELENE)  &&
+		   defeated(TRAINER_MARLENE)){
+				msgbox(format("洞察、热忱、坚毅。\n这些美德在你心中燃烧。\p守护者已准备好与你相见：\n用图鉴导航器找出它们的位置。$"))
+			}
+		else{
+			msgbox(format("智慧、热情、决心。\n你对心灵裂隙的掌控非同寻常，\p但还不够全面。\p清除这条道路上所有的阻碍，\n守护三神就会再度苏醒。$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("恶意、荒芜、背叛。\n你竟然拒绝守护者的馈赠，\p真可耻！$"), MSGBOX_NPC)
+	}
+    release
+    end
+}
+
+script Route115_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+		if(defeated(TRAINER_TIMOTHY_1) &&
+		   defeated(TRAINER_KOICHI) &&
+		   defeated(TRAINER_NOB_1)  &&
+		   defeated(TRAINER_CYNDY_1)  &&
+		   defeated(TRAINER_HECTOR)  &&
+		   defeated(TRAINER_KYRA)  &&
+		   defeated(TRAINER_JAIDEN)  &&
+		   defeated(TRAINER_ALIX)  &&
+		   defeated(TRAINER_HELENE)  &&
+		   defeated(TRAINER_MARLENE)){
+		// when you defeat every trainer
+		msgbox(format("终于完成了。谢谢你，朋友！$"))
+		givemon(SPECIES_DRACOVISH, 50, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}鳃鱼龙{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("我有嘴，就必须咬。\n与我一同踏上这片土地的\p食肉之旅吧。$"))
+	}
+    release
+    end
+}

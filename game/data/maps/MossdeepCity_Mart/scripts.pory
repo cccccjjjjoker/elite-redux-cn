@@ -1,0 +1,37 @@
+raw `
+MossdeepCity_Mart_MapScripts:: @ 82223C7
+	.byte 0
+
+MossdeepCity_Mart_EventScript_Woman:: @ 82223F6
+	msgbox MossdeepCity_Mart_Text_ReviveIsFantastic, MSGBOX_NPC
+	end
+
+MossdeepCity_Mart_EventScript_Boy:: @ 82223FF
+	msgbox MossdeepCity_Mart_Text_MaxRepelLastsLongest, MSGBOX_NPC
+	end
+
+MossdeepCity_Mart_EventScript_Sailor:: @ 8222408
+	msgbox MossdeepCity_Mart_Text_NetAndDiveBallsRare, MSGBOX_NPC
+	end
+
+MossdeepCity_Mart_Text_ReviveIsFantastic: @ 8222411
+	.string "活力碎片太棒了！\n"
+	.string "给倒下的宝可梦用，\p"
+	.string "它就会站起来。\n"
+	.string "但小心，活力碎片不会回复\p"
+	.string "已经用掉的招式ＰＰ。$"
+
+MossdeepCity_Mart_Text_MaxRepelLastsLongest: @ 82224A0
+	.string "黄金喷雾能让所有弱小的\n"
+	.string "宝可梦远离。\p"
+	.string "在所有喷雾里，它持续最久。$"
+
+MossdeepCity_Mart_Text_NetAndDiveBallsRare: @ 82224FA
+	.string "捕网球和潜水球是只在绿岭市\n"
+	.string "制造的稀有精灵球。\p"
+	.string "捕网球对虫属性和水属性\n"
+	.string "宝可梦有效。\p"
+	.string "潜水球对海底的宝可梦\n"
+	.string "效果最好。$"
+
+`

@@ -1,0 +1,767 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_ESCAPE_ROPE
+  name: "离洞绳"
+  description: "能立刻走出洞窟或迷宫。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "escape_rope"
+  palette: "escape_rope"
+  field_use_func: "EscapeRope"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_OLD_ROD
+  name: "破旧钓竿"
+  description: "在任何水域使用来钓野生宝可梦"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect_misc_param: "OLD_ROD"
+  use_type: ITEM_USE_FIELD
+  image: "old_rod"
+  palette: "old_rod"
+  field_use_func: "Rod"
+}
+item {
+  id: ITEM_GOOD_ROD
+  name: "好钓竿"
+  description: "用来捕捉野生宝可梦的不错钓竿"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect_misc_param: "GOOD_ROD"
+  use_type: ITEM_USE_FIELD
+  image: "good_rod"
+  palette: "good_rod"
+  field_use_func: "Rod"
+}
+item {
+  id: ITEM_SUPER_ROD
+  name: "厉害钓竿"
+  description: "用来捕捉野生宝可梦的最好钓竿"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect_misc_param: "SUPER_ROD"
+  use_type: ITEM_USE_FIELD
+  image: "super_rod"
+  palette: "super_rod"
+  field_use_func: "Rod"
+}
+item {
+  id: ITEM_MACH_BIKE
+  name: "音速自行车"
+  description: "能以倍速度移动的可折叠式自行车。"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect_misc_param: "MACH_BIKE"
+  use_type: ITEM_USE_FIELD
+  image: "mach_bike"
+  palette: "mach_bike"
+  field_use_func: "Bike"
+}
+item {
+  id: ITEM_ACRO_BIKE
+  name: "越野自行车"
+  description: "能跳跃和抬前轮的折叠自行车。"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect_misc_param: "ACRO_BIKE"
+  use_type: ITEM_USE_FIELD
+  image: "acro_bike"
+  palette: "acro_bike"
+  field_use_func: "Bike"
+}
+item {
+  id: ITEM_INFINITE_REPEL
+  name: "无限驱虫剂"
+  description: "开启期间，弱小的野生宝可梦不会出现。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "repel"
+  palette: "infinite_repel"
+  field_use_func: "InfiniteRepel"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ARMOR_FOSSIL
+  name: "盾甲化石"
+  description: "史前宝可梦头部的化石碎片。"
+  grouping: POCKET_KEY_ITEMS
+  image: "armor_fossil"
+  palette: "armor_fossil"
+}
+item {
+  id: ITEM_SKULL_FOSSIL
+  name: "头盖化石"
+  description: "史前宝可梦头部的化石碎片。"
+  grouping: POCKET_KEY_ITEMS
+  image: "skull_fossil"
+  palette: "skull_fossil"
+}
+item {
+  id: ITEM_HELIX_FOSSIL
+  name: "贝壳化石"
+  description: "古代海洋宝可梦贝壳的碎片"
+  grouping: POCKET_KEY_ITEMS
+  image: "helix_fossil"
+  palette: "kanto_fossil"
+}
+item {
+  id: ITEM_DOME_FOSSIL
+  name: "甲壳化石"
+  description: "古代海洋宝可梦的贝壳碎片。"
+  grouping: POCKET_KEY_ITEMS
+  image: "dome_fossil"
+  palette: "kanto_fossil"
+}
+item {
+  id: ITEM_COVER_FOSSIL
+  name: "背盖化石"
+  description: "史前宝可梦背部的化石碎片。"
+  grouping: POCKET_KEY_ITEMS
+  image: "cover_fossil"
+  palette: "cover_fossil"
+}
+item {
+  id: ITEM_PLUME_FOSSIL
+  name: "羽毛化石"
+  description: "史前宝可梦翅膀的化石碎片。"
+  grouping: POCKET_KEY_ITEMS
+  image: "plume_fossil"
+  palette: "plume_fossil"
+}
+item {
+  id: ITEM_JAW_FOSSIL
+  name: "颚之化石"
+  description: "史前宝可梦巨大下颚的化石碎片。"
+  grouping: POCKET_KEY_ITEMS
+  image: "jaw_fossil"
+  palette: "jaw_fossil"
+}
+item {
+  id: ITEM_SAIL_FOSSIL
+  name: "鳍之化石"
+  description: "史前宝可梦背鳍的化石碎片。"
+  grouping: POCKET_KEY_ITEMS
+  image: "sail_fossil"
+  palette: "sail_fossil"
+}
+item {
+  id: ITEM_ROOT_FOSSIL
+  name: "根状化石"
+  description: "生活在古代海底的宝可梦的化石。"
+  grouping: POCKET_KEY_ITEMS
+  image: "root_fossil"
+  palette: "hoenn_fossil"
+}
+item {
+  id: ITEM_CLAW_FOSSIL
+  name: "爪子化石"
+  description: "生活在古代海底的宝可梦的化石。"
+  grouping: POCKET_KEY_ITEMS
+  image: "claw_fossil"
+  palette: "hoenn_fossil"
+}
+item {
+  id: ITEM_FOSSILIZED_BIRD
+  name: "化石鸟"
+  description: "古代鸟类宝可梦的化石。"
+  grouping: POCKET_KEY_ITEMS
+  image: "fossilized_bird"
+  palette: "fossilized_bird"
+}
+item {
+  id: ITEM_FOSSILIZED_FISH
+  name: "化石鱼"
+  description: "古代鱼类宝可梦的化石。"
+  grouping: POCKET_KEY_ITEMS
+  image: "fossilized_fish"
+  palette: "fossilized_fish"
+}
+item {
+  id: ITEM_FOSSILIZED_DRAKE
+  name: "化石龙"
+  description: "古代龙型宝可梦的化石。"
+  grouping: POCKET_KEY_ITEMS
+  image: "fossilized_drake"
+  palette: "fossilized_drake"
+}
+item {
+  id: ITEM_FOSSILIZED_DINO
+  name: "化石海兽"
+  description: "古代恐龙型宝可梦的化石。"
+  grouping: POCKET_KEY_ITEMS
+  image: "fossilized_dino"
+  palette: "fossilized_dino"
+}
+item {
+  id: ITEM_OLD_AMBER
+  name: "秘密琥珀"
+  description: "含有古代宝可梦基因的石头"
+  grouping: POCKET_KEY_ITEMS
+  image: "old_amber"
+  palette: "old_amber"
+}
+item {
+  id: ITEM_POKE_VIAL
+  name: "宝可梦药瓶"
+  description: "能完全回复所有宝可梦的强效药"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "poke_vial"
+  palette: "poke_vial"
+  field_use_func: "PokeVial"
+}
+item {
+  id: ITEM_COIN_CASE
+  name: "代币盒"
+  description: "可容纳最多9,999枚硬币的盒子。"
+  grouping: POCKET_KEY_ITEMS
+  image: "coin_case"
+  palette: "coin_case"
+  field_use_func: "CoinCase"
+}
+item {
+  id: ITEM_SS_TICKET
+  name: "船票"
+  description: "能在港口坐船的船票。"
+  grouping: POCKET_KEY_ITEMS
+  image: "ss_ticket"
+  palette: "ss_ticket"
+}
+item {
+  id: ITEM_ITEMFINDER
+  name: "探宝器"
+  description: "能通过声音提示隐形物品的装置。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "itemfinder"
+  palette: "itemfinder"
+  field_use_func: "Itemfinder"
+}
+item {
+  id: ITEM_CONTEST_PASS
+  name: "华丽大赛参加证"
+  description: "参加宝可梦华丽大赛所需的通行证"
+  grouping: POCKET_KEY_ITEMS
+  image: "contest_pass"
+  palette: "contest_pass"
+}
+item {
+  id: ITEM_WAILMER_PAIL
+  name: "吼吼鲸喷壶"
+  description: "用来给树果和植物浇水的工具。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "wailmer_pail"
+  palette: "wailmer_pail"
+  field_use_func: "WailmerPail"
+}
+item {
+  id: ITEM_DEVON_GOODS
+  name: "得文的物品"
+  description: "装有得文公司机器零件的包裹。"
+  grouping: POCKET_KEY_ITEMS
+  image: "devon_goods"
+  palette: "devon_goods"
+}
+item {
+  id: ITEM_SOOT_SACK
+  name: "集灰袋"
+  description: "能收集火山灰的袋子。"
+  grouping: POCKET_KEY_ITEMS
+  image: "soot_sack"
+  palette: "soot_sack"
+}
+item {
+  id: ITEM_BASEMENT_KEY
+  name: "地下钥匙"
+  description: "开启紫堇市下方新紫堇的钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "basement_key"
+  palette: "old_key"
+}
+item {
+  id: ITEM_EGG_INCUBATOR
+  name: "孵蛋器"
+  description: "地上那是宝可梦蛋吗？最好捡起来"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "pokeblock_case"
+  palette: "pokeblock_case"
+  field_use_func: "EggIncubator"
+}
+item {
+  id: ITEM_LETTER
+  name: "给大吾的信"
+  description: "得文公司的总裁给你的信。"
+  grouping: POCKET_KEY_ITEMS
+  image: "letter"
+  palette: "lava_cookie_and_letter"
+}
+item {
+  id: ITEM_EON_TICKET
+  name: "无限船票"
+  description: "前往南方遥远岛屿的渡轮票。"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect_strength: 1
+  image: "eon_ticket"
+  palette: "eon_ticket"
+}
+item {
+  id: ITEM_SCANNER
+  name: "探测器"
+  description: "在废弃船内发现的装置。"
+  grouping: POCKET_KEY_ITEMS
+  image: "scanner"
+  palette: "scanner"
+}
+item {
+  id: ITEM_GO_GOGGLES
+  name: "风尘护目镜"
+  description: "保护眼睛免受沙漠沙暴侵袭的护目镜。"
+  grouping: POCKET_KEY_ITEMS
+  image: "go_goggles"
+  palette: "go_goggles"
+}
+item {
+  id: ITEM_METEORITE
+  name: "陨石"
+  description: "在流星瀑布发现的陨石。"
+  grouping: POCKET_KEY_ITEMS
+  image: "meteorite"
+  palette: "meteorite"
+}
+item {
+  id: ITEM_ROOM_1_KEY
+  name: "1号客房的钥匙"
+  description: "打开废弃船内一扇门的钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "room1_key"
+  palette: "key"
+}
+item {
+  id: ITEM_ROOM_2_KEY
+  name: "2号客房的钥匙"
+  description: "打开废弃船内一扇门的钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "room2_key"
+  palette: "key"
+}
+item {
+  id: ITEM_ROOM_4_KEY
+  name: "4号客房的钥匙"
+  description: "打开废弃船内一扇门的钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "room4_key"
+  palette: "key"
+}
+item {
+  id: ITEM_ROOM_6_KEY
+  name: "6号客房的钥匙"
+  description: "打开废弃船内一扇门的钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "room6_key"
+  palette: "key"
+}
+item {
+  id: ITEM_STORAGE_KEY
+  name: "仓库钥匙"
+  description: "废弃船内储藏室的钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "storage_key"
+  palette: "old_key"
+}
+item {
+  id: ITEM_DEVON_SCOPE
+  name: "得文侦测镜"
+  description: "得文公司制造，能探测看不见的宝可梦"
+  grouping: POCKET_KEY_ITEMS
+  image: "devon_scope"
+  palette: "devon_scope"
+}
+item {
+  id: ITEM_MAGMA_STONE
+  name: "火山镇石"
+  description: "由熔化巨石形成的充满岩浆的石头。"
+  grouping: POCKET_KEY_ITEMS
+  image: "magma_stone"
+  palette: "magma_stone"
+}
+item {
+  id: ITEM_LUNAR_WING
+  name: "新月之羽"
+  description: "像月亮一样发光的羽毛。"
+  grouping: POCKET_KEY_ITEMS
+  image: "lunar_wing"
+  palette: "lunar_wing"
+}
+item {
+  id: ITEM_OAKS_PARCEL
+  name: "包裹"
+  description: "商店店员托付给大木博士的包裹。"
+  grouping: POCKET_KEY_ITEMS
+  image: "oaks_parcel"
+  palette: "oaks_parcel"
+}
+item {
+  id: ITEM_POKE_FLUTE
+  name: "宝可梦笛"
+  description: "能唤醒宝可梦的、音色优美的笛子。"
+  grouping: POCKET_KEY_ITEMS
+  image: "poke_flute"
+  palette: "poke_flute"
+}
+item {
+  id: ITEM_SECRET_KEY
+  name: "秘密钥匙"
+  description: "红莲岛道馆入口的钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "secret_key"
+  palette: "secret_key"
+}
+item {
+  id: ITEM_BIKE_VOUCHER
+  name: "自行车兑换券"
+  description: "自行车抵换券"
+  grouping: POCKET_KEY_ITEMS
+  image: "bike_voucher"
+  palette: "bike_voucher"
+}
+item {
+  id: ITEM_GOLD_TEETH
+  name: "金假牙"
+  description: "狩猎地带园长丢失的金假牙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "gold_teeth"
+  palette: "gold_teeth"
+}
+item {
+  id: ITEM_CARD_KEY
+  name: "钥匙卡"
+  description: "西尔佛公司办公室使用的卡片式门钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "card_key"
+  palette: "card_key"
+}
+item {
+  id: ITEM_LIFT_KEY
+  name: "升降机钥匙"
+  description: "火箭队基地的电梯钥匙。"
+  grouping: POCKET_KEY_ITEMS
+  image: "lift_key"
+  palette: "key"
+}
+item {
+  id: ITEM_SILPH_SCOPE
+  name: "西尔佛检视"
+  description: "西尔佛检测仪能让看不见的宝可梦现形"
+  grouping: POCKET_KEY_ITEMS
+  image: "silph_scope"
+  palette: "silph_scope"
+}
+item {
+  id: ITEM_BICYCLE
+  name: "自行车"
+  description: "比跑步鞋更快的折叠自行车。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "bicycle"
+  palette: "bicycle"
+}
+item {
+  id: ITEM_TOWN_MAP
+  name: "城镇地图"
+  description: "随时可以查看。显示你当前的所在地。"
+  grouping: POCKET_KEY_ITEMS
+  image: "town_map"
+  palette: "town_map"
+}
+item {
+  id: ITEM_VS_SEEKER
+  name: "对战搜寻器"
+  description: "可充电的装置，能标记出准备好对战的训练家。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "vs_seeker"
+  palette: "vs_seeker"
+}
+item {
+  id: ITEM_FAME_CHECKER
+  name: "名人记录器"
+  description: "这个物品能随时更新名人的情报。"
+  grouping: POCKET_KEY_ITEMS
+  image: "fame_checker"
+  palette: "fame_checker"
+}
+item {
+  id: ITEM_TM_CASE
+  name: "招式机盒"
+  description: "保管招式机和秘传机的盒子。"
+  grouping: POCKET_KEY_ITEMS
+  image: "tm_case"
+  palette: "tm_case"
+}
+item {
+  id: ITEM_BERRY_POUCH
+  name: "树果袋"
+  description: "保存树果的袋子。"
+  grouping: POCKET_KEY_ITEMS
+  image: "berry_pouch"
+  palette: "berry_pouch"
+}
+item {
+  id: ITEM_TEACHY_TV
+  name: "教学电视"
+  description: "播放对训练家有帮助的节目的电视机。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_FIELD
+  image: "teachy_tv"
+  palette: "teachy_tv"
+}
+item {
+  id: ITEM_TRI_PASS
+  name: "三岛通行证"
+  description: "往返于一之岛、二之岛和三之岛的渡轮通行证。"
+  grouping: POCKET_KEY_ITEMS
+  image: "tri_pass"
+  palette: "tri_pass"
+}
+item {
+  id: ITEM_RAINBOW_PASS
+  name: "彩虹通行证"
+  description: "枯叶市到七岛的船票。"
+  grouping: POCKET_KEY_ITEMS
+  image: "rainbow_pass"
+  palette: "rainbow_pass"
+}
+item {
+  id: ITEM_TEA
+  name: "茶"
+  description: "一位老奶奶泡制的解渴茶。"
+  grouping: POCKET_KEY_ITEMS
+  image: "tea"
+  palette: "tea"
+}
+item {
+  id: ITEM_MYSTIC_TICKET
+  name: "神秘船票"
+  description: "登上前往肚脐岩的船所需的票。"
+  grouping: POCKET_KEY_ITEMS
+  image: "mystic_ticket"
+  palette: "mystic_ticket"
+}
+item {
+  id: ITEM_AURORA_TICKET
+  name: "极光船票"
+  description: "前往诞生之岛的船票。"
+  grouping: POCKET_KEY_ITEMS
+  image: "aurora_ticket"
+  palette: "aurora_ticket"
+}
+item {
+  id: ITEM_POWDER_JAR
+  name: "粉末瓶"
+  description: "储存用树果粉碎机制作的树果粉末。"
+  grouping: POCKET_KEY_ITEMS
+  image: "powder_jar"
+  palette: "powder_jar"
+  field_use_func: "PowderJar"
+}
+item {
+  id: ITEM_RUBY
+  name: "红宝石"
+  description: "释放热情的美丽宝石，闪烁着红色光芒。"
+  grouping: POCKET_KEY_ITEMS
+  image: "gem"
+  palette: "ruby"
+}
+item {
+  id: ITEM_SAPPHIRE
+  name: "蓝宝石"
+  description: "让人安宁的美丽宝石，闪烁着蓝色光芒。"
+  grouping: POCKET_KEY_ITEMS
+  image: "gem"
+  palette: "sapphire"
+}
+item {
+  id: ITEM_MAGMA_EMBLEM
+  name: "熔岩标志"
+  description: "形状与熔岩队标志相同的奖章状物品。"
+  grouping: POCKET_KEY_ITEMS
+  image: "magma_emblem"
+  palette: "magma_emblem"
+}
+item {
+  id: ITEM_OLD_SEA_MAP
+  name: "古航海图"
+  description: "显示通往某座岛屿路线的褪色海图。"
+  grouping: POCKET_KEY_ITEMS
+  image: "old_sea_map"
+  palette: "old_sea_map"
+}
+item {
+  id: ITEM_ODD_KEYSTONE
+  name: "楔石"
+  description: "偶尔能从这块奇异石头中听到声音。"
+  grouping: POCKET_KEY_ITEMS
+  image: "odd_keystone"
+  palette: "odd_keystone"
+}
+item {
+  id: ITEM_MEGA_BRACELET
+  name: "超级手镯"
+  description: "让携带超级石的宝可梦超级进化。"
+  grouping: POCKET_KEY_ITEMS
+  image: "mega_bracelet"
+  palette: "mega_bracelet"
+}
+item {
+  id: ITEM_SHINY_CHARM
+  name: "闪耀护符"
+  description: "提升异色宝可梦出现几率的护符"
+  grouping: POCKET_KEY_ITEMS
+  image: "shiny_charm"
+  palette: "shiny_charm"
+}
+item {
+  id: ITEM_OVAL_CHARM
+  name: "圆形护符"
+  description: "提高在培育屋发现蛋的几率。"
+  grouping: POCKET_KEY_ITEMS
+  image: "oval_charm"
+  palette: "oval_charm"
+}
+item {
+  id: ITEM_Z_RING
+  name: "Z手环"
+  description: "一种奇特的圆环，可使用Z招式。"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  image: "z_ring"
+  palette: "z_ring"
+}
+item {
+  id: ITEM_CATCHING_CHARM
+  name: "防晃护符"
+  description: "提高击中要害捕捉的几率。"
+  grouping: POCKET_KEY_ITEMS
+  image: "catching_charm"
+  palette: "catching_charm"
+}
+item {
+  id: ITEM_EXP_CHARM
+  name: "经验护符"
+  description: "提升所有经验值获取50%的奇特护符。"
+  grouping: POCKET_KEY_ITEMS
+  image: "exp_charm"
+  palette: "exp_charm"
+}
+item {
+  id: ITEM_ICEROOT_CARROT
+  name: "冰根胡萝卜"
+  description: "在雪地田野中生长的奇怪胡萝卜。"
+  grouping: POCKET_KEY_ITEMS
+  image: "iceroot_carrot"
+  palette: "iceroot_carrot"
+}
+item {
+  id: ITEM_SHADEROOT_CARROT
+  name: "黑萝卜"
+  description: "在阴暗田野中生长的奇怪胡萝卜。"
+  grouping: POCKET_KEY_ITEMS
+  image: "shaderoot_carrot"
+  palette: "shaderoot_carrot"
+}
+item {
+  id: ITEM_REINS_OF_UNITY
+  name: "牵绊缰绳"
+  description: "能让蕾冠王与其爱马结合的缰绳。"
+  grouping: POCKET_KEY_ITEMS
+  image: "reins_of_unity"
+  palette: "reins_of_unity"
+}
+item {
+  id: ITEM_WOODEN_CROWN
+  name: "木雕王冠"
+  description: "神秘的木制物品。"
+  grouping: POCKET_KEY_ITEMS
+  image: "wooden_crown"
+  palette: "wooden_crown"
+}
+item {
+  id: ITEM_ROTOM_CATALOG
+  name: "洛托姆型录"
+  description: "记录着能改变洛托姆形态的电器清单。"
+  grouping: POCKET_KEY_ITEMS
+  image: "rotom_catalog"
+  palette: "rotom_catalog"
+}
+item {
+  id: ITEM_CANDY_BOX
+  name: "糖果盒"
+  description: "让1只宝可梦的等级提升1级。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "oaks_parcel"
+  palette: "oaks_parcel"
+  field_use_func: "CandyBox"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_REVEAL_GLASS
+  name: "现形镜"
+  description: "这面玻璃能让宝可梦恢复原本形态"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "reveal_glass"
+  palette: "reveal_glass"
+  field_use_func: "RevealGlass"
+}
+item {
+  id: ITEM_DNA_SPLICERS
+  name: "基因之楔"
+  description: "融合酋雷姆和某只宝可梦的拼接器"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dna_splicers"
+  palette: "dna_splicers"
+  field_use_func: "DNASplicers"
+}
+item {
+  id: ITEM_GRACIDEA
+  name: "葛拉西蒂亚"
+  description: "用它制作的花束被当作谢礼赠送。"
+  grouping: POCKET_KEY_ITEMS
+  hold_effect: HOLD_EFFECT_CUSTOM
+  use_type: ITEM_USE_PARTY_MENU
+  image: "gracidea"
+  palette: "gracidea"
+  field_use_func: "Gracidea"
+}
+item {
+  id: ITEM_PRISON_BOTTLE
+  name: "惩戒之壶"
+  description: "很久以前用来封印某只宝可梦的瓶子"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "prison_bottle"
+  palette: "prison_bottle"
+  field_use_func: "PrisonBottle"
+}
+item {
+  id: ITEM_N_LUNARIZER
+  name: "奈克洛露奈"
+  description: "能让奈克洛兹玛与露奈雅拉合体分离的装置。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "n_lunarizer"
+  palette: "n_lunarizer"
+  field_use_func: "NLunarizer"
+}
+item {
+  id: ITEM_N_SOLARIZER
+  name: "奈克洛索尔"
+  description: "能让奈克洛兹玛与索尔迦雷欧合体分离的装置。"
+  grouping: POCKET_KEY_ITEMS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "n_solarizer"
+  palette: "n_solarizer"
+  field_use_func: "NSolarizer"
+}

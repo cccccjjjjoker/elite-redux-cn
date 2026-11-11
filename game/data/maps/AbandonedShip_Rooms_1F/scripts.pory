@@ -1,0 +1,79 @@
+raw `
+AbandonedShip_Rooms_1F_MapScripts:: @ 8237A92
+	.byte 0
+
+AbandonedShip_Rooms_1F_EventScript_Gentleman:: @ 8237A93
+	msgbox AbandonedShip_Rooms_1F_Text_TakingALookAround, MSGBOX_NPC
+	end
+
+AbandonedShip_Rooms_1F_EventScript_Demetrius:: @ 8237A9C
+	trainerbattle_single TRAINER_DEMETRIUS, AbandonedShip_Rooms_1F_Text_DemetriusIntro, AbandonedShip_Rooms_1F_Text_DemetriusDefeat
+	msgbox AbandonedShip_Rooms_1F_Text_DemetriusPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+AbandonedShip_Rooms_1F_EventScript_Thalia:: @ 8237AB3
+	trainerbattle_single TRAINER_THALIA_1, AbandonedShip_Rooms_1F_Text_ThaliaIntro, AbandonedShip_Rooms_1F_Text_ThaliaDefeat, AbandonedShip_Rooms_1F_EventScript_RegisterThalia
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq AbandonedShip_Rooms_1F_EventScript_ThaliaRematch
+	msgbox AbandonedShip_Rooms_1F_Text_ThaliaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+AbandonedShip_Rooms_1F_EventScript_RegisterThalia:: @ 8237ADF
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox AbandonedShip_Rooms_1F_Text_ThaliaRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_THALIA_1
+	release
+	end
+
+AbandonedShip_Rooms_1F_EventScript_ThaliaRematch:: @ 8237AFE
+	trainerbattle_rematch TRAINER_THALIA_1, AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro, AbandonedShip_Rooms_1F_Text_ThaliaRematchDefeat
+	msgbox AbandonedShip_Rooms_1F_Text_ThaliaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+AbandonedShip_Rooms_1F_Text_TakingALookAround: @ 8237B15
+	.string "这种船很少见，所以我四处看看。\n"
+	.string "嗯哼……\p"
+	.string "好像还有别的船舱……$"
+
+AbandonedShip_Rooms_1F_Text_ThaliaIntro: @ 8237B76
+	.string "到底是什么让你来这儿？\n"
+	.string "你一定很好奇！$"
+
+AbandonedShip_Rooms_1F_Text_ThaliaDefeat: @ 8237BB8
+	.string "不只是好奇，还很强……$"
+
+AbandonedShip_Rooms_1F_Text_ThaliaPostBattle: @ 8237BDB
+	.string "隔壁那个人……\n"
+	.string "他说他只是来观光，\p"
+	.string "但我可不确定。$"
+
+AbandonedShip_Rooms_1F_Text_ThaliaRegister: @ 8237C2A
+	.string "你真是个硬训练家！\n"
+	.string "让我把你登录下来当纪念！$"
+
+AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro: @ 8237C69
+	.string "到底是什么让你又回来了？\n"
+	.string "你真是好奇得不行啊！$"
+
+AbandonedShip_Rooms_1F_Text_ThaliaRematchDefeat: @ 8237CB2
+	.string "你是不是太强了？$"
+
+AbandonedShip_Rooms_1F_Text_ThaliaPostRematch: @ 8237CC9
+	.string "那个人肯定在打什么主意！\n"
+	.string "他做事就是那么可疑！$"
+
+AbandonedShip_Rooms_1F_Text_DemetriusIntro: @ 8237D0C
+	.string "哇啊！\n"
+	.string "我被发现了！……咦？$"
+
+AbandonedShip_Rooms_1F_Text_DemetriusDefeat: @ 8237D2A
+	.string "哦，你不是我妈。$"
+
+AbandonedShip_Rooms_1F_Text_DemetriusPostBattle: @ 8237D41
+	.string "我跟我妈闹别扭了，就跑出来了。\n"
+	.string "我在哪儿要保密哦！$"
+
+`

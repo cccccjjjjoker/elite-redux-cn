@@ -1,0 +1,28 @@
+raw `
+LilycoveCity_House1_MapScripts:: @ 821ECCD
+	.byte 0
+
+LilycoveCity_House1_EventScript_ExpertM:: @ 821ECCE
+	msgbox LilycoveCity_House1_Text_PokemonPartnersNotTools, MSGBOX_NPC
+	end
+
+LilycoveCity_House1_EventScript_Kecleon:: @ 821ECD7
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_KECLEON, 0
+	msgbox LilycoveCity_House1_Text_Kecleon, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+LilycoveCity_House1_Text_PokemonPartnersNotTools: @ 821ECEA
+	.string "宝可梦是人的伙伴。\n"
+	.string "它们不是我们的工具。\p"
+	.string "遗憾的是，有些人\n"
+	.string "就是不明白这一点……$"
+
+LilycoveCity_House1_Text_Kecleon: @ 821ED63
+	.string "变隐龙：噜噜噜？$"
+
+`

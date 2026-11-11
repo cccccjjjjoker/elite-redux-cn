@@ -1,0 +1,262 @@
+raw `
+Route123_MapScripts:: @ 81F6147
+	map_script MAP_SCRIPT_ON_TRANSITION, Route123_OnTransition
+	.byte 0
+
+Route123_OnTransition: @ 81F614D
+	special SetRoute123Weather
+	end
+
+Route123_EventScript_GigaDrainGirl:: @ 81F6151
+	lock
+	faceplayer
+	msgbox Route123_Text_CheckTreesWithMyGrassMon, MSGBOX_DEFAULT
+	release
+	end
+
+Route123_EventScript_NoGrassMons:: @ 81F619E
+	release
+	end
+
+Route123_EventScript_ReceivedGigaDrain:: @ 81F61A0
+	msgbox Route123_Text_CheckTreesWithMyGrassMon, MSGBOX_DEFAULT
+	release
+	end
+
+Route123_EventScript_RouteSign:: @ 81F61AA
+	msgbox Route123_Text_RouteSign, MSGBOX_SIGN
+	end
+
+Route123_EventScript_RouteSignMtPyre:: @ 81F61B3
+	msgbox Route123_Text_RouteSignMtPyre, MSGBOX_SIGN
+	end
+
+Route123_EventScript_BerryMastersHouseSign:: @ 81F61BC
+	msgbox Route123_Text_BerryMastersHouse, MSGBOX_SIGN
+	end
+
+Route123_EventScript_Wendy:: @ 81F61C5
+	trainerbattle_single TRAINER_WENDY, Route123_Text_WendyIntro, Route123_Text_WendyDefeat
+	msgbox Route123_Text_WendyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Braxton:: @ 81F61DC
+	trainerbattle_single TRAINER_BRAXTON, Route123_Text_BraxtonIntro, Route123_Text_BraxtonDefeat
+	msgbox Route123_Text_BraxtonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Violet:: @ 81F61F3
+	trainerbattle_single TRAINER_VIOLET, Route123_Text_VioletIntro, Route123_Text_VioletDefeat
+	msgbox Route123_Text_VioletPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Cameron:: @ 81F620A
+	trainerbattle_single TRAINER_CAMERON_1, Route123_Text_CameronIntro, Route123_Text_CameronDefeat, Route123_EventScript_RegisterCameron
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route123_EventScript_RematchCameron
+	msgbox Route123_Text_CameronPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route123_EventScript_RegisterCameron:: @ 81F6236
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route123_Text_CameronRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CAMERON_1
+	release
+	end
+
+Route123_EventScript_RematchCameron:: @ 81F6255
+	trainerbattle_rematch TRAINER_CAMERON_1, Route123_Text_CameronRematchIntro, Route123_Text_CameronRematchDefeat
+	msgbox Route123_Text_CameronPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Jacki:: @ 81F626C
+	trainerbattle_single TRAINER_JACKI_1, Route123_Text_JackiIntro, Route123_Text_JackiDefeat, Route123_EventScript_RegisterJacki
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route123_EventScript_RematchJacki
+	msgbox Route123_Text_JackiPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route123_EventScript_RegisterJacki:: @ 81F6298
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route123_Text_JackiRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_JACKI_1
+	release
+	end
+
+Route123_EventScript_RematchJacki:: @ 81F62B7
+	trainerbattle_rematch TRAINER_JACKI_1, Route123_Text_JackiRematchIntro, Route123_Text_JackiRematchDefeat
+	msgbox Route123_Text_JackiPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Miu:: @ 81F62CE
+	trainerbattle_double TRAINER_MIU_AND_YUKI, Route123_Text_MiuIntro, Route123_Text_MiuDefeat, Route123_Text_MiuNotEnoughMons
+	msgbox Route123_Text_MiuPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Yuki:: @ 81F62E9
+	trainerbattle_double TRAINER_MIU_AND_YUKI, Route123_Text_YukiIntro, Route123_Text_YukiDefeat, Route123_Text_YukiNotEnoughMons
+	msgbox Route123_Text_YukiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Kindra:: @ 81F6304
+	trainerbattle_single TRAINER_KINDRA, Route123_Text_KindraIntro, Route123_Text_KindraDefeat
+	msgbox Route123_Text_KindraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Frederick:: @ 81F631B
+	trainerbattle_single TRAINER_FREDRICK, Route123_Text_FrederickIntro, Route123_Text_FrederickDefeat
+	msgbox Route123_Text_FrederickPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Alberto:: @ 81F6332
+	trainerbattle_single TRAINER_ALBERTO, Route123_Text_AlbertoIntro, Route123_Text_AlbertoDefeat
+	msgbox Route123_Text_AlbertoPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Ed:: @ 81F6349
+	trainerbattle_single TRAINER_ED, Route123_Text_EdIntro, Route123_Text_EdDefeat
+	msgbox Route123_Text_EdPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Kayley:: @ 81F6360
+	trainerbattle_single TRAINER_KAYLEY, Route123_Text_KayleyIntro, Route123_Text_KayleyDefeat
+	msgbox Route123_Text_KayleyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Jonas:: @ 81F6377
+	trainerbattle_single TRAINER_JONAS, Route123_Text_JonasIntro, Route123_Text_JonasDefeat
+	msgbox Route123_Text_JonasPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Jazmyn:: @ 81F638E
+	trainerbattle_single TRAINER_JAZMYN, Route123_Text_JazmynIntro, Route123_Text_JazmynDefeat
+	msgbox Route123_Text_JazmynPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Davis:: @ 81F63A5
+	trainerbattle_single TRAINER_DAVIS, Route123_Text_DavisIntro, Route123_Text_DavisDefeat
+	msgbox Route123_Text_DavisPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route123_EventScript_Fernando:: @ 81F63BC
+	trainerbattle_single TRAINER_FERNANDO_1, Route123_Text_FernandoIntro, Route123_Text_FernandoDefeat, Route123_EventScript_RegisterFernando
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route123_EventScript_RematchFernando
+	msgbox Route123_Text_FernandoPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route123_EventScript_RegisterFernando:: @ 81F63E8
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route123_Text_FernandoRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_FERNANDO_1
+	release
+	end
+
+Route123_EventScript_RematchFernando:: @ 81F6407
+	trainerbattle_rematch TRAINER_FERNANDO_1, Route123_Text_FernandoRematchIntro, Route123_Text_FernandoRematchDefeat
+	msgbox Route123_Text_FernandoPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route123_Text_LoveGrassMonsHaveAny: @ 81F641E
+	.string "我最喜欢草属性宝可梦了！\n"
+	.string "你有草属性宝可梦吗？$"
+
+Route123_Text_YouLikeGrassMonsTooHaveThis: @ 81F645D
+	.string "哦？\n"
+	.string "你也喜欢草属性宝可梦，对吧？\p"
+	.string "我好开心，这个给你！\n"
+	.string "这是我们友情的证明。$"
+
+Route123_Text_CheckTreesWithMyGrassMon: @ 81F64CF
+	.string "我用草属性宝可梦检查树木。\n"
+	.string "我就像个树医。$"
+
+Route123_Text_RouteSign: @ 81F6511
+	.string "{RIGHT_ARROW} 123号道路\n"
+	.string "{LEFT_ARROW} 118号道路$"
+
+Route123_Text_RouteSignMtPyre: @ 81F6529
+	.string "{UP_ARROW} 送神火山\n"
+	.string "“胆小者禁止入内。”$"
+
+Route123_Text_BerryMastersHouse: @ 81F6557
+	.string "树果大师的家$"
+
+`
+script Route123_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：传说中的三头龙正小心地在\n我们身边踱步。想知道它们是谁吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("从这里就能感受到道之三龙那种和谐\n的失衡。它们体现着这个世界的矛盾\p本质：莱希拉姆炽烈的热情，\n能与捷克罗姆井然有序的节奏共存。\p它们永远对立地共舞，\n却又设法找到了平衡点。\p酋雷姆是秩序的化身，\n它证明了最混乱的生物也能在自身中\p找到和谐。继续修炼你的气度，\n成为冠军后再回来吧。$"))
+	}
+	else{
+		if(defeated(TRAINER_WENDY)  &&
+		   defeated(TRAINER_BRAXTON)  &&
+		   defeated(TRAINER_VIOLET)  &&
+		   defeated(TRAINER_CAMERON_1)  &&
+		   defeated(TRAINER_JACKI_1)  &&
+		   defeated(TRAINER_MIU_AND_YUKI)  &&
+		   defeated(TRAINER_KINDRA)  &&
+		   defeated(TRAINER_FREDRICK)  &&
+		   defeated(TRAINER_ALBERTO)  &&
+		   defeated(TRAINER_ED)  &&
+		   defeated(TRAINER_KAYLEY)  &&
+		   defeated(TRAINER_JONAS)  &&
+		   defeated(TRAINER_JAZMYN)  &&
+		   defeated(TRAINER_DAVIS)  &&
+		   defeated(TRAINER_FERNANDO_1)){
+			msgbox(format("你的气已和谐，\n你的灵魂也与自身相合。\p我赐予你会见道之三龙的资格。\n用图鉴导航，它们现在就会出现。$"))
+		}
+		else{
+			msgbox(format("寻求平衡的人，你的努力已被看见。\n道之三龙注意到了你的行动，\p但还想做最后一次确认。\n打败这条路上所有的训练家，\p就能见到它们！$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("那么，我想我们合不来。$"))
+	}
+    release
+    end
+}
+
+script Route123_EventScript_Granbullite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_GRANBULLITE_ROUTE123) // Only For testing
+		if (!defeated(TRAINER_GRANBULLITE_ROUTE123)) { // asking for battle
+			msgbox(format("你好呀。要摸摸我的狗吗？\n它们不咬人！$"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("啊！布鲁皇，不要！$"), MSGBOX_NPC) // When the player accepts the battle
+				// trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+				trainerbattle_no_intro(TRAINER_GRANBULLITE_ROUTE123, format("真、真是太对不起了！$")) // in-battle, player wins
+				msgbox(format("太抱歉了！\n我没想到它们六个会一起从精灵球里\p跳出来！它们平时不咬人的。\n请收下这个作为补偿。$"), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_ARCANITE_H, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("唉，好吧。我发誓，\n它们真的不咬人。$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("再说一次，真的很抱歉。\n我的狗平时都很温顺，\p连只苍蝇都不会伤害！$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("嗯？哦。你看起来挺有意思。嘿，\n如果你在绿岭市打败那对双胞胎之后\p再来，我就送你点东西！$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

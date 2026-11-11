@@ -1,0 +1,23 @@
+raw `
+RustboroCity_House2_MapScripts:: @ 8215EB3
+	.byte 0
+
+RustboroCity_House2_EventScript_PokefanF:: @ 8215EB4
+	msgbox RustboroCity_House2_Text_TrainerSchoolExcellent, MSGBOX_NPC
+	end
+
+RustboroCity_House2_EventScript_LittleGirl:: @ 8215EBD
+	msgbox RustboroCity_House2_Text_RoxanneKnowsALot, MSGBOX_NPC
+	end
+
+RustboroCity_House2_Text_TrainerSchoolExcellent: @ 8215EC6
+	.string "训练家学校很棒。\n"
+	.string "要是在那儿学习，\p"
+	.string "你甚至能当上道馆馆主。$"
+
+RustboroCity_House2_Text_RoxanneKnowsALot: @ 8215F21
+	.string "道馆馆主杜娟\n"
+	.string "真的很懂宝可梦。\p"
+	.string "她也很强！$"
+
+`

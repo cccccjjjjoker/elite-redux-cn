@@ -1,0 +1,348 @@
+raw `
+.set LOCALID_ATTENDANT, 1
+.set LOCALID_BRANDON, 2
+
+BattleFrontier_BattlePyramidTop_MapScripts:: @ 82550A1
+	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_BattlePyramidTop_OnResume
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattlePyramidTop_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattlePyramidTop_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePyramidTop_OnWarp
+	.byte 0
+
+BattleFrontier_BattlePyramidTop_OnTransition: @ 82550B6
+	pyramid_updatelight 200, PYRAMID_LIGHT_SET_RADIUS
+	setvar VAR_TEMP_F, 1
+	end
+
+BattleFrontier_BattlePyramidTop_OnWarp: @ 82550CE
+	map_script_2 VAR_TEMP_1, 0, BattleFrontier_BattlePyramidTop_EventScript_SetUpObjects
+	.2byte 0
+
+BattleFrontier_BattlePyramidTop_EventScript_SetUpObjects:: @ 82550D8
+	setvar VAR_TEMP_1, 1
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	compare VAR_TEMP_C, 0
+	goto_if_ne BattleFrontier_BattlePyramidTop_EventScript_EndSetUpObjects
+	setobjectxyperm LOCALID_BRANDON, 0, 0
+BattleFrontier_BattlePyramidTop_EventScript_EndSetUpObjects:: @ 82550F3
+	end
+
+BattleFrontier_BattlePyramidTop_OnResume: @ 82550F4
+	frontier_getbrainstatus
+	compare VAR_RESULT, FRONTIER_BRAIN_NOT_READY
+	goto_if_eq BattleFrontier_BattlePyramidTop_EventScript_CheckChallengeStatus
+	call BattleFrontier_EventScript_SetBrainObjectGfx
+BattleFrontier_BattlePyramidTop_EventScript_CheckChallengeStatus:: @ 825510C
+	copyvar VAR_TEMP_C, VAR_RESULT
+	frontier_getstatus
+	switch VAR_TEMP_0
+	case 0, BattleFrontier_BattlePyramidTop_EventScript_ReadyChallenge
+	case CHALLENGE_STATUS_SAVING, BattleFrontier_BattlePyramid_EventScript_WarpToLobby
+	case CHALLENGE_STATUS_PAUSED, BattleFrontier_BattlePyramidTop_EventScript_ReadyChallenge
+	frontier_get FRONTIER_DATA_BATTLE_OUTCOME
+	compare VAR_RESULT, B_OUTCOME_LOST
+	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	compare VAR_RESULT, B_OUTCOME_DREW
+	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	compare VAR_RESULT, B_OUTCOME_FORFEITED
+	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	end
+
+BattleFrontier_BattlePyramidTop_OnFrame: @ 825516E
+	map_script_2 VAR_TEMP_E, 0, BattleFrontier_BattlePyramidTop_EventScript_PlayPyramidMusic
+	map_script_2 VAR_TEMP_F, 1, BattleFrontier_BattlePyramidTop_EventScript_ShowMapName
+	.2byte 0
+
+BattleFrontier_BattlePyramidTop_EventScript_PlayPyramidMusic:: @ 8255180
+	playbgm MUS_B_PYRAMID_TOP, FALSE
+	setvar VAR_TEMP_E, 1
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_ShowMapName:: @ 825518A
+	special ShowMapNamePopup
+	setvar VAR_TEMP_F, 0
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_ReadyChallenge:: @ 8255193
+	pyramid_save CHALLENGE_STATUS_SAVING
+	special SavePlayerParty
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0
+	pyramid_settrainers
+	frontier_setpartyorder FRONTIER_PARTY_SIZE
+	setvar VAR_TEMP_F, 1
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_Attendant:: @ 82551D0
+	lock
+	faceplayer
+	compare VAR_TEMP_D, 0
+	goto_if_ne BattleFrontier_BattlePyramidTop_EventScript_StepForwardWhenReady
+	compare VAR_TEMP_C, FRONTIER_BRAIN_NOT_READY
+	goto_if_ne BattleFrontier_BattlePyramidTop_EventScript_BrandonHereMoveAside
+	msgbox BattleFrontier_BattlePyramidTop_Text_ReachedSummitUpYouGo, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattlePyramidTop_Movement_PlayerClimbToTop
+	waitmovement 0
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattlePyramidTop_Movement_AttendantBlockPath
+	waitmovement 0
+	message BattleFrontier_BattlePyramidTop_Text_PlayerConqueredPyramid
+	waitmessage
+	playfanfare MUS_OBTAIN_B_POINTS
+	waitfanfare
+	closemessage
+BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon:: @ 825521A
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_WON
+	warp MAP_BATTLE_FRONTIER_BATTLE_PYRAMID_LOBBY, 255, 7, 13
+	waitstate
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_StepForwardWhenReady:: @ 8255236
+	msgbox BattleFrontier_BattlePyramidTop_Text_StepForwardWhenReady, MSGBOX_DEFAULT
+	closemessage
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_BrandonHereMoveAside:: @ 8255240
+	msgbox BattleFrontier_BattlePyramidTop_Text_ChiefBeatYouHere, MSGBOX_DEFAULT
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside
+	setvar VAR_TEMP_D, 1
+	closemessage
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_BattleBrandon:: @ 8255256
+	lockall
+	switch VAR_TEMP_C
+	case FRONTIER_BRAIN_GOLD, BattleFrontier_BattlePyramidTop_EventScript_BrandonIntroGold
+	case FRONTIER_BRAIN_STREAK, BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardSilverSpeech
+	case FRONTIER_BRAIN_STREAK_LONG, BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
+	frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+	compare VAR_RESULT, FALSE
+	goto_if_ne BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardSilverSpeech
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, BattleFrontier_BattlePyramidTop_Movement_CameraPanUp
+	waitmovement 0
+	msgbox BattleFrontier_BattlePyramidTop_Text_ExplorationsAreGrandestAdventure, MSGBOX_DEFAULT
+	closemessage
+	frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+	applymovement LOCALID_BRANDON, BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+	waitmovement 0
+	msgbox BattleFrontier_BattlePyramidTop_Text_ImPyramidKingBrandon, MSGBOX_DEFAULT
+	goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonSilver
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardSilverSpeech:: @ 82552D0
+	applymovement LOCALID_BRANDON, BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+	waitmovement 0
+BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonSilver:: @ 82552DA
+	msgbox BattleFrontier_BattlePyramidTop_Text_BringCourageToOurBattle, MSGBOX_DEFAULT
+	call BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle
+	playbgm MUS_B_PYRAMID_TOP, FALSE
+	compare VAR_RESULT, 1
+	goto_if_eq BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonSilver
+	goto BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+
+BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonSilver:: @ 82552FB
+	frontier_getsymbols
+	compare VAR_RESULT, 0
+	goto_if_ne BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+	msgbox BattleFrontier_BattlePyramidTop_Text_BrandonFrontierPassPlease, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_SYMBOL
+	message BattleFrontier_BattlePyramidTop_Text_ReceivedBraveSymbol
+	waitmessage
+	waitfanfare
+	frontier_givesymbol
+	msgbox BattleFrontier_BattlePyramidTop_Text_LookForwardToNextMeeting, MSGBOX_DEFAULT
+	goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+
+BattleFrontier_BattlePyramidTop_EventScript_BrandonIntroGold:: @ 8255335
+	frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
+	compare VAR_RESULT, FALSE
+	goto_if_ne BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, BattleFrontier_BattlePyramidTop_Movement_CameraPanUp
+	waitmovement 0
+	msgbox BattleFrontier_BattlePyramidTop_Text_BrandonYouveReturned, MSGBOX_DEFAULT
+	closemessage
+	frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
+	applymovement LOCALID_BRANDON, BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+	waitmovement 0
+	msgbox BattleFrontier_BattlePyramidTop_Text_MyCourageIsOffMeter, MSGBOX_DEFAULT
+	goto BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold
+	end
+
+BattleFrontier_BattlePyramidTop_EventScript_BrandonHeardGoldSpeech:: @ 8255388
+	applymovement LOCALID_BRANDON, BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer
+	waitmovement 0
+BattleFrontier_BattlePyramidTop_EventScript_BattleBrandonGold:: @ 8255392
+	msgbox BattleFrontier_BattlePyramidTop_Text_EverythingYouHave, MSGBOX_DEFAULT
+	call BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle
+	playbgm MUS_B_PYRAMID_TOP, FALSE
+	compare VAR_RESULT, 1
+	goto_if_eq BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonGold
+	goto BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+
+BattleFrontier_BattlePyramidTop_EventScript_DefeatedBrandonGold:: @ 82553B3
+	frontier_getsymbols
+	compare VAR_RESULT, 2
+	goto_if_eq BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+	msgbox BattleFrontier_BattlePyramidTop_Text_BrandonRemarkableHaveThis, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_SYMBOL
+	message BattleFrontier_BattlePyramidTop_Text_BraveSymbolTookGoldenShine
+	waitmessage
+	waitfanfare
+	frontier_givesymbol
+	msgbox BattleFrontier_BattlePyramidTop_Text_FarewellForNow, MSGBOX_DEFAULT
+	goto BattleFrontier_BattlePyramidTop_EventScript_WarpToLobbyWon
+
+BattleFrontier_BattlePyramidTop_EventScript_DoBrandonBattle:: @ 82553ED
+	closemessage
+	setvar VAR_0x8004, SPECIAL_BATTLE_PYRAMID
+	setvar VAR_0x8005, 0
+	special DoSpecialTrainerBattle
+	waitstate
+	return
+
+BattleFrontier_BattlePyramidTop_Movement_AttendantMoveAside: @ 82553FD
+	walk_right
+	walk_in_place_fastest_left
+	step_end
+
+BattleFrontier_BattlePyramidTop_Movement_AttendantBlockPath: @ 8255400
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+BattleFrontier_BattlePyramidTop_Movement_PlayerClimbToTop: @ 8255403
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_in_place_fastest_down
+	step_end
+
+BattleFrontier_BattlePyramidTop_Movement_BrandonApproachPlayer: @ 825540A
+	walk_fast_down
+	step_end
+
+BattleFrontier_BattlePyramidTop_Movement_CameraPanUp: @ 825540C
+	walk_slow_up
+	walk_slow_up
+	delay_16
+	step_end
+
+BattleFrontier_BattlePyramidTop_Text_ReachedSummitUpYouGo: @ 8255410
+	.string "能在这里见到您，真让人高兴！\n"
+	.string "您已经抵达对战金字塔\p"
+	.string "的顶端！\n"
+	.string "再往上就是对战金字塔\p"
+	.string "的观景台。\n"
+	.string "那是只有征服了金字塔的人\p"
+	.string "才能进入的地方。\n"
+	.string "现在，请！\p"
+	.string "上去吧！$"
+
+BattleFrontier_BattlePyramidTop_Text_PlayerConqueredPyramid: @ 82554E8
+	.string "金字塔的新征服者！\n"
+	.string "让{PLAYER}之名被传颂吧！$"
+
+BattleFrontier_BattlePyramidTop_Text_ChiefBeatYouHere: @ 825551F
+	.string "能在这里见到您，真让人高兴！\n"
+	.string "很遗憾，您只差那么一瞬\p"
+	.string "就成了第二名！\n"
+	.string "我们的首领已经先您一步\p"
+	.string "征服了金字塔。\n"
+	.string "不过，年轻的探险家……\p"
+	.string "你是一名训练家！\n"
+	.string "拿出你的力量，从我们首领\p"
+	.string "手中夺下顶峰的荣耀！\n"
+	.string "现在，请！准备好之后，\p"
+	.string "再迈出充满勇气的一步！$"
+
+BattleFrontier_BattlePyramidTop_Text_ExplorationsAreGrandestAdventure: @ 8255669
+	.string "年轻的冒险者……\n"
+	.string "你不觉得探险是\p"
+	.string "最壮阔的冒险吗？\n"
+	.string "你自己的智慧！\p"
+	.string "你自己的力量！\n"
+	.string "你自己的宝可梦！\p"
+	.string "而最重要的是，只有你自己的勇气\n"
+	.string "能带你穿过未知的世界……$"
+
+BattleFrontier_BattlePyramidTop_Text_ImPyramidKingBrandon: @ 825573E
+	.string "啊，是啊，这样的人生真壮阔！\n"
+	.string "真壮阔！嗯？\p"
+	.string "我是布兰登！\n"
+	.string "我是金字塔王，也就是\p"
+	.string "这里的主管。\n"
+	.string "大多数人都叫我首领！\p"
+	.string "你能来到这里，说明你对自己\n"
+	.string "有那份自信，对吧？\p"
+	.string "哈哈哈！\n"
+	.string "这下有意思了！$"
+
+BattleFrontier_BattlePyramidTop_Text_BringCourageToOurBattle: @ 8255846
+	.string "那么！\n"
+	.string "带着你的勇气来对战吧！$"
+
+BattleFrontier_BattlePyramidTop_Text_BrandonFrontierPassPlease: @ 8255873
+	.string "布兰登：哈哈哈！真是壮阔！\n"
+	.string "对，确实壮阔！\p"
+	.string "干得好！你得到了认可！\n"
+	.string "请把开拓通行证给我！$"
+
+BattleFrontier_BattlePyramidTop_Text_ReceivedBraveSymbol: @ 82558E9
+	.string "勇气象征被印在了\n"
+	.string "开拓通行证上！$"
+
+BattleFrontier_BattlePyramidTop_Text_LookForwardToNextMeeting: @ 825591D
+	.string "年轻的探险家！\n"
+	.string "我期待与你的下次相会！$"
+
+BattleFrontier_BattlePyramidTop_Text_BrandonYouveReturned: @ 8255951
+	.string "布兰登：……你终于回来了，\n"
+	.string "年轻的探险家……\p"
+	.string "你对冒险的热爱，似乎\n"
+	.string "来自你内心深处……\p"
+	.string "是的……你就和我年轻时\n"
+	.string "一模一样……\p"
+	.string "…… ……啊……\n"
+	.string "那炽热的！\p"
+	.string "那危险的！\n"
+	.string "那不顾一切的！\p"
+	.string "那些直面死亡、\n"
+	.string "肯定生命的冒险日子回来了……$"
+
+BattleFrontier_BattlePyramidTop_Text_MyCourageIsOffMeter: @ 8255A6D
+	.string "那么！\n"
+	.string "我感觉自己的勇气\p"
+	.string "已经爆表了！$"
+
+BattleFrontier_BattlePyramidTop_Text_EverythingYouHave: @ 8255AA1
+	.string "把你的一切都拿出来！\n"
+	.string "我全都接得住！$"
+
+BattleFrontier_BattlePyramidTop_Text_BrandonRemarkableHaveThis: @ 8255ACD
+	.string "布兰登：哈哈哈！\n"
+	.string "了不起！\p"
+	.string "对，真是壮阔！\n"
+	.string "年轻的探险家！\p"
+	.string "你彻彻底底胜过了我！\n"
+	.string "来！我想把这个送给你！$"
+
+BattleFrontier_BattlePyramidTop_Text_BraveSymbolTookGoldenShine: @ 8255B59
+	.string "勇气象征泛起了\n"
+	.string "金色的光辉！$"
+
+BattleFrontier_BattlePyramidTop_Text_FarewellForNow: @ 8255B82
+	.string "啊，是啊！这说明\n"
+	.string "我还有太多要学！\p"
+	.string "愿我们再次相遇！\n"
+	.string "先告别了，年轻的探险家！$"
+
+BattleFrontier_BattlePyramidTop_Text_StepForwardWhenReady: @ 8255BFE
+	.string "那么，等你准备好了，\n"
+	.string "鼓起勇气向前迈步吧。$"
+
+`

@@ -1,0 +1,35 @@
+mapscripts VictoryRoadUrshifus_MapScripts {}
+
+script VictoryRoadUrshifusSalsa {
+    trainerbattle_single(TRAINER_SALSA, 
+    format("嗨！哦，你正在挑战冠军之路吧？\n我们是从伽勒尔来修行的。\p这里感觉也差不多，对吧？\n来吧，让我们看看丰缘的打法！$"), 
+    format("哇，干得漂亮，训练家！$"))
+    msgbox(format("我的同伴们也手痒想好好打一场。\n继续往前走吧！$"), MSGBOX_AUTOCLOSE)
+}
+script VictoryRoadUrshifusVinegar {
+    trainerbattle_single(TRAINER_VINEGAR, 
+    format("……哦，你居然真打赢了萨尔萨？\n看来来这里修行还是值得的。\p那就来吧！$"), 
+    format("……好吧。没想到会这样。$"))
+    msgbox(format("……什么？你都赢了我了，往前走，\n其他人还想试试。$"), MSGBOX_AUTOCLOSE)
+}
+
+script VictoryRoadUrshifusKatsup {
+    trainerbattle_single(TRAINER_KATSUP, 
+    format("（这位训练家正死死盯着你。）\n（看来不打一场，\p他们也不会放你过去！）$"), 
+    format("（训练家赞许地朝你点了点头。）$"))
+    msgbox(format("（看来他还是不太爱说话。）\n（说起来，你也一样。）$"), MSGBOX_AUTOCLOSE)
+}
+script VictoryRoadUrshifusTeriyaki {
+    trainerbattle_single(TRAINER_TERIYAKI, 
+    format("真不敢相信，你居然引起了番茄酱的\n注意，还打败了他！\p……哦对，我们的名字\n一定让你很困惑吧？\p想知道是怎么回事，\n就在对战中打赢我！$"), 
+    format("哦，哇，真是了不起。\n真没想到在异乡能遇到这么强的人！$"))
+    msgbox(format("……对，名字！我们在异乡时\n把它们当作“称号”来用。\p这传统是我们伽勒尔道场的\n师父开创的。$"), MSGBOX_AUTOCLOSE)
+}
+
+script VictoryRoadUrshifusAlfredo {
+    trainerbattle_single(TRAINER_ALFREDO, 
+    format("我是阿尔弗雷多，这群弟子的首领。\n这么说，你征服了冠军之路，\p还打赢了我所有同伴？\n能见到这么有本事的训练家，\p真是难得！\n但就算你打赢了他们，\p我仍怀疑你不是我的对手。\n来打一场吧！$"), 
+    format("……你还真是来了就把我们\n全碾了一遍啊？\p啊哈哈哈，太棒了！\n我几乎想邀请你回道场去！\p“芥末”这个称号，你觉得如何？$"))
+    msgbox(format("芥末，你是来接受我的邀请的吗？\n我很想，但你有自己的旅程，\p而且已经快到终点了。\n那就去吧！我们站在你这边，\p可别在这里输掉！$"), MSGBOX_AUTOCLOSE)
+}
+

@@ -1,0 +1,300 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_MASTER_BALL
+  name: "大师球"
+  description: "性能最好的精灵球。必定能捉到任何宝可梦。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "master_ball"
+  palette: "master_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_ULTRA_BALL
+  name: "高级球"
+  description: "比超级球更容易捉住宝可梦的精灵球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "ultra_ball"
+  palette: "ultra_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_GREAT_BALL
+  name: "超级球"
+  description: "比精灵球更容易捉到宝可梦的、性能不错的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "great_ball"
+  palette: "great_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_POKE_BALL
+  name: "精灵球"
+  description: "用于捕捉野生宝可梦的道具。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "poke_ball"
+  palette: "poke_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_SAFARI_BALL
+  name: "狩猎球"
+  description: "只在狩猎地带使用的特殊球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "safari_ball"
+  palette: "safari_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_NET_BALL
+  name: "捕网球"
+  description: "对水属性和虫属性宝可梦效果好的球"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "net_ball"
+  palette: "net_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_DIVE_BALL
+  name: "潜水球"
+  description: "对在海底生活的宝可梦效果更好的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dive_ball"
+  palette: "dive_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_NEST_BALL
+  name: "巢穴球"
+  description: "对弱小的宝可梦效果更好的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "nest_ball"
+  palette: "nest_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_REPEAT_BALL
+  name: "重复球"
+  description: "对曾经捉到过的宝可梦效果更好的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "repeat_ball"
+  palette: "repeat_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_TIMER_BALL
+  name: "计时球"
+  description: "抓宝可梦用的回合数越多，这种球就越有效。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "timer_ball"
+  palette: "repeat_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_LUXURY_BALL
+  name: "豪华球"
+  description: "能让宝可梦变得亲近的舒适球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "luxury_ball"
+  palette: "luxury_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_DUSK_BALL
+  name: "黑暗球"
+  description: "在黑暗的地方使用效果很好。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dusk_ball"
+  palette: "dusk_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_HEAL_BALL
+  name: "治愈球"
+  description: "能治愈捕获的宝可梦的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "heal_ball"
+  palette: "heal_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_QUICK_BALL
+  name: "先机球"
+  description: "在第一回合使用效果很好。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "quick_ball"
+  palette: "quick_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_CHERISH_BALL
+  name: "贵重球"
+  description: "为纪念某活动而制作的稀有球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "cherish_ball"
+  palette: "cherish_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_FAST_BALL
+  name: "速度球"
+  description: "对速度很快的宝可梦效果更好。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "fast_ball"
+  palette: "fast_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_LEVEL_BALL
+  name: "等级球"
+  description: "对等级较低的宝可梦效果更好。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "level_ball"
+  palette: "level_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_LURE_BALL
+  name: "诱饵球"
+  description: "对钓上来的宝可梦效果更好。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "lure_ball"
+  palette: "lure_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_HEAVY_BALL
+  name: "沉重球"
+  description: "对很重的宝可梦效果更好。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "heavy_ball"
+  palette: "heavy_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_LOVE_BALL
+  name: "甜蜜球"
+  description: "对异性宝可梦效果更好。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "love_ball"
+  palette: "love_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_FRIEND_BALL
+  name: "友友球"
+  description: "捉到时就能和宝可梦变得亲近的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "friend_ball"
+  palette: "friend_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_MOON_BALL
+  name: "月亮球"
+  description: "对使用月之石的宝可梦效果很好的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "moon_ball"
+  palette: "moon_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_SPORT_BALL
+  name: "竞赛球"
+  description: "在捕虫大赛中使用的特殊球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "sport_ball"
+  palette: "sport_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_PARK_BALL
+  name: "公园球"
+  description: "用于伙伴公园的特殊球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "park_ball"
+  palette: "park_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_DREAM_BALL
+  name: "梦境球"
+  description: "能让捉到的宝可梦获得隐藏特性的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "dream_ball"
+  palette: "dream_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_BEAST_BALL
+  name: "究极球"
+  description: "专为捕捉究极异兽设计的球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "beast_ball"
+  palette: "beast_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}
+item {
+  id: ITEM_PREMIER_BALL
+  name: "纪念球"
+  description: "为纪念某活动而制作的稀有球。"
+  grouping: POCKET_POKE_BALLS
+  use_type: ITEM_USE_PARTY_MENU
+  image: "premier_ball"
+  palette: "luxury_ball"
+  battle_use_func: "PokeBall"
+  field_use_func: "PokeBall"
+}

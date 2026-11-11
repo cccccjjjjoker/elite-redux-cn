@@ -1,0 +1,115 @@
+raw `
+VictoryRoad_B1F_MapScripts:: @ 82364E4
+	.byte 0
+
+VictoryRoad_B1F_EventScript_Samuel:: @ 82364E5
+	trainerbattle_single TRAINER_SAMUEL, VictoryRoad_B1F_Text_SamuelIntro, VictoryRoad_B1F_Text_SamuelDefeat
+	msgbox VictoryRoad_B1F_Text_SamuelPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B1F_EventScript_Shannon:: @ 82364FC
+	trainerbattle_single TRAINER_SHANNON, VictoryRoad_B1F_Text_ShannonIntro, VictoryRoad_B1F_Text_ShannonDefeat
+	msgbox VictoryRoad_B1F_Text_ShannonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B1F_EventScript_Michelle:: @ 8236513
+	trainerbattle_single TRAINER_MICHELLE, VictoryRoad_B1F_Text_MichelleIntro, VictoryRoad_B1F_Text_MichelleDefeat
+	msgbox VictoryRoad_B1F_Text_MichellePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B1F_EventScript_Mitchell:: @ 823652A
+	trainerbattle_single TRAINER_MITCHELL, VictoryRoad_B1F_Text_MitchellIntro, VictoryRoad_B1F_Text_MitchellDefeat
+	msgbox VictoryRoad_B1F_Text_MitchellPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B1F_EventScript_Halle:: @ 8236541
+	trainerbattle_single TRAINER_HALLE, VictoryRoad_B1F_Text_HalleIntro, VictoryRoad_B1F_Text_HalleDefeat
+	msgbox VictoryRoad_B1F_Text_HallePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_B1F_Text_SamuelIntro: @ 8236558
+	.string "一想到我离宝可梦联盟越来越近……\n"
+	.string "我就怯场了……$"
+
+VictoryRoad_B1F_Text_SamuelDefeat: @ 82365AD
+	.string "我什么都做不了……$"
+
+VictoryRoad_B1F_Text_SamuelPostBattle: @ 82365C4
+	.string "宝可梦联盟又变远了……\n"
+	.string "真让人泄气……$"
+
+VictoryRoad_B1F_Text_ShannonIntro: @ 82365FD
+	.string "要在宝可梦联盟一路赢下去，\n"
+	.string "你需要宝可梦的信任。$"
+
+VictoryRoad_B1F_Text_ShannonDefeat: @ 823664D
+	.string "你们的关系建立在坚实的信任之上。$"
+
+VictoryRoad_B1F_Text_ShannonPostBattle: @ 8236678
+	.string "只要一直在一起，\n"
+	.string "训练家和宝可梦之间的信任就会增长\p"
+	.string "。$"
+
+VictoryRoad_B1F_Text_MichelleIntro: @ 82366C2
+	.string "这里不是终点。\n"
+	.string "这只是通往宝可梦联盟路上的一个地\p"
+	.string "方。$"
+
+VictoryRoad_B1F_Text_MichelleDefeat: @ 823670B
+	.string "就这样！$"
+
+VictoryRoad_B1F_Text_MichellePostBattle: @ 823671B
+	.string "你肯定没问题！\n"
+	.string "你的宝可梦都跃跃欲试！$"
+
+VictoryRoad_B1F_Text_MitchellIntro: @ 8236757
+	.string "我的宝可梦有着令宇宙敬畏的力量！$"
+
+VictoryRoad_B1F_Text_MitchellDefeat: @ 8236780
+	.string "我从没见过像你这样的人。$"
+
+VictoryRoad_B1F_Text_MitchellPostBattle: @ 82367A7
+	.string "就算不在对战中，我也能感到\n"
+	.string "惊人的力量从你和你的宝可梦身上散\p"
+	.string "发出来。$"
+
+VictoryRoad_B1F_Text_HalleIntro: @ 82367FD
+	.string "好，不用竖起刺！放松，慢慢来！$"
+
+VictoryRoad_B1F_Text_HalleDefeat: @ 823683B
+	.string "哇！太棒了！$"
+
+VictoryRoad_B1F_Text_HallePostBattle: @ 823684C
+	.string "没错，这里是冠军之路。\n"
+	.string "但它和你一路走来的路\p"
+	.string "也没什么不同。\n"
+	.string "剩下的路，试着享受它吧！$"
+
+`
+
+script VictoryRoad_B1F_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：这些裂隙的凶险气息吓退了\n大多数没有斗志的人……但你不怕。\p我说得对吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("这条险恶的洞窟吸引着斗志与它相配\n的人！\p不管是天生如此，\n还是被生活的磨难锻造，\p叛逆的灵魂天然会被这些阴湿的走廊\n吸引。\p说说属性：空的故事吧：\n它被造出来本是为了消灭究极异兽，\p结果却失控，反过来对抗创造者。\n它们现在和玛夏多一起住在这里，\p那是一个凭纯粹的意志和不屈的精神\n活过来的神秘影子。\p想见这两位可不是小事。\n先去打败宝可梦联盟，再回来找我。$"))
+	}
+	else{
+		if(defeated(TRAINER_HALLE)    &&
+		   defeated(TRAINER_MITCHELL) &&
+		   defeated(TRAINER_SHANNON)  &&
+		   defeated(TRAINER_SAMUEL)){
+			msgbox(format("你的精神与住在这里的生物相合。\n它们允许我把它们的位置告诉你：\p我已把信息加进你的图鉴导航。\n我迫不及待想看你和它们的战斗！$"))
+		}
+		else{
+			msgbox(format("我钦佩你的毅力，\n成为冠军一定很不容易。\p但既然你做到了，\n我相信你也能打败这个洞窟里最后几\p名训练家。打败他们再回来找我。$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("……可你在冠军之路？\n你怎么可能没有斗志？$"))
+	}
+    release
+    end
+}

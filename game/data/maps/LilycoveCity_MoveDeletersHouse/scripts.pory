@@ -1,0 +1,131 @@
+raw `
+.set LOCALID_MOVE_DELETER, 1
+
+LilycoveCity_MoveDeletersHouse_MapScripts:: @ 821EA0A
+	.byte 0
+
+LilycoveCity_Text_BallSwapperChoosePokemon:
+	.string "你想换哪只宝可梦的球？$"
+
+LilycoveCity_Text_BallSwapperChoosePokeBall:
+	.string "那它要换成哪种精灵球？$"
+
+LilycoveCity_Text_BallSwapperConfirmChoice:
+	.string "那么，你想花100BP\n"
+	.string "把{STR_VAR_1}换进{STR_VAR_2}？$"
+
+LilycoveCity_Text_BallSwapperChooseGivePokemon:
+	.string "很好。请把{STR_VAR_1}交给我。$"
+
+LilycoveCity_Text_BallSwapperChoosePleaseWait:
+	.string "别担心，只要一会儿。$"
+
+LilycoveCity_Text_BallSwapperDelay:
+	.string "…… …… …… ……\n"
+	.string "…… …… …… ……\p"
+	.string "…… …… …… ……\n"
+	.string "…… …… …… ……\p"
+	.string "…… …… …… ……\n"
+	.string "…… …… …… ……$"
+
+LilycoveCity_Text_BallSwapperAllDone:
+	.string "好了！希望{STR_VAR_1}喜欢它的新精灵球！$"
+
+LilycoveCity_Text_BallSwapperEgg:
+	.string "蛋的精灵球我可换不了！\n"
+	.string "等它孵出来再来。$"
+`
+
+script LilycoveCity_EventScript_BallSwapper {
+	//VAR_0x8004: Chosen Party Slot
+	//VAR_0x8005: Chosen Poke Ball
+	lock
+	faceplayer
+	// Check if the player has already been told about the Ball Swapper
+	if(!flag(FLAG_LILYCOVE_MET_BALL_SWAPPER)) {
+		msgbox(format("我是精灵球交换师！\n我可以把你的宝可梦从现在的精灵球\p换到新的精灵球里。\n这项服务收100BP。$"), MSGBOX_DEFAULT)
+		setflag(FLAG_LILYCOVE_MET_BALL_SWAPPER)
+	}
+	setvar(VAR_SHOP_MONEY_TYPE, 1)
+	checkmoney(BALL_SWAP_PRICE, 0)
+	// Check if the player has enough bp
+	if(var(VAR_RESULT) == 0) {
+		msgbox(format("我是精灵球交换师！\n……但看来你付不起我的服务费。\p请攒够100BP再来。$"), MSGBOX_DEFAULT)
+		setvar(VAR_SHOP_MONEY_TYPE, 0)
+		release
+		end
+	}
+	msgbox(LilycoveCity_Text_BallSwapperChoosePokemon, MSGBOX_DEFAULT)
+	//hidemoneybox
+	special(ChoosePartyMon)
+	waitstate
+	// Cancelled
+	if(var(VAR_0x8004) == PARTY_SIZE){
+		msgbox("那就回头见！$", MSGBOX_DEFAULT)
+		setvar(VAR_SHOP_MONEY_TYPE, 0)
+		release
+		end
+	}
+	specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+	// Check if the chosen Pokémon is an Egg
+	if(var(VAR_RESULT) == SPECIES_EGG) {
+		msgbox(LilycoveCity_Text_BallSwapperEgg, MSGBOX_DEFAULT)
+		release
+		end
+	}
+	msgbox(LilycoveCity_Text_BallSwapperChoosePokeBall, MSGBOX_AUTOCLOSE)
+	fadescreen(FADE_TO_BLACK)
+	special(Bag_ChoosePokeBall)
+	waitstate
+	// No Item Selected
+	copyvar(VAR_0x8005, VAR_ITEM_ID)
+	compare(VAR_ITEM_ID, 0)
+	if(var(VAR_ITEM_ID) == 0) {
+		msgbox("那就回头见！$", MSGBOX_DEFAULT)
+		setvar(VAR_SHOP_MONEY_TYPE, 0)
+		release
+		end
+	}
+	showmoneybox(0, 0, 0)
+	bufferpartymonnick(0, VAR_0x8004)
+	bufferitemname(1, VAR_0x8005)
+	msgbox(LilycoveCity_Text_BallSwapperConfirmChoice, MSGBOX_YESNO)
+	// Cancelled
+	if(!var(VAR_RESULT)) {
+		msgbox("那就回头见！$", MSGBOX_DEFAULT)
+		setvar(VAR_SHOP_MONEY_TYPE, 0)
+		hidemoneybox
+		release
+		end
+	}
+	removemoney(BALL_SWAP_PRICE, 0)
+	playse(SE_SHOP)
+	updatemoneybox(0, 0)
+	bufferpartymonnick(0, VAR_0x8004)
+	msgbox(LilycoveCity_Text_BallSwapperChooseGivePokemon, MSGBOX_DEFAULT)
+	hidemoneybox
+	msgbox(LilycoveCity_Text_BallSwapperChoosePleaseWait, MSGBOX_DEFAULT)
+	fadescreen(FADE_TO_BLACK)
+	special(ChangePokeBall)
+	playse(SE_BALL_OPEN)
+	waitse
+	specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+	playmoncry(VAR_RESULT, 0)
+	msgbox(LilycoveCity_Text_BallSwapperDelay, MSGBOX_AUTOCLOSE)
+	playse(SE_BALL_BOUNCE_1)
+	waitse
+	playse(SE_BALL_BOUNCE_2)
+	waitse
+	playse(SE_BALL_BOUNCE_4)
+	waitse
+	playse(SE_RG_BALL_CLICK)
+	waitse
+	fadescreen(FADE_FROM_BLACK)
+	playfanfare(MUS_CAUGHT)
+	bufferpartymonnick(0, VAR_0x8004)
+	msgbox(LilycoveCity_Text_BallSwapperAllDone, MSGBOX_DEFAULT)
+	setvar(VAR_SHOP_MONEY_TYPE, 0)
+	release
+	end
+}
+	

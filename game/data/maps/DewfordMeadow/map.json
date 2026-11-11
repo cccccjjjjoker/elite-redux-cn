@@ -1,0 +1,75 @@
+{
+  "id": "MAP_DEWFORD_MEADOW",
+  "name": "DewfordMeadow",
+  "layout": "LAYOUT_DEWFORD_MEADOW",
+  "music": "MUS_DEWFORD",
+  "region_map_section": "MAPSEC_DEWFORD_MEADOW",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_DEWFORD_TOWN",
+      "offset": -10,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 27,
+      "y": 1,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DewfordMeadow_EventScript_RingTarget",
+      "flag": "FLAG_ITEM_DEWFORD_MEADOW_RING_TARGET"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 10,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_DEWFORD_MANOR_1F",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 19,
+      "y": 3,
+      "elevation": 3,
+      "item": "ITEM_YELLOW_NECTAR",
+      "flag": "FLAG_HIDDEN_ITEM_YELLOW_NECTAR"
+    },
+    {
+      "type": "hidden_item",
+      "x": 20,
+      "y": 3,
+      "elevation": 3,
+      "item": "ITEM_RED_NECTAR",
+      "flag": "FLAG_HIDDEN_ITEM_RED_NECTAR"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "DewfordMeadow_EventScript_ManorSign"
+    }
+  ]
+}

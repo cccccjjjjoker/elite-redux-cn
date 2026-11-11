@@ -1,0 +1,40 @@
+raw `
+SootopolisCity_House1_MapScripts:: @ 822694C
+	.byte 0
+
+SootopolisCity_House1_EventScript_BrickBreakBlackBelt:: @ 822694D
+	lock
+	faceplayer
+	msgbox SootopolisCity_House1_Text_ExplainBrickBreak, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_House1_EventScript_ReceivedBrickBreak:: @ 8226984
+	msgbox SootopolisCity_House1_Text_ExplainBrickBreak, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_House1_EventScript_Kecleon:: @ 822698E
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_KECLEON, 0
+	msgbox SootopolisCity_House1_Text_Kecleon, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+SootopolisCity_House1_Text_DevelopedThisTM: @ 82269A1
+	.string "我在琉璃市待了三十年，\n"
+	.string "磨练我的技艺。\p"
+	.string "我研发出了一本剑舞的\n"
+	.string "招式学习器。我传给你！$"
+
+SootopolisCity_House1_Text_ExplainBrickBreak: @ 8226A13
+	.string "我的宝可梦最爱剑舞！\n"
+	.string "那招式可怕得我无法形容。$"
+
+SootopolisCity_House1_Text_Kecleon: @ 8226A60
+	.string "变隐龙：噗 噗呀。$"
+
+`

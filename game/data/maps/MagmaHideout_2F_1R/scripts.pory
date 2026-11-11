@@ -1,0 +1,68 @@
+raw `
+MagmaHideout_2F_1R_MapScripts:: @ 8239B50
+	.byte 0
+
+MagmaHideout_2F_1R_EventScript_Grunt14:: @ 8239B51
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_14, MagmaHideout_2F_1R_Text_Grunt14Intro, MagmaHideout_2F_1R_Text_Grunt14Defeat
+	msgbox MagmaHideout_2F_1R_Text_Grunt14PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_2F_1R_EventScript_Grunt3:: @ 8239B68
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_3, MagmaHideout_2F_1R_Text_Grunt3Intro, MagmaHideout_2F_1R_Text_Grunt3Defeat
+	msgbox MagmaHideout_2F_1R_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_2F_1R_EventScript_Grunt4:: @ 8239B7F
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_4, MagmaHideout_2F_1R_Text_Grunt4Intro, MagmaHideout_2F_1R_Text_Grunt4Defeat
+	msgbox MagmaHideout_2F_1R_Text_Grunt4PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_2F_1R_EventScript_Grunt5:: @ 8239B96
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_5, MagmaHideout_2F_1R_Text_Grunt5Intro, MagmaHideout_2F_1R_Text_Grunt5Defeat
+	msgbox MagmaHideout_2F_1R_Text_Grunt5PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_2F_1R_Text_Grunt14Intro: @ 8239BAD
+	.string "什、什么、什么？\n"
+	.string "这里只有火岩队成员能进来！\p"
+	.string "可你没穿火岩队的制服……\n"
+	.string "你很可疑！跟我打！$"
+
+MagmaHideout_2F_1R_Text_Grunt14Defeat: @ 8239C4B
+	.string "哎哟哟……\n"
+	.string "我作为火岩队成员的自尊……$"
+
+MagmaHideout_2F_1R_Text_Grunt14PostBattle: @ 8239C74
+	.string "你要是怕冷，就该加入火岩队。$"
+
+MagmaHideout_2F_1R_Text_Grunt3Intro: @ 8239CAB
+	.string "站住！\n"
+	.string "你不会真以为我会闭嘴，\p"
+	.string "让你大摇大摆走过去吧？$"
+
+MagmaHideout_2F_1R_Text_Grunt3Defeat: @ 8239D09
+	.string "哦哇！我认输！$"
+
+MagmaHideout_2F_1R_Text_Grunt3PostBattle: @ 8239D1D
+	.string "也许我干脆放你过去会更好……$"
+
+MagmaHideout_2F_1R_Text_Grunt4Intro: @ 8239D62
+	.string "啊哈！入侵者！$"
+
+MagmaHideout_2F_1R_Text_Grunt4Defeat: @ 8239D75
+	.string "唔啊啊！$"
+
+MagmaHideout_2F_1R_Text_Grunt4PostBattle: @ 8239D7D
+	.string "我已经输了。\n"
+	.string "我真的还得在这儿绕圈跑吗？$"
+
+MagmaHideout_2F_1R_Text_Grunt5Intro: @ 8239DC5
+	.string "哦，哦！入侵者！$"
+
+MagmaHideout_2F_1R_Text_Grunt5Defeat: @ 8239DDA
+	.string "嘀咕……$"
+
+MagmaHideout_2F_1R_Text_Grunt5PostBattle: @ 8239DE2
+	.string "其实，我一点都不擅长对战……$"
+
+`

@@ -1,0 +1,107 @@
+raw `
+VerdanturfMeadow_MapScripts::
+	.byte 0
+
+VerdanturfMeadow_EventScript_GiftMeganiumite::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_AUDINO, VerdanturfMeadow_EventScript_TakeCareOfAudino
+	msgbox VerdanturfMeadow_Text_PleaseTakePokemon, MSGBOX_DEFAULT
+	setvar VAR_TEMP_1, SPECIES_AUDINO
+	specialvar VAR_RESULT, GetHighestLevelInPlayerParty
+	copyvar VAR_0x800A, VAR_RESULT
+	givemon SPECIES_AUDINO, VAR_0x800A, ITEM_AUDINITE
+	compare VAR_RESULT, 0
+	goto_if_eq VerdanturfMeadow_EventScript_ReceiveAudinoParty
+	compare VAR_RESULT, 1
+	goto_if_eq VerdanturfMeadow_EventScript_ReceiveAudinoPC
+	goto Common_EventScript_NoMoreRoomForPokemon
+	end
+
+VerdanturfMeadow_EventScript_ReceiveAudinoParty::
+	call VerdanturfMeadow_EventScript_ReceivedAudinoFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq VerdanturfMeadow_EventScript_TakeCareOfAudino
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto VerdanturfMeadow_EventScript_TakeCareOfAudino
+	end
+
+VerdanturfMeadow_EventScript_ReceiveAudinoPC::
+	call VerdanturfMeadow_EventScript_ReceivedAudinoFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq VerdanturfMeadow_EventScript_SendAudinoToPC
+	call Common_EventScript_NameReceivedBoxMon
+	goto VerdanturfMeadow_EventScript_SendAudinoToPC
+	end
+
+VerdanturfMeadow_EventScript_SendAudinoToPC::
+	call Common_EventScript_TransferredToPC
+	goto VerdanturfMeadow_EventScript_TakeCareOfAudino
+	end
+
+VerdanturfMeadow_EventScript_ReceivedAudinoFanfare::
+	playfanfare MUS_OBTAIN_ITEM
+	message VerdanturfMeadow_Text_PlayerReceivedAudino
+	waitmessage
+	waitfanfare
+	bufferspeciesname 0, SPECIES_AUDINO
+	return
+
+VerdanturfMeadow_EventScript_TakeCareOfAudino::
+	msgbox VerdanturfMeadow_Text_TakeCareOfAudino, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_AUDINO
+	release
+	end
+
+VerdanturfMeadow_Text_PleaseTakePokemon:
+	.string "你知道差不多娃娃这种宝可梦吗？\n"
+	.string "为了宣传对差不多娃娃的关爱，\p"
+	.string "我正在把它们送人！\n"
+	.string "有些训练家把差不多娃娃当成\p"
+	.string "宝可梦的沙包，只为了让队伍\n"
+	.string "快速升级。\p"
+	.string "这可不行！\n"
+	.string "请收下这只差不多娃娃，\p"
+	.string "保护它远离那些只想升级的\n"
+	.string "疯狂训练家！$"
+
+VerdanturfMeadow_Text_PlayerReceivedAudino:
+	.string "{PLAYER}得到了差不多娃娃！$"
+
+VerdanturfMeadow_Text_TakeCareOfAudino:
+	.string "请好好照顾差不多娃娃！$"
+`
+
+script VerdanturfMeadow_EventScript_Meganiumite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_MEGANIUMITE_VERDANTURF_MEADOW) // Only For testing
+		if (!defeated(TRAINER_MEGANIUMITE_VERDANTURF_MEADOW)) {
+			msgbox(format("啊，我看你已经打赢了千里，\n这个年纪就有这等本事，了不起。\p要不要来场友谊赛，试试你的实力？\n赢了，我就把这颗大竺葵进化石\p送你！$"), MSGBOX_YESNO) // Asking for battle
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("很好，开始吧！$"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_MEGANIUMITE_VERDANTURF_MEADOW, format("你的实力真是令人敬畏……$")) // When the player defeats the trainer, shows in-battle
+				msgbox(format("你真的很强。希望将来能看到\n你更进一步的成长。\p不过现在，请收下我这份礼物，\n好好使用。$"), MSGBOX_NPC) // when the player wins
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_MEGANIUMITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("有点让人失望。\n希望你能改变主意。$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("我相信你会喜欢我送给你的\n那份小礼物！$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("你好！你是来品闻这些花香的？\n我看你像是另有兴趣的人。\p难道是宝可梦训练家？\n那么，给你个提议：\p探索完橙华市之后再来一趟如何？\n我这儿或许有点让你好奇的东西。$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}
+

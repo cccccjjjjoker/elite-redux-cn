@@ -1,0 +1,170 @@
+raw `
+SSTidalRooms_MapScripts:: @ 823C9F1
+	.byte 0
+
+SSTidalRooms_EventScript_SnatchGiver:: @ 823C9F2
+	lock
+	faceplayer
+	msgbox SSTidalRooms_Text_ExplainSnatch, MSGBOX_DEFAULT
+	release
+	end
+
+SSTidalRooms_EventScript_ExplainSnatch:: @ 823CA29
+	msgbox SSTidalRooms_Text_ExplainSnatch, MSGBOX_DEFAULT
+	release
+	end
+
+SSTidalRooms_EventScript_Bed:: @ 823CA33
+	lockall
+	msgbox SSTidalRooms_Text_TakeRestOnBed, MSGBOX_DEFAULT
+	closemessage
+	call Common_EventScript_OutOfCenterPartyHeal
+	call SSTidalRooms_EventScript_ProgessCruiseAfterBed
+	releaseall
+	end
+
+SSTidalRooms_EventScript_Colton:: @ 823CA49
+	trainerbattle_single TRAINER_COLTON, SSTidalRooms_Text_ColtonIntro, SSTidalRooms_Text_ColtonDefeat
+	msgbox SSTidalRooms_Text_ColtonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SSTidalRooms_EventScript_Micah:: @ 823CA60
+	trainerbattle_single TRAINER_MICAH, SSTidalRooms_Text_MicahIntro, SSTidalRooms_Text_MicahDefeat
+	msgbox SSTidalRooms_Text_MicahPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SSTidalRooms_EventScript_Thomas:: @ 823CA77
+	trainerbattle_single TRAINER_THOMAS, SSTidalRooms_Text_ThomasIntro, SSTidalRooms_Text_ThomasDefeat
+	msgbox SSTidalRooms_Text_ThomasPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SSTidalRooms_EventScript_Jed:: @ 823CA8E
+	trainerbattle_double TRAINER_LEA_AND_JED, SSTidalRooms_Text_JedIntro, SSTidalRooms_Text_JedDefeat, SSTidalRooms_Text_JedNotEnoughMons
+	msgbox SSTidalRooms_Text_JedPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SSTidalRooms_EventScript_Lea:: @ 823CAA9
+	trainerbattle_double TRAINER_LEA_AND_JED, SSTidalRooms_Text_LeaIntro, SSTidalRooms_Text_LeaDefeat, SSTidalRooms_Text_LeaNotEnoughMons
+	msgbox SSTidalRooms_Text_LeaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SSTidalRooms_EventScript_Garret:: @ 823CAC4
+	trainerbattle_single TRAINER_GARRET, SSTidalRooms_Text_GarretIntro, SSTidalRooms_Text_GarretDefeat
+	msgbox SSTidalRooms_Text_GarretPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SSTidalRooms_EventScript_Naomi:: @ 823CADB
+	trainerbattle_single TRAINER_NAOMI, SSTidalRooms_Text_NaomiIntro, SSTidalRooms_Text_NaomiDefeat
+	msgbox SSTidalRooms_Text_NaomiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+SSTidalRooms_Text_TakeRestOnBed: @ 823CAF2
+	.string "有张床……\n"
+	.string "我们休息一下吧。$"
+
+SSTidalRooms_Text_ColtonIntro: @ 823CB14
+	.string "我常坐船去水静市。\n"
+	.string "因为我喜欢看华丽大赛。$"
+
+SSTidalRooms_Text_ColtonDefeat: @ 823CB58
+	.string "那真是场愉快的比赛！$"
+
+SSTidalRooms_Text_ColtonPostBattle: @ 823CB75
+	.string "一想到下次华丽大赛能见到\n"
+	.string "什么样的宝可梦，我就兴奋不已。\p"
+	.string "光是期待就让人心跳加速！$"
+
+SSTidalRooms_Text_MicahIntro: @ 823CBEB
+	.string "你的朋友强吗？$"
+
+SSTidalRooms_Text_MicahDefeat: @ 823CC04
+	.string "你的朋友确实很强。$"
+
+SSTidalRooms_Text_MicahPostBattle: @ 823CC26
+	.string "朋友不一定是人类。\n"
+	.string "对我来说，宝可梦就是珍贵的朋友！$"
+
+SSTidalRooms_Text_ThomasIntro: @ 823CC68
+	.string "孩子……\n"
+	.string "你敲过门了吗？$"
+
+SSTidalRooms_Text_ThomasDefeat: @ 823CC8A
+	.string "败北应当从容接受，\n"
+	.string "不必急躁，也不必惊慌。$"
+
+SSTidalRooms_Text_ThomasPostBattle: @ 823CCBB
+	.string "无论何种境况都不动声色，\n"
+	.string "这便是绅士的处世之道。$"
+
+SSTidalRooms_Text_JedIntro: @ 823CD04
+	.string "杰德：虽然有点难为情……\n"
+	.string "就让你见识我们的恩爱之力！$"
+
+SSTidalRooms_Text_JedDefeat: @ 823CD54
+	.string "杰德：唉……$"
+
+SSTidalRooms_Text_JedPostBattle: @ 823CD5F
+	.string "杰德：我们的恩爱之力居然\n"
+	.string "头一次不管用！\p"
+	.string "你真是个了不起的训练家！$"
+
+SSTidalRooms_Text_JedNotEnoughMons: @ 823CDC6
+	.string "杰德：你只有一只宝可梦？\n"
+	.string "那也太寂寞了吧？$"
+
+SSTidalRooms_Text_LeaIntro: @ 823CE04
+	.string "莉亚：虽然有点傻……\n"
+	.string "就让你见识我们的恩爱之力！$"
+
+SSTidalRooms_Text_LeaDefeat: @ 823CE4B
+	.string "莉亚：哎呀，讨厌！$"
+
+SSTidalRooms_Text_LeaPostBattle: @ 823CE59
+	.string "莉亚：真不敢相信！\n"
+	.string "我们的恩爱之力竟然输了……\p"
+	.string "你真是个了不起的训练家！$"
+
+SSTidalRooms_Text_LeaNotEnoughMons: @ 823CEB0
+	.string "莉亚：我本来想对战的……\n"
+	.string "可你连两只宝可梦都没有……$"
+
+SSTidalRooms_Text_GarretIntro: @ 823CEEE
+	.string "啊，你来得正好。\n"
+	.string "我正无聊着呢。\p"
+	.string "来陪我解解闷吧。$"
+
+SSTidalRooms_Text_GarretDefeat: @ 823CF36
+	.string "……还行吧。$"
+
+SSTidalRooms_Text_GarretPostBattle: @ 823CF45
+	.string "或许该让父亲给我买艘游艇。\n"
+	.string "一艘属于我和宝可梦的游艇！$"
+
+SSTidalRooms_Text_NaomiIntro: @ 823CF97
+	.string "哦，你真是位可爱的训练家。\n"
+	.string "要喝杯茶吗？\p"
+	.string "还是说，你更想对战？$"
+
+SSTidalRooms_Text_NaomiDefeat: @ 823CFF4
+	.string "原来如此。\n"
+	.string "你是好动的那一类。$"
+
+SSTidalRooms_Text_NaomiPostBattle: @ 823D013
+	.string "豪华客轮的环球航行\n"
+	.string "确实有它的魅力……\p"
+	.string "不过我得承认，坐渡轮\n"
+	.string "游览丰缘也有它迷人的一面。$"
+
+SSTidalRooms_Text_NotSuspiciousTakeThis: @ 823D098
+	.string "呃……你好！我……\n"
+	.string "我一点也不可疑！\p"
+	.string "呃……这个给你！免费送！\n"
+	.string "这……老实说，我不是从别人\p"
+	.string "那里抢来的！我绝不会干那种事！\n"
+	.string "它是干净的！你可以放心用！$"
+
+SSTidalRooms_Text_ExplainSnatch: @ 823D145
+	.string "抢夺会在对手或同伴使用之前，\n"
+	.string "夺走某些招式的有益效果。$"
+
+`

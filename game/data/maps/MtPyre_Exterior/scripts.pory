@@ -1,0 +1,42 @@
+raw `
+MtPyre_Exterior_MapScripts:: @ 8231FCC
+	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Exterior_OnTransition
+	.byte 0
+
+MtPyre_Exterior_OnTransition: @ 8231FD2
+	call MtPyre_Exterior_EventScript_CheckEnterFromSummit
+	end
+
+MtPyre_Exterior_EventScript_CheckEnterFromSummit:: @ 8231FD8
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	compare VAR_TEMP_1, 12
+	goto_if_lt MtPyre_Exterior_EventScript_EnterFromSummit
+	return
+
+MtPyre_Exterior_EventScript_EnterFromSummit:: @ 8231FE9
+	setweather WEATHER_FOG_HORIZONTAL
+	return
+
+MtPyre_Exterior_EventScript_FogTrigger:: @ 8231FED
+	setweather WEATHER_FOG_HORIZONTAL
+	doweather
+	end
+
+MtPyre_Exterior_EventScript_SunTrigger:: @ 8231FF2
+	setweather WEATHER_SUNNY
+	doweather
+	end
+
+`
+
+script MtPyre_Exterior_EventScript_Yda {
+	trainerbattle_single(TRAINER_CREW_MTPYRE, format("喂，抱歉，你不能再往前走了。\n为什么不行？……\p……你不知道我是谁吗？\n我是这支队伍的一员，\p伟大的预言者！\n我有一项非凡的本事：只要闻闻\p空气，就能预知新的宝可梦种类\n会在何时何地出现。\p谁想偷走我这个发现，\n就得先打一场！$"), format("I bet you didn't see that coming, I lost!"))
+	msgbox(format("后会有期，闻着味儿走啦。$"), MSGBOX_NPC) // after player won
+	release
+	end
+}
+
+script MtPyre_Exterior_EventScript_VisitedMtPyre{
+    setflag(FLAG_VISITED_MT_PYRE)
+    setvar(VAR_TEMP_2, 1)
+}

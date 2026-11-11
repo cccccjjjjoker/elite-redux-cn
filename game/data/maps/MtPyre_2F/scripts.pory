@@ -1,0 +1,135 @@
+raw `
+MtPyre_2F_MapScripts:: @ 82310FB
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, CaveHole_CheckFallDownHole
+	map_script MAP_SCRIPT_ON_TRANSITION, CaveHole_FixCrackedGround
+	map_script MAP_SCRIPT_ON_RESUME, MtPyre_2F_SetHoleWarp
+	.byte 0
+
+MtPyre_2F_SetHoleWarp: @ 823110B
+	setstepcallback STEP_CB_CRACKED_FLOOR
+	setholewarp MAP_MT_PYRE_1F, 255, 0, 0
+	end
+
+MtPyre_2F_EventScript_Woman:: @ 8231116
+	msgbox MtPyre_2F_Text_MemoriesOfSkitty, MSGBOX_NPC
+	end
+
+MtPyre_2F_EventScript_PokefanM:: @ 823111F
+	msgbox MtPyre_2F_Text_TumbledFromFloorAbove, MSGBOX_NPC
+	end
+
+MtPyre_2F_EventScript_Mark:: @ 8231128
+	trainerbattle_single TRAINER_MARK, MtPyre_2F_Text_MarkIntro, MtPyre_2F_Text_MarkDefeat
+	msgbox MtPyre_2F_Text_MarkPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_2F_EventScript_Luke:: @ 823113F
+	trainerbattle_double TRAINER_DEZ_AND_LUKE, MtPyre_2F_Text_LukeIntro, MtPyre_2F_Text_LukeDefeat, MtPyre_2F_Text_LukeNotEnoughMons
+	msgbox MtPyre_2F_Text_LukePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_2F_EventScript_Dez:: @ 823115A
+	trainerbattle_double TRAINER_DEZ_AND_LUKE, MtPyre_2F_Text_DezIntro, MtPyre_2F_Text_DezDefeat, MtPyre_2F_Text_DezNotEnoughMons
+	msgbox MtPyre_2F_Text_DezPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_2F_EventScript_Leah:: @ 8231175
+	trainerbattle_single TRAINER_LEAH, MtPyre_2F_Text_LeahIntro, MtPyre_2F_Text_LeahDefeat
+	msgbox MtPyre_2F_Text_LeahPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_2F_EventScript_Zander:: @ 823118C
+	trainerbattle_single TRAINER_ZANDER, MtPyre_2F_Text_ZanderIntro, MtPyre_2F_Text_ZanderDefeat
+	msgbox MtPyre_2F_Text_ZanderPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_2F_Text_MemoriesOfSkitty: @ 82311A3
+	.string "我可爱向尾喵的回忆……\n"
+	.string "一想到就泪流不止。$"
+
+MtPyre_2F_Text_TumbledFromFloorAbove: @ 82311E6
+	.string "哎哟，好疼……这里的地面\n"
+	.string "到处都有洞。\p"
+	.string "我没留神，从上面一层摔下来了。$"
+
+MtPyre_2F_Text_MarkIntro: @ 8231258
+	.string "喂！你也在找宝可梦？\n"
+	.string "我可是比你先来的！真没礼貌！$"
+
+MtPyre_2F_Text_MarkDefeat: @ 82312A2
+	.string "哇啊啊！\n"
+	.string "对不起，请原谅我！$"
+
+MtPyre_2F_Text_MarkPostBattle: @ 82312CB
+	.string "这里很少有人来，\n"
+	.string "我以为会有稀有的宝可梦。$"
+
+MtPyre_2F_Text_LukeIntro: @ 823130F
+	.string "卢卡：我们是来接受胆量考验的。\n"
+	.string "嘿嘿，只要让她看到我多帅气，\p"
+	.string "她一定会喜欢上我。我确定！\n"
+	.string "好！就把你打得落花流水，\p"
+	.string "让她看看我有多帅！$"
+
+MtPyre_2F_Text_LukeDefeat: @ 82313A1
+	.string "卢卡：哎呀！$"
+
+MtPyre_2F_Text_LukePostBattle: @ 82313B1
+	.string "卢卡：输是输了，不过没关系！\n"
+	.string "我就在你身边。\p"
+	.string "这场考验我们一定能撑过去！$"
+
+MtPyre_2F_Text_LukeNotEnoughMons: @ 8231414
+	.string "卢卡：想跟我打，就多带几只\n"
+	.string "宝可梦来。\p"
+	.string "不然我可没法在她面前\n"
+	.string "显摆我有多帅！$"
+
+MtPyre_2F_Text_DezIntro: @ 8231492
+	.string "迪兹：我是和男朋友一起来\n"
+	.string "接受胆量考验的。\p"
+	.string "这里好可怕，不过有男朋友在，\n"
+	.string "就没问题。\p"
+	.string "好！就让你输给我男朋友，\n"
+	.string "让他看起来更帅！$"
+
+MtPyre_2F_Text_DezDefeat: @ 8231534
+	.string "迪兹：哇啊啊！好可怕！$"
+
+MtPyre_2F_Text_DezPostBattle: @ 823154D
+	.string "迪兹：我们恩爱得很，\n"
+	.string "输了也不在乎！$"
+
+MtPyre_2F_Text_DezNotEnoughMons: @ 8231582
+	.string "迪兹：想挑战我们，至少得带\n"
+	.string "两只宝可梦来。\p"
+	.string "我男朋友很强的。\n"
+	.string "只有一只可不行。$"
+
+MtPyre_2F_Text_LeahIntro: @ 8231604
+	.string "你是张陌生的面孔……\n"
+	.string "在灾祸降临之前离开吧！$"
+
+MtPyre_2F_Text_LeahDefeat: @ 8231645
+	.string "唔……\n"
+	.string "你倒是挺耐打。$"
+
+MtPyre_2F_Text_LeahPostBattle: @ 823165A
+	.string "从曾祖母那一代起，\n"
+	.string "我们家就在此担任训练家……\p"
+	.string "守护这座山是我的职责……$"
+
+MtPyre_2F_Text_ZanderIntro: @ 82316C7
+	.string "呀啊啊啊！\n"
+	.string "好害怕！$"
+
+MtPyre_2F_Text_ZanderDefeat: @ 82316E1
+	.string "不要啊啊啊！\n"
+	.string "我吓傻了！$"
+
+MtPyre_2F_Text_ZanderPostBattle: @ 82316FB
+	.string "只要看到有东西在动，我就会\n"
+	.string "吓得不行……\p"
+	.string "真不该来这里修行的……$"
+
+`

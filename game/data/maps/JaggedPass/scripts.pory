@@ -1,0 +1,398 @@
+raw `
+.set LOCALID_HIDEOUT_GUARD, 3
+.set LOCALID_CHANSEY, 6
+
+JaggedPass_MapScripts:: @ 8230656
+	map_script MAP_SCRIPT_ON_RESUME, JaggedPass_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, JaggedPass_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, JaggedPass_OnLoad
+	.byte 0
+
+JaggedPass_OnResume: @ 8230666
+	setstepcallback STEP_CB_ASH
+	compare VAR_JAGGED_PASS_STATE, 0
+	call_if_eq JaggedPass_EventScript_CheckHasMagmaEmblem
+	end
+
+JaggedPass_EventScript_CheckHasMagmaEmblem:: @ 8230674
+	checkitem ITEM_MAGMA_EMBLEM, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq JaggedPass_EventScript_SetReadyToOpenHideout
+	return
+
+JaggedPass_EventScript_SetReadyToOpenHideout:: @ 8230685
+	setvar VAR_JAGGED_PASS_STATE, 1
+	return
+
+JaggedPass_OnTransition: @ 823068B
+	compare VAR_JAGGED_PASS_ASH_WEATHER, 1
+	call_if_eq JaggedPass_EventScript_SetWeatherAsh
+	end
+
+JaggedPass_EventScript_SetWeatherAsh:: @ 8230697
+	setweather WEATHER_VOLCANIC_ASH
+	doweather
+	return
+
+JaggedPass_OnLoad: @ 823069C
+	compare VAR_JAGGED_PASS_STATE, 1
+	goto_if_le JaggedPass_EventScript_ConcealHideoutEntrance
+	end
+
+JaggedPass_EventScript_ConcealHideoutEntrance:: @ 82306A8
+	setmetatile 16, 17, METATILE_Lavaridge_RockWall, 1
+	setmetatile 16, 18, METATILE_Lavaridge_RockWall, 1
+	end
+
+JaggedPass_EventScript_OpenMagmaHideout:: @ 82306BB
+	lockall
+	setvar VAR_0x8004, 1  @ vertical pan
+	setvar VAR_0x8005, 1  @ horizontal pan
+	setvar VAR_0x8006, 8  @ num shakes
+	setvar VAR_0x8007, 5  @ shake delay
+	special ShakeCamera
+	waitstate
+	msgbox JaggedPass_Text_BoulderShakingInResponseToEmblem, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_0x8004, 1   @ vertical pan
+	setvar VAR_0x8005, 1   @ horizontal pan
+	setvar VAR_0x8006, 16  @ num shakes
+	setvar VAR_0x8007, 3   @ shake delay
+	special ShakeCamera
+	waitstate
+	playse SE_EFFECTIVE
+	setmetatile 16, 17, METATILE_Lavaridge_CaveEntrance_Top, 1
+	setmetatile 16, 18, METATILE_Lavaridge_CaveEntrance_Bottom, 0
+	special DrawWholeMapView
+	delay 30
+	setvar VAR_JAGGED_PASS_STATE, 2
+	waitse
+	releaseall
+	end
+
+JaggedPass_EventScript_MagmaHideoutGuard:: @ 8230718
+	lockall
+	goto_if_set FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS, JaggedPass_EventScript_GuardDefeated
+	waitse
+	playse SE_PIN
+	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_Delay48
+	waitmovement 0
+	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox JaggedPass_Text_GruntIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_no_intro TRAINER_GRUNT_JAGGED_PASS, JaggedPass_Text_GruntDefeat
+	setflag FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS
+	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+
+JaggedPass_EventScript_GuardDefeated:: @ 8230766
+	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox JaggedPass_Text_GoWhereverYouWant, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+
+JaggedPass_EventScript_Chansey::
+	lockall
+	applymovement LOCALID_CHANSEY, Common_Movement_FacePlayer
+	waitmovement 0
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8004, 11
+	goto_if_eq JaggedPass_EventScript_ChanseyShove
+	applymovement LOCALID_CHANSEY, JaggedPass_Movement_ChanseyJumpRight
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	applymovement LOCALID_CHANSEY, JaggedPass_Movement_ChanseyEscape
+	waitmovement 0
+	removeObject LOCALID_CHANSEY
+	setvar VAR_CHANSEY_NURSE_STATE, 3
+	releaseall
+	end
+
+JaggedPass_EventScript_ChanseyShove::
+	applymovement LOCALID_CHANSEY, JaggedPass_Movement_ChanseyJumpLeft
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	applymovement LOCALID_CHANSEY, JaggedPass_Movement_ChanseyShove
+	applymovement OBJ_EVENT_ID_PLAYER, JaggedPass_Movement_PlayerShove
+	waitmovement 0
+	applymovement LOCALID_CHANSEY, JaggedPass_Movement_ChanseyEscape
+	waitmovement 0
+	removeObject LOCALID_CHANSEY
+	setvar VAR_CHANSEY_NURSE_STATE, 3
+	releaseall
+	end
+
+JaggedPass_Movement_ChanseyJumpRight:
+	jump_in_place_right
+	delay_4
+	jump_in_place_right
+	step_end
+
+JaggedPass_Movement_ChanseyJumpLeft:
+	jump_in_place_left
+	delay_4
+	jump_in_place_left
+	step_end
+
+JaggedPass_Movement_ChanseyEscape:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	jump_left
+	walk_up
+	delay_4
+	step_end
+
+JaggedPass_Movement_ChanseyShove:
+	walk_left
+	jump_in_place_down
+	walk_left
+	walk_left
+	walk_left
+	jump_left
+	walk_up
+	delay_4
+	step_end
+
+JaggedPass_Movement_PlayerShove:
+ 	walk_in_place_fastest_up
+    lock_facing_direction
+	walk_down
+	jump_down
+	unlock_facing_direction
+	step_end
+
+JaggedPass_EventScript_Eric:: @ 8230785
+	trainerbattle_single TRAINER_ERIC, JaggedPass_Text_EricIntro, JaggedPass_Text_EricDefeat
+	msgbox JaggedPass_Text_EricPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+JaggedPass_EventScript_Diana:: @ 823079C
+	trainerbattle_single TRAINER_DIANA_1, JaggedPass_Text_DianaIntro, JaggedPass_Text_DianaDefeat, JaggedPass_EventScript_RegisterDiana
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq JaggedPass_EventScript_DianaRematch
+	msgbox JaggedPass_Text_DianaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+JaggedPass_EventScript_RegisterDiana:: @ 82307C8
+	special PlayerFaceTrainerAfterBattle
+	msgbox JaggedPass_Text_DianaRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_DIANA_1
+	release
+	end
+
+JaggedPass_EventScript_DianaRematch:: @ 82307E4
+	trainerbattle_rematch TRAINER_DIANA_1, JaggedPass_Text_DianaRematchIntro, JaggedPass_Text_DianaRematchDefeat
+	msgbox JaggedPass_Text_DianaPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+JaggedPass_EventScript_Ethan:: @ 82307FB
+	trainerbattle_single TRAINER_ETHAN_1, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_RegisterEthan
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq JaggedPass_EventScript_EthanRematch
+	msgbox JaggedPass_Text_EthanPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+JaggedPass_EventScript_RegisterEthan:: @ 8230827
+	special PlayerFaceTrainerAfterBattle
+	msgbox JaggedPass_Text_EthanRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ETHAN_1
+	release
+	end
+
+JaggedPass_EventScript_EthanRematch:: @ 8230843
+	trainerbattle_rematch TRAINER_ETHAN_1, JaggedPass_Text_EthanRematchIntro, JaggedPass_Text_EthanRematchDefeat
+	msgbox JaggedPass_Text_EthanPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+JaggedPass_EventScript_Julio:: @ 823085A
+	trainerbattle_single TRAINER_JULIO, JaggedPass_Text_JulioIntro, JaggedPass_Text_JulioDefeat
+	msgbox JaggedPass_Text_JulioPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+JaggedPass_EventScript_Autumn:: @ 8230871
+	trainerbattle_single TRAINER_AUTUMN, JaggedPass_Text_AutumnIntro, JaggedPass_Text_AutumnDefeat
+	msgbox JaggedPass_Text_AutumnPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+JaggedPass_Text_EricIntro: @ 8230888
+	.string "烟囱山的凹凸山道……\n"
+	.string "这才是我想在山里看到的。\p"
+	.string "这种崎岖不平……\n"
+	.string "震撼我的灵魂！$"
+
+JaggedPass_Text_EricDefeat: @ 82308FF
+	.string "输了让我很不甘心！$"
+
+JaggedPass_Text_EricPostBattle: @ 8230916
+	.string "没错，宝可梦我是输了……\n"
+	.string "但要说对山的热爱，我赢你！$"
+
+JaggedPass_Text_DianaIntro: @ 8230974
+	.string "这地方可不是随便散散步的。\n"
+	.string "不适合野餐。$"
+
+JaggedPass_Text_DianaDefeat: @ 82309B5
+	.string "哦哦，不行！地面太颠了……$"
+
+JaggedPass_Text_DianaPostBattle: @ 82309D8
+	.string "你知道吗？\n"
+	.string "有些人很聪明，会骑着自行车\p"
+	.string "上这条烂得不像话的山道。$"
+
+JaggedPass_Text_DianaRegister: @ 8230A2C
+	.string "你以后还会来这一带吗？\n"
+	.string "要是回来，我想再打一场。$"
+
+JaggedPass_Text_DianaRematchIntro: @ 8230A76
+	.string "野餐在哪里都好玩。\n"
+	.string "就跟宝可梦一样！$"
+
+JaggedPass_Text_DianaRematchDefeat: @ 8230AAA
+	.string "我输只是因为地面太颠了！$"
+
+JaggedPass_Text_DianaPostRematch: @ 8230AD7
+	.string "我不管输赢了，\n"
+	.string "就享受这段颠簸的山路。$"
+
+JaggedPass_Text_EthanIntro: @ 8230B10
+	.string "凹凸山道很难走。\n"
+	.string "是个训练的好地方。$"
+
+JaggedPass_Text_EthanDefeat: @ 8230B50
+	.string "我们还在找落脚点的时候就结束了…\n"
+	.string "…$"
+
+JaggedPass_Text_EthanPostBattle: @ 8230B93
+	.string "要是有越野自行车，\n"
+	.string "我就能跳上台阶了。$"
+
+JaggedPass_Text_EthanRegister: @ 8230BC6
+	.string "等我更习惯这种颠簸，我一定会赢！\n"
+	.string "能把我登录到你的宝可梦导航器里吗\p"
+	.string "？$"
+
+JaggedPass_Text_EthanRematchIntro: @ 8230C28
+	.string "我习惯这种颠簸了。\n"
+	.string "现在我一边爬一边唱歌。$"
+
+JaggedPass_Text_EthanRematchDefeat: @ 8230C60
+	.string "在这种颠簸的地面上对战还是不容易\n"
+	.string "……$"
+
+JaggedPass_Text_EthanPostRematch: @ 8230C94
+	.string "我该去紫堇市找莱德买辆越野自行车\n"
+	.string "……$"
+
+JaggedPass_Text_GruntIntro: @ 8230CCB
+	.string "哇！你在这儿干什么？\n"
+	.string "我为什么在这种地方？\p"
+	.string "关你什么事？$"
+
+JaggedPass_Text_GruntDefeat: @ 8230D2D
+	.string "呃啊啊……\n"
+	.string "我该立刻躲回我们的基地……$"
+
+JaggedPass_Text_GoWhereverYouWant: @ 8230D65
+	.string "好、好吧！\n"
+	.string "我承认，你很强！\p"
+	.string "别管我了。\n"
+	.string "你想去哪儿就去哪儿！$"
+
+JaggedPass_Text_BoulderShakingInResponseToEmblem: @ 8230DBA
+	.string "哦！这块岩石在回应火岩标志，$"
+
+JaggedPass_Text_JulioIntro: @ 8230DF7
+	.string "呀！一口气冲下山太吓人了！$"
+
+JaggedPass_Text_JulioDefeat: @ 8230E38
+	.string "我感觉自己快散架了……$"
+
+JaggedPass_Text_JulioPostBattle: @ 8230E57
+	.string "自行车颠得太厉害，我屁股都疼了…\n"
+	.string "…$"
+
+JaggedPass_Text_AutumnIntro: @ 8230E8E
+	.string "我每天都爬这座山。\n"
+	.string "我对自己的体力有信心！$"
+
+JaggedPass_Text_AutumnDefeat: @ 8230ECD
+	.string "嗯……哪里出错了？$"
+
+JaggedPass_Text_AutumnPostBattle: @ 8230EE3
+	.string "这上面一点那块凸出来的怪石头是什\n"
+	.string "么？$"
+
+`
+const LOCALID_ChonJena = 8
+
+movement JaggedPass_Movement_ChonJenaShake {
+	face_right
+	delay_2
+	face_down
+	delay_2
+	face_left
+	delay_2
+	face_down
+	delay_2
+	face_right
+	delay_2
+	face_down
+	delay_2
+	face_left
+	delay_2
+	face_down
+}
+
+movement JaggedPass_Movement_SudoWudoSuplex{
+	jump_2_up
+}
+
+movement JaggedPass_Movement_SudoWudoSuplex_CameraReCenter{
+	walk_up
+}
+
+
+script JaggedPass_EventScript_ChonJena {
+	lock
+	msgbox("等等，这不是树。$", MSGBOX_SIGN)
+	delay(20)
+	message("这、这是……$")
+	playse(SE_SUDOWOODO_SHAKE)
+	applymovement(LOCALID_ChonJena, JaggedPass_Movement_ChonJenaShake)
+	delay(50)
+	message("琼·杰纳啊啊啊啊啊啊！$")
+	playbgm(MUS_GSC_ROUTE38, FALSE)
+	setobjectxy(OBJ_EVENT_ID_PLAYER, 11, 23)
+	applymovement(OBJ_EVENT_ID_PLAYER, JaggedPass_Movement_SudoWudoSuplex)
+	playse(SE_LEDGE)
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+	playse(SE_EFFECTIVE)
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, JaggedPass_Movement_SudoWudoSuplex_CameraReCenter)
+    waitmovement(OBJ_EVENT_ID_CAMERA)
+    special(RemoveCameraObject)
+	waitse()
+	waitbuttonpress
+	release
+}

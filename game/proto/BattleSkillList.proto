@@ -1,0 +1,396 @@
+syntax = "proto3";
+
+package er;
+
+import "BattleSkillEnum.proto";
+import "AbilityEnum.proto";
+import "ItemEnum.proto";
+import "MoveEnum.proto";
+import "MoveList.proto";
+import "Stats.proto";
+import "Types.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+message BattleSkillList {
+  repeated BattleSkill skill = 1;
+  repeated BattleSkillTemplate template = 2;
+}
+
+message BattleSkill {
+  BattleSkillEnum id = 1;
+  string name = 2;
+  string announce_string = 3;
+}
+
+message BattleSkillTemplate {
+  BattleSkillTemplateEnum id = 1;
+  string name = 2;
+
+  message BattleSkillTemplateParam {
+    oneof param {
+      AbilityEnum ability = 1;
+    }
+  }
+
+  message BattleSkillTemplateParamStrings {
+    string announce_string = 1;
+    repeated BattleSkillTemplateParam param = 2;
+  }
+  repeated BattleSkillTemplateParamStrings valid_params = 3;
+
+  message BattleSkillTemplateImpl {
+    BattleSkillEnum id = 1;
+    repeated BattleSkillTemplateParam param = 2;
+  }
+  repeated BattleSkillTemplateImpl impl = 4;
+}
+
+// A hell-mode skill written directly in proto data.
+// codegen then gives it a skill id derived on the trainer id + position 
+// and builds it like any other battle skill.
+//
+//   inline_skill {
+//     name: "Foortified Bar"
+//     announce_string: "Something cool"
+//     on { entry { when: LEAD } effect { stat_change { stat: STAT_DEF amount: 6 } } }
+//     on { entry {} effect { stat_change { stat: STAT_ATK amount: -6 } } }
+//     on {
+//       entry { when: LEAD }
+//       effect { weather { weather: WEATHER_SANDSTORM permanent: true } }
+//       effect { side_condition { type: SPIKES layers: 2 } }
+//     }
+//   }
+message InlineSkill {
+  // ability popup
+  string name = 1;
+  // text message each time the skill fires
+  // optional for simple skills, a template will be used
+  string announce_string = 2;
+
+  // made this way to ensure we can have multiple combinations of trigger+effects under a
+  // single skill
+  repeated Trigger on = 3;
+
+  // every Pokemon of the trainer has these on top of its own, for the whole battle. Max 3 per trainer.
+  // Comes with default string announce
+  repeated AbilityEnum extra_ability = 4;
+
+  // every Pokemon of the trainer has these hold effects on top of its own item, for the whole battle
+  // very limited for now: 2 max per trainer, and only passive items will work, no berry or w/e
+  repeated ExtraItem extra_item = 5;
+  message ExtraItem {
+    ItemEnum item = 1;
+    // 1 to 255, replaces the item's hold_effect_strength (30 for a 30% Focus Band). 0 keeps the original
+    int32 strength = 2;
+  }
+
+  // Whose Pokemon an event happens to
+  enum Side {
+    TRAINER = 0;
+    PLAYER = 1;
+    BOTH = 2;
+  }
+
+  // Who an effect applies to, seen from the event. An event has two Pokemon: the one it happens to
+  // and its foe (the attacker, the KO'er, or the Pokemon facing it).
+  //   target { who: FOE }                  the attacker of a hit
+  //   target { who: SUBJECT scope: FIELD } the Pokemon that got hit and its partner
+  //   target { who: BOTH scope: PARTY slots { first: 3 } }  the first 3 of both parties
+  message Target {
+    enum Who {
+      SUBJECT = 0;
+      FOE = 1;
+      BOTH = 2;
+    }
+    Who who = 1;
+
+    enum Scope {
+      MON = 0;
+      // every Pokemon on the field on that side
+      FIELD = 1;
+      // the whole party, benched ones too. Major status only
+      PARTY = 2;
+    }
+    Scope scope = 2;
+    // PARTY only
+    PartySlots slots = 3;
+  }
+
+  enum Once {
+    ALWAYS = 0;
+    PER_SWITCH_IN = 1;
+    PER_POKEMON = 2;
+    PER_BATTLE = 3;
+  }
+
+  // First N and/or last N Pokemon of the party, in party order. Unset = all of them.
+  message PartySlots {
+    int32 first = 1;
+    int32 last = 2;
+  }
+
+  message Trigger {
+    oneof kind {
+      Entry entry = 1;
+      EndTurn end_turn = 2;
+      BattleStart battle_start = 4;
+      Hit hit = 5;
+      Faint faint = 6;
+      StatChanged stat_change = 7;
+      SwitchOut switch_out = 8;
+    }
+    // run in this order
+    repeated Effect effect = 3;
+
+    // Whose Pokemon the event happens to. Not on battle_start.
+    // hit {} side: PLAYER is "the trainer's move hit a player Pokemon",
+    // faint {} side: PLAYER is "a player Pokemon fainted" (a KO).
+    Side side = 10;
+
+    // Conditions, all of them must hold
+    Once once = 11;
+    // 1 to 99 percent, 0 = always. Rolled once for the whole `on`
+    int32 chance = 12;
+    // 1 to 99: the event's Pokemon has less than this percent of its HP
+    int32 hp_below = 13;
+  }
+
+  // when a Pokemon comes in
+  message Entry {
+    enum When {
+      EVERY = 0;
+      LEAD = 1;
+      // the last Pokemon sent out: none left on the bench
+      LAST = 2;
+    }
+    When when = 1;
+    PartySlots slots = 2;
+  }
+
+  // at the end of every turn, for each Pokemon on the field
+  message EndTurn {
+    // every N turns, 0 or 1 = every turn
+    int32 every = 1;
+    // count the turns the Pokemon spent on the field instead of the battle turns
+    bool on_field = 2;
+  }
+
+  // once, before the first turn. Its Pokemon is the trainer's lead
+  message BattleStart {}
+
+  // a damaging move from a Pokemon of the other side hit this Pokemon, once per hit.
+  // Moves used by skills and abilities on their own don't count
+  message Hit {
+    // unset = any move
+    MoveFilter move = 1;
+    enum Effectiveness {
+      EFFECTIVENESS_UNSET = 0;  // not allowed
+      SUPER_EFFECTIVE = 1;
+      NEUTRAL = 2;
+      RESISTED = 3;
+      // the move didn't affect it (type or ability immunity). Only when listed
+      IMMUNE = 4;
+    }
+    // unset = any that dealt damage
+    repeated Effectiveness effectiveness = 3;
+    // multi-hit moves and Parental Bond fire once per strike, this keeps the first one only
+    bool first_strike_only = 4;
+  }
+
+  // Each list is "any of these", and the move has to match every list that's set.
+  //   move { type: TYPE_FIRE type: TYPE_WATER flag: CONTACT }  a fire or water move that makes contact
+  message MoveFilter {
+    enum Flag {
+      FLAG_UNSET = 0;  // not allowed
+      CONTACT = 1;
+      PUNCH = 2;
+      KICK = 3;
+      SOUND = 4;
+      MEGA_LAUNCHER = 5;
+      DANCE = 6;
+      KEEN_EDGE = 7;
+    }
+    repeated Type type = 1;
+    // PHYSICAL or SPECIAL, as the move is used (Photon Geyser, Shell Side Arm...)
+    repeated MoveSplit split = 2;
+    // abilities that add a flag count, like for Iron Fist or Tough Claws
+    repeated Flag flag = 3;
+  }
+
+  // this Pokemon fainted. The other Pokemon is the one that knocked it out, if any
+  message Faint {}
+
+  // a stat stage of this Pokemon went up or down
+  message StatChanged {
+    enum Direction {
+      ALL = 0;
+      UP = 1;
+      DOWN = 2;
+    }
+    // unset = any stat
+    repeated Stat stat = 1;
+    Direction direction = 2;
+  }
+
+  // this Pokemon is about to switch out. use_move only, it hits before the switch
+  message SwitchOut {}
+
+  message Effect {
+    oneof kind {
+      StatChange stat_change = 1;
+      SetTerrain terrain = 2;
+      SetWeather weather = 3;
+      SetSideCondition side_condition = 4;
+      UseMove use_move = 5;
+      SetFieldStatus field = 6;
+      ApplyStatus status = 7;
+    }
+  }
+
+  // Used by the trainer's Pokemon of the event, at the player's one. It runs once the current action ends.
+  // Moves like Swords Dance or Rain Dance ignore the target
+  message UseMove {
+    MoveEnum move = 1;
+    // 0 keeps the move's power, otherwise 1 to 255. maybe we need more ? 
+    int32 power = 2;
+    // Leaves the target at 1 HP at least, like False Swipe
+    bool false_swipe = 3;
+  }
+
+  message SetTerrain {
+    enum Terrain {
+      TERRAIN_NONE = 0;
+      TERRAIN_ELECTRIC = 1;
+      TERRAIN_GRASSY = 2;
+      TERRAIN_MISTY = 3;
+      TERRAIN_PSYCHIC = 4;
+      TERRAIN_TOXIC = 5;
+    }
+    Terrain terrain = 1;
+    // needs turns or permanent, codegen rejects 0 and neither
+    oneof duration {
+      int32 turns = 2;
+      bool permanent = 3;
+    }
+  }
+
+  // Needs turns or permanent, codegen rejects 0 and neither
+  message SetWeather {
+    // same as ENUM_WEATHER_* in include/constants/battle.h
+    // TODO: expose this and unify both to the proto version
+    enum Weather {
+      WEATHER_NONE = 0;
+      WEATHER_RAIN = 1;
+      WEATHER_SUN = 2;
+      WEATHER_SANDSTORM = 3;
+      WEATHER_HAIL = 4;
+      WEATHER_SUN_PRIMAL = 5;    // permanent only
+      WEATHER_RAIN_PRIMAL = 6;   // permanent only
+      WEATHER_STRONG_WINDS = 7;  // permanent only
+      WEATHER_FOG = 8;
+    }
+    Weather weather = 1;
+    oneof duration {
+      // 1 to 255, no lock
+      int32 turns = 2;
+      // locked for the rest of the battle: nothing can remove it
+      bool permanent = 3;
+    }
+  }
+
+  // Hazards and the other conditions of one side of the field
+  message SetSideCondition {
+    enum ConditionType {
+      NONE = 0;
+      // hazards: `layers`, no turns
+      SPIKES = 1;
+      TOXIC_SPIKES = 2;
+      STEALTH_ROCK = 3;
+      STICKY_WEB = 4;
+      CALTROPS = 5;
+      // need turns or permanent
+      REFLECT = 10;
+      LIGHT_SCREEN = 11;
+      AURORA_VEIL = 12;
+      SAFEGUARD = 13;
+      MIST = 14;
+      TAILWIND = 15;
+      LUCKY_CHANT = 16;
+      SWAMP = 20;
+      SEA_OF_FIRE = 21;
+      RAINBOW = 22;
+    }
+    repeated ConditionType type = 1;
+
+    // the side of the event's Pokemon, of its foe, or both. On battle_start the event's Pokemon is
+    // the trainer's lead, so hazards need who: FOE
+    Target.Who who = 2;
+
+    // hazards only: brings it up to this many, spikes 1 to 3, toxic spikes 1 to 2, the others 1. defaults to 1
+    int32 layers = 3;
+    oneof duration {
+      // 1 to 255, not for hazards
+      int32 turns = 4;
+      // put back at the end of every turn once removed (Rapid Spin, Defog, Brick Break...)
+      bool permanent = 5;
+    }
+  }
+
+  // Rooms and the other field-wide statuses
+  message SetFieldStatus {
+    enum FieldType {
+      NONE = 0;
+      TRICK_ROOM = 1;
+      WONDER_ROOM = 2;
+      MAGIC_ROOM = 3;
+      INVERSE_ROOM = 4;
+      GRAVITY = 5;
+      MUD_SPORT = 6;
+      WATER_SPORT = 7;
+    }
+    repeated FieldType type = 1;
+    oneof duration {
+      int32 turns = 2;
+      // put back at the end of every turn once it ends
+      bool permanent = 3;
+    }
+  }
+
+  // Fainted Pokemon and Pokemon that already have a major status are skipped
+  message ApplyStatus {
+    enum Status {
+      NONE = 0;
+      // major
+      SLEEP = 1;
+      POISON = 2;
+      TOXIC = 3;
+      BURN = 4;
+      PARALYSIS = 5;
+      FROSTBITE = 6;
+      BLEED = 7;
+      // volatile, not on PARTY
+      CONFUSION = 8;
+      CURSE = 9;
+      SALT_CURE = 10;
+      ATTRACT = 11;
+      DRENCH = 12;
+      GASTRO_ACID = 13;
+    }
+    Status status = 1;
+    // Pokemon on the field go through the usual immunities (type, ability, Safeguard, terrain...) and
+    // messages. The benched ones of a party only skip their types' immunity and are changed silently
+    Target target = 2;
+  }
+
+  message StatChange {
+    // all of them get the same amount. With several, one animation and one "stats rose/fell" line is
+    // shown, and the ones that can't move are skipped
+    repeated Stat stat = 1;
+    // goes from -6 to +6, negative applies debuff
+    int32 amount = 2;
+    // MON or FIELD
+    Target target = 3;
+  }
+}

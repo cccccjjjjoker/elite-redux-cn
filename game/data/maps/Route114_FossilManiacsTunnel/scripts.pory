@@ -1,0 +1,92 @@
+raw `
+.set LOCALID_FOSSIL_MANIAC, 1
+
+Route114_FossilManiacsTunnel_MapScripts:: @ 822AF28
+	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsTunnel_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, Route114_FossilManiacsTunnel_OnLoad
+	.byte 0
+
+Route114_FossilManiacsTunnel_OnTransition: @ 822AF33
+	call_if_set FLAG_BADGE05_GET, Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac
+	end
+
+Route114_FossilManiacsTunnel_EventScript_MoveFossilManiac:: @ 822AF3D
+	setobjectxyperm LOCALID_FOSSIL_MANIAC, 6, 5
+	setobjectmovementtype LOCALID_FOSSIL_MANIAC, MOVEMENT_TYPE_FACE_DOWN
+	return
+
+Route114_FossilManiacsTunnel_OnLoad: @ 822AF49
+	call_if_unset FLAG_BADGE05_GET, Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass
+	end
+
+Route114_FossilManiacsTunnel_EventScript_CloseDesertUnderpass:: @ 822AF53
+	setmetatile 6, 1, METATILE_Fallarbor_RedRockWall, 1
+	setmetatile 6, 2, METATILE_Fallarbor_RedRockWall, 1
+	return
+
+Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn:: @ 822AF66
+	lockall
+	applymovement LOCALID_FOSSIL_MANIAC, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	msgbox Route114_FossilManiacsTunnel_Text_NotSafeThatWay, MSGBOX_DEFAULT
+	setvar VAR_FOSSIL_MANIAC_STATE, 2
+	releaseall
+	end
+
+Route114_FossilManiacsTunnel_EventScript_FossilManiac:: @ 822AF87
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_REVIVED_FOSSIL_MON, Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil
+	checkitem ITEM_ROOT_FOSSIL, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+	checkitem ITEM_CLAW_FOSSIL, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil
+	msgbox Route114_FossilManiacsTunnel_Text_LookInDesertForFossils, MSGBOX_DEFAULT
+	release
+	end
+
+Route114_FossilManiacsTunnel_EventScript_PlayerHasFossil:: @ 822AFBC
+	msgbox Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils, MSGBOX_DEFAULT
+	release
+	end
+
+Route114_FossilManiacsTunnel_EventScript_PlayerRevivedFossil:: @ 822AFC6
+	msgbox Route114_FossilManiacsTunnel_Text_FossilsAreWonderful, MSGBOX_DEFAULT
+	release
+	end
+
+Route114_FossilManiacsTunnel_Text_LookInDesertForFossils: @ 822AFD0
+	.string "我是化石狂……\n"
+	.string "是个爱化石的好人……\p"
+	.string "你想要化石吗？\n"
+	.string "不过这一带的化石全是我的……\p"
+	.string "没有你的份……\n"
+	.string "要是你实在想要化石，\p"
+	.string "就去有岩石和沙子的沙漠找找吧，\n"
+	.string "那里可能藏着化石……$"
+
+Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils: @ 822B0D6
+	.string "你找到化石了吧？\n"
+	.string "真好啊……像做梦一样……\p"
+	.string "你打算拿那块化石怎么办？\n"
+	.string "听说得文正在研究\p"
+	.string "从化石里复活宝可梦……\n"
+	.string "我很爱我的化石，\p"
+	.string "所以绝不会做那种事……$"
+
+Route114_FossilManiacsTunnel_Text_FossilsAreWonderful: @ 822B1CC
+	.string "化石真是……太美妙了……\n"
+	.string "像做梦一样……$"
+
+Route114_FossilManiacsTunnel_Text_NotSafeThatWay: @ 822B1F7
+	.string "哦……那边不安全……\n"
+	.string "你看，我一直在挖……\p"
+	.string "结果整面墙塌了下来……\n"
+	.string "下面好像有个巨大的洞窟……\p"
+	.string "不过我放着没动，\n"
+	.string "因为我觉得那里没有化石……$"
+
+`

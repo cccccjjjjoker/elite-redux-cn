@@ -1,0 +1,131 @@
+raw `
+.set LOCALID_OWNER, 1
+
+LilycoveCity_CoveLilyMotel_1F_MapScripts:: @ 8218188
+	.byte 0
+
+LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner:: @ 8218189
+	lockall
+	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear
+	goto_if_set FLAG_BADGE07_GET, LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot, MSGBOX_DEFAULT
+	applymovement LOCALID_OWNER, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_OWNER, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+
+LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted:: @ 82181C3
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem, MSGBOX_DEFAULT
+	applymovement LOCALID_OWNER, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_OWNER, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+
+LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear:: @ 82181EA
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar, MSGBOX_DEFAULT
+	applymovement LOCALID_OWNER, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_OWNER, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+
+LilycoveCity_CoveLilyMotel_1F_EventScript_BlockingTV:: @ 8218211
+	lockall
+	playse SE_PIN
+	applymovement LOCALID_OWNER, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_OWNER, Common_Movement_Delay48
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV
+	applymovement LOCALID_OWNER, LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer
+	waitmovement 0
+	applymovement LOCALID_OWNER, LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_CoveLilyMotel_1F_Movement_PlayerPushFromTV: @ 8218259
+	face_right
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	step_end
+
+LilycoveCity_CoveLilyMotel_1F_Movement_OwnerPushPlayer: @ 821825E
+	walk_up
+	step_end
+
+LilycoveCity_CoveLilyMotel_1F_Movement_OwnerReturn: @ 8218260
+	face_down
+	walk_down
+	face_up
+	step_end
+
+LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot: @ 8218264
+	.string "唔，所以他们把宝可梦\n"
+	.string "当卖点，让客人翻了一倍？\p"
+	.string "唔，也许我该找只可爱的宝可梦\n"
+	.string "当我们旅馆的吉祥物。\p"
+	.string "不知道那样能不能招来\n"
+	.string "更多客人住宿？$"
+
+LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua: @ 821831E
+	.string "哦，抱歉抱歉！\n"
+	.string "我看电视看得太入迷了！\p"
+	.string "自从水舰队来了镇上，\n"
+	.string "游客都不来了。$"
+
+LilycoveCity_CoveLilyMotel_1F_Text_CantSeeTheTV: @ 821839B
+	.string "喂，前面的让开！\n"
+	.string "我看不到电视了！$"
+
+LilycoveCity_CoveLilyMotel_1F_Text_MonFoundLostItem: @ 82183C3
+	.string "了不起！你说有只宝可梦\n"
+	.string "找到了别人丢的东西？\p"
+	.string "真厉害。要是我们也有\n"
+	.string "这么聪明的宝可梦……\p"
+	.string "客人丢了什么都能找回来……$"
+
+LilycoveCity_CoveLilyMotel_1F_Text_HeardAquaHideoutBusted: @ 8218470
+	.string "哦，抱歉抱歉！\n"
+	.string "我看电视看得太入迷了！\p"
+	.string "我听说有人端掉了\n"
+	.string "水舰队的基地。\p"
+	.string "多亏这事，我们刚接到\n"
+	.string "一个大团的预订。\p"
+	.string "是家叫……呃……\n"
+	.string "GAME 什么什么……的公司。$"
+
+LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar: @ 8218544
+	.string "了不起！一只看家的宝可梦\n"
+	.string "抓住了小偷？\p"
+	.string "真厉害。要是有只强壮的\n"
+	.string "宝可梦当警卫……\p"
+	.string "我们就能给客人\n"
+	.string "更高的安全保障。$"
+
+LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner: @ 82185F4
+	.string "哦，抱歉抱歉！\n"
+	.string "我看电视看得太入迷了。\p"
+	.string "哦，对。刚才来了一大群客人。\n"
+	.string "他们登记的是 GAME FREAK，\p"
+	.string "我猜他们一定是做游戏的。\n"
+	.string "哎呀，我得赶紧去准备\p"
+	.string "他们的晚餐了！$"
+
+`

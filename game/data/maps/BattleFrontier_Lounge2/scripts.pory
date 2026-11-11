@@ -1,0 +1,374 @@
+raw `
+BattleFrontier_Lounge2_MapScripts:: @ 8260642
+	.byte 0
+
+@ This NPC gives hints about a random facility or battle mode.
+@ For battle modes he gives generic advice 
+@ For facilities, depending on how far the player has progressed he will say either
+@    The name of the Frontier Brain there
+@    The type and description of the 3 pokemon they use in their silver battle
+@    The type and description of the 3 pokemon they use in their gold battle
+BattleFrontier_Lounge2_EventScript_FrontierManiac:: @ 8260643
+	lock
+	faceplayer
+	goto_if_set FLAG_MET_BATTLE_FRONTIER_MANIAC, BattleFrontier_Lounge2_EventScript_AlreadyMetManiac
+	setflag FLAG_MET_BATTLE_FRONTIER_MANIAC
+	msgbox BattleFrontier_Lounge2_Text_FrontierManiacIntro, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge2_EventScript_GiveAdvice
+	end
+
+BattleFrontier_Lounge2_EventScript_AlreadyMetManiac:: @ 826065F
+	msgbox BattleFrontier_Lounge2_Text_SwingByForTheLatestWord, MSGBOX_DEFAULT
+	goto BattleFrontier_Lounge2_EventScript_GiveAdvice
+	end
+
+BattleFrontier_Lounge2_EventScript_GiveAdvice:: @ 826066D
+	compare VAR_FRONTIER_MANIAC_FACILITY, 0
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferSingle
+	compare VAR_FRONTIER_MANIAC_FACILITY, 1
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferDouble
+	compare VAR_FRONTIER_MANIAC_FACILITY, 2
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferMulti
+	compare VAR_FRONTIER_MANIAC_FACILITY, 3
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferMultiLink
+	compare VAR_FRONTIER_MANIAC_FACILITY, 4
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferBattleDome
+	compare VAR_FRONTIER_MANIAC_FACILITY, 5
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferBattleFactory
+	compare VAR_FRONTIER_MANIAC_FACILITY, 6
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferBattlePalace
+	compare VAR_FRONTIER_MANIAC_FACILITY, 7
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferBattleArena
+	compare VAR_FRONTIER_MANIAC_FACILITY, 8
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferBattlePike
+	compare VAR_FRONTIER_MANIAC_FACILITY, 9
+	call_if_eq BattleFrontier_Lounge2_EventScript_BufferBattlePyramid
+	compare VAR_FRONTIER_MANIAC_FACILITY, 3
+	call_if_le BattleFrontier_Lounge2_EventScript_BattleTowerNews
+	compare VAR_FRONTIER_MANIAC_FACILITY, 4
+	call_if_ge BattleFrontier_Lounge2_EventScript_FacilityNews
+	special ShowFrontierManiacMessage
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+BattleFrontier_Lounge2_EventScript_BattleTowerNews:: @ 82606F8
+	msgbox BattleFrontier_Lounge2_Text_BattleTowerIsHottest, MSGBOX_DEFAULT
+	return
+
+BattleFrontier_Lounge2_EventScript_FacilityNews:: @ 8260701
+	msgbox BattleFrontier_Lounge2_Text_FacilityIsHottest, MSGBOX_DEFAULT
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferSingle:: @ 826070A
+	bufferstdstring 0, STDSTRING_SINGLE
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferDouble:: @ 826070F
+	bufferstdstring 0, STDSTRING_DOUBLE
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferMulti:: @ 8260714
+	bufferstdstring 0, STDSTRING_MULTI
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferMultiLink:: @ 8260719
+	bufferstdstring 0, STDSTRING_MULTI_LINK
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferBattleDome:: @ 826071E
+	bufferstdstring 0, STDSTRING_BATTLE_DOME
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferBattleFactory:: @ 8260723
+	bufferstdstring 0, STDSTRING_BATTLE_FACTORY
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferBattlePalace:: @ 8260728
+	bufferstdstring 0, STDSTRING_BATTLE_PALACE
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferBattleArena:: @ 826072D
+	bufferstdstring 0, STDSTRING_BATTLE_ARENA
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferBattlePike:: @ 8260732
+	bufferstdstring 0, STDSTRING_BATTLE_PIKE
+	return
+
+BattleFrontier_Lounge2_EventScript_BufferBattlePyramid:: @ 8260737
+	bufferstdstring 0, STDSTRING_BATTLE_PYRAMID
+	return
+
+BattleFrontier_Lounge2_EventScript_Maniac1:: @ 826073C
+	lock
+	msgbox BattleFrontier_Lounge2_Text_NewsGatheringPower, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge2_EventScript_Maniac2:: @ 8260747
+	lock
+	msgbox BattleFrontier_Lounge2_Text_AmazingPowersOfObservation, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge2_EventScript_Maniac3:: @ 8260752
+	lock
+	msgbox BattleFrontier_Lounge2_Text_AmazingPowerOfPersuasion, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge2_EventScript_TriathleteF:: @ 826075D
+	msgbox BattleFrontier_Lounge2_Text_ThisPlaceIsScaringMe, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge2_Text_FrontierManiacIntro:: @ 8260766
+	.string "你好哇！要说对战开拓区的消息，\n"
+	.string "我可是头一号人物。\p"
+	.string "你就把我当成\n"
+	.string "“开拓狂人”好了。\p"
+	.string "先确认一下，\n"
+	.string "你是训练家，对吧？\p"
+	.string "我很乐意把我收集到的\n"
+	.string "对战开拓区最热的消息，\p"
+	.string "全都分享给你。$"
+
+BattleFrontier_Lounge2_Text_SwingByForTheLatestWord:: @ 8260857
+	.string "你好哇！\n"
+	.string "你是来打听最新消息的吧？\p"
+	.string "哦，好吧！$"
+
+@ Unused
+BattleFrontier_Lounge2_Text_MyInformationsBeenUsefulRight:: @ 82608A1
+	.string "怎么样？怎么样？怎么样？\n"
+	.string "我的情报对你一定\p"
+	.string "特别有用吧？$"
+
+BattleFrontier_Lounge2_Text_FacilityIsHottest:: @ 82608F2
+	.string "让我想想……\n"
+	.string "听说现在最热的地方\p"
+	.string "就是{STR_VAR_1}。$"
+
+BattleFrontier_Lounge2_Text_BattleTowerIsHottest:: @ 8260933
+	.string "让我想想……\n"
+	.string "听说现在最热的\p"
+	.string "就是对战塔{STR_VAR_1}。$"
+
+BattleFrontier_Lounge2_Text_SalonMaidenIsThere:: @ 8260971
+	.string "这个你肯定不知道！\n"
+	.string "斯科特称为“开拓头脑”的\p"
+	.string "顶尖训练家之一就在那里。\n"
+	.string "掌管那儿的，是位名叫\p"
+	.string "“沙龙女士”的神秘训练家。$"
+
+BattleFrontier_Lounge2_Text_SalonMaidenSilverMons:: @ 8260A1E
+	.string "你和沙龙女士对战过吗？\n"
+	.string "她在试探对手实力时，\p"
+	.string "据说会用这几只宝可梦：\n"
+	.string "超能属性的念力宝可梦、\p"
+	.string "火属性的火山宝可梦，\n"
+	.string "还有一般属性的瞌睡宝可梦。$"
+
+BattleFrontier_Lounge2_Text_SalonMaidenGoldMons:: @ 8260AE7
+	.string "你和认真起来的\n"
+	.string "沙龙女士对战过吗？\p"
+	.string "她全力出战时，\n"
+	.string "据说会用这几只宝可梦：\p"
+	.string "龙与超能的永远宝可梦、\n"
+	.string "电属性的雷电宝可梦，\p"
+	.string "还有一般属性的瞌睡宝可梦。$"
+
+BattleFrontier_Lounge2_Text_DomeAceIsThere:: @ 8260BC4
+	.string "这个你肯定不知道！\n"
+	.string "斯科特称为“开拓头脑”的\p"
+	.string "顶尖训练家之一就在那里。\n"
+	.string "掌管那儿的，是位张扬的\p"
+	.string "训练家，人称“巨蛋王牌”。$"
+
+BattleFrontier_Lounge2_Text_DomeAceSilverMons:: @ 8260C6D
+	.string "你和巨蛋王牌对战过吗？\n"
+	.string "他小看对手时，\p"
+	.string "会用这三只宝可梦：\n"
+	.string "龙与飞行的龙宝可梦、\p"
+	.string "水与地面的沼鱼宝可梦，\n"
+	.string "还有火与飞行的火焰宝可梦。$"
+
+BattleFrontier_Lounge2_Text_DomeAceGoldMons:: @ 8260D3A
+	.string "你和认真起来的\n"
+	.string "巨蛋王牌对战过吗？\p"
+	.string "他展示自己的战术时，\n"
+	.string "会用这三只宝可梦：\p"
+	.string "龙与飞行的永远宝可梦、\n"
+	.string "水与地面的沼鱼宝可梦，\p"
+	.string "还有钢与超能的铁足宝可梦。$"
+
+BattleFrontier_Lounge2_Text_FactoryHeadIsThere:: @ 8260E1E
+	.string "这个你肯定不知道！\n"
+	.string "斯科特称为“开拓头脑”的\p"
+	.string "顶尖训练家之一就在那里。\n"
+	.string "掌管那儿的，是位古怪的\p"
+	.string "训练家，人称“工厂头目”。$"
+
+BattleFrontier_Lounge2_Text_FactoryHeadSilverMons:: @ 8260EC7
+	.string "你和工厂头目对战过了吗？\n"
+	.string "让我想想……他去对战时，\p"
+	.string "只会领三只租来的宝可梦。\n"
+	.string "他作战的条件\p"
+	.string "几乎和你一模一样。$"
+
+BattleFrontier_Lounge2_Text_FactoryHeadGoldMons:: @ 8260F74
+	.string "你和认真起来的\n"
+	.string "工厂头目对战过吗？\p"
+	.string "他认真去对战时，\n"
+	.string "照样只领三只租来的宝可梦。\p"
+	.string "他作战的条件\n"
+	.string "可以说和你完全相同。$"
+
+BattleFrontier_Lounge2_Text_PikeQueenIsThere:: @ 8261026
+	.string "这个你肯定不知道！\n"
+	.string "斯科特称为“开拓头脑”的\p"
+	.string "顶尖训练家之一就在那里。\n"
+	.string "掌管那儿的，是位可怕的\p"
+	.string "训练家，人称“管道女王”。$"
+
+BattleFrontier_Lounge2_Text_PikeQueenSilverMons:: @ 82610CC
+	.string "你和管道女王对战过吗？\n"
+	.string "听说她心情好的时候，\p"
+	.string "会用这三只宝可梦：\n"
+	.string "毒属性的牙蛇宝可梦、\p"
+	.string "虫与岩石的霉菌宝可梦，\n"
+	.string "还有水属性的慈爱宝可梦。$"
+
+BattleFrontier_Lounge2_Text_PikeQueenGoldMons:: @ 8261194
+	.string "你和认真起来的\n"
+	.string "管道女王对战过吗？\p"
+	.string "听说她真的生气时，\n"
+	.string "会用这三只宝可梦：\p"
+	.string "毒属性的牙蛇宝可梦、\n"
+	.string "钢与地面的铁蛇宝可梦，\p"
+	.string "还有水与飞行的凶恶宝可梦。$"
+
+BattleFrontier_Lounge2_Text_ArenaTycoonIsThere:: @ 8261282
+	.string "这个你肯定不知道！\n"
+	.string "斯科特称为“开拓头脑”的\p"
+	.string "顶尖训练家之一就在那里。\n"
+	.string "掌管那儿的，是位可爱的\p"
+	.string "训练家，人称“竞技场大亨”。$"
+
+BattleFrontier_Lounge2_Text_ArenaTycoonSilverMons:: @ 8261329
+	.string "你和竞技场大亨对战过吗？\n"
+	.string "她在评估对手实力时，\p"
+	.string "据说会用这几只宝可梦：\n"
+	.string "虫与格斗的独角宝可梦、\p"
+	.string "恶属性的月光宝可梦，\n"
+	.string "还有虫与幽灵的脱壳宝可梦。$"
+
+BattleFrontier_Lounge2_Text_ArenaTycoonGoldMons:: @ 8261403
+	.string "你和认真起来的\n"
+	.string "竞技场大亨对战过吗？\p"
+	.string "她动真格对战时，\n"
+	.string "据说会用这几只宝可梦：\p"
+	.string "恶属性的月光宝可梦、\n"
+	.string "幽灵与毒的影子宝可梦，\p"
+	.string "还有草与格斗的蘑菇宝可梦。$"
+
+BattleFrontier_Lounge2_Text_PalaceMavenIsThere:: @ 82614E6
+	.string "这个你肯定不知道！\n"
+	.string "斯科特称为“开拓头脑”的\p"
+	.string "顶尖训练家之一就在那里。\n"
+	.string "掌管那儿的，是位阴沉的\p"
+	.string "训练家，人称“宫殿大师”。$"
+
+BattleFrontier_Lounge2_Text_PalaceMavenSilverMons:: @ 8261591
+	.string "你和宫殿大师对战过吗？\n"
+	.string "他在考验对手的精神时，\p"
+	.string "据说会用这几只宝可梦：\n"
+	.string "毒与飞行的蝙蝠宝可梦、\p"
+	.string "一般属性的懒惰宝可梦，\n"
+	.string "还有水与冰的乘载宝可梦。$"
+
+BattleFrontier_Lounge2_Text_PalaceMavenGoldMons:: @ 826166F
+	.string "你和认真起来的\n"
+	.string "宫殿大师对战过吗？\p"
+	.string "他把全部力量倾注于\n"
+	.string "对战时，据说会用这几只：\p"
+	.string "火属性的传说宝可梦、\n"
+	.string "一般属性的懒惰宝可梦，\p"
+	.string "还有水属性的极光宝可梦。$"
+
+BattleFrontier_Lounge2_Text_PyramidKingIsThere:: @ 826174D
+	.string "这个你肯定不知道！\n"
+	.string "斯科特称为“开拓头脑”的\p"
+	.string "顶尖训练家之一就在那里。\n"
+	.string "掌管那儿的，是位热情如火的\p"
+	.string "训练家，人称“金字塔王”。$"
+
+BattleFrontier_Lounge2_Text_PyramidKingSilverMons:: @ 82617F9
+	.string "你和金字塔王对战过吗？\n"
+	.string "他在探测对手的力量时，\p"
+	.string "据说会用这几只宝可梦：\n"
+	.string "岩属性的岩石山峰宝可梦、\p"
+	.string "冰属性的冰山宝可梦，\n"
+	.string "还有钢属性的铁宝可梦。$"
+
+BattleFrontier_Lounge2_Text_PyramidKingGoldMons:: @ 82618C4
+	.string "你和认真起来的\n"
+	.string "金字塔王对战过吗？\p"
+	.string "他热血沸腾的时候，\n"
+	.string "据说会用这几只宝可梦：\p"
+	.string "冰与飞行的冰冻宝可梦、\n"
+	.string "电与飞行的电击宝可梦，\p"
+	.string "还有火与飞行的火焰宝可梦。$"
+
+BattleFrontier_Lounge2_Text_DoubleBattleAdvice1:: @ 82619AC
+	.string "能打双打对战的地方\n"
+	.string "确实有好几处。\p"
+	.string "但对战塔的双打对战房间，\n"
+	.string "那可是最基础的！\p"
+	.string "想学对战开拓区的\n"
+	.string "双打对战怎么打，\p"
+	.string "就该从那里开始。$"
+
+BattleFrontier_Lounge2_Text_DoubleBattleAdvice2:: @ 8261A91
+	.string "在这里对战时，可要多留神。\n"
+	.string "我听说有些训练家\p"
+	.string "专门为双打对战\n"
+	.string "练出了自己的战术。$"
+
+BattleFrontier_Lounge2_Text_DoubleBattleAdvice3:: @ 8261B0C
+	.string "等你对这里的双打对战\n"
+	.string "有了信心、打得顺手了，\p"
+	.string "就该去挑战其他\n"
+	.string "举办双打对战的地方了。$"
+
+BattleFrontier_Lounge2_Text_MultiBattleAdvice:: @ 8261B95
+	.string "对战沙龙里聚集着\n"
+	.string "各种各样的训练家。\p"
+	.string "想想看，说不定会碰上\n"
+	.string "你的朋友或崇拜者！\p"
+	.string "可得仔细看看！$"
+
+BattleFrontier_Lounge2_Text_LinkMultiBattleAdvice:: @ 8261C1A
+	.string "要是你和朋友一起来，\n"
+	.string "就去通讯多人对战房间。\p"
+	.string "和强手朋友一起打，\n"
+	.string "等着你的对手也会很强！$"
+
+BattleFrontier_Lounge2_Text_NewsGatheringPower:: @ 8261C9C
+	.string "多么惊人的情报收集能力！\n"
+	.string "我的师父真是无人能及！$"
+
+BattleFrontier_Lounge2_Text_AmazingPowersOfObservation:: @ 8261CDC
+	.string "多么惊人的观察力！\n"
+	.string "我的师父真是无人能及！$"
+
+BattleFrontier_Lounge2_Text_AmazingPowerOfPersuasion:: @ 8261D1D
+	.string "多么惊人的说服力！\n"
+	.string "我的师父真是无人能及！$"
+
+BattleFrontier_Lounge2_Text_ThisPlaceIsScaringMe:: @ 8261D5C
+	.string "……这是什么地方？\n"
+	.string "好可怕……$"
+
+`

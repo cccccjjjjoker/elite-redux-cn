@@ -1,0 +1,243 @@
+raw `
+SootopolisCity_Gym_B1F_MapScripts:: @ 8225C8A
+	.byte 0
+
+SootopolisCity_Gym_B1F_Text_AndreaIntro: @ 8225D71
+	.string "让你看看我从馆主亚当那里\n"
+	.string "学到的绝妙技巧！$"
+
+SootopolisCity_Gym_B1F_Text_AndreaDefeat:: @ 8225DB6
+	.string "请原谅我，亚当……$"
+
+SootopolisCity_Gym_B1F_Text_AndreaPostBattle: @ 8225DCF
+	.string "看看把地砖全部踩裂会发生什么。$"
+
+SootopolisCity_Gym_B1F_Text_CrissyIntro: @ 8225E04
+	.string "你一路走到这里，\n"
+	.string "但你别想见到亚当。\p"
+	.string "只要输给我，就别想！$"
+
+SootopolisCity_Gym_B1F_Text_CrissyDefeat:: @ 8225E60
+	.string "你很强！\n"
+	.string "我被你可爱的外表骗了！$"
+
+SootopolisCity_Gym_B1F_Text_CrissyPostBattle: @ 8225E90
+	.string "你也许够格，不会被亚当一击清场。$"
+
+SootopolisCity_Gym_B1F_Text_DaphneIntro: @ 8225ED6
+	.string "亚当指挥对战的样子……\n"
+	.string "那份美让我非当训练家不可。$"
+
+SootopolisCity_Gym_B1F_Text_DaphneDefeat:: @ 8225F35
+	.string "你打得比我更有美感……$"
+
+SootopolisCity_Gym_B1F_Text_DaphnePostBattle: @ 8225F67
+	.string "你带给对战的那份优雅太棒了。\n"
+	.string "哦……能遇到宝可梦，我真幸运。$"
+
+SootopolisCity_Gym_B1F_Text_ConnieIntro: @ 8225FBE
+	.string "我该教教你对战能有多残酷。$"
+
+SootopolisCity_Gym_B1F_Text_ConnieDefeat:: @ 8225FEB
+	.string "哦。你很强。$"
+
+SootopolisCity_Gym_B1F_Text_ConniePostBattle: @ 8225FFE
+	.string "告诉你个好消息。\n"
+	.string "想走到亚当那里，\p"
+	.string "你得把每块地砖都踩一遍。$"
+
+SootopolisCity_Gym_B1F_Text_BridgetIntro: @ 8226061
+	.string "丰缘地区最高等级的道馆……\n"
+	.string "那就是琉璃道馆。$"
+
+SootopolisCity_Gym_B1F_Text_BridgetDefeat:: @ 82260B6
+	.string "你的水平真高！$"
+
+SootopolisCity_Gym_B1F_Text_BridgetPostBattle: @ 82260D1
+	.string "与其满足于待在一个强道馆里，\n"
+	.string "我觉得去别处训练会让你更强。\p"
+	.string "而且最重要的是，那样更有趣。$"
+
+SootopolisCity_Gym_B1F_Text_OliviaIntro: @ 8226164
+	.string "我和亚当一起训练宝可梦。\n"
+	.string "别以为我好对付。$"
+
+SootopolisCity_Gym_B1F_Text_OliviaDefeat:: @ 82261A7
+	.string "我被打败了……$"
+
+SootopolisCity_Gym_B1F_Text_OliviaPostBattle: @ 82261B5
+	.string "我觉得你有潜力。\n"
+	.string "不如留下来和我们一起训练？$"
+
+SootopolisCity_Gym_B1F_Text_TiffanyIntro: @ 82261F7
+	.string "优雅地滑过冰面，一条线都不踩……\n"
+	.string "能做出那种表演的训练家，\p"
+	.string "一定优雅又美丽！$"
+
+SootopolisCity_Gym_B1F_Text_TiffanyDefeat:: @ 8226274
+	.string "喂，你说什么？！$"
+
+SootopolisCity_Gym_B1F_Text_TiffanyPostBattle: @ 8226286
+	.string "这很明显，但训练家有多强，\n"
+	.string "和他年纪大小一点关系都没有。$"
+
+SootopolisCity_Gym_B1F_Text_BethanyIntro: @ 82262F3
+	.string "和宝可梦在一起的时候，\n"
+	.string "时间一晃就过去了。$"
+
+SootopolisCity_Gym_B1F_Text_BethanyDefeat:: @ 822633B
+	.string "哎呀！$"
+
+SootopolisCity_Gym_B1F_Text_BethanyPostBattle: @ 8226341
+	.string "我希望能在我喊出“哎呀”之前，\n"
+	.string "就忘掉那些没救的事。$"
+
+SootopolisCity_Gym_B1F_Text_AnnikaIntro: @ 8226388
+	.string "愿意的话，我可以用很稀有的\n"
+	.string "宝可梦跟你打。$"
+
+SootopolisCity_Gym_B1F_Text_AnnikaDefeat:: @ 82263BD
+	.string "哦，好了！\n"
+	.string "你好好看过我的宝可梦了吗？$"
+
+SootopolisCity_Gym_B1F_Text_AnnikaPostBattle: @ 82263F4
+	.string "我来这个道馆，是因为亚当\n"
+	.string "夸过我的宝贝宝可梦。\p"
+	.string "哦，要是我年轻几岁的时候就遇到\n"
+	.string "亚当该多好……$"
+
+SootopolisCity_Gym_B1F_Text_BriannaIntro: @ 822646E
+	.string "嘻嘻……\n"
+	.string "你严肃的样子真迷人。$"
+
+SootopolisCity_Gym_B1F_Text_BriannaDefeat:: @ 8226495
+	.string "哦，天啊。\n"
+	.string "我对你太手下留情了。$"
+
+SootopolisCity_Gym_B1F_Text_BriannaPostBattle: @ 82264BC
+	.string "你肯定碰不到亚当一根手指。嘻嘻…\n"
+	.string "…$"
+
+`
+
+script SootopolisCity_Gym_B1F_EventScript_Bridget{
+	lock
+	faceplayer
+	if (defeated(TRAINER_BRIDGET)){
+		msgbox(SootopolisCity_Gym_B1F_Text_BridgetPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+
+script SootopolisCity_Gym_B1F_EventScript_Crissy{
+	lock
+	faceplayer
+	if (defeated(TRAINER_CRISSY)){
+		msgbox(SootopolisCity_Gym_B1F_Text_CrissyPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+
+script SootopolisCity_Gym_B1F_EventScript_Bethany{
+	lock
+	faceplayer
+	if (defeated(TRAINER_BETHANY)){
+		msgbox(SootopolisCity_Gym_B1F_Text_BethanyPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+
+script SootopolisCity_Gym_B1F_EventScript_Daphne{
+	lock
+	faceplayer
+	if (defeated(TRAINER_DAPHNE)){
+		msgbox(SootopolisCity_Gym_B1F_Text_DaphnePostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+
+script SootopolisCity_Gym_B1F_EventScript_Connie{
+	lock
+	faceplayer
+	if (defeated(TRAINER_CONNIE)){
+		msgbox(SootopolisCity_Gym_B1F_Text_ConniePostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+	
+script SootopolisCity_Gym_B1F_EventScript_Andrea{
+	lock
+	faceplayer
+	if (defeated(TRAINER_ANDREA)){
+		msgbox(SootopolisCity_Gym_B1F_Text_AndreaPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+
+script SootopolisCity_Gym_B1F_EventScript_Annika{
+	lock
+	faceplayer
+	if (defeated(TRAINER_ANNIKA)){
+		msgbox(SootopolisCity_Gym_B1F_Text_AnnikaPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+
+script SootopolisCity_Gym_B1F_EventScript_Brianna{
+	lock
+	faceplayer
+	if (defeated(TRAINER_BRIANNA)){
+		msgbox(SootopolisCity_Gym_B1F_Text_BriannaPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+script SootopolisCity_Gym_B1F_EventScript_Olivia{
+	lock
+	faceplayer
+	if (defeated(TRAINER_OLIVIA)){
+		msgbox(SootopolisCity_Gym_B1F_Text_OliviaPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		goto(SootopolisCity_Gym_EventScript_PleaseWalkOnTile)
+	}
+	release
+	end
+}
+
+script SootopolisCity_Gym_B1F_EventScript_Tiffany{
+	lock
+	faceplayer
+	if (defeated(TRAINER_TIFFANY)){
+		msgbox(SootopolisCity_Gym_B1F_Text_TiffanyPostBattle, MSGBOX_AUTOCLOSE)
+	} else {
+		msgbox(format("我比较传统，\n就是训练家对训练家的老派打法。$"), MSGBOX_YESNO)
+		if (var(VAR_RESULT)){
+			trainerbattle_single(TRAINER_TIFFANY, SootopolisCity_Gym_B1F_Text_TiffanyIntro , SootopolisCity_Gym_B1F_Text_TiffanyDefeat)
+		}
+	}
+	release
+	end
+}

@@ -1,0 +1,134 @@
+raw `
+.set LOCALID_WALLYS_DAD, 1
+
+PetalburgCity_WallysHouse_MapScripts:: @ 8204229
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_WallysHouse_OnFrame
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PetalburgCity_WallysHouse_OnWarp
+	.byte 0
+
+PetalburgCity_WallysHouse_OnWarp: @ 8204234
+	map_script_2 VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_WallysHouse_EventScript_PlayerWallysDadFaceEachOther
+	.2byte 0
+
+PetalburgCity_WallysHouse_EventScript_PlayerWallysDadFaceEachOther:: @ 820423E
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	turnobject LOCALID_WALLYS_DAD, DIR_WEST
+	end
+
+PetalburgCity_WallysHouse_OnFrame: @ 8204247
+	map_script_2 VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_WallysHouse_EventScript_GiveHM03Surf
+	.2byte 0
+
+PetalburgCity_WallysHouse_EventScript_GiveHM03Surf:: @ 8204251
+	lockall
+	msgbox PetalburgCity_WallysHouse_Text_PleaseExcuseUs, MSGBOX_DEFAULT
+	giveitem ITEM_HM03_SURF
+	setflag FLAG_RECEIVED_HM03
+	msgbox PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces, MSGBOX_DEFAULT
+	setvar VAR_PETALBURG_CITY_STATE, 5
+	releaseall
+	end
+
+PetalburgCity_WallysHouse_EventScript_WallysDad:: @ 8204278
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad
+	goto_if_set FLAG_RECEIVED_HM03, PetalburgCity_WallysHouse_EventScript_ReceievedHM03Surf
+	goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY, PetalburgCity_WallysHouse_EventScript_PlayedWithWally
+	msgbox PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally, MSGBOX_DEFAULT
+	setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY
+	release
+	end
+
+PetalburgCity_WallysHouse_EventScript_ReceievedHM03Surf:: @ 82042A2
+	msgbox PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_WallysHouse_EventScript_DefeatedWallyInVictoryRoad:: @ 82042AC
+	msgbox PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_WallysHouse_EventScript_PlayedWithWally:: @ 82042B6
+	msgbox PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_WallysHouse_EventScript_WallysMom:: @ 82042C0
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_HM03, PetalburgCity_WallysHouse_EventScript_ReceivedHM03Surf
+	msgbox PetalburgCity_WallysHouse_Text_WallyWasReallyHappy, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_WallysHouse_EventScript_ReceivedHM03Surf:: @ 82042D5
+	msgbox PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally: @ 82042DF
+	.string "你是……\n"
+	.string "啊，你一定是{PLAYER}{KUN}吧？\p"
+	.string "谢谢你前阵子陪小胜玩。\n"
+	.string "他从小身体就虚弱多病。\p"
+	.string "我们把他送到绿茵镇的\n"
+	.string "亲戚家住一阵子。\p"
+	.string "那边的空气比这里干净多了。\n"
+	.string "什么？小胜在哪儿？\p"
+	.string "他已经走了，我们家小胜。\n"
+	.string "不知道他现在走到哪儿了？$"
+
+PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing: @ 820444D
+	.string "不知道我们家小胜\n"
+	.string "过得怎么样？$"
+
+PetalburgCity_WallysHouse_Text_PleaseExcuseUs: @ 820446E
+	.string "{PLAYER}{KUN}！抱歉把你\n"
+	.string "这么拉过来。\p"
+	.string "不过我们家小胜去了绿茵镇之后\n"
+	.string "身体好了很多。\p"
+	.string "这都多亏了你！\n"
+	.string "小胜离镇的时候，\p"
+	.string "你帮他抓了只宝可梦，对吧？\n"
+	.string "我想那让小胜\p"
+	.string "非常开心。\n"
+	.string "其实不只是小胜。\p"
+	.string "我这个当父亲的也很开心。\n"
+	.string "开心他有了你这么\p"
+	.string "了不起的朋友。\n"
+	.string "这不是什么贿赂，\p"
+	.string "但我真的很希望你能收下这个。$"
+
+PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces: @ 820461A
+	.string "如果你的宝可梦会冲浪，\n"
+	.string "你就能去各种各样的地方。$"
+
+PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon: @ 8204661
+	.string "小胜快回家了。\n"
+	.string "我很期待。$"
+
+PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity: @ 8204698
+	.string "哦？你在彩悠市\n"
+	.string "遇见小胜了？\p"
+	.string "哦，{PLAYER}{KUN}，别逗了。\n"
+	.string "他也许身体好了些，但不可能\p"
+	.string "一个人跑到那么远的地方去。$"
+
+PetalburgCity_WallysHouse_Text_WallyWasReallyHappy: @ 8204732
+	.string "小胜跟我们说他抓到宝可梦时，\n"
+	.string "真的太开心了。\p"
+	.string "我已经好久没见过他\n"
+	.string "那样笑了。$"
+
+PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling: @ 82047A7
+	.string "这事请你对我丈夫保密……\n"
+	.string "我们家小胜没跟任何人说\p"
+	.string "就离开了绿茵镇。\n"
+	.string "你知道吗，小胜虽然体弱，\p"
+	.string "但意志出奇地坚强。\n"
+	.string "我相信他总有一天会\p"
+	.string "平安回来的！$"
+
+`

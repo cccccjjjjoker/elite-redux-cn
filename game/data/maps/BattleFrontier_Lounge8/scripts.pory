@@ -1,0 +1,45 @@
+raw `
+BattleFrontier_Lounge8_MapScripts:: @ 82676C9
+	.byte 0
+
+BattleFrontier_Lounge8_EventScript_Man:: @ 82676CA
+	msgbox BattleFrontier_Lounge8_Text_WhatATrainerNeeds, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge8_EventScript_Woman:: @ 82676D3
+	msgbox BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge8_EventScript_NinjaBoy:: @ 82676DC
+	msgbox BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling, MSGBOX_NPC
+	end
+
+BattleFrontier_Lounge8_Text_WhatATrainerNeeds: @ 82676E5
+	.string "训练家需要什么……\n"
+	.string "知识……\p"
+	.string "战略……\n"
+	.string "运气……\p"
+	.string "胆量……\n"
+	.string "精神……\p"
+	.string "勇气……\n"
+	.string "还有实力……\p"
+	.string "嗯，我各方面都齐了！\n"
+	.string "不管哪座设施我都无人能挡！\p"
+	.string "咦？宝可梦？\n"
+	.string "那是什么？$"
+
+BattleFrontier_Lounge8_Text_KnowAboutFrontierBrains: @ 826779C
+	.string "你知道开拓头脑吗？\n"
+	.string "那是斯科特对管理对战开拓区\p"
+	.string "七处设施的七位特殊训练家\n"
+	.string "的称呼。$"
+
+BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling: @ 826782C
+	.string "在对战塔，有位大姐姐\n"
+	.string "说我在对战上很有天赋！\p"
+	.string "可我更喜欢宝可梦华丽大赛！\n"
+	.string "但我华丽大赛一点也不行！\p"
+	.string "看来有天赋和喜欢\n"
+	.string "并不是一回事。$"
+
+`

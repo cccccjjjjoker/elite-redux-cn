@@ -1,0 +1,2904 @@
+# proto-file: ItemList.proto
+# proto-message: er.ItemList
+
+item {
+  id: ITEM_ABOMASITE
+  name: "暴雪王进化石"
+  description: "让暴雪王进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "abomasite"
+  palette: "abomasite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ABSOLITE
+  name: "阿勃梭鲁进化石"
+  description: "让阿勃梭鲁进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "absolite"
+  palette: "absolite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_AERODACTYLITE
+  name: "化石翼龙进化石"
+  description: "让化石翼龙进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aerodactylite"
+  palette: "aerodactylite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_AGGRONITE
+  name: "波士可多拉进化石"
+  description: "让波士可多拉进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ALAKAZITE
+  name: "胡地进化石"
+  description: "让胡地进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "alakazite"
+  palette: "alakazite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ALTARIANITE
+  name: "七夕青鸟进化石"
+  description: "让七夕青鸟进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "altarianite"
+  palette: "altarianite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_AMPHAROSITE
+  name: "电龙进化石"
+  description: "让电龙进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "ampharosite"
+  palette: "ampharosite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_AUDINITE
+  name: "差不多娃娃进化石"
+  description: "让差不多娃娃进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BANETTITE
+  name: "诅咒娃娃进化石"
+  description: "让诅咒娃娃进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "banettite"
+  palette: "banettite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BEEDRILLITE
+  name: "大针蜂进化石"
+  description: "让大针蜂进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "beedrillite"
+  palette: "beedrillite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BLASTOISINITE
+  name: "水箭龟进化石Ｙ"
+  description: "让水箭龟进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "blastoisinite"
+  palette: "blastoisinite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BLAZIKENITE
+  name: "火焰鸡进化石"
+  description: "让火焰鸡进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "blazikenite"
+  palette: "blazikenite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CAMERUPTITE
+  name: "喷火驼进化石"
+  description: "让喷火驼进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "cameruptite"
+  palette: "cameruptite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CHARIZARDITE_X
+  name: "喷火龙进化石Ｘ"
+  description: "让喷火龙进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "charizardite_x"
+  palette: "charizardite_x"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_CHARIZARDITE_Y
+  name: "喷火龙进化石Ｙ"
+  description: "让喷火龙进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "charizardite_y"
+  palette: "charizardite_y"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DIANCITE
+  name: "蒂安希进化石"
+  description: "让蒂安希进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "diancite"
+  palette: "diancite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GALLADITE
+  name: "艾路雷朵进化石"
+  description: "让艾路雷朵进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "galladite"
+  palette: "galladite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GARCHOMPITE
+  name: "烈咬陆鲨进化石"
+  description: "让烈咬陆鲨进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "garchompite"
+  palette: "garchompite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GARDEVOIRITE
+  name: "沙奈朵进化石"
+  description: "让沙奈朵超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "gardevoirite"
+  palette: "gardevoirite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GENGARITE
+  name: "耿鬼进化石Ｙ"
+  description: "让耿鬼超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "gengarite"
+  palette: "gengarite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GLALITITE
+  name: "冰鬼护进化石"
+  description: "让冰鬼护超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "glalitite"
+  palette: "glalitite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GYARADOSITE
+  name: "暴鲤龙进化石"
+  description: "让暴鲤龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "gyaradosite"
+  palette: "gyaradosite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_HERACRONITE
+  name: "赫拉克罗斯进化石"
+  description: "让赫拉克罗斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "heracronite"
+  palette: "heracronite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_HOUNDOOMINITE
+  name: "黑鲁加进化石"
+  description: "让黑鲁加超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "houndoominite"
+  palette: "houndoominite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_KANGASKHANITE
+  name: "袋兽进化石"
+  description: "让袋兽超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "kangaskhanite"
+  palette: "kangaskhanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LATIASITE
+  name: "拉帝亚斯进化石"
+  description: "让拉帝亚斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "latiasite"
+  palette: "latiasite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LATIOSITE
+  name: "拉帝欧斯进化石"
+  description: "让拉帝欧斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "latiosite"
+  palette: "latiosite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LOPUNNITE
+  name: "长耳兔进化石"
+  description: "让长耳兔超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "lopunnite"
+  palette: "lopunnite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LUCARIONITE
+  name: "路卡利欧进化石"
+  description: "让路卡利欧超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "lucarionite"
+  palette: "lucarionite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MANECTITE
+  name: "雷电兽进化石"
+  description: "让雷电兽超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "manectite"
+  palette: "manectite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MAWILITE
+  name: "大嘴娃进化石"
+  description: "让大嘴娃超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "mawilite"
+  palette: "mawilite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MEDICHAMITE
+  name: "恰雷姆进化石"
+  description: "让恰雷姆超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "medichamite"
+  palette: "medichamite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_METAGROSSITE
+  name: "巨金怪进化石"
+  description: "让巨金怪超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "metagrossite"
+  palette: "metagrossite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MEWTWONITE_X
+  name: "超梦进化石Ｘ"
+  description: "让超梦超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "mewtwonite_x"
+  palette: "mewtwonite_x"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MEWTWONITE_Y
+  name: "超梦进化石Ｙ"
+  description: "让超梦超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "mewtwonite_y"
+  palette: "mewtwonite_y"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_PIDGEOTITE
+  name: "大比鸟进化石"
+  description: "让大比鸟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "pidgeotite"
+  palette: "pidgeotite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_PINSIRITE
+  name: "凯罗斯进化石"
+  description: "让凯罗斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "pinsirite"
+  palette: "pinsirite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SABLENITE
+  name: "勾魂眼进化石"
+  description: "让勾魂眼超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "sablenite"
+  palette: "sablenite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SALAMENCITE
+  name: "暴飞龙进化石"
+  description: "让暴飞龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "salamencite"
+  palette: "salamencite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SCEPTILITE
+  name: "蜥蜴王进化石"
+  description: "让蜥蜴王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "sceptilite"
+  palette: "sceptilite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SCIZORITE
+  name: "巨钳螳螂进化石"
+  description: "让巨钳螳螂超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "scizorite"
+  palette: "scizorite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SHARPEDONITE
+  name: "巨牙鲨进化石"
+  description: "让巨牙鲨超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "sharpedonite"
+  palette: "sharpedonite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SLOWBRONITE
+  name: "呆壳兽进化石"
+  description: "让呆壳兽超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "slowbronite"
+  palette: "slowbronite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_STEELIXITE
+  name: "大钢蛇进化石"
+  description: "让大钢蛇超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "steelixite"
+  palette: "steelixite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SWAMPERTITE
+  name: "巨沼怪进化石"
+  description: "让巨沼怪超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "swampertite"
+  palette: "swampertite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_TYRANITARITE
+  name: "班基拉斯进化石"
+  description: "让班基拉斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "tyranitarite"
+  palette: "tyranitarite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_VENUSAURITE
+  name: "妙蛙花进化石Ｙ"
+  description: "让妙蛙花超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "venusaurite"
+  palette: "venusaurite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MILOTICITE
+  name: "美纳斯进化石"
+  description: "让美纳斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "miloticite"
+  palette: "miloticite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_RED_ORB
+  name: "红色宝珠"
+  description: "远古时封印了力量的红色宝珠。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "orb"
+  palette: "red_orb"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_BLUE_ORB
+  name: "蓝色宝珠"
+  description: "一颗散发蓝光的宝珠，据说蕴藏着远古的力量。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "orb"
+  palette: "blue_orb"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_FLYGONITE
+  name: "沙漠蜻蜓进化石"
+  description: "让沙漠蜻蜓超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "flygonite"
+  palette: "flygonite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BUTTERFRENITE
+  name: "巴大蝶进化石"
+  description: "让巴大蝶超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "butterfrenite"
+  palette: "butterfrenite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LAPRASITE_Y
+  name: "拉普拉斯进化石Ｙ"
+  description: "让拉普拉斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "laprasite"
+  palette: "laprasite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MACHAMPITE
+  name: "怪力进化石"
+  description: "让怪力超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "machampite"
+  palette: "machampite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_KINGLERITE
+  name: "巨钳蟹进化石"
+  description: "让巨钳蟹超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "kinglerite"
+  palette: "kinglerite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_KINGDRANITE
+  name: "刺龙王进化石"
+  description: "让刺龙王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "kingdranite"
+  palette: "kingdranite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DEWGONGITE
+  name: "白海狮进化石"
+  description: "让白海狮超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "dewgongite"
+  palette: "dewgongite"
+  mega_badge_requirement: 7
+  unique_mega_location: "Defeat Totem Dewgong in Seafoam Cave B1F."
+}
+item {
+  id: ITEM_HITMONCHANITE
+  name: "快拳郎进化石"
+  description: "让快拳郎超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  mega_badge_requirement: 6
+  unique_mega_location: "Defeat Blackbelt John in Granite Cave B2F."
+}
+item {
+  id: ITEM_HITMONLEENITE
+  name: "飞腿郎进化石"
+  description: "让飞腿郎超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonlite"
+  mega_badge_requirement: 6
+  unique_mega_location: "Defeat Blackbelt John in Granite Cave B2F."
+}
+item {
+  id: ITEM_HITMONTOPITE
+  name: "战舞郎进化石"
+  description: "让战舞郎超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmontopite"
+  mega_badge_requirement: 6
+  unique_mega_location: "Defeat Blackbelt John in Granite Cave B2F."
+}
+item {
+  id: ITEM_CROBATITE
+  name: "叉字蝠进化石"
+  description: "让叉字蝠超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "crobatite"
+  palette: "crobatite"
+  mega_badge_requirement: 7
+  unique_mega_location: "Defeat Expert Morticia in Dewford Manor."
+}
+item {
+  id: ITEM_SKARMORITE
+  name: "盔甲鸟进化石Ｘ"
+  description: "让盔甲鸟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_BRUXISHITE
+  name: "磨牙彩皮鱼进化石"
+  description: "让磨牙彩皮鱼超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "bruxishite"
+  palette: "bruxishite"
+}
+item {
+  id: ITEM_TORTERRANITE
+  name: "土台龟进化石"
+  description: "让土台龟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Youngster Kaixer in the Game Corner."
+}
+item {
+  id: ITEM_INFERNAPENITE
+  name: "烈焰猴进化石"
+  description: "让烈焰猴超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "infernapenite"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Youngster Kaixer in the Game Corner."
+}
+item {
+  id: ITEM_EMPOLEONITE
+  name: "帝王拿波进化石"
+  description: "让帝王拿波超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "empoleonite"
+  palette: "empoleonite"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Youngster Kaixer in the Game Corner."
+}
+item {
+  id: ITEM_SHUCKLENITE
+  name: "壶壶进化石"
+  description: "让壶壶超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  unique_mega_location: "Find in Route 110."
+}
+item {
+  id: ITEM_RELICANTHITE
+  name: "古空棘鱼进化石"
+  description: "让古空棘鱼超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_QUAGSIRENITE
+  name: "沼王进化石"
+  description: "让沼王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_JELLICENTITE
+  name: "胖嘟嘟进化石"
+  description: "让胖嘟嘟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+}
+item {
+  id: ITEM_TOUCANNONITE
+  name: "铳嘴大鸟进化石"
+  description: "让铳嘴大鸟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Leader Winona."
+}
+item {
+  id: ITEM_DRAGONINITE
+  name: "快龙进化石Ｘ"
+  description: "让快龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "dragonitenite"
+  palette: "dragonitenite"
+  mega_badge_requirement: 7
+  unique_mega_location: "Defeat the three sages at Sky Pillar."
+}
+item {
+  id: ITEM_BRELOOMITE
+  name: "斗笠菇进化石"
+  description: "让斗笠菇超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "breloomite"
+  palette: "breloomite"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Totem Breloom in Petalburg Woods."
+}
+item {
+  id: ITEM_SLAKINGITE
+  name: "请假王进化石"
+  description: "让请假王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 6
+  unique_mega_location: "Speak to Leader Norman."
+}
+item {
+  id: ITEM_PURPLE_ORB
+  name: "紫色宝珠"
+  description: "紫色的发光宝珠，据说蕴含古代力量。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "purple_orb"
+  palette: "purple_orb"
+  mega_badge_requirement: 9
+  unique_mega_location: "Defeat Cooltrainer Baneful in Petalburg Woods."
+}
+item {
+  id: ITEM_SLOWKINGITE
+  name: "呆呆王进化石"
+  description: "让呆呆王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Tate & Liza."
+}
+item {
+  id: ITEM_GYARADOSITE_Y
+  name: "暴鲤龙进化石Ｙ"
+  description: "让暴鲤龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "gyaradosite_y"
+  mega_badge_requirement: 7
+  unique_mega_location: "Defeat Totem Gyarados on Route 132."
+}
+item {
+  id: ITEM_FERALIGITE_X
+  name: "大力鳄进化石Ｘ"
+  description: "让大力鳄超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "feraligatrite_x"
+  palette: "feraligatrite_x"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Sailor Caleb on Route 105."
+}
+item {
+  id: ITEM_FERALIGITE_Y
+  name: "大力鳄进化石Ｙ"
+  description: "让大力鳄超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "feraligatrite_y"
+  palette: "feraligatrite_y"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Totem Feraligatr on Route 114."
+}
+item {
+  id: ITEM_HAXORUSITE
+  name: "双斧战龙进化石"
+  description: "让双斧战龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "haxorusite"
+  mega_badge_requirement: 7
+  unique_mega_location: "Defeat Totem Haxorus in Meteor Falls."
+}
+item {
+  id: ITEM_LUXRAYNITE
+  name: "伦琴猫进化石"
+  description: "让伦琴猫超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_GRANBULLITE
+  name: "布鲁皇进化石"
+  description: "让布鲁皇超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "granbullite"
+}
+item {
+  id: ITEM_TYPHLOSIONITE
+  name: "火暴兽进化石"
+  description: "让火暴兽超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Kindler Ignatius in Ashen Woods."
+}
+item {
+  id: ITEM_NIDOQUEENITE
+  name: "尼多后进化石"
+  description: "让尼多后超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 6
+  unique_mega_location: "Defeat Cooltrainer Prince on Route 116."
+}
+item {
+  id: ITEM_NIDOKINGITE
+  name: "尼多王进化石"
+  description: "让尼多王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 6
+  unique_mega_location: "Defeat Cooltrainer Prince on Route 116."
+}
+item {
+  id: ITEM_SANDSLASHITE
+  name: "穿山王进化石"
+  description: "让穿山王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Totem Sandslash on Route 111."
+}
+item {
+  id: ITEM_MEGANIUMITE
+  name: "大竺葵进化石"
+  description: "让大竺葵超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Aroma Lady Lily in Verdanturf Meadow."
+}
+item {
+  id: ITEM_KROOKODILENITE
+  name: "流氓鳄进化石"
+  description: "让流氓鳄超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Defeat Ruin Maniac Jones outside Mirage Tower."
+}
+item {
+  id: ITEM_MAGNEZONITE
+  name: "自爆磁怪进化石"
+  description: "让自爆磁怪超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SHEDINJITE
+  name: "脱壳忍者进化石"
+  description: "让脱壳忍者超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 7
+  unique_mega_location: "Find in Abandoned Ship."
+}
+item {
+  id: ITEM_SWALOTITE
+  name: "吞食兽进化石"
+  description: "让吞食兽超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_LANTURNITE
+  name: "电灯怪进化石"
+  description: "让电灯怪超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  mega_badge_requirement: 5
+  unique_mega_location: "Solve the mystery at New Mauville."
+}
+item {
+  id: ITEM_LAPRASITE_X
+  name: "拉普拉斯进化石Ｘ"
+  description: "让拉普拉斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "laprasite"
+  palette: "laprasite"
+  unique_mega_location: "Find at Oceanic Museam 2F."
+}
+item {
+  id: ITEM_KINGAMBITITE_R
+  name: "仆刀将军进化石Ｒ"
+  description: "让仆刀将军Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_RIBOMBITE
+  name: "蝶结萌虻进化石"
+  description: "让蝶结萌虻超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_GARCHOMPITE_R
+  name: "烈咬陆鲨进化石Ｒ"
+  description: "让烈咬陆鲨进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "garchompite_r"
+  adoption_center: true
+}
+item {
+  id: ITEM_SKARMORITE_R
+  name: "盔甲鸟进化石Ｒ"
+  description: "让盔甲鸟Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_MACHAMPITE_R
+  name: "怪力进化石Ｒ"
+  description: "让怪力Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_ALAKAZITE_R
+  name: "胡地进化石Ｒ"
+  description: "让胡地Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "alakazite_r"
+  palette: "alakazite_r"
+  adoption_center: true
+}
+item {
+  id: ITEM_BEEDRILLITE_R
+  name: "大针蜂进化石Ｒ"
+  description: "让大针蜂Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "beedrillite_r"
+  palette: "beedrillite_r"
+  adoption_center: true
+}
+item {
+  id: ITEM_HOUNDOOMINITE_R
+  name: "黑鲁加进化石Ｒ"
+  description: "让黑鲁加Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "houndoomite_r"
+  adoption_center: true
+}
+item {
+  id: ITEM_FROSLASSITE
+  name: "雪妖女进化石Ｘ"
+  description: "让雪妖女超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SCRAFTINITE
+  name: "头巾混混进化石"
+  description: "让头巾混混超级进化，而非头巾恶霸。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_MAWILITE_R
+  name: "大嘴娃进化石Ｒ"
+  description: "让大嘴娃Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_SABLENITE_R
+  name: "勾魂眼进化石Ｒ"
+  description: "让勾魂眼Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_URSALUNITE
+  name: "月月熊进化石"
+  description: "让月月熊超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_ARCANITE_R
+  name: "风速狗进化石Ｒ"
+  description: "让风速狗Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_TYRANITARITE_R
+  name: "班基拉斯进化石Ｒ"
+  description: "让班基拉斯Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "generic_megastone"
+  adoption_center: true
+}
+item {
+  id: ITEM_WIGGLYTUFFITE
+  name: "胖可丁进化石Ｙ"
+  description: "让胖可丁超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "wigglytuffite"
+  palette: "wigglytuffite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_TINKATITE
+  name: "小锻匠进化石"
+  description: "让巨锻匠超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "tinkatite"
+  palette: "tinkatite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GYARADEATHITE_X
+  name: "死灵暴龙进化石"
+  description: "让暴鲤龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "gyaradeathite_x"
+  palette: "gyaradeathite_x"
+  adoption_center: true
+}
+item {
+  id: ITEM_GYARADEATHITE_Y
+  name: "死灵暴龙进化石Ｙ"
+  description: "让暴鲤龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "gyaradeathite_y"
+  palette: "gyaradeathite_y"
+  adoption_center: true
+}
+item {
+  id: ITEM_LUCARIONITE_Z
+  name: "路卡利欧进化石Ｚ"
+  description: "让路卡利欧超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "lucarionite"
+  palette: "lucarionite"
+  adoption_center: true
+}
+item {
+  id: ITEM_AEGISLASHITE_R
+  name: "坚盾剑怪进化石Ｒ"
+  description: "让坚盾剑怪Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aegislashite_R"
+  palette: "aegislashite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_ARBOKITE
+  name: "阿柏怪进化石"
+  description: "让阿柏怪超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "arbokite"
+  palette: "arbokite"
+}
+item {
+  id: ITEM_CLEFABLITE_R
+  name: "皮可西进化石Ｒ"
+  description: "让皮可西Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "clefabite_R"
+  palette: "clefabite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_FLYGONITE_R
+  name: "沙漠蜻蜓进化石Ｒ"
+  description: "让沙漠蜻蜓Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "flygonite_R"
+  palette: "flygonite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_EMPOLEONITE_R
+  name: "帝王拿波进化石Ｒ"
+  description: "让帝王拿波Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "empoleonite_R"
+  palette: "empoleonite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_INFERNAPENITE_R
+  name: "烈焰猴进化石Ｒ"
+  description: "让烈焰猴Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "infernapenite_R"
+  palette: "infernapenite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_FROSLASSITE_R
+  name: "雪妖女进化石Ｒ"
+  description: "让雪妖女Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite_R"
+  palette: "froslassite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_GLALITITE_R
+  name: "冰鬼护进化石Ｒ"
+  description: "让冰鬼护Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "glalitite_R"
+  palette: "glalitite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_RAPIDASHITE_G
+  name: "烈焰马进化石Ｇ"
+  description: "让烈焰马Ｇ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "rapidashite_G"
+  palette: "rapidashite_G"
+  adoption_center: true
+}
+item {
+  id: ITEM_GOLISOPITE
+  name: "具甲武者进化石"
+  description: "让具甲武者超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "golisopodite"
+  palette: "golisopodite"
+  adoption_center: true
+}
+item {
+  id: ITEM_HYDREIGONITE_R
+  name: "三首恶龙进化石Ｒ"
+  description: "让三首恶龙Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "hydreigonite_R"
+  palette: "hydreigonite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_TORTERRANITE_R
+  name: "土台龟进化石Ｒ"
+  description: "让土台龟Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "torterranite_R"
+  palette: "torterranite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_RAPIDASHITE
+  name: "烈焰马进化石"
+  description: "让烈焰马超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "rapidashite"
+  palette: "rapidashite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CORMOTHITE
+  name: "玉须蛾进化石"
+  description: "让玉须蛾超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "cormothite"
+  palette: "cormothite"
+  adoption_center: true
+}
+item {
+  id: ITEM_POPCORMITE
+  name: "爆香蛾进化石"
+  description: "土台龟"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "popcormite"
+  palette: "popcormite"
+  adoption_center: true
+}
+item {
+  id: ITEM_REUNICLUSITE_R
+  name: "人造细胞卵进化石Ｒ"
+  description: "让人造细胞卵Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "reuniclusite_R"
+  palette: "reuniclusite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_TOXTRICITITE_R
+  name: "颤弦蝾螈进化石Ｒ"
+  description: "让颤弦蝾螈Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "toxtricitite_R"
+  palette: "toxtricitite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_ORICORIONITE
+  name: "花舞鸟进化石"
+  description: "让花舞鸟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "oricorionite"
+  palette: "oricorionite"
+  adoption_center: true
+}
+item {
+  id: ITEM_TSAREENITE_R
+  name: "甜冷美后进化石Ｒ"
+  description: "让甜冷美后Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "tsareenite_R"
+  palette: "tsareenite_R"
+  adoption_center: true
+}
+item {
+  id: ITEM_URSHIFITE
+  name: "武道熊师进化石"
+  description: "让武道熊师超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "urshifite"
+  palette: "urshifite"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_AMPHYBUZZITE
+  name: "精灵蜂进化石"
+  description: "让精灵蜂超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "amphybuzzite"
+  palette: "amphybuzzite"
+  adoption_center: true
+}
+item {
+  id: ITEM_MELMETALITE
+  name: "美录梅塔进化石"
+  description: "让美录梅塔超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "melmetalite"
+  palette: "melmetalite"
+  mega_badge_requirement: 9
+  unique_mega_location: "Get Meltan from Steven's House in Mossdeep."
+}
+item {
+  id: ITEM_DYNAMAX_ORB
+  name: "极巨化宝珠"
+  description: "让无极汰那原始回归。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "purple_orb"
+  palette: "purple_orb"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_TERA_ORB
+  name: "太晶化宝珠"
+  description: "让太乐巴戈斯原始回归。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "tera_orb"
+  palette: "tera_orb"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_VENUSAURITE_X
+  name: "妙蛙花进化石Ｘ"
+  description: "让妙蛙花超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "venusaurite"
+  palette: "venusaurite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CHARIZARDITE_Z
+  name: "喷火龙进化石Ｚ"
+  description: "让喷火龙进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "charizardite_y"
+  palette: "charizardite_y"
+  adoption_center: true
+}
+item {
+  id: ITEM_BLASTOISINITE_X
+  name: "水箭龟进化石Ｘ"
+  description: "让水箭龟进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "blastoisinite"
+  palette: "blastoisinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GENGARITE_X
+  name: "耿鬼进化石Ｘ"
+  description: "让耿鬼超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "gengarite"
+  palette: "gengarite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SNORLAXITE
+  name: "卡比兽进化石"
+  description: "让卡比兽超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_RILLABOOMITE
+  name: "轰擂金刚猩进化石"
+  description: "让轰擂金刚猩超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CINDERACEITE
+  name: "闪焰王牌进化石"
+  description: "让闪焰王牌超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_INTELEONITE
+  name: "千面避役进化石"
+  description: "让千面避役超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CORVINITE
+  name: "钢铠鸦进化石"
+  description: "让钢铠鸦超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_DREDNAWITE
+  name: "暴噬龟进化石"
+  description: "让暴噬龟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_COALOSSITE
+  name: "巨炭山进化石"
+  description: "让巨炭山超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SANDACONDITE
+  name: "沙螺蟒进化石"
+  description: "让沙螺蟒超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_COPPERAJITE
+  name: "大王铜象进化石"
+  description: "让大王铜象超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_HATTERENITE
+  name: "布莉姆温进化石"
+  description: "让布莉姆温超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GARBODORITE
+  name: "灰尘山进化石"
+  description: "让灰尘山超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ORBEETITE
+  name: "以欧路普进化石"
+  description: "让以欧路普超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GRIMMSNARLITE
+  name: "长毛巨魔进化石"
+  description: "让长毛巨魔超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CENTISKITE
+  name: "焚焰蚣进化石"
+  description: "让焚焰蚣超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ALCREMITE
+  name: "霜奶仙进化石"
+  description: "让霜奶仙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_TOXTRICITITE
+  name: "颤弦蝾螈进化石"
+  description: "让颤弦蝾螈超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_PIKANITE
+  name: "皮卡丘进化石"
+  description: "让皮卡丘超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+}
+item {
+  id: ITEM_MEOWTHITE
+  name: "喵喵进化石"
+  description: "让喵喵超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+}
+item {
+  id: ITEM_EEVITE
+  name: "伊布进化石"
+  description: "让伊布超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+}
+item {
+  id: ITEM_DURALUDITE
+  name: "铝钢龙进化石"
+  description: "让铝钢龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ULTRANECROZIUM_P
+  name: "究极奈克洛Ｚ"
+  description: "让合体后的奈克洛兹玛变为新形态的结晶。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "ultranecrozium_z"
+  palette: "ultranecrozium_z"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_WIGGLYTUFFITE_X
+  name: "胖可丁进化石Ｘ"
+  description: "让胖可丁超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "wigglytuffite"
+  palette: "wigglytuffite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SERPERIORITE
+  name: "君主蛇进化石"
+  description: "让君主蛇超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_EMBOARITE
+  name: "炎武王进化石"
+  description: "让炎武王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SAMUROTTITE
+  name: "大剑鬼进化石"
+  description: "让大剑鬼超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_DECIDUITE
+  name: "狙射树枭进化石"
+  description: "让狙射树枭超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_WEAVILEITE
+  name: "玛狃拉进化石"
+  description: "让玛狃拉超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_DECIDUITE_H
+  name: "狙射树枭进化石Ｈ"
+  description: "让狙射树枭H超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_INCINERITE
+  name: "炽焰咆哮虎进化石"
+  description: "让炽焰咆哮虎超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MEOWSCARADITE
+  name: "魔幻假面喵进化石"
+  description: "让魔幻假面喵超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_PRIMARINITE
+  name: "西狮海壬进化石"
+  description: "让西狮海壬超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_QUAQUAVITE
+  name: "狂欢浪舞鸭进化石"
+  description: "让狂欢浪舞鸭超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SAMUROTTITE_H
+  name: "大剑鬼进化石Ｈ"
+  description: "让大剑鬼H超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_SKELEDIRGEITE
+  name: "骨纹巨声鳄进化石"
+  description: "让骨纹巨声鳄超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_TYPHLOSIONITE_H
+  name: "火暴兽进化石Ｈ"
+  description: "让火暴兽H超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_MIENSHAOITE
+  name: "师父鼬进化石"
+  description: "让师父鼬超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GOODRITE
+  name: "黏美龙进化石"
+  description: "让黏美龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SLOWBRONITE_G
+  name: "呆壳兽进化石Ｇ"
+  description: "让呆壳兽-G超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "slowbronite"
+  palette: "slowbronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SLOWKINGITE_G
+  name: "呆呆王进化石Ｇ"
+  description: "让呆呆王-G超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ROSERADEITE
+  name: "罗丝雷朵进化石"
+  description: "让罗丝雷朵超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  talk_to_nurse_joy: true
+}
+item {
+  id: ITEM_ARCANITE
+  name: "风速狗进化石"
+  description: "让风速狗超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_PHANTOM_METEOR
+  name: "幻影陨进化石"
+  description: "让顶点谜拟丘原始回归。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "meteorite"
+  palette: "meteorite"
+  unique_mega_location: "Defeat the Ghost Monotype Champion."
+}
+item {
+  id: ITEM_YVELTALITE
+  name: "伊裴尔塔尔进化石"
+  description: "让伊裴尔塔尔超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Dark Monotype Champion."
+}
+item {
+  id: ITEM_GALACTIC_ORB
+  name: "银河宝珠"
+  description: "让太阳伊布原始回归。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "purple_orb"
+  palette: "purple_orb"
+  unique_mega_location: "Defeat the Psychic Monotype Champion."
+}
+item {
+  id: ITEM_CHIEN_PAOITE
+  name: "古剑豹进化石"
+  description: "让古剑豹超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Ice Monotype Champion."
+}
+item {
+  id: ITEM_DRACOVISHITE
+  name: "鳃鱼龙进化石"
+  description: "让鳃鱼龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Water Monotype Champion."
+}
+item {
+  id: ITEM_MAWILITE_R_B
+  name: "大嘴娃进化石Ｐ"
+  description: "让大嘴娃Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Poison Monotype Champion."
+}
+item {
+  id: ITEM_RIBOMBITE_R
+  name: "蝶结萌虻进化石Ｒ"
+  description: "让蝶结萌虻Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Bug Monotype Champion."
+}
+item {
+  id: ITEM_WEAVILEITE_R
+  name: "玛狃拉进化石Ｒ"
+  description: "让玛狃拉Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Ground Monotype Champion."
+}
+item {
+  id: ITEM_FLYGONITE_R_B
+  name: "沙漠蜻蜓进化石Ｅ"
+  description: "让沙漠蜻蜓Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Electric Monotype Champion."
+}
+item {
+  id: ITEM_SNORLAX_ORB
+  name: "梦境宝珠"
+  description: "让卡比兽原始回归。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Normal Monotype Champion."
+}
+item {
+  id: ITEM_VICTINI_ORB
+  name: "幸运宝珠"
+  description: "让比克提尼原始回归。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Fire Monotype Champion."
+}
+item {
+  id: ITEM_WIGGLITUFF_ORB
+  name: "古代苹果"
+  description: "让胖可丁-A原始回归。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "tart_apple"
+  palette: "tart_apple"
+  unique_mega_location: "Defeat the Fairy Monotype Champion."
+}
+item {
+  id: ITEM_ABOMASITE_S
+  name: "暴雪王进化石Ｓ"
+  description: "让暴雪王进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  unique_mega_location: "Defeat the Grass Monotype Champion."
+}
+item {
+  id: ITEM_ULTRANECROZIUM_Z
+  name: "究极奈克洛Ｚ"
+  description: "让合体后的奈克洛兹玛变为新形态的结晶。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "ultranecrozium_z"
+  palette: "ultranecrozium_z"
+}
+item {
+  id: ITEM_ADAMANT_ORB
+  name: "金刚宝珠"
+  description: "让帝牙卢卡恢复原本形态的宝珠。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "adamant_orb"
+  palette: "adamant_orb"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_LUSTROUS_ORB
+  name: "白玉宝珠"
+  description: "让帕路奇亚恢复原本形态的宝珠。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "lustrous_orb"
+  palette: "lustrous_orb"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_GRISEOUS_ORB
+  name: "白金宝珠"
+  description: "让骑拉帝纳恢复原本形态的宝珠。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "griseous_orb"
+  palette: "griseous_orb"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_RUSTED_SWORD
+  name: "腐朽的剑"
+  description: "古代英雄使用过的生锈的剑。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "rusted_sword"
+  palette: "rusted_sword"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_RUSTED_SHIELD
+  name: "腐朽的盾"
+  description: "古代英雄使用过的生锈的盾。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_PRIMAL_ORB
+  image: "rusted_shield"
+  palette: "rusted_shield"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_DUDUDUNITE
+  name: "土龙车车进化石"
+  description: "让土龙节节能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_TEAL_MASK
+  name: "碧草面具"
+  description: "提升厄鬼椪的力量并使其能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "teal_mask"
+  palette: "teal_mask"
+  adoption_center: true
+}
+item {
+  id: ITEM_HEARTHFLAME_MASK
+  name: "火灶面具"
+  description: "提升火灶厄鬼椪的力量并使其能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "hearthflame_mask"
+  palette: "hearthflame_mask"
+  adoption_center: true
+}
+item {
+  id: ITEM_WELLSPRING_MASK
+  name: "水井面具"
+  description: "提升水井厄鬼椪的力量并使其能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "wellspring_mask"
+  palette: "wellspring_mask"
+  adoption_center: true
+}
+item {
+  id: ITEM_CORNERSTONE_MASK
+  name: "础石面具"
+  description: "提升础石厄鬼椪的力量并使其能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "cornerstone_mask"
+  palette: "cornerstone_mask"
+  adoption_center: true
+}
+item {
+  id: ITEM_TINKATITE_R
+  name: "小锻匠进化石Ｒ"
+  description: "让巨锻匠Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_LUXRAYNITE_R
+  name: "伦琴猫进化石Ｒ"
+  description: "让伦琴猫Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "luxraynite_r"
+  palette: "luxraynite_r"
+  adoption_center: true
+}
+item {
+  id: ITEM_SCIZORITE_R
+  name: "巨钳螳螂进化石Ｒ"
+  description: "让巨钳螳螂Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_KLEAVITE_R
+  name: "劈斧螳螂进化石Ｒ"
+  description: "让劈斧螳螂Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SCYTHERITE_R
+  name: "飞天螳螂进化石Ｒ"
+  description: "让飞天螳螂Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_KINGLERITE_R
+  name: "巨钳蟹进化石Ｒ"
+  description: "让巨钳蟹Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_KILOZUNITE
+  name: "电击魔兽进化石"
+  description: "让千吨兽能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GARDEVOIRITE_R
+  name: "沙奈朵进化石Ｒ"
+  description: "让沙奈朵Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GALLADITE_R
+  name: "艾路雷朵进化石Ｒ"
+  description: "让艾路雷朵进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CLODSITE
+  name: "土王进化石"
+  description: "让土王能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GOTHITITE
+  name: "哥德小姐进化石"
+  description: "让哥德小姐能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SNORLAXITE_R
+  name: "卡比兽进化石Ｒ"
+  description: "让卡比兽Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "audinite"
+  palette: "audinite"
+  adoption_center: true
+}
+item {
+  id: ITEM_AGGRONITE_R
+  name: "波士可多拉进化石Ｒ"
+  description: "让波士可多拉Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ARCANITE_H
+  name: "风速狗进化石Ｈ"
+  description: "让风速狗H能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  mega_badge_requirement: 7
+  unique_mega_location: "Defeat Lady Amelia on Route 123."
+}
+item {
+  id: ITEM_REUNICLUSITE
+  name: "人造细胞卵进化石"
+  description: "让人造细胞卵能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SWAMPAGEITE
+  name: "沼跃鱼进化石"
+  description: "让巨沼怪Ｒ能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CHANDELURITE
+  name: "水晶灯火灵进化石Ｘ"
+  description: "让水晶灯火灵能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ZAPDOSITE
+  name: "闪电鸟进化石ＥＸ"
+  description: "让闪电鸟-EX超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+}
+item {
+  id: ITEM_ARTICUNITE
+  name: "急冻鸟进化石ＥＸ"
+  description: "让急冻鸟-EX超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+}
+item {
+  id: ITEM_MOLTRESITE
+  name: "火焰鸟进化石ＥＸ"
+  description: "让火焰鸟-EX超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+}
+item {
+  id: ITEM_CARBONIXITE
+  name: "大钢蛇进化石Ｒ"
+  description: "让大钢蛇Ｒ超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_DRAGAPULTITE
+  name: "多龙巴鲁托进化石"
+  description: "让多龙巴鲁托超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SANDSLASHITE_A
+  name: "穿山王进化石Ａ"
+  description: "让穿山王-A超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_KLEAVITE
+  name: "劈斧螳螂进化石"
+  description: "让劈斧螳螂超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SCYTHERITE
+  name: "飞天螳螂进化石"
+  description: "让飞天螳螂超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_HYDREIGONITE
+  name: "三首恶龙进化石"
+  description: "让三首恶龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_VANILLUXEITE
+  name: "双倍多多冰进化石"
+  description: "让双倍多多冰超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_HERACREUSITE
+  name: "赫拉克罗斯进化石Ｒ"
+  description: "让赫拉克罗斯超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_EXCADRILLITE_R
+  name: "龙头地鼠进化石Ｒ"
+  description: "让龙头地鼠-R超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+}
+item {
+  id: ITEM_MAMOSWINITE_R
+  name: "象牙猪进化石Ｒ"
+  description: "让象牙猪-R超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_VANILLUXEITE_R
+  name: "双倍多多冰进化石Ｒ"
+  description: "让双倍多多冰-R超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CHANDELURITE_R
+  name: "水晶灯火灵进化石Ｒ"
+  description: "让水晶灯火灵-R超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SNEASLERITE
+  name: "大狃拉进化石"
+  description: "让大狃拉超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CLEFABLITE
+  name: "皮可西进化石"
+  description: "让皮可西超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GOODRITE_H
+  name: "黏美龙进化石Ｈ"
+  description: "让黏美龙-H超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_TSAREENITE
+  name: "甜冷美后进化石"
+  description: "让甜冷美后超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ALTARIANITE_R
+  name: "七夕青鸟进化石Ｒ"
+  description: "让七夕青鸟-R超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_HARIYAMITE
+  name: "铁掌力士进化石"
+  description: "让铁掌力士超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_LUXZERITE
+  name: "光电伞蜥进化石"
+  description: "让勒冰猫超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_TALONFLAMEITE
+  name: "烈箭鹰进化石"
+  description: "让烈箭鹰超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+  adoption_center: true
+}
+item {
+  id: ITEM_EYE_OF_ENDER
+  name: "末影之眼"
+  description: "让史蒂夫成为真实。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "aggronite"
+  palette: "aggronite"
+}
+item {
+  id: ITEM_CLEFABLITE_Y
+  name: "皮可西进化石Ｙ"
+  description: "让皮可西超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_STARMINITE
+  name: "宝石海星进化石"
+  description: "让宝石海星超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_DRAGONINITE_Y
+  name: "快龙进化石Ｙ"
+  description: "让快龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_EXCADRITE
+  name: "龙头地鼠进化石"
+  description: "让龙头地鼠超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SCOLIPITE
+  name: "蜈蚣王进化石"
+  description: "让蜈蚣王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_EELEKTROSSITE
+  name: "麻麻鳗鱼王进化石"
+  description: "让麻麻鳗鱼王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CHANDELURITE_Y
+  name: "水晶灯火灵进化石Ｙ"
+  description: "让水晶灯火灵能够超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CHESNAUGHTITE
+  name: "布里卡隆进化石"
+  description: "让布里卡隆超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_DELPHOXITE
+  name: "妖火红狐进化石"
+  description: "让妖火红狐超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GRENINJITE
+  name: "甲贺忍蛙进化石"
+  description: "让甲贺忍蛙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_FLOETTITE
+  name: "花叶蒂进化石"
+  description: "让花叶蒂-E超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_MALAMARITE
+  name: "乌贼王进化石"
+  description: "让乌贼王超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_BARBARACITE
+  name: "龟足巨铠进化石"
+  description: "让龟足巨铠超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_DRAGALGITE
+  name: "毒藻龙进化石"
+  description: "让毒藻龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_HAWLUCHANITE
+  name: "摔角鹰人进化石"
+  description: "让摔角鹰人超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ZYGARDITE
+  name: "基格尔德进化石"
+  description: "让基格尔德-C超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  talk_to_legendary_sage: true
+}
+item {
+  id: ITEM_DRAMPANITE
+  name: "老翁龙进化石"
+  description: "让老翁龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_FALINKSITE
+  name: "列阵兵进化石"
+  description: "让列阵兵超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_RAICHUNITE_X
+  name: "雷丘进化石Ｘ"
+  description: "让雷丘超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_RAICHUNITE_Y
+  name: "雷丘进化石Ｙ"
+  description: "让雷丘超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_PYROARITE
+  name: "火炎狮进化石"
+  description: "让火炎狮超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_FROSLASSITE_Y
+  name: "雪妖女进化石Ｙ"
+  description: "让雪妖女超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SKARMORITE_Y
+  name: "盔甲鸟进化石Ｙ"
+  description: "让盔甲鸟超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_VICTREEBELITE
+  name: "大食花进化石"
+  description: "让大食花超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CHIMECHITE
+  name: "风铃铃进化石"
+  description: "让风铃铃超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_ABSOLITE_Z
+  name: "阿勃梭鲁进化石Ｚ"
+  description: "让阿勃梭鲁进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GARCHOMPITE_Z
+  name: "烈咬陆鲨进化石Ｚ"
+  description: "让烈咬陆鲨进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_STARAPTITE
+  name: "姆克鹰进化石"
+  description: "让姆克鹰超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_HEATRANITE
+  name: "席多蓝恩进化石"
+  description: "让席多蓝恩超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+}
+item {
+  id: ITEM_DARKRANITE
+  name: "达克莱伊进化石"
+  description: "让达克莱伊超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+}
+item {
+  id: ITEM_GOLURKITE
+  name: "泥偶巨人进化石"
+  description: "让泥偶巨人超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_MEOWSTICITE
+  name: "超能妙喵进化石"
+  description: "让超能妙喵超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_CRABOMINITE
+  name: "好胜毛蟹进化石"
+  description: "让好胜毛蟹超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GOLISOPITE_Y
+  name: "具甲武者进化石Ｙ"
+  description: "让具甲武者超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_MAGEARNITE
+  name: "玛机雅娜进化石"
+  description: "让玛机雅娜超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+}
+item {
+  id: ITEM_ZERAORITE
+  name: "捷拉奥拉进化石"
+  description: "让捷拉奥拉超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+}
+item {
+  id: ITEM_SCOVILLAINITE
+  name: "狠辣椒进化石"
+  description: "让狠辣椒超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_GLIMMORANITE
+  name: "晶光花进化石"
+  description: "让晶光花超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_TATSUGIRINITE
+  name: "米立龙进化石"
+  description: "让米立龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_BAXCALIBRITE
+  name: "戟脊龙进化石"
+  description: "让戟脊龙超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "froslassite"
+  palette: "froslassite"
+  adoption_center: true
+}
+item {
+  id: ITEM_SALAMENCITE_R
+  name: "暴飞龙进化石Ｒ"
+  description: "让暴飞龙R进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}
+item {
+  id: ITEM_METAGROSSITE_R
+  name: "巨金怪进化石Ｒ"
+  description: "让巨金怪R进行超级进化。"
+  grouping: POCKET_MEGA_STONES
+  hold_effect: HOLD_EFFECT_MEGA_STONE
+  image: "generic_megastone"
+  palette: "hitmonchanite"
+  adoption_center: true
+}

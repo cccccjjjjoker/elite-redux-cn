@@ -1,0 +1,45 @@
+raw `
+MagmaHideout_3F_1R_MapScripts:: @ 823A1B2
+	.byte 0
+
+MagmaHideout_3F_1R_EventScript_Grunt9:: @ 823A1B3
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_9, MagmaHideout_3F_1R_Text_Grunt9Intro, MagmaHideout_3F_1R_Text_Grunt9Defeat
+	msgbox MagmaHideout_3F_1R_Text_Grunt9PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_3F_1R_EventScript_Grunt16:: @ 823A1CA
+	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_16, MagmaHideout_3F_1R_Text_Grunt16Intro, MagmaHideout_3F_1R_Text_Grunt16Defeat
+	msgbox MagmaHideout_3F_1R_Text_Grunt16PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_3F_1R_Text_Grunt9Intro: @ 823A1E1
+	.string "我到底是造了什么孽，才会被派到\n"
+	.string "这个岗哨？\p"
+	.string "我左耳都烫得发烧了！$"
+
+MagmaHideout_3F_1R_Text_Grunt9Defeat: @ 823A229
+	.string "我要热到虚脱了……$"
+
+MagmaHideout_3F_1R_Text_Grunt9PostBattle: @ 823A246
+	.string "你觉得我们穿着兜帽待在这座\n"
+	.string "满是岩浆的火山里，不奇怪吗？$"
+
+MagmaHideout_3F_1R_Text_Grunt16Intro: @ 823A293
+	.string "我们加入，是为了帮首领\n"
+	.string "实现他那了不起的构想。\p"
+	.string "我不管你是水舰队的，\n"
+	.string "还是只是个路过的孩子。\p"
+	.string "谁也别想插手我们的事\n"
+	.string "还全身而退！$"
+
+MagmaHideout_3F_1R_Text_Grunt16Defeat: @ 823A353
+	.string "哦，不！\n"
+	.string "你完全不可信任！$"
+
+MagmaHideout_3F_1R_Text_Grunt16PostBattle: @ 823A37C
+	.string "听我说。\n"
+	.string "熔岩队才是对的！\p"
+	.string "别听水舰队的。\n"
+	.string "别信他们的谎话！$"
+
+`

@@ -1,0 +1,82 @@
+raw `
+BattleFrontier_Lounge6_MapScripts:: @ 8264FEC
+	.byte 0
+
+BattleFrontier_Lounge6_EventScript_Trader:: @ 8264FED
+	lock
+	faceplayer
+	goto_if_set FLAG_BATTLE_FRONTIER_TRADE_DONE, BattleFrontier_Lounge6_EventScript_TradeCompleted
+	setvar VAR_0x8008, INGAME_TRADE_KARRABLAST
+	copyvar VAR_0x8004, VAR_0x8008
+	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	copyvar VAR_0x8009, VAR_RESULT
+	msgbox BattleFrontier_Lounge6_Text_WouldYouLikeToTrade, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BattleFrontier_Lounge6_EventScript_DeclineTrade
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_0x800A, VAR_0x8004
+	compare VAR_0x8004, 255
+	goto_if_eq BattleFrontier_Lounge6_EventScript_DeclineTrade
+	copyvar VAR_0x8005, VAR_0x800A
+	specialvar VAR_RESULT, GetTradeSpecies
+	copyvar VAR_0x800B, VAR_RESULT
+	compare VAR_RESULT, VAR_0x8009
+	goto_if_ne BattleFrontier_Lounge6_EventScript_NotRequestedMon
+	copyvar VAR_0x8004, VAR_0x8008
+	copyvar VAR_0x8005, VAR_0x800A
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	msgbox BattleFrontier_Lounge6_Text_PromiseIllBeGoodToIt, MSGBOX_DEFAULT
+	setflag FLAG_BATTLE_FRONTIER_TRADE_DONE
+	release
+	end
+
+BattleFrontier_Lounge6_EventScript_DeclineTrade:: @ 826506B
+	msgbox BattleFrontier_Lounge6_Text_WellThatsFineToo, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge6_EventScript_NotRequestedMon:: @ 8265075
+	bufferspeciesname 0, VAR_0x8009
+	msgbox BattleFrontier_Lounge6_Text_DontTradeForAnythingButMon, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge6_EventScript_TradeCompleted:: @ 8265083
+	msgbox BattleFrontier_Lounge6_Text_SkittySoMuchCuterThanImagined, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Lounge6_Text_WouldYouLikeToTrade: @ 826508D
+	.string "我的宝可梦是{STR_VAR_2}。\n"
+	.string "你认识吗？\p"
+	.string "它很可爱，性子也好。\n"
+	.string "这只小家伙，我可以\p"
+	.string "自豪地拿去交换！\n"
+	.string "你愿意用{STR_VAR_1}\p"
+	.string "换我的{STR_VAR_2}吗？$"
+
+BattleFrontier_Lounge6_Text_PromiseIllBeGoodToIt: @ 8265128
+	.string "哦，太可爱了！\n"
+	.string "谢谢你！\p"
+	.string "我保证会好好待它！\n"
+	.string "哦！希望你也好好待\p"
+	.string "我的{STR_VAR_2}！$"
+
+BattleFrontier_Lounge6_Text_DontTradeForAnythingButMon: @ 826518D
+	.string "哦，对不起！\n"
+	.string "除了{STR_VAR_1}，\p"
+	.string "我不打算换别的。$"
+
+BattleFrontier_Lounge6_Text_WellThatsFineToo: @ 82651CB
+	.string "哦，不换吗？\n"
+	.string "那也没关系。\p"
+	.string "请下次再来。$"
+
+BattleFrontier_Lounge6_Text_SkittySoMuchCuterThanImagined: @ 826520E
+	.string "嘻嘻！\n"
+	.string "向尾喵比我想的\p"
+	.string "还要可爱得多。我好开心！$"
+`

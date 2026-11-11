@@ -1,0 +1,294 @@
+raw `
+.set LOCALID_NURSE, 1
+.set LOCALID_LUCY, 7
+
+LavaridgeTown_PokemonCenter_1F_MapScripts:: @ 81FFAFA
+	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+LavaridgeTown_PokemonCenter_1F_OnTransition: @ 81FFB05
+	setrespawn HEAL_LOCATION_LAVARIDGE_TOWN
+	call Common_EventScript_UpdateBrineyLocation
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_Nurse:: @ 81FFB0E
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_Youngster:: @ 81FFB1C
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_HotSpringCanInvigorate, MSGBOX_NPC
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_Woman:: @ 81FFB25
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether, MSGBOX_NPC
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_Gentleman:: @ 81FFB2E
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo, MSGBOX_NPC
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_MoomooMilk::
+	lock
+	faceplayer
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_WantToBuyMoomooMilk, MSGBOX_DEFAULT
+	multichoice 16, 0, MULTI_MOOMOO_MILK, 0
+	switch VAR_RESULT
+	case 0, LavaridgeTown_PokemonCenter_1F_EventScript_Buy1MoomooMilk
+	case 1, LavaridgeTown_PokemonCenter_1F_EventScript_Buy12MoomooMilk
+	case 2, LavaridgeTown_PokemonCenter_1F_EventScript_ExitWithoutBuying
+	case 127, LavaridgeTown_PokemonCenter_1F_EventScript_ExitWithoutBuying
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_Buy1MoomooMilk::
+	checkmoney 500, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq LavaridgeTown_PokemonCenter_1F_EventScript_NotEnoughMoney
+	checkitemspace ITEM_MOOMOO_MILK, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq LavaridgeTown_PokemonCenter_1F_EventScript_NotEnoughSpace
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_HereYouGo, MSGBOX_DEFAULT
+	removemoney 500, 0
+	updatemoneybox 0, 0
+	giveitem ITEM_MOOMOO_MILK
+	hidemoneybox
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_Buy12MoomooMilk::
+	checkmoney 6000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq LavaridgeTown_PokemonCenter_1F_EventScript_NotEnoughMoney
+	checkitemspace ITEM_MOOMOO_MILK, 12
+	compare VAR_RESULT, FALSE
+	goto_if_eq LavaridgeTown_PokemonCenter_1F_EventScript_NotEnoughSpace
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_HereYouGo, MSGBOX_DEFAULT
+	removemoney 6000, 0
+	updatemoneybox 0, 0
+	giveitem ITEM_MOOMOO_MILK, 12
+	hidemoneybox
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_ExitWithoutBuying::
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_ThatsTooBad, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_NotEnoughMoney::
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_NotEnoughMoney, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_NotEnoughSpace::
+	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyTrigger::
+	lock
+	addobject LOCALID_LUCY
+	setvar VAR_LAVARIDGE_LUCY_STATE, 1
+	clearflag FLAG_HIDE_LAVARIDGE_POKECENTER_LUCY
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_LucyYouThere, MSGBOX_AUTOCLOSE
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	applymovement LOCALID_LUCY, LavaridgeTown_PokemonCenter_1F_Movement_LucyEnter
+	waitmovement 0
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_ScottSaid, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LavaridgeTown_PokemonCenter_1F_EventScript_LucyRefuse
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyBattle::
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_LucyBattle, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_LUCY_LAVARIDGE, LavaridgeTown_PokemonCenter_1F_Text_LucyDefeat
+	setvar VAR_LAVARIDGE_LUCY_STATE, 2
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_LucyGiveChoiceBand, MSGBOX_DEFAULT
+	givecustommon SPECIES_MILOTIC, 40, ITEM_LEFTOVERS, ITEM_POKE_BALL, NATURE_MODEST, 2, 252, 0, 4, 0, 0, 252, 0, 0, 0, 0, 0, 0, MOVE_SCALD, MOVE_ICE_BEAM, MOVE_ATTRACT, MOVE_RECOVER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_PokemonCenter_1F_Text_Got_Milotic
+	waitfanfare
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_LucyGoodbye, MSGBOX_AUTOCLOSE
+	waitmessage
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8004, 2
+	goto_if_eq LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitFromSprings
+	switch VAR_FACING
+	case DIR_NORTH, LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitNorth
+	case DIR_WEST, LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitWest
+	case DIR_EAST, LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitEast
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_Lucy::
+	applymovement LOCALID_LUCY, Common_Movement_FacePlayer
+	waitmovement 0
+	goto LavaridgeTown_PokemonCenter_1F_EventScript_LucyBattle
+
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyRefuse::
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_VeryWell, MSGBOX_AUTOCLOSE	
+	applymovement LOCALID_LUCY, LavaridgeTown_PokemonCenter_1F_Movement_LucyGoWait
+	waitmovement 0
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitFromSprings::
+	applymovement LOCALID_LUCY, LavaridgeTown_PokemonCenter_1F_Movement_LucyExitFromSprings
+	waitmovement 0
+	goto LavaridgeTown_PokemonCenter_1F_EventScript_LucyLeave
+
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitNorth:
+	applymovement LOCALID_LUCY, LavaridgeTown_PokemonCenter_1F_Movement_LucyExitNorth
+	waitmovement 0
+	goto LavaridgeTown_PokemonCenter_1F_EventScript_LucyLeave
+
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitWest:
+	applymovement LOCALID_LUCY, LavaridgeTown_PokemonCenter_1F_Movement_LucyExitNorth
+	waitmovement 0
+	goto LavaridgeTown_PokemonCenter_1F_EventScript_LucyLeave
+
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyExitEast:
+	applymovement LOCALID_LUCY, LavaridgeTown_PokemonCenter_1F_Movement_LucyExitEast
+	waitmovement 0
+	goto LavaridgeTown_PokemonCenter_1F_EventScript_LucyLeave
+
+LavaridgeTown_PokemonCenter_1F_EventScript_LucyLeave::
+	playse SE_SLIDING_DOOR
+	removeobject LOCALID_LUCY
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_Text_LucyYouThere:
+	.string "？？？：那边的你……站住。$"
+
+LavaridgeTown_PokemonCenter_1F_Text_ScottSaid:
+	.string "？？？：斯科特说可能会在这里\n"
+	.string "碰到你。我是莉拉……\p"
+	.string "我不爱多话……我只想对战。\n"
+	.string "准备好了吗？$"
+
+LavaridgeTown_PokemonCenter_1F_Text_VeryWell:
+	.string "莉拉：很好……\n"
+	.string "我在电脑旁等你。\p"
+	.string "别让我等太久……$"
+
+LavaridgeTown_PokemonCenter_1F_Text_LucyDefeat:
+	.string "唔……$"
+
+LavaridgeTown_PokemonCenter_1F_Text_LucyBattle:
+	.string "莉拉：准备好了？很好。\n"
+	.string "快点结束吧……$"
+
+LavaridgeTown_PokemonCenter_1F_Text_LucyGiveChoiceBand:
+	.string "莉拉：这次是你运气好……\n"
+	.string "拿着，收下我的一只宝可梦……$"
+
+LavaridgeTown_PokemonCenter_1F_Text_LucyGoodbye:
+	.string "莉拉：也许还会再见……\n"
+	.string "如果你的运气还在的话。\p"
+	.string "那么，再会……$"
+
+LavaridgeTown_PokemonCenter_1F_Text_WantToBuyMoomooMilk:
+	.string "想来点哞哞牛奶吗？\n"
+	.string "泡温泉前喝最棒了！\p"
+	.string "泡完再喝更棒。\n"
+	.string "要不要来一份？$"
+
+LavaridgeTown_PokemonCenter_1F_Text_ThatsTooBad:
+	.string "唉，这下我真是半分用处都没有了！$"
+
+LavaridgeTown_PokemonCenter_1F_Text_HereYouGo:
+	.string "这是你的哞哞牛奶。喝吧！$"
+
+LavaridgeTown_PokemonCenter_1F_Text_NotEnoughMoney:
+	.string "你的钱不够。$"
+
+LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether: @ 81FFB37
+	.string "我觉得宝可梦和训练家\n"
+	.string "待在一起的时间越长，\p"
+	.string "感情就越深。\n"
+	.string "越长越好。\p"
+	.string "我是这么想的。$"
+
+LavaridgeTown_PokemonCenter_1F_Text_HotSpringCanInvigorate: @ 81FFBAD
+	.string "只要泡在温泉里，整个人\n"
+	.string "就会精神起来，真是奇妙。\p"
+	.string "真希望我的宝可梦\n"
+	.string "也能泡一泡。$"
+
+LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo: @ 81FFC21
+	.string "呵呵呵！喂，孩子，从这里\n"
+	.string "就能走到温泉去。\p"
+	.string "宝可梦在休息，\n"
+	.string "训练家也该歇一歇。$"
+
+LavaridgeTown_PokemonCenter_1F_Movement_LucyEnter:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	step_end
+
+LavaridgeTown_PokemonCenter_1F_Movement_LucyGoWait:
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	face_down
+	step_end
+
+LavaridgeTown_PokemonCenter_1F_Movement_LucyExitFromSprings:
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	step_end
+
+LavaridgeTown_PokemonCenter_1F_Movement_LucyExitNorth:
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	delay_8
+	step_end
+
+LavaridgeTown_PokemonCenter_1F_Movement_LucyExitEast:
+	walk_down
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	delay_8
+	step_end
+`
+text LavaridgeTown_PokemonCenter_1F_Text_Got_Milotic{
+	format("{PLAYER}得到了{COLOR BLUE}美纳斯{COLOR DARK_GRAY}作为礼物！$")
+}

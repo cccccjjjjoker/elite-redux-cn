@@ -1,0 +1,147 @@
+raw `
+EverGrandeCity_PhoebesRoom_MapScripts:: @ 8228174
+	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_PhoebesRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_PhoebesRoom_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_PhoebesRoom_OnFrame
+	.byte 0
+
+EverGrandeCity_PhoebesRoom_OnWarp: @ 8228184
+	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_PhoebesRoom_EventScript_PlayerTurnNorth
+	.2byte 0
+
+EverGrandeCity_PhoebesRoom_EventScript_PlayerTurnNorth:: @ 822818E
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+EverGrandeCity_PhoebesRoom_OnFrame: @ 8228193
+	map_script_2 VAR_ELITE_4_STATE, 1, EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor
+	.2byte 0
+
+EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor:: @ 822819D
+	lockall
+	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+	setvar VAR_ELITE_4_STATE, 2
+	releaseall
+	end
+
+EverGrandeCity_PhoebesRoom_OnLoad: @ 82281AA
+	call_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom
+	compare VAR_ELITE_4_STATE, 2
+	call_if_eq EverGrandeCity_PhoebesRoom_EventScript_CloseDoor
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom:: @ 82281BF
+	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+	return
+
+EverGrandeCity_PhoebesRoom_EventScript_CloseDoor:: @ 82281C5
+	call PokemonLeague_EliteFour_EventScript_CloseDoor
+	return
+
+EverGrandeCity_PhoebesRoom_EventScript_Phoebe:: @ 82281CB
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, EverGrandeCity_PhoebesRoom_EventScript_PhoebeRematch
+	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
+	goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_PhoebeRematch::
+	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeechRematch
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
+	msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeechRematch, MSGBOX_DEFAULT
+	switch VAR_ELITE_4_MODE
+	case 0, EverGrandeCity_PhoebesRoom_EventScript_PhoebeSingles
+	case 1, EverGrandeCity_PhoebesRoom_EventScript_PhoebeSinglesLegends
+	case 2, EverGrandeCity_PhoebesRoom_EventScript_PhoebeDoubles
+	case 3, EverGrandeCity_PhoebesRoom_EventScript_PhoebeDoublesLegends
+
+EverGrandeCity_PhoebesRoom_EventScript_PhoebeSingles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
+	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_PhoebeSinglesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_PHOEBE_3, EverGrandeCity_PhoebesRoom_Text_Defeat
+	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_PhoebeDoubles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_PHOEBE_2, EverGrandeCity_PhoebesRoom_Text_Defeat
+	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_PhoebeDoublesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_PHOEBE_4, EverGrandeCity_PhoebesRoom_Text_Defeat
+	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech:: @ 82281F2
+	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeechRematch::
+	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_Defeated:: @ 82281FC
+	setflag FLAG_DEFEATED_ELITE_4_PHOEBE
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch::
+	setflag FLAG_DEFEATED_ELITE_4_PHOEBE
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PhoebesRoom_Text_IntroSpeech: @ 822820E
+	.string "啊哈哈！\n"
+	.string "我是四天王的芙蓉。\p"
+	.string "我在送神火山修行。\n"
+	.string "修行中，我得到了与幽灵属性\p"
+	.string "宝可梦交流的能力。\n"
+	.string "没错，我和宝可梦之间的羁绊\p"
+	.string "非常牢固。\n"
+	.string "那么，来吧，试试看你能不能\p"
+	.string "对我的宝可梦造成伤害！$"
+
+EverGrandeCity_PhoebesRoom_Text_Defeat: @ 8228325
+	.string "哦，糟糕。\n"
+	.string "我输了。$"
+
+EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech: @ 8228343
+	.string "你和你的宝可梦之间\n"
+	.string "也有确确实实的羁绊。\p"
+	.string "我没看出来，输掉也是当然的。\n"
+	.string "嗯，我挺想看看你的羁绊\p"
+	.string "能带你走多远。\n"
+	.string "去吧，前往下一个房间。$"
+
+EverGrandeCity_PhoebesRoom_Text_IntroSpeechRematch:
+	.string "啊哈！我一直在等你！\n"
+	.string "这次我带了点新东西\p"
+	.string "上场！\n"
+	.string "做好准备，放马过来！$"
+
+EverGrandeCity_PhoebesRoom_Text_PostBattleSpeechRematch:
+	.string "唔，真可惜。\n"
+	.string "我又输了啊？\p"
+	.string "不过往好处想……\n"
+	.string "我们一起战斗，所以我和\p"
+	.string "宝可梦之间的羁绊变得更深了！\n"
+	.string "期待哪天能再和你对战！$"
+`

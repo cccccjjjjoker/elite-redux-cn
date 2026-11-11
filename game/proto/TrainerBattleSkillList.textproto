@@ -1,0 +1,144 @@
+# proto-file: TrainerBattleSkillList.proto
+# proto-message: er.TrainerBattleSkillList
+
+# Made this a separate file rather than adding to the TrainerList protos for
+# ease of editing and separation of concerns, but can change in future maybe
+
+# ==== Granite Cave ====
+# TODO: Steven Stone Post-Brawly (not sure what the trainer ID is)
+# TODO: Trainer Hitmonstone (not sure what the trainer ID is, not sure how to implement the 3v6)
+# ==== Route 107 ====
+trainer_skill {
+    trainer_id: TRAINER_CAMRON
+    skill {
+        skill_id: SKILL_QUICK_CLAW_100_PERCENT
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_STAB_MOVES_ARE_STATUS_MOVES
+        target { all {} }
+    }
+    skill {
+        # Should this be 1/16 instead?
+        skill_id: SKILL_ON_END_TURN_PLAYER_DAMAGE_ONE_EIGHTEENTH
+        target { all {} }
+    }
+}
+trainer_skill {
+    trainer_id: TRAINER_DARRIN
+    skill {
+        skill_id: SKILL_ON_END_TURN_MOVE_REFRESH
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_ON_START_TURN_BADLY_POISON_BOTH_SIDES
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_ON_ENTRY_PLAYER_HEAL_BLOCK
+        target { all {} }
+    }
+}
+trainer_skill {
+    trainer_id: TRAINER_LISA_AND_RAY
+    skill {
+        skill_id: SKILL_ON_PLAYER_STAT_BOOSTING_MOVE_MOVE_SCRATCH
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_COPY_DANCE_MOVES_BOTH_SIDES
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_PLAYER_RING_TARGET
+        target { all {} }
+    }
+}
+# ==== Route 108 ====
+trainer_skill {
+    trainer_id: TRAINER_CAROLINA
+    skill {
+        skill_id: SKILL_NO_ITEM_50_PERCENT_DAMAGE_BOOST
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_ON_SWITCH_RECOVER_ITEM
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_ON_USE_ITEM_DOUBLE_SPEED
+        target { all {} }
+    }
+}
+# ==== Route 109 Seahouse ====
+# TODO: Trainer Simon (what is the "old" mud sport effect?)
+# ==== Slateport City ====
+trainer_skill {
+    # I'm not sure how doable these skills are, might be difficult to implement
+    trainer_id: TRAINER_GRETA_SLATEPORT
+    skill {
+        skill_id: SKILL_PLAYER_NO_SWITCH
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_PLAYER_FAINT_IF_NO_KO_WITHIN_3_TURNS
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_PLAYER_POKEMON_SENT_OUT_IN_SLOT_ORDER
+        target { all {} }
+    }
+}
+# ==== Route 103 East ====
+trainer_skill {
+    trainer_id: TRAINER_MARCOS
+    skill {
+        skill_id: SKILL_IGNORE_SOUNDPROOF
+        target { all {} }
+    }
+}
+# ==== Altering Cave ====
+trainer_skill {
+    trainer_id: TRAINER_LEAF_ALTERING_CAVE
+    # TODO: Player can only use Kanto mons (excluding forms)
+    skill {
+        skill_id: SKILL_SPDEF_FOR_SPECIAL_DAMAGE_CALC
+        target { all {} }
+    }
+    skill {
+        skill_id: SKILL_EXTRA_ABILITY_NEUTRALIZING_GAS
+        target { all {} }
+    }
+}
+# ==== Route 110 ====
+trainer_skill {
+    trainer_id: TRAINER_KALEB
+    skill {
+        skill_id: SKILL_PLAYER_QUASH
+        target { all {} }
+    }
+}
+trainer_skill {
+    trainer_id: TRAINER_EDWIN_1
+    skill {
+        skill_id: SKILL_IGNORE_IMMUNITIES
+        target { all {} }
+    }
+}
+# ==== Route 111 South (pre-Wattson) ====
+trainer_skill {
+    trainer_id: TRAINER_CELINA
+    skill {
+        skill_id: SKILL_PLAYER_30_PERCENT_MISS_CHANCE
+        target { all {} }
+    }
+}
+# ==== Route 118 West ====
+trainer_skill {
+    # TODO: Double check this trainer's sets (Politoed Damp Rock but no Drizzle?)
+    trainer_id: TRAINER_WADE
+    skill {
+        skill_id: SKILL_RAIN_SETS_AURORA_VEIL
+        target { all {} }
+    }
+}

@@ -1,0 +1,35 @@
+raw `
+PetalburgWoods_3_MapScripts:: 
+	.byte 0
+`
+
+script PetalburgWoods3_EventScript_PrimalCascoon_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_SYS_GAME_CLEAR)) { // Checking if the player has the badge
+		//cleartrainerflag(FLAG_TRAINER_BANEFUL_PETALBURG_WOODS) // Only For testing
+		if (!defeated(FLAG_TRAINER_BANEFUL_PETALBURG_WOODS)) { // asking for battle
+			msgbox(format("所有宝可梦都有极限，对吧？错。\n{PLAYER}，能找到我这儿，\p你一定强得离谱。\n我把自己的宝可梦练到了\p超越极限，一直等在这儿，\n就等着有人来挑战。\p想试试吗？$"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("那就来吧！甲壳茧，\n准备好扬名立万了吗？$"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_BANEFUL_PETALBURG_WOODS, format("厉害……你也突破了极限……$")) // in-battle, player wins
+				msgbox(format("我真服了，伙计。我看你是\n当冠军的料。你下了这么多工夫，\p我有一份大礼给你。拿去吧。$"), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_PURPLE_ORB, 1) // Item given to the player
+				waitmessage
+				msgbox(format("要是你还想继续挑战极限，\n就需要那颗紫色宝珠。\p它能让甲壳茧解开\n失落于时光中的潜能……$"), MSGBOX_NPC) // after player won
+			}
+			else { // when refusing the battle
+				msgbox(format("好。准备好了再来吧。$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("我来自一个叫利物浦的远方，\n这地方在这儿不怎么出名。$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("喂，{PLAYER}！我猜你是来\n试试身手的吧？不过听着，\p我要的是有分量的挑战，\n只有冠军才能给我的那种。\p先去拿下那个称号，当上冠军，\n然后我们好好打一场，怎么样？\p在那之前，你见过我的事\n可得保密，行吧？$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

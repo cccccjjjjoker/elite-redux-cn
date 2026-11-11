@@ -1,0 +1,730 @@
+raw `
+.set LOCALID_EVIE, 1
+.set LOCALID_IVY,  2
+
+FallarborTown_MoveRelearnersHouse_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, FallarborTown_MoveRelearnersHouse_OnFrame
+	.byte 0
+
+FallarborTown_MoveRelearnersHouse_OnFrame:
+	map_script_2 VAR_IVY_EVIE_HOUSE_STATE, 0, FallarborTown_EventScript_IvyEvieIntro
+	.2byte 0
+		
+FallarborTown_EventScript_IvyEvieIntro::
+	setvar VAR_IVY_EVIE_HOUSE_STATE, 1
+	releaseall
+	end
+
+FallarborTown_Movement_MoveEvieDown:
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_left
+	walk_in_place_fastest_down
+	step_end
+
+FallarborTown_Movement_MoveIvyDown:
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_left
+	walk_fastest_left
+	walk_fastest_left
+	walk_in_place_fastest_down
+	step_end
+
+FallarborTown_Text_AnnoyingIntroPart1:
+	.string "嘿，训练家！\n"
+	.string "想让你的宝可梦成为全丰缘最强的，\p"
+	.string "你就来对地方了！\n"
+	.string "我是艾比，这是我妹妹艾薇。$"
+
+FallarborTown_Text_AnnoyingIntroPart2:
+	.string "我们提供特别训练课程，\n"
+	.string "能大幅强化你的队伍！$"
+
+FallarborTown_Text_AnnoyingIntroPart3:
+	.string "不过我们的服务可不便宜。\n"
+	.string "至少我的不便宜。\p"
+	.string "你可以用破烂跟艾薇结账……$"
+
+FallarborTown_Text_AnnoyingIntroPart4:
+	.string "喂！那些瓶盖可不是破烂！\n"
+	.string "它们可是很有收藏价值的，谢谢！$"
+
+FallarborTown_Text_AnnoyingIntroPart5:
+	.string "是是是，你说了算……\n"
+	.string "总之，你知道宝可梦的努力值吗？\p"
+	.string "简称EV。$"
+
+FallarborTown_Text_AnnoyingIntroPart6:
+	.string "好！那接下来是个体值，也就是IV。\n"
+	.string "要我解释一下吗？$"
+
+FallarborTown_Text_AnnoyingIntroPart7:
+	.string "好，就这么办。¥100，\n"
+	.string "我就把一只宝可梦的努力值提高1点\p"
+	.string "。$"
+
+FallarborTown_Text_AnnoyingIntroPart8:
+	.string "而一个瓶盖，\n"
+	.string "我就能把一只宝可梦的某一项个体值\p"
+	.string "改成你想要的数值。\n"
+	.string "另外，三个瓶盖，\p"
+	.string "我就能改掉一只宝可梦全部的个体值\n"
+	.string "，\p"
+	.string "给它换一个觉醒力量属性。$"
+
+		
+		
+@@@@@@@@@@@@@@@@ Super Training Script @@@@@@@@@@@@@@@@
+
+FallarborTown_SuperTrainer::
+	lock
+	faceplayer
+	msgbox SuperTraining_Text_ChoosePokemon, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge SuperTraining_Refuse
+	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
+	compare VAR_RESULT, SPECIES_EGG
+	goto_if_eq SuperTraining_Egg
+	bufferpartymonnick 0, VAR_0x8004
+	msgbox SuperTraining_Text_TakeALookatEVs, MSGBOX_DEFAULT
+	goto FallarborTown_SuperMainMenu
+
+FallarborTown_SuperMainMenu::
+	bufferpartymonnick 0, VAR_0x8004
+	msgbox SuperTraining_Text_HowCanIHelp, MSGBOX_DEFAULT
+	multichoice 0, 0, MULTI_SUPER_TRAINING_MENU, 0
+	switch VAR_RESULT
+	case 0, FallarborTown_ChangeEV
+	case 1, FallarborTown_ResetEVs
+	case 2, Call_FallarborTown_Explain_EVs
+	case 3, HyperTraining_EventScript_DoNothing
+	case 127, HyperTraining_EventScript_DoNothing
+	releaseall
+	end
+
+Call_FallarborTown_Explain_EVs::
+	call FallarborTown_Explain_EVs
+	goto FallarborTown_SuperMainMenu
+
+FallarborTown_Explain_EVs::
+	msgbox FallarborTown_Text_ExplainEvs, MSGBOX_DEFAULT
+	return
+
+FallarborTown_ChangeEV::
+	bufferpartymonnick 0, VAR_0x8004
+	@specialvar VAR_RESULT, AreChosenMonEVsMaxedOut
+	@compare VAR_RESULT, 1
+	@goto_if_eq FallarborTown_EVsMaxedOut
+	msgbox SuperTraining_Text_ThisIsMonsCurrentSpread, MSGBOX_DEFAULT
+	special BufferChosenMonAllEVs
+	multichoice 0, 0, MULTI_BASE_STATS, 0
+	switch VAR_RESULT
+	case 0, HyperTraining_EventScript_ChangeHPEV
+	case 1, FallarborTown_ChangeATKEV
+	case 2, FallarborTown_ChangeDEFEV
+	case 3, FallarborTown_ChangeSPEEDEV
+	case 4, FallarborTown_ChangeSPATKEV
+	case 5, FallarborTown_ChangeSPDEFEV
+	case 127, FallarborTown_SuperMainMenu
+	releaseall
+	end
+
+HyperTraining_EventScript_ChangeHPEV::
+	setvar VAR_0x8005, 0
+	special BufferChosenMonEV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	compare VAR_0x8006, 252
+	goto_if_eq FallarborTown_MaxEVs
+	msgbox SuperTraining_ReportHP
+	goto FallarborTown_ChooseNewEV
+
+FallarborTown_ChangeATKEV::
+	setvar VAR_0x8005, 1
+	special BufferChosenMonEV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	compare VAR_0x8006, 252
+	goto_if_eq FallarborTown_MaxEVs
+	msgbox SuperTraining_ReportAtk
+	goto FallarborTown_ChooseNewEV
+
+FallarborTown_ChangeDEFEV::
+	setvar VAR_0x8005, 2
+	special BufferChosenMonEV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	compare VAR_0x8006, 252
+	goto_if_eq FallarborTown_MaxEVs
+	msgbox SuperTraining_ReportDef
+	goto FallarborTown_ChooseNewEV
+
+FallarborTown_ChangeSPEEDEV::
+	setvar VAR_0x8005, 3
+	special BufferChosenMonEV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	compare VAR_0x8006, 252
+	goto_if_eq FallarborTown_MaxEVs
+	msgbox SuperTraining_ReportSpeed
+	goto FallarborTown_ChooseNewEV
+
+FallarborTown_ChangeSPATKEV::
+	setvar VAR_0x8005, 4
+	special BufferChosenMonEV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	compare VAR_0x8006, 252
+	goto_if_eq FallarborTown_MaxEVs
+	msgbox SuperTraining_ReportSpAtk
+	goto FallarborTown_ChooseNewEV
+
+FallarborTown_ChangeSPDEFEV::
+	setvar VAR_0x8005, 5
+	special BufferChosenMonEV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	compare VAR_0x8006, 252
+	goto_if_eq FallarborTown_MaxEVs
+	msgbox SuperTraining_ReportSpDef
+	goto FallarborTown_ChooseNewEV
+
+FallarborTown_MaxEVs::
+	msgbox SuperTraining_ReportMaxEVs
+	goto FallarborTown_ChangeEV
+
+FallarborTown_EVsMaxedOut::
+	msgbox SuperTraining_ReportMaxTotalEVs
+	goto FallarborTown_SuperMainMenu
+
+FallarborTown_ChooseNewEV::
+	multichoice 0, 0, MULTI_EV_MENU, 0
+	switch VAR_RESULT
+	case 0, FallarborTown_ChangeEV4
+	case 1, FallarborTown_ChangeEV8
+	case 2, FallarborTown_ChangeEV12
+	case 3, FallarborTown_ChangeEV64
+	case 4, FallarborTown_ChangeEV128
+	case 5, FallarborTown_ChangeEV252
+	case 127, FallarborTown_ChangeEV
+
+FallarborTown_ChangeEV4::
+	setvar VAR_0x8006, 4
+	setvar VAR_0x8009, 400
+	goto FallarborTown_DoSuperTraining
+
+FallarborTown_ChangeEV8::
+	setvar VAR_0x8006, 8
+	setvar VAR_0x8009, 800
+	goto FallarborTown_DoSuperTraining
+
+FallarborTown_ChangeEV12::
+	setvar VAR_0x8006, 12
+	setvar VAR_0x8009, 1200
+	goto FallarborTown_DoSuperTraining
+
+FallarborTown_ChangeEV64::
+	setvar VAR_0x8006, 64
+	setvar VAR_0x8009, 6400
+	goto FallarborTown_DoSuperTraining
+
+FallarborTown_ChangeEV128::
+	setvar VAR_0x8006, 128
+	setvar VAR_0x8009, 12800
+	goto FallarborTown_DoSuperTraining
+
+FallarborTown_ChangeEV252::
+	setvar VAR_0x8006, 252
+	setvar VAR_0x8009, 25200
+	goto FallarborTown_DoSuperTraining
+
+FallarborTown_ResetEVs::
+	msgbox SuperTraining_Text_ICanResetEVs, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq FallarborTown_SuperMainMenu
+	special ResetChosenMonEVs
+	msgbox SuperTraining_Text_EVsReset, MSGBOX_DEFAULT
+	goto FallarborTown_SuperMainMenu
+	
+FallarborTown_DoSuperTraining::
+	special CheckChosenMonCanGainEVs
+	compare VAR_RESULT, 0
+	goto_if_eq FallarborTown_CantExceedEVLimit
+	showmoneybox 15, 0, 0
+	buffernumberstring 2, VAR_0x8009
+	msgbox SuperTraining_ShowPrice, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq FallarborTown_WontPay
+	checkmoney VAR_0x8009, 0
+	compare VAR_RESULT, 0
+	goto_if_eq FallarborTown_CantAfford
+	removemoney VAR_0x8009, 0
+	updatemoneybox 0, 0
+	special IncreaseChosenMonEVs
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8007
+	msgbox SuperTraining_Text_EVsHaveIncreased
+	hidemoneybox
+	goto FallarborTown_ChangeEV
+
+FallarborTown_CantExceedEVLimit::
+	buffernumberstring 1, VAR_0x8008
+	msgbox SuperTraining_TooManyEVs, MSGBOX_DEFAULT
+	goto FallarborTown_ChangeEV
+
+FallarborTown_WontPay::
+	hidemoneybox
+	goto FallarborTown_ChangeEV
+
+FallarborTown_CantAfford::
+	msgbox FallarborTown_CantAfford_String, MSGBOX_DEFAULT
+	hidemoneybox
+	goto FallarborTown_ChangeEV
+
+HyperTraining_EventScript_DoNothing::
+	releaseall
+	end
+
+SuperTraining_Egg::
+	msgbox FallarborTown_Text_CantTrainEgg, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SuperTraining_Refuse::
+	msgbox FallarborTown_Text_SomeOtherTime, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SuperTraining_Text_ChoosePokemon:
+	.string "你想让我训练哪只宝可梦？$"
+
+FallarborTown_Text_CantTrainEgg:
+	.string "哎，蛋我可训不了！\n"
+	.string "等它孵出来再带来。$"
+
+FallarborTown_Text_SomeOtherTime:
+	.string "哦，好吧。那下次再说？$"
+
+SuperTraining_Text_RememberEvs:
+	.string "你还记得努力值怎么运作吧？$"
+
+FallarborTown_Text_ExplainEvs:
+	.string "努力值是宝可梦每项能力的一部分。\n"
+	.string "可以有HP努力值、攻击努力值、\p"
+	.string "防御努力值……你懂的。\n"
+	.string "宝可梦每次在对战中获得经验，\p"
+	.string "也会获得努力值。\n"
+	.string "获得的努力值种类\p"
+	.string "取决于你打败的宝可梦种类。\n"
+	.string "比如打赢一只超音蝠，\p"
+	.string "你的宝可梦会得到1点速度努力值。\n"
+	.string "某项能力积累足够努力值，\p"
+	.string "那项能力就会提升！\n"
+	.string "单项最多可以有252点努力值，\p"
+	.string "但总计只能有510点。\n"
+	.string "通常的做法是把252点\p"
+	.string "加到宝可梦最强的两项上，\n"
+	.string "不过你也可以玩出花样！$"
+
+SuperTraining_Text_TakeALookatEVs:
+	.string "来看看{STR_VAR_1}的努力值。$"
+
+SuperTraining_Text_ThisIsMonsCurrentSpread:
+	.string "这是{STR_VAR_1}目前的努力值分配。\n"
+	.string "你想训练哪一项？$"
+
+SuperTraining_ReportHP:
+	.string "{STR_VAR_1}的HP努力值是{STR_VAR_2}。\n"
+	.string "你想加多少点？$"
+
+SuperTraining_ReportAtk:
+	.string "{STR_VAR_1}的攻击努力值是{STR_VAR_2}。\n"
+	.string "你想加多少点？$"
+
+SuperTraining_ReportDef:
+	.string "{STR_VAR_1}的防御努力值是{STR_VAR_2}。\n"
+	.string "你想加多少点？$"
+
+SuperTraining_ReportSpeed:
+	.string "{STR_VAR_1}的速度努力值是{STR_VAR_2}。\n"
+	.string "你想加多少点？$"
+
+SuperTraining_ReportSpAtk:
+	.string "{STR_VAR_1}的特攻努力值是{STR_VAR_2}。\n"
+	.string "你想加多少点？$"
+
+SuperTraining_ReportSpDef:
+	.string "{STR_VAR_1}的特防努力值是{STR_VAR_2}。\n"
+	.string "你想加多少点？$"
+
+SuperTraining_Text_EVsHaveIncreased:
+	.string "{STR_VAR_1}那项能力的努力值\n"
+	.string "提高到了{STR_VAR_2}！$"
+
+SuperTraining_Text_ICanResetEVs:
+	.string "我可以免费重置{STR_VAR_1}的努力值！\n"
+	.string "这会清空它所有努力值，\p"
+	.string "让你可以把点数加到你希望\n"
+	.string "{STR_VAR_1}专注的能力上。\p"
+	.string "要重置{STR_VAR_1}的努力值吗？$"
+
+SuperTraining_Text_HowCanIHelp:
+	.string "今天要我帮{STR_VAR_1}做什么？$"
+	
+SuperTraining_Text_EVsReset::
+	.string "{STR_VAR_1}的努力值已重置！$"
+
+SuperTraining_ReportMaxEVs:
+	.string "{STR_VAR_1}那项能力已有252点努力值！\n"
+	.string "不能再加了！$"
+
+SuperTraining_ReportMaxTotalEVs:
+	.string "{STR_VAR_1}的努力值已经满了！\n"
+	.string "不能再加了！$"
+
+SuperTraining_TooManyEVs:
+	.string "{STR_VAR_1}的努力值总计已有{STR_VAR_2}点！\n"
+	.string "加不了那么多！$"
+
+SuperTraining_ShowPrice:
+	.string "需要¥{STR_VAR_3}。可以吗？$"
+
+FallarborTown_CantAfford_String:
+	.string "你的钱不够。$"
+
+@@@@@@@@@@@@@@@@ Hyper Training Script @@@@@@@@@@@@@@@@
+
+FallarborTown_HyperTrainer::
+	lockall
+	faceplayer
+	msgbox HyperTraining_Text_ChoosePokemon, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge SuperTraining_Refuse
+	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
+	compare VAR_RESULT, SPECIES_EGG
+	goto_if_eq SuperTraining_Egg
+	bufferpartymonnick 0, VAR_0x8004
+	msgbox HyperTraining_Text_LetsTakeALook, MSGBOX_DEFAULT
+	goto FallarborTown_HyperMainMenu
+
+FallarborTown_HyperMainMenu::
+	bufferpartymonnick 0, VAR_0x8004
+	msgbox HyperTraining_Text_HowCanIHelp, MSGBOX_DEFAULT
+	multichoice 0, 0, MULTI_HYPER_TRAINING_MENU, 0
+	switch VAR_RESULT
+	case 0, HyperTraining_EventScript_ChangeIV
+	case 1, HyperTraining_EventScript_ChangeHiddenPower
+	case 2, Call_HyperTraining_EventScript_Explain_IVs
+	case 3, HyperTraining_EventScript_DoNothing
+	case 127, HyperTraining_EventScript_DoNothing
+	releaseall
+	end
+
+Call_HyperTraining_EventScript_Explain_IVs::
+	call HyperTraining_EventScript_Explain_IVs
+	goto FallarborTown_HyperMainMenu
+
+HyperTraining_EventScript_Explain_IVs::
+	msgbox HyperTraining_Text_ExplainIVs, MSGBOX_DEFAULT
+	return
+
+HyperTraining_EventScript_ChangeIV::
+	bufferpartymonnick 0, VAR_0x8004
+	msgbox HyperTraining_Text_WhichIVShouldChange, MSGBOX_DEFAULT
+	special BufferChosenMonAllIVs
+	multichoice 0, 0, MULTI_BASE_STATS, 0
+	switch VAR_RESULT
+	case 0, HyperTraining_EventScript_ChangeHPIV
+	case 1, FallarborTown_ChangeATKIV
+	case 2, FallarborTown_ChangeDEFIV
+	case 3, FallarborTown_ChangeSPEEDIV
+	case 4, FallarborTown_ChangeSPATKIV
+	case 5, FallarborTown_ChangeSPDEFIV
+	case 127, FallarborTown_HyperMainMenu
+	releaseall
+	end
+
+HyperTraining_EventScript_ChangeHPIV::
+	setvar VAR_0x8005, 0
+	special BufferChosenMonIV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	msgbox HyperTraining_ReportHP
+	goto FallarborTown_ChooseNewIV
+
+FallarborTown_ChangeATKIV::
+	setvar VAR_0x8005, 1
+	special BufferChosenMonIV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	msgbox HyperTraining_ReportAtk
+	goto FallarborTown_ChooseNewIV
+
+FallarborTown_ChangeDEFIV::
+	setvar VAR_0x8005, 2
+	special BufferChosenMonIV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	msgbox HyperTraining_ReportDef
+	goto FallarborTown_ChooseNewIV
+
+FallarborTown_ChangeSPEEDIV::
+	setvar VAR_0x8005, 3
+	special BufferChosenMonIV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	msgbox HyperTraining_ReportSpeed
+	goto FallarborTown_ChooseNewIV
+
+FallarborTown_ChangeSPATKIV::
+	setvar VAR_0x8005, 4
+	special BufferChosenMonIV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	msgbox HyperTraining_ReportSpAtk
+	goto FallarborTown_ChooseNewIV
+
+FallarborTown_ChangeSPDEFIV::
+	setvar VAR_0x8005, 5
+	special BufferChosenMonIV
+	bufferpartymonnick 0, VAR_0x8004
+	buffernumberstring 1, VAR_0x8006
+	msgbox HyperTraining_ReportSpDef
+	goto FallarborTown_ChooseNewIV
+
+FallarborTown_ChooseNewIV::
+	multichoice 0, 0, MULTI_IV_MENU, 0
+	switch VAR_RESULT
+	case 0, HyperTraining_EventScript_ChangeIV0
+	case 1, HyperTraining_EventScript_ChangeIV1
+	case 2, HyperTraining_EventScript_ChangeIV14
+	case 3, HyperTraining_EventScript_ChangeIV15
+	case 4, HyperTraining_EventScript_ChangeIV30
+	case 5, HyperTraining_EventScript_ChangeIV31
+	case 127, HyperTraining_EventScript_ChangeIV
+
+HyperTraining_EventScript_ChangeIV0::
+	setvar VAR_0x8006, 0
+	goto HyperTraining_EventScript_ChangeOneIV
+
+HyperTraining_EventScript_ChangeIV1::
+	setvar VAR_0x8006, 1
+	goto HyperTraining_EventScript_ChangeOneIV
+
+HyperTraining_EventScript_ChangeIV14::
+	setvar VAR_0x8006, 14
+	goto HyperTraining_EventScript_ChangeOneIV
+
+HyperTraining_EventScript_ChangeIV15::
+	setvar VAR_0x8006, 15
+	goto HyperTraining_EventScript_ChangeOneIV
+
+HyperTraining_EventScript_ChangeIV30::
+	setvar VAR_0x8006, 30
+	goto HyperTraining_EventScript_ChangeOneIV
+
+HyperTraining_EventScript_ChangeIV31::
+	setvar VAR_0x8006, 31
+	goto HyperTraining_EventScript_ChangeOneIV
+
+HyperTraining_EventScript_ChangeOneIV::
+	special ChangeChosenMonIVs
+	goto HyperTraining_EventScript_DoHyperTraining
+
+HyperTraining_EventScript_ChangeHiddenPower::
+	msgbox HyperTraining_Text_ChangeAllIVs, MSGBOX_DEFAULT
+	copyvar VAR_0x800A, VAR_0x8004
+	setvar VAR_0x8004, SCROLL_MULTI_HIDDEN_POWER
+	special ShowScrollableMultichoice
+	waitstate
+	switch VAR_RESULT
+	case 0, HyperTraining_EventScript_ChangeHPFighting
+	case 1, HyperTraining_EventScript_ChangeHPFlying
+	case 2, HyperTraining_EventScript_ChangeHPPoison
+	case 3, HyperTraining_EventScript_ChangeHPGround
+	case 4, HyperTraining_EventScript_ChangeHPRock
+	case 5, HyperTraining_EventScript_ChangeHPBug
+	case 6, HyperTraining_EventScript_ChangeHPGhost
+	case 7, HyperTraining_EventScript_ChangeHPSteel
+	case 8, HyperTraining_EventScript_ChangeHPFire
+	case 9, HyperTraining_EventScript_ChangeHPWater
+	case 10, HyperTraining_EventScript_ChangeHPGrass
+	case 11, HyperTraining_EventScript_ChangeHPElectric
+	case 12, HyperTraining_EventScript_ChangeHPPsychic
+	case 13, HyperTraining_EventScript_ChangeHPIce
+	case 14, HyperTraining_EventScript_ChangeHPDragon
+	case 15, HyperTraining_EventScript_ChangeHPDark
+	case 16, HyperTraining_EventScript_RebufferChosenMon
+	case 127, HyperTraining_EventScript_RebufferChosenMon
+	releaseall
+	end
+
+HyperTraining_EventScript_ChangeHPFighting::
+	setvar 0x8007, 0
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPFlying::
+	setvar 0x8007, 1
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPPoison::
+	setvar 0x8007, 2
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPGround::
+	setvar 0x8007, 3
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPRock::
+	setvar 0x8007, 4
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPBug::
+	setvar 0x8007, 5
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPGhost::
+	setvar 0x8007, 6
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPSteel::
+	setvar 0x8007, 7
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPFire::
+	setvar 0x8007, 8
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPWater::
+	setvar 0x8007, 9
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPGrass::
+	setvar 0x8007, 10
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPElectric::
+	setvar 0x8007, 11
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPPsychic::
+	setvar 0x8007, 12
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPIce::
+	setvar 0x8007, 13
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPDragon::
+	setvar 0x8007, 14
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeHPDark::
+	setvar 0x8007, 15
+	goto HyperTraining_EventScript_ChangeAllIVs
+
+HyperTraining_EventScript_ChangeAllIVs::
+	special ChangeChosenMonHiddenPower
+	goto HyperTraining_EventScript_DoHyperTraining
+
+HyperTraining_EventScript_DoHyperTraining::
+	msgbox HyperTraining_Text_StartHyperTraining, MSGBOX_AUTOCLOSE
+	fadescreen 1
+	playfanfare 0x173
+	waitfanfare
+	fadescreen 0
+	msgbox HyperTraining_Text_HyperTrainingMadeMonStronger, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq FallarborTown_HyperTrainer
+	releaseall
+	end
+
+HyperTraining_EventScript_NotEnoughCaps::
+	msgbox HyperTraining_Text_NotEnoughCaps, MSGBOX_DEFAULT
+	releaseall
+	end
+
+HyperTraining_EventScript_RebufferChosenMon::
+	copyvar VAR_0x8004, VAR_0x800A
+	goto FallarborTown_HyperMainMenu
+
+HyperTraining_Text_ChoosePokemon:
+	.string "哪只宝可梦需要极限特训？$"
+
+HyperTraining_Text_WantMeExplainIVs:
+	.string "要我再解释一次个体值吗？$"
+
+HyperTraining_Text_ExplainIVs:
+	.string "个体值是宝可梦能力中隐藏的一部分\n"
+	.string "，\p"
+	.string "只能通过特殊训练改变，\n"
+	.string "或者喂营养药提升。\p"
+	.string "它们可以是0到31之间的任何数值，\n"
+	.string "还会影响觉醒力量的属性等。\p"
+	.string "个体值越高，能力越高，\n"
+	.string "但更高的能力不一定总是更好！\p"
+	.string "比如：如果你的宝可梦靠特攻，\n"
+	.string "较低的攻击个体值可以减少\p"
+	.string "它混乱时打自己的伤害。$"
+
+HyperTraining_Text_LetsTakeALook:
+	.string "好！来看看{STR_VAR_1}的个体值。$"
+
+HyperTraining_Text_WhichIVShouldChange:
+	.string "你想改{STR_VAR_1}的哪项个体值？$"
+
+HyperTraining_ReportHP:
+	.string "{STR_VAR_1}的HP个体值是{STR_VAR_2}。\n"
+	.string "你想改成多少？$"
+
+HyperTraining_ReportAtk:
+	.string "{STR_VAR_1}的攻击个体值是{STR_VAR_2}。\n"
+	.string "你想改成多少？$"
+
+HyperTraining_ReportDef:
+	.string "{STR_VAR_1}的防御个体值是{STR_VAR_2}。\n"
+	.string "你想改成多少？$"
+
+HyperTraining_ReportSpeed:
+	.string "{STR_VAR_1}的速度个体值是{STR_VAR_2}。\n"
+	.string "你想改成多少？$"
+
+HyperTraining_ReportSpAtk:
+	.string "{STR_VAR_1}的特攻个体值是{STR_VAR_2}。\n"
+	.string "你想改成多少？$"
+
+HyperTraining_ReportSpDef:
+	.string "{STR_VAR_1}的特防个体值是{STR_VAR_2}。\n"
+	.string "你想改成多少？$"
+
+HyperTraining_Text_HyperTrainingMadeMonStronger:
+	.string "极限特训让{STR_VAR_1}变强了！\n"
+	.string "要再训练一些吗？$"
+
+HyperTraining_Text_ChangeAllIVs:
+	.string "我可以改掉一只宝可梦全部的个体值\n"
+	.string "，\p"
+	.string "给它换一个觉醒力量属性。\n"
+	.string "要把{STR_VAR_1}的觉醒力量\p"
+	.string "改成这些属性之一吗？$"
+
+HyperTraining_Text_HowCanIHelp:
+	.string "今天要我帮{STR_VAR_1}做什么？$"
+
+HyperTraining_Text_StartHyperTraining:
+	.string "了解！来做极限特训吧！$"
+
+HyperTraining_Text_NotEnoughCaps:
+	.string "你的瓶盖不够。$"
+
+HyperTraining_Text_PayOneCap:
+	.string "{PLAYER}交出了一个瓶盖。$"
+
+HyperTraining_Text_PayThreeCaps:
+	.string "{PLAYER}交出了三个瓶盖。$"
+`

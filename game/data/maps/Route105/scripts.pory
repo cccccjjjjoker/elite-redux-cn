@@ -1,0 +1,135 @@
+raw `
+Route105_MapScripts:: @ 81EE1DB
+	map_script MAP_SCRIPT_ON_LOAD, Route105_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, Route105_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route105_OnFrame
+	.byte 0
+
+Route105_OnLoad: @ 81EE1EB
+	call_if_unset FLAG_REGI_DOORS_OPENED, Route105_CloseRegiEntrance
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_105_NORTH
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute105North
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_105_SOUTH
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute105South
+	end
+
+Route105_CloseRegiEntrance:: @ 81EE20B
+	setmetatile 9, 19, METATILE_General_RockWall_RockBase, 1
+	setmetatile 9, 20, METATILE_General_RockWall_SandBase, 1
+	return
+
+Route105_OnTransition: @ 81EE21E
+	compare VAR_SHOULD_END_ABNORMAL_WEATHER, 1
+	call_if_eq AbnormalWeather_EventScript_HideMapNamePopup
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_105_NORTH
+	call_if_eq AbnormalWeather_StartKyogreWeather
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_105_SOUTH
+	call_if_eq AbnormalWeather_StartKyogreWeather
+	end
+
+Route105_OnFrame: @ 81EE240
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	.2byte 0
+
+Route105_EventScript_Foster:: @ 81EE24A
+	trainerbattle_single TRAINER_FOSTER, Route105_Text_FosterIntro, Route105_Text_FosterDefeated
+	msgbox Route105_Text_FosterPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Luis:: @ 81EE261
+	trainerbattle_single TRAINER_LUIS, Route105_Text_LuisIntro, Route105_Text_LuisDefeated
+	msgbox Route105_Text_LuisPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Dominik:: @ 81EE278
+	trainerbattle_single TRAINER_DOMINIK, Route105_Text_DominikIntro, Route105_Text_DominikDefeated
+	msgbox Route105_Text_DominikPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Beverly:: @ 81EE28F
+	trainerbattle_single TRAINER_BEVERLY, Route105_Text_BeverlyIntro, Route105_Text_BeverlyDefeated
+	msgbox Route105_Text_PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Imani:: @ 81EE2A6
+	trainerbattle_single TRAINER_IMANI, Route105_Text_ImaniIntro, Route105_Text_ImaniDefeated
+	msgbox Route105_Text_ImaniPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Josue:: @ 81EE2BD
+	trainerbattle_single TRAINER_JOSUE, Route105_Text_JosueIntro, Route105_Text_JosueDefeated
+	msgbox Route105_Text_JosuePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Andres:: @ 81EE2D4
+	trainerbattle_single TRAINER_ANDRES_1, Route105_Text_AndresIntro, Route105_Text_AndresDefeated, Route105_EventScript_AndresRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route105_EventScript_AndresRematch
+	msgbox Route105_Text_AndresPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route105_EventScript_AndresRegisterMatchCallAfterBattle:: @ 81EE300
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route105_Text_AndresRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ANDRES_1
+	release
+	end
+
+Route105_EventScript_AndresRematch:: @ 81EE31F
+	trainerbattle_rematch TRAINER_ANDRES_1, Route105_Text_AndresRematchIntro, Route105_Text_AndresRematchDefeated
+	msgbox Route105_Text_AndresRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route104_Text_DadPokenavCall: @ 81EE336
+	.string "…… …… ……\n"
+	.string "…… …… …… 嘀！\p"
+	.string "爸爸：哦，{PLAYER}？\p"
+	.string "…… …… ……\n"
+	.string "你现在在哪儿？\p"
+	.string "听起来风很大。\p"
+	.string "我刚从得文的兹伏奇先生\n"
+	.string "那儿听说了你的宝可梦领航器，\p"
+	.string "所以决定给你打个电话。\p"
+	.string "听起来你过得不错，\n"
+	.string "那我就放心了。\p"
+	.string "你要保重啊。\p"
+	.string "…… …… ……\n"
+	.string "…… …… …… 咔嗒！$"
+
+Route104_Text_RegisteredDadInPokenav: @ 81EE463
+	.string "已将爸爸 千里\n"
+	.string "登记到宝可梦领航器中。$"
+`
+
+script Route105_EventScript_FeraligatriteX_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_FERALIGATRITEX_ROUTE105) // Only For testing
+		if (!defeated(TRAINER_FERALIGATRITEX_ROUTE105)) {
+			msgbox(format("哟嗬，你看起来挺结实嘛？\n想跟我比划两下吗？\p要是你愿意，\n我就把这块好石头\p当作比试的奖励送给你。$"), MSGBOX_YESNO) // asking for battle
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("好哇，这选择真不错！$"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_FERALIGATRITEX_ROUTE105, format("没错，你把我给看透了，真的！$")) // when the player wins
+				msgbox(format("你证明了你的本事，\n我也说话算话，\p这块石头给你！$"), MSGBOX_NPC)
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_FERALIGITE_X, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("怎么，怕了？$"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("我猜你会喜欢我给你的礼物，\n伙计！$"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("你还差点力气，伙计！$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

@@ -1,0 +1,534 @@
+raw `
+.set LOCALID_SS_TIDAL, 2
+.set LOCALID_FERRY_ATTENDANT, 3
+.set LOCALID_MANIAC_1, 9
+.set LOCALID_MANIAC_2, 10
+.set LOCALID_GIRL, 12
+.set LOCALID_CAMPER, 14
+.set LOCALID_FISHERMAN_2, 18
+.set LOCALID_MAN_4, 23
+
+BattleFrontier_OutsideWest_MapScripts:: @ 823D3E1
+	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_OutsideWest_OnTransition
+	.byte 0
+
+BattleFrontier_OutsideWest_OnTransition: @ 823D3E7
+	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, 0
+	setflag FLAG_HIDE_BATTLE_TOWER_REPORTER
+	end
+
+BattleFrontier_OutsideWest_EventScript_FerryAttendant:: @ 823D3F0
+	lock
+	faceplayer
+	msgbox BattleFrontier_OutsideWest_Text_MayISeeYourTicket, MSGBOX_DEFAULT
+	checkitem ITEM_SS_TICKET, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq BattleFrontier_OutsideWest_EventScript_NoSSTicket
+	message BattleFrontier_OutsideWest_Text_WhereWouldYouLikeToGo
+	waitmessage
+	goto BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination
+	end
+
+BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination:: @ 823D416
+	multichoicedefault 18, 6, MULTI_SSTIDAL_BATTLE_FRONTIER, 2, FALSE
+	switch VAR_RESULT
+	case 0, BattleFrontier_OutsideWest_EventScript_FerryToSlateport
+	case 1, BattleFrontier_OutsideWest_EventScript_FerryToLilycove
+	case 2, BattleFrontier_OutsideWest_EventScript_CancelFerrySelect
+	case MULTI_B_PRESSED, BattleFrontier_OutsideWest_EventScript_CancelFerrySelect
+	end
+
+BattleFrontier_OutsideWest_EventScript_NoSSTicket:: @ 823D44E
+	msgbox BattleFrontier_OutsideWest_Text_MustHaveTicketToBoard, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_FerryToSlateport:: @ 823D458
+	msgbox BattleFrontier_OutsideWest_Text_SlateportItIs, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
+	msgbox BattleFrontier_OutsideWest_Text_PleaseBoardFerry, MSGBOX_DEFAULT
+	call BattleFrontier_OutsideWest_EventScript_BoardFerry
+	warp MAP_SLATEPORT_CITY_HARBOR, 255, 8, 11
+	waitstate
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_FerryToLilycove:: @ 823D483
+	msgbox BattleFrontier_OutsideWest_Text_LilycoveItIs, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination
+	msgbox BattleFrontier_OutsideWest_Text_PleaseBoardFerry, MSGBOX_DEFAULT
+	call BattleFrontier_OutsideWest_EventScript_BoardFerry
+	warp MAP_LILYCOVE_CITY_HARBOR, 255, 8, 11
+	waitstate
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_ChooseNewFerryDestination:: @ 823D4AE
+	message BattleFrontier_OutsideWest_Text_ThenWhereWouldYouLikeToGo
+	waitmessage
+	goto BattleFrontier_OutsideWest_EventScript_ChooseFerryDestination
+	end
+
+BattleFrontier_OutsideWest_EventScript_BoardFerry:: @ 823D4BA
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	delay 30
+	hideobjectat LOCALID_FERRY_ATTENDANT, MAP_BATTLE_FRONTIER_OUTSIDE_WEST
+	setvar VAR_0x8004, LOCALID_SS_TIDAL
+	call Common_EventScript_FerryDepartIsland
+	return
+
+BattleFrontier_OutsideWest_EventScript_CancelFerrySelect:: @ 823D4D8
+	msgbox BattleFrontier_OutsideWest_Text_SailWithUsAnotherTime, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_BattleDomeSign:: @ 823D4E2
+	msgbox BattleFrontier_OutsideWest_Text_BattleDomeSign, MSGBOX_SIGN
+	end
+
+BattleFrontier_OutsideWest_EventScript_BattleFactorySign:: @ 823D4EB
+	msgbox BattleFrontier_OutsideWest_Text_BattleFactorySign, MSGBOX_SIGN
+	end
+
+BattleFrontier_OutsideWest_EventScript_BattlePikeSign:: @ 823D4F4
+	msgbox BattleFrontier_OutsideWest_Text_BattlePikeSign, MSGBOX_SIGN
+	end
+
+@ Unused. Of note, Battle Tower is in the East section in the final release
+BattleFrontier_OutsideWest_EventScript_UnusedNPC1:: @ 823D4FD
+	msgbox BattleFrontier_OutsideWest_Text_ThisIsBattleTower, MSGBOX_NPC
+	end
+
+@ Unused
+BattleFrontier_OutsideWest_EventScript_UnusedNPC2:: @ 823D4FD
+	msgbox BattleFrontier_OutsideWest_Text_CantFindBattleTower, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Boy1:: @ 823D50F
+	msgbox BattleFrontier_OutsideWest_Text_BestOutOfAllMyFriends, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Fisherman2:: @ 823D518
+	lock
+	faceplayer
+	message BattleFrontier_OutsideWest_Text_GotSeasickOnWayHere
+	waitmessage
+	applymovement LOCALID_FISHERMAN_2, Common_Movement_FaceAwayPlayer
+	waitmovement 0
+	waitbuttonpress
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_Man1:: @ 823D52D
+	msgbox BattleFrontier_OutsideWest_Text_OnlyToughTrainersBroughtHere, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Maniac1:: @ 823D536
+	lock
+	goto BattleFrontier_OutsideWest_EventScript_FactoryChallengersTalk
+	end
+
+BattleFrontier_OutsideWest_EventScript_Maniac2:: @ 823D53D
+	lock
+	goto BattleFrontier_OutsideWest_EventScript_FactoryChallengersTalk
+	end
+
+BattleFrontier_OutsideWest_EventScript_FactoryChallengersTalk:: @ 823D544
+	applymovement LOCALID_MANIAC_1, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	msgbox BattleFrontier_OutsideWest_Text_SureWeCanChallengeWithNoMons, MSGBOX_DEFAULT
+	applymovement LOCALID_MANIAC_2, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox BattleFrontier_OutsideWest_Text_BigGuySaidIllLendYouMons, MSGBOX_DEFAULT
+	closemessage
+	delay 25
+	applymovement LOCALID_MANIAC_1, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_MANIAC_2, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_Camper:: @ 823D57F
+	lock
+	faceplayer
+	delay 20
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq BattleFrontier_OutsideWest_EventScript_CamperFaceFactory
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq BattleFrontier_OutsideWest_EventScript_CamperAlreadyFacingFactory
+	compare VAR_FACING, DIR_WEST
+	call_if_eq BattleFrontier_OutsideWest_EventScript_CamperFaceFactory
+	compare VAR_FACING, DIR_EAST
+	call_if_eq BattleFrontier_OutsideWest_EventScript_CamperFaceFactory
+	msgbox BattleFrontier_OutsideWest_Text_WhosRaisingThoseRentalMons, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_CamperFaceFactory:: @ 823D5BA
+	applymovement LOCALID_CAMPER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	return
+
+BattleFrontier_OutsideWest_EventScript_CamperAlreadyFacingFactory:: @ 823D5C5
+	return
+
+BattleFrontier_OutsideWest_EventScript_Girl:: @ 823D5C6
+	lock
+	faceplayer
+	message BattleFrontier_OutsideWest_Text_ScaredOfPikeBecauseSeviper
+	waitmessage
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq BattleFrontier_OutsideWest_EventScript_GirlShudderNorth
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq BattleFrontier_OutsideWest_EventScript_GirlShudderSouth
+	compare VAR_FACING, DIR_WEST
+	call_if_eq BattleFrontier_OutsideWest_EventScript_GirlShudderWest
+	compare VAR_FACING, DIR_EAST
+	call_if_eq BattleFrontier_OutsideWest_EventScript_GirlShudderEast
+	waitbuttonpress
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_GirlShudderNorth:: @ 823D5FD
+	applymovement LOCALID_GIRL, BattleFrontier_OutsideWest_Movement_GirlShudderNorth
+	waitmovement 0
+	return
+
+BattleFrontier_OutsideWest_EventScript_GirlShudderSouth:: @ 823D608
+	applymovement LOCALID_GIRL, BattleFrontier_OutsideWest_Movement_GirlShudderSouth
+	waitmovement 0
+	return
+
+BattleFrontier_OutsideWest_EventScript_GirlShudderWest:: @ 823D613
+	applymovement LOCALID_GIRL, BattleFrontier_OutsideWest_Movement_GirlShudderWest
+	waitmovement 0
+	return
+
+BattleFrontier_OutsideWest_EventScript_GirlShudderEast:: @ 823D61E
+	applymovement LOCALID_GIRL, BattleFrontier_OutsideWest_Movement_GirlShudderEast
+	waitmovement 0
+	return
+
+BattleFrontier_OutsideWest_Movement_GirlShudderNorth: @ 823D629
+	walk_in_place_fastest_down
+	walk_in_place_fastest_down
+	step_end
+
+BattleFrontier_OutsideWest_Movement_GirlShudderSouth: @ 823D62C
+	walk_in_place_fastest_up
+	walk_in_place_fastest_up
+	step_end
+
+BattleFrontier_OutsideWest_Movement_GirlShudderWest: @ 823D62F
+	walk_in_place_fastest_right
+	walk_in_place_fastest_right
+	step_end
+
+BattleFrontier_OutsideWest_Movement_GirlShudderEast: @ 823D632
+	walk_in_place_fastest_left
+	walk_in_place_fastest_left
+	step_end
+
+BattleFrontier_OutsideWest_EventScript_Woman2:: @ 823D635
+	lock
+	faceplayer
+	msgbox BattleFrontier_OutsideWest_Text_LetsPlayRockPaperScissors, MSGBOX_DEFAULT
+	random 2
+	compare VAR_RESULT, 1
+	goto_if_eq BattleFrontier_OutsideWest_EventScript_WomanWonRockPaperScissors
+	goto BattleFrontier_OutsideWest_EventScript_WomanLostRockPaperScissors
+	end
+
+BattleFrontier_OutsideWest_EventScript_WomanWonRockPaperScissors:: @ 823D653
+	msgbox BattleFrontier_OutsideWest_Text_WonIllTakePikeChallenge, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_WomanLostRockPaperScissors:: @ 823D65D
+	msgbox BattleFrontier_OutsideWest_Text_LostIllPutOffPikeChallenge, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_Fisherman1:: @ 823D667
+	msgbox BattleFrontier_OutsideWest_Text_ChooseFishingOverBattling, MSGBOX_NPC
+	end
+
+@ Unused
+BattleFrontier_OutsideWest_EventScript_UnusedNPC3:: @ 823D670
+	msgbox BattleFrontier_OutsideWest_Text_DomeIsHereGrandpa, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Gentleman:: @ 823D679
+	msgbox BattleFrontier_OutsideWest_Text_YoureOffToChallengeDome, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Lass:: @ 823D682
+	msgbox BattleFrontier_OutsideWest_Text_KeepBattlingUntilIGetSymbol, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_ExpertM:: @ 823D68B
+	msgbox BattleFrontier_OutsideWest_Text_WontLetGentlemenBeatMe, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Man2:: @ 823D694
+	msgbox BattleFrontier_OutsideWest_Text_NothingHereNotLongAgo, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Woman1:: @ 823D69D
+	msgbox BattleFrontier_OutsideWest_Text_FinallyArrivedAtFrontier, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_FatMan1:: @ 823D6A6
+	msgbox BattleFrontier_OutsideWest_Text_SquareFilledWithToughPeople, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_FatMan2:: @ 823D6AF
+	msgbox BattleFrontier_OutsideWest_Text_MetOlderGirlAtPike, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Woman3:: @ 823D6B8
+	lock
+	msgbox BattleFrontier_OutsideWest_Text_LastTimeOurEyesMet, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_Boy2:: @ 823D6C3
+	lock
+	msgbox BattleFrontier_OutsideWest_Text_DomeAceLookedBecauseOfMyCheering, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_OldMan:: @ 823D6CE
+	msgbox BattleFrontier_OutsideWest_Text_DomeAceIsMine, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_EventScript_Man4:: @ 823D6D7
+	lock
+	faceplayer
+	msgbox BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MAN_4, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+BattleFrontier_OutsideWest_EventScript_PokefanF:: @ 823D6EE
+	msgbox BattleFrontier_OutsideWest_Text_MonWithLongTailInFrontier, MSGBOX_NPC
+	end
+
+BattleFrontier_OutsideWest_Text_BattleDomeSign: @ 823D6F7
+	.string "这里是对战巨蛋！\n"
+	.string "通往无敌超级明星之路！$"
+
+BattleFrontier_OutsideWest_Text_BattleFactorySign: @ 823D737
+	.string "这里是对战工厂！\n"
+	.string "去找最强的宝可梦吧！$"
+
+BattleFrontier_OutsideWest_Text_BattlePikeSign: @ 823D772
+	.string "这里是对战管道！\n"
+	.string "从三条路中选一条！$"
+
+BattleFrontier_OutsideWest_Text_ThisIsBattleTower: @ 823D7A6
+	.string "这里是对战塔。\n"
+	.string "训练家带着自己培养得最好的\p"
+	.string "宝可梦来参加淘汰赛。$"
+
+BattleFrontier_OutsideWest_Text_MayISeeYourTicket: @ 823D808
+	.string "你好，你是来坐渡轮的吗？\n"
+	.string "能让我看看船票吗？$"
+
+BattleFrontier_OutsideWest_Text_MustHaveTicketToBoard: @ 823D842
+	.string "{PLAYER}没有船票……\n"
+	.string "非常抱歉。\p"
+	.string "必须有船票才能\n"
+	.string "搭乘渡轮。$"
+
+BattleFrontier_OutsideWest_Text_WhereWouldYouLikeToGo: @ 823D89D
+	.string "{PLAYER}出示了船票。\n"
+	.string "好极了！这样就够了！\p"
+	.string "你要去哪里？$"
+
+BattleFrontier_OutsideWest_Text_SlateportItIs: @ 823D8F2
+	.string "那就去凯那市！$"
+
+BattleFrontier_OutsideWest_Text_LilycoveItIs: @ 823D90E
+	.string "那就去水静市！$"
+
+BattleFrontier_OutsideWest_Text_SailWithUsAnotherTime: @ 823D929
+	.string "欢迎下次再搭乘！$"
+
+BattleFrontier_OutsideWest_Text_PleaseBoardFerry: @ 823D94B
+	.string "请上船等候出发。$"
+
+BattleFrontier_OutsideWest_Text_ThenWhereWouldYouLikeToGo: @ 823D97A
+	.string "那么，你要去哪里？$"
+
+BattleFrontier_OutsideWest_Text_BestOutOfAllMyFriends: @ 823D99C
+	.string "我在朋友里是最强的。\n"
+	.string "可在这里……\p"
+	.string "我一点用都没有！$"
+
+BattleFrontier_OutsideWest_Text_CantFindBattleTower: @ 823D9DD
+	.string "我想去对战塔，\n"
+	.string "可我有对战开拓区的地图，\p"
+	.string "还是找不到。\n"
+	.string "这地方实在太大了！$"
+
+BattleFrontier_OutsideWest_Text_GotSeasickOnWayHere: @ 823DA60
+	.string "我一到这儿就想马上接受挑战。\n"
+	.string "可路上我晕船了……\p"
+	.string "呕……$"
+
+BattleFrontier_OutsideWest_Text_OnlyToughTrainersBroughtHere: @ 823DABF
+	.string "这地方可不是谁都能来的，\n"
+	.string "你知道吗？\p"
+	.string "只有被认定为强手的训练家\n"
+	.string "才会被带到这里。\p"
+	.string "所以很多训练家\n"
+	.string "根本不知道对战开拓区。$"
+
+BattleFrontier_OutsideWest_Text_SureWeCanChallengeWithNoMons: @ 823DB7D
+	.string "喂，哥……\n"
+	.string "我们一只宝可梦都没有，\p"
+	.string "真的能挑战吗？$"
+
+BattleFrontier_OutsideWest_Text_BigGuySaidIllLendYouMons: @ 823DBCE
+	.string "呃……\n"
+	.string "我想没问题的。\p"
+	.string "我觉得……\n"
+	.string "可你记得那个很凶的大个子吗？\p"
+	.string "他说“我借你宝可梦！”$"
+
+BattleFrontier_OutsideWest_Text_WhosRaisingThoseRentalMons: @ 823DC36
+	.string "那是对战工厂。\n"
+	.string "在那里能租到强力的宝可梦。\p"
+	.string "不过我在想，\n"
+	.string "那些租借的宝可梦是谁养大的？$"
+
+BattleFrontier_OutsideWest_Text_ScaredOfPikeBecauseSeviper: @ 823DCB0
+	.string "因为饭匙蛇，我很怕进\n"
+	.string "对战管道……\p"
+	.string "可、可我大老远来了，\n"
+	.string "所以我要努力征服一切！\p"
+	.string "……发抖……$"
+
+BattleFrontier_OutsideWest_Text_LetsPlayRockPaperScissors: @ 823DD3B
+	.string "来玩石头剪刀布！\n"
+	.string "一、二、三！\p"
+	.string "………………$"
+
+BattleFrontier_OutsideWest_Text_WonIllTakePikeChallenge: @ 823DD7A
+	.string "耶！我赢了！\n"
+	.string "我要去挑战对战管道！$"
+
+BattleFrontier_OutsideWest_Text_LostIllPutOffPikeChallenge: @ 823DDAD
+	.string "哦，不……\n"
+	.string "我输了。\p"
+	.string "看来我今天运气不好。\n"
+	.string "对战管道的挑战推到明天吧。$"
+
+BattleFrontier_OutsideWest_Text_ChooseFishingOverBattling: @ 823DE15
+	.string "我相信这里只有我这么个人，\n"
+	.string "不知为什么，宁愿钓鱼\p"
+	.string "也不愿对战。\n"
+	.string "咦？这里钓不到东西？\p"
+	.string "真让人失望……$"
+
+BattleFrontier_OutsideWest_Text_KeepBattlingUntilIGetSymbol: @ 823DEB4
+	.string "今天我不管怎样都要一直对战，\n"
+	.string "直到拿到象征为止。$"
+
+BattleFrontier_OutsideWest_Text_YoureOffToChallengeDome: @ 823DEFD
+	.string "哦？你要去挑战\n"
+	.string "对战巨蛋？\p"
+	.string "祝你好运。\n"
+	.string "愿我们都能一路赢上去，\p"
+	.string "在挑战中相遇。$"
+
+BattleFrontier_OutsideWest_Text_DomeIsHereGrandpa: @ 823DF7D
+	.string "爷爷，这边！\n"
+	.string "对战巨蛋在这儿！\p"
+	.string "加油啊，爷爷！$"
+
+BattleFrontier_OutsideWest_Text_WontLetGentlemenBeatMe: @ 823DFBF
+	.string "哦，这里就是对战巨蛋？\n"
+	.string "我可不会输给绅士！\p"
+	.string "可入口在哪儿？$"
+
+BattleFrontier_OutsideWest_Text_NothingHereNotLongAgo: @ 823E01E
+	.string "不久以前这里还什么都没有。\n"
+	.string "可现在看看这地方！太惊人了！\p"
+	.string "我要带我母亲来看看。$"
+
+BattleFrontier_OutsideWest_Text_FinallyArrivedAtFrontier: @ 823E09F
+	.string "我终于到对战开拓区了！\n"
+	.string "凭我的长相和本事，\p"
+	.string "一定能引人注目！$"
+
+BattleFrontier_OutsideWest_Text_SquareFilledWithToughPeople: @ 823E102
+	.string "嚼嚼……\n"
+	.string "这个广场好像全是强手。\p"
+	.string "嚼嚼……$"
+
+BattleFrontier_OutsideWest_Text_MetOlderGirlAtPike: @ 823E154
+	.string "咔嚓，嚼嚼……\n"
+	.string "前阵子我在对战管道\p"
+	.string "遇到一位大姐姐。\n"
+	.string "她的眼神凶得厉害，\p"
+	.string "是那种真惹不起的凶。\n"
+	.string "咔嚓，嚼嚼……\p"
+	.string "她气得大喊：“你别吃了！”\n"
+	.string "然后就狠狠揍了我一顿。\p"
+	.string "那真是让人汗毛倒竖的\n"
+	.string "可怕经历，一点不假。\p"
+	.string "咔嚓，嚼嚼……$"
+
+BattleFrontier_OutsideWest_Text_LastTimeOurEyesMet: @ 823E273
+	.string "咦？你听听你自己说的？\n"
+	.string "那算什么！\p"
+	.string "上次我给他加油时，\n"
+	.string "我们的目光对上，还冒出了火花！$"
+
+BattleFrontier_OutsideWest_Text_DomeAceLookedBecauseOfMyCheering: @ 823E2E9
+	.string "什么？！\n"
+	.string "呸！\p"
+	.string "那只是因为\n"
+	.string "我刚好坐在你旁边！\p"
+	.string "巨蛋王牌往我们这边看，\n"
+	.string "是因为我加油的声音够大！$"
+
+BattleFrontier_OutsideWest_Text_DomeAceIsMine: @ 823E37E
+	.string "哦，嘘！\n"
+	.string "小声点！\p"
+	.string "你们这种随风倒的粉丝\n"
+	.string "该去给道馆馆主加油！\p"
+	.string "巨蛋王牌是我的！\n"
+	.string "我唯一的偶像！$"
+
+BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers: @ 823E410
+	.string "那边吵个不停的几个人……\n"
+	.string "很难相信，但他们以前也是\p"
+	.string "训练家，而且很厉害。\n"
+	.string "他们曾经强得惊人，\p"
+	.string "也很有名。\n"
+	.string "可他们在一场大赛上\p"
+	.string "被某位训练家彻底击溃。\n"
+	.string "被打得太惨，\p"
+	.string "他们反而迷上了那位训练家。\n"
+	.string "现在他们只是那位训练家的粉丝。\p"
+	.string "每天都会去对战巨蛋\n"
+	.string "给偶像加油。$"
+
+BattleFrontier_OutsideWest_Text_MonWithLongTailInFrontier: @ 823E5A5
+	.string "我听说有传言，有人在对战开拓区\n"
+	.string "某处看到一只尾巴异常长的\p"
+	.string "宝可梦。\n"
+	.string "它一定很可爱。我确定……\p"
+	.string "哦，挑战可以等。\n"
+	.string "我觉得非找到那可爱的东西不可！$"
+
+`

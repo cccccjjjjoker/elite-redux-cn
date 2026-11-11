@@ -1,0 +1,1068 @@
+raw `
+.set LOCALID_VICTOR, 1
+.set LOCALID_VICTORIA, 2
+.set LOCALID_VIVI, 3
+.set LOCALID_VICKY, 4
+.set LOCALID_PLAYER_FALLING, 42
+.set LOCALID_NURSE, 42
+.set LOCALID_CHANSEY, 43
+
+Route111_MapScripts:: @ 81F0CA7
+	map_script MAP_SCRIPT_ON_LOAD, Route111_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, Route111_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route111_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route111_OnFrame
+	.byte 0
+
+Route111_OnLoad: @ 81F0CBC
+	call_if_unset FLAG_REGI_DOORS_OPENED, Route111_EventScript_CloseDesertRuins
+	compare VAR_MIRAGE_TOWER_STATE, 1
+	call_if_eq Route111_EventScript_ShowTemporaryMirageTower
+	end
+
+Route111_EventScript_CloseDesertRuins:: @ 81F0CD1
+	setmetatile 29, 86, METATILE_General_RockWall_RockBase, 1
+	setmetatile 29, 87, METATILE_General_RockWall_SandBase, 1
+	return
+
+@ Show Mirage Tower just prior to disintegration. Mirage Tower is otherwise handled by the map layout
+Route111_EventScript_ShowTemporaryMirageTower:: @ 81F0CE4
+	setmetatile 18, 53, METATILE_Mauville_MirageTower_Tile0, 0
+	setmetatile 19, 53, METATILE_Mauville_MirageTower_Tile1, 0
+	setmetatile 20, 53, METATILE_Mauville_MirageTower_Tile2, 0
+	setmetatile 18, 54, METATILE_Mauville_MirageTower_Tile3, 0
+	setmetatile 19, 54, METATILE_Mauville_MirageTower_Tile4, 0
+	setmetatile 20, 54, METATILE_Mauville_MirageTower_Tile5, 0
+	setmetatile 18, 55, METATILE_Mauville_MirageTower_Tile6, 0
+	setmetatile 19, 55, METATILE_Mauville_MirageTower_Tile7, 0
+	setmetatile 20, 55, METATILE_Mauville_MirageTower_Tile8, 0
+	setmetatile 18, 56, METATILE_Mauville_MirageTower_Tile9, 0
+	setmetatile 19, 56, METATILE_Mauville_MirageTower_TileA, 0
+	setmetatile 20, 56, METATILE_Mauville_MirageTower_TileB, 0
+	setmetatile 18, 57, METATILE_Mauville_MirageTower_TileC, 0
+	setmetatile 19, 57, METATILE_Mauville_MirageTower_TileD, 0
+	setmetatile 20, 57, METATILE_Mauville_MirageTower_TileE, 0
+	setmetatile 18, 58, METATILE_Mauville_MirageTower_TileF, 0
+	setmetatile 19, 58, METATILE_Mauville_MirageTower_Tile10, 0
+	setmetatile 20, 58, METATILE_Mauville_MirageTower_Tile11, 0
+	return
+
+Route111_OnTransition: @ 81F0D87
+	setvar VAR_TRAINER_HILL_IS_ACTIVE, 0
+	special SetMirageTowerVisibility
+	//call_if_unset FLAG_MIRAGE_TOWER_VISIBLE, Route111_EventScript_SetLayoutNoMirageTower
+	compare VAR_MIRAGE_TOWER_STATE, 1
+	call_if_eq Route111_EventScript_SetFallingPlayerGfx
+	compare VAR_MIRAGE_TOWER_STATE, 2
+	call_if_eq Route111_EventScript_SetMirageTowerGone
+	//call Route111_EventScript_CheckSetSandstorm
+	call GabbyAndTy_EventScript_UpdateLocation
+	goto_if_not_defeated TRAINER_VICKY, Route111_EventScript_SetWinstratesNotDefeated
+	end
+
+Route111_EventScript_SetFallingPlayerGfx:: @ 81F0DC2
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Route111_EventScript_SetFallingPlayerGfxMale
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route111_EventScript_SetFallingPlayerGfxFemale
+	return
+
+Route111_EventScript_SetFallingPlayerGfxMale:: @ 81F0DDA
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
+	return
+
+Route111_EventScript_SetFallingPlayerGfxFemale:: @ 81F0DE0
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
+	return
+
+Route111_EventScript_CheckSetSandstorm:: @ 81F0DE6
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	compare VAR_TEMP_1, 34
+	goto_if_lt Route111_EventScript_EndCheckSetSandstorm
+	compare VAR_TEMP_1, 107
+	goto_if_gt Route111_EventScript_EndCheckSetSandstorm
+	compare VAR_TEMP_1, 72
+	goto_if_gt Route111_EventScript_SetSandstorm
+	compare VAR_TEMP_0, 2000
+	goto_if_gt Route111_EventScript_EndCheckSetSandstorm
+	compare VAR_TEMP_0, 8
+	goto_if_lt Route111_EventScript_EndCheckSetSandstorm
+Route111_EventScript_SetSandstorm:: @ 81F0E22
+	setweather WEATHER_SANDSTORM
+Route111_EventScript_EndCheckSetSandstorm:: @ 81F0E25
+	return
+
+Route111_EventScript_SetWinstratesNotDefeated:: @ 81F0E26
+	clearflag FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE
+	setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
+	setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
+	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
+	cleartrainerflag TRAINER_VICTOR
+	cleartrainerflag TRAINER_VICTORIA
+	cleartrainerflag TRAINER_VIVI
+	end
+
+Route111_EventScript_SetLayoutNoMirageTower:: @ 81F0E3C
+	setmaplayoutindex LAYOUT_ROUTE111_NO_MIRAGE_TOWER
+	return
+
+Route111_EventScript_SetMirageTowerGone:: @ 81F0E40
+	setvar VAR_MIRAGE_TOWER_STATE, 3
+	return
+
+Route111_OnWarp: @ 81F0E46
+	map_script_2 VAR_MIRAGE_TOWER_STATE, 1, Route111_EventScript_HidePlayerForMirageTower
+	.2byte 0
+
+Route111_EventScript_HidePlayerForMirageTower:: @ 81F0E50
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_LITTLEROOT_TOWN
+	end
+
+Route111_OnFrame: @ 81F0E56
+	map_script_2 VAR_MIRAGE_TOWER_STATE, 1, Route111_EventScript_MirageTowerDisappear
+	.2byte 0
+
+Route111_EventScript_MirageTowerDisappear:: @ 81F0E60
+	lockall
+	special StartMirageTowerShake
+	waitstate
+	delay 24
+	playse SE_FALL
+	addobject LOCALID_PLAYER_FALLING
+	special StartPlayerDescendMirageTower
+	waitstate
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_LITTLEROOT_TOWN
+	removeobject LOCALID_PLAYER_FALLING
+	delay 16
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	delay 16
+	special StartMirageTowerDisintegration
+	waitstate
+	special StartMirageTowerFossilFallAndSink
+	waitstate
+	setvar VAR_MIRAGE_TOWER_STATE, 2
+	clearflag FLAG_HIDE_DESERT_UNDERPASS_FOSSIL
+	goto_if_set FLAG_CHOSE_CLAW_FOSSIL, Route111_EventScript_RootFossilDisappeared
+	msgbox Route111_Text_ClawFossilDisappeared, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route111_EventScript_RootFossilDisappeared:: @ 81F0EA7
+	msgbox Route111_Text_RootFossilDisappeared, MSGBOX_DEFAULT
+	releaseall
+	end
+
+@ Unused
+Route111_Movement_PlayerFall:: @ 81F0EB1
+	store_lock_anim
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+Route111_EventScript_Girl:: @ 81F0EB9
+	lock
+	faceplayer
+	dotimebasedevents
+	goto_if_set FLAG_DAILY_ROUTE_111_RECEIVED_BERRY, Route111_EventScript_ReceivedBerry
+	msgbox Route111_Text_WateredPlantsEveryDayTakeBerry, MSGBOX_DEFAULT
+	giveitem ITEM_RAZZ_BERRY
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_DAILY_ROUTE_111_RECEIVED_BERRY
+	special GetPlayerBigGuyGirlString
+	msgbox Route111_Text_GoingToTryToMakeDifferentColorBerries, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_ReceivedBerry:: @ 81F0EF4
+	msgbox Route111_Text_WhatColorBerriesToLookForToday, MSGBOX_DEFAULT
+	release
+	end
+
+@ Unused
+Route111_EventScript_ViciousSandstormTriggerUp:: @ 81F0EFE
+	lockall
+	setvar VAR_0x8004, 0
+	goto Route111_EventScript_ViciousSandstormTrigger
+	end
+
+Route111_EventScript_ViciousSandstormTriggerDown:: @ 81F0F0A
+	lockall
+	setvar VAR_0x8004, 1
+	goto Route111_EventScript_ViciousSandstormTrigger
+	end
+
+Route111_EventScript_ViciousSandstormTriggerLeft:: @ 81F0F16
+	lockall
+	setvar VAR_0x8004, 2
+	goto Route111_EventScript_ViciousSandstormTrigger
+	end
+
+@ Unused
+Route111_EventScript_ViciousSandstormTriggerRight:: @ 81F0F22
+	lockall
+	setvar VAR_0x8004, 3
+	goto Route111_EventScript_ViciousSandstormTrigger
+	end
+
+Route111_EventScript_ViciousSandstormTrigger:: @ 81F0F2E
+	checkitem ITEM_GO_GOGGLES, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route111_EventScript_PreventRouteAccess
+	setvar VAR_TEMP_3, 1
+	releaseall
+	end
+
+Route111_EventScript_PreventRouteAccess:: @ 81F0F45
+	msgbox gText_SandstormIsVicious, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_0x8004, 0
+	call_if_eq Route111_EventScript_PushUpFromRoute
+	compare VAR_0x8004, 1
+	call_if_eq Route111_EventScript_PushDownFromRoute
+	compare VAR_0x8004, 2
+	call_if_eq Route111_EventScript_PushLeftFromRoute
+	compare VAR_0x8004, 3
+	call_if_eq Route111_EventScript_PushRightFromRoute
+	releaseall
+	end
+
+Route111_EventScript_PushUpFromRoute:: @ 81F0F7C
+	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_PushUpFromRoute
+	waitmovement 0
+	return
+
+Route111_EventScript_PushDownFromRoute:: @ 81F0F87
+	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_PushDownFromRoute
+	waitmovement 0
+	return
+
+Route111_EventScript_PushLeftFromRoute:: @ 81F0F92
+	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_PushLeftFromRoute
+	waitmovement 0
+	return
+
+Route111_EventScript_PushRightFromRoute:: @ 81F0F9D
+	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_PushRightFromRoute
+	waitmovement 0
+	return
+
+Route111_Movement_PushUpFromRoute: @ 81F0FA8
+	walk_up
+	step_end
+
+Route111_Movement_PushDownFromRoute: @ 81F0FAA
+	walk_down
+	step_end
+
+Route111_Movement_PushLeftFromRoute: @ 81F0FAC
+	walk_left
+	step_end
+
+Route111_Movement_PushRightFromRoute: @ 81F0FAE
+	walk_right
+	step_end
+
+Route111_EventScript_SunTrigger:: @ 81F0FB0
+	setweather WEATHER_SUNNY
+	fadenewbgm MUS_ROUTE110
+	doweather
+	setvar VAR_TEMP_3, 0
+	end
+
+Route111_EventScript_SandstormTrigger:: @ 81F0FBD
+	setweather WEATHER_SANDSTORM
+	fadenewbgm MUS_ROUTE111
+	doweather
+	end
+
+Route111_EventScript_Victor:: @ 81F0FC5
+	lock
+	faceplayer
+	setflag FLAG_LANDMARK_WINSTRATE_FAMILY
+	msgbox Route111_Text_BattleOurFamily, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route111_EventScript_BattleWinstrates
+	msgbox Route111_Text_IsThatSo, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_BattleWinstrates:: @ 81F0FE7
+	setflag FLAG_SYS_DISABLE_AUTOHEAL
+	special HealPlayerParty
+	msgbox Route111_Text_VictorIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_VICTOR, Route111_Text_VictorDefeat
+	applymovement LOCALID_VICTOR, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	call Route111_EventScript_OpenWinstrateDoor
+	msgbox Route111_Text_VictorPostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_VICTOR, Route111_Movement_WinstrateEnterHouse
+	waitmovement 0
+	removeobject LOCALID_VICTOR
+	call Route111_EventScript_CloseWinstrateDoor
+	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_WaitForNextWinstrate
+	waitmovement 0
+	call Route111_EventScript_OpenWinstrateDoor
+	addobject LOCALID_VICTORIA
+	applymovement LOCALID_VICTORIA, Route111_Movement_WinstrateExitHouse
+	waitmovement 0
+	call Route111_EventScript_CloseWinstrateDoor
+	msgbox Route111_Text_VictoriaIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_VICTORIA, Route111_Text_VictoriaDefeat
+	applymovement LOCALID_VICTORIA, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	call Route111_EventScript_OpenWinstrateDoor
+	msgbox Route111_Text_VictoriaPostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_VICTORIA, Route111_Movement_WinstrateEnterHouse
+	waitmovement 0
+	removeobject LOCALID_VICTORIA
+	call Route111_EventScript_CloseWinstrateDoor
+	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_WaitForNextWinstrate
+	waitmovement 0
+	call Route111_EventScript_OpenWinstrateDoor
+	addobject LOCALID_VIVI
+	applymovement LOCALID_VIVI, Route111_Movement_WinstrateExitHouse
+	waitmovement 0
+	call Route111_EventScript_CloseWinstrateDoor
+	msgbox Route111_Text_ViviIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_VIVI, Route111_Text_ViviDefeat
+	applymovement LOCALID_VIVI, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	call Route111_EventScript_OpenWinstrateDoor
+	msgbox Route111_Text_ViviPostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_VIVI, Route111_Movement_WinstrateEnterHouse
+	waitmovement 0
+	removeobject LOCALID_VIVI
+	call Route111_EventScript_CloseWinstrateDoor
+	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_WaitForNextWinstrate
+	waitmovement 0
+	call Route111_EventScript_OpenWinstrateDoor
+	addobject LOCALID_VICKY
+	applymovement LOCALID_VICKY, Route111_Movement_WinstrateExitHouse
+	waitmovement 0
+	call Route111_EventScript_CloseWinstrateDoor
+	msgbox Route111_Text_VickyIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_VICKY, Route111_Text_VickyDefeat
+	msgbox Route111_Text_VickyPostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_VICKY, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	call Route111_EventScript_OpenWinstrateDoor
+	applymovement LOCALID_VICKY, Route111_Movement_WinstrateEnterHouse
+	waitmovement 0
+	removeobject LOCALID_VICKY
+	clearflag FLAG_SYS_DISABLE_AUTOHEAL
+	call Route111_EventScript_CloseWinstrateDoor
+	release
+	end
+
+Route111_EventScript_OpenWinstrateDoor:: @ 81F113C
+	opendoor 13, 113
+	waitdooranim
+	return
+
+Route111_EventScript_CloseWinstrateDoor:: @ 81F1143
+	closedoor 13, 113
+	waitdooranim
+	return
+
+Route111_Movement_WinstrateEnterHouse: @ 81F114A
+	walk_in_place_fastest_up
+	walk_up
+	step_end
+
+Route111_Movement_WinstrateExitHouse: @ 81F114D
+	walk_down
+	step_end
+
+Route111_Movement_WaitForNextWinstrate: @ 81F114F
+	delay_16
+	delay_16
+	delay_16
+	step_end
+
+Route111_EventScript_RouteSignMauville:: @ 81F1153
+	msgbox Route111_Text_RouteSignMauville, MSGBOX_SIGN
+	end
+
+Route111_EventScript_WinstrateHouseSign:: @ 81F115C
+	msgbox Route111_Text_WinstrateHouseSign, MSGBOX_SIGN
+	end
+
+Route111_EventScript_RouteSign112:: @ 81F1165
+	msgbox Route111_Text_RouteSign112, MSGBOX_SIGN
+	end
+
+Route111_EventScript_RouteSign113:: @ 81F116E
+	msgbox Route111_Text_RouteSign113, MSGBOX_SIGN
+	end
+
+Route111_EventScript_OldLadysRestStopSign:: @ 81F1177
+	msgbox Route111_Text_OldLadysRestStopSign, MSGBOX_SIGN
+	end
+
+Route111_EventScript_TrainerTipsSpAtkSpDef:: @ 81F1180
+	msgbox Route111_Text_TrainerTipsSpAtkSpDef, MSGBOX_SIGN
+	end
+
+Route111_EventScript_Man1:: @ 81F1189
+	msgbox Route111_Text_ToughToKeepWinningUpTheRanks, MSGBOX_NPC
+	end
+
+Route111_EventScript_Man2:: @ 81F1192
+	msgbox Route111_Text_WinstrateFamilyDestroyedMe, MSGBOX_NPC
+	end
+
+Route111_EventScript_Hiker:: @ 81F119B
+	lock
+	faceplayer
+	compare VAR_MIRAGE_TOWER_STATE, 3
+	goto_if_eq Route111_EventScript_HikerMirageTowerGone
+	compare VAR_MIRAGE_TOWER_STATE, 2
+	goto_if_eq Route111_EventScript_HikerMirageTowerDisintegrated
+	//goto_if_set FLAG_MIRAGE_TOWER_VISIBLE, Route111_EventScript_HikerMirageTowerVisible
+	msgbox Route111_Text_ShouldBeMirageTowerAroundHere, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_HikerMirageTowerGone:: @ 81F11C6
+	msgbox Route111_Text_MirageTowerHasntBeenSeenSince, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_HikerMirageTowerDisintegrated:: @ 81F11D0
+	msgbox Route111_Text_ThatWasShockingSandRainedDown, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_HikerMirageTowerVisible:: @ 81F11DA
+	msgbox Route111_Text_MirageTowerClearlyVisible, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_Drew:: @ 81F1204
+	trainerbattle_single TRAINER_DREW, Route111_Text_DrewIntro, Route111_Text_DrewDefeat
+	msgbox Route111_Text_DrewPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Heidi:: @ 81F121B
+	trainerbattle_single TRAINER_HEIDI, Route111_Text_HeidiIntro, Route111_Text_HeidiDefeat
+	msgbox Route111_Text_HeidiPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Beau:: @ 81F1232
+	trainerbattle_single TRAINER_BEAU, Route111_Text_BeauIntro, Route111_Text_BeauDefeat
+	msgbox Route111_Text_BeauPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Becky:: @ 81F1249
+	trainerbattle_single TRAINER_BECKY, Route111_Text_BeckyIntro, Route111_Text_BeckyDefeat
+	msgbox Route111_Text_BeckyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Dusty:: @ 81F1260
+	trainerbattle_single TRAINER_DUSTY_1, Route111_Text_DustyIntro, Route111_Text_DustyDefeat, Route111_EventScript_RegisterDusty
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route111_EventScript_RematchDusty
+	msgbox Route111_Text_DustyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_RegisterDusty:: @ 81F128C
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route111_Text_DustyRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_DUSTY_1
+	release
+	end
+
+Route111_EventScript_RematchDusty:: @ 81F12AB
+	trainerbattle_rematch TRAINER_DUSTY_1, Route111_Text_DustyRematchIntro, Route111_Text_DustyRematchDefeat
+	msgbox Route111_Text_DustyPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Travis:: @ 81F12C2
+	trainerbattle_single TRAINER_TRAVIS, Route111_Text_TravisIntro, Route111_Text_TravisDefeat
+	msgbox Route111_Text_TravisPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Irene:: @ 81F12D9
+	trainerbattle_single TRAINER_IRENE, Route111_Text_IreneIntro, Route111_Text_IreneDefeat
+	msgbox Route111_Text_IrenePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Daisuke:: @ 81F12F0
+	trainerbattle_single TRAINER_DAISUKE, Route111_Text_DaisukeIntro, Route111_Text_DaisukeDefeat
+	msgbox Route111_Text_DaisukePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Wilton:: @ 81F1307
+	trainerbattle_single TRAINER_WILTON_1, Route111_Text_WiltonIntro, Route111_Text_WiltonDefeat, Route111_EventScript_RegisterWilton
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route111_EventScript_RematchWilton
+	msgbox Route111_Text_WiltonPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_RegisterWilton:: @ 81F1333
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route111_Text_WiltonRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_WILTON_1
+	release
+	end
+
+Route111_EventScript_RematchWilton:: @ 81F1352
+	trainerbattle_rematch TRAINER_WILTON_1, Route111_Text_WiltonRematchIntro, Route111_Text_WiltonRematchDefeat
+	msgbox Route111_Text_WiltonPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Brooke:: @ 81F1369
+	trainerbattle_single TRAINER_BROOKE_1, Route111_Text_BrookeIntro, Route111_Text_BrookeDefeat, Route111_EventScript_RegisterBrooke
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route111_EventScript_RematchBrooke
+	msgbox Route111_Text_BrookePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_RegisterBrooke:: @ 81F1395
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route111_Text_BrookeRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_BROOKE_1
+	release
+	end
+
+Route111_EventScript_RematchBrooke:: @ 81F13B4
+	trainerbattle_rematch TRAINER_BROOKE_1, Route111_Text_BrookeRematchIntro, Route111_Text_BrookeRematchDefeat
+	msgbox Route111_Text_BrookePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Hayden:: @ 81F13CB
+	trainerbattle_single TRAINER_HAYDEN, Route111_Text_HaydenIntro, Route111_Text_HaydenDefeat
+	msgbox Route111_Text_HaydenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Bianca:: @ 81F13E2
+	trainerbattle_single TRAINER_BIANCA, Route111_Text_BiancaIntro, Route111_Text_BiancaDefeat
+	msgbox Route111_Text_BiancaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Tyron:: @ 81F13F9
+	trainerbattle_single TRAINER_TYRON, Route111_Text_TyronIntro, Route111_Text_TyronDefeat
+	msgbox Route111_Text_TyronPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Celina:: @ 81F1410
+	trainerbattle_single TRAINER_CELINA, Route111_Text_CelinaIntro, Route111_Text_CelinaDefeat
+	msgbox Route111_Text_CelinaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Celia:: @ 81F1427
+	trainerbattle_single TRAINER_CELIA, Route111_Text_CeliaIntro, Route111_Text_CeliaDefeat
+	msgbox Route111_Text_CeliaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Bryan:: @ 81F143E
+	trainerbattle_single TRAINER_BRYAN, Route111_Text_BryanIntro, Route111_Text_BryanDefeat
+	msgbox Route111_Text_BryanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_Branden:: @ 81F1455
+	trainerbattle_single TRAINER_BRANDEN, Route111_Text_BrandenIntro, Route111_Text_BrandenDefeat
+	msgbox Route111_Text_BrandenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route111_EventScript_TrainerHillSign:: @ 81F146C
+	msgbox Route111_Text_TrainerHillSign, MSGBOX_SIGN
+	end
+
+Route111_EventScript_ChanseyBlob::
+	lockall
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_NORTH
+	call_if_ne Route111_EventScript_PlayerFaceUp
+	applymovement LOCALID_NURSE, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_CHANSEY, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	msgbox Route111_Text_BlobGetBackHere, MSGBOX_DEFAULT
+	applymovement LOCALID_CHANSEY, Route111_Movement_ChanseyJump
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_CHANSEY, 0
+	delay 40
+	waitmoncry
+	applymovement LOCALID_CHANSEY, Route111_Movement_ChanseyEscape
+	waitmovement 0
+	msgbox Route111_Text_ThatsJustGreat, MSGBOX_DEFAULT
+	playse SE_PIN
+	applymovement LOCALID_NURSE, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_NURSE, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox Route111_Text_DidYouSeeThat, MSGBOX_DEFAULT
+	giveitem ITEM_HEAL_BALL
+	msgbox Route111_Text_BlobGetInAnyHealBall, MSGBOX_DEFAULT
+	setvar VAR_CHANSEY_NURSE_STATE, 1
+	removeobject LOCALID_CHANSEY
+	releaseall
+	end
+
+Route111_EventScript_VialUpgradeNurse::
+	lock
+	faceplayer
+	compare VAR_CHANSEY_NURSE_STATE, 6
+	goto_if_eq Route111_EventScript_UpgradeVialHideNurse
+	msgbox Route111_Text_BringBlobBack, MSGBOX_DEFAULT
+	release
+	end
+
+Route111_EventScript_UpgradeVialHideNurse::
+	msgbox Route111_Text_ThanksPlayer, MSGBOX_AUTOCLOSE
+	givecustommon SPECIES_CHANSEY, 40, ITEM_EVIOLITE, ITEM_PREMIER_BALL, NATURE_BOLD, 0, 252, 0, 252, 0, 4, 0, 0, 0, 0, 0, 0, 0, MOVE_SOFT_BOILED, MOVE_TOXIC, MOVE_SEISMIC_TOSS, MOVE_STEALTH_ROCK, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111North_Text_ObtainedChansey
+	waitfanfare
+	waitmessage
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_NORTH
+	goto_if_eq Route111_EventScript_NurseLeaves2
+	applymovement LOCALID_NURSE, Route111_Movement_NurseLeaves1
+	waitmovement 0
+	removeobject LOCALID_NURSE
+	releaseall
+	end
+
+Route111_EventScript_NurseLeaves2::
+	applymovement LOCALID_NURSE, Route111_Movement_NurseLeaves2
+	waitmovement 0
+	removeobject LOCALID_NURSE
+	releaseall
+	end
+
+Route111_EventScript_PlayerFaceUp::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	return
+
+Route111_Movement_ChanseyJump:
+	jump_in_place_down
+	delay_4
+	jump_in_place_down
+	step_end
+
+Route111_Movement_ChanseyEscape:
+	walk_up
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route111_Movement_NurseLeaves1:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route111_Movement_NurseLeaves2:
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route111_Text_BlobGetBackHere:
+	.string "布洛布！别闹了，快回来！\p"
+	.string "唉，你到底怎么跑到那边去的？$"
+
+Route111_Text_ThatsJustGreat:
+	.string "布洛布，等等！站住！\p"
+	.string "哦，这下可真好……$"
+
+Route111_Text_DidYouSeeThat:
+	.string "哦，是训练家！\p"
+	.string "你看到了吗？\n"
+	.string "我的吉利蛋跑了！\p"
+	.string "求求你，帮我把它找回来！\p"
+	.string "我不会让你白帮忙的。\p"
+	.string "只要能把布洛布带回来，\n"
+	.string "我就给你一份好报酬。\p"
+	.string "听起来不错吧？很好！\p"
+	.string "来，拿着布洛布的精灵球。$"
+
+Route111_Text_BlobGetInAnyHealBall:
+	.string "布洛布什么治愈球都会钻进去，\n"
+	.string "所以那个球丢了也不用担心。\p"
+	.string "祝你好运！$"
+
+Route111_Text_BringBlobBack:
+	.string "布洛布往 111 号道路跑了。\p"
+	.string "请把它带回来给我！$"
+
+Route111_Text_ThanksPlayer:
+	.string "谢谢你帮我抓住布洛布！\p"
+	.string "按约定，这是你的报酬：\n"
+	.string "一只异色的{COLOR BLUE}吉利蛋{COLOR DARK_GRAY}！\p"
+	.string "去检查队伍或电脑吧，{PLAYER}！$"
+
+Route111_Text_BattleOurFamily: @ 81F1475
+	.string "你好！看来你是位旅行者。\p"
+	.string "这样如何？\n"
+	.string "要不要和我们一家四口\p"
+	.string "来一场接一场的宝可梦对战？$"
+
+Route111_Text_IsThatSo: @ 81F14F5
+	.string "是吗？\p"
+	.string "要是改了主意，随时再来！$"
+
+Route111_Text_VictorIntro: @ 81F1523
+	.string "这才对！我喜欢你！$"
+
+Route111_Text_VictorDefeat: @ 81F1542
+	.string "哎呀！\p"
+	.string "你比我想的强多了！$"
+
+Route111_Text_VictorPostBattle: @ 81F156F
+	.string "喂，大家！\p"
+	.string "我找到一个挺强的训练家！$"
+
+Route111_Text_VictoriaIntro: @ 81F159D
+	.string "哦，天哪！你可真年轻！\p"
+	.string "不过能打赢我丈夫，\n"
+	.string "你肯定不简单。\p"
+	.string "现在轮到我了！$"
+
+Route111_Text_VictoriaDefeat: @ 81F1616
+	.string "哦，天啊！\p"
+	.string "你强得让我说不出话！$"
+
+Route111_Text_VictoriaPostBattle: @ 81F1645
+	.string "这里有个很强的训练家！\p"
+	.string "这个真的特别强！$"
+
+Route111_Text_ViviIntro: @ 81F167E
+	.string "你比妈妈还强？哇！\p"
+	.string "可我也很强哦！\p"
+	.string "真的！不骗你！$"
+
+Route111_Text_ViviDefeat: @ 81F16C6
+	.string "咦？我输了？$"
+
+Route111_Text_ViviPostBattle: @ 81F16DC
+	.string "好讨厌……\p"
+	.string "……呜……奶奶！$"
+
+Route111_Text_VickyIntro: @ 81F16FB
+	.string "你竟敢把我孙女弄哭！\p"
+	.string "就为这个，我要好好教训你！\p"
+	.string "准备输吧！$"
+
+Route111_Text_VickyDefeat: @ 81F1756
+	.string "喝！你确实很强……\p"
+	.string "我孙女说得没错……$"
+
+Route111_Text_VickyPostBattle: @ 81F1788
+	.string "要是不赶时间，\n"
+	.string "就和我们聊会儿吧。$"
+
+Route111_Text_ToughToKeepWinningUpTheRanks: @ 81F17BA
+	.string "如果不好好培养宝可梦，\n"
+	.string "想一路赢上去会很难。\p"
+	.string "听说宝可梦联盟的四天王\n"
+	.string "比任何道馆馆主都强得多。$"
+
+Route111_Text_WinstrateFamilyDestroyedMe: @ 81F186E
+	.string "我挑战了温斯特一家，\n"
+	.string "可连打四场实在太难了……\p"
+	.string "我被彻底打垮了。$"
+
+Route111_Text_RouteSignMauville: @ 81F18CE
+	.string "111 号道路\n"
+	.string "{DOWN_ARROW} 紫堇市$"
+
+Route111_Text_WinstrateHouseSign: @ 81F18E8
+	.string "“我们一家心连心！”\n"
+	.string "温斯特家$"
+
+Route111_Text_RouteSign112: @ 81F1921
+	.string "111 号道路\n"
+	.string "{LEFT_ARROW} 112 号道路$"
+
+Route111_Text_RouteSign113: @ 81F1937
+	.string "111 号道路\n"
+	.string "{LEFT_ARROW} 113 号道路$"
+
+Route111_Text_OldLadysRestStopSign: @ 81F194D
+	.string "老婆婆的休息站\n"
+	.string "“进来歇歇你疲惫的身子吧。”$"
+
+Route111_Text_TrainerTipsSpAtkSpDef: @ 81F1987
+	.string "训练家小贴士\p"
+	.string "衡量宝可梦强度的一个指标\n"
+	.string "是特攻，即“特殊攻击”。\p"
+	.string "同样，特防就是“特殊防御”。$"
+
+Route111_Text_ShouldBeMirageTowerAroundHere: @ 81F1A22
+	.string "这附近应该有一座沙子做的塔。\p"
+	.string "可不知为什么，\n"
+	.string "它时隐时现。\p"
+	.string "所以我管它叫幻影塔。$"
+
+Route111_Text_MirageTowerClearlyVisible: @ 81F1AC7
+	.string "我看到了！那座沙塔！\p"
+	.string "他们称作幻影的沙塔，\n"
+	.string "现在清清楚楚地立在那儿！\p"
+	.string "可它看起来好脆弱……\n"
+	.string "随时都可能塌掉……\p"
+	.string "我想进去看看，\n"
+	.string "可就是鼓不起勇气……$"
+
+Route111_Text_ThatWasShockingSandRainedDown: @ 81F1B92
+	.string "哇……真是吓人。\p"
+	.string "沙子突然一块块地落下来。\p"
+	.string "里面是什么样子？\n"
+	.string "有沙子做的幽灵之类的吗？$"
+
+Route111_Text_MirageTowerHasntBeenSeenSince: @ 81F1C12
+	.string "自从跟你聊过之后，\n"
+	.string "那座沙塔就再没出现过。\p"
+	.string "也许它真的是幻影塔……$"
+
+Route111_Text_ClawFossilDisappeared: @ 81F1C74
+	.string "爪之化石沉入了沙中……$"
+
+Route111_Text_RootFossilDisappeared: @ 81F1C9F
+	.string "根之化石沉入了沙中……$"
+
+Route111_Text_TrainerHillSign: @ 81F1D61
+	.string "{RIGHT_ARROW} 训练家之丘入口\p"
+	.string "“攀登高峰吧，热血训练家们！”$"
+
+
+`
+script Route111South_EventScript_Magma_Grunt{
+    lock
+	playse(SE_PIN)
+	applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+	faceplayer
+	msgbox(JaggedPass_Text_GruntIntro, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Route111South_EventScript_Magma_Grunt_Off_Limits{
+    lock
+	faceplayer
+	msgbox(format("这一带禁止通行，快滚！$"), MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Route111South_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_TYRON) &&
+	   defeated(TRAINER_CELINA) &&
+	   defeated(TRAINER_BIANCA) &&
+	   defeated(TRAINER_HAYDEN) &&
+	   defeated(TRAINER_IRENE) &&
+	   defeated(TRAINER_TRAVIS)){
+		// when you defeat every trainer
+		msgbox(format("干得漂亮！\n让我们开始为你的胜利庆祝吧！$"))
+		givemon(SPECIES_SINISTEA, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}来悲茶{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("你好，尊敬的训练家！\n让我为你提供一个绝佳机会。\p只要击败这条路上所有训练家，\n你就能得到一位迷人的伙伴。\p我期待你的胜利。$"))
+	}
+    release
+    end
+}
+
+text Route111North_Text_ObtainedChansey{
+	format("{PLAYER}获得了{COLOR BLUE}吉利蛋{COLOR DARK_GRAY}。$")
+}
+
+script Route111North_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_BROOKE_1) &&
+	   defeated(TRAINER_WILTON_1)){
+		// when you defeat every trainer
+		msgbox(format("你超棒的对战让我起鸡皮疙瘩！\n你天生就是个破冰者！$"))
+		givemon(SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}伽勒尔火红不倒翁{COLOR DARK_GRAY}\n，\p这是打败这里两位精英训练家的礼物\n！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("如果你把那两个家伙冰掉，\n我就给你看伽勒尔最酷的猎物。\p准备好让他们知道谁是老大，\n一路滑向胜利了吗？$"))
+	}
+    release
+    end
+}
+
+script Route111Desert_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_DREW) &&
+	   defeated(TRAINER_BEAU) &&
+	   defeated(TRAINER_HEIDI) &&
+	   defeated(TRAINER_BECKY) &&
+	   defeated(TRAINER_DUSTY_1) &&
+	   defeated(TRAINER_CELIA) &&
+	   defeated(TRAINER_BRANDEN) &&
+	   defeated(TRAINER_BRYAN)){
+		// when you defeat every trainer
+		msgbox(format("恭喜……大概吧……\n随便啦，拿着这个，别烦我。\p我还有比待在这片\n干巴巴的荒地更值得做的事。$"))
+		givemon(SPECIES_ARCTOZOLT, 50, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}获得了{COLOR BLUE}雷鸟海兽{COLOR DARK_GRAY}，\n这是打败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("听好了，我觉得我被骗了。\n这玩意儿根本不像宝可梦，\p可我还得把它发给你们这种人……\p随便啦。规矩你早就懂了：\n打败所有人，回来，\p废话废话废话，祝你好运。$"))
+	}
+    release
+    end
+}
+
+script Route111Desert_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("贤者：我讲述生命、死亡\n与和谐的故事。\p你有耐心听吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+			msgbox(format("终于，年轻的训练家，\n我们的道路在这片焦土上交汇。\p和谐守护者就沉睡在此地，\n等待着你的到来：\p哲尔尼亚斯，治愈之焰，\n生命与重生的先驱。\p伊裴尔塔尔，邪恶之心，\n黑暗与再生的化身。\p最后是基格尔德，\n平衡与和谐的守护者，\p大自然脆弱均势的守望者。\p我毫不怀疑，\n当你发挥出全部潜力，\p你就会成为它们的训练家。\p击败宝可梦联盟，成为冠军，\n然后回来找我。$"))
+		}
+		else{
+		if(defeated(TRAINER_DREW) &&
+	   	defeated(TRAINER_BEAU) &&
+	   	defeated(TRAINER_HEIDI) &&
+	   	defeated(TRAINER_BECKY) &&
+	   	defeated(TRAINER_DUSTY_1) &&
+	   	defeated(TRAINER_CELIA) &&
+	   	defeated(TRAINER_BRANDEN) &&
+	   	defeated(TRAINER_BRYAN)){
+				msgbox(format("你现在有资格捕捉哲尔尼亚斯、\n伊裴尔塔尔和基格尔德了。\p我已把它们的栖息地\n加入你的图鉴导航器。\p一千年了……\n但这份等待是值得的。\p祝你好运，冠军。$"))
+			}
+			else{
+				msgbox(format("恭喜你成为冠军，\n但在见到和谐守护者之前，\p还有一点小事要做。\p击败这条路上所有训练家，\n然后回来找我。$"))
+			}
+		}
+	}
+	else{
+		msgbox(format("真遗憾……$"), MSGBOX_NPC)
+	}
+	release
+    end
+}
+
+script Route111_EventScript_Sandslash{
+	lock
+	faceplayer
+    goto_if_set(FLAG_DEFEATED_ROUTE111_SANDSLASH, Route111_EventScript_Sandslash_Join)
+    goto_if_unset(FLAG_BADGE05_GET, Route111_EventScript_Sandslash_PreNorman)
+	playmoncry(SPECIES_SANDSLASH, 2)
+    msgbox(format("穿山王把你视为平等的对手，\n似乎很想和你一战。\p准备好了吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+        playmoncry(SPECIES_SANDSLASH, 2)
+        msgbox(format("穿山王：唰！$"), MSGBOX_DEFAULT)
+	delay(40)
+	waitmoncry
+	setflag(FLAG_TOTEM_BATTLE)
+	setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      1)
+	setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      3)
+	setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   0)
+	setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   3)
+	setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    1)
+	setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
+	setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
+	setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_SANDSLASH)
+	setflag(FLAG_SHINY_CREATION)
+	setflag(FLAG_ALPHA_CREATION)
+	setwildbattlewithcustommoves(SPECIES_SANDSLASH, 0, ITEM_SANDSLASHITE, MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_POISON_JAB, MOVE_KNOCK_OFF, 2, NATURE_JOLLY, 252, 252, 252, 252, 252, 252)
+	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	dowildbattle
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	specialvar(VAR_RESULT, GetBattleOutcome)
+    switch(var(VAR_RESULT)){
+        case B_OUTCOME_CAUGHT:
+        case B_OUTCOME_WON:
+			goto(Route111_EventScript_Sandslash_Join)
+        break
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            setvar(VAR_0x8004, SPECIES_SANDSLASH)
+            fadescreenswapbuffers(FADE_TO_BLACK)
+            removeobject(VAR_LAST_TALKED)
+            fadescreenswapbuffers(FADE_FROM_BLACK)
+            bufferspeciesname(0, VAR_0x8004)
+            msgbox(format("{STR_VAR_1}逃走了！$"), MSGBOX_DEFAULT)
+        break
+    }
+}
+    else{
+        playmoncry(SPECIES_SANDSLASH, 2)
+        msgbox(format("穿山王：唰……$"), MSGBOX_DEFAULT)
+    }
+	release
+	end
+}
+
+script Route111_EventScript_Sandslash_PreNorman{
+    message(format("穿山王似乎带着优越感看着你。\n等你实力更强了再来会比较好。{PAUSE_UNTIL_PRESS}$"))
+    waitmessage
+    release
+    end	
+}
+
+script Route111_EventScript_Sandslash_Join{
+    msgbox(format("穿山王似乎想加入你的队伍，\n要让它加入吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		setflag(FLAG_OBTAINED_ROUTE111_SANDSLASH)
+		setflag(FLAG_ALPHA_CREATION)
+		givecustommon(SPECIES_SANDSLASH, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 252, 252, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_POISON_JAB, MOVE_KNOCK_OFF, TRUE)
+		clearflag(FLAG_ALPHA_CREATION)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}得到了穿山王！$"))
+		waitfanfare
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		removeobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+	if(!flag(FLAG_DEFEATED_ROUTE111_SANDSLASH)){
+    	setflag(FLAG_DEFEATED_ROUTE111_SANDSLASH)
+		playfanfare(MUS_OBTAIN_ITEM)
+		giveitem(ITEM_SANDSLASHITE, 1)
+		message(format("{PLAYER}得到了穿山王进化石！$"))
+		waitfanfare
+	}
+	release
+	end
+}

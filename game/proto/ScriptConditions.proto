@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+package er;
+
+import "AbilityEnum.proto";
+import "SpeciesEnum.proto";
+import "ItemEnum.proto";
+import "ItemList.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+enum Status {
+  STATUS1_NONE = 0;
+  STATUS1_SLEEP = 1;
+  STATUS1_POISON = 2;
+  STATUS1_BURN = 3;
+  STATUS1_FREEZE = 4;
+  STATUS1_PARALYSIS = 5;
+  STATUS1_TOXIC_POISON = 6;
+  STATUS1_POISON_ANY = 7;
+  STATUS1_FROSTBITE = 8;
+  STATUS1_BLEED = 9;
+  STATUS1_ANY = 10;
+  STATUS1_CAN_ACT = 11;
+  STATUS2_INFATUATION = 12;
+}
+
+enum Battler {
+  BATTLER_NONE = 0;
+  BATTLER_ATTACKER = 1;
+  BATTLER_TARGET = 2;
+}
+
+enum Terrain {
+  TERRAIN_NONE = 0;
+  TERRAIN_ELECTRIC = 1;
+  TERRAIN_PSYCHIC = 2;
+  TERRAIN_MISTY = 3;
+  TERRAIN_GRASSY = 4;
+  TERRAIN_TOXIC = 5;
+  TERRAIN_ANY = 6;
+}
+
+enum Weather {
+  WEATHER_NONE = 0;
+  WEATHER_ANY = 1;
+  WEATHER_SUN_ANY = 2;
+  WEATHER_RAIN_ANY = 3;
+  WEATHER_HAIL_ANY = 4;
+  WEATHER_SANDSTORM_ANY = 5;
+  WEATHER_FOG_ANY = 6;
+}
+
+enum FieldEffect {
+  FIELD_EFFECT_NONE = 0;
+  FIELD_EFFECT_GRAVITY = 1;
+}
+
+message ScriptCondition {
+  message WeatherCondition {
+    Weather weather = 1;
+    Battler battler = 2;
+  }
+
+  message Damaged {
+    Battler battler = 1;
+    Battler by = 2;
+  }
+
+  message StatusCondition {
+    Status status = 1;
+    Battler battler = 2;
+  }
+
+  message Switching {
+    Battler battler = 1;
+  }
+
+  message ActsAfter {
+    Battler before = 1;
+    Battler after = 2;
+    bool fail_if_switching = 3;
+  }
+
+  message TerrainCondition {
+    Terrain terrain = 1;
+    Battler battler = 2;
+  }
+
+  message FieldEffectCondition {
+    FieldEffect effect = 1;
+  }
+
+  message AbilityCondition {
+    AbilityEnum ability = 1;
+    Battler battler = 2;
+    bool check_mold_breaker = 3;
+  }
+
+  message Hp {
+    enum HpType {
+      HP_NONE = 0;
+      HP_LOW = 1;
+    }
+    HpType hp = 1;
+    Battler battler = 2;
+  }
+
+  message RecentFainted {
+    Battler battler = 1;
+  }
+
+  message SpeciesCondition {
+    repeated SpeciesEnum species = 1;
+    Battler battler = 2;
+    bool exact = 3;
+  }
+
+  message ItemCondition {
+    repeated ItemEnum item = 1;
+    repeated HoldEffect hold_effect = 2;
+    Battler battler = 3;
+    bool skip_disabling = 4;
+  }
+
+  oneof condition {
+    WeatherCondition weather = 1;
+    Damaged damaged = 2;
+    StatusCondition status = 3;
+    Switching switching = 4;
+    ActsAfter acts_after = 5;
+    TerrainCondition terrain = 6;
+    FieldEffectCondition field_effect = 7;
+    AbilityCondition ability = 8;
+    Hp hp = 9;
+    RecentFainted recent_fainted = 10;
+    bool custom = 11;
+    SpeciesCondition species = 12;
+    ItemCondition item = 13;
+  }
+}

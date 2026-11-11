@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package er;
+
+import "SpeciesEnum.proto";
+import "MoveEnum.proto";
+import "TrainerList.proto";
+import "AbilityEnum.proto";
+import "ItemEnum.proto";
+import "Types.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+message BattleFrontierSet {
+  enum DoublesSets {
+    SINGLES_OR_DOUBLES = 0;
+    SINGLES_ONLY = 1;
+    DOUBLES_ONLY = 2;
+  }
+
+  DoublesSets allowed_formats = 1;
+  bool restricted = 2;
+  ItemEnum item = 3;
+  optional Nature nature = 4;
+  AbilityEnum ability = 5;
+  optional Type hp_type = 6;
+  repeated MoveEnum move = 7;
+
+  bool hp_up = 8;
+  bool atk_up = 9;
+  bool def_up = 10;
+  bool spatk_up = 11;
+  bool spdef_up = 12;
+  bool speed_up = 13;
+  repeated string illegal = 14;
+}
+
+message BattleFrontierList {
+  message BattleFrontierMon {
+    SpeciesEnum id = 1;
+    repeated BattleFrontierSet set = 2;
+  }
+  repeated BattleFrontierMon species = 1;
+}

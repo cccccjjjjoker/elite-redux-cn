@@ -1,0 +1,39 @@
+raw `
+GraniteCave_1F_MapScripts:: @ 822DA5D
+	.byte 0
+
+GraniteCave_1F_EventScript_Hiker:: @ 822DA5E
+	lock
+	faceplayer
+	msgbox GraniteCave_1F_Text_GetsDarkAheadHereYouGo, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_HM05
+	release
+	end
+
+GraniteCave_1F_EventScript_ReceivedFlash:: @ 822DA8A
+	msgbox GraniteCave_1F_Text_ExplainFlash, MSGBOX_DEFAULT
+	release
+	end
+
+GraniteCave_1F_Text_GetsDarkAheadHereYouGo: @ 822DA94
+	.string "喂，你。\n"
+	.string "这里以前很黑。\p"
+	.string "但现在不黑了。\n"
+	.string "好好探索吧！$"
+
+GraniteCave_1F_Text_ExplainFlash: @ 822DBB7
+	.string "把秘传招式闪光教给\n"
+	.string "宝可梦并使用。\p"
+	.string "它连洞窟里漆黑一片的地方\n"
+	.string "都能照亮。\p"
+	.string "不过要用它，你需要武斗镇\n"
+	.string "宝可梦道馆的徽章。$"
+
+`
+
+script GraniteCave_1F_EventScript_Sign_JustAnExitAhead{
+    lock
+    msgbox(format("为了一条通向大海的小出口，\n除了头疼没别的。$"))
+	release
+	end
+}

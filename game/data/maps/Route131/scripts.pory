@@ -1,0 +1,89 @@
+raw `
+Route131_MapScripts:: @ 81F7404
+	map_script MAP_SCRIPT_ON_TRANSITION, Route131_OnTransition
+	.byte 0
+
+Route131_OnTransition: @ 81F740A
+	compare VAR_SOOTOPOLIS_CITY_STATE, 4
+	call_if_ge Route131_EventScript_CheckSetAbnormalWeather
+	call Route131_EventScript_SetLayout
+	end
+
+Route131_EventScript_SetLayout:: @ 81F741B
+	setmaplayoutindex LAYOUT_ROUTE131_SKY_PILLAR
+	return
+
+Route131_EventScript_CheckSetAbnormalWeather:: @ 81F741F
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	return
+
+Route131_EventScript_Richard:: @ 81F7429
+	trainerbattle_single TRAINER_RICHARD, Route131_Text_RichardIntro, Route131_Text_RichardDefeat
+	msgbox Route131_Text_RichardPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route131_EventScript_Herman:: @ 81F7440
+	trainerbattle_single TRAINER_HERMAN, Route131_Text_HermanIntro, Route131_Text_HermanDefeat
+	msgbox Route131_Text_HermanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route131_EventScript_Susie:: @ 81F7457
+	trainerbattle_single TRAINER_SUSIE, Route131_Text_SusieIntro, Route131_Text_SusieDefeat
+	msgbox Route131_Text_SusiePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route131_EventScript_Kara:: @ 81F746E
+	trainerbattle_single TRAINER_KARA, Route131_Text_KaraIntro, Route131_Text_KaraDefeat
+	msgbox Route131_Text_KaraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route131_EventScript_Reli:: @ 81F7485
+	trainerbattle_double TRAINER_RELI_AND_IAN, Route131_Text_ReliIntro, Route131_Text_ReliDefeat, Route131_Text_ReliNotEnoughMons
+	msgbox Route131_Text_ReliPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route131_EventScript_Ian:: @ 81F74A0
+	trainerbattle_double TRAINER_RELI_AND_IAN, Route131_Text_IanIntro, Route131_Text_IanDefeat, Route131_Text_IanNotEnoughMons
+	msgbox Route131_Text_IanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route131_EventScript_Talia:: @ 81F74BB
+	trainerbattle_single TRAINER_TALIA, Route131_Text_TaliaIntro, Route131_Text_TaliaDefeat
+	msgbox Route131_Text_TaliaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route131_EventScript_Kevin:: @ 81F74D2
+	trainerbattle_single TRAINER_KEVIN, Route131_Text_KevinIntro, Route131_Text_KevinDefeat
+	msgbox Route131_Text_KevinPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+`
+script Route131_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("修行者：没时间解释了，\n你愿意帮我们吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("天空之柱的影响吸引来了一名来自外\n太空的邪恶入侵者：奈克洛兹玛，\p一种渴求光的外星生物，\n它会吞食沿途的一切。\p它像一群饥饿的蝗虫一样在星球之间\n跳跃，身后只留下黑暗与荒芜。\p它的目标？吞噬整个星系，\n把被征服星球上的居民变成它星际军\p队的士兵。\n许多世界已被它的饥饿吞没，\p但我们必须阻止这一切！\n我和同伴们设法暂时拖住了它，\p但你需要帮助我们。\n你注定会成为冠军。等你成为冠军，\p就回到这里，帮我们阻止这场灾难！$"))
+	}
+	else{
+		if(defeated(TRAINER_RICHARD)	&&
+		   defeated(TRAINER_HERMAN)		&&
+		   defeated(TRAINER_SUSIE)	&&
+		   defeated(TRAINER_KARA) &&
+		   defeated(TRAINER_RELI_AND_IAN)  &&
+		   defeated(TRAINER_TALIA) &&
+		   defeated(TRAINER_KEVIN)){
+			msgbox(format("那些训练家你处理得很好！\n终于可以继续了：\p我已把奈克洛兹玛的位置标记在你的\n图鉴导航上。赌注再高不过，\p但我相信你一定能打倒这个怪物！$"))
+		}
+		else{
+			msgbox(format("你终于回来了！在继续之前，\n确保没人会被卷进来：\p先打败这条路上所有的训练家！$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("没时间解释！$"))
+	}
+    release
+    end
+}

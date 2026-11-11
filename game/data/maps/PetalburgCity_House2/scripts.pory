@@ -1,0 +1,26 @@
+raw `
+PetalburgCity_House2_MapScripts:: @ 82078F2
+	.byte 0
+
+PetalburgCity_House2_EventScript_Woman:: @ 82078F3
+	msgbox PetalburgCity_House2_Text_NormanBecameGymLeader, MSGBOX_NPC
+	end
+
+PetalburgCity_House2_EventScript_SchoolKid:: @ 82078FC
+	msgbox PetalburgCity_House2_Text_BattledNormanOnce, MSGBOX_NPC
+	end
+
+PetalburgCity_House2_Text_NormanBecameGymLeader: @ 8207905
+	.string "千里成了我们镇的新\n"
+	.string "道馆馆主。\p"
+	.string "我记得他把家人\n"
+	.string "从城都地区叫了过来。$"
+
+PetalburgCity_House2_Text_BattledNormanOnce: @ 8207969
+	.string "我跟千里对战过一次，\n"
+	.string "可哎呀，他强得太过分了。\p"
+	.string "该怎么说呢？\n"
+	.string "我就是有种感觉，\p"
+	.string "他是为宝可梦而活的。$"
+
+`

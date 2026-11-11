@@ -1,0 +1,107 @@
+mapscripts Seaspray_Cave_B1F_MapScripts {}
+
+script Seaspray_Cave_B1F_EventScript_Dewgong{
+	lock
+	faceplayer
+    goto_if_set(FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG, Seaspray_Cave_B1F_EventScript_Dewgong_Join)
+    goto_if_unset(FLAG_BADGE07_GET, Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza)
+	playmoncry(SPECIES_DEWGONG, 2)
+    msgbox(format("这只白海狮认为你是值得一战的对手\n。\p它似乎想在对战中考验你。$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+        playmoncry(SPECIES_DEWGONG, 2)
+        msgbox(format("白海狮：咕！$"), MSGBOX_DEFAULT)
+		delay(40)
+		waitmoncry
+		setflag(FLAG_TOTEM_BATTLE)
+		setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      2)
+		setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      2)
+		setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   2)
+		setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   2)
+		setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    2)
+		setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
+		setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
+		setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_DEWGONG)
+		//setflag(FLAG_SHINY_CREATION)
+		setflag(FLAG_ALPHA_CREATION)
+		setwildbattlewithcustommoves(SPECIES_DEWGONG, 0, ITEM_DEWGONGITE, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, 2, NATURE_BRAVE, 252, 252, 252, 252, 252, 252)
+		setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		dowildbattle
+		clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		specialvar(VAR_RESULT, GetBattleOutcome)
+		switch(var(VAR_RESULT)){
+			case B_OUTCOME_CAUGHT:
+			case B_OUTCOME_WON:
+				goto(Seaspray_Cave_B1F_EventScript_Dewgong_Join)
+			break
+			case B_OUTCOME_RAN:
+			case B_OUTCOME_PLAYER_TELEPORTED:
+				setvar(VAR_0x8004, SPECIES_DEWGONG)
+				fadescreenswapbuffers(FADE_TO_BLACK)
+				removeobject(VAR_LAST_TALKED)
+				fadescreenswapbuffers(FADE_FROM_BLACK)
+				bufferspeciesname(0, VAR_0x8004)
+				msgbox(format("{STR_VAR_1}逃走了！$"), MSGBOX_DEFAULT)
+			break
+		}
+	}
+    else{
+        playmoncry(SPECIES_DEWGONG, 2)
+        msgbox(format("白海狮：咕……$"), MSGBOX_DEFAULT)
+    }
+	release
+	end
+}
+
+script Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza{
+    message(format("白海狮觉得你很可怜。\n也许变强之后再回来吧？{PAUSE_UNTIL_PRESS}$"))
+	waitmessage
+    release
+    end	
+}
+
+script Seaspray_Cave_B1F_EventScript_Dewgong_Join{
+    msgbox(format("白海狮似乎想加入你的队伍，\n要让这只白海狮加入吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		setflag(FLAG_OBTAINED_SEASPRAY_CAVE_DEWGONG)
+		setflag(FLAG_ALPHA_CREATION)
+		givecustommon(SPECIES_DEWGONG, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_BRAVE, 2, 252, 4, 0, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, FALSE)
+		clearflag(FLAG_ALPHA_CREATION)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}得到了白海狮！$"))
+		waitfanfare
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		removeobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+	if(!flag(FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG)){
+    	setflag(FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG)
+		playfanfare(MUS_OBTAIN_ITEM)
+		giveitem(ITEM_DEWGONGITE, 1)
+		message(format("{PLAYER}得到了白海狮进化石！$"))
+		waitfanfare
+	}
+	release
+	end
+}
+
+script Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate{
+	lock
+	faceplayer
+	//cleartrainerflag(TRAINER_KAYLEE) // Only For testing, comment this line when you are done testing
+	if(!defeated(TRAINER_KAYLEE)){
+		msgbox(format("要对战吗？赢了的话，\n我有一份不错的奖品给你。$"), MSGBOX_YESNO)
+		if(var(VAR_RESULT) == 1){
+			trainerbattle_no_intro(TRAINER_KAYLEE, format("我输了……$"))
+			msgbox(format("真是场好对战，这是你的奖品，\n你应得的！$"), MSGBOX_NPC)
+			giveitem(ITEM_DEWGONGITE, 1)
+		}
+		else{
+			msgbox(format("那就算了吧……$"), MSGBOX_NPC)
+		}
+	}
+	else{
+		msgbox(format("这是场好对战，\n不过奖品我已经给过你了。$"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

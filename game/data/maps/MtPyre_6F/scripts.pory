@@ -1,0 +1,72 @@
+raw `
+MtPyre_6F_MapScripts:: @ 8231D3A
+	.byte 0
+
+MtPyre_6F_EventScript_Valerie:: @ 8231D3B
+	trainerbattle_single TRAINER_VALERIE_1, MtPyre_6F_Text_ValerieIntro, MtPyre_6F_Text_ValerieDefeat, MtPyre_6F_EventScript_RegisterValerie
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq MtPyre_6F_EventScript_RematchValerie
+	msgbox MtPyre_6F_Text_ValeriePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MtPyre_6F_EventScript_RegisterValerie:: @ 8231D67
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox MtPyre_6F_Text_ValerieRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_VALERIE_1
+	release
+	end
+
+MtPyre_6F_EventScript_RematchValerie:: @ 8231D86
+	trainerbattle_rematch TRAINER_VALERIE_1, MtPyre_6F_Text_ValerieRematchIntro, MtPyre_6F_Text_ValerieRematchDefeat
+	msgbox MtPyre_6F_Text_ValeriePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_6F_EventScript_Cedric:: @ 8231D9D
+	trainerbattle_single TRAINER_CEDRIC, MtPyre_6F_Text_CedricIntro, MtPyre_6F_Text_CedricDefeat
+	msgbox MtPyre_6F_Text_CedricPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtPyre_6F_Text_ValerieIntro: @ 8231DB4
+	.string "我在这里的时候……\n"
+	.string "会有一种奇妙的力量流入我体内……$"
+
+MtPyre_6F_Text_ValerieDefeat: @ 8231DE2
+	.string "力量正在消退……$"
+
+MtPyre_6F_Text_ValeriePostBattle: @ 8231DFC
+	.string "也许这力量来自在此\n"
+	.string "不安地沉睡的宝可梦灵魂……$"
+
+MtPyre_6F_Text_ValerieRegister: @ 8231E43
+	.string "呵呵呵……我输了比赛，可是……\n"
+	.string "我有点小本事……\p"
+	.string "我连碰都没碰你的\n"
+	.string "宝可梦导航器……嘿呀！$"
+
+MtPyre_6F_Text_ValerieRematchIntro: @ 8231EB3
+	.string "在你身后……\n"
+	.string "是什么……$"
+
+MtPyre_6F_Text_ValerieRematchDefeat: @ 8231ECB
+	.string "有什么东西消散了……$"
+
+MtPyre_6F_Text_ValeriePostRematch: @ 8231EE1
+	.string "在此安息的宝可梦……\n"
+	.string "有时也会玩耍……$"
+
+MtPyre_6F_Text_CedricIntro: @ 8231F11
+	.string "你迷路了吗？\n"
+	.string "不用怕，我在这里！$"
+
+MtPyre_6F_Text_CedricDefeat: @ 8231F4A
+	.string "你不是迷路了吗？$"
+
+MtPyre_6F_Text_CedricPostBattle: @ 8231F5C
+	.string "我本来觉得，迷路的训练家\n"
+	.string "一定慌乱好对付。\p"
+	.string "这手段太脏了，我不会再试……$"
+
+`

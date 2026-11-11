@@ -1,0 +1,467 @@
+raw `
+.set LOCALID_ATTENDANT, 1
+.set LOCALID_NURSE, 2
+.set LOCALID_GIRL, 4
+.set LOCALID_MAN, 5
+
+TrainerHill_Entrance_MapScripts:: @ 82680AC
+	map_script MAP_SCRIPT_ON_RESUME, TrainerHill_Entrance_OnResume
+	map_script MAP_SCRIPT_ON_RETURN_TO_FIELD, TrainerHill_Entrance_OnReturn
+	map_script MAP_SCRIPT_ON_TRANSITION, TrainerHill_Entrance_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, TrainerHill_Entrance_OnLoad
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, TrainerHill_Entrance_OnFrame
+	.byte 0
+
+TrainerHill_Entrance_OnTransition: @ 82680C6
+	setflag FLAG_LANDMARK_TRAINER_HILL
+	getplayerxy VAR_TEMP_D, VAR_RESULT
+	end
+
+@ Unused
+TrainerHill_Entrance_OnWarp: @ 82680CF
+	end
+
+TrainerHill_Entrance_OnResume: @ 82680D0
+	trainerhill_resumetimer
+	setvar VAR_TEMP_0, 0
+	trainerhill_getusingereader
+	compare VAR_RESULT, FALSE  @ VAR_RESULT always FALSE here
+	goto_if_eq TrainerHill_Entrance_EventScript_TryFaceAttendant
+	setobjectxy OBJ_EVENT_ID_PLAYER, 9, 6
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PlayerFaceAttendant
+	end
+
+TrainerHill_Entrance_EventScript_TryFaceAttendant:: @ 82680FF
+	trainerhill_getwon
+	compare VAR_RESULT, TRUE
+	goto_if_eq TrainerHill_Entrance_EventScript_PlayerDontFaceAttendant
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PlayerFaceAttendant
+	end
+
+TrainerHill_Entrance_EventScript_PlayerDontFaceAttendant:: @ 826811A
+	end
+
+TrainerHill_Entrance_OnReturn: @ 826811B
+	addobject LOCALID_NURSE
+	addobject LOCALID_ATTENDANT
+	addobject LOCALID_MAN
+	addobject LOCALID_GIRL
+	end
+
+TrainerHill_Entrance_OnLoad: @ 8268128
+	compare VAR_TEMP_D, 17
+	call_if_eq TrainerHill_Entrance_EventScript_OpenCounterDoor
+	end
+
+TrainerHill_Entrance_EventScript_OpenCounterDoor:: @ 8268134
+	setmetatile 17, 10, METATILE_TrainerHill_GreenFloorTile, 0
+	return
+
+TrainerHill_Entrance_OnFrame: @ 826813E
+	map_script_2 VAR_TEMP_0, 0, TrainerHill_Entrance_EventScript_ExitChallenge
+	map_script_2 VAR_TEMP_D, 17, TrainerHill_Entrance_EventScript_ExitElevator
+	map_script_2 VAR_TEMP_5, 1, TrainerHill_Entrance_EventScript_EntryTrigger
+	map_script_2 VAR_TEMP_1, 1, TrainerHill_EventScript_WarpToEntranceCounter
+	.2byte 0
+
+TrainerHill_Entrance_EventScript_ExitElevator:: @ 8268160
+	lockall
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PlayerExitElevator
+	waitmovement 0
+	setmetatile 17, 10, METATILE_TrainerHill_CounterDoor, 1
+	special DrawWholeMapView
+	playse SE_CLICK
+	waitse
+	setvar VAR_TEMP_D, 0
+	releaseall
+	end
+
+TrainerHill_Entrance_EventScript_ExitChallenge:: @ 8268182
+	setvar VAR_TEMP_0, 1
+	trainerhill_getstatus
+	switch VAR_RESULT
+	case TRAINER_HILL_PLAYER_STATUS_LOST, TrainerHill_Entrance_EventScript_ExitChallengeLost
+	case TRAINER_HILL_PLAYER_STATUS_ECARD_SCANNED, TrainerHill_Entrance_EventScript_ExitChallengeECard
+	case TRAINER_HILL_PLAYER_STATUS_NORMAL, TrainerHill_Entrance_EventScript_EndExitChallenge
+
+TrainerHill_Entrance_EventScript_ExitChallengeLost:: @ 82681B5
+	lockall
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PlayerFaceAttendant
+	msgbox TrainerHill_Entrance_Text_TooBadTremendousEffort, MSGBOX_DEFAULT
+	goto TrainerHill_Entrance_EventScript_PlayerExitChallenge
+
+TrainerHill_Entrance_EventScript_ExitChallengeECard:: @ 82681CA
+	lockall
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PlayerFaceAttendant
+	msgbox TrainerHill_Entrance_Text_MovedReceptionHereForSwitch, MSGBOX_DEFAULT
+TrainerHill_Entrance_EventScript_PlayerExitChallenge:: @ 82681DA
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+	waitmovement 0
+	setvar VAR_TRAINER_HILL_IS_ACTIVE, 0
+	special HealPlayerParty
+	releaseall
+TrainerHill_Entrance_EventScript_EndExitChallenge:: @ 82681EE
+	end
+
+TrainerHill_Entrance_EventScript_Nurse:: @ 82681EF
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+TrainerHill_Entrance_EventScript_Attendant:: @ 82681FD
+	lock
+	faceplayer
+	trainerhill_inchallenge
+	compare VAR_RESULT, FALSE
+	goto_if_eq TrainerHill_Entrance_EventScript_ThanksForPlaying
+	msgbox TrainerHill_Entrance_Text_HopeYouGiveItYourBest, MSGBOX_DEFAULT
+	goto TrainerHill_Entrance_EventScript_AttendantEnd
+
+TrainerHill_Entrance_EventScript_ThanksForPlaying:: @ 826821F
+	msgbox TrainerHill_Entrance_Text_ThankYouForPlaying, MSGBOX_DEFAULT
+TrainerHill_Entrance_EventScript_AttendantEnd:: @ 8268227
+	release
+	end
+
+TrainerHill_Entrance_EventScript_EntryTrigger:: @ 8268229
+	lockall
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PlayerFaceAttendant
+	@goto_if_unset FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_EventScript_Closed
+	@ Disable Trainer Hill until it's ready
+	goto TrainerHill_Entrance_EventScript_Closed
+	msgbox TrainerHill_Entrance_Text_WelcomeToTrainerHill, MSGBOX_DEFAULT
+	trainerhill_getsaved
+	compare VAR_RESULT, FALSE
+	call_if_eq TrainerHill_Entrance_EventScript_SaveGame
+	trainerhill_allfloorsused
+	compare VAR_RESULT, TRUE
+	goto_if_eq TrainerHill_Entrance_EventScript_AllFloorsUsed
+	msgbox TrainerHill_Entrance_Text_TrainersUpToFloorX, MSGBOX_DEFAULT
+	goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
+
+TrainerHill_Entrance_EventScript_AllFloorsUsed:: @ 8268275
+	msgbox TrainerHill_Entrance_Text_TrainersInEveryRoom, MSGBOX_DEFAULT
+TrainerHill_Entrance_EventScript_AskChallengeTrainers:: @ 826827D
+	message TrainerHill_Entrance_Text_LikeToChallengeTrainers
+	waitmessage
+	multichoice 15, 6, MULTI_YESNOINFO, FALSE
+	switch VAR_RESULT
+	case 0, TrainerHill_Entrance_EventScript_ChooseChallenge
+	case 1, TrainerHill_Entrance_EventScript_CancelEntry
+	case 2, TrainerHill_Entrance_EventScript_Info
+	case MULTI_B_PRESSED, TrainerHill_Entrance_EventScript_CancelEntry
+	end
+
+TrainerHill_Entrance_EventScript_Info:: @ 82682BA
+	msgbox TrainerHill_Entrance_Text_ExplainTrainerHill, MSGBOX_DEFAULT
+	goto TrainerHill_Entrance_EventScript_AskChallengeTrainers
+	end
+
+TrainerHill_Entrance_EventScript_ChooseChallenge:: @ 82682C8
+	multichoice 13, 2, MULTI_TAG_MATCH_TYPE, FALSE
+	switch VAR_RESULT
+	case 4, TrainerHill_Entrance_EventScript_CancelEntry
+	case MULTI_B_PRESSED, TrainerHill_Entrance_EventScript_CancelEntry
+	trainerhill_settag VAR_RESULT
+	setvar VAR_TRAINER_HILL_IS_ACTIVE, 1
+	setvar VAR_TEMP_5, 0
+	special HealPlayerParty
+	msgbox TrainerHill_Entrance_Text_TimeProgessGetSetGo, MSGBOX_DEFAULT
+	trainerhill_start
+	releaseall
+	end
+
+TrainerHill_Entrance_EventScript_CancelEntry:: @ 8268314
+	setvar VAR_TEMP_5, 0
+	msgbox TrainerHill_Entrance_Text_PleaseVisitUsAgain, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+	waitmovement 0
+	releaseall
+	end
+
+TrainerHill_Entrance_EventScript_SaveGame:: @ 826832E
+	msgbox TrainerHill_Entrance_Text_SaveGameBeforeEnter, MSGBOX_DEFAULT
+	trainerhill_setsaved
+	setvar VAR_TEMP_5, 1
+	call Common_EventScript_SaveGame
+	compare VAR_RESULT, FALSE
+	goto_if_eq TrainerHill_Entrance_EventScript_SaveFailed
+	trainerhill_setsaved
+	return
+
+TrainerHill_Entrance_EventScript_SaveFailed:: @ 826835C
+	trainerhill_clearsaved
+	goto TrainerHill_Entrance_EventScript_CancelEntry
+	end
+
+TrainerHill_Entrance_EventScript_Closed:: @ 826836A
+	msgbox TrainerHill_Entrance_Text_StillGettingReady, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_Movement_PushPlayerBackFromCounter
+	waitmovement 0
+	releaseall
+	end
+
+TrainerHill_Entrance_Movement_PlayerFaceAttendant: @ 826837F
+	face_right
+	step_end
+
+TrainerHill_Entrance_Movement_PushPlayerBackFromCounter: @ 8268381
+	walk_down
+	step_end
+
+@ Unused
+TrainerHill_Entrance_Movement_FaceUp: @ 8268383
+	face_up
+	step_end
+
+TrainerHill_Entrance_Movement_PlayerExitElevator: @ 8268385
+	walk_down
+	walk_down
+	step_end
+
+TrainerHill_Entrance_EventScript_Records:: @ 8268388
+	lockall
+	fadescreen FADE_TO_BLACK
+	special ShowTrainerHillRecords
+	waitstate
+	releaseall
+	end
+
+TrainerHill_Entrance_EventScript_Man:: @ 8268391
+	goto_if_unset FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_EventScript_ManTrainerHillClosed
+	msgbox TrainerHill_Entrance_Text_WhatSortOfTrainersAreAhead, MSGBOX_NPC
+	end
+
+TrainerHill_Entrance_EventScript_ManTrainerHillClosed:: @ 82683A3
+	msgbox TrainerHill_Entrance_Text_CantWaitToTestTheWaters, MSGBOX_NPC
+	end
+
+TrainerHill_Entrance_EventScript_Girl:: @ 82683AC
+	goto_if_unset FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_EventScript_GirlTrainerHillClosed
+	msgbox TrainerHill_Entrance_Text_FriendsTryingToReachTimeBoardTop, MSGBOX_NPC
+	end
+
+TrainerHill_Entrance_EventScript_GirlTrainerHillClosed:: @ 82683BE
+	msgbox TrainerHill_Entrance_Text_DoYouKnowWhenTheyOpen, MSGBOX_NPC
+	end
+
+TrainerHill_Entrance_EventScript_Clerk:: @ 82683C7
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	goto_if_set FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_EventScript_ExpandedPokemart
+	pokemart TrainerHill_Entrance_Pokemart_Basic
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+TrainerHill_Entrance_Pokemart_Basic: @ 82683E8
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_SP_ATK
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_NONE
+	release
+	end
+
+TrainerHill_Entrance_EventScript_ExpandedPokemart:: @ 8268402
+	pokemart TrainerHill_Entrance_Pokemart_Expanded
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+TrainerHill_Entrance_Pokemart_Expanded: @ 8268414
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_FULL_RESTORE
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_SP_ATK
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_NONE
+	release
+	end
+
+TrainerHill_Entrance_Text_StillGettingReady: @ 8268430
+	.string "这里是训练家之丘，\n"
+	.string "可以和许多训练家\p"
+	.string "享受双打对战。\n"
+	.string "很抱歉，我们还在\p"
+	.string "做准备工作。请稍后再来！$"
+
+TrainerHill_Entrance_Text_WelcomeToTrainerHill: @ 82684C6
+	.string "欢迎！\n"
+	.string "这里是训练家之丘，\p"
+	.string "可以和许多训练家\n"
+	.string "享受双打对战！$"
+
+TrainerHill_Entrance_Text_SaveGameBeforeEnter: @ 826851C
+	.string "是第一次来这里吗？\n"
+	.string "进去之前，请先\p"
+	.string "保存游戏。$"
+
+TrainerHill_Entrance_Text_TrainersUpToFloorX: @ 8268564
+	.string "让我看看……\n"
+	.string "现在这里的训练家是……\p"
+	.string "到第{STR_VAR_1}层为止。$"
+
+TrainerHill_Entrance_Text_TrainersInEveryRoom: @ 826859E
+	.string "让我看看……\n"
+	.string "现在这里的训练家是……\p"
+	.string "看来每个房间\n"
+	.string "都聚集了训练家。$"
+
+TrainerHill_Entrance_Text_LikeToChallengeTrainers: @ 82685F8
+	.string "您要挑战正在\n"
+	.string "等待的训练家吗？$"
+
+TrainerHill_Entrance_Text_TimeProgessGetSetGo: @ 826862A
+	.string "我来为您计时。\n"
+	.string "祝您好运！\p"
+	.string "各就各位……\n"
+	.string "预备……\p"
+	.string "跑！$"
+
+TrainerHill_Entrance_Text_PleaseVisitUsAgain: @ 826866F
+	.string "请下次再来！$"
+
+TrainerHill_Entrance_Text_TooBadTremendousEffort: @ 8268689
+	.string "太可惜了。\n"
+	.string "我想您在对战中付出了\p"
+	.string "极大的努力。\n"
+	.string "请再来挑战吧！$"
+
+TrainerHill_Entrance_Text_HopeYouGiveItYourBest: @ 82686F4
+	.string "但愿您全力以赴。$"
+
+TrainerHill_Entrance_Text_MovedReceptionHereForSwitch: @ 8268712
+	.string "训练家换位的时候，\n"
+	.string "场面会非常混乱。\p"
+	.string "为了避免拥挤，我们把\n"
+	.string "接待台搬到了这里。\p"
+	.string "给您添麻烦了。$"
+
+TrainerHill_Entrance_Text_ThankYouForPlaying: @ 82687AC
+	.string "谢谢游玩！$"
+
+TrainerHill_Entrance_Text_ExplainTrainerHill: @ 82687C3
+	.string "在训练家之丘，我们举办\n"
+	.string "名为“计时赛”的活动。\p"
+	.string "这是一场竞赛，测量您从\n"
+	.string "这个柜台出发，到屋顶上\p"
+	.string "见到丘主需要多久。\n"
+	.string "最快的纪录会公布在\p"
+	.string "时间板上，和朋友们\n"
+	.string "比一比吧。\p"
+	.string "途中与训练家对战时，\n"
+	.string "不会获得经验和金钱。$"
+
+@ Unused
+TrainerHill_Entrance_Text_NeedAtLeastTwoPokemon: @ 826890D
+	.string "哦，很抱歉，您身上\n"
+	.string "好像只有一只宝可梦。\p"
+	.string "参加这个活动至少\n"
+	.string "需要两只宝可梦。$"
+
+TrainerHill_Roof_Text_YouFinallyCameBravo: @ 8268986
+	.string "嗯！嗯！\n"
+	.string "你终于来了！\p"
+	.string "对，你来了！\n"
+	.string "等等！别说！\p"
+	.string "我知道你为什么\n"
+	.string "一个人跑这么远来！\p"
+	.string "你是想见训练家之丘的\n"
+	.string "丘主我，因为……\p"
+	.string "你想和我组成双打搭档！\n"
+	.string "哇呼！\p"
+	.string "……呃？\n"
+	.string "不是？\p"
+	.string "总之，我在你上来时\n"
+	.string "一直看着。对战很精彩！\p"
+	.string "真是了不起！$"
+
+TrainerHill_Roof_Text_HaveTheMostMarvelousGift: @ 8268AC5
+	.string "像你这样了不起的人，\n"
+	.string "我有一份最了不起的礼物！$"
+
+TrainerHill_Roof_Text_FullUpBeBackLaterForThis: @ 8268B07
+	.string "哦，不行，东西都满了！\n"
+	.string "你晚点再来拿这个！$"
+
+TrainerHill_Roof_Text_GotHereMarvelouslyQuickly: @ 8268B43
+	.string "哦，等等！你是不是\n"
+	.string "快得惊人地到了这儿？\p"
+	.string "太棒了！你不用为了见我\n"
+	.string "赶得这么急！\p"
+	.string "太让人高兴了。我这就去\n"
+	.string "更新接待台的时间板！$"
+
+TrainerHill_Roof_Text_YouWerentVeryQuick: @ 8268C03
+	.string "不过，哦……\n"
+	.string "你上来得不算快。$"
+
+TrainerHill_Roof_Text_ArriveZippierNextTime: @ 8268C31
+	.string "下次你要是能更利落地\n"
+	.string "到达，我会更高兴。\p"
+	.string "那样的话，我就乐意\n"
+	.string "和你组成双打搭档！\p"
+	.string "后会有期，朋友！$"
+
+@ Unused
+TrainerHill_Roof_Text_BuiltTrainerHillToFindPartner: @ 8268CC6
+	.string "我建这座训练家之丘，\n"
+	.string "只为了一个理由！\p"
+	.string "找到最适合和我组成\n"
+	.string "双打搭档的人！$"
+
+TrainerHill_Entrance_Text_ChallengeTime: @ 8268D47
+	.string "{STR_VAR_1}分{STR_VAR_2}.{STR_VAR_3}秒$"
+
+TrainerHill_Entrance_Text_WhatSortOfTrainersAreAhead: @ 8268D5A
+	.string "谁知道前面有什么样的\n"
+	.string "训练家和宝可梦组合？\p"
+	.string "我只知道，挡我路的人\n"
+	.string "我都会一把推开！$"
+
+TrainerHill_Entrance_Text_CantWaitToTestTheWaters: @ 8268DDA
+	.string "听说各地的强手\n"
+	.string "都会来这座训练家之丘。\p"
+	.string "我迫不及待想试试水！\n"
+	.string "挡我路的人我都会推开！$"
+
+TrainerHill_Entrance_Text_FriendsTryingToReachTimeBoardTop: @ 8268E6A
+	.string "你看到那边的时间板了吗？\n"
+	.string "我和朋友们正在比谁的\p"
+	.string "登顶时间最短。$"
+
+TrainerHill_Entrance_Text_DoYouKnowWhenTheyOpen: @ 8268EDC
+	.string "你知道这里什么时候\n"
+	.string "开放吗？\p"
+	.string "我在这儿等着，\n"
+	.string "要当第一个挑战者！$"
+
+TrainerHill_Elevator_Text_ReturnToReception: @ 8268F3E
+	.string "您要回到\n"
+	.string "接待台吗？$"
+`

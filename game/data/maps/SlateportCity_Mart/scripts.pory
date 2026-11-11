@@ -1,0 +1,48 @@
+raw `
+SlateportCity_Mart_MapScripts:: @ 820DC48
+	.byte 0
+
+SlateportCity_Mart_EventScript_Clerk:: @ 820DC49
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart SlateportCity_Mart_Pokemart
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_Mart_Pokemart:
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_WATER_STONE
+	.2byte ITEM_LEAF_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_ICE_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_OVAL_STONE
+	.2byte ITEM_NONE
+	release
+	end
+
+SlateportCity_Mart_EventScript_BlackBelt:: @ 820DC76
+	msgbox SlateportCity_Mart_Text_SomeItemsOnlyAtMart, MSGBOX_NPC
+	end
+
+SlateportCity_Mart_EventScript_Man:: @ 820DC7F
+	msgbox SlateportCity_Mart_Text_GreatBallIsBetter, MSGBOX_NPC
+	end
+
+SlateportCity_Mart_Text_SomeItemsOnlyAtMart: @ 820DC88
+	.string "市场确实有些\n"
+	.string "有意思的商品。\p"
+	.string "但有些道具只有在\n"
+	.string "宝可梦商店才买得到。$"
+
+SlateportCity_Mart_Text_GreatBallIsBetter: @ 820DCF8
+	.string "超级球比精灵球\n"
+	.string "更容易抓到宝可梦。\p"
+	.string "有了这个，我应该能抓到\n"
+	.string "那只难缠的宝可梦……$"
+
+`

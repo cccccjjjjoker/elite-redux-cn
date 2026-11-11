@@ -1,0 +1,185 @@
+raw `
+VerdanturfTown_FriendshipRatersHouse_MapScripts:: @ 8203030
+	.byte 0
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_FriendshipRater:: @ 8203031
+	lock
+	faceplayer
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_SeeHowMuchPokemonLikesYou, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, GetLeadMonFriendshipScore
+	switch VAR_RESULT
+	case 0, VerdanturfTown_FriendshipRatersHouse_EventScript_DetestsYou
+	case 1, VerdanturfTown_FriendshipRatersHouse_EventScript_VeryWary
+	case 2, VerdanturfTown_FriendshipRatersHouse_EventScript_NotUsedToYou
+	case 3, VerdanturfTown_FriendshipRatersHouse_EventScript_GettingUsedToYou
+	case 4, VerdanturfTown_FriendshipRatersHouse_EventScript_LikesYouQuiteALot
+	case 5, VerdanturfTown_FriendshipRatersHouse_EventScript_VeryHappy
+	case 6, VerdanturfTown_FriendshipRatersHouse_EventScript_AdoresYou
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_DetestsYou:: @ 8203094
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_DetestsYou, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_VeryWary:: @ 820309E
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_VeryWary, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_NotUsedToYou:: @ 82030A8
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_NotUsedToYou, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_GettingUsedToYou:: @ 82030B2
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_GettingUsedToYou, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_LikesYouQuiteALot:: @ 82030BC
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_LikesYouQuiteALot, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_VeryHappy:: @ 82030C6
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_VeryHappy, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_AdoresYou:: @ 82030D0
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_AdoresYou, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_Pikachu:: @ 82030DA
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PIKACHU, 0
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_Pikachu, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_Trader:: @ 8203C11
+	lock
+	faceplayer
+	goto_if_set FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED, VerdanturfTown_FriendshipRatersHouse_EventScript_TradeCompleted
+	setvar VAR_0x8008, INGAME_TRADE_HAPPINY
+	copyvar VAR_0x8004, VAR_0x8008
+	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	copyvar VAR_0x8009, VAR_RESULT
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_WillingToTradeIt, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq VerdanturfTown_FriendshipRatersHouse_EventScript_DeclineTrade
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_0x800A, VAR_0x8004
+	compare VAR_0x8004, 255
+	goto_if_eq VerdanturfTown_FriendshipRatersHouse_EventScript_DeclineTrade
+	copyvar VAR_0x8005, VAR_0x800A
+	specialvar VAR_RESULT, GetTradeSpecies
+	copyvar VAR_0x800B, VAR_RESULT
+	compare VAR_RESULT, VAR_0x8009
+	goto_if_ne VerdanturfTown_FriendshipRatersHouse_EventScript_NotRequestedMon
+	copyvar VAR_0x8004, VAR_0x8008
+	copyvar VAR_0x8005, VAR_0x800A
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	bufferspeciesname 0, VAR_0x8009
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_ItsSubtlyDifferentThankYou, MSGBOX_DEFAULT
+	setflag FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_DeclineTrade:: @ 8203C93
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_NotDesperateOrAnything, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_NotRequestedMon:: @ 8203C9D
+	bufferspeciesname 0, VAR_0x8009
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_WontAcceptAnyLessThanRealMon, MSGBOX_DEFAULT
+	release
+	end
+
+VerdanturfTown_FriendshipRatersHouse_EventScript_TradeCompleted:: @ 8203CAB
+	msgbox VerdanturfTown_FriendshipRatersHouse_Text_ReallyWantedToGetBagon, MSGBOX_DEFAULT
+	release
+	end
+	
+VerdanturfTown_FriendshipRatersHouse_Text_WillingToTradeIt: @ 8203CBE
+	.string "看看这只{STR_VAR_2}！\n"
+	.string "这是我昨天为了庆祝生日\p"
+	.string "抓到的{STR_VAR_2}！\n"
+	.string "哦，我看得出你想要它！\p"
+	.string "毕竟它无价啊！\n"
+	.string "这样吧。我或许愿意\p"
+	.string "用{STR_VAR_1}跟你换。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_ItsSubtlyDifferentThankYou: @ 8203D87
+	.string "哦，这就是{STR_VAR_1}？\n"
+	.string "它有点像{STR_VAR_2}，\p"
+	.string "可又有细微的不同。\n"
+	.string "谢谢你！$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_WontAcceptAnyLessThanRealMon: @ 8203DDE
+	.string "不行不行不行！\n"
+	.string "不是真正的{STR_VAR_1}，我可不收！$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_NotDesperateOrAnything: @ 8203E12
+	.string "哦，那你不换了？\n"
+	.string "没关系。我也不是\p"
+	.string "非换不可。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_ReallyWantedToGetBagon: @ 8203E7F
+	.string "我知道自己也能去找一只，\n"
+	.string "可是……\p"
+	.string "我真的很想要一只别的\n"
+	.string "训练家抓到的拳海参……$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_SeeHowMuchPokemonLikesYou: @ 82030ED
+	.string "让我看看你的宝可梦。\n"
+	.string "我来查查它多喜欢你。\p"
+	.string "哦。\n"
+	.string "你的宝可梦……$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_AdoresYou: @ 8203141
+	.string "它非常爱你。\n"
+	.string "它不可能更爱你了。\p"
+	.string "看着它连我都觉得幸福。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_VeryHappy: @ 8203192
+	.string "它看起来非常开心。\n"
+	.string "它显然很喜欢你。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_LikesYouQuiteALot: @ 82031D1
+	.string "它挺喜欢你的。\n"
+	.string "看起来还想撒撒娇。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_GettingUsedToYou: @ 8203213
+	.string "它开始习惯你了。\n"
+	.string "它似乎信任你。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_NotUsedToYou: @ 8203249
+	.string "它还不太习惯你。\n"
+	.string "既不喜欢也不讨厌你。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_VeryWary: @ 8203288
+	.string "它很警惕。\n"
+	.string "眼神里带着可怕的凶气。\p"
+	.string "它一点也不喜欢你。$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_DetestsYou: @ 82032DF
+	.string "这话有点难开口……\n"
+	.string "你的宝可梦就是讨厌你。\p"
+	.string "你不觉得难受吗？$"
+
+VerdanturfTown_FriendshipRatersHouse_Text_Pikachu: @ 820334A
+	.string "皮卡丘：皮卡皮卡！$"
+
+`

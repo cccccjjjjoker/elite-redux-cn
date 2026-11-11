@@ -1,0 +1,21 @@
+raw `
+RustboroCity_Flat2_3F_MapScripts:: @ 8216116
+	.byte 0
+
+RustboroCity_Flat2_3F_EventScript_DevonEmployee:: @ 8216117
+	msgbox RustboroCity_Flat2_3F_Text_PresidentCollectsRareStones, MSGBOX_NPC
+	end
+
+RustboroCity_Flat2_3F_EventScript_Woman:: @ 8216120
+	msgbox RustboroCity_Flat2_3F_Text_PresidentsSonAlsoCollectsRareStones, MSGBOX_NPC
+	end
+
+RustboroCity_Flat2_3F_Text_PresidentCollectsRareStones: @ 8216129
+	.string "得文的社长喜欢\n"
+	.string "收集稀有石头。$"
+
+RustboroCity_Flat2_3F_Text_PresidentsSonAlsoCollectsRareStones: @ 8216159
+	.string "我想社长的儿子\n"
+	.string "也在收集稀有石头。$"
+
+`

@@ -1,0 +1,39 @@
+raw `
+SootopolisCity_House4_MapScripts:: @ 8226D15
+	.byte 0
+
+SootopolisCity_House4_EventScript_Man:: @ 8226D16
+	msgbox SootopolisCity_House4_Text_AncientTreasuresWaitingInSea, MSGBOX_NPC
+	end
+
+SootopolisCity_House4_EventScript_Woman:: @ 8226D1F
+	msgbox SootopolisCity_House4_Text_StrollUnderwaterWithPokemon, MSGBOX_NPC
+	end
+
+SootopolisCity_House4_EventScript_Azumarill:: @ 8226D28
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 0
+	msgbox SootopolisCity_House4_Text_Azumarill, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+SootopolisCity_House4_Text_AncientTreasuresWaitingInSea: @ 8226D3B
+	.string "听好了，我告诉你件好事。\n"
+	.string "这附近的海里应该有一处\p"
+	.string "古代遗迹。\n"
+	.string "那下面也许正有宝物\p"
+	.string "等着被发现。$"
+
+SootopolisCity_House4_Text_StrollUnderwaterWithPokemon: @ 8226DEA
+	.string "古代宝物……\n"
+	.string "要是真有就好了，\p"
+	.string "可就算没有，和宝可梦一起\n"
+	.string "在海底散步也会很美。$"
+
+SootopolisCity_House4_Text_Azumarill: @ 8226E7F
+	.string "玛力露丽：玛丽哩。$"
+
+`

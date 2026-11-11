@@ -1,0 +1,170 @@
+raw `
+LilycoveCity_House3_MapScripts:: @ 821EE3C
+	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_House3_OnTransition
+	.byte 0
+
+LilycoveCity_House3_OnTransition: @ 821EE42
+	random 4
+	copyvar VAR_TEMP_1, VAR_RESULT
+	end
+
+LilycoveCity_House3_EventScript_PokefanF:: @ 821EE4B
+	lock
+	faceplayer
+	msgbox LilycoveCity_House3_Text_LearnFromMasterOfPokeblocks, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LilycoveCity_House3_EventScript_DeclinePokeblockLearn
+	msgbox LilycoveCity_House3_Text_ExplainPokeblocks, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_House3_EventScript_DeclinePokeblockLearn:: @ 821EE75
+	msgbox LilycoveCity_House3_Text_OhAreYouSure, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_House3_EventScript_Man:: @ 821EE8A
+	lock
+	faceplayer
+	msgbox LilycoveCity_House3_Text_HappyToHaveQuadruplets, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+LilycoveCity_House3_EventScript_GameBoyKid1:: @ 821EEA1
+	lock
+	faceplayer
+	switch VAR_TEMP_1
+	case 0, LilycoveCity_House3_EventScript_WereDoingMultiBattle
+	case 1, LilycoveCity_House3_EventScript_WereMixingRecords
+	case 2, LilycoveCity_House3_EventScript_WereBlendingBerries
+	case 3, LilycoveCity_House3_EventScript_WereDoingContest
+	end
+
+LilycoveCity_House3_EventScript_GameBoyKid2:: @ 821EED5
+	lock
+	faceplayer
+	switch VAR_TEMP_1
+	case 0, LilycoveCity_House3_EventScript_WereDoingMultiBattle
+	case 1, LilycoveCity_House3_EventScript_WereMixingRecords
+	case 2, LilycoveCity_House3_EventScript_WereBlendingBerries
+	case 3, LilycoveCity_House3_EventScript_WereDoingContest
+	end
+
+LilycoveCity_House3_EventScript_GameBoyKid3:: @ 821EF09
+	lock
+	faceplayer
+	switch VAR_TEMP_1
+	case 0, LilycoveCity_House3_EventScript_WereDoingMultiBattle
+	case 1, LilycoveCity_House3_EventScript_WereMixingRecords
+	case 2, LilycoveCity_House3_EventScript_WereBlendingBerries
+	case 3, LilycoveCity_House3_EventScript_WereDoingContest
+	end
+
+LilycoveCity_House3_EventScript_GameBoyKid4:: @ 821EF3D
+	lock
+	faceplayer
+	switch VAR_TEMP_1
+	case 0, LilycoveCity_House3_EventScript_WereDoingMultiBattle
+	case 1, LilycoveCity_House3_EventScript_WereMixingRecords
+	case 2, LilycoveCity_House3_EventScript_WereBlendingBerries
+	case 3, LilycoveCity_House3_EventScript_WereDoingContest
+	end
+
+LilycoveCity_House3_EventScript_WereDoingMultiBattle:: @ 821EF71
+	msgbox LilycoveCity_House3_Text_GoingToWinMultiBattles, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_House3_EventScript_WereMixingRecords:: @ 821EF7B
+	msgbox LilycoveCity_House3_Text_LikeMixingAtRecordCorner, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_House3_EventScript_WereBlendingBerries:: @ 821EF85
+	msgbox LilycoveCity_House3_Text_MakePokeblocksWithBerryBlender, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_House3_EventScript_WereDoingContest:: @ 821EF8F
+	msgbox LilycoveCity_House3_Text_GoingToEnterContest, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_House3_Text_LearnFromMasterOfPokeblocks: @ 821EF99
+	.string "哎呀呀！你一个人旅行？\n"
+	.string "可你还这么小！真了不起！\p"
+	.string "我家孩子们真该跟你\n"
+	.string "学一两招！\p"
+	.string "我？我可是{POKEBLOCK}大师。\n"
+	.string "只要我稍微认真一点，\p"
+	.string "就能做出很棒的{POKEBLOCK}。\n"
+	.string "想跟{POKEBLOCK}大师我\p"
+	.string "学一手吗？$"
+
+LilycoveCity_House3_Text_OhAreYouSure: @ 821F0A9
+	.string "哦？你确定？\n"
+	.string "孩子，什么事都自己扛\p"
+	.string "可不好啊！$"
+
+LilycoveCity_House3_Text_ExplainPokeblocks: @ 821F0F8
+	.string "哦，好！你是个聪明的孩子！\n"
+	.string "这话有点长，听好了！\p"
+	.string "准备好了吗？\n"
+	.string "看{POKEBLOCK}的时候，你会看到\p"
+	.string "上面标着口感数值。\n"
+	.string "口感数值越低越好。\p"
+	.string "这点别忘了！\n"
+	.string "好的{POKEBLOCK}口感低，\p"
+	.string "等级高。\n"
+	.string "宝可梦能吃下的好{POKEBLOCK}\p"
+	.string "也比普通的更多。\n"
+	.string "还有很重要的一点。\p"
+	.string "想做出口感顺滑的{POKEBLOCK}，\n"
+	.string "就用不同种类的树果。\p"
+	.string "别小气……树果的种类\n"
+	.string "会影响{POKEBLOCK}的顺滑度。\p"
+	.string "还有一件事。\n"
+	.string "一起搅拌树果的人越多，\p"
+	.string "{POKEBLOCK}就越顺滑。\n"
+	.string "所以该多跟别人说话，\p"
+	.string "一起做{POKEBLOCK}。\n"
+	.string "做好{POKEBLOCK}要知道的，\p"
+	.string "大概就这些。\n"
+	.string "要是每个人都有心爱的宝可梦、\p"
+	.string "顺滑的{POKEBLOCK}和温暖的家，\n"
+	.string "世界会幸福得多。\p"
+	.string "别放弃啊，孩子！$"
+
+LilycoveCity_House3_Text_HappyToHaveQuadruplets: @ 821F430
+	.string "我妻子生下四胞胎的时候，\n"
+	.string "我真是吓了一跳。\p"
+	.string "可现在看他们一起玩，\n"
+	.string "我就觉得很幸福。$"
+
+LilycoveCity_House3_Text_GoingToWinMultiBattles: @ 821F4A7
+	.string "我们在打多人对战，\n"
+	.string "但我知道我会赢。$"
+
+LilycoveCity_House3_Text_LikeMixingAtRecordCorner: @ 821F4E0
+	.string "我们喜欢在记录角\n"
+	.string "混合东西。\p"
+	.string "可混出来的到底是什么？$"
+
+LilycoveCity_House3_Text_MakePokeblocksWithBerryBlender: @ 821F523
+	.string "我们要用树果搅拌机\n"
+	.string "做出超级{POKEBLOCK}！$"
+
+LilycoveCity_House3_Text_GoingToEnterContest: @ 821F55A
+	.string "我想炫耀我的宝可梦有多强，\n"
+	.string "所以我们要一起参加华丽大赛。$"
+
+`

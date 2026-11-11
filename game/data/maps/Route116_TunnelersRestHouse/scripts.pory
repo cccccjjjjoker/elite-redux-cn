@@ -1,0 +1,61 @@
+raw `
+Route116_TunnelersRestHouse_MapScripts:: @ 822B850
+	map_script MAP_SCRIPT_ON_TRANSITION, Route116_TunnelersRestHouse_OnTransition
+	.byte 0
+
+Route116_TunnelersRestHouse_OnTransition: @ 822B856
+	setflag FLAG_LANDMARK_TUNNELERS_REST_HOUSE
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler1:: @ 822B85A
+	msgbox Route116_TunnelersRestHouse_Text_WeHadToStopBoring, MSGBOX_NPC
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler2:: @ 822B863
+	msgbox Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf, MSGBOX_NPC
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler3:: @ 822B86C
+	lock
+	faceplayer
+	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, Route116_TunnelersRestHouse_EventScript_TunnelOpened
+	msgbox Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_TunnelersRestHouse_EventScript_TunnelOpened:: @ 822B881
+	msgbox Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_TunnelersRestHouse_Text_WeHadToStopBoring: @ 822B88B
+	.string "那条卡那兹隧道……\n"
+	.string "一开始我们用最新的机械，\p"
+	.string "派了大批工人钻岩。\n"
+	.string "但我们不得不停下来。\p"
+	.string "结果发现，那样会对这一带的\n"
+	.string "野生宝可梦造成不好的影响。\p"
+	.string "所以我们现在没事可做，\n"
+	.string "只能在这儿闲晃。$"
+
+Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf: @ 822B99F
+	.string "有个男人正一个人往绿茵镇挖。\n"
+	.string "他拼了命想挖通。\p"
+	.string "他说如果不用机械、一点一点挖，\n"
+	.string "就不会打扰宝可梦，\p"
+	.string "也不会破坏自然环境。\n"
+	.string "不知道他挖通了没有。$"
+
+Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel: @ 822BAAF
+	.string "要是不走这条隧道去绿茵镇，\n"
+	.string "就得渡海到武斗镇，\p"
+	.string "再坐船到凯那市，\n"
+	.string "然后穿过紫堇市。$"
+
+Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough: @ 822BB3B
+	.string "你听说了吗？\n"
+	.string "通往绿茵镇的隧道挖通了！\p"
+	.string "有时候，只要你相信得够深，\n"
+	.string "梦想真的会实现。$"
+
+`

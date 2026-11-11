@@ -1,0 +1,146 @@
+raw `
+EverGrandeCity_GlaciasRoom_MapScripts:: @ 8228412
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_GlaciasRoom_OnFrame
+	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_GlaciasRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_GlaciasRoom_OnWarp
+	.byte 0
+
+EverGrandeCity_GlaciasRoom_OnWarp: @ 8228422
+	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_GlaciasRoom_EventScript_PlayerTurnNorth
+	.2byte 0
+
+EverGrandeCity_GlaciasRoom_EventScript_PlayerTurnNorth:: @ 822842C
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+EverGrandeCity_GlaciasRoom_OnFrame: @ 8228431
+	map_script_2 VAR_ELITE_4_STATE, 2, EverGrandeCity_GlaciasRoom_EventScript_WalkInCloseDoor
+	.2byte 0
+
+EverGrandeCity_GlaciasRoom_EventScript_WalkInCloseDoor:: @ 822843B
+	lockall
+	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+	setvar VAR_ELITE_4_STATE, 3
+	releaseall
+	end
+
+EverGrandeCity_GlaciasRoom_OnLoad: @ 8228448
+	call_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_ResetAdvanceToNextRoom
+	compare VAR_ELITE_4_STATE, 3
+	call_if_eq EverGrandeCity_GlaciasRoom_EventScript_CloseDoor
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_ResetAdvanceToNextRoom:: @ 822845D
+	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+	return
+
+EverGrandeCity_GlaciasRoom_EventScript_CloseDoor:: @ 8228463
+	call PokemonLeague_EliteFour_EventScript_CloseDoor
+	return
+
+EverGrandeCity_GlaciasRoom_EventScript_Glacia:: @ 8228469
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, EverGrandeCity_GlaciasRoom_EventScript_GlaciaRematch
+	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox EverGrandeCity_GlaciasRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
+	goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_GlaciaRematch::
+	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeechRematch
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
+	msgbox EverGrandeCity_GlaciasRoom_Text_IntroSpeechRematch, MSGBOX_DEFAULT
+	switch VAR_ELITE_4_MODE
+	case 0, EverGrandeCity_GlaciasRoom_EventScript_GlaciaSingles
+	case 1, EverGrandeCity_GlaciasRoom_EventScript_GlaciaSinglesLegends
+	case 2, EverGrandeCity_GlaciasRoom_EventScript_GlaciaDoubles
+	case 3, EverGrandeCity_GlaciasRoom_EventScript_GlaciaDoublesLegends
+
+EverGrandeCity_GlaciasRoom_EventScript_GlaciaSingles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
+	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_GlaciaSinglesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_GLACIA_3, EverGrandeCity_GlaciasRoom_Text_Defeat
+	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_GlaciaDoubles::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_GLACIA_2, EverGrandeCity_GlaciasRoom_Text_Defeat
+	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_GlaciaDoublesLegends::
+	setvar VAR_0x8004, 30
+	trainerbattle_no_intro TRAINER_GLACIA_4, EverGrandeCity_GlaciasRoom_Text_Defeat
+	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech:: @ 8228490
+	msgbox EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeechRematch::
+	msgbox EverGrandeCity_GlaciasRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_Defeated:: @ 822849A
+	setflag FLAG_DEFEATED_ELITE_4_GLACIA
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch::
+	setflag FLAG_DEFEATED_ELITE_4_GLACIA
+	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+	msgbox EverGrandeCity_GlaciasRoom_Text_PostBattleSpeechRematch, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_GlaciasRoom_Text_IntroSpeech: @ 82284AC
+	.string "欢迎，我是四天王的波妮。\n"
+	.string "我从远方来到丰缘，\p"
+	.string "只为磨练我的冰之技巧。\n"
+	.string "可我见到的全是软弱的训练家\p"
+	.string "和他们的宝可梦的挑战。\n"
+	.string "你呢？\p"
+	.string "要是能和你全力一战，\n"
+	.string "我会高兴得不得了！$"
+
+EverGrandeCity_GlaciasRoom_Text_Defeat: @ 82285B4
+	.string "你和你的宝可梦……\n"
+	.string "斗志烧得多旺！\p"
+	.string "那吞噬一切的热量\n"
+	.string "把我压倒了。\p"
+	.string "我的冰之技巧伤不到你，\n"
+	.string "一点也不奇怪。$"
+
+EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech: @ 8228640
+	.string "前往下一个房间吧。\n"
+	.string "在那里，去确认宝可梦联盟\p"
+	.string "真正可怕的一面。$"
+
+EverGrandeCity_GlaciasRoom_Text_IntroSpeechRematch:
+	.string "我一直在等一位灵魂\n"
+	.string "炽热燃烧的训练家。\p"
+	.string "你能对抗得了\n"
+	.string "能冻结一切的超级进化吗？$"
+
+EverGrandeCity_GlaciasRoom_Text_PostBattleSpeechRematch:
+	.string "哼……\n"
+	.string "你是打算连我的心也融化吗？\p"
+	.string "那其实也无妨。\n"
+	.string "总之，继续往前吧！\p"
+	.string "源治也在等你。$"
+`

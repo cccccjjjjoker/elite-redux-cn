@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package er;
+
+import "ItemEnum.proto";
+import "Types.proto";
+import "MoveEffect.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+enum HoldEffect {
+  HOLD_EFFECT_NONE = 0;
+  HOLD_EFFECT_CUSTOM = 1;
+  HOLD_EFFECT_RESTORE_HP = 2;
+  HOLD_EFFECT_EVASION_UP = 3;
+  HOLD_EFFECT_FLINCH = 4;
+  HOLD_EFFECT_REPEL = 5;
+  HOLD_EFFECT_SCOPE_LENS = 6;
+  HOLD_EFFECT_RESIST_BERRY = 7;
+  HOLD_EFFECT_TYPE_POWER = 8;
+  HOLD_EFFECT_POWER_ITEM = 9;
+  HOLD_EFFECT_LAGGING_TAIL = 10;
+  HOLD_EFFECT_PRIMAL_ORB = 11;
+  HOLD_EFFECT_MEMORY = 12;
+  HOLD_EFFECT_PLATE = 13;
+  HOLD_EFFECT_DRIVE = 14;
+  HOLD_EFFECT_GEMS = 15;
+  HOLD_EFFECT_MEGA_STONE = 16;
+  HOLD_EFFECT_SEEDS = 17;
+  HOLD_EFFECT_Z_CRYSTAL = 18;
+  HOLD_EFFECT_MASK = 19;
+}
+
+enum UseType {
+  ITEM_USE_BAG_MENU = 0;
+  ITEM_USE_MAIL = 1;
+  ITEM_USE_FIELD = 2;
+  ITEM_USE_PBLOCK_CASE = 3;
+  ITEM_USE_PARTY_MENU = 4;
+}
+
+enum Pocket {
+  POCKET_NONE = 0;
+  POCKET_ITEMS = 1;
+  POCKET_MEDICINE = 2;
+  POCKET_BATTLE = 3;
+  POCKET_TM_HM = 4;
+  POCKET_BERRIES = 5;
+  POCKET_POKE_BALLS = 6;
+  POCKET_KEY_ITEMS = 7;
+  POCKET_MEGA_STONES = 8;
+}
+
+message NaturalGiftEffect {
+  int32 power = 1;
+  Type type = 2;
+  MoveEffect effect = 3;
+  bool affects_user = 4;
+  bool certain = 5;
+  int32 priority = 6;
+}
+
+message ItemList {
+  repeated Item item = 1;
+}
+
+message Item {
+  ItemEnum id = 1;
+  string name = 2;
+  string description = 3;
+  int32 mega_badge_requirement = 4;
+  oneof mega_stone_hint {
+    bool talk_to_nurse_joy = 5;
+     bool adoption_center = 6;
+    bool talk_to_legendary_sage = 7;
+     string unique_mega_location = 8;
+  }
+  int32 bp_price = 9;
+  Pocket grouping = 10;
+  HoldEffect hold_effect = 11;
+  string hold_effect_alias = 12;
+  int32 hold_effect_strength = 13;
+  Type hold_effect_type = 14;
+  string hold_effect_misc_param = 15;
+  UseType use_type = 16;
+  string image = 17;
+  string palette = 18;
+  string field_use_func = 19;
+  string battle_use_func = 20;
+  NaturalGiftEffect natural_gift = 21;
+}

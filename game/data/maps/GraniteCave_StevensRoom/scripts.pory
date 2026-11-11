@@ -1,0 +1,138 @@
+raw `
+.set LOCALID_STEVEN, 1
+
+GraniteCave_StevensRoom_MapScripts:: @ 822DC7A
+	.byte 0
+
+GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
+	msgbox GraniteCave_StevensRoom_Text_ImStevenLetterForMe, MSGBOX_DEFAULT
+	setvar VAR_0x8004, ITEM_LETTER
+	call Common_EventScript_PlayerHandedOverTheItem
+	setflag FLAG_DELIVERED_STEVEN_LETTER
+	msgbox GraniteCave_StevensRoom_Text_ThankYouTakeThis, MSGBOX_DEFAULT
+	givemon SPECIES_HONEDGE, 20, ITEM_BERRY_JUICE
+	playfanfare MUS_OBTAIN_ITEM
+	message GraniteCave_StevensRoom_Text_ObtainedHonedge
+	waitfanfare
+	waitmessage
+	msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
+	closemessage
+	@ delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox GraniteCave_StevensRoom_Text_RegisteredSteven, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_REGISTERED_STEVEN_POKENAV
+	msgbox GraniteCave_StevensRoom_Text_IveGotToHurryAlong, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq GraniteCave_StevensRoom_EventScript_StevenExitNorth
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq GraniteCave_StevensRoom_EventScript_StevenExitSouth
+	compare VAR_FACING, DIR_WEST
+	call_if_eq GraniteCave_StevensRoom_EventScript_StevenExitWestEast
+	compare VAR_FACING, DIR_EAST
+	call_if_eq GraniteCave_StevensRoom_EventScript_StevenExitWestEast
+	playse SE_EXIT
+	removeobject LOCALID_STEVEN
+	release
+	end
+
+
+GraniteCave_StevensRoom_Text_ObtainedHonedge::
+	.string "{PLAYER}得到了{COLOR BLUE}独剑鞘{COLOR DARK_GRAY}作为礼物！$"
+
+GraniteCave_StevensRoom_EventScript_StevenExitNorth:: @ 822DD0D
+	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
+	waitmovement 0
+	return
+
+GraniteCave_StevensRoom_EventScript_StevenExitWestEast:: @ 822DD18
+	applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
+	waitmovement 0
+	return
+
+GraniteCave_StevensRoom_EventScript_StevenExitSouth:: @ 822DD2A
+	applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExitSouth
+	waitmovement 0
+	return
+
+GraniteCave_StevensRoom_EventScript_BagFull:: @ 822DD3C
+	msgbox GraniteCave_StevensRoom_Text_OhBagIsFull, MSGBOX_DEFAULT
+	return
+
+GraniteCave_StevensRoom_Movement_StevenExit: @ 822DD45
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	delay_8
+	step_end
+
+GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit: @ 822DD4C
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fastest_up
+	step_end
+
+GraniteCave_StevensRoom_Movement_StevenExitSouth: @ 822DD51
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_up
+	walk_up
+	delay_8
+	step_end
+
+GraniteCave_StevensRoom_Text_ImStevenLetterForMe: @ 822DD5A
+	.string "我叫大吾。\n"
+	.string "我对稀有的石头很感兴趣，\p"
+	.string "所以到处旅行。\n"
+	.string "哦？\p"
+	.string "给我的信？$"
+
+GraniteCave_StevensRoom_Text_ThankYouTakeThis: @ 822DDBD
+	.string "大吾：好，谢谢你。\n"
+	.string "你费了这么多工夫送来，\p"
+	.string "我得好好谢你。\n"
+	.string "让我想想……\p"
+	.string "这个给你！\n"
+	.string "它进化之后很强，\p"
+	.string "以后应该会派上用场。$"
+
+GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister: @ 822DE6B
+	.string "大吾：你的宝可梦看起来\n"
+	.string "相当有实力。\p"
+	.string "继续修行下去，说不定\n"
+	.string "有一天你能成为宝可梦联盟的\p"
+	.string "冠军。我是这么想的。\n"
+	.string "既然我们认识了，\p"
+	.string "就在彼此的宝可梦导航器里\n"
+	.string "登录一下吧。\p"
+	.string "………………$"
+
+GraniteCave_StevensRoom_Text_RegisteredSteven: @ 822DF6A
+	.string "在宝可梦导航器里\n"
+	.string "登录了大吾。$"
+
+GraniteCave_StevensRoom_Text_IveGotToHurryAlong: @ 822DF8C
+	.string "那么，我得赶紧走了。$"
+
+GraniteCave_StevensRoom_Text_OhBagIsFull: @ 822DFAA
+	.string "哦，你的包包满了……\n"
+	.string "那就可惜了。$"
+
+`
+script GraniteCave_StevensRoom_EventScript_Steven_Battle{
+	lock
+	faceplayer
+	trainerbattle_single(TRAINER_STEVEN_GRANITE_CAVE, format("大吾：年轻的训练家，\n在说话之前，让我看看你的本事。$"), format("Steven: You have great potential."), GraniteCave_StevensRoom_EventScript_Steven, NO_MUSIC)
+	//goto(GraniteCave_StevensRoom_EventScript_Steven)
+}

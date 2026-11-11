@@ -1,0 +1,1289 @@
+raw `
+@ NOTE: Route 104's sail to Dewford script references local IDs from Dewford's map. 
+@  These are labeled in DewfordTown/scripts.inc
+.set LOCALID_RIVAL, 30
+
+Route104_MapScripts:: @ 81ECC32
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route104_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, Route104_OnTransition
+	.byte 0
+
+Route104_OnFrame: @ 81ECC3D
+	map_script_2 VAR_BOARD_BRINEY_BOAT_STATE, 1, Route104_EventScript_StartSailToDewford
+	.2byte 0
+
+Route104_EventScript_StartSailToDewford:: @ 81ECC47
+	lockall
+	goto Route104_EventScript_SailToDewford
+	end
+
+Route104_OnTransition: @ 81ECC4E
+	call Common_EventScript_SetupRivalGfxId
+	call Route104_EventScript_TrySetRivalPos
+	call Route104_EventScript_ShowOrHideWhiteHerbFlorist
+	end
+
+Route104_EventScript_ShowOrHideWhiteHerbFlorist:: @ 81ECC5E
+	goto_if_unset FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_EventScript_HideWhiteHerbFlorist
+	goto_if_unset FLAG_BADGE03_GET, Route104_EventScript_HideWhiteHerbFlorist
+	clearflag FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST
+	return
+
+Route104_EventScript_HideWhiteHerbFlorist:: @ 81ECC74
+	setflag FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST
+	return
+
+Route104_EventScript_TrySetRivalPos:: @ 81ECC78
+	compare VAR_BOARD_BRINEY_BOAT_STATE, 1
+	goto_if_ge Route104_EventScript_DontSetRivalPos
+	goto_if_set FLAG_MET_RIVAL_RUSTBORO, Route104_EventScript_DontSetRivalPos
+	goto_if_unset FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_DontSetRivalPos
+	setobjectxyperm LOCALID_RIVAL, 17, 52
+	return
+
+Route104_EventScript_DontSetRivalPos:: @ 81ECC9D
+	return
+
+Route104_EventScript_Rival:: @ 81ECC9E
+	lockall
+	setvar VAR_0x8008, 1
+	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	goto Route104_EventScript_RivalEncounter
+
+Route104_EventScript_RivalTrigger:: @ 81ECCB3
+	lockall
+	setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+	setvar VAR_RUSTBORO_CITY_STATE, 10
+	setvar VAR_ROUTE104_STATE, 2
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	delay 10
+	addobject LOCALID_RIVAL
+	clearflag FLAG_HIDE_ROUTE_104_RIVAL
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerBackUp
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Route104_Movement_RivalExitBrineysCottage
+	waitmovement 0
+	delay 20
+	setvar VAR_0x8008, 0
+	call RustboroCity_EventScript_PlayRivalMusic
+	playse SE_PIN
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	goto Route104_EventScript_RivalEncounter
+
+@ Unused, shares script with Rustboro encounter instead
+Route104_EventScript_PlayRivalMusic:: @ 81ECD11
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Route104_EventScript_PlayMayMusic
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route104_EventScript_PlayBrendanMusic
+	return
+
+Route104_EventScript_PlayMayMusic:: @ 81ECD29
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	return
+
+Route104_EventScript_PlayBrendanMusic:: @ 81ECD2E
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	return
+
+Route104_EventScript_RivalEncounter:: @ 81ECD33
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Route104_EventScript_MayEncounter
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route104_EventScript_BrendanEncounter
+	end
+
+Route104_EventScript_MayEncounter:: @ 81ECD4B
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_MayDefeated
+	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_MayAskToBattle
+	setflag FLAG_REGISTER_RIVAL_POKENAV
+	msgbox Route104_Text_MayWeShouldRegister, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox Route104_Text_RegisteredMay, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerFaceRival
+	applymovement LOCALID_RIVAL, Route104_Movement_RivalWalkSlowLeft
+	msgbox Route104_Text_MayHowsYourPokedex, MSGBOX_DEFAULT
+	closemessage
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Route104_Movement_RivalApproachPlayer
+	waitmovement 0
+	copyobjectxytoperm LOCALID_RIVAL
+	msgbox Route104_Text_MayMinesDecentLetsBattle, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route104_EventScript_BattleMay
+	msgbox Route104_Text_MayHaventRaisedPokemon, MSGBOX_DEFAULT
+	call Route104_EventScript_RestoreMusic
+	releaseall
+	end
+
+Route104_Movement_RivalWalkSlowLeft: @ 81ECDC8
+	walk_slow_left
+	step_end
+
+Route104_Movement_RivalApproachPlayer: @ 81ECDCA
+	walk_down
+	face_right
+	step_end
+
+Route104_Movement_PlayerFaceRival: @ 81ECDCD
+	delay_4
+	walk_in_place_fastest_left
+	step_end
+
+Route104_EventScript_MayAskToBattle:: @ 81ECDD0
+	msgbox Route104_Text_MayLetsBattle, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route104_EventScript_BattleMay
+	msgbox Route104_Text_MayHaventRaisedPokemon, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route104_EventScript_BattleMay:: @ 81ECDED
+	msgbox Route104_Text_MayIntro, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route104_EventScript_BattleMayTreecko
+	case 1, Route104_EventScript_BattleMayTorchic
+	case 2, Route104_EventScript_BattleMayMudkip
+	end
+
+Route104_EventScript_MayDefeated:: @ 81ECE1C
+	msgbox Route104_Text_MayPostBattle, MSGBOX_DEFAULT
+	compare VAR_0x8008, 0
+	call_if_eq Route104_EventScript_RestoreMusic
+	releaseall
+	end
+
+Route104_EventScript_RestoreMusic:: @ 81ECE31
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	return
+
+Route104_EventScript_BattleMayTreecko:: @ 81ECE36
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, Route104_Text_MayDefeat
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_MayDefeated
+	end
+
+Route104_EventScript_BattleMayTorchic:: @ 81ECE49
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, Route104_Text_MayDefeat
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_MayDefeated
+	end
+
+Route104_EventScript_BattleMayMudkip:: @ 81ECE5C
+	setvar VAR_0x8004, 10
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP, Route104_Text_MayDefeat
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_MayDefeated
+	end
+
+Route104_EventScript_BrendanEncounter:: @ 81ECE6F
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_BrendanDefeated
+	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_BrendanAskToBattle
+	setflag FLAG_REGISTER_RIVAL_POKENAV
+	msgbox Route104_Text_BrendanWeShouldRegister, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox Route104_Text_RegisteredBrendan, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerFaceRival
+	applymovement LOCALID_RIVAL, Route104_Movement_RivalWalkSlowLeft
+	msgbox Route104_Text_BrendanHowsYourPokedex, MSGBOX_DEFAULT
+	closemessage
+	waitmovement 0
+	applymovement LOCALID_RIVAL, Route104_Movement_RivalApproachPlayer
+	waitmovement 0
+	copyobjectxytoperm LOCALID_RIVAL
+	msgbox Route104_Text_BrendanDoingGreatLetsBattle, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route104_EventScript_BattleBrendan
+	msgbox Route104_Text_BrendanNoConfidence, MSGBOX_DEFAULT
+	call Route104_EventScript_RestoreMusic
+	releaseall
+	end
+
+Route104_EventScript_BrendanAskToBattle:: @ 81ECEEC
+	msgbox Route104_Text_BrendanLetsBattle, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route104_EventScript_BattleBrendan
+	msgbox Route104_Text_BrendanNoConfidence, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route104_EventScript_BattleBrendan:: @ 81ECF09
+	msgbox Route104_Text_BrendanIntro, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route104_EventScript_BattleBrendanTreecko
+	case 1, Route104_EventScript_BattleBrendanTorchic
+	case 2, Route104_EventScript_BattleBrendanMudkip
+	end
+
+Route104_EventScript_BrendanDefeated:: @ 81ECF38
+	msgbox Route104_Text_BrendanPostBattle, MSGBOX_DEFAULT
+	compare VAR_0x8008, 0
+	call_if_eq Route104_EventScript_RestoreMusic
+	releaseall
+	end
+
+Route104_EventScript_BattleBrendanTreecko:: @ 81ECF4D
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO, Route104_Text_BrendanDefeat
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_BrendanDefeated
+	end
+
+Route104_EventScript_BattleBrendanTorchic:: @ 81ECF60
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC, Route104_Text_BrendanDefeat
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_BrendanDefeated
+	end
+
+Route104_EventScript_BattleBrendanMudkip:: @ 81ECF73
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP, Route104_Text_BrendanDefeat
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_BrendanDefeated
+	end
+
+Route104_Movement_PlayerBackUp: @ 81ECF86
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+	step_end
+
+Route104_Movement_RivalExitBrineysCottage: @ 81ECF8A
+	walk_down
+	step_end
+
+Route104_EventScript_ExpertF:: @ 81ECF8C
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104, Route104_EventScript_ReceivedBerry
+	msgbox Route104_Text_PlantBerriesInSoilTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_CHESTO_BERRY
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104
+	msgbox Route104_Text_TrainersOftenMakeMonHoldBerries, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_ReceivedBerry:: @ 81ECFC3
+	msgbox Route104_Text_TrainersOftenMakeMonHoldBerries, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_WhiteHerbFlorist:: @ 81ECFCD
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_WHITE_HERB, Route104_EventScript_ReceivedWhiteHerb
+	msgbox Route104_Text_DontNeedThisTakeIt, MSGBOX_DEFAULT
+	giveitem ITEM_WHITE_HERB
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_WHITE_HERB
+	release
+	end
+
+Route104_EventScript_ReceivedWhiteHerb:: @ 81ECFFC
+	msgbox Route104_Text_FlowerShopSellingSaplings, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_Girl1:: @ 81ED006
+	msgbox Route104_Text_BrineyLivesInSeasideCottage, MSGBOX_NPC
+	end
+
+Route104_EventScript_BugCatcher:: @ 81ED00F
+	msgbox Route104_Text_WhatsItLikeAtBottomOfSea, MSGBOX_SIGN
+	end
+
+Route104_EventScript_BrineysCottageSign:: @ 81ED018
+	msgbox Route104_Text_MrBrineysCottage, MSGBOX_SIGN
+	end
+
+Route104_EventScript_RouteSignPetalburg:: @ 81ED021
+	msgbox Route104_Text_RouteSignPetalburg, MSGBOX_SIGN
+	end
+
+Route104_EventScript_RouteSignRustboro:: @ 81ED02A
+	msgbox Route104_Text_RouteSignRustboro, MSGBOX_SIGN
+	end
+
+Route104_EventScript_FlowerShopSign:: @ 81ED033
+	msgbox Route104_Text_PrettyPetalFlowShop, MSGBOX_SIGN
+	end
+
+Route104_EventScript_TrainerTipsDoubleBattles:: @ 81ED03C
+	msgbox Route104_Text_TrainerTipsDoubleBattles, MSGBOX_SIGN
+	end
+
+Route104_EventScript_Boy1:: @ 81ED045
+	msgbox Route104_Text_ThrowBallAtWeakenedPokemon, MSGBOX_NPC
+	end
+
+Route104_EventScript_Woman:: @ 81ED04E
+	msgbox Route104_Text_OnlyThrowBallAtWildPokemon, MSGBOX_NPC
+	end
+
+Route104_EventScript_Boy2:: @ 81ED057
+	lock
+	faceplayer
+	msgbox Route104_Text_LikeFillingMouthWithSeedsTakeThis, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_ReceivedBulletSeed:: @ 81ED086
+	msgbox Route104_Text_TMsAreOneTimeUse, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_Girl2:: @ 81ED090
+	msgbox Route104_Text_ImNotATrainer, MSGBOX_NPC
+	end
+
+Route104_EventScript_SailToDewford:: @ 81ED099
+	setobjectpriority LOCALID_BRINEY_R104, MAP_ROUTE104, 0
+	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE104, 0
+	applymovement LOCALID_BRINEY_R104, Route104_Movement_BrineyBoardBoat
+	waitmovement 0
+	removeobject LOCALID_BRINEY_R104
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerBoardBoat
+	waitmovement 0
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
+	call Common_EventScript_PlayBrineysBoatMusic
+	goto_if_set FLAG_ENABLE_NORMAN_MATCH_CALL, Route104_EventScript_SailToDewfordNoCall
+	goto_if_unset FLAG_ENABLE_NORMAN_MATCH_CALL, Route104_EventScript_SailToDewfordDadCalls
+	end
+
+Route104_EventScript_SailToDewfordNoCall:: @ 81ED0D9
+	applymovement LOCALID_BOAT_R104, Route104_Movement_SailToDewford
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewford
+	waitmovement 0
+	goto Route104_EventScript_ArriveInDewford
+
+Route104_EventScript_SailToDewfordDadCalls:: @ 81ED0EF
+	applymovement LOCALID_BOAT_R104, Route104_Movement_SailToDewfordBeforeDadCalls
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewfordBeforeDadCalls
+	waitmovement 0
+	@ pokenavcall Route104_Text_DadPokenavCall
+	@ waitmessage
+	@ delay 30
+	@ playfanfare MUS_REGISTER_MATCH_CALL
+	@ msgbox Route104_Text_RegisteredDadInPokenav, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewfordAfterDadCalls
+	applymovement LOCALID_BOAT_R104, Route104_Movement_SailToDewfordAfterDadCalls, MAP_ROUTE104
+	waitmovement LOCALID_BOAT_R104, MAP_ROUTE104
+	waitmovement 0
+	goto Route104_EventScript_ArriveInDewford
+
+Route104_EventScript_ArriveInDewford:: @ 81ED139
+	delay 50
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerExitBoat
+	waitmovement 0
+	call Common_EventScript_StopBrineysBoatMusic
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
+	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerMoveForBriney
+	waitmovement 0
+	setobjectxyperm LOCALID_BRINEY_DEWFORD, 12, 8
+	addobject LOCALID_BRINEY_DEWFORD
+	setobjectpriority LOCALID_BRINEY_DEWFORD, MAP_DEWFORD_TOWN, 0
+	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	applymovement LOCALID_BRINEY_DEWFORD, Route104_Movement_BrineyExitBoat
+	waitmovement 0
+	addobject LOCALID_BOAT_DEWFORD
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	call Common_EventScript_StopBrineysBoatMusic
+	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	hideobjectat LOCALID_BOAT_R104, MAP_ROUTE104
+	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
+	resetobjectpriority LOCALID_BRINEY_DEWFORD, MAP_DEWFORD_TOWN
+	copyobjectxytoperm LOCALID_BRINEY_DEWFORD
+	setvar VAR_BOARD_BRINEY_BOAT_STATE, 0
+	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_DeliverLetterReminder
+	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_LandedInDewford
+	end
+
+Route104_EventScript_DeliverLetterReminder:: @ 81ED1B4
+	msgbox Route104_Text_LandedInDewfordDeliverLetter, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route104_EventScript_LandedInDewford:: @ 81ED1BE
+	msgbox DewfordTown_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route104_Movement_SailToDewfordBeforeDadCalls: @ 81ED1C8
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	step_end
+
+Route104_Movement_SailToDewfordAfterDadCalls: @ 81ED22A
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_down
+	walk_down
+	step_end
+
+Route104_Movement_SailToDewford: @ 81ED28C
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fastest_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_down
+	walk_down
+	step_end
+
+Route104_Movement_PlayerBoardBoat: @ 81ED34F
+	walk_left
+	walk_down
+	walk_down
+	step_end
+
+Route104_Movement_PlayerExitBoat: @ 81ED353
+	walk_down
+	step_end
+
+Route104_Movement_PlayerMoveForBriney: @ 81ED355
+	walk_down
+	walk_left
+	walk_in_place_fastest_right
+	step_end
+
+Route104_Movement_BrineyBoardBoat: @ 81ED359
+	walk_down
+	walk_down
+	step_end
+
+Route104_Movement_BrineyExitBoat: @ 81ED35C
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+Route104_EventScript_Ivan:: @ 81ED35F
+	trainerbattle_single TRAINER_IVAN, Route104_Text_IvanIntro, Route104_Text_IvanDefeat
+	msgbox Route104_Text_IvanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Billy:: @ 81ED376
+	trainerbattle_single TRAINER_BILLY, Route104_Text_BillyIntro, Route104_Text_BillyDefeat
+	msgbox Route104_Text_BillyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Haley:: @ 81ED38D
+	trainerbattle_single TRAINER_HALEY_1, Route104_Text_HaleyIntro, Route104_Text_HaleyDefeat, Route104_EventScript_TryRegisterHaleyAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route104_EventScript_RematchHaley
+	setvar VAR_0x8004, TRAINER_HALEY_1
+	specialvar VAR_RESULT, IsTrainerRegistered
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route104_EventScript_TryRegisterHaley
+	msgbox Route104_Text_HaleyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_TryRegisterHaleyAfterBattle:: @ 81ED3CE
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterHaleyAfterBattle
+	release
+	end
+
+Route104_EventScript_RegisterHaleyAfterBattle:: @ 81ED3DF
+	msgbox Route104_Text_HaleyRegister2, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_HALEY_1
+	release
+	end
+
+Route104_EventScript_TryRegisterHaley:: @ 81ED3F8
+	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterHaley
+	msgbox Route104_Text_HaleyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_RegisterHaley:: @ 81ED40B
+	msgbox Route104_Text_HaleyRegister1, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_HALEY_1
+	release
+	end
+
+Route104_EventScript_RematchHaley:: @ 81ED424
+	trainerbattle_rematch TRAINER_HALEY_1, Route104_Text_HaleyRematchIntro, Route104_Text_HaleyRematchDefeat
+	msgbox Route104_Text_HaleyPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Winston:: @ 81ED43B
+	trainerbattle_single TRAINER_WINSTON_1, Route104_Text_WinstonIntro, Route104_Text_WinstonDefeat, Route104_EventScript_TryRegisterWinstonAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route104_EventScript_RematchWinston
+	setvar VAR_0x8004, TRAINER_WINSTON_1
+	specialvar VAR_RESULT, IsTrainerRegistered
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route104_EventScript_TryRegisterWinston
+	msgbox Route104_Text_WinstonPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_TryRegisterWinstonAfterBattle:: @ 81ED47C
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterWinstonAfterBattle
+	release
+	end
+
+Route104_EventScript_RegisterWinstonAfterBattle:: @ 81ED48D
+	msgbox Route104_Text_WinstonRegister2, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_WINSTON_1
+	release
+	end
+
+Route104_EventScript_TryRegisterWinston:: @ 81ED4A6
+	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterWinston
+	msgbox Route104_Text_WinstonPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_RegisterWinston:: @ 81ED4B9
+	msgbox Route104_Text_WinstonRegister1, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_WINSTON_1
+	release
+	end
+
+Route104_EventScript_RematchWinston:: @ 81ED4D2
+	trainerbattle_rematch TRAINER_WINSTON_1, Route104_Text_WinstonRematchIntro, Route104_Text_WinstonRematchDefeat
+	msgbox Route104_Text_WinstonPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Cindy:: @ 81ED4E9
+	trainerbattle_single TRAINER_CINDY_1, Route104_Text_CindyIntro, Route104_Text_CindyDefeat, Route104_EventScript_TryRegisterCindyAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route104_EventScript_RematchCindy
+	setvar VAR_0x8004, TRAINER_CINDY_1
+	specialvar VAR_RESULT, IsTrainerRegistered
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route104_EventScript_TryRegisterCindy
+	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_TryRegisterCindyAfterBattle:: @ 81ED52A
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterCindyAfterBattle
+	release
+	end
+
+Route104_EventScript_RegisterCindyAfterBattle:: @ 81ED53B
+	msgbox Route104_Text_CindyRegister2, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CINDY_1
+	release
+	end
+
+Route104_EventScript_TryRegisterCindy:: @ 81ED554
+	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterCindy
+	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_RegisterCindy:: @ 81ED567
+	msgbox Route104_Text_CindyRegister1, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_CINDY_1
+	release
+	end
+
+Route104_EventScript_RematchCindy:: @ 81ED580
+	trainerbattle_rematch TRAINER_CINDY_1, Route104_Text_CindyRematchIntro, Route104_Text_CindyRematchDefeat
+	msgbox Route104_Text_CindyPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Gina:: @ 81ED597
+	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_GinaIntro, Route104_Text_GinaDefeat, Route104_Text_GinaNotEnoughMons
+	special GetPlayerBigGuyGirlString
+	msgbox Route104_Text_GinaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_Mia:: @ 81ED5B6
+	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_MiaIntro, Route104_Text_MiaDefeat, Route104_Text_MiaNotEnoughMons
+	special GetPlayerBigGuyGirlString
+	msgbox Route104_Text_MiaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route104_EventScript_Darian:: @ 81ED5D5
+	trainerbattle_single TRAINER_DARIAN, Route104_Text_DarianIntro, Route104_Text_DarianDefeat
+	msgbox Route104_Text_DarianPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route104_Text_BrineyLivesInSeasideCottage: @ 81ED5EC
+	.string "海边那栋小屋就是布林先生的家。\p"
+	.string "他曾经是个了不起的水手，\n"
+	.string "不管风浪多大都不怕海。$"
+
+Route104_Text_WhatsItLikeAtBottomOfSea: @ 81ED662
+	.string "海啊……\p"
+	.string "海底到底是什么样子呢？$"
+
+Route104_Text_ThrowBallAtWeakenedPokemon: @ 81ED6A2
+	.string "要扔精灵球，\n"
+	.string "先把野生宝可梦削弱。\p"
+	.string "让它中毒、灼伤或睡着，\n"
+	.string "会更容易抓到。$"
+
+Route104_Text_OnlyThrowBallAtWildPokemon: @ 81ED735
+	.string "想抢别人的宝可梦，\n"
+	.string "那就是小偷。\p"
+	.string "精灵球只该扔向\n"
+	.string "野生宝可梦。$"
+
+Route104_Text_ImNotATrainer: @ 81ED7A2
+	.string "哦，不，我不是训练家。\p"
+	.string "不过没错，训练家一对上眼，\n"
+	.string "就是一场对战的挑战。\p"
+	.string "不想打的话，\n"
+	.string "就别让他们看见你。$"
+
+Route104_Text_LikeFillingMouthWithSeedsTakeThis: @ 81ED838
+	.string "我喜欢把种子塞满嘴，\n"
+	.string "再飞快地吐出来！\p"
+	.string "你已经有所有招式学习器了，\n"
+	.string "不过我可以给你个有用的建议。\p"
+	.string "拥有连续攻击特性的宝可梦，\n"
+	.string "连击招式一定会打五次。$"
+
+Route104_Text_TMsAreOneTimeUse:
+	.string "给你个忠告！\p"
+	.string "招式学习器可以反复使用，\n"
+	.string "用完不会消失。$"
+
+Route104_Text_DontNeedThisTakeIt: @ 81ED96A
+	.string "这家花店最近开始卖树苗了。\p"
+	.string "我高兴得买过头了。\p"
+	.string "这株白色香草我已经不需要了。\n"
+	.string "你愿意收下吗？$"
+
+Route104_Text_FlowerShopSellingSaplings: @ 81EDA0F
+	.string "这家花店最近开始卖树苗了。\p"
+	.string "我高兴得买过头了。\n"
+	.string "该把它们放哪儿呢？$"
+
+Route104_Text_MrBrineysCottage: @ 81EDA8C
+	.string "布林先生的小屋$"
+
+Route104_Text_RouteSignPetalburg: @ 81EDAA1
+	.string "104 号道路\n"
+	.string "{RIGHT_ARROW} 橙华市$"
+
+Route104_Text_RouteSignRustboro: @ 81EDABC
+	.string "104 号道路\n"
+	.string "{UP_ARROW} 卡那兹市$"
+
+Route104_Text_PrettyPetalFlowShop: @ 81EDAD6
+	.string "美丽花店$"
+
+Route104_Text_TrainerTipsDoubleBattles: @ 81EDAEF
+	.string "训练家小贴士\p"
+	.string "在丰缘地区，有些训练家\n"
+	.string "会两人一组向别人挑战\p"
+	.string "二对二的“双打对战”。\p"
+	.string "双打对战时，训练家要派两只\n"
+	.string "宝可梦：队伍列表最左边的一只\p"
+	.string "和最上面的一只。\p"
+	.string "注意宝可梦的排列顺序。$"
+
+Route104_Text_MayWeShouldRegister: @ 81EDBFF
+	.string "小遥：哦，嗨，{PLAYER}{KUN}！\p"
+	.string "得文给你的宝可梦领航器\n"
+	.string "升级了通讯呼叫系统吧？\p"
+	.string "我们互相登记一下吧，\n"
+	.string "这样随时都能联系。$"
+
+Route104_Text_RegisteredMay: @ 81EDC8F
+	.string "{PLAYER}把小遥\n"
+	.string "登记到宝可梦领航器中。$"
+
+Route104_Text_MayHowsYourPokedex: @ 81EDCB1
+	.string "小遥：对了，{PLAYER}{KUN}，\n"
+	.string "你的图鉴进展如何？$"
+
+Route104_Text_MayMinesDecentLetsBattle: @ 81EDCED
+	.string "我的图鉴看起来还不错。\p"
+	.string "那么……\p"
+	.string "来场小对战怎么样？$"
+
+Route104_Text_MayHaventRaisedPokemon: @ 81EDD2A
+	.string "小遥：哦，怎么了？\p"
+	.string "你的宝可梦还没怎么\n"
+	.string "捕捉和培养吗？\p"
+	.string "这样可不算个合格的训练家！$"
+
+Route104_Text_MayLetsBattle: @ 81EDD9F
+	.string "小遥：那么，你觉得呢？\p"
+	.string "就在这儿来场小对战？$"
+
+Route104_Text_MayIntro: @ 81EDDDB
+	.string "小遥：{PLAYER}{KUN}，\n"
+	.string "你才刚当上训练家。\p"
+	.string "我可不会输！$"
+
+Route104_Text_MayDefeat: @ 81EDE18
+	.string "哇！\p"
+	.string "你比我想的厉害！$"
+
+Route104_Text_MayPostBattle: @ 81EDE3E
+	.string "小遥：看得出你对待宝可梦\n"
+	.string "已经很有心得了。\p"
+	.string "不过别只让它们对战，\n"
+	.string "你该学学布林先生。\p"
+	.string "和宝可梦成为朋友\n"
+	.string "也很重要。$"
+
+Route104_Text_BrendanWeShouldRegister: @ 81EDF04
+	.string "祐树：哦，嘿，{PLAYER}！\p"
+	.string "不错嘛，你让得文给领航器\n"
+	.string "装了通讯呼叫系统！\p"
+	.string "我们在领航器里互相登记吧，\n"
+	.string "这样就能保持联系。$"
+
+Route104_Text_RegisteredBrendan: @ 81EDFA0
+	.string "{PLAYER}把祐树\n"
+	.string "登记到宝可梦领航器中。$"
+
+Route104_Text_BrendanHowsYourPokedex: @ 81EDFC6
+	.string "祐树：{PLAYER}，图鉴进展如何？\n"
+	.string "已经填上几页了吗？$"
+
+Route104_Text_BrendanDoingGreatLetsBattle: @ 81EE009
+	.string "我这边进展很好！\p"
+	.string "想不想用一场对战\n"
+	.string "检验一下我的实力？$"
+
+Route104_Text_BrendanNoConfidence: @ 81EE04D
+	.string "祐树：怎么了？\n"
+	.string "对自己的宝可梦没信心？$"
+
+Route104_Text_BrendanLetsBattle: @ 81EE094
+	.string "祐树：怎么了？\p"
+	.string "想跟我打一场吗？$"
+
+Route104_Text_BrendanIntro: @ 81EE0C7
+	.string "祐树：我知道你才刚当上训练家，\n"
+	.string "但我不会手下留情！$"
+
+Route104_Text_BrendanDefeat: @ 81EE107
+	.string "嗯……\p"
+	.string "你还挺不错。$"
+
+Route104_Text_BrendanPostBattle: @ 81EE120
+	.string "祐树：你对待宝可梦\n"
+	.string "已经相当上手了。\p"
+	.string "不过，你不该只让它们对战。\p"
+	.string "要像布林先生那样，\n"
+	.string "和宝可梦成为朋友，这很重要。$"
+`
+script Route104South_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_DARIAN) &&
+	   defeated(TRAINER_BILLY) &&
+	   defeated(TRAINER_CINDY_1)){
+		// when you defeat every trainer
+		msgbox(format("嘿嘿嘿，你打赢那些对战时\n笑得很开心吧！\p拿着这个，这是你应得的。$"))
+		givemon(SPECIES_ZIGZAGOON_GALARIAN, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}得到了\n{COLOR BLUE}伽勒尔蛇纹熊{COLOR DARK_GRAY}，\p这是击败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("嘿，未来的冠军！\p击败这条路上所有训练家，\n我就送你一份来自伽勒尔的\p偷偷摸摸的惊喜。\n准备好捣点乱了吗？$"))
+	}
+    release
+    end
+}
+
+script Route104North_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_WINSTON_1) &&
+	   defeated(TRAINER_HALEY_1) &&
+	   defeated(TRAINER_GINA_AND_MIA_1) &&
+	   defeated(TRAINER_IVAN)){
+		// when you defeat every trainer
+		msgbox(format("干得好，小子！\n这只猫正需要一个\p像你这样真正的丰缘老家伙作伴！$"))
+		givemon(SPECIES_MEOWTH_GALARIAN, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}得到了\n{COLOR BLUE}伽勒尔喵喵{COLOR DARK_GRAY}，\p这是击败这里所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("只要你击败这里\n所有其他训练家，\p我就奖励你一只\n忠诚的猫科宝可梦！$"))
+	}
+    release
+    end
+}
+
+script Route104_EventScript_TrainerTemplate{
+    lock
+    faceplayer
+	if(!defeated(TRAINER_IVAN)){//TRAINER_IVAN will be changed for the new trainer
+		trainerbattle_single(TRAINER_IVAN, format("（开场白占位）$"), format("Put the Defeat message here."))
+		msgbox(format("（战后台词占位）$"), MSGBOX_AUTOCLOSE)
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("（战后台词占位）$"))
+	}
+    release
+    end
+}
+
+movement Route104_Movement_StealBrineyBoatStepOut {
+	walk_down * 3
+}
+
+script Route104_EventScript_StealBrineyBoat {
+	lock
+	if (flag(FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT)){
+		release
+		end
+	}
+	if (var(VAR_BRINEY_HOUSE_STATE) == 0){
+		msgbox("这艘船上缺了钥匙。$", MSGBOX_SIGN)
+		release
+		end
+	}
+	msgbox("钥匙插着，要偷这艘船吗？$", MSGBOX_YESNO)
+	if (!var(VAR_RESULT)){
+		msgbox("我为什么要偷？$", MSGBOX_AUTOCLOSE)
+		release
+		end
+	}
+	msgbox("这才叫水舰队的风格！$", MSGBOX_AUTOCLOSE)
+	setvar(VAR_RUSTBORO_CITY_STATE, 10)
+	setvar(VAR_ROUTE104_STATE, 2)
+	setflag(FLAG_HIDE_RUSTBORO_CITY_RIVAL)
+	setflag(FLAG_HIDE_ROUTE_104_RIVAL)
+	hideobjectat(OBJ_EVENT_ID_PLAYER, MAP_ROUTE104)
+	call(Common_EventScript_PlayBrineysBoatMusic)
+	if (!flag(FLAG_ENABLE_NORMAN_MATCH_CALL)){
+		setflag(FLAG_ENABLE_NORMAN_MATCH_CALL)
+	}
+	hideobjectat(LOCALID_BRINEY_R104, MAP_ROUTE104)
+	applymovement(LOCALID_BOAT_R104, Route104_Movement_SailToDewford)
+	applymovement(OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewford)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Route104_Movement_StealBrineyBoatStepOut)
+	waitmovement(0)
+	showobjectat(OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN)
+	call(Common_EventScript_StopBrineysBoatMusic)
+	clearflag(FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN)
+	addobject(LOCALID_BOAT_DEWFORD)
+	setflag(FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT)
+	//setvar(VAR_BRINEY_LOCATION, 4) // this may cause massives issues mreow :3
+	hideobjectat(LOCALID_BOAT_R104, MAP_ROUTE104)
+	release
+}

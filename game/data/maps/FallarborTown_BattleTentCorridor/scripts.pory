@@ -1,0 +1,72 @@
+raw `
+.set LOCALID_ATTENDANT, 1
+
+FallarborTown_BattleTentCorridor_MapScripts:: @ 82006A7
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, FallarborTown_BattleTentCorridor_OnFrame
+	.byte 0
+
+FallarborTown_BattleTentCorridor_OnFrame: @ 82006AD
+	map_script_2 VAR_TEMP_0, 0, FallarborTown_BattleTentCorridor_EventScript_EnterCorridor
+	.2byte 0
+
+FallarborTown_BattleTentCorridor_EventScript_EnterCorridor:: @ 82006B7
+	lockall
+	setvar VAR_TEMP_0, 1
+	applymovement LOCALID_ATTENDANT, FallarborTown_BattleTentCorridor_Movement_WalkToDoor
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_BattleTentCorridor_Movement_WalkToDoor
+	waitmovement 0
+	opendoor 2, 1
+	waitdooranim
+	applymovement LOCALID_ATTENDANT, FallarborTown_BattleTentCorridor_Movement_AttendantEnterDoor
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_BattleTentCorridor_Movement_PlayerEnterDoor
+	waitmovement 0
+	closedoor 2, 1
+	waitdooranim
+	setvar VAR_0x8006, 0
+	warp MAP_FALLARBOR_TOWN_BATTLE_TENT_BATTLE_ROOM, 255, 4, 4
+	waitstate
+	releaseall
+	end
+
+FallarborTown_BattleTentCorridor_Movement_WalkToDoor: @ 82006FB
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+FallarborTown_BattleTentCorridor_Movement_PlayerEnterDoor: @ 8200700
+	walk_up
+FallarborTown_BattleTentCorridor_Movement_AttendantEnterDoor: @ 8200701
+	walk_up
+	set_invisible
+	step_end
+
+@ Leftover text from when this was a Contest Hall in R/S
+@ Unused
+FallarborTown_ContestHall_Text_DoAllRightInPreliminary: @ 8200704
+	.string "预选赛我们表现得还行，\n"
+	.string "可表演环节总是赢不了……\p"
+	.string "也许这说明我得看看\n"
+	.string "其他选手是怎么做的……$"
+
+@ Unused
+FallarborTown_ContestHall_Text_MonAllTheseRibbons: @ 8200791
+	.string "看！\n"
+	.string "我的宝可梦赢了这么多奖章！\p"
+	.string "你的宝可梦拿到奖章了吗？\n"
+	.string "可以在宝可梦导航器上查看。$"
+
+@ Unused
+FallarborTown_ContestHall_Text_CantWinEverywhere: @ 8200802
+	.string "我打不过道馆馆主……\n"
+	.string "也赢不了任何华丽大赛……\p"
+	.string "我东奔西跑，到处都去过，\n"
+	.string "结果全都白费……$"
+
+@ Unused
+FallarborTown_ContestHall_Text_SuperRankStage: @ 8200876
+	.string "宝可梦华丽大赛\n"
+	.string "高级级别舞台！$"
+
+`

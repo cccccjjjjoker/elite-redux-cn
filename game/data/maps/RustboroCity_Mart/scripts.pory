@@ -1,0 +1,59 @@
+raw `
+RustboroCity_Mart_MapScripts:: @ 8214F05
+	.byte 0
+
+RustboroCity_Mart_EventScript_PokefanF:: @ 8214F74
+	msgbox RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish, MSGBOX_NPC
+	end
+
+RustboroCity_Mart_EventScript_Boy:: @ 8214F7D
+	msgbox RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead, MSGBOX_NPC
+	end
+
+RustboroCity_Mart_EventScript_BugCatcher:: @ 8214F86
+	msgbox RustboroCity_Mart_Text_GettingEscapeRopeJustInCase, MSGBOX_NPC
+	end
+
+RustboroCity_Mart_EventScript_FalseSwipeTM::
+	lock
+	faceplayer
+	msgbox RustboroCity_Mart_Text_HaveTM98, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Mart_EventScript_ReceivedTM98::
+	msgbox RustboroCity_Mart_Text_HaveTM98, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Mart_Text_ExcuseMeTrainer:
+	.string "打扰一下，那边的训练家。\n"
+	.string "有空吗？\p"
+	.string "你知道，有时候招式太强，\n"
+	.string "反而抓不到宝可梦。\p"
+	.string "本来不想打倒下，结果还是\n"
+	.string "把宝可梦打倒了。\p"
+	.string "这种常见烦恼，就用这个！$"
+
+RustboroCity_Mart_Text_HaveTM98:
+	.string "点到为止是很好用的招式。\n"
+	.string "不管对对手的宝可梦用多少次，\p"
+	.string "都不会把它打倒！$"
+
+RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish: @ 8214F8F
+	.string "我在买麻痹药和解毒药。\n"
+	.string "以防在橙华森林\p"
+	.string "碰上派拉斯。$"
+
+RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead: @ 8214FF1
+	.string "我的宝可梦进化了。\n"
+	.string "现在ＨＰ很多。\p"
+	.string "我该给它买好伤药，\n"
+	.string "而不是普通伤药。$"
+
+RustboroCity_Mart_Text_GettingEscapeRopeJustInCase: @ 821505C
+	.string "我在买离洞绳，\n"
+	.string "以防在洞窟里迷路。\p"
+	.string "只要用它就能回到入口。$"
+
+`

@@ -1,0 +1,1110 @@
+const OBJECT_EVENT_NORMAN         = 7
+const OBJECT_EVENT_BRANDON        = 6
+
+const OBJECT_EVENT_NORMAN_2       = 21
+const OBJECT_EVENT_BRANDON_2      = 22
+
+const OBJECT_EVENT_AQUA_MEMBER_1  = 19
+const OBJECT_EVENT_AQUA_MEMBER_2  = 18
+const OBJECT_EVENT_AQUA_MEMBER_3  = 15
+const OBJECT_EVENT_AQUA_MEMBER_4  = 16
+const OBJECT_EVENT_AQUA_MEMBER_5  = 17
+
+const OBJECT_EVENT_MAGMA_MEMBER_1 = 14
+const OBJECT_EVENT_MAGMA_MEMBER_2 = 3
+
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_1 = 31
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_2 = 26
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_3 = 28
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_4 = 23
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_5 = 24
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_6 = 34
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_7 = 29
+const OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_8 = 20
+
+const OBJECT_EVENT_FIGHTING_MEMBER_AQUA_1  = 30
+const OBJECT_EVENT_FIGHTING_MEMBER_AQUA_2  = 27
+const OBJECT_EVENT_FIGHTING_MEMBER_AQUA_3  = 25
+const OBJECT_EVENT_FIGHTING_MEMBER_AQUA_4  = 32
+const OBJECT_EVENT_FIGHTING_MEMBER_AQUA_5  = 33
+
+mapscripts Route111_SunhollowRuins_Museum_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        switch(var(VAR_SUNHOLLOW_STATE)){
+            default: //First time
+                setflag(FLAG_TEMP_1)
+                setflag(FLAG_TEMP_2)
+                setflag(FLAG_TEMP_3)
+                setflag(FLAG_TEMP_5)
+                setvar(VAR_SUNHOLLOW_STATE, 1)
+            break
+            case 2: //Mid conflict
+                setflag(FLAG_TEMP_1)
+                setflag(FLAG_TEMP_2)
+                setflag(FLAG_TEMP_5)
+            break
+            case 3: //Everything Finished
+                playbgm(MUS_B_PYRAMID, 0)
+                setflag(FLAG_TEMP_1)
+                setflag(FLAG_TEMP_2)
+                setflag(FLAG_TEMP_3)
+                setflag(FLAG_TEMP_4)
+                setflag(FLAG_TEMP_5)
+                setflag(FLAG_TEMP_6)
+                setflag(FLAG_HIDE_SUNHOLLOW_MUSEUM_MAGMA_GRUNTS)
+            break
+        }
+    }
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_1 {
+    lock
+    setvar(VAR_TEMP_0, 1)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_2 {
+    lock
+    setvar(VAR_TEMP_0, 2)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_3 {
+    lock
+    setvar(VAR_TEMP_0, 3)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_4 {
+    lock
+    setvar(VAR_TEMP_0, 4)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_5 {
+    lock
+    setvar(VAR_TEMP_0, 5)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_6 {
+    lock
+    setvar(VAR_TEMP_0, 6)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_7 {
+    lock
+    setvar(VAR_TEMP_0, 7)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_8 {
+    lock
+    setvar(VAR_TEMP_0, 8)
+    goto(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global)
+}
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_MovePlayerToScriptStart {
+    switch(var(VAR_TEMP_0)){
+        case 2:
+            applymovement(OBJECT_EVENT_NORMAN,  moves(walk_fastest_up step_end))
+            applymovement(OBJECT_EVENT_BRANDON, moves(walk_fastest_up step_end))
+            waitmovement(0)
+        break
+        case 3:
+            applymovement(OBJECT_EVENT_NORMAN,  moves(walk_fastest_up * 2 step_end))
+            applymovement(OBJECT_EVENT_BRANDON, moves(walk_fastest_up * 2 step_end))
+            waitmovement(0)
+        break
+        case 4:
+            applymovement(OBJECT_EVENT_NORMAN,  moves(walk_fastest_up * 3 step_end))
+            applymovement(OBJECT_EVENT_BRANDON, moves(walk_fastest_up * 3 step_end))
+            waitmovement(0)
+        break
+        case 5:
+            applymovement(OBJECT_EVENT_NORMAN,  moves(walk_fastest_up * 4 step_end))
+            applymovement(OBJECT_EVENT_BRANDON, moves(walk_fastest_up * 4 step_end))
+            waitmovement(0)
+        break
+        case 6:
+            applymovement(OBJECT_EVENT_NORMAN,  moves(walk_fastest_up * 5 step_end))
+            applymovement(OBJECT_EVENT_BRANDON, moves(walk_fastest_up * 5 step_end))
+            waitmovement(0)
+        break
+        case 7:
+            applymovement(OBJECT_EVENT_NORMAN,  moves(walk_fastest_up * 6 step_end))
+            applymovement(OBJECT_EVENT_BRANDON, moves(walk_fastest_up * 6 step_end))
+            waitmovement(0)
+        break
+        case 8:
+            applymovement(OBJECT_EVENT_NORMAN,  moves(walk_fastest_up * 7 step_end))
+            applymovement(OBJECT_EVENT_BRANDON, moves(walk_fastest_up * 7 step_end))
+            waitmovement(0)
+        break
+    }
+
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        walk_up * 6
+        walk_right * 2
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        walk_up * 7
+        walk_right
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("千里：退后，{PLAYER}，\n我们得商量一下对策。$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        walk_left
+        walk_down * 2
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        walk_left * 2
+        walk_down
+        step_end
+    ))
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_left * 2
+        walk_down
+        step_end
+    ))
+    waitmovement(0)
+
+    //Move player next to Norman
+    switch(var(VAR_TEMP_0)){
+        case 1:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 6
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 6
+                face_right
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 6
+                face_up
+                step_end
+            ))
+        break
+        case 2:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 7
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 7
+                face_right
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 7
+                face_up
+                step_end
+            ))
+        break
+        case 3:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 8
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 8
+                face_right
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 8
+                face_up
+                step_end
+            ))
+        break
+        case 4:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 9
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 9
+                face_right
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 9
+                face_up
+                step_end
+            ))
+        break
+        case 5:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 10
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 10
+                face_right
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 10
+                face_up
+                step_end
+            ))
+        break
+        case 6:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 11
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 11
+                face_right
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 11
+                face_up
+                step_end
+            ))
+        break
+        case 7:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 12
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 12
+                face_right
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 12
+                face_up
+                step_end
+            ))
+        break
+        case 8:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_down * 13
+                face_left
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_NORMAN, moves(
+                walk_down * 13
+                face_up
+                step_end
+            ))
+            applymovement(OBJECT_EVENT_BRANDON, moves(
+                walk_down * 13
+                face_up
+                step_end
+            ))
+        break
+    }
+    waitmovement(0)
+    setflag(FLAG_HIDE_SUNHOLLOW_MUSEUM_MAGMA_GRUNTS)
+
+    hideobjectat(OBJECT_EVENT_MAGMA_MEMBER_1,  MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    removeobject(OBJECT_EVENT_MAGMA_MEMBER_1,  MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    setobjectxyperm(OBJECT_EVENT_MAGMA_MEMBER_1, 1, 1)
+
+    return
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Global {
+    msgbox(format("千里：嘘！{PLAYER}！等等！$"))
+    closemessage
+    clearflag(FLAG_TEMP_2)
+
+    addobject(OBJECT_EVENT_NORMAN)
+    addobject(OBJECT_EVENT_BRANDON)
+
+    setflag(FLAG_TEMP_4)
+
+    hideobjectat(OBJECT_EVENT_MAGMA_MEMBER_2,  MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    removeobject(OBJECT_EVENT_MAGMA_MEMBER_2,  MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    setobjectxyperm(OBJECT_EVENT_MAGMA_MEMBER_2, 1, 1)
+
+    playse(SE_PIN)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        emote_exclamation_mark
+        face_left
+        step_end
+    ))
+    waitmovement(0)
+
+    call(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_MovePlayerToScriptStart)
+
+    msgbox(format("千里：{PLAYER}，这位是神代。$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        msgbox(format("千里：神代，见见我儿子，\n{PLAYER}。$"))
+    } else {
+        msgbox(format("千里：神代，见见我女儿，\n{PLAYER}。$"))
+    }
+    closemessage
+
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("神代：幸会，年轻的冒险者！$"))
+    closemessage
+
+    msgbox(format("千里：神代，你的队伍怎么样？$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("神代：累坏了。你呢？\p千里：也相当疲惫。$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("千里：{PLAYER}，你悄悄溜进来，\n体力还足吧？\p可火岩队的人太多了……\p我们怎么办？$"))
+    closemessage
+
+    playse(SE_BANG)
+    delay(30)
+
+    playse(SE_PIN)
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        emote_question_mark
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("神代：你们听见了吗？\p千里：听见什么？\p？？？：让开让开，借过！$"))
+    closemessage
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_up
+        walk_left
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        face_right
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+    clearflag(FLAG_TEMP_1)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_1)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_2)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_3)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_4)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_5)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_5)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_5)
+    addobject(OBJECT_EVENT_AQUA_MEMBER_5)
+
+    applymovement(OBJECT_EVENT_AQUA_MEMBER_1, moves(
+        walk_fast_up * 20
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_AQUA_MEMBER_2, moves(
+        walk_fast_up * 20
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_AQUA_MEMBER_3, moves(
+        walk_fast_up * 20
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_AQUA_MEMBER_4, moves(
+        walk_fast_up * 20
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_AQUA_MEMBER_5, moves(
+        walk_fast_up * 20
+        step_end
+    ))
+    waitmovement(0)
+
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        face_up
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        face_up
+        step_end
+    ))
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("神代：……好吧。这就说得通了！\p千里：机会来了！\n我们去支援，你先走！$"))
+    closemessage
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        walk_fast_right
+        walk_fast_up * 1
+        step_end
+    ))
+    waitmovement(0)
+    applymovement(OBJECT_EVENT_BRANDON, moves(
+        walk_fast_up * 15
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        walk_fast_right
+        walk_fast_up * 5
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    msgbox(format("千里：小心点，{PLAYER}。$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_NORMAN, moves(
+        walk_fast_up * 10
+        step_end
+    ))
+    waitmovement(0)
+
+    setflag(FLAG_TEMP_1)
+    setflag(FLAG_TEMP_2)
+
+    hideobjectat(OBJECT_EVENT_NORMAN, MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    removeobject(OBJECT_EVENT_NORMAN,  MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    setobjectxyperm(OBJECT_EVENT_NORMAN, 1, 1)
+
+    hideobjectat(OBJECT_EVENT_BRANDON, MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    removeobject(OBJECT_EVENT_BRANDON,  MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    setobjectxyperm(OBJECT_EVENT_BRANDON, 1, 1)
+
+    hideobjectat(OBJECT_EVENT_MAGMA_MEMBER_1, MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    removeobject(OBJECT_EVENT_MAGMA_MEMBER_1,  MAP_ROUTE111_SUNHOLLOW_RUINS_MUSEUM)
+    setobjectxyperm(OBJECT_EVENT_MAGMA_MEMBER_1, 1, 1)
+
+    call(Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Enable_Fighting_Members)
+
+    setvar(VAR_SUNHOLLOW_STATE, 2)
+    release
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_PyramidScript_Enable_Fighting_Members {
+    clearflag(FLAG_TEMP_3)
+    addobject(OBJECT_EVENT_NORMAN_2)
+    addobject(OBJECT_EVENT_BRANDON_2)
+
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_1)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_2)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_3)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_4)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_5)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_6)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_7)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_MAGMA_8)
+
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_AQUA_1)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_AQUA_2)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_AQUA_3)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_AQUA_4)
+    addobject(OBJECT_EVENT_FIGHTING_MEMBER_AQUA_5)
+    return
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Fighting_Member {
+    lock
+    msgbox(format("这个手下忙着对战，\n没注意到你。$"))
+    closemessage
+    release
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Fighting_Member_2 {
+    lock
+    msgbox(format("这个手下专注于战斗。\n他们好像陷入苦战……$"))
+    closemessage
+    release
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Norman_Fighting {
+    lock
+    msgbox(format("这里我能搞定，\n你先走，{PLAYER}！$"))
+    closemessage
+    release
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Brandon_Fighting {
+    lock
+    msgbox(format("哈！遗迹是我的主场！\n看招！$"))
+    closemessage
+    release
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Magma_Grunt_1 {
+    trainerbattle_single(TRAINER_GRUNT_SUNHOLLOW_2, format("你怎么进来的？！\n那些守卫一定睡着了……\p好，我自己来收拾你！$"), format("No! No, you can't, we need to- Oops, nearly gave it away!"))
+    msgbox(format("我大概没法说服你\n掉头回家吧？$"), MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Magma_Grunt_2 {
+    trainerbattle_single(TRAINER_GRUNT_SUNHOLLOW_3, format("喂，这里是历史遗迹，你得小心点！$"), format("Wait, you think WE'RE the vandals?!"))
+    msgbox(format("什么？我们也很小心。\n这儿没比我们来时更破。$"), MSGBOX_AUTOCLOSE)
+    end
+}
+
+const OBJECT_EVENT_MAXIE    = 2
+const OBJECT_EVENT_COURTNEY = 1
+
+script Route111_SunhollowRuins_Museum_EventScript_Courtney_Script_1 {
+    lock
+    setvar(VAR_TEMP_1, 0)
+    goto(Route111_SunhollowRuins_Museum_EventScript_Courtney_Global_Script)
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Courtney_Script_2 {
+    lock
+    setvar(VAR_TEMP_1, 1)
+    goto(Route111_SunhollowRuins_Museum_EventScript_Courtney_Global_Script)
+    end
+}
+
+script Route111_SunhollowRuins_Museum_EventScript_Courtney_Global_Script {
+    switch(var(VAR_TEMP_1)){
+        case 0:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_up   * 4
+                walk_left * 2
+                step_end
+            ))
+        break
+        case 1:
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                walk_up   * 4
+                walk_left * 3
+                step_end
+            ))
+        break
+    }
+    waitmovement(0)
+
+    msgbox(format("赤焰松：……如果那是灼热岩窟，\n那么……\p那么它们就在送神火山？$"))
+    closemessage
+
+    playse(SE_PIN)
+    applymovement(OBJECT_EVENT_COURTNEY, moves(
+        emote_exclamation_mark
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    playbgm(MUS_ENCOUNTER_MAGMA, 0)
+    delay(60)
+
+    msgbox(format("火雁：赤焰松，小心！\n烟囱山那个多管闲事的小鬼来了。$"))
+
+    playse(SE_PIN)
+    applymovement(OBJECT_EVENT_MAXIE, moves(
+        emote_exclamation_mark
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("赤焰松：现在？！\p唉，我需要更多时间！$"))
+    closemessage
+    applymovement(OBJECT_EVENT_MAXIE, moves(
+        face_left
+        step_end
+    ))
+    waitmovement(0)
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        msgbox(format("火雁，拖住他！$"))
+    } else {
+        msgbox(format("火雁，拖住她！$"))
+    }
+    closemessage
+    applymovement(OBJECT_EVENT_COURTNEY, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+    msgbox(format("火雁：是！开始交战。$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_COURTNEY, moves(
+        walk_down  * 2
+        walk_right * 2
+        step_end
+    ))
+    waitmovement(0)
+    trainerbattle_no_intro(TRAINER_COURTNEY_SUNHOLLOW, format("真希望我给赤焰松争取到了足够的时\n间。$"))
+
+    goto(Route111_SunhollowRuins_Museum_EventScript_Archie_Global_Script)
+}
+
+const OBJECT_EVENT_ARCHIE    = 35
+const OBJECT_EVENT_BRANDON_3 = 36
+const OBJECT_EVENT_NORMAN_3  = 37
+
+const OBJECT_EVENT_FINAL_MEMBER_AQUA_1 = 38
+const OBJECT_EVENT_FINAL_MEMBER_AQUA_2 = 39
+const OBJECT_EVENT_FINAL_MEMBER_AQUA_3 = 40
+const OBJECT_EVENT_FINAL_MEMBER_AQUA_4 = 41
+const OBJECT_EVENT_FINAL_MEMBER_AQUA_5 = 42
+
+const OBJECT_EVENT_CRAWDAUNT  = 43
+const OBJECT_EVENT_ALAKAZAM   = 44
+const OBJECT_EVENT_GOTHITELLE = 45
+
+script Route111_SunhollowRuins_Museum_EventScript_Archie_Global_Script {
+    lock
+
+    setflag(FLAG_TEMP_3)
+
+    applymovement(OBJECT_EVENT_MAXIE, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    applymovement(OBJECT_EVENT_COURTNEY, moves(
+        walk_left * 2
+        walk_up   * 2
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_left * 2
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("赤焰松：干得好，火雁。\n又见面了，多管闲事的小鬼！\p我猜我其余的手下\n也都吃了不少苦头？\p恭喜你来到这里。\n毕竟，我正想跟你谈谈。\p你知道我们为什么来这儿吗，孩子？\p我们以为朱红色宝珠，\n甚至固拉多本身，\p创造了这片沙漠。\p火雁：尚未检测到任何痕迹。\p赤焰松：确实。但是！\n我们发现了些非常有趣的……\p啊，我扯远了。\n而且那也不是我想问的。\p告诉我，孩子。\n你为什么这么激烈地反对我们？\p大地在人类的重压下呻吟，\n我们却还在不断扩张！\p我们本可以为人类的未来\n做那么多好事。你愿……\p水梧桐：赤焰松！！$"))
+    closemessage
+
+    playse(SE_PIN)
+    applymovement(OBJECT_EVENT_MAXIE, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_COURTNEY, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    waitmovement(0)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+
+    clearflag(FLAG_TEMP_5)
+
+    addobject(OBJECT_EVENT_ARCHIE)
+    addobject(OBJECT_EVENT_BRANDON_3)
+    addobject(OBJECT_EVENT_NORMAN_3)
+
+    applymovement(OBJECT_EVENT_ARCHIE, moves(
+        walk_fast_up   * 9
+        walk_fast_left * 2
+        step_end
+    ))
+
+    applymovement(OBJECT_EVENT_BRANDON_3, moves(
+        walk_fast_up   * 7
+        walk_fast_left * 7
+        face_up
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_NORMAN_3, moves(
+        walk_fast_up   * 8
+        walk_fast_left * 5
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("赤焰松：水舰队？\n已经到了？！$"))
+    closemessage
+
+    addobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_1)
+    addobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_2)
+    addobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_3)
+    addobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_4)
+    addobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_5)
+
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_1, moves(
+        walk_fast_up   * 11
+        walk_fast_left * 2
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_2, moves(
+        walk_fast_up   * 9
+        walk_fast_left * 3
+        walk_fast_up
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_3, moves(
+        walk_fast_up   * 10
+        walk_fast_left * 3
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_4, moves(
+        walk_fast_up   * 11
+        walk_fast_left * 2
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_5, moves(
+        walk_fast_up   * 12
+        walk_fast_left
+        step_end
+    ))
+    waitmovement(0)
+
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_3, moves(
+        walk_fast_left * 7
+        walk_fast_up
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_4, moves(
+        walk_fast_left * 8
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_5, moves(
+        walk_fast_left * 7
+        walk_fast_up
+        step_end
+    ))
+    waitmovement(0)
+
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_3, moves(
+        walk_fast_up * 3
+        face_right
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_4, moves(
+        walk_fast_up * 3
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("千里：{PLAYER}，你没事吧？$"))
+    closemessage
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("赤焰松：原来你叫{PLAYER}，嗯？$"))
+    closemessage
+
+    msgbox(format("水梧桐：喂！赤焰松！\n你的架在这儿打。\p而且我对你满嘴的胡话\n也有意见！$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_MAXIE, moves(
+        face_right
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_COURTNEY, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("赤焰松：胡话？！你竟敢……\p水梧桐：我们最大的问题，\n是我们践踏自然，\p而不是顺应它！\p更多空间解决不了任何事！\n我们照样会毁掉它！\p赤焰松：所以你要用更少的资源\n养活更多的人口？\p水梧桐：那也比……\n比唤醒固拉多好！\p赤焰松：传说夸大了它的坏脾气。\n我相信……\p水梧桐：不值得冒这个险。$"))
+    closemessage
+
+    addobject(OBJECT_EVENT_CRAWDAUNT)
+    playse(SE_BALL_OPEN)
+    setobjectxy(OBJECT_EVENT_CRAWDAUNT, 13, 22)
+
+    delay(20)
+
+    msgbox(format("火雁：赤焰松，我们该走了！\p赤焰松：一如既往地愉快，水梧桐。$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_MAXIE, moves(
+        face_down
+        step_end
+    ))
+
+    applymovement(OBJECT_EVENT_COURTNEY, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("赤焰松：很快再见，{PLAYER}。$"))
+    closemessage
+
+    addobject(OBJECT_EVENT_ALAKAZAM)
+    playse(SE_BALL_OPEN)
+    setobjectxy(OBJECT_EVENT_ALAKAZAM, 9, 22)
+
+    delay(10)
+
+    playse(SE_PIN)
+    applymovement(OBJECT_EVENT_ARCHIE, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_1, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_NORMAN_3, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_BRANDON_3, moves(
+        emote_exclamation_mark
+        step_end
+    ))
+    waitmovement(0)
+
+    fadescreen(FADE_TO_BLACK)
+    playse(SE_M_TELEPORT)
+    removeobject(OBJECT_EVENT_MAXIE)
+    removeobject(OBJECT_EVENT_COURTNEY)
+    removeobject(OBJECT_EVENT_ALAKAZAM)
+    waitse
+    addobject(OBJECT_EVENT_GOTHITELLE)
+    playse(SE_BALL_OPEN)
+    setobjectxy(OBJECT_EVENT_GOTHITELLE, 13, 23)
+    fadescreen(FADE_FROM_BLACK)
+
+    delay(10)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox("水梧桐：呃！$")
+    closemessage
+
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_1, moves(
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox("水舰队手下：可恶，我太慢了！$")
+    closemessage
+
+    applymovement(OBJECT_EVENT_ARCHIE, moves(
+        face_down
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("水梧桐：没关系，大卫，\n你大概本来就在范围外。$"))
+    closemessage
+
+    delay(10)
+
+    playse(SE_BALL_OPEN)
+    removeobject(OBJECT_EVENT_CRAWDAUNT)
+    removeobject(OBJECT_EVENT_GOTHITELLE)
+
+    delay(30)
+
+    applymovement(OBJECT_EVENT_ARCHIE, moves(
+        walk_left * 2
+        walk_down * 2
+        step_end
+    ))
+    waitmovement(0)
+
+    applymovement(OBJECT_EVENT_NORMAN_3, moves(
+        walk_right
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("水梧桐：谢谢拖住他，{PLAYER}。\n也谢谢你在外面帮忙，\p道馆馆主。\p千里：只是尽我的职责。\p所以你就是水梧桐？\p水梧桐：正是。\p千里：我想我们能不能谈谈？\p我们收到报案，说有个\n叫“水舰队”的犯罪组织，\p装束和“水手与航海者协会”很像。\p事实上，和你们的人很像。\p你是那个协会的首领，对吧？\p水梧桐：……正是。\p千里：我希望我们能坐下来谈谈。\p水梧桐：我真不想对你这么做，\n真的。$"))
+    closemessage
+
+    messageinstant(format("千里：你说这话是什么意思……$"))
+    delay(30)
+    closemessage
+
+    messageinstant(format("水梧桐：快溜！$"))
+    delay(20)
+    closemessage
+
+    fadescreen(FADE_TO_BLACK)
+    playse(SE_M_TELEPORT)
+    removeobject(OBJECT_EVENT_ARCHIE)
+    removeobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_1)
+    delay(10)
+    fadescreen(FADE_FROM_BLACK)
+
+    delay(10)
+
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_1, moves(
+        walk_fastest_right * 2
+        walk_fastest_down  * 18
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_2, moves(
+        walk_fastest_down  * 1
+        walk_fastest_right * 3
+        walk_fastest_down  * 16
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_5, moves(
+        walk_fastest_down  * 1
+        walk_fastest_right * 8
+        walk_fastest_down  * 11
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_4, moves(
+        walk_fastest_down  * 3
+        walk_fastest_right * 10
+        walk_fastest_down  * 7
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_FINAL_MEMBER_AQUA_3, moves(
+        walk_fastest_down  * 4
+        walk_fastest_right * 10
+        walk_fastest_down  * 6
+        step_end
+    ))
+    waitmovement(0)
+
+    removeobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_1)
+    removeobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_2)
+    removeobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_3)
+    removeobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_4)
+    removeobject(OBJECT_EVENT_FINAL_MEMBER_AQUA_5)
+
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        face_down
+        step_end
+    ))
+    applymovement(OBJECT_EVENT_BRANDON_3, moves(
+        face_right
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("神代：这看起来……\n很能说明问题。\p千里：是的。确实如此。$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_NORMAN_3, moves(
+        walk_left
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("总之，谢谢你的帮忙，{PLAYER}！\n你的道馆挑战进展如何？\p……四枚徽章？已经？\n干得漂亮！\p那我就不耽误你了，嗯？\n橙华市见！$"))
+    closemessage
+    applymovement(OBJECT_EVENT_NORMAN_3, moves(
+        walk_fastest_right * 4
+        walk_fastest_down  * 8
+        step_end
+    ))
+    waitmovement(0)
+    removeobject(OBJECT_EVENT_NORMAN_3)
+    applymovement(OBJECT_EVENT_BRANDON_3, moves(
+        walk_right * 2
+        face_up
+        step_end
+    ))
+    waitmovement(0)
+
+    msgbox(format("神代：呵。你知道吗，\n他跟我打从来没这么兴奋过。\p祝你在道馆挑战中顺利，\n年轻的冒险者！$"))
+    closemessage
+
+    applymovement(OBJECT_EVENT_BRANDON_3, moves(
+        walk_right * 4
+        walk_down  * 8
+        step_end
+    ))
+    waitmovement(0)
+    removeobject(OBJECT_EVENT_BRANDON_3)
+    
+    setvar(VAR_SUNHOLLOW_STATE, 3)
+    setflag(FLAG_TEMP_5)
+    setflag(FLAG_TEMP_6)
+    setflag(FLAG_FINISHED_SUNHOLLOW_STORY)
+
+    release
+    end
+}

@@ -1,0 +1,219 @@
+raw `
+.set LOCALID_STEVEN, 1
+.set LOCALID_MELTAN_BALL, 2
+
+MossdeepCity_StevensHouse_MapScripts:: @ 8222784
+	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_StevensHouse_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_StevensHouse_OnTransition
+	.byte 0
+
+MossdeepCity_StevensHouse_OnLoad: @ 8222794
+	call_if_unset FLAG_SYS_GAME_CLEAR, MossdeepCity_StevensHouse_EventScript_HideStevensNote
+	end
+
+MossdeepCity_StevensHouse_EventScript_HideStevensNote:: @ 822279E
+	setmetatile 6, 4, METATILE_GenericBuilding_TableEdge, 1
+	return
+
+MossdeepCity_StevensHouse_OnTransition: @ 82227A8
+	compare VAR_STEVENS_HOUSE_STATE, 2
+	call_if_eq MossdeepCity_StevensHouse_EventScript_SetStevenPos
+	end
+
+MossdeepCity_StevensHouse_EventScript_SetStevenPos:: @ 82227B4
+	setobjectxyperm LOCALID_STEVEN, 6, 5
+	setobjectmovementtype LOCALID_STEVEN, MOVEMENT_TYPE_FACE_UP
+	return
+
+@ unused displaced the dive donation to the space center
+MossdeepCity_StevensHouse_OnFrame: @ 82227C0
+	map_script_2 VAR_STEVENS_HOUSE_STATE, 1, MossdeepCity_StevensHouse_EventScript_StevenGivesDive
+	.2byte 0
+
+@ unused displaced the dive donation to the space center
+MossdeepCity_StevensHouse_EventScript_StevenGivesDive:: @ 82227CA
+	lockall
+	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_STEVEN, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_STEVEN, Common_Movement_Delay48
+	waitmovement 0
+	applymovement LOCALID_STEVEN, MossdeepCity_StevensHouse_Movement_StevenApproachPlayer
+	waitmovement 0
+	msgbox MossdeepCity_StevensHouse_Text_YouveEarnedHMDive, MSGBOX_DEFAULT
+	giveitem ITEM_HM08_DIVE
+	setflag FLAG_RECEIVED_HM08
+	setflag FLAG_OMIT_DIVE_FROM_STEVEN_LETTER
+	msgbox MossdeepCity_StevensHouse_Text_ExplainDive, MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	applymovement LOCALID_STEVEN, MossdeepCity_StevensHouse_Movement_StevenReturn
+	waitmovement 0
+	setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT
+	setvar VAR_STEVENS_HOUSE_STATE, 2
+	releaseall
+	end
+
+MossdeepCity_StevensHouse_Movement_StevenApproachPlayer: @ 8222833
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_fastest_down
+	step_end
+
+MossdeepCity_StevensHouse_Movement_StevenReturn: @ 822283B
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+MossdeepCity_StevensHouse_EventScript_MeltanPokeball:: @ 8222841
+	lockall
+	msgbox MossdeepCity_StevensHouse_Text_TakeBallContainingMeltan, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_StevensHouse_EventScript_LeaveMeltan
+	goto MossdeepCity_StevensHouse_EventScript_GiveMeltan
+	end
+
+MossdeepCity_StevensHouse_EventScript_LeaveMeltan:: @ 822285B
+	msgbox MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas, MSGBOX_DEFAULT
+	releaseall
+	end
+
+MossdeepCity_StevensHouse_EventScript_GiveMeltan:: @ 8222865
+	setvar VAR_TEMP_1, SPECIES_MELTAN
+	givemon SPECIES_MELTAN, 5, ITEM_MELMETALITE
+	compare VAR_RESULT, 0
+	goto_if_eq MossdeepCity_StevensHouse_EventScript_SendMeltanParty
+	compare VAR_RESULT, 1
+	goto_if_eq MossdeepCity_StevensHouse_EventScript_SendMeltanPC
+	goto Common_EventScript_NoMoreRoomForPokemon
+	end
+
+MossdeepCity_StevensHouse_EventScript_SendMeltanParty:: @ 8222895
+	call MossdeepCity_StevensHouse_EventScript_ReceivedMeltanFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_StevensHouse_EventScript_ReceivedMeltan
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto MossdeepCity_StevensHouse_EventScript_ReceivedMeltan
+	end
+
+MossdeepCity_StevensHouse_EventScript_SendMeltanPC:: @ 82228BD
+	call MossdeepCity_StevensHouse_EventScript_ReceivedMeltanFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MossdeepCity_StevensHouse_EventScript_MeltanTransferredToPC
+	call Common_EventScript_NameReceivedBoxMon
+	goto MossdeepCity_StevensHouse_EventScript_MeltanTransferredToPC
+	end
+
+MossdeepCity_StevensHouse_EventScript_MeltanTransferredToPC:: @ 82228E0
+	call Common_EventScript_TransferredToPC
+	goto MossdeepCity_StevensHouse_EventScript_ReceivedMeltan
+	end
+
+MossdeepCity_StevensHouse_EventScript_ReceivedMeltanFanfare:: @ 82228EB
+	bufferspeciesname 1, SPECIES_MELTAN
+	removeobject LOCALID_MELTAN_BALL
+	playfanfare MUS_OBTAIN_ITEM
+	message MossdeepCity_StevensHouse_Text_ObtainedMeltan
+	waitmessage
+	waitfanfare
+	bufferspeciesname 0, SPECIES_MELTAN
+	return
+
+MossdeepCity_StevensHouse_EventScript_ReceivedMeltan:: @ 8222901
+	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_MELTAN_POKEBALL
+	setflag FLAG_RECEIVED_MELTAN
+	releaseall
+	end
+
+MossdeepCity_StevensHouse_EventScript_RockDisplay:: @ 8222909
+	msgbox MossdeepCity_StevensHouse_Text_CollectionOfRareRocks, MSGBOX_SIGN
+	end
+
+MossdeepCity_StevensHouse_EventScript_Steven:: @ 8222912
+	msgbox MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis, MSGBOX_NPC
+	end
+
+MossdeepCity_StevensHouse_EventScript_Letter:: @ 822291B
+	lockall
+	msgbox MossdeepCity_StevensHouse_Text_LetterFromSteven, MSGBOX_DEFAULT
+	releaseall
+	end
+
+@ Unused, leftover from RS
+MossdeepCity_StevensHouse_EventScript_DiveItemBall:: @ 8222926
+	finditem ITEM_HM08_DIVE
+	setflag FLAG_RECEIVED_HM08
+	end
+
+MossdeepCity_StevensHouse_Text_YouveEarnedHMDive: @ 8222936
+	.string "大吾：{PLAYER}{KUN}……\n"
+	.string "如你所见，这里没什么东西，\p"
+	.string "但这是我的家。\n"
+	.string "谢谢你为我做的一切。\p"
+	.string "这是我的一点谢意。\n"
+	.string "是秘传学习器潜水。\p"
+	.string "不必客气……这是你应得的。$"
+
+MossdeepCity_StevensHouse_Text_ExplainDive: @ 8222A0E
+	.string "大吾：使用冲浪时，\n"
+	.string "你该会注意到水色发暗的区域。\p"
+	.string "遇到那样的深水就用潜水，\n"
+	.string "你会沉到海底。\p"
+	.string "想浮上来时，再用一次潜水。\n"
+	.string "不过有些地方是浮不上去的。$"
+
+MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis: @ 8222B11
+	.string "大吾：据说绿岭市和琉璃市之间\n"
+	.string "有一处海底洞窟。\p"
+	.string "就是施坦恩船长在潜艇里\n"
+	.string "发现的那个。$"
+
+MossdeepCity_StevensHouse_Text_TakeBallContainingMeltan: @ 8222B9E
+	.string "{PLAYER}查看了精灵球。\n"
+	.string "里面装着宝可梦\p"
+	.string "美录坦。\n"
+	.string "要拿走精灵球吗？$"
+
+MossdeepCity_StevensHouse_Text_ObtainedMeltan: @ 8222BED
+	.string "{PLAYER}获得了美录坦。$"
+
+@ Unused
+MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon: @ 8222C03
+	.string "没有位置再放宝可梦了。$"
+
+MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas: @ 8222C2A
+	.string "{PLAYER}把精灵球放回了原处。$"
+
+MossdeepCity_StevensHouse_Text_LetterFromSteven: @ 8222C4E
+	.string "是一封信。\n"
+	.string "………………\p"
+	.string "给{PLAYER}{KUN}……\n"
+	.string "我决定好好思索一番，\p"
+	.string "然后踏上旅途修行。\n"
+	.string "一段时间内我不打算回家。\p"
+	.string "有件事想拜托你。\n"
+	.string "请你拿走桌上的精灵球。\p"
+	.string "里面是一只美录坦，\n"
+	.string "是我最喜欢的宝可梦之一。\p"
+	.string "就拜托你了。\n"
+	.string "愿我们有一天能再相遇。\p"
+	.string "大吾·斯通$"
+
+MossdeepCity_StevensHouse_Text_CollectionOfRareRocks: @ 8222D97
+	.string "这是大吾收集的\n"
+	.string "稀有岩石与石头的收藏。$"
+
+`

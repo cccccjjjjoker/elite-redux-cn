@@ -1,0 +1,139 @@
+raw `
+.set LOCALID_STAIR_GUARD, 2
+
+RustboroCity_DevonCorp_1F_MapScripts:: @ 8211245
+	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_OnTransition
+	.byte 0
+
+RustboroCity_DevonCorp_1F_OnTransition: @ 821124B
+	call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_BlockStairs
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_BlockStairs:: @ 8211255
+	setobjectxyperm LOCALID_STAIR_GUARD, 14, 2
+	setobjectmovementtype LOCALID_STAIR_GUARD, MOVEMENT_TYPE_FACE_DOWN
+	return
+
+RustboroCity_DevonCorp_1F_EventScript_Employee:: @ 8211261
+	lock
+	faceplayer
+	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright
+	msgbox RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright:: @ 821127F
+	msgbox RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered:: @ 8211289
+	msgbox RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_StairGuard:: @ 8211293
+	lock
+	faceplayer
+	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
+	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+	msgbox RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome:: @ 82112BA
+	msgbox RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_GotRobbed:: @ 82112C4
+	msgbox RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_Greeter:: @ 82112CE
+	lock
+	faceplayer
+	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp
+	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp:: @ 82112F5
+	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed:: @ 82112FF
+	msgbox RustboroCity_DevonCorp_1F_Text_StaffGotRobbed, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_RocksMetalDisplay:: @ 8211309
+	msgbox RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay, MSGBOX_SIGN
+	end
+
+RustboroCity_DevonCorp_1F_EventScript_ProductsDisplay:: @ 8211312
+	msgbox RustboroCity_DevonCorp_1F_Text_ProductDisplay, MSGBOX_SIGN
+	end
+
+RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp: @ 821131B
+	.string "你好，欢迎来到得文公司。\n"
+	.string "我们以生产改善生活的物品和药品为\p"
+	.string "荣。$"
+
+RustboroCity_DevonCorp_1F_Text_StaffGotRobbed: @ 821138B
+	.string "我们研究部有个人傻乎乎地\n"
+	.string "被抢走了一个重要包裹。$"
+
+RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct: @ 82113D1
+	.string "嘿，那双跑步鞋！那是我们的产品！\n"
+	.string "看到有人用我们做的东西，\p"
+	.string "我很开心。$"
+
+RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright: @ 8211446
+	.string "那个被偷的包裹……\n"
+	.string "它确实重要，\p"
+	.string "但也不是谁能用的东西。\n"
+	.string "在我看来，那个抢匪肯定不太聪明。$"
+
+RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered: @ 82114DE
+	.string "听说他们找回了被抢走的得文零件。$"
+
+RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter: @ 821151B
+	.string "抱歉，这里只有授权人员才能进入。$"
+
+RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed: @ 8211558
+	.string "太蠢了。我们怎么会被抢？$"
+
+RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere: @ 8211585
+	.string "嗨，你好！这里随时欢迎你！$"
+
+RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay: @ 82115AC
+	.string "玻璃柜里展示着岩石和金属的样品。\n"
+	.string "上面有块写着说明的板子……\p"
+	.string "“得文公司最初是从采石场生产石材\n"
+	.string "起家的。\p"
+	.string "“公司还用沙中的铁屑炼铁。\n"
+	.string "“从生产原材料这样朴实的起点，\p"
+	.string "得文发展了起来。\n"
+	.string "“如今得文是各类工业产品的制造商\p"
+	.string "。”$"
+
+RustboroCity_DevonCorp_1F_Text_ProductDisplay: @ 8211722
+	.string "玻璃展示柜里放满了试制品和测试品\n"
+	.string "。\p"
+	.string "上面有块写着说明的板子……\n"
+	.string "“除了工业产品，得文现在还销售\p"
+	.string "日用杂货和药品，\n"
+	.string "让人们生活得更好。\p"
+	.string "“最近，得文开始销售面向宝可梦训\n"
+	.string "练家的\p"
+	.string "工具，包括精灵球和宝可梦导航器系\n"
+	.string "统。”$"
+
+`

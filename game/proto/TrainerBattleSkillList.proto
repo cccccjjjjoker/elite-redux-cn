@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package er;
+
+import "BattleSkillEnum.proto";
+import "TrainerEnum.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+message TrainerBattleSkillList {
+    repeated TrainerBattleSkill trainer_skill = 1;
+}
+
+/* Following messages are for determining which Pokemon get a skill, used for
+ * stuff like "burn the player's last 3 Pokemon" or "the trainer's last Pokemon
+ * gains +4 speed on entry"
+ *
+ * Should be able to cover all combinations with all, first N, and last N, but
+ * not 100% sure. Didn't want to use party slots directly (like Pokemon 1 or
+ * Pokemon 6) because it won't work properly if the party isn't full. Might be 
+ * worth changing to a different system in the future, idk.
+ */
+
+message TargetAll {}
+message TargetFirstN { int32 n = 1; }
+message TargetLastN { int32 n = 1; }
+
+message Target {
+    oneof target {
+        TargetAll all = 1;
+        TargetFirstN first_n = 2;
+        TargetLastN last_n = 3;
+    }
+}
+
+message TrainerBattleSkill {
+    TrainerEnum trainer_id = 1;
+
+    message BattleSkillWithTarget {
+        BattleSkillEnum skill_id = 1;
+        // Repeated to allow for combinations with first_n and last_n together
+        repeated Target target = 2;
+    }
+
+    repeated BattleSkillWithTarget skill = 2;
+}

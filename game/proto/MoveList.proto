@@ -1,0 +1,193 @@
+syntax = "proto3";
+
+package er;
+
+import "MoveEnum.proto";
+import "MoveBehavior.proto";
+import "Types.proto";
+import "MoveEffect.proto";
+import "google/protobuf/descriptor.proto";
+import "MoveBehaviorConfigList.proto";
+import "ScriptConditions.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+extend google.protobuf.FieldOptions {
+  optional string field_name = 1000000;
+  optional bool is_flag = 1000001;
+  optional string flag_code_value = 1000002;
+}
+
+extend google.protobuf.EnumValueOptions {
+  optional string enum_name = 1000000;
+  optional string enum_flag_code_value = 1000001;
+}
+
+message MoveList {
+  repeated Move moves = 1;
+}
+
+enum MoveTarget {
+  SELECTED = 0x0 [(enum_name) = "Single"];
+  DEPENDS = 0x1 [(enum_name) = "Varies"];
+  USER_OR_SELECTED = 0x2 [(enum_name) = "Single or User"];
+  RANDOM = 0x4 [(enum_name) = "Random"];
+  BOTH = 0x8 [(enum_name) = "Spread"];
+  USER = 0x10 [(enum_name) = "User"];
+  FOES_AND_ALLY = 0x20 [(enum_name) = "All"];
+  OPPONENTS_FIELD = 0x40 [(enum_name) = "Field"];
+  ALLY = 0x80 [(enum_name) = "Ally"];
+  USER_OR_ALLY = 0x90 [(enum_name) = "Ally or User"];
+  ALL_BATTLERS = 0x110 [(enum_name) = "All"];
+}
+
+enum MoveSplit {
+  PHYSICAL = 0 [(enum_name) = "Physical"];
+  SPECIAL = 1 [(enum_name) = "Special"];
+  STATUS = 2 [(enum_name) = "Status"];
+}
+
+message MoveEffectArgument {
+  MoveEffect effect = 1;
+  bool affects_user = 2;
+  bool certain = 3;
+}
+
+enum MiscMoveEffect {
+  MISC_EFFECT_NONE = 0;
+  MISC_EFFECT_SUPEREFFECTIVE_BOOST = 1;
+  MISC_EFFECT_FAINTED_MON_BOOST = 2;
+  MISC_EFFECT_ELECTRIC_TERRAIN_BOOST = 3;
+  MISC_EFFECT_TOOK_DAMAGE_BOOST = 4;
+  MISC_EFFECT_INCREASED_CRIT_DAMAGE = 5;
+  MISC_EFFECT_IVY_CUDGEL = 6;
+  MISC_EFFECT_DOUBLE_DAMAGE = 7;
+  MISC_EFFECT_DOUBLE_DAMAGE_VS_BLEEDING = 8;
+  MISC_EFFECT_50_PERCENT_PLUS_DAMAGE_VS_BLEEDING = 9;
+  MISC_EFFECT_TRANSMUTE = 10;
+  MISC_EFFECT_DOUBLE_DAMAGE_IN_FOG = 11;
+}
+
+message Argument {
+  oneof argument {
+    Type type = 1;
+    MoveEffectArgument effect = 2;
+    int32 int = 3;
+    string other = 4;
+    Status status = 5;
+    MiscMoveEffect misc = 6;
+  }
+}
+
+enum Crit {
+  CRIT_NORMAL = 0;
+  HIGH = 1 [(enum_name) = "High Crit Rate", (enum_flag_code_value) = "FLAG_HIGH_CRIT"];
+  ALWAYS = 2 [(enum_name) = "Always Crits", (enum_flag_code_value) = "alwaysCrit"];
+}
+
+enum HitsAir {
+  DOESNT_HIT_AIR = 0;
+  HITS = 1 [(enum_name) = "Hits Airborne", (enum_flag_code_value) = "FLAG_DMG_IN_AIR"];
+  DOUBLE_DAMAGE = 2  [(enum_name) = "Double Damage to Airborne", (enum_flag_code_value) = "FLAG_DMG_2X_IN_AIR"];
+}
+
+enum SplitFlag {
+  USE_BASE_SPLIT = 0;
+  USE_HIGHEST_OFFENSE = 1 [(enum_name) = "Use Highest Attack"];
+  USE_LOWEST_DEFENSE = 2 [(enum_name) = "Hits Lowest Defense"];
+  HITS_SPDEF = 3 [(enum_name) = "Hits Special Defense"];
+  HITS_DEF = 4 [(enum_name) = "Hits Defense"];
+  USE_HIGHEST_DAMAGE = 5 [(enum_name) = "Use Highest Damage"];
+}
+
+enum TutorType {
+  TUTOR_NONE = 0;
+  TUTOR_ATTACK = 1;
+  TUTOR_UTILITY_ATTACK = 2;
+  TUTOR_GOOD_STATUS = 3;
+  TUTOR_NICHE_STATUS = 4;
+  TUTOR_UNIVERSAL_ATTACK = 5;
+  TUTOR_UNIVERSAL_STATUS = 6;
+  TUTOR_UNIVERSAL_STATUS_GENDERED = 7;
+  TUTOR_TERRAIN = 8;
+  TUTOR_WEATHER = 9;
+}
+
+message Move {
+  MoveEnum id = 1;
+  TutorType tutor = 63;
+  optional MoveEnum uses_animation = 64;
+  string name = 2;
+  string short_name = 3;
+  string description = 4;
+  string short_description = 5;
+  oneof move_effect {
+    MoveBehavior effect = 6;
+    MoveBehaviorConfig custom_behavior = 66;
+  }
+  optional MoveSplit split = 7;
+  SplitFlag split_modifier = 8;
+  optional Type type = 9;
+  Type type2 = 10;
+  optional MoveTarget target = 11;
+
+  int32 hit_count = 12;
+  int32 power = 13;
+  int32 accuracy = 14;
+  int32 pp = 15;
+  int32 effect_chance = 16;
+  int32 priority = 17;
+  Argument argument = 18;
+
+  bool contact = 19 [(field_name) = "Makes Contact", (is_flag) = true, (flag_code_value) = "contact"];
+  Crit crit = 20 [(is_flag) = true];
+
+  bool ignores_protect = 21 [(field_name) = "Ignores Protect", (is_flag) = true];
+  bool ignores_stat_stages = 22 [(field_name) = "Ignores Stat Stages", (is_flag) = true, (flag_code_value) = "FLAG_STAT_STAGES_IGNORED"];
+  bool double_damage_vs_mega = 23 [(field_name) = "x2 Damage vs Mega", (is_flag) = true, (flag_code_value) = "doubleDamageVsMega"];
+  bool every_other_turn = 24 [(field_name) = "Every Other Turn", (is_flag) = true, (flag_code_value) = "everyOtherTurn"];
+  bool is_protection = 25 [(field_name) = "Protection Move", (is_flag) = true, (flag_code_value) = "FLAG_PROTECTION_MOVE"];
+  bool ignores_ability = 26 [(field_name) = "Ignores Abilities", (is_flag) = true, (flag_code_value) = "FLAG_TARGET_ABILITY_IGNORED"];
+  bool two_turn = 27 [(field_name) = "Two-Turn", (is_flag) = true];
+
+  bool snatch_affected = 28 [(field_name) = "Snatch Affected", (is_flag) = true, (flag_code_value) = "FLAG_SNATCH_AFFECTED"];
+  bool magic_coat_affected = 29 [(field_name) = "Magic Coat Affected", (is_flag) = true, (flag_code_value) = "FLAG_MAGIC_COAT_AFFECTED"];
+  bool mirror_move_affected = 30 [(field_name) = "Mirror Move Affected", (is_flag) = true, (flag_code_value) = "FLAG_MIRROR_MOVE_AFFECTED"];
+  bool no_kings_rock = 31 [(field_name) = "Unaffected by Kings Rock", (is_flag) = true];
+  bool no_sheer_force = 32 [(field_name) = "Unaffected by Sheer Force", (is_flag) = true];
+  bool hits_underground = 33 [(field_name) = "Hits Underground", (is_flag) = true, (flag_code_value) = "FLAG_DMG_UNDERGROUND"];
+  bool hits_underwater = 34 [(field_name) = "Hits Underwater", (is_flag) = true, (flag_code_value) = "FLAG_DMG_UNDERWATER"];
+  bool powder_affected = 35 [(field_name) = "Powder Move", (is_flag) = true, (flag_code_value) = "FLAG_POWDER"];
+  HitsAir hits_air = 36 [(is_flag) = true];
+  bool ignores_levitation = 37 [(field_name) = "Hits Non-Grounded", (is_flag) = true, (flag_code_value) = "FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING"];
+  bool thaw_user = 38 [(field_name) = "Thaws User", (is_flag) = true, (flag_code_value) = "FLAG_THAW_USER"];
+  bool ignores_substitute = 39 [(field_name) = "Ignores Substitute", (is_flag) = true, (flag_code_value) = "FLAG_HIT_IN_SUBSTITUTE"];
+
+  bool reckless = 40 [(field_name) = "Causes Recoil", (is_flag) = true, (flag_code_value) = "FLAG_RECKLESS_BOOST"];
+  bool iron_fist = 41 [(field_name) = "Punch Based", (is_flag) = true, (flag_code_value) = "FLAG_IRON_FIST_BOOST"];
+  bool strong_jaw = 42 [(field_name) = "Biting Move", (is_flag) = true, (flag_code_value) = "FLAG_STRONG_JAW_BOOST"];
+  bool mega_launcher = 43 [(field_name) = "Beam/Cannon Move", (is_flag) = true, (flag_code_value) = "FLAG_MEGA_LAUNCHER_BOOST"];
+  bool striker = 44 [(field_name) = "Kick Based", (is_flag) = true, (flag_code_value) = "FLAG_STRIKER_BOOST"];
+  bool sound = 45 [(field_name) = "Sound Based", (is_flag) = true, (flag_code_value) = "FLAG_SOUND"];
+  bool ballistic = 46 [(field_name) = "Bullet Move", (is_flag) = true, (flag_code_value) = "FLAG_BALLISTIC"];
+  bool dance = 47 [(field_name) = "Dance Move", (is_flag) = true, (flag_code_value) = "FLAG_DANCE"];
+  bool keen_edge = 48 [(field_name) = "Slicing Move", (is_flag) = true, (flag_code_value) = "FLAG_KEEN_EDGE_BOOST"];
+  bool bone = 49 [(field_name) = "Bone Based", (is_flag) = true, (flag_code_value) = "FLAG_BONE_BASED"];
+  bool weather = 50 [(field_name) = "Weather Based", (is_flag) = true, (flag_code_value) = "FLAG_WEATHER_BASED"];
+  bool field = 51 [(field_name) = "Field Based", (is_flag) = true, (flag_code_value) = "FLAG_FIELD_BASED"];
+  bool arrow = 52 [(field_name) = "Arrow Based", (is_flag) = true, (flag_code_value) = "arrowBased"];
+  bool horn = 53 [(field_name) = "Horn Based", (is_flag) = true, (flag_code_value) = "hornBased"];
+  bool air = 54 [(field_name) = "Air/Wing Based", (is_flag) = true, (flag_code_value) = "airBased"];
+  bool hammer = 55 [(field_name) = "Hammer Based", (is_flag) = true, (flag_code_value) = "hammerBased"];
+  bool throwing = 56 [(field_name) = "Throw Based", (is_flag) = true, (flag_code_value) = "throwingBased"];
+  bool lunar = 57 [(field_name) = "Lunar Move", (is_flag) = true, (flag_code_value) = "lunar"];
+  bool drill = 65 [(field_name) = "Drill Based", (is_flag) = true, (flag_code_value) = "drill"];
+  bool light = 67 [(field_name) = "Light Based", (is_flag) = true, (flag_code_value) = "light"]; 
+
+  bool no_parental_bond = 58 [(field_name) = "Can't Multi-Hit", (is_flag) = true];
+  bool metronome_banned = 59 [(field_name) = "No Metronome", (is_flag) = true, (flag_code_value) = "metronomeBanned"];
+  bool copycat_banned = 60 [(field_name) = "No Copycat", (is_flag) = true, (flag_code_value) = "copycatBanned"];
+  bool sleep_talk_banned = 61 [(field_name) = "No Sleep Talk", (is_flag) = true, (flag_code_value) = "sleepTalkBanned"];
+  bool mimic_banned = 62 [(field_name) = "No Mimic", (is_flag) = true, (flag_code_value) = "mimicBanned"];
+}

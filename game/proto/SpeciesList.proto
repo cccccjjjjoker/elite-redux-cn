@@ -1,0 +1,290 @@
+syntax = "proto3";
+
+package er;
+
+import "MoveEnum.proto";
+import "SpeciesEnum.proto";
+import "AbilityEnum.proto";
+import "Types.proto";
+import "Anims.proto";
+import "ItemEnum.proto";
+import "LimitedRandomizerConfig.proto";
+
+option java_package = "er.proto";
+option java_multiple_files = true;
+
+message SpeciesList {
+  repeated Species species = 1;
+}
+
+message Species {
+  message SpeciesDexInfo {
+    string name = 1;
+    string category = 2;
+    string description = 3;
+    int32 national_dex_num = 4;
+    int32 hoenn_dex_num = 5;
+    optional BodyColor body_color = 6;
+    EggGroup egg_group = 7;
+    EggGroup egg_group_2 = 8;
+    int32 height = 9;
+    int32 weight = 10;
+    int32 pokemon_scale = 11;
+    int32 trainer_scale = 12;
+    int32 pokemon_offset = 13;
+    int32 trainer_offset = 14;
+  }
+
+  enum Gender {
+    GENDER_NONE = 0;
+    MALE = 1;
+    FEMALE = 2;
+  }
+
+  message Evolution {
+    SpeciesEnum to = 1;
+    int32 level = 2;
+    Gender gender = 3;
+  }
+
+  message MegaEvolution {
+    enum MegaType {
+      MEGA_UNSPECIFIED = 0;
+      MEGA_X = 1;
+      MEGA_Y = 2;
+      MEGA_Z = 3;
+      MEGA_A = 4;
+      MEGA_B = 5;
+      MEGA_C = 6;
+    }
+
+    SpeciesEnum from = 1;
+    oneof evo_using {
+      ItemEnum item = 2;
+      MoveEnum move = 3;
+    }
+    MegaType type = 4;
+  }
+
+  message PrimalEvolution {
+    enum PrimalType {
+      PRIMAL = 0;
+      ORIGIN = 1;
+      CROWNED = 2;
+      ULTRA = 7;
+    }
+
+    SpeciesEnum from = 1;
+    ItemEnum item = 2;
+    PrimalType type = 3;
+  }
+
+  message BattleForm {
+    SpeciesEnum of = 1;
+    bool keep_on_switch = 2;
+  }
+
+  message Learnset {
+    message LevelUpMove {
+      int32 level = 1;
+      repeated MoveEnum move = 2;
+    }
+
+    enum UniversalTutors {
+      ALL_TUTORS = 0;
+      NO_ATTACKS = 1;
+    }
+
+    repeated LevelUpMove level = 1;
+    UniversalTutors universal_tutors = 3;
+    repeated MoveEnum tutor = 2;
+  }
+
+  enum AdditionalShiny {
+    ADDITIONAL_SHINY_NONE = 0;
+    SHINY_RARE = 1;
+    SHINY_LEGENDARY = 2;
+    SHINY_FEMALE = 3;
+  }
+
+  enum RandomizeBanned {
+    BANNED_NONE = 0;
+    LEGENDARY = 1;
+    MONOTYPE = 2;
+    SPECIES_HIDDEN = 3;
+    IN_BATTLE = 4;
+    PARADOX = 5;
+    BANNED_OTHER = 6;
+  }
+
+  enum Region {
+    REGION_NONE = 0;
+    ALOLA = 1;
+    GALAR = 2;
+    HISUI = 3;
+    PALDEA = 4;
+    REDUX= 5;
+  }
+
+  message RandomizerData {
+    Region min_region = 1;
+    Region max_region = 2;
+    repeated Region other_region = 3;
+    repeated LandType land = 4;
+    repeated WaterType water = 5;
+    repeated LandType exclude_land = 11;
+    repeated WaterType exclude_water = 12;
+    bool fishing = 6;
+    bool rock_smash = 7;
+    bool sand_pile = 8;
+    bool cut = 9;
+    bool berries = 10;
+    bool amphibious = 13;
+    bool require_all = 14;
+  }
+
+  SpeciesEnum id = 1;
+  RandomizeBanned randomizer_banned = 2;
+  oneof base_species_info {
+    SpeciesEnum form_of = 3;
+    SpeciesDexInfo dex = 4;
+  }
+  string long_name = 5;
+  Region region_prefix = 31;
+  Type type = 6;
+  Type type2 = 7;
+  int32 hp = 8;
+  int32 atk = 9;
+  int32 def = 10;
+  int32 spatk = 11;
+  int32 spdef = 12;
+  int32 spe = 13;
+  repeated AbilityEnum ability = 14;
+  repeated AbilityEnum innate = 15;
+  oneof gender {
+    float percent_female = 16;
+    bool genderless = 17;
+  }
+  int32 tier = 18;
+  int32 heads = 19;
+  bool no_flip = 20;
+  int32 bp_cost = 21;
+  bool allow_deevolution_to = 33;
+  bool is_tag_team = 34;
+  repeated Evolution evo = 22;
+  repeated MegaEvolution mega = 23;
+  repeated PrimalEvolution primal = 24;
+  optional SpeciesEnum form_shift_of = 25;
+  optional Gender form_shift_gender = 26;
+  optional BattleForm battle_form = 32;
+  oneof learnset_or_ref {
+    Learnset learnset = 27;
+    SpeciesEnum uses_learnset = 28;
+  }
+  oneof visuals_or {
+    SpeciesEnum reuse_visuals = 29;
+    Visuals visuals = 30;
+  }
+  RandomizerCategory randomizer_category = 35;
+  RandomizerData preferred_climate = 36;
+  RandomizerData allowed_climate = 37;
+  SpeciesEnum randomizer_alt_gender = 38;
+  repeated SpeciesEnum linked_species = 39;
+  optional int32 adoption_center_badge = 40;
+}
+
+message Visuals {
+  message Icon {
+    string path = 1;
+    int32 palette = 2;
+  }
+  message Coords {
+    int32 size = 1;
+    int32 y_offset = 2;
+    int32 elevation = 3;
+  }
+  message FrontPic {
+    string path = 1;
+    FrontAnim anim = 2;
+    Coords coords = 3;
+  }
+  message BackPic {
+    string path = 1;
+    BackAnim anim = 2;
+    Coords coords = 3;
+  }
+  message Female {
+    Icon icon = 1;
+    string front = 2;
+    string back = 3;
+    string palette = 4;
+    string shiny = 5;
+  }
+  message AnimationList {
+    message AnimCmd {
+      enum Type {
+        FRAME = 0;
+        reserved 1;
+        JUMP = 2;
+        LOOP = 3;
+      }
+      Type type = 1;
+      optional int32 image = 2;
+      optional int32 duration = 3;
+    }
+    message AnimStep {
+      repeated AnimCmd frame = 1;
+    }
+    // First step is implicitly sAnim_GeneralFrame0
+    repeated AnimStep step = 1;
+  }
+
+  oneof icon_or {
+    SpeciesEnum reuse_icon = 1;
+    Icon icon = 2;
+  }
+  FrontPic front = 3;
+  BackPic back = 4;
+  string palette = 5;
+  string shiny = 6;
+  string rare = 7;
+  string legendary = 8;
+  Female female = 9;
+  oneof animations_or {
+    SpeciesEnum reuse_animation = 10;
+    // If empty is implicitly generic 1 frame anim
+    AnimationList anim = 11;
+  }
+}
+
+enum EggGroup {
+  EGG_GROUP_NONE = 0;
+  MONSTER = 1;
+  WATER_1 = 2;
+  BUG = 3;
+  FLYING = 4;
+  FIELD = 5;
+  FAIRY = 6;
+  GRASS = 7;
+  HUMAN_LIKE = 8;
+  WATER_3 = 9;
+  MINERAL = 10;
+  AMORPHOUS = 11;
+  WATER_2 = 12;
+  DITTO = 13;
+  DRAGON = 14;
+  UNDISCOVERED = 15;
+}
+
+enum BodyColor {
+  BODY_COLOR_RED = 0;
+  BODY_COLOR_BLUE = 1;
+  BODY_COLOR_YELLOW = 2;
+  BODY_COLOR_GREEN = 3;
+  BODY_COLOR_BLACK = 4;
+  BODY_COLOR_BROWN = 5;
+  BODY_COLOR_PURPLE = 6;
+  BODY_COLOR_GRAY = 7;
+  BODY_COLOR_WHITE = 8;
+  BODY_COLOR_PINK = 9;
+}

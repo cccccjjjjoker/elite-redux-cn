@@ -1,0 +1,540 @@
+raw `
+.set LOCALID_STEVEN, 19
+
+Route118_MapScripts:: @ 81F3DBC
+	map_script MAP_SCRIPT_ON_TRANSITION, Route118_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, Route118_OnLoad
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route118_OnFrame
+	.byte 0
+
+Route118_OnTransition: @ 81F3DCC
+	call GabbyAndTy_EventScript_UpdateLocation
+	compare VAR_SHOULD_END_ABNORMAL_WEATHER, 1
+	call_if_eq AbnormalWeather_EventScript_HideMapNamePopup
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_EAST
+	call_if_eq AbnormalWeather_StartGroudonWeather
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_WEST
+	call_if_eq AbnormalWeather_StartGroudonWeather
+	end
+
+Route118_OnLoad: @ 81F3DF3
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_EAST
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute118East
+	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_WEST
+	call_if_eq AbnormalWeather_EventScript_PlaceTilesRoute118West
+	end
+
+Route118_OnFrame: @ 81F3E0A
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	.2byte 0
+
+Route114_EventScript_GoodRodFisherman:: @ 81F3E14
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_GOOD_ROD, Route118_EventScript_ReceivedGoodRod
+	msgbox Route118_Text_YouAgreeGoodRodIsGood, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route118_EventScript_ReceiveGoodRod
+	compare VAR_RESULT, NO
+	goto_if_eq Route118_EventScript_DeclineGoodRod
+	end
+
+Route118_EventScript_ReceiveGoodRod:: @ 81F3E3E
+	msgbox Route118_Text_IdenticalMindsTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_GOOD_ROD
+	setflag FLAG_RECEIVED_GOOD_ROD
+	msgbox Route118_Text_TryYourLuckFishing, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_DeclineGoodRod:: @ 81F3E5F
+	msgbox Route118_Text_DontYouLikeToFish, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_ReceivedGoodRod:: @ 81F3E69
+	msgbox Route118_Text_TryCatchingMonWithGoodRod, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_Girl:: @ 81F3E73
+	msgbox Route118_Text_CanCrossRiversWithSurf, MSGBOX_NPC
+	end
+
+Route118_EventScript_RouteSignMauville:: @ 81F3E7C
+	msgbox Route118_Text_RouteSignMauville, MSGBOX_SIGN
+	end
+
+Route118_EventScript_RouteSign119:: @ 81F3E85
+	msgbox Route118_Text_RouteSign119, MSGBOX_SIGN
+	end
+
+Route118_EventScript_StevenExit0:: @ 81F3F28
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit0
+	waitmovement 0
+	return
+
+Route118_EventScript_StevenExit1:: @ 81F3F3A
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit1
+	waitmovement 0
+	return
+
+Route118_EventScript_StevenExit2:: @ 81F3F4C
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit2
+	waitmovement 0
+	return
+
+Route118_Movement_PlayerWatchStevenExit: @ 81F3F5E
+	delay_16
+	walk_in_place_fastest_right
+	step_end
+
+Route118_Movement_StevenApproachLedge0: @ 81F3F61
+	walk_left
+	step_end
+
+Route118_Movement_StevenApproachLedge2: @ 81F3F63
+	walk_right
+	step_end
+
+Route118_Movement_StevenJumpLedge: @ 81F3F65
+	jump_2_down
+	delay_16
+	walk_down
+	step_end
+
+Route118_Movement_StevenExit0: @ 81F3F69
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+Route118_Movement_StevenExit1: @ 81F3F74
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+Route118_Movement_StevenExit2: @ 81F3F7E
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+Route118_EventScript_Rose:: @ 81F3F87
+	trainerbattle_single TRAINER_ROSE_1, Route118_Text_RoseIntro, Route118_Text_RoseDefeat, Route118_EventScript_RegisterRose
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route118_EventScript_RematchRose
+	msgbox Route118_Text_RosePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_RegisterRose:: @ 81F3FB3
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route118_Text_RoseRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_ROSE_1
+	release
+	end
+
+Route118_EventScript_RematchRose:: @ 81F3FD2
+	trainerbattle_rematch TRAINER_ROSE_1, Route118_Text_RoseRematchIntro, Route118_Text_RoseRematchDefeat
+	msgbox Route118_Text_RosePostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route118_EventScript_Barny:: @ 81F3FE9
+	trainerbattle_single TRAINER_BARNY, Route118_Text_BarnyIntro, Route118_Text_BarnyDefeat
+	msgbox Route118_Text_BarnyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route118_EventScript_Wade:: @ 81F4000
+	trainerbattle_single TRAINER_WADE, Route118_Text_WadeIntro, Route118_Text_WadeDefeat
+	msgbox Route118_Text_WadePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route118_EventScript_Dalton:: @ 81F4017
+	trainerbattle_single TRAINER_DALTON_1, Route118_Text_DaltonIntro, Route118_Text_DaltonDefeat, Route118_EventScript_RegisterDalton
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route118_EventScript_RematchDalton
+	msgbox Route118_Text_DaltonPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_RegisterDalton:: @ 81F4043
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route118_Text_DaltonRegister, MSGBOX_DEFAULT
+	//register_matchcall TRAINER_DALTON_1
+	release
+	end
+
+Route118_EventScript_RematchDalton:: @ 81F4062
+	trainerbattle_rematch TRAINER_DALTON_1, Route118_Text_DaltonRematchIntro, Route118_Text_DaltonRematchDefeat
+	msgbox Route118_Text_DaltonPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+Route118_EventScript_Perry:: @ 81F4079
+	trainerbattle_single TRAINER_PERRY, Route118_Text_PerryIntro, Route118_Text_PerryDefeat
+	msgbox Route118_Text_PerryPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route118_EventScript_Chester:: @ 81F4090
+	trainerbattle_single TRAINER_CHESTER, Route118_Text_ChesterIntro, Route118_Text_ChesterDefeat
+	msgbox Route118_Text_ChesterPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route118_EventScript_Deandre:: @ 81F40A7
+	trainerbattle_single TRAINER_DEANDRE, Route118_Text_DeandreIntro, Route118_Text_DeandreDefeat
+	msgbox Route118_Text_DeandrePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route114_EventScript_MagikarpGuy::
+	lock
+	faceplayer
+	goto_if_set FLAG_ROUTE118_GYARADOSITE, Route118_EventScript_ReceivedGyaradosite
+	msgbox Route118_Text_DoYouLiekKarp, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route118_EventScript_ILuurveKarp
+	compare VAR_RESULT, NO
+	goto_if_eq Route118_EventScript_DontLikeKarp
+	release
+	end
+
+Route118_EventScript_ReceivedGyaradosite::
+	msgbox Route118_Text_KarpBetterThanGyara, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_ILuurveKarp::
+	msgbox Route118_Text_ILuurveKarp, MSGBOX_DEFAULT
+	closemessage
+	msgbox Route118_Text_ReadyForKarpFite, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route118_EventScript_CheckParty
+	release
+	end
+
+Route118_EventScript_DontLikeKarp::
+	msgbox Route118_Text_DontLikeKarp, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_CheckParty::
+	specialvar VAR_RESULT, CheckMagikarpBattle
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route118_EventScript_NeedMoreKarp
+	msgbox Route118_Text_KarpFiteStart, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_MAGIKARP_GUY, Route118_Text_MagikarpDefeat
+	msgbox Route118_Text_TakeGyaradosite, MSGBOX_DEFAULT
+	givecustommon SPECIES_MAGIKARP, 55, ITEM_GYARADOSITE, ITEM_CHERISH_BALL, NATURE_NAIVE, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_V_CREATE, MOVE_DRAGON_ASCENT, MOVE_WICKED_BLOW, MOVE_CORE_ENFORCER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route118_EventScript_Text_Got_Magikarp
+	waitfanfare
+	setflag FLAG_ROUTE118_GYARADOSITE
+	msgbox Route118_Text_KarpBetterThanGyara, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_NeedMoreKarp::
+	msgbox Route118_Text_NeedMoreKarp, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_Text_DoYouLiekKarp:
+	.string "你喜欢鲤鱼王吗？$"
+
+Route118_Text_DontLikeKarp:
+	.string "哦……真遗憾。\n"
+	.string "我还以为你也是\p"
+	.string "鲤鱼王的同好……$"
+
+Route118_Text_ILuurveKarp:
+	.string "真的吗？！太好了！\p"
+	.string "没什么人懂得欣赏\n"
+	.string "鲤鱼王真正的威严……\p"
+	.string "哦，我想到了！\n"
+	.string "只要你能证明你真心爱鲤鱼王，\p"
+	.string "我就把我找到的\n"
+	.string "这只特别宝可梦送给你！\p"
+	.string "我要你做的事是……\p"
+	.string "你必须用你自己的鲤鱼王队伍，\n"
+	.string "打赢我的鲤鱼王全明星队！$"
+
+Route118_Text_ReadyForKarpFite:
+	.string "那么，准备好来一场\n"
+	.string "魔法般的对决了吗？$"
+
+Route118_Text_NeedMoreKarp:
+	.string "嗯……你的鲤鱼王\n"
+	.string "还不够挑战我。\p"
+	.string "等你钓满一整队再来吧！$"
+
+Route118_Text_KarpFiteStart:
+	.string "哦呵！那就开始吧！$"
+
+Route118_Text_MagikarpDefeat:
+	.string "啊！你对鲤鱼王的爱\n"
+	.string "毋庸置疑！$"
+
+Route118_Text_TakeGyaradosite:
+	.string "来，收下这只特别的鲤鱼王。\n"
+	.string "这是你应得的！$"
+
+Route118_Text_KarpBetterThanGyara:
+	.string "暴鲤龙虽然不是鲤鱼王，\n"
+	.string "但差不多一样棒！$"
+
+Route118_Text_StevenQuestions: @ 81F40BE
+	.string "大吾：嗨，{PLAYER}{KUN}！\p"
+	.string "是我，大吾！\n"
+	.string "我们在武斗镇附近的洞窟见过。\p"
+	.string "上次见面之后，\n"
+	.string "你见过很多种宝可梦了吗？\p"
+	.string "这个广阔的世界里，\n"
+	.string "有着许许多多种宝可梦。\p"
+	.string "如果你只想培养自己最喜欢的，\n"
+	.string "那也没问题。\p"
+	.string "也许你会觉得培养\n"
+	.string "各种各样的宝可梦更有趣。\p"
+	.string "作为宝可梦训练家，\n"
+	.string "你怎么想？\p"
+	.string "当然，这与我无关。\p"
+	.string "如果我们能在某处\n"
+	.string "再次相遇就好了。$"
+
+Route118_Text_YouAgreeGoodRodIsGood: @ 81F427B
+	.string "嗯！\p"
+	.string "好钓竿真是好东西！\p"
+	.string "你不觉得吗？$"
+
+Route118_Text_IdenticalMindsTakeThis: @ 81F42AF
+	.string "嗯！\p"
+	.string "我们想到一块儿去了！\p"
+	.string "嗯！\n"
+	.string "收下这根好钓竿！$"
+
+Route118_Text_TryYourLuckFishing: @ 81F42E7
+	.string "只要有水的地方，\n"
+	.string "就试试钓鱼的运气吧。$"
+
+Route118_Text_DontYouLikeToFish: @ 81F4319
+	.string "你不喜欢钓鱼吗？$"
+
+Route118_Text_TryCatchingMonWithGoodRod: @ 81F4331
+	.string "用好钓竿去钓\n"
+	.string "各种各样的宝可梦吧。$"
+
+Route118_Text_CanCrossRiversWithSurf: @ 81F4367
+	.string "就算没有船，只要带上\n"
+	.string "会冲浪的宝可梦，\p"
+	.string "就能渡过河流和大海。\p"
+	.string "宝可梦真的能帮上太多忙了！$"
+
+Route118_Text_RouteSignMauville: @ 81F43F4
+	.string "118 号道路\n"
+	.string "{LEFT_ARROW} 紫堇市$"
+
+Route118_Text_RouteSign119: @ 81F440E
+	.string "118 号道路\n"
+	.string "{UP_ARROW} 119 号道路$"
+
+`
+script Route118_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	msgbox(format("贤者：我们生活的世界\n真是美丽的事物。你同意吗？$"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("怎么会不同意呢？\n但我再告诉你一些。\p我们脚下的这片土地，\n受到自然守护者的庇佑：\p海洋守护者玛纳霏，\n它的子嗣霏欧纳，\p以及穿越时空的野生宝可梦雪拉比。\p记住，在探索时，\n要与自然保持和谐，\p把每一片草叶、每一道裂隙、\n每一粒沙都当作\p你最珍贵的宝物。\p如果你想见到这些\n天使般的守护者，\p就去成为冠军，\n然后回到这片圣地。$"))
+	}
+	else{
+		if(defeated(TRAINER_ROSE_1)  &&
+		   defeated(TRAINER_BARNY)  &&
+		   defeated(TRAINER_WADE)  &&
+		   defeated(TRAINER_DALTON_1)  &&
+		   defeated(TRAINER_PERRY)  &&
+		   defeated(TRAINER_CHESTER)  &&
+		   defeated(TRAINER_DEANDRE)){
+			msgbox(format("你的对战本领已经受过考验，\n并且战胜了一切困难。恭喜。\p用图鉴导航器\n去与这些非凡的守护者相见吧。$"))
+		}
+		else{
+			msgbox(format("你击败了宝可梦联盟……\n连冠军也打赢了？\p我很佩服，\n这地方的守护者也是。\p等你击败最后这几位训练家，\n你和它们之间\p就再没有任何阻碍了！$"))
+		}
+	}
+	}
+	else{
+		msgbox(format("你的想法令我厌恶。\n走吧，你把自己弄成笑话了。$"))
+	}
+    release
+    end
+}
+
+script Route118West_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_ROSE_1) &&
+	   defeated(TRAINER_WADE) &&
+	   defeated(TRAINER_DALTON_1) &&
+	   defeated(TRAINER_DEANDRE)){
+		// when you defeat every trainer
+		msgbox(format("“可爱”也许不是\n形容你对战的最佳词语……\p但我喜欢！来，收下这个！$"))
+		givemon(SPECIES_HATENNA, 10, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}得到了\n{COLOR BLUE}迷布莉姆{COLOR DARK_GRAY}，\p这是击败海滩上\n所有训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("你听过“可爱又致命”\n这个说法吗？\p我这儿有只宝可梦，\n完美符合这个描述！\p在对战中展现你的可爱，\n就能得到它！$"))
+	}
+    release
+    end
+}
+
+script Route118East_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_BARNY) &&
+	   defeated(TRAINER_PERRY) &&
+	   defeated(TRAINER_CHESTER)){
+		// when you defeat every trainer
+		msgbox(format("来，拿着，别告诉任何人！$"))
+		givemon(SPECIES_DRACOZOLT, 50, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER}得到了\n{COLOR BLUE}雷鸟龙{COLOR DARK_GRAY}，\p这是击败这里\n三位普通训练家的礼物！$"))
+		waitfanfare
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("如果你能打败这条路东边\n全部三位普通训练家，\p我就把从学校偷来的\n这块化石给你！$"))
+	}
+    release
+    end
+}
+
+text Route118_EventScript_Text_Got_Magikarp{
+	format("{PLAYER}得到了\n{COLOR BLUE}鲤鱼王{COLOR DARK_GRAY}\p作为礼物！$")
+}
+
+
+script Route118_EventScript_StevenTrigger0{
+	lockall
+	setvar(VAR_0x8008, 0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp)
+	waitmovement(0)
+	applymovement(LOCALID_STEVEN, Route118_Movement_StevenApproachLedge0)
+	waitmovement(0)
+	goto(Route118_EventScript_StevenTrigger)
+	end
+}
+
+script Route118_EventScript_StevenTrigger1{
+	lockall
+	setvar(VAR_0x8008, 1)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp)
+	waitmovement(0)
+	goto(Route118_EventScript_StevenTrigger)
+	end
+}
+
+script Route118_EventScript_StevenTrigger2{
+	lockall
+	setvar(VAR_0x8008, 2)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp)
+	waitmovement(0)
+	applymovement(LOCALID_STEVEN, Route118_Movement_StevenApproachLedge2)
+	waitmovement(0)
+	goto(Route118_EventScript_StevenTrigger)
+	end
+}
+
+script Route118_EventScript_StevenTrigger{
+	playse(SE_LEDGE)
+	applymovement(LOCALID_STEVEN, Route118_Movement_StevenJumpLedge)
+	waitmovement(0)
+	delay(30)
+	msgbox(format("大吾：嗨，{PLAYER}{KUN}。\n希望你已经准备好了。\p上次输给你之后，\n我把队伍强化过了……$"), MSGBOX_DEFAULT) //Intro
+	trainerbattle_no_intro(TRAINER_STEVEN_ROUTE118, format("你依然有巨大的潜力。$")) // in-battle, player wins
+	msgbox(format("大吾：我就知道\n强化队伍的不止我一个。\p希望我们还能再见。$"), MSGBOX_DEFAULT) // post-battle
+	closemessage
+	applymovement(OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit)
+	switch(var(VAR_0x8008)){
+	case 0:
+		applymovement(LOCALID_STEVEN, Route118_Movement_StevenExit0)
+	break
+	case 1:
+		applymovement(LOCALID_STEVEN, Route118_Movement_StevenExit1)
+	break
+	case 2:
+		applymovement(LOCALID_STEVEN, Route118_Movement_StevenExit2)
+	break
+	}
+	waitmovement(0)
+	setvar(VAR_ROUTE118_STATE, 1)
+	removeobject(LOCALID_STEVEN)
+	releaseall
+    end
+}
+
+const LOCALID_SCOTT = 24
+
+script Route118_EventScript_Scott{
+    lock
+    faceplayer
+    if(flag(FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1) == TRUE){
+        call(Route118_EventScript_ScottUnbotheredByReporters)
+    } else {
+        call(Route118_EventScript_ScottBotheredByReporters)
+    }
+    release
+}
+
+script Route118_EventScript_ScottUnbotheredByReporters{
+    msgbox(format("嗨，{PLAYER}，又见面了。\p今天我在海边小憩，\n因为去不了 109 号道路。\p为什么？那些记者\n一直缠着我不放。$"))
+}
+
+script Route118_EventScript_ScottBotheredByReporters{
+    msgbox(format("嘿，{PLAYER}，抱歉，\n我不能再待在这儿了。\p那些记者想把我\n说成跟踪小孩的怪人。\p这明显是假的，不过算了。\p我去丛林里待一段时间，\n至少那儿没有相机。$"))
+    switch(var(VAR_FACING)){
+        case DIR_WEST:
+           applymovement(OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerLetScottLeaveBotheredByReporters)
+        break
+    }
+    applymovement(LOCALID_SCOTT, Route118_Movement_ScottLeaveBotheredByReporters)
+    waitmovement(0)
+    setflag(FLAG_HIDE_SCOTT_ROUTE_118)
+    removeobject(LOCALID_SCOTT)
+}
+movement Route118_Movement_PlayerLetScottLeaveBotheredByReporters{
+    walk_up
+    face_down
+    face_right
+    walk_down
+    face_left
+}
+movement Route118_Movement_ScottLeaveBotheredByReporters{
+    walk_right * 9
+}

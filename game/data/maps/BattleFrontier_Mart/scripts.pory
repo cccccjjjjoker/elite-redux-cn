@@ -1,0 +1,69 @@
+raw `
+.set LOCALID_OLD_WOMAN, 2
+
+BattleFrontier_Mart_MapScripts:: @ 8267ACB
+	.byte 0
+
+BattleFrontier_Mart_EventScript_Clerk:: @ 8267ACC
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart BattleFrontier_Mart_Pokemart
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+BattleFrontier_Mart_Pokemart: @ 8267AE4
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_FULL_RESTORE
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_CALCIUM
+	.2byte ITEM_IRON
+	.2byte ITEM_ZINC
+	.2byte ITEM_CARBOS
+	.2byte ITEM_HP_UP
+	.2byte ITEM_NONE
+	release
+	end
+
+BattleFrontier_Mart_EventScript_OldMan:: @ 8267B02
+	msgbox BattleFrontier_Mart_Text_ChaperonGrandson, MSGBOX_NPC
+	end
+
+BattleFrontier_Mart_EventScript_OldWoman:: @ 8267B0B
+	lock
+	applymovement LOCALID_OLD_WOMAN, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox BattleFrontier_Mart_Text_ProteinMakeNiceGift, MSGBOX_DEFAULT
+	release
+	end
+
+BattleFrontier_Mart_EventScript_Boy:: @ 8267B20
+	msgbox BattleFrontier_Mart_Text_FacilitiesDontAllowItems, MSGBOX_NPC
+	end
+
+BattleFrontier_Mart_Text_ChaperonGrandson: @ 8267B29
+	.string "我们是来陪孙子过来的。\n"
+	.string "既然来了，就想着\p"
+	.string "买点纪念品回去。$"
+
+BattleFrontier_Mart_Text_ProteinMakeNiceGift: @ 8267B8F
+	.string "亲爱的，你看这个怎么样？\n"
+	.string "拿来送礼不错吧？\p"
+	.string "这是……蛋……白……质？\n"
+	.string "听起来很好吃，对吧？$"
+
+BattleFrontier_Mart_Text_FacilitiesDontAllowItems: @ 8267C01
+	.string "对战开拓区很多设施\n"
+	.string "在对战中不允许使用道具。\p"
+	.string "这条规则让本来就难的\n"
+	.string "对战更难了！$"
+
+`
