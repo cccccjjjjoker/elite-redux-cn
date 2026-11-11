@@ -119,7 +119,7 @@ moves {
   id: MOVE_FIRE_PUNCH
   name: "火焰拳"
   short_name: "火焰拳"
-  description: "用火焰拳头击打对手。10%烧伤几率。铁拳加成。"
+  description: "用火焰拳头击打对手。10%灼伤几率。铁拳加成。"
   short_description: "可能使对手灼伤的火焰拳。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -226,7 +226,7 @@ moves {
   id: MOVE_RAZOR_WIND
   name: "旋风刀"
   short_name: "旋风刀"
-  description: "对岩石类型超级有效。在顺风中优先级+1。高暴击。锋利加成。"
+  description: "对岩石类型超级有效。在顺风中先制+1。高暴击。锋利加成。"
   short_description: "风刃穿透岩石，\n造成效果绝佳的伤害。"
   custom_behavior {
     attack {
@@ -461,7 +461,7 @@ moves {
   id: MOVE_JUMP_KICK
   name: "飞踢"
   short_name: "飞踢"
-  description: "用户高高跳起，然后踢击。未击中时造成伤害。踢击加成。"
+  description: "高高跳起后踢向对手。踢空时会受到伤害。踢技加成。"
   short_description: "强力的跳跃踢。\n可能踢空并伤到自己。"
   effect: EFFECT_RECOIL_IF_MISS
   split: PHYSICAL
@@ -479,7 +479,7 @@ moves {
   id: MOVE_ROLLING_KICK
   name: "回旋踢"
   short_name: "回旋踢"
-  description: "快速旋转的踢击。优先级+1。踢击加成。"
+  description: "快速旋转的踢击。先制+1。踢击加成。"
   short_description: "急速旋转中使出的快速踢击。"
   split: PHYSICAL
   type: TYPE_FIGHTING
@@ -512,7 +512,7 @@ moves {
   id: MOVE_HEADBUTT
   name: "头锤"
   short_name: "头锤"
-  description: "用户伸出头部并撞击。30%畏缩几率。场地类。"
+  description: "用头部撞向对手。30%畏缩几率。场地类。"
   short_description: "可能使对手畏缩的冲撞攻击。"
   effect: EFFECT_FLINCH_HIT
   split: PHYSICAL
@@ -591,7 +591,7 @@ moves {
   id: MOVE_TACKLE
   name: "撞击"
   short_name: "撞击"
-  description: "用户全身冲向对手的物理攻击。"
+  description: "用整个身体撞向对手的物理攻击。"
   short_description: "用整个身体撞向对手。"
   split: PHYSICAL
   type: TYPE_NORMAL
@@ -606,7 +606,7 @@ moves {
   id: MOVE_BODY_SLAM
   name: "泰山压顶"
   short_name: "泰山压顶"
-  description: "用户将全身压在对手身上。30%麻痹几率。"
+  description: "用整个身体压向对手。30%麻痹几率。"
   short_description: "可能使对手麻痹的全身猛撞。"
   effect: EFFECT_PARALYZE_HIT
   split: PHYSICAL
@@ -658,7 +658,7 @@ moves {
   id: MOVE_THRASH
   name: "大闹一番"
   short_name: "大闹一番"
-  description: "用户在两到三回合内狂暴，然后变得困惑。"
+  description: "在2到3回合内狂暴乱打，之后陷入混乱。"
   short_description: "连续攻击2到3回合，\n之后自己陷入混乱。"
   effect: EFFECT_RAMPAGE
   split: PHYSICAL
@@ -692,7 +692,7 @@ moves {
   id: MOVE_TAIL_WHIP
   name: "摇尾巴"
   short_name: "摇尾巴"
-  description: "用户可爱地摇动尾巴，使对手降低防御属性。"
+  description: "可爱地摇动尾巴，降低对手的防御。"
   short_description: "摇动尾巴降低对手的防御。"
   effect: EFFECT_DEFENSE_DOWN
   split: STATUS
@@ -707,7 +707,7 @@ moves {
   id: MOVE_POISON_STING
   name: "毒针"
   short_name: "毒针"
-  description: "快速而痛苦的刺击。具有10%中毒几率。优先级+1。"
+  description: "快速而痛苦的刺击。具有10%中毒几率。先制+1。"
   short_description: "有10%几率使对手\n中毒，先制+1。"
   effect: EFFECT_POISON_HIT
   split: PHYSICAL
@@ -773,7 +773,7 @@ moves {
   id: MOVE_BITE
   name: "咬住"
   short_name: "咬住"
-  description: "用户用凶狠的尖牙咬住对手。30%畏缩几率。强颚加成。"
+  description: "用锐利的尖牙咬住对手。30%畏缩几率。强颚加成。"
   short_description: "用凶猛的尖牙咬住对手。\n可能使对手畏缩。"
   effect: EFFECT_FLINCH_HIT
   split: PHYSICAL
@@ -792,7 +792,7 @@ moves {
   id: MOVE_GROWL
   name: "叫声"
   short_name: "叫声"
-  description: "用户以可爱的方式低吼，使对手降低攻击属性。"
+  description: "可爱地低吼，降低对手的攻击。"
   short_description: "可爱地吼叫，降低对手的攻击。"
   effect: EFFECT_ATTACK_DOWN_HIT
   split: SPECIAL
@@ -842,7 +842,7 @@ moves {
   id: MOVE_SUPERSONIC
   name: "超音波"
   short_name: "超音波"
-  description: "用户产生奇怪的声波，使对手混乱。"
+  description: "发出奇怪的声波，使对手混乱。"
   short_description: "发出诡异声波，\n可能使对手混乱。"
   effect: EFFECT_CONFUSE
   split: STATUS
@@ -920,7 +920,7 @@ moves {
   id: MOVE_EMBER
   name: "火花"
   short_name: "火花"
-  description: "用小火焰攻击对手。100%烧伤几率。"
+  description: "用小火焰攻击对手。100%灼伤几率。"
   short_description: "弱小的火属性攻击，\n使目标灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -936,7 +936,7 @@ moves {
   id: MOVE_FLAMETHROWER
   name: "喷射火焰"
   short_name: "喷射火焰"
-  description: "用强烈的火焰灼烧对手。10%烧伤几率。"
+  description: "用强烈的火焰灼烧对手。10%灼伤几率。"
   short_description: "强力的火属性攻击，\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -1294,7 +1294,7 @@ moves {
   id: MOVE_LEECH_SEED
   name: "寄生种子"
   short_name: "寄生种子"
-  description: "在对手身上种下种子，每回合偷取一些HP给用户。"
+  description: "在对手身上种下种子，每回合吸取HP回复自己。"
   short_description: "在对手身上种下种子，\n每回合吸取HP。"
   effect: EFFECT_LEECH_SEED
   split: STATUS
@@ -1310,7 +1310,7 @@ moves {
   id: MOVE_GROWTH
   name: "生长"
   short_name: "生长"
-  description: "用户的身体被迫成长，提高其攻击和特攻属性。"
+  description: "让身体迅速成长，提高自己的攻击和特攻。"
   short_description: "让身体成长。\n提高攻击和特攻。"
   effect: EFFECT_GROWTH
   split: STATUS
@@ -1409,7 +1409,7 @@ moves {
   id: MOVE_PETAL_DANCE
   name: "花瓣舞"
   short_name: "花瓣舞"
-  description: "用户用花瓣攻击对手两到三回合，然后变得困惑。"
+  description: "用花瓣连续攻击2到3回合，之后陷入混乱。"
   short_description: "连续攻击2到3回合，\n之后自己陷入混乱。"
   effect: EFFECT_RAMPAGE
   split: SPECIAL
@@ -1543,7 +1543,7 @@ moves {
   id: MOVE_ROCK_THROW
   name: "落石"
   short_name: "落石"
-  description: "用户用小石头攻击。投掷类。"
+  description: "向对手投掷小石头。投掷类。"
   short_description: "投掷小石块攻击对手。"
   split: PHYSICAL
   type: TYPE_ROCK
@@ -1560,7 +1560,7 @@ moves {
   id: MOVE_EARTHQUAKE
   name: "地震"
   short_name: "地震"
-  description: "一次地震，攻击战斗中的所有宝可梦，用户除外。"
+  description: "引发地震，攻击场上所有宝可梦（使用者除外）。"
   short_description: "强力地震，\n但对飞行属性对手无效。"
   split: PHYSICAL
   type: TYPE_GROUND
@@ -1687,7 +1687,7 @@ moves {
   id: MOVE_AGILITY
   name: "高速移动"
   short_name: "高速移动"
-  description: "用户放松身体，减轻体重，显著提高速度。"
+  description: "放松身体减轻重量，大幅提高自己的速度。"
   short_description: "放松身体，大幅提高速度。"
   effect: EFFECT_SPEED_UP_2
   split: STATUS
@@ -1701,7 +1701,7 @@ moves {
   id: MOVE_QUICK_ATTACK
   name: "电光一闪"
   short_name: "电光一闪"
-  description: "几乎不可见的快速攻击，优先级+2。"
+  description: "几乎不可见的快速攻击，先制+2。"
   short_description: "极快的攻击，必定先制。"
   split: PHYSICAL
   type: TYPE_NORMAL
@@ -1717,7 +1717,7 @@ moves {
   id: MOVE_RAGE
   name: "愤怒"
   short_name: "愤怒"
-  description: "用户在两到三回合内疯狂挣扎，然后变得困惑。"
+  description: "在2到3回合内疯狂攻击，之后陷入混乱。"
   short_description: "连续攻击2到3回合，\n之后自己陷入混乱。"
   effect: EFFECT_RAMPAGE
   split: PHYSICAL
@@ -1747,7 +1747,7 @@ moves {
   id: MOVE_NIGHT_SHADE
   name: "黑夜魔影"
   short_name: "黑夜魔影"
-  description: "一种幻影攻击，造成与用户等级相匹配的伤害。"
+  description: "以幻影攻击造成与使用者等级相同的伤害。"
   short_description: "造成与自己等级相同的伤害。"
   effect: EFFECT_LEVEL_DAMAGE
   split: SPECIAL
@@ -1763,7 +1763,7 @@ moves {
   id: MOVE_MIMIC
   name: "模仿"
   short_name: "模仿"
-  description: "用户复制对手最后使用的招式，直到战斗结束。"
+  description: "复制对手最后使用的招式，直到战斗结束。"
   short_description: "复制对手在战斗中\n使用过的招式。"
   effect: EFFECT_MIMIC
   split: STATUS
@@ -1795,7 +1795,7 @@ moves {
   id: MOVE_DOUBLE_TEAM
   name: "影子分身"
   short_name: "影子分身"
-  description: "用户创造出虚幻的复制品，以提高其闪避率。"
+  description: "制造幻影分身，提高自己的闪避率。"
   short_description: "制造幻影分身，提高闪避率。"
   effect: EFFECT_EVASION_UP
   split: STATUS
@@ -1808,7 +1808,7 @@ moves {
   id: MOVE_RECOVER
   name: "自我再生"
   short_name: "自我再生"
-  description: "一种自我治疗招式，可以恢复用户最大HP的一半。"
+  description: "自我治疗，回复自己最大HP的一半。"
   short_description: "回复自己最大HP的一半。"
   effect: EFFECT_RESTORE_HP
   split: STATUS
@@ -1821,7 +1821,7 @@ moves {
   id: MOVE_HARDEN
   name: "变硬"
   short_name: "变硬"
-  description: "用户全身肌肉僵硬，提高其防御属性。"
+  description: "绷紧全身肌肉，提高自己的防御。"
   short_description: "绷紧身体肌肉，提高防御。"
   effect: EFFECT_DEFENSE_UP
   split: STATUS
@@ -1834,7 +1834,7 @@ moves {
   id: MOVE_MINIMIZE
   name: "变小"
   short_name: "变小"
-  description: "用户压缩身体内的所有细胞，提高其闪避率。"
+  description: "压缩全身细胞，提高自己的闪避率。"
   short_description: "缩小自己的身体，提高闪避率。"
   effect: EFFECT_MINIMIZE
   split: STATUS
@@ -1847,7 +1847,7 @@ moves {
   id: MOVE_SMOKESCREEN
   name: "烟幕"
   short_name: "烟幕"
-  description: "用烟雾遮蔽用户的团队五回合，提高闪避率25%。"
+  description: "用烟雾遮蔽己方队伍5回合，闪避率提高25%。"
   short_description: "用烟雾遮蔽己方队伍，\n持续5回合。"
   effect: EFFECT_SMOKESCREEN
   split: STATUS
@@ -1878,7 +1878,7 @@ moves {
   id: MOVE_WITHDRAW
   name: "缩入壳中"
   short_name: "缩入壳中"
-  description: "用户将身体缩回坚硬的外壳中，提高其防御属性。"
+  description: "将身体缩回坚硬的外壳中，提高自己的防御。"
   short_description: "将身体缩入硬壳，提高防御。"
   effect: EFFECT_DEFENSE_UP
   split: STATUS
@@ -1892,7 +1892,7 @@ moves {
   id: MOVE_DEFENSE_CURL
   name: "变圆"
   short_name: "变圆"
-  description: "用户蜷缩起来以隐藏弱点并提高其防御属性。"
+  description: "蜷缩身体隐藏弱点，提高自己的防御。"
   short_description: "蜷缩身体隐藏弱点，\n提高防御。"
   effect: EFFECT_DEFENSE_CURL
   split: STATUS
@@ -1905,7 +1905,7 @@ moves {
   id: MOVE_BARRIER
   name: "屏障"
   short_name: "屏障"
-  description: "如果精神场地处于活动状态，用户设置光幕和反射。"
+  description: "精神场地生效时，同时展开光墙与反射壁。"
   short_description: "将场地化为强力屏障。"
   effect: EFFECT_BARRIER
   split: STATUS
@@ -1960,7 +1960,7 @@ moves {
   id: MOVE_FOCUS_ENERGY
   name: "聚气"
   short_name: "聚气"
-  description: "用户深吸一口气，集中精力提高其暴击率。"
+  description: "深吸一口气集中精神，提高击中要害率。"
   short_description: "集中力量，\n提高击中要害率。"
   effect: EFFECT_FOCUS_ENERGY
   split: STATUS
@@ -1973,7 +1973,7 @@ moves {
   id: MOVE_BIDE
   name: "忍耐"
   short_name: "忍耐"
-  description: "用户承受攻击两回合，然后反击双倍。"
+  description: "忍耐攻击2回合，然后以双倍伤害反击。"
   short_description: "忍耐攻击2回合，\n以双倍伤害反击。"
   effect: EFFECT_BIDE
   split: PHYSICAL
@@ -2006,7 +2006,7 @@ moves {
   id: MOVE_MIRROR_MOVE
   name: "鹦鹉学舌"
   short_name: "鹦鹉学舌"
-  description: "用户反击对手最后使用的招式，使用相同的招式。"
+  description: "以相同的招式反击对手最后使用的招式。"
   short_description: "用相同的招式反击对手。"
   effect: EFFECT_MIRROR_MOVE
   split: STATUS
@@ -2022,7 +2022,7 @@ moves {
   id: MOVE_SELF_DESTRUCT
   name: "玉石俱碎"
   short_name: "玉石俱碎"
-  description: "用户自爆以造成严重伤害。如果首先被击中，造成2倍伤害。"
+  description: "自爆造成巨大伤害。若先被击中则伤害翻倍。"
   short_description: "造成严重伤害，但自己会濒死。"
   effect: EFFECT_EXPLOSION
   split: PHYSICAL
@@ -2037,7 +2037,7 @@ moves {
   id: MOVE_EGG_BOMB
   name: "炸蛋"
   short_name: "炸蛋"
-  description: "扔出一个热蛋。30%烧伤几率。在重力下造成1.5倍伤害。投掷类。"
+  description: "扔出一个热蛋。30%灼伤几率。在重力下造成1.5倍伤害。投掷类。"
   short_description: "强行向对手投掷蛋。"
   effect: EFFECT_GRAV_APPLE
   split: PHYSICAL
@@ -2136,7 +2136,7 @@ moves {
   id: MOVE_FIRE_BLAST
   name: "大字爆炎"
   short_name: "大字爆炎"
-  description: "用强烈的火焰击中对手。具有20%烧伤几率。"
+  description: "用强烈的火焰击中对手。具有20%灼伤几率。"
   short_description: "烧尽一切被击中的目标。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -2171,7 +2171,7 @@ moves {
   id: MOVE_CLAMP
   name: "贝壳夹击"
   short_name: "贝壳夹击"
-  description: "用户的壳夹住并挤压对手四到五回合。"
+  description: "用外壳夹住对手并挤压4到5回合。"
   short_description: "困住并挤压对手，\n持续2到5回合。"
   effect: EFFECT_TRAP
   split: PHYSICAL
@@ -2188,7 +2188,7 @@ moves {
   id: MOVE_SWIFT
   name: "高速星星"
   short_name: "高速星星"
-  description: "基于特殊的极限速度。优先级+2。"
+  description: "基于特殊的极限速度。先制+2。"
   short_description: "发射星形射线，必定命中。"
   split: SPECIAL
   type: TYPE_NORMAL
@@ -2203,7 +2203,7 @@ moves {
   id: MOVE_SKULL_BASH
   name: "火箭头锤"
   short_name: "火箭头锤"
-  description: "用户在第一回合提高攻击，然后在第二回合攻击。"
+  description: "第1回合提高攻击，第2回合撞向对手。"
   short_description: "缩起头，下一回合发动攻击。"
   effect: EFFECT_TWO_TURN_SECONDARY
   split: PHYSICAL
@@ -2288,7 +2288,7 @@ moves {
   id: MOVE_SOFT_BOILED
   name: "生蛋"
   short_name: "生蛋"
-  description: "使用户恢复最多一半的HP。也可以用来治疗盟友。"
+  description: "回复自己最多一半的HP，也能治疗盟友。"
   short_description: "回复自己最大HP的一半。"
   effect: EFFECT_SOFTBOILED
   split: STATUS
@@ -2321,7 +2321,7 @@ moves {
   id: MOVE_GLARE
   name: "大蛇瞪眼"
   short_name: "大蛇瞪眼"
-  description: "用户用肚子上的图案威吓对手，造成麻痹。"
+  description: "用腹部的花纹威吓对手，使其麻痹。"
   short_description: "威吓并惊吓对手，使其麻痹。"
   effect: EFFECT_PARALYZE_IGNORE_TYPE
   split: STATUS
@@ -2412,7 +2412,7 @@ moves {
   id: MOVE_LOVELY_KISS
   name: "恶魔之吻"
   short_name: "恶魔之吻"
-  description: "用户用可怕的面孔强迫对手亲吻，诱导睡眠。"
+  description: "用可怕的面孔逼对手亲吻，使其陷入睡眠。"
   short_description: "以恐怖的表情索吻，\n使对手陷入睡眠。"
   effect: EFFECT_SLEEP
   split: STATUS
@@ -2449,7 +2449,7 @@ moves {
   id: MOVE_TRANSFORM
   name: "变身"
   short_name: "变身"
-  description: "用户变成对手的复制品，甚至拥有相同的招式组合。"
+  description: "变成对手的复制品，连招式也完全相同。"
   short_description: "改变自己的细胞，\n变成对手的复制品。"
   effect: EFFECT_TRANSFORM
   split: STATUS
@@ -2500,7 +2500,7 @@ moves {
   id: MOVE_SPORE
   name: "蘑菇孢子"
   short_name: "蘑菇孢子"
-  description: "用户散播细小的孢子，诱导睡眠。"
+  description: "撒出细小的孢子，使对手陷入睡眠。"
   short_description: "散布孢子云，\n必定使对手睡眠。"
   effect: EFFECT_SLEEP
   split: STATUS
@@ -2573,7 +2573,7 @@ moves {
   id: MOVE_ACID_ARMOR
   name: "溶化"
   short_name: "溶化"
-  description: "用户改变其细胞，使其液化并显著提高防御。"
+  description: "改变细胞使其液化，大幅提高自己的防御。"
   short_description: "液化自己的身体，\n大幅提高防御。"
   effect: EFFECT_DEFENSE_UP_2
   split: STATUS
@@ -2606,7 +2606,7 @@ moves {
   id: MOVE_EXPLOSION
   name: "大爆炸"
   short_name: "大爆炸"
-  description: "用户自爆，即使自己晕倒也造成可怕的伤害。"
+  description: "自爆，即使自己倒下也能造成可怕伤害。"
   short_description: "造成严重伤害，但自己会濒死。"
   effect: EFFECT_EXPLOSION
   split: PHYSICAL
@@ -2639,7 +2639,7 @@ moves {
   id: MOVE_BONEMERANG
   name: "骨头回力镖"
   short_name: "骨头回力镖"
-  description: "用户扔出一根骨头，击中对手一次，然后在返回时再次击中。"
+  description: "扔出骨头击中对手，返回时再击中一次。"
   short_description: "投掷骨头。\n可击中空中目标并攻击两次。"
   effect: EFFECT_DOUBLE_HIT
   split: PHYSICAL
@@ -2657,7 +2657,7 @@ moves {
   id: MOVE_REST
   name: "睡觉"
   short_name: "睡觉"
-  description: "用户睡两回合，完全恢复HP并治疗任何状态问题。"
+  description: "睡2回合，完全回复HP并治愈所有异常状态。"
   short_description: "睡眠回合，\n恢复所有和异常。"
   effect: EFFECT_REST
   split: STATUS
@@ -2707,7 +2707,7 @@ moves {
   id: MOVE_SHARPEN
   name: "棱角化"
   short_name: "棱角化"
-  description: "用户磨砺其边缘。提高最高的攻击和暴击，并设置无情。"
+  description: "磨砺棱角，提高攻击与击中要害，并获得无情效果。"
   short_description: "磨利边缘，\n提高攻击和击中要害。"
   effect: EFFECT_SHARPEN
   split: STATUS
@@ -2733,7 +2733,7 @@ moves {
   id: MOVE_TRI_ATTACK
   name: "三重攻击"
   short_name: "三重攻击"
-  description: "30%几率使对手麻痹、烧伤或冻伤。使用最高攻击。"
+  description: "30%几率使对手麻痹、灼伤或冻伤。使用最高攻击。"
   short_description: "同时发射三种光束。"
   effect: EFFECT_TRI_ATTACK
   split: SPECIAL
@@ -2750,7 +2750,7 @@ moves {
   id: MOVE_SUPER_FANG
   name: "愤怒门牙"
   short_name: "愤怒门牙"
-  description: "用户用尖锐的牙齿攻击并将对手的HP减半。"
+  description: "用锋利的牙齿攻击，将对手HP减半。"
   short_description: "用尖牙攻击，削减对手一半HP。"
   effect: EFFECT_SUPER_FANG
   split: PHYSICAL
@@ -2786,7 +2786,7 @@ moves {
   id: MOVE_SUBSTITUTE
   name: "替身"
   short_name: "替身"
-  description: "用户创造一个使用其四分之一最大HP的诱饵。"
+  description: "消耗自己1/4的最大HP制造替身。"
   short_description: "消耗最大HP的1/4\n制造替身。"
   effect: EFFECT_SUBSTITUTE
   split: STATUS
@@ -2800,7 +2800,7 @@ moves {
   id: MOVE_STRUGGLE
   name: "挣扎"
   short_name: "挣扎"
-  description: "一种仅在没有PP时使用的攻击。也会伤害用户。"
+  description: "没有PP时才能使用的攻击，自己也会受伤。"
   short_description: "仅在PP耗尽时使用。\n自己也会受到少量伤害。"
   effect: EFFECT_RECOIL_HP_25
   split: PHYSICAL
@@ -2852,7 +2852,7 @@ moves {
   id: MOVE_THIEF
   name: "小偷"
   short_name: "小偷"
-  description: "偷走或移除对手的物品。如果用户没有物品，优先级+1。"
+  description: "偷走或夺取对手的道具。自己没道具时先制+1。"
   short_description: "攻击时趁机盗取对\n方携带的道具。"
   effect: EFFECT_THIEF
   split: PHYSICAL
@@ -2965,7 +2965,7 @@ moves {
   id: MOVE_FLAIL
   name: "抓狂"
   short_name: "抓狂"
-  description: "一种绝望的攻击，当用户HP低于50%时造成暴击伤害。"
+  description: "走投无路时的攻击，自己HP低于50%时击中要害。"
   short_description: "自身HP低时造成击中要害伤害。"
   effect: EFFECT_FLAIL
   split: PHYSICAL
@@ -3026,7 +3026,7 @@ moves {
   id: MOVE_REVERSAL
   name: "绝处逢生"
   short_name: "绝处逢生"
-  description: "一种绝望的攻击，当用户HP低于50%时造成暴击伤害。"
+  description: "走投无路时的攻击，自己HP低于50%时击中要害。"
   short_description: "自身HP低时造成击中要害伤害。"
   effect: EFFECT_FLAIL
   split: PHYSICAL
@@ -3076,7 +3076,7 @@ moves {
   id: MOVE_PROTECT
   name: "守住"
   short_name: "守住"
-  description: "使用户能够躲避所有攻击。如果连续使用可能失败。"
+  description: "使自己躲开所有攻击。连续使用可能失败。"
   short_description: "闪避攻击，\n但连续使用可能失败。"
   effect: EFFECT_PROTECT
   split: STATUS
@@ -3091,7 +3091,7 @@ moves {
   id: MOVE_MACH_PUNCH
   name: "音速拳"
   short_name: "音速拳"
-  description: "以致盲的速度投出的拳头。优先级+1。铁拳加成。"
+  description: "以致盲的速度投出的拳头。先制+1。铁拳加成。"
   short_description: "以极快的速度出拳，必定先制。"
   split: PHYSICAL
   type: TYPE_FIGHTING
@@ -3124,7 +3124,7 @@ moves {
   id: MOVE_FEINT_ATTACK
   name: "出奇一击"
   short_name: "出奇一击"
-  description: "用户靠近对手，毫无防备，然后必定击中。"
+  description: "贴近对手毫无防备地攻击，必定命中。"
   short_description: "将对手拉近，然后必定命中。"
   split: PHYSICAL
   type: TYPE_DARK
@@ -3155,7 +3155,7 @@ moves {
   id: MOVE_BELLY_DRUM
   name: "腹鼓"
   short_name: "腹鼓"
-  description: "用户最大化其攻击属性，以牺牲一半的最大HP为代价。"
+  description: "牺牲自己一半最大HP，将攻击提升到最大。"
   short_description: "降低自身，\n把攻击提升到最大。"
   effect: EFFECT_BELLY_DRUM
   split: STATUS
@@ -3267,7 +3267,7 @@ moves {
   id: MOVE_DESTINY_BOND
   name: "同命"
   short_name: "同命"
-  description: "如果用户晕倒，造成最后一击的对手也会晕倒。"
+  description: "若自己倒下，击倒自己的对手也会倒下。"
   short_description: "若自己濒死，\n对手也会一同濒死。"
   effect: EFFECT_DESTINY_BOND
   split: STATUS
@@ -3326,7 +3326,7 @@ moves {
   id: MOVE_BONE_RUSH
   name: "骨棒乱打"
   short_name: "骨棒乱打"
-  description: "用骨头攻击2到5次。迅速击中，优先级+1。"
+  description: "用骨头攻击2到5次。迅速击中，先制+1。"
   short_description: "用骨头攻击2到5次。\n必定先制。"
   effect: EFFECT_MULTI_HIT
   split: PHYSICAL
@@ -3343,7 +3343,7 @@ moves {
   id: MOVE_LOCK_ON
   name: "锁定"
   short_name: "锁定"
-  description: "用户锁定对手，使下一次攻击必定命中。"
+  description: "锁定对手，使下一次攻击必定命中。"
   short_description: "锁定对手，确保下一招命中。"
   effect: EFFECT_LOCK_ON
   split: STATUS
@@ -3356,7 +3356,7 @@ moves {
   id: MOVE_OUTRAGE
   name: "逆鳞"
   short_name: "逆鳞"
-  description: "用户在两到三回合内疯狂挣扎，然后变得困惑。"
+  description: "在2到3回合内狂暴乱打，之后陷入混乱。"
   short_description: "连续攻击2到3回合，\n之后自己陷入混乱。"
   effect: EFFECT_RAMPAGE
   split: PHYSICAL
@@ -3403,7 +3403,7 @@ moves {
   id: MOVE_ENDURE
   name: "挺住"
   short_name: "挺住"
-  description: "用户承受任何攻击，剩下1HP。如果连续使用可能失败。"
+  description: "无论受到什么攻击都会留下1HP。连续使用可能失败。"
   short_description: "承受任何攻击回合，\n至少保留。"
   effect: EFFECT_ENDURE
   split: STATUS
@@ -3420,7 +3420,7 @@ moves {
   id: MOVE_CHARM
   name: "撒娇"
   short_name: "撒娇"
-  description: "对手被用户可爱的呼唤吸引，显著降低其攻击。"
+  description: "可爱的叫声吸引对手，大幅降低其攻击。"
   short_description: "魅惑对手，\n大幅降低其攻击。"
   effect: EFFECT_ATTACK_DOWN_2
   split: STATUS
@@ -3492,7 +3492,7 @@ moves {
   id: MOVE_MILK_DRINK
   name: "喝牛奶"
   short_name: "喝牛奶"
-  description: "使用户恢复最多一半的HP。也可以用来治疗盟友。"
+  description: "回复自己最多一半的HP，也能治疗盟友。"
   short_description: "回复自己最大HP的一半。"
   effect: EFFECT_SOFTBOILED
   split: STATUS
@@ -3505,7 +3505,7 @@ moves {
   id: MOVE_SPARK
   name: "电光"
   short_name: "电光"
-  description: "快速的电击冲撞。具有10%麻痹几率。优先级+2。"
+  description: "快速的电击冲撞。具有10%麻痹几率。先制+2。"
   short_description: "带电的冲撞，\n先制+2。可能麻痹。"
   effect: EFFECT_PARALYZE_HIT
   split: PHYSICAL
@@ -3589,7 +3589,7 @@ moves {
   id: MOVE_SLEEP_TALK
   name: "梦话"
   short_name: "梦话"
-  description: "在睡眠中，用户随机使用其所知道的招式。"
+  description: "在睡眠中随机使用自己会的招式。"
   short_description: "睡眠时随机使用\n一个可用招式。"
   effect: EFFECT_SLEEP_TALK
   split: STATUS
@@ -3606,7 +3606,7 @@ moves {
   id: MOVE_HEAL_BELL
   name: "治愈铃声"
   short_name: "治愈铃声"
-  description: "治疗盟友的状态问题，并恢复用户30%HP。"
+  description: "治愈盟友的异常状态，并回复自己30%HP。"
   short_description: "发出悦耳铃声，\n治愈所有异常状态。"
   effect: EFFECT_HEAL_BELL
   split: STATUS
@@ -3620,7 +3620,7 @@ moves {
   id: MOVE_RETURN
   name: "报恩"
   short_name: "报恩"
-  description: "一种强大而可靠的攻击，展示用户的忠诚。"
+  description: "展现自己忠诚的强力攻击。"
   short_description: "可靠而强大的一般属性攻击。"
   split: PHYSICAL
   type: TYPE_NORMAL
@@ -3668,7 +3668,7 @@ moves {
   id: MOVE_SAFEGUARD
   name: "神秘守护"
   short_name: "神秘守护"
-  description: "保护用户的团队免受所有状态问题，持续五回合。"
+  description: "5回合内保护己方队伍免受所有异常状态。"
   short_description: "神秘力量防止所\n有异常状态。"
   effect: EFFECT_SAFEGUARD
   split: STATUS
@@ -3682,7 +3682,7 @@ moves {
   id: MOVE_PAIN_SPLIT
   name: "分担痛楚"
   short_name: "分担痛楚"
-  description: "用户将其HP加到对手的HP上，然后平均分配总HP。"
+  description: "将自己的HP与对手相加后平分。"
   short_description: "将自己的HP与对\n手相加后平分。"
   effect: EFFECT_PAIN_SPLIT
   split: STATUS
@@ -3695,7 +3695,7 @@ moves {
   id: MOVE_SACRED_FIRE
   name: "神圣之火"
   short_name: "神圣之火"
-  description: "一种神秘而强大的火焰攻击，总是造成烧伤。"
+  description: "一种神秘而强大的火焰攻击，总是造成灼伤。"
   short_description: "神秘的火焰攻击，\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -3728,7 +3728,7 @@ moves {
   id: MOVE_DYNAMIC_PUNCH
   name: "爆裂拳"
   short_name: "爆裂拳"
-  description: "用用户的全部力量击打对手。如果击中则使对手困惑。"
+  description: "用全力殴打对手。命中则使对手混乱。"
   short_description: "威力强大且必定混乱，\n但命中率低。"
   effect: EFFECT_CONFUSE_HIT
   split: PHYSICAL
@@ -3765,7 +3765,7 @@ moves {
   id: MOVE_DRAGON_BREATH
   name: "龙息"
   short_name: "龙息"
-  description: "对手受到不可思议的爆炸攻击。100%烧伤几率。"
+  description: "对手受到不可思议的爆炸攻击。100%灼伤几率。"
   short_description: "从口中吐出强烈的\n气息攻击对方。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -3781,7 +3781,7 @@ moves {
   id: MOVE_BATON_PASS
   name: "接棒"
   short_name: "接棒"
-  description: "用户交换出场，将任何属性变化传递给新战斗者。"
+  description: "换下场，并把能力变化传给接替的宝可梦。"
   short_description: "自己替换下场，\n但效果持续。"
   effect: EFFECT_BATON_PASS
   split: STATUS
@@ -3825,7 +3825,7 @@ moves {
   id: MOVE_RAPID_SPIN
   name: "高速旋转"
   short_name: "高速旋转"
-  description: "使用户摆脱束缚、吸取种子、尖刺等。提高速度+1。"
+  description: "摆脱束缚、寄生种子、尖刺等，速度+1。"
   short_description: "清除部分场地障碍。速度+1。"
   effect: EFFECT_RAPID_SPIN
   split: PHYSICAL
@@ -3874,7 +3874,7 @@ moves {
   id: MOVE_METAL_CLAW
   name: "金属爪"
   short_name: "金属爪"
-  description: "用钢爪攻击对手。20%几率提高用户的攻击。"
+  description: "用钢爪攻击对手。20%几率提高自己的攻击。"
   short_description: "用爪子攻击，\n可能提高自己的攻击。"
   effect: EFFECT_ATTACK_UP_HIT
   split: PHYSICAL
@@ -3893,7 +3893,7 @@ moves {
   id: MOVE_VITAL_THROW
   name: "借力摔"
   short_name: "借力摔"
-  description: "使用户在对手之后进行攻击。作为回报，它不会错过。"
+  description: "比对手后出手，但绝不会落空。"
   short_description: "让自己的招式最后使出，\n但绝不会打空。"
   split: PHYSICAL
   type: TYPE_FIGHTING
@@ -3908,7 +3908,7 @@ moves {
   id: MOVE_MORNING_SUN
   name: "晨光"
   short_name: "晨光"
-  description: "恢复用户的HP。恢复的HP数量随天气而变化。"
+  description: "回复自己的HP，回复量随天气变化。"
   short_description: "回复HP。回复量随天气变化。"
   effect: EFFECT_MORNING_SUN
   split: STATUS
@@ -3921,7 +3921,7 @@ moves {
   id: MOVE_SYNTHESIS
   name: "光合作用"
   short_name: "光合作用"
-  description: "恢复用户的HP。恢复的HP数量随天气而变化。"
+  description: "回复自己的HP，回复量随天气变化。"
   short_description: "回复HP。回复量随天气变化。"
   effect: EFFECT_SYNTHESIS
   split: STATUS
@@ -3935,7 +3935,7 @@ moves {
   id: MOVE_MOONLIGHT
   name: "月光"
   short_name: "月光"
-  description: "恢复用户的HP。恢复的HP数量随天气而变化。"
+  description: "回复自己的HP，回复量随天气变化。"
   short_description: "回复HP。回复量随天气变化。"
   effect: EFFECT_MOONLIGHT
   split: STATUS
@@ -3950,7 +3950,7 @@ moves {
   id: MOVE_HIDDEN_POWER
   name: "觉醒力量"
   short_name: "觉醒力量"
-  description: "一种根据用户的类型变化的攻击。"
+  description: "威力随自己属性变化的攻击。"
   short_description: "效果会随自己变化。"
   effect: EFFECT_HIDDEN_POWER
   split: SPECIAL
@@ -4067,7 +4067,7 @@ moves {
   id: MOVE_PSYCH_UP
   name: "自我暗示"
   short_name: "自我暗示"
-  description: "用户催眠自己，复制对手的任何属性变化。"
+  description: "自我催眠，复制对手的所有能力变化。"
   short_description: "复制对手的追加效果\n并施加于自身。"
   effect: EFFECT_PSYCH_UP
   split: STATUS
@@ -4080,7 +4080,7 @@ moves {
   id: MOVE_EXTREME_SPEED
   name: "神速"
   short_name: "神速"
-  description: "一种致盲的快速冲击攻击，优先级+2。"
+  description: "一种致盲的快速冲击攻击，先制+2。"
   short_description: "极其快速且强力的攻击。"
   split: PHYSICAL
   type: TYPE_NORMAL
@@ -4096,7 +4096,7 @@ moves {
   id: MOVE_ANCIENT_POWER
   name: "原始之力"
   short_name: "原始之力"
-  description: "一种古老的力量用于攻击。10%几率提高用户的所有属性。"
+  description: "以远古之力攻击。10%几率提高自己的全部能力。"
   short_description: "可能提高所有能力的攻击。"
   effect: EFFECT_ALL_STATS_UP_HIT
   split: SPECIAL
@@ -4230,7 +4230,7 @@ moves {
   id: MOVE_UPROAR
   name: "吵闹"
   short_name: "吵闹"
-  description: "用户发脾气两到三回合，然后变得困惑。"
+  description: "大闹2到3回合，之后陷入混乱。"
   short_description: "大闹2到3回合，\n使自己混乱。"
   effect: EFFECT_RAMPAGE
   split: SPECIAL
@@ -4247,7 +4247,7 @@ moves {
   id: MOVE_STOCKPILE
   name: "蓄力"
   short_name: "蓄力"
-  description: "用户充能以备后用。可以使用三次。"
+  description: "蓄力以备后用，最多可蓄3次。"
   short_description: "最多蓄力3回合。"
   effect: EFFECT_STOCKPILE
   split: STATUS
@@ -4288,7 +4288,7 @@ moves {
   id: MOVE_HEAT_WAVE
   name: "热风"
   short_name: "热风"
-  description: "用户呼出加热的气息。10%烧伤几率。空气类。"
+  description: "呼出灼热的气息。10%灼伤几率。空气类。"
   short_description: "向对手呼出热气。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -4350,7 +4350,7 @@ moves {
   id: MOVE_WILL_O_WISP
   name: "磷火"
   short_name: "磷火"
-  description: "一团阴险的蓝白色火焰射向对手，造成烧伤。"
+  description: "一团阴险的蓝白色火焰射向对手，造成灼伤。"
   short_description: "用猛烈的火焰灼伤对手。"
   effect: EFFECT_WILL_O_WISP
   split: STATUS
@@ -4366,7 +4366,7 @@ moves {
   id: MOVE_MEMENTO
   name: "临别礼物"
   short_name: "临别礼物"
-  description: "用户晕倒，但显著降低对手的攻击和特攻。"
+  description: "自己倒下，大幅降低对手的攻击和特攻。"
   short_description: "自己陷入濒死，\n降低对手的能力。"
   effect: EFFECT_MEMENTO
   split: STATUS
@@ -4380,7 +4380,7 @@ moves {
   id: MOVE_FACADE
   name: "硬撑"
   short_name: "硬撑"
-  description: "一种在用户被烧、毒或麻痹时增强的攻击。"
+  description: "自己陷入灼伤、中毒或麻痹时威力提升的攻击。"
   short_description: "若对手陷入灼伤、麻痹或中毒，\n伤害翻倍。"
   effect: EFFECT_FACADE
   split: PHYSICAL
@@ -4418,7 +4418,7 @@ moves {
   id: MOVE_SMELLING_SALTS
   name: "清醒"
   short_name: "清醒"
-  description: "造成伤害并治愈用户的状态。"
+  description: "造成伤害并治愈自己的异常状态。"
   short_description: "造成伤害并治愈自\n己的异常状态。"
   effect: EFFECT_SMELLINGSALT
   split: PHYSICAL
@@ -4434,7 +4434,7 @@ moves {
   id: MOVE_FOLLOW_ME
   name: "看我嘛"
   short_name: "看我嘛"
-  description: "用户吸引注意力，使对手只攻击用户。"
+  description: "吸引注意，使对手只攻击自己。"
   short_description: "吸引注意，\n让对手只攻击自己。"
   effect: EFFECT_FOLLOW_ME
   split: STATUS
@@ -4466,7 +4466,7 @@ moves {
   id: MOVE_CHARGE
   name: "充电"
   short_name: "充电"
-  description: "用户充能以增强下一次使用的电气招式。"
+  description: "蓄电以提高下一次电属性招式的威力。"
   short_description: "蓄电，使下次发出的电\n系招式变强。"
   effect: EFFECT_CHARGE
   split: STATUS
@@ -4514,7 +4514,7 @@ moves {
   id: MOVE_TRICK
   name: "戏法"
   short_name: "戏法"
-  description: "一种诱使对手与用户交换所持物品的招式。"
+  description: "诱使对手与自己交换携带道具。"
   short_description: "欺骗对手，交换携带道具。"
   effect: EFFECT_TRICK
   split: STATUS
@@ -4529,7 +4529,7 @@ moves {
   id: MOVE_ROLE_PLAY
   name: "扮演"
   short_name: "扮演"
-  description: "用户完全模仿对手并复制对手的能力。"
+  description: "完全模仿对手，复制对手的特性。"
   short_description: "模仿目标，复制其特殊能力。"
   effect: EFFECT_ROLE_PLAY
   split: STATUS
@@ -4555,7 +4555,7 @@ moves {
   id: MOVE_ASSIST
   name: "借助"
   short_name: "借助"
-  description: "用户随机选择并使用一个盟友的招式。"
+  description: "随机使出盟友的一个招式。"
   short_description: "随机使用伙伴的一个招式攻击。"
   effect: EFFECT_ASSIST
   split: STATUS
@@ -4572,7 +4572,7 @@ moves {
   id: MOVE_INGRAIN
   name: "扎根"
   short_name: "扎根"
-  description: "用户在每回合恢复HP的同时扎根。无法交换。"
+  description: "扎根每回合回复HP，但无法替换。"
   short_description: "扎根回复HP。\n自己无法替换下场。"
   effect: EFFECT_INGRAIN
   split: STATUS
@@ -4587,7 +4587,7 @@ moves {
   id: MOVE_SUPERPOWER
   name: "蛮力"
   short_name: "蛮力"
-  description: "一种强力攻击，但也降低用户的攻击和防御属性。"
+  description: "强力攻击，但会降低自己的攻击和防御。"
   short_description: "大幅提高力量，\n但降低能力。"
   effect: EFFECT_SUPERPOWER
   split: PHYSICAL
@@ -4632,7 +4632,7 @@ moves {
   id: MOVE_REVENGE
   name: "报复"
   short_name: "报复"
-  description: "一种攻击招式，如果目标对用户造成伤害，威力增强。"
+  description: "若目标伤害过自己，威力提升的攻击。"
   short_description: "若被对手打伤，威力提升。"
   effect: EFFECT_REVENGE
   split: PHYSICAL
@@ -4697,7 +4697,7 @@ moves {
   id: MOVE_ENDEAVOR
   name: "蛮干"
   short_name: "蛮干"
-  description: "用户HP与对手HP的差异越小，威力越大。"
+  description: "自己与对手的HP差距越大，威力越大。"
   short_description: "自己的HP低于对手时，\n威力提升。"
   effect: EFFECT_ENDEAVOR
   split: PHYSICAL
@@ -4713,7 +4713,7 @@ moves {
   id: MOVE_ERUPTION
   name: "喷火"
   short_name: "喷火"
-  description: "用户HP越高，威力越强。超级发射器加成。"
+  description: "自己HP越高威力越大。超级发射器加成。"
   short_description: "自己的HP越高，\n造成的伤害越大。"
   effect: EFFECT_ERUPTION
   split: SPECIAL
@@ -4729,7 +4729,7 @@ moves {
   id: MOVE_SKILL_SWAP
   name: "特性互换"
   short_name: "特性互换"
-  description: "用户利用其精神力量与对手交换能力。"
+  description: "用精神力量与对手交换特性。"
   short_description: "自己与目标互换特性。"
   effect: EFFECT_SKILL_SWAP
   split: STATUS
@@ -4743,7 +4743,7 @@ moves {
   id: MOVE_IMPRISON
   name: "封印"
   short_name: "封印"
-  description: "阻止对手使用任何与用户相同的招式。"
+  description: "使对手无法使用与自己相同的招式。"
   short_description: "阻止对手使用自己\n已学会的招式。"
   effect: EFFECT_IMPRISON
   split: STATUS
@@ -4757,7 +4757,7 @@ moves {
   id: MOVE_REFRESH
   name: "焕然一新"
   short_name: "焕然一新"
-  description: "治愈状态并为用户恢复25%HP。"
+  description: "治愈异常状态并回复自己25%HP。"
   short_description: "休息片刻，\n治愈异常状态并回复HP。"
   effect: EFFECT_REFRESH
   split: STATUS
@@ -4772,7 +4772,7 @@ moves {
   id: MOVE_GRUDGE
   name: "怨念"
   short_name: "怨念"
-  description: "如果用户晕倒，此招式删除使其晕倒的招式的PP。"
+  description: "若自己倒下，击倒自己的招式PP归零。"
   short_description: "若自己濒死，删除对手最后使用\n招式的全部PP。"
   effect: EFFECT_GRUDGE
   split: STATUS
@@ -4805,7 +4805,7 @@ moves {
   id: MOVE_SECRET_POWER
   name: "秘密之力"
   short_name: "秘密之力"
-  description: "物理隐秘力量。根据用户的类型变化。场地类。"
+  description: "物理隐秘力量，随自己的属性变化。场地类。"
   short_description: "物理属性的觉醒力量。\n随自己变化。"
   effect: EFFECT_HIDDEN_POWER
   split: PHYSICAL
@@ -4864,7 +4864,7 @@ moves {
   id: MOVE_CAMOUFLAGE
   name: "保护色"
   short_name: "保护色"
-  description: "根据地点的地形改变用户的类型。"
+  description: "根据地点的地形改变自己的属性。"
   short_description: "挡住攻击并变为\n该招式的属性。"
   effect: EFFECT_PROTECT
   split: STATUS
@@ -4878,7 +4878,7 @@ moves {
   id: MOVE_TAIL_GLOW
   name: "萤火"
   short_name: "萤火"
-  description: "用户闪烁的光线使其特攻提高+3。"
+  description: "闪烁的光线使自己的特攻提高3级。"
   short_description: "闪光使特攻提升+3。"
   effect: EFFECT_SPECIAL_ATTACK_UP_3
   split: STATUS
@@ -4956,7 +4956,7 @@ moves {
   id: MOVE_BLAZE_KICK
   name: "火焰踢"
   short_name: "火焰踢"
-  description: "一记火热的踢击，暴击率很高。10%烧伤几率。踢击加成。"
+  description: "一记火热的踢击，暴击率很高。10%灼伤几率。踢击加成。"
   short_description: "击中要害率高的踢击。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -4975,7 +4975,7 @@ moves {
   id: MOVE_MUD_SPORT
   name: "玩泥巴"
   short_name: "玩泥巴"
-  description: "削弱电类型攻击，用户在战斗中。"
+  description: "削弱电属性攻击的力量。"
   short_description: "用泥巴裹住自己，\n提升电属性抗性。"
   effect: EFFECT_MUD_SPORT
   split: STATUS
@@ -5024,7 +5024,7 @@ moves {
   id: MOVE_SLACK_OFF
   name: "偷懒"
   short_name: "偷懒"
-  description: "用户懒散并恢复其HP至一半的最大HP。"
+  description: "懒散地休息，回复自己一半最大HP。"
   short_description: "偷懒休息，回复最大HP的一半。"
   effect: EFFECT_RESTORE_HP
   split: STATUS
@@ -5038,7 +5038,7 @@ moves {
   id: MOVE_HYPER_VOICE
   name: "巨声"
   short_name: "巨声"
-  description: "用户发出可怕的响亮吼叫，具有伤害的力量。"
+  description: "发出可怕的巨响攻击对手。"
   short_description: "用声波攻击对手的响亮招式。"
   split: SPECIAL
   type: TYPE_NORMAL
@@ -5125,7 +5125,7 @@ moves {
   id: MOVE_METEOR_MASH
   name: "彗星拳"
   short_name: "彗星拳"
-  description: "坚硬而快速的拳击。20%几率提高用户的攻击。铁拳加成。"
+  description: "坚硬而快速的拳击。20%几率提高自己的攻击。铁拳加成。"
   short_description: "打出流星般的拳头。\n可能提升攻击。"
   effect: EFFECT_ATTACK_UP_HIT
   split: PHYSICAL
@@ -5180,7 +5180,7 @@ moves {
   id: MOVE_AROMATHERAPY
   name: "芳香治疗"
   short_name: "芳香治疗"
-  description: "治疗盟友的状态问题，并恢复用户30%HP。"
+  description: "治愈盟友的异常状态，并回复自己30%HP。"
   short_description: "用舒缓香气治愈\n所有异常状态。"
   effect: EFFECT_HEAL_BELL
   split: STATUS
@@ -5194,7 +5194,7 @@ moves {
   id: MOVE_FAKE_TEARS
   name: "假哭"
   short_name: "假哭"
-  description: "用户假装哭泣，显著降低对手的特防属性。"
+  description: "假装哭泣，大幅降低对手的特防。"
   short_description: "假装哭泣，\n大幅降低对手特防。"
   effect: EFFECT_SPECIAL_DEFENSE_DOWN_2
   split: STATUS
@@ -5226,7 +5226,7 @@ moves {
   id: MOVE_OVERHEAT
   name: "过热"
   short_name: "过热"
-  description: "一种强烈的攻击，显著降低用户的特攻属性。"
+  description: "强力攻击，但会大幅降低自己的特攻。"
   short_description: "可全力攻击，\n但会大幅降低特攻。"
   effect: EFFECT_OVERHEAT
   split: SPECIAL
@@ -5339,7 +5339,7 @@ moves {
   id: MOVE_COSMIC_POWER
   name: "宇宙力量"
   short_name: "宇宙力量"
-  description: "用户吸收神秘的力量，提高其防御和特防。"
+  description: "吸收神秘力量，提高自己的防御和特防。"
   short_description: "用神秘力量提高防御和特防。"
   effect: EFFECT_COSMIC_POWER
   split: STATUS
@@ -5498,7 +5498,7 @@ moves {
   id: MOVE_BULLET_SEED
   name: "种子机关枪"
   short_name: "种子机关枪"
-  description: "用户向对手发射种子。一次发射两到五颗种子。"
+  description: "向对手发射种子，连续攻击2到5次。"
   short_description: "连续发射2到5颗\n种子攻击对手。"
   effect: EFFECT_MULTI_HIT
   split: PHYSICAL
@@ -5546,7 +5546,7 @@ moves {
   id: MOVE_IRON_DEFENSE
   name: "铁壁"
   short_name: "铁壁"
-  description: "用户硬化身体表面，显著提高其防御属性。"
+  description: "硬化身体表面，大幅提高自己的防御。"
   short_description: "硬化身体表面，\n大幅提升防御"
   effect: EFFECT_DEFENSE_UP_2
   split: STATUS
@@ -5560,7 +5560,7 @@ moves {
   id: MOVE_BLOCK
   name: "挡路"
   short_name: "挡路"
-  description: "用户用双臂张开阻挡对手的去路，防止其逃跑。"
+  description: "张开双臂挡住对手，使其无法逃走。"
   short_description: "挡住对手的去路，\n防止其逃走。"
   effect: EFFECT_MEAN_LOOK
   split: STATUS
@@ -5575,7 +5575,7 @@ moves {
   id: MOVE_HOWL
   name: "长嚎"
   short_name: "长嚎"
-  description: "用户嚎叫以提升精神，增强攻击属性。"
+  description: "嚎叫振奋精神，提高自己的攻击。"
   short_description: "发出吼叫振奋精神，\n提高攻击。"
   effect: EFFECT_HOWL
   split: STATUS
@@ -5626,7 +5626,7 @@ moves {
   id: MOVE_BULK_UP
   name: "健美"
   short_name: "健美"
-  description: "用户增强身体以提高其攻击和防御属性。"
+  description: "锻炼身体，提高自己的攻击和防御。"
   short_description: "锻炼身体，\n同时提高攻击和防御。"
   effect: EFFECT_BULK_UP
   split: STATUS
@@ -5640,7 +5640,7 @@ moves {
   id: MOVE_BOUNCE
   name: "弹跳"
   short_name: "弹跳"
-  description: "用户在第二回合向对手弹跳。30%麻痹几率。"
+  description: "第2回合弹跳着撞向对手。30%麻痹几率。"
   short_description: "弹跳而起，下一回合落下。\n可能使对手麻痹。"
   effect: EFFECT_SEMI_INVULNERABLE
   split: PHYSICAL
@@ -5662,7 +5662,7 @@ moves {
   id: MOVE_MUD_SHOT
   name: "泥巴射击"
   short_name: "泥巴射击"
-  description: "具有10%几率降低对手的速度。优先级+1。超级发射器加成。"
+  description: "具有10%几率降低对手的速度。先制+1。超级发射器加成。"
   short_description: "先制+1。\n10%几率降低速度。"
   effect: EFFECT_SPEED_DOWN_HIT
   split: SPECIAL
@@ -5706,7 +5706,7 @@ moves {
   id: MOVE_COVET
   name: "渴望"
   short_name: "渴望"
-  description: "偷走或移除对手的物品。如果用户没有物品，优先级+1。"
+  description: "偷走或夺取对手的道具。自己没道具时先制+1。"
   short_description: "可爱地撒娇，\n夺取对手携带的道具。"
   effect: EFFECT_THIEF
   split: PHYSICAL
@@ -5724,7 +5724,7 @@ moves {
   id: MOVE_VOLT_TACKLE
   name: "伏特攻击"
   short_name: "伏特攻击"
-  description: "用户发出带电的冲撞。25%反弹，10%麻痹几率。"
+  description: "带电冲撞。受到25%反伤，10%麻痹几率。"
   short_description: "拼命撞击对方，\n自己也会受一些伤害。"
   custom_behavior {
     attack {
@@ -5765,7 +5765,7 @@ moves {
   id: MOVE_WATER_SPORT
   name: "玩水"
   short_name: "玩水"
-  description: "削弱火类型攻击，用户在战斗中。"
+  description: "削弱火属性攻击的力量。"
   short_description: "自己变得湿透，\n提高对火属性的抗性。"
   effect: EFFECT_WATER_SPORT
   split: STATUS
@@ -5778,7 +5778,7 @@ moves {
   id: MOVE_CALM_MIND
   name: "冥想"
   short_name: "冥想"
-  description: "用户集中精神，提高特攻和特防属性。"
+  description: "集中精神，提高自己的特攻和特防。"
   short_description: "集中精神，\n提高特攻和特防。"
   effect: EFFECT_CALM_MIND
   split: STATUS
@@ -5811,7 +5811,7 @@ moves {
   id: MOVE_DRAGON_DANCE
   name: "龙之舞"
   short_name: "龙之舞"
-  description: "一种神秘而强大的舞蹈，增强用户的攻击和速度属性。"
+  description: "神秘而强大的舞蹈，提高自己的攻击和速度。"
   short_description: "神秘的舞蹈，提高攻击和速度。"
   effect: EFFECT_DRAGON_DANCE
   split: STATUS
@@ -5825,7 +5825,7 @@ moves {
   id: MOVE_ROCK_BLAST
   name: "岩石爆击"
   short_name: "岩石爆击"
-  description: "用户向对手扔出两到五块坚硬的岩石进行攻击。"
+  description: "向对手投出2到5块坚硬的岩石。"
   short_description: "连续2到5次向对\n手投掷岩石。"
   effect: EFFECT_MULTI_HIT
   split: PHYSICAL
@@ -5842,7 +5842,7 @@ moves {
   id: MOVE_SHOCK_WAVE
   name: "电击波"
   short_name: "电击波"
-  description: "一股快速的电流袭来。绝对命中。优先级+2。"
+  description: "一股快速的电流袭来。绝对命中。先制+2。"
   short_description: "迅速且无法回避\n的先制+2攻击。"
   split: SPECIAL
   type: TYPE_ELECTRIC
@@ -5889,7 +5889,7 @@ moves {
   id: MOVE_PSYCHO_BOOST
   name: "精神突进"
   short_name: "精神突进"
-  description: "一种强烈的攻击，显著降低用户的特攻属性。"
+  description: "强力攻击，但会大幅降低自己的特攻。"
   short_description: "可全力攻击，\n但会大幅降低特攻。"
   effect: EFFECT_OVERHEAT
   split: SPECIAL
@@ -5905,7 +5905,7 @@ moves {
   id: MOVE_ROOST
   name: "羽栖"
   short_name: "羽栖"
-  description: "用户着陆并休息身体。恢复至最大HP的一半。"
+  description: "着陆休息，回复自己最大HP的一半。"
   short_description: "回复自己最大HP的一半。"
   effect: EFFECT_ROOST
   split: STATUS
@@ -5966,7 +5966,7 @@ moves {
   id: MOVE_HAMMER_ARM
   name: "臂锤"
   short_name: "臂锤"
-  description: "一记强力的重拳挥出。降低用户的速度。铁拳加成。"
+  description: "挥出强力的重拳，降低自己的速度。铁拳加成。"
   short_description: "挥拳攻击，同时降低速度。"
   effect: EFFECT_HAMMER_ARM
   split: PHYSICAL
@@ -5985,7 +5985,7 @@ moves {
   id: MOVE_GYRO_BALL
   name: "陀螺球"
   short_name: "陀螺球"
-  description: "快速旋转。用户越慢，造成的伤害越大。"
+  description: "旋转撞击，自己速度越慢伤害越大。"
   short_description: "高速旋转，\n对手速度越快伤害越高。"
   effect: EFFECT_GYRO_BALL
   split: PHYSICAL
@@ -6002,7 +6002,7 @@ moves {
   id: MOVE_HEALING_WISH
   name: "治愈之愿"
   short_name: "治愈之愿"
-  description: "用户晕倒。替换者的HP恢复并治愈状态。"
+  description: "自己倒下，接替的宝可梦回复HP并治愈状态。"
   short_description: "自己陷入濒死，\n治愈接替上场的宝可梦。"
   effect: EFFECT_HEALING_WISH
   split: STATUS
@@ -6034,7 +6034,7 @@ moves {
   id: MOVE_NATURAL_GIFT
   name: "自然之恩"
   short_name: "自然之恩"
-  description: "用户的果实决定此攻击的类型和威力。"
+  description: "威力与属性由自己携带的树果决定。"
   short_description: "效果随携带的树果而变化。"
   effect: EFFECT_NATURAL_GIFT
   split: PHYSICAL
@@ -6103,7 +6103,7 @@ moves {
   id: MOVE_ACUPRESSURE
   name: "点穴"
   short_name: "点穴"
-  description: "用户施加压力于压力点，显著提高一个属性。"
+  description: "按压穴道，大幅提高自己的一项能力。"
   short_description: "大幅提高自身某一项能力。"
   effect: EFFECT_ACUPRESSURE
   split: STATUS
@@ -6116,7 +6116,7 @@ moves {
   id: MOVE_METAL_BURST
   name: "金属爆炸"
   short_name: "金属爆炸"
-  description: "用户对最后一个伤害它的对手进行更强的反击。"
+  description: "对最后伤害自己的对手进行更强反击。"
   short_description: "以更强的威力反击任何攻击。"
   effect: EFFECT_METAL_BURST
   split: PHYSICAL
@@ -6131,7 +6131,7 @@ moves {
   id: MOVE_U_TURN
   name: "急速折返"
   short_name: "急速折返"
-  description: "用户攻击，然后与等待的队伍宝可梦交换。"
+  description: "攻击后与待命的队伍宝可梦交换。"
   short_description: "造成伤害后换下使用者。"
   effect: EFFECT_HIT_ESCAPE
   split: PHYSICAL
@@ -6165,7 +6165,7 @@ moves {
   id: MOVE_PAYBACK
   name: "以牙还牙"
   short_name: "以牙还牙"
-  description: "如果用户在对手之后行动，这一攻击造成双倍伤害。"
+  description: "若比对手后行动，这一击伤害翻倍。"
   short_description: "若自己最后行动，威力提升。"
   effect: EFFECT_PAYBACK
   split: PHYSICAL
@@ -6212,7 +6212,7 @@ moves {
   id: MOVE_FLING
   name: "投掷"
   short_name: "投掷"
-  description: "用户扔出其物品进行攻击。结果因物品而异。投掷类。"
+  description: "投掷自己的携带道具攻击。效果因道具而异。投掷类。"
   short_description: "效果随携带道具变化。"
   effect: EFFECT_FLING
   split: PHYSICAL
@@ -6229,7 +6229,7 @@ moves {
   id: MOVE_PSYCHO_SHIFT
   name: "精神转移"
   short_name: "精神转移"
-  description: "用户用精神力量将状态问题转移给目标。"
+  description: "用精神力量把自己的异常状态转移给对手。"
   short_description: "将异常状态转移给对手。"
   effect: EFFECT_PSYCHO_SHIFT
   split: STATUS
@@ -6243,7 +6243,7 @@ moves {
   id: MOVE_TRUMP_CARD
   name: "王牌"
   short_name: "王牌"
-  description: "一种绝望的攻击，当用户HP低于50%时造成暴击伤害。"
+  description: "走投无路时的攻击，自己HP低于50%时击中要害。"
   short_description: "自身HP低时造成击中要害伤害。"
   effect: EFFECT_FLAIL
   split: SPECIAL
@@ -6292,7 +6292,7 @@ moves {
   id: MOVE_POWER_TRICK
   name: "力量戏法"
   short_name: "力量戏法"
-  description: "用户交换攻击和防御属性及属性提升。"
+  description: "交换自己的攻击与防御及其提升。"
   short_description: "交换自己的攻击和防御。"
   effect: EFFECT_POWER_TRICK
   split: STATUS
@@ -6349,7 +6349,7 @@ moves {
   id: MOVE_COPYCAT
   name: "仿效"
   short_name: "仿效"
-  description: "用户尝试模仿立即之前使用的招式。"
+  description: "模仿对手刚才使用的招式。"
   short_description: "模仿对手最后使用的招式。"
   effect: EFFECT_COPYCAT
   split: STATUS
@@ -6392,7 +6392,7 @@ moves {
   id: MOVE_PUNISHMENT
   name: "惩罚"
   short_name: "惩罚"
-  description: "如果用户有更多属性变化，造成更多伤害。穿透提高的防御。"
+  description: "自己能力提升越多，伤害越大。可穿透提高的防御。"
   short_description: "若对手已提升能力，\n伤害更高。"
   effect: EFFECT_PUNISHMENT
   split: PHYSICAL
@@ -6409,7 +6409,7 @@ moves {
   id: MOVE_LAST_RESORT
   name: "珍藏"
   short_name: "珍藏"
-  description: "除非用户在战斗中已使用过其他招式，否则此招式失败。"
+  description: "若自己还没用过其他招式，此招式失败。"
   short_description: "仅在其余招式都已使\n用过时才能使用。"
   effect: EFFECT_LAST_RESORT
   split: PHYSICAL
@@ -6441,7 +6441,7 @@ moves {
   id: MOVE_SUCKER_PUNCH
   name: "突袭"
   short_name: "突袭"
-  description: "用户优先攻击。如果对手不攻击则失败。"
+  description: "抢先攻击，对手不攻击时失败。"
   short_description: "若对手正在准备攻击，\n则自己先出手。"
   effect: EFFECT_SUCKER_PUNCH
   split: PHYSICAL
@@ -6472,7 +6472,7 @@ moves {
   id: MOVE_HEART_SWAP
   name: "心灵互换"
   short_name: "心灵互换"
-  description: "用户利用精神力量与目标交换属性变化。"
+  description: "用精神力量与目标交换能力变化。"
   short_description: "与对手交换所有能力变化。"
   effect: EFFECT_HEART_SWAP
   split: STATUS
@@ -6484,7 +6484,7 @@ moves {
   id: MOVE_AQUA_RING
   name: "水流环"
   short_name: "水流环"
-  description: "用户将自己包裹在水幕中。每回合恢复1/16 HP。"
+  description: "被水幕包裹，每回合回复1/16 HP。"
   short_description: "形成水幕回复HP。"
   effect: EFFECT_AQUA_RING
   split: STATUS
@@ -6498,7 +6498,7 @@ moves {
   id: MOVE_MAGNET_RISE
   name: "电磁飘浮"
   short_name: "电磁飘浮"
-  description: "用户利用电磁力漂浮五回合。"
+  description: "借电磁力浮空5回合。"
   short_description: "利用电磁力漂浮。"
   effect: EFFECT_MAGNET_RISE
   split: STATUS
@@ -6512,7 +6512,7 @@ moves {
   id: MOVE_FLARE_BLITZ
   name: "闪焰冲锋"
   short_name: "闪焰冲锋"
-  description: "一种无情的火焰冲击，造成33%反弹。具有10%烧伤几率。"
+  description: "一种无情的火焰冲击，造成33%反弹。具有10%灼伤几率。"
   short_description: "蓄力一击，可能使对手灼伤。\n也会伤到自己。"
   custom_behavior {
     attack {
@@ -6573,7 +6573,7 @@ moves {
   id: MOVE_ROCK_POLISH
   name: "岩石打磨"
   short_name: "岩石打磨"
-  description: "用户抛光其身体以减少阻力。显著提高其速度。"
+  description: "打磨身体减少阻力，大幅提高自己的速度。"
   short_description: "打磨身体，大幅提高速度。"
   effect: EFFECT_SPEED_UP_2
   split: STATUS
@@ -6624,7 +6624,7 @@ moves {
   id: MOVE_NIGHT_SLASH
   name: "暗袭要害"
   short_name: "暗袭要害"
-  description: "用户等待攻击，划伤对手。高暴击。锋利加成。"
+  description: "伺机划伤对手。容易击中要害。锋利加成。"
   short_description: "尽可能先制攻击。\n击中要害率很高。"
   effect: EFFECT_BLEED_HIT
   split: PHYSICAL
@@ -6644,7 +6644,7 @@ moves {
   id: MOVE_AQUA_TAIL
   name: "水流尾"
   short_name: "水流尾"
-  description: "用户用尾巴攻击。高暴击几率。"
+  description: "用尾巴攻击对手。容易击中要害。"
   short_description: "像波浪一样挥动尾巴攻击。"
   split: PHYSICAL
   type: TYPE_WATER
@@ -6735,7 +6735,7 @@ moves {
   id: MOVE_DRAGON_PULSE
   name: "龙之波动"
   short_name: "龙之波动"
-  description: "用户张开大嘴，产生震荡波攻击。超级发射器加成。"
+  description: "张开大嘴放出震荡波。超级发射器加成。"
   short_description: "产生冲击波伤害对手。"
   split: SPECIAL
   type: TYPE_DRAGON
@@ -6802,7 +6802,7 @@ moves {
   id: MOVE_VACUUM_WAVE
   name: "真空波"
   short_name: "真空波"
-  description: "一种纯真真空向对手发射。优先级+1。"
+  description: "一种纯真真空向对手发射。先制+1。"
   short_description: "旋转拳头发出先\n制攻击的波动。"
   split: SPECIAL
   type: TYPE_FIGHTING
@@ -6857,7 +6857,7 @@ moves {
   id: MOVE_BRAVE_BIRD
   name: "勇鸟猛攻"
   short_name: "勇鸟猛攻"
-  description: "用户收起翅膀，向对手冲去。造成33%反弹伤害。"
+  description: "收起翅膀冲撞对手。受到33%反伤。"
   short_description: "低空突进，自己也会受伤。"
   effect: EFFECT_RECOIL_33
   split: PHYSICAL
@@ -6892,7 +6892,7 @@ moves {
   id: MOVE_SWITCHEROO
   name: "掉包"
   short_name: "掉包"
-  description: "用户以惊人的速度交换携带物品。"
+  description: "以惊人的速度交换双方的携带道具。"
   short_description: "以肉眼难见的速度\n与对手交换道具。"
   effect: EFFECT_TRICK
   split: STATUS
@@ -6923,7 +6923,7 @@ moves {
   id: MOVE_NASTY_PLOT
   name: "诡计"
   short_name: "诡计"
-  description: "用户用恶劣的思想刺激大脑，显著提高其特攻。"
+  description: "用邪恶的念头刺激大脑，大幅提高自己的特攻。"
   short_description: "心怀恶念，大幅提升特攻。"
   effect: EFFECT_SPECIAL_ATTACK_UP_2
   split: STATUS
@@ -6937,7 +6937,7 @@ moves {
   id: MOVE_BULLET_PUNCH
   name: "子弹拳"
   short_name: "子弹拳"
-  description: "快速的拳击攻击目标。优先级+1。铁拳加成。"
+  description: "快速的拳击攻击目标。先制+1。铁拳加成。"
   short_description: "如子弹般快速的拳击。\n必定先制。"
   split: PHYSICAL
   type: TYPE_STEEL
@@ -6954,7 +6954,7 @@ moves {
   id: MOVE_AVALANCHE
   name: "雪崩"
   short_name: "雪崩"
-  description: "一种攻击招式，如果目标对用户造成伤害，威力增强。"
+  description: "若目标伤害过自己，威力提升的攻击。"
   short_description: "若被对手打伤，威力提升。"
   effect: EFFECT_REVENGE
   split: PHYSICAL
@@ -6971,7 +6971,7 @@ moves {
   id: MOVE_ICE_SHARD
   name: "冰砾"
   short_name: "冰砾"
-  description: "闪电般的冰块被扔向对手。优先级+1。"
+  description: "闪电般的冰块被扔向对手。先制+1。"
   short_description: "投掷冰块，必定先制。"
   split: PHYSICAL
   type: TYPE_ICE
@@ -7052,7 +7052,7 @@ moves {
   id: MOVE_FIRE_FANG
   name: "火焰牙"
   short_name: "火焰牙"
-  description: "火热的牙齿。10%烧伤或畏缩几率。强颚加成。"
+  description: "火热的牙齿。10%灼伤或畏缩几率。强颚加成。"
   short_description: "可能使对手畏缩或灼伤。"
   effect: EFFECT_FLINCH_STATUS
   split: PHYSICAL
@@ -7075,7 +7075,7 @@ moves {
   id: MOVE_SHADOW_SNEAK
   name: "影子偷袭"
   short_name: "影子偷袭"
-  description: "用户的阴影延伸并攻击对手。优先级+1。"
+  description: "影子伸长攻击对手。先制+1。"
   short_description: "延伸自己的影子，\n先制攻击。"
   split: PHYSICAL
   type: TYPE_GHOST
@@ -7129,7 +7129,7 @@ moves {
   id: MOVE_ZEN_HEADBUTT
   name: "意念头锤"
   short_name: "意念头锤"
-  description: "用户专注并攻击对手。20%畏缩几率。场地类。"
+  description: "集中精神用头撞击。20%畏缩几率。场地类。"
   short_description: "以强力头击攻击。\n可能使对手畏缩。"
   effect: EFFECT_FLINCH_HIT
   split: PHYSICAL
@@ -7240,7 +7240,7 @@ moves {
   id: MOVE_DRACO_METEOR
   name: "流星群"
   short_name: "流星群"
-  description: "彗星降落在对手身上。显著降低用户的特攻属性。"
+  description: "彗星砸向对手，大幅降低自己的特攻。"
   short_description: "向对手降下彗星。\n大幅降低特攻。"
   effect: EFFECT_OVERHEAT
   split: SPECIAL
@@ -7273,7 +7273,7 @@ moves {
   id: MOVE_LAVA_PLUME
   name: "喷烟"
   short_name: "喷烟"
-  description: "猩红的火焰洗礼所有参与战斗的宝可梦。30%烧伤几率。"
+  description: "猩红的火焰洗礼所有参与战斗的宝可梦。30%灼伤几率。"
   short_description: "赤红火焰烧尽自己周围的一切。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -7289,7 +7289,7 @@ moves {
   id: MOVE_LEAF_STORM
   name: "飞叶风暴"
   short_name: "飞叶风暴"
-  description: "一场锋利的叶子风暴袭来。用户的特攻显著降低。"
+  description: "锐利的叶子风暴袭来，自己的特攻大幅降低。"
   short_description: "掀起叶子风暴。\n大幅降低特攻。"
   effect: EFFECT_OVERHEAT
   split: SPECIAL
@@ -7305,7 +7305,7 @@ moves {
   id: MOVE_POWER_WHIP
   name: "强力鞭打"
   short_name: "强力鞭打"
-  description: "用户猛烈旋转其藤蔓或触手，攻击对手。"
+  description: "挥舞藤蔓或触手猛击对手。"
   short_description: "以藤蔓或触手猛\n烈抽打对手。"
   split: PHYSICAL
   type: TYPE_GRASS
@@ -7320,7 +7320,7 @@ moves {
   id: MOVE_ROCK_WRECKER
   name: "岩石炮"
   short_name: "岩石炮"
-  description: "向对手扔出一块巨石。用户在击中后充能。投掷类。"
+  description: "向对手扔出巨石，命中后自己需要蓄力。投掷类。"
   short_description: "威力强大，但下一回合自\n己无法行动。"
   split: PHYSICAL
   split_modifier: USE_HIGHEST_OFFENSE
@@ -7378,7 +7378,7 @@ moves {
   id: MOVE_IRON_HEAD
   name: "铁头"
   short_name: "铁头"
-  description: "用户用坚硬的头部重击对手。30%畏缩几率。"
+  description: "用坚硬的头部撞向对手。30%畏缩几率。"
   short_description: "以坚硬头部猛撞对手。\n可能使对手畏缩。"
   effect: EFFECT_FLINCH_HIT
   split: PHYSICAL
@@ -7500,7 +7500,7 @@ moves {
   id: MOVE_JUDGMENT
   name: "制裁光砾"
   short_name: "制裁光砾"
-  description: "这一招式的类型随着用户持有的板子种类而变化。"
+  description: "属性随自己携带的石板种类变化。"
   short_description: "属性随携带的石板种类变化。"
   effect: EFFECT_CHANGE_TYPE_ON_ITEM
   split: SPECIAL
@@ -7555,7 +7555,7 @@ moves {
   id: MOVE_WOOD_HAMMER
   name: "木槌"
   short_name: "木槌"
-  description: "用户用其结实的身体撞击对手。造成33%反弹伤害。"
+  description: "用结实的身体撞击对手。受到33%反伤。"
   short_description: "猛撞对手，自己也会受伤。"
   effect: EFFECT_RECOIL_33
   split: PHYSICAL
@@ -7573,7 +7573,7 @@ moves {
   id: MOVE_AQUA_JET
   name: "水流喷射"
   short_name: "水流喷射"
-  description: "用户快速向对手冲去。优先级+1。"
+  description: "以极快速度冲向对手。先制+1。"
   short_description: "以高速冲向对手，\n必定先制攻击。"
   split: PHYSICAL
   type: TYPE_WATER
@@ -7605,7 +7605,7 @@ moves {
   id: MOVE_DEFEND_ORDER
   name: "防御指令"
   short_name: "防御指令"
-  description: "手下形成一个活体屏障，提高用户的特防和防御。"
+  description: "手下组成活的屏障，提高自己的防御和特防。"
   short_description: "用活体盾牌提高防御和特防。"
   effect: EFFECT_COSMIC_POWER
   split: STATUS
@@ -7618,7 +7618,7 @@ moves {
   id: MOVE_HEAL_ORDER
   name: "回复指令"
   short_name: "回复指令"
-  description: "用户召唤手下治疗自己，恢复其最大HP的一半。"
+  description: "召唤手下治疗自己，回复最大HP的一半。"
   short_description: "手下们现身，\n回复自己最大HP的一半。"
   effect: EFFECT_RESTORE_HP
   split: STATUS
@@ -7648,7 +7648,7 @@ moves {
   id: MOVE_DOUBLE_HIT
   name: "二连击"
   short_name: "二连击"
-  description: "用户连续两次重击对手。暴击率提高。"
+  description: "连续两次重击对手。容易击中要害。"
   short_description: "用尾巴等猛击对手。\n连续攻击两次。"
   effect: EFFECT_DOUBLE_HIT
   split: PHYSICAL
@@ -7697,7 +7697,7 @@ moves {
   id: MOVE_LUNAR_DANCE
   name: "新月舞"
   short_name: "新月舞"
-  description: "用户晕倒。替换者的HP恢复并治愈状态。"
+  description: "自己倒下，接替的宝可梦回复HP并治愈状态。"
   short_description: "自己陷入濒死，\n治愈接替上场的宝可梦。"
   effect: EFFECT_HEALING_WISH
   split: STATUS
@@ -7775,7 +7775,7 @@ moves {
   id: MOVE_OMINOUS_WIND
   name: "奇异之风"
   short_name: "奇异之风"
-  description: "10%几率提高用户的所有属性。雾中造成双倍伤害。"
+  description: "10%几率提高自己的全部能力。雾中伤害翻倍。"
   short_description: "令人厌恶的攻击，\n可能提高全部能力。"
   custom_behavior {
     attack {
@@ -7814,7 +7814,7 @@ moves {
   id: MOVE_SHADOW_FORCE
   name: "暗影潜袭"
   short_name: "暗影潜袭"
-  description: "用户消失。下一回合，攻击对手，忽视保护。"
+  description: "消失一回合，下回合无视守住进行攻击。"
   short_description: "第一回合消失，\n下一回合攻击。"
   effect: EFFECT_SEMI_INVULNERABLE
   split: PHYSICAL
@@ -7837,7 +7837,7 @@ moves {
   id: MOVE_HONE_CLAWS
   name: "磨爪"
   short_name: "磨爪"
-  description: "用户磨砺其爪子，提高攻击属性和命中率。"
+  description: "磨利爪子，提高自己的攻击和命中率。"
   short_description: "磨利爪子，\n提高攻击和命中率。"
   effect: EFFECT_ATTACK_ACCURACY_UP
   split: STATUS
@@ -7850,7 +7850,7 @@ moves {
   id: MOVE_WIDE_GUARD
   name: "广域防守"
   short_name: "广域防守"
-  description: "在1回合内，用户和其盟友免受广泛攻击。"
+  description: "1回合内保护自己与盟友免受范围攻击。"
   short_description: "在一回合内闪避大范围攻击。"
   effect: EFFECT_PROTECT
   split: STATUS
@@ -7869,7 +7869,7 @@ moves {
   id: MOVE_GUARD_SPLIT
   name: "防守平分"
   short_name: "防守平分"
-  description: "用户的防御和特防属性与目标的属性平均。"
+  description: "把自己的防御和特防与目标平均。"
   short_description: "与对手平均化防御\n和特防的变化。"
   effect: EFFECT_GUARD_SPLIT
   split: STATUS
@@ -7881,7 +7881,7 @@ moves {
   id: MOVE_POWER_SPLIT
   name: "力量平分"
   short_name: "力量平分"
-  description: "用户的攻击和特攻属性与目标的属性平均。"
+  description: "把自己的攻击和特攻与目标平均。"
   short_description: "与对手平均化攻击\n和特攻的变化。"
   effect: EFFECT_POWER_SPLIT
   split: STATUS
@@ -7906,7 +7906,7 @@ moves {
   id: MOVE_PSYSHOCK
   name: "精神冲击"
   short_name: "精神冲击"
-  description: "用户施加奇怪的精神波攻击对手，造成物理伤害。"
+  description: "放出奇怪的精神波，造成物理伤害。"
   short_description: "用精神波攻击，造成物理伤害。"
   split: SPECIAL
   split_modifier: HITS_DEF
@@ -7940,7 +7940,7 @@ moves {
   id: MOVE_AUTOTOMIZE
   name: "身体轻量化"
   short_name: "身体轻量化"
-  description: "用户脱落身体的一部分以减轻重量，显著提高速度。"
+  description: "脱去身体的一部分减轻重量，大幅提高速度。"
   short_description: "卸下额外重量，\n大幅提升速度"
   effect: EFFECT_AUTOTOMIZE
   split: STATUS
@@ -7953,7 +7953,7 @@ moves {
   id: MOVE_RAGE_POWDER
   name: "愤怒粉"
   short_name: "愤怒粉"
-  description: "对手只针对用户，因其恼人的粉末而愤怒。"
+  description: "用恼人的粉末激怒对手，使其只攻击自己。"
   short_description: "撒出粉末，\n让对手只攻击自己。"
   effect: EFFECT_FOLLOW_ME
   split: STATUS
@@ -7970,7 +7970,7 @@ moves {
   id: MOVE_TELEKINESIS
   name: "意念移物"
   short_name: "意念移物"
-  description: "用户用精神力量悬浮对手3回合，使对手更容易被击中。"
+  description: "用精神力让对手浮空3回合，更容易被击中。"
   short_description: "使对手飘浮。\n3回合内更容易被击中。"
   effect: EFFECT_TELEKINESIS
   split: STATUS
@@ -7997,7 +7997,7 @@ moves {
   id: MOVE_SMACK_DOWN
   name: "击落"
   short_name: "击落"
-  description: "用户向对手扔出一块石头。飞行的对手会掉落到地面。"
+  description: "向对手扔出石头，使飞行中的对手落地。"
   short_description: "投掷岩石，\n将对手击落到地面。"
   effect: EFFECT_SMACK_DOWN
   split: PHYSICAL
@@ -8031,7 +8031,7 @@ moves {
   id: MOVE_FLAME_BURST
   name: "烈焰溅射"
   short_name: "烈焰溅射"
-  description: "也会攻击对手的盟友，造成1/4的伤害。优先级+1。超级发射器加成。"
+  description: "也会攻击对手的盟友，造成1/4的伤害。先制+1。超级发射器加成。"
   short_description: "也会对对手的同\n伴造成1/4伤害。先制+1。"
   effect: EFFECT_FLAME_BURST
   split: SPECIAL
@@ -8049,7 +8049,7 @@ moves {
   id: MOVE_SLUDGE_WAVE
   name: "污泥波"
   short_name: "污泥波"
-  description: "用户用污泥淹没周围区域。10%中毒几率。"
+  description: "用污泥淹没周围。10%中毒几率。"
   short_description: "用污泥波攻击对手，\n可能使其中毒。"
   effect: EFFECT_POISON_HIT
   split: SPECIAL
@@ -8065,7 +8065,7 @@ moves {
   id: MOVE_QUIVER_DANCE
   name: "蝶舞"
   short_name: "蝶舞"
-  description: "一种美丽而神秘的舞蹈，提升用户的特攻、特防和速度。"
+  description: "美丽而神秘的舞蹈，提高自己的特攻、特防和速度。"
   short_description: "起舞提升特攻、\n特防与速度。"
   effect: EFFECT_QUIVER_DANCE
   split: STATUS
@@ -8079,7 +8079,7 @@ moves {
   id: MOVE_HEAVY_SLAM
   name: "重磅冲撞"
   short_name: "重磅冲撞"
-  description: "用户用其重身体重击对手。较重的用户更强。"
+  description: "用沉重的身体撞击对手，自己越重威力越大。"
   short_description: "自己体重超过对手时，\n伤害更高。"
   effect: EFFECT_HEAT_CRASH
   split: PHYSICAL
@@ -8096,7 +8096,7 @@ moves {
   id: MOVE_SYNCHRONOISE
   name: "同步干扰"
   short_name: "同步干扰"
-  description: "一种奇怪的震荡波。与用户的第二种类型匹配。声音类。"
+  description: "奇怪的震荡波。属性与自己第二属性一致。声音类。"
   short_description: "奇异的冲击波，\n属性与自己的第二属性一致。"
   effect: EFFECT_SYNCHRONOISE
   split: SPECIAL
@@ -8112,7 +8112,7 @@ moves {
   id: MOVE_ELECTRO_BALL
   name: "电球"
   short_name: "电球"
-  description: "一颗电球被扔向对手。较快的用户造成更大的伤害。"
+  description: "投出电球，自己速度越快伤害越大。"
   short_description: "投掷宝珠。\n对手速度越慢伤害越高。"
   effect: EFFECT_ELECTRO_BALL
   split: SPECIAL
@@ -8145,7 +8145,7 @@ moves {
   id: MOVE_FLAME_CHARGE
   name: "蓄能焰袭"
   short_name: "蓄能焰袭"
-  description: "被火焰包裹的用户进行攻击。这提高了其速度属性。"
+  description: "裹着火焰攻击，并提高自己的速度。"
   short_description: "身披火焰攻击。提高速度。"
   effect: EFFECT_SPEED_UP_HIT
   split: PHYSICAL
@@ -8163,7 +8163,7 @@ moves {
   id: MOVE_COIL
   name: "盘蜷"
   short_name: "盘蜷"
-  description: "用户蜷缩起来，提高其攻击、防御和命中率。"
+  description: "蜷缩身体，提高自己的攻击、防御和命中率。"
   short_description: "盘卷身体，提高攻击、\n防御和命中率。"
   effect: EFFECT_COIL
   split: STATUS
@@ -8176,7 +8176,7 @@ moves {
   id: MOVE_LOW_SWEEP
   name: "下盘踢"
   short_name: "下盘踢"
-  description: "用户迅速攻击对手的腿，降低对手的速度属性。"
+  description: "迅速扫踢对手的腿，降低对手的速度。"
   short_description: "攻击对手的腿部，\n降低其速度。"
   effect: EFFECT_SPEED_DOWN_HIT
   split: PHYSICAL
@@ -8228,7 +8228,7 @@ moves {
   id: MOVE_SIMPLE_BEAM
   name: "单纯光束"
   short_name: "单纯光束"
-  description: "用户的奇怪精神波将对手的能力改变为简单。"
+  description: "奇怪的精神波，把对手的特性变为单纯。"
   short_description: "改变对手特性的光束，\n使其变为单纯。"
   effect: EFFECT_SIMPLE_BEAM
   split: STATUS
@@ -8243,7 +8243,7 @@ moves {
   id: MOVE_ENTRAINMENT
   name: "找伙伴"
   short_name: "找伙伴"
-  description: "一种奇怪的舞蹈，迫使目标模仿用户的能力。"
+  description: "奇妙的舞蹈，迫使目标模仿自己的特性。"
   short_description: "让对手模仿自己，\n获得自己的特性。"
   effect: EFFECT_ENTRAINMENT
   split: STATUS
@@ -8258,7 +8258,7 @@ moves {
   id: MOVE_AFTER_YOU
   name: "您先请"
   short_name: "您先请"
-  description: "用户帮助目标并迫使其在用户之后行动。"
+  description: "帮助目标，使其比自己先行动。"
   short_description: "帮助对手，让其下一个行动。"
   effect: EFFECT_AFTER_YOU
   split: STATUS
@@ -8357,7 +8357,7 @@ moves {
   id: MOVE_STORED_POWER
   name: "辅助力量"
   short_name: "辅助力量"
-  description: "用户属性提升越多，这一招式的威力越大。"
+  description: "自己能力提升越多，威力越大。"
   short_description: "自己的能力越高，\n造成的伤害越大。"
   effect: EFFECT_STORED_POWER
   split: SPECIAL
@@ -8400,7 +8400,7 @@ moves {
   id: MOVE_SCALD
   name: "热水"
   short_name: "热水"
-  description: "向对手喷射沸腾的热水。30%烧伤几率。"
+  description: "向对手喷射沸腾的热水。30%灼伤几率。"
   short_description: "向对手喷射沸水。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -8619,7 +8619,7 @@ moves {
   id: MOVE_INFERNO
   name: "烈火深渊"
   short_name: "烈火深渊"
-  description: "对手被强烈的火焰吞噬。烧伤对手。超级发射器加成。"
+  description: "对手被强烈的火焰吞噬。灼伤对手。超级发射器加成。"
   short_description: "威力强大且必定造成灼伤，\n但命中率低。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -8708,7 +8708,7 @@ moves {
   id: MOVE_VOLT_SWITCH
   name: "伏特替换"
   short_name: "伏特替换"
-  description: "用户攻击，然后与等待的队伍宝可梦交换。"
+  description: "攻击后与待命的队伍宝可梦交换。"
   short_description: "造成伤害后换下使用者。"
   effect: EFFECT_HIT_ESCAPE
   split: SPECIAL
@@ -8724,7 +8724,7 @@ moves {
   id: MOVE_STRUGGLE_BUG
   name: "虫之抵抗"
   short_name: "虫之抵抗"
-  description: "一种绝望的攻击，当用户HP低于50%时造成暴击伤害。"
+  description: "走投无路时的攻击，自己HP低于50%时击中要害。"
   short_description: "自身HP低时造成击中要害伤害。"
   effect: EFFECT_FLAIL
   split: SPECIAL
@@ -8950,7 +8950,7 @@ moves {
   id: MOVE_HEAT_CRASH
   name: "高温重压"
   short_name: "高温重压"
-  description: "用户用其重身体重击对手。较重的用户更强。"
+  description: "用沉重的身体撞击对手，自己越重威力越大。"
   short_description: "自己体重超过对手时，\n伤害更高。"
   effect: EFFECT_HEAT_CRASH
   split: PHYSICAL
@@ -9013,7 +9013,7 @@ moves {
   id: MOVE_NIGHT_DAZE
   name: "暗黑爆破"
   short_name: "暗黑爆破"
-  description: "用漆黑的冲击波进行攻击。优先级+1。"
+  description: "用漆黑的冲击波进行攻击。先制+1。"
   short_description: "释放漆黑的冲击波。先制+1。"
   split: SPECIAL
   type: TYPE_DARK
@@ -9028,7 +9028,7 @@ moves {
   id: MOVE_PSYSTRIKE
   name: "精神击破"
   short_name: "精神击破"
-  description: "用户施加奇怪的精神波攻击对手，造成物理伤害。"
+  description: "放出奇怪的精神波，造成物理伤害。"
   short_description: "用精神波攻击，造成物理伤害。"
   split: SPECIAL
   split_modifier: HITS_DEF
@@ -9112,7 +9112,7 @@ moves {
   id: MOVE_SEARING_SHOT
   name: "火焰弹"
   short_name: "火焰弹"
-  description: "猩红的火焰烧焦场地。30%烧伤几率。超级发射器加成。"
+  description: "猩红的火焰烧焦场地。30%灼伤几率。超级发射器加成。"
   short_description: "赤红火焰烧尽自己周围的一切。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -9214,7 +9214,7 @@ moves {
   id: MOVE_BLUE_FLARE
   name: "青焰"
   short_name: "青焰"
-  description: "对手被美丽的火焰吞噬。20%烧伤几率。"
+  description: "对手被美丽的火焰吞噬。20%灼伤几率。"
   short_description: "用蓝色火焰包裹对手。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -9268,7 +9268,7 @@ moves {
   id: MOVE_ICE_BURN
   name: "极寒冷焰"
   short_name: "极寒冷焰"
-  description: "在充能时烧伤接触者。30%烧伤几率。"
+  description: "在充能时灼伤接触者。30%灼伤几率。"
   short_description: "强力的两回合招式，\n可能造成灼伤。"
   effect: EFFECT_TWO_TURN_RETALIATION
   split: SPECIAL
@@ -9460,7 +9460,7 @@ moves {
   id: MOVE_PHANTOM_FORCE
   name: "潜灵奇袭"
   short_name: "潜灵奇袭"
-  description: "用户消失。下一回合，攻击对手，忽视保护。"
+  description: "消失一回合，下回合无视守住进行攻击。"
   short_description: "第一回合消失，\n下一回合攻击。"
   effect: EFFECT_SEMI_INVULNERABLE
   split: PHYSICAL
@@ -9740,7 +9740,7 @@ moves {
   id: MOVE_FAIRY_WIND
   name: "妖精之风"
   short_name: "妖精之风"
-  description: "一团快速移动的仙尘。优先级+1。空气类。"
+  description: "一团快速移动的仙尘。先制+1。空气类。"
   short_description: "快速的妖精粉尘云。\n先制+1。"
   split: SPECIAL
   type: TYPE_FAIRY
@@ -9865,7 +9865,7 @@ moves {
   id: MOVE_STEAM_ERUPTION
   name: "蒸汽爆炸"
   short_name: "蒸汽爆炸"
-  description: "30%烧伤几率。在强烈的阳光下造成普通伤害。超级发射器加成。"
+  description: "30%灼伤几率。在强烈的阳光下造成普通伤害。超级发射器加成。"
   short_description: "用灼热蒸汽包裹对手。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -9883,7 +9883,7 @@ moves {
   id: MOVE_HYPERSPACE_HOLE
   name: "异次元洞"
   short_name: "异次元洞"
-  description: "使用者利用虫洞进行攻击。优先级+1。无视保护等。"
+  description: "使用者利用虫洞进行攻击。先制+1。无视保护等。"
   short_description: "利用空间洞攻击。\n无法被闪避。"
   effect: EFFECT_FEINT
   split: SPECIAL
@@ -10320,7 +10320,7 @@ moves {
   id: MOVE_HYPERSPACE_FURY
   name: "异次元猛攻"
   short_name: "异次元猛攻"
-  description: "使用者利用虫洞进行攻击。优先级+1。无视保护等。"
+  description: "使用者利用虫洞进行攻击。先制+1。无视保护等。"
   short_description: "利用空间洞攻击。\n无法被闪避。"
   effect: EFFECT_HYPERSPACE_FURY
   split: PHYSICAL
@@ -10418,7 +10418,7 @@ moves {
   id: MOVE_SPARKLING_ARIA
   name: "泡影的咏叹调"
   short_name: "泡影的咏叹调"
-  description: "音乐气泡击中使用者周围的人，治愈那些被击中的人的烧伤。"
+  description: "音乐气泡击中使用者周围的人，治愈那些被击中的人的灼伤。"
   short_description: "用泡泡歌唱。\n接触时治愈灼伤。"
   effect: EFFECT_SPARKLING_ARIA
   split: SPECIAL
@@ -10993,7 +10993,7 @@ moves {
   id: MOVE_ACCELEROCK
   name: "冲岩"
   short_name: "冲岩"
-  description: "使用者以高速猛撞对手。优先级+1。"
+  description: "使用者以高速猛撞对手。先制+1。"
   short_description: "以高速岩石攻击，必定先制。"
   split: PHYSICAL
   type: TYPE_ROCK
@@ -11320,7 +11320,7 @@ moves {
   id: MOVE_SIZZLY_SLIDE
   name: "熊熊火爆"
   short_name: "熊熊火爆"
-  description: "使用者用火焰包裹自己，并向对手冲去，留下烧伤。"
+  description: "使用者用火焰包裹自己，并向对手冲去，留下灼伤。"
   short_description: "自己身披火焰冲锋。\n使对手灼伤。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -11740,7 +11740,7 @@ moves {
   id: MOVE_PYRO_BALL
   name: "火焰球"
   short_name: "火焰球"
-  description: "使用者向对手发射一个火球。有10%的几率烧伤对手。"
+  description: "使用者向对手发射一个火球。有10%的几率灼伤对手。"
   short_description: "向目标发射火球。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -12292,7 +12292,7 @@ moves {
   id: MOVE_FLIP_TURN
   name: "快速折返"
   short_name: "快速折返"
-  description: "用户攻击，然后与等待的队伍宝可梦交换。"
+  description: "攻击后与待命的队伍宝可梦交换。"
   short_description: "发起攻击后迅速返回，\n与队伍中的宝可梦交换."
   effect: EFFECT_HIT_ESCAPE
   split: PHYSICAL
@@ -12343,7 +12343,7 @@ moves {
   id: MOVE_SCORCHING_SANDS
   name: "热沙大地"
   short_name: "热沙大地"
-  description: "向目标投掷灼热的沙子。有30%的几率烧伤目标。"
+  description: "向目标投掷灼热的沙子。有30%的几率灼伤目标。"
   short_description: "向目标投掷灼热沙子。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -12426,7 +12426,7 @@ moves {
   id: MOVE_DRAGON_ENERGY
   name: "巨龙威能"
   short_name: "巨龙威能"
-  description: "用户HP越高，威力越强。超级发射器加成。"
+  description: "自己HP越高威力越大。超级发射器加成。"
   short_description: "使用者HP越高，\n造成的伤害越大。"
   effect: EFFECT_ERUPTION
   split: SPECIAL
@@ -12653,7 +12653,7 @@ moves {
   id: MOVE_OUTBURST
   name: "蒸汽爆发"
   short_name: "蒸汽爆发"
-  description: "用户自爆，即使自己晕倒也造成可怕的伤害。"
+  description: "自爆，即使自己倒下也能造成可怕伤害。"
   short_description: "造成严重特殊伤害，\n但自己会濒死。"
   effect: EFFECT_EXPLOSION
   split: SPECIAL
@@ -12759,7 +12759,7 @@ moves {
   id: MOVE_SCORCHED_EARTH
   name: "大地烈焰"
   short_name: "大地烈焰"
-  description: "同时具有火属性和地面属性。有10%的烧伤几率。"
+  description: "同时具有火属性和地面属性。有10%的灼伤几率。"
   short_description: "精准灼烧对手脚下的地面。\n可能造成灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -12776,7 +12776,7 @@ moves {
   id: MOVE_RAGING_FURY
   name: "大愤慨"
   short_name: "大愤慨"
-  description: "用户在两到三回合内疯狂挣扎，然后变得困惑。"
+  description: "在2到3回合内狂暴乱打，之后陷入混乱。"
   short_description: "连续攻击2到3回合，\n之后自己陷入混乱。"
   effect: EFFECT_RAMPAGE
   split: PHYSICAL
@@ -13414,7 +13414,7 @@ moves {
   id: MOVE_FLAME_TONGUE
   name: "火焰舌"
   short_name: "火焰舌"
-  description: "用火刃击中对手。10%几率烧伤。锋利加成。"
+  description: "用火刃击中对手。10%几率灼伤。锋利加成。"
   short_description: "尚未完成。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -13432,7 +13432,7 @@ moves {
   id: MOVE_BLAZING_ARROW
   name: "火焰箭矢"
   short_name: "火焰箭矢"
-  description: "发射一支燃烧的箭。+1暴击几率。20%烧伤几率。弓手加成。"
+  description: "发射一支燃烧的箭。+1暴击几率。20%灼伤几率。弓手加成。"
   short_description: "尚未完成。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -13656,7 +13656,7 @@ moves {
   id: MOVE_INFERNAL_PARADE
   name: "群魔乱舞"
   short_name: "群魔乱舞"
-  description: "用幽灵般的火球进行攻击。30%烧伤几率。如果目标处于状态，则提高50%。"
+  description: "用幽灵般的火球进行攻击。30%灼伤几率。如果目标处于状态，则提高50%。"
   short_description: "尚未完成。"
   effect: EFFECT_INFERNAL_PARADE
   split: SPECIAL
@@ -14198,7 +14198,7 @@ moves {
   id: MOVE_BLAZING_BONE
   name: "炽热骨头"
   short_name: "炽热骨头"
-  description: "用火骨击中2-5次。优先级+1。基于骨头。"
+  description: "用火骨击中2-5次。先制+1。基于骨头。"
   short_description: "攻击2-5次。先制+1。"
   effect: EFFECT_MULTI_HIT
   split: PHYSICAL
@@ -14523,7 +14523,7 @@ moves {
   id: MOVE_BLAZING_TORQUE
   name: "灼热暴冲"
   short_name: "灼热暴冲"
-  description: "30%几率用炽热的力量烧伤对手。"
+  description: "30%几率用炽热的力量灼伤对手。"
   short_description: "30%几率使对手灼伤。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -15163,7 +15163,7 @@ moves {
   id: MOVE_MATCHA_GOTCHA
   name: "刷刷茶炮"
   short_name: "刷刷茶炮"
-  description: "发射茶爆。吸收所造成伤害的一半。20%烧伤几率。"
+  description: "发射茶爆。吸收所造成伤害的一半。20%灼伤几率。"
   short_description: "喷出茶汤攻击。可能造成灼伤，\n并回复造成伤害的50%。"
   effect: EFFECT_MATCHA_GOTCHA
   split: SPECIAL
@@ -15263,7 +15263,7 @@ moves {
   id: MOVE_BURNING_BULWARK
   name: "火焰守护"
   short_name: "火焰守护"
-  description: "使用者的热毛皮可以保护免受攻击，并烧伤任何直接攻击者。"
+  description: "使用者的热毛皮可以保护免受攻击，并灼伤任何直接攻击者。"
   short_description: "自己炽热的皮毛\n可抵御攻击。"
   effect: EFFECT_PROTECT
   split: STATUS
@@ -16095,7 +16095,7 @@ moves {
   id: MOVE_SMOLDER_BASH
   name: "熏热号角"
   short_name: "熏热号角"
-  description: "用火热的角猛击对手。10%几率烧伤。角击加成。"
+  description: "用火热的角猛击对手。10%几率灼伤。角击加成。"
   short_description: "灼热的刺击，10%\n几率使对手灼伤。"
   effect: EFFECT_BURN_HIT
   split: PHYSICAL
@@ -16180,7 +16180,7 @@ moves {
   id: MOVE_POP_MAYHEM
   name: "火焰迸发"
   short_name: "火焰迸发"
-  description: "用热的谷粒袭击目标。10%烧伤几率。"
+  description: "用热的谷粒袭击目标。10%灼伤几率。"
   short_description: "连续命中2-5次，可能灼伤。"
   effect: EFFECT_MULTI_HIT
   split: PHYSICAL
@@ -16256,7 +16256,7 @@ moves {
   id: MOVE_BRAVADO
   name: "逞强"
   short_name: "逞强"
-  description: "一种在用户被烧、毒或麻痹时增强的攻击。"
+  description: "自己陷入灼伤、中毒或麻痹时威力提升的攻击。"
   short_description: "若对手陷入灼伤、麻痹或中毒，\n伤害翻倍。"
   effect: EFFECT_FACADE
   split: SPECIAL
@@ -16443,7 +16443,7 @@ moves {
   id: MOVE_BIG_BLAST
   name: "大霹雳"
   short_name: "大霹雳"
-  description: "对手受到巨大的爆炸攻击。20%烧伤几率。"
+  description: "对手受到巨大的爆炸攻击。20%灼伤几率。"
   short_description: "造成伤害。小几率灼伤。"
   effect: EFFECT_BURN_HIT
   split: SPECIAL
@@ -16461,7 +16461,7 @@ moves {
   id: MOVE_SPECTRAL_FLAME
   name: "幽灵火"
   short_name: "幽灵火"
-  description: "烧伤目标，包括火属性宝可梦。在雾中抑制能力。"
+  description: "灼伤目标，包括火属性宝可梦。在雾中抑制能力。"
   short_description: "放出如活物般游走的火焰，\n使对手灼伤。"
   effect: EFFECT_SPECTRAL_FLAME
   split: STATUS
@@ -17603,7 +17603,7 @@ moves {
   id: MOVE_OBSCURED_SHOT
   name: "暗袭射击"
   short_name: "暗袭射击"
-  description: "用户优先攻击。如果对手不攻击则失败。"
+  description: "抢先攻击，对手不攻击时失败。"
   short_description: "若对手正在准备攻击，\n则自己先出手。"
   effect: EFFECT_SUCKER_PUNCH
   split: SPECIAL
