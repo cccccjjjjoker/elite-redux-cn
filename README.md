@@ -47,6 +47,13 @@ Pokémon Elite Redux 的社区汉化项目。当前版本为 `2.65.5.2b`，使�
 需要 Git、Docker Desktop 和 WSL 2。修改源码后先提交到本地 Git，再执行构建；脚本会把当前提交的 game/ 归档到 Linux 容器，保留文件大小写和执行权限。构建所需的一项上游二进制资源会从固定提交下载，并校验 SHA-256。
 
 首次构建需要联网下载工具链，结果和日志保存在 build-results/。
+
+## 译名与术语
+
+术语表、属性与状态对照、特性与招式译名以及图鉴校对记录在 [docs/glossary/](docs/glossary/)。网页版可直接下载 [术语表与错误报告](docs/glossary/glossary.html) 用浏览器打开，逐条对照请用 [glossary.xlsx](docs/glossary/glossary.xlsx)。
+
+源码文本以术语表为准，例如 Innate 统一为「天性」、Burn 统一为「灼伤」、STAB 统一为「本系加成」。
+
 ## 致谢
 
 感谢 Elite Redux 和 pokeemerald 项目的贡献者。

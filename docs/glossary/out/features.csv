@@ -1,0 +1,1037 @@
+﻿编号,,特姓名,,特性描述,,较之原版变化及补充说明,详细说明(这里是汉化版游戏内描述，我直接搬过来了，英文网站上没给这个数据)
+0,0000,-------,------,------,------, ------,------
+1,0001,Stench,恶臭,Attacks have a 10% chance to cause enemy to flinch.,10%几率使目标畏缩.剧毒地形永久存在.,,"攻击获得+10%的畏缩几率.连续攻击技能的每一击单独计算畏缩几率.当该宝可梦在场时,剧毒地形的回合数不会减少."
+2,0002,Drizzle,降雨,Summons rain on entry. Lasts 8 turns.,"出场时降下雨水,持续8回合.",场地天气这个改版里都改为8回合，后面不再说明,"降雨特性会在宝可梦进入战斗时降下雨水,持续8回合（携带潮湿岩石时为12回合）.雨天使水系招式威力提升50%,火系伤害降低50%.部分招式和特性在雨天下有特殊效果.无法覆盖原始天气."
+3,0003,Speed Boost,加速,Raises own Speed by one stage after every turn.,每回合结束后自身速度提升1级.,,"该宝可梦每在场完成一个完整的回合,其速度在回合结束时提升1级.入场的当回合不会触发."
+4,0004,Battle Armor,战斗盔甲,Immune to critical hits. Takes 20% less damage from attacks.,免疫击中要害.受到的招式伤害降低20%.,较之原版多了受到伤害-20%,"受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+5,0005,Sturdy,结实,"At full HP, cannot be KO in one hit, stays at 1 HP instead.","满HP时,不会一击濒死,必定留下1点HP.",,"当该宝可梦HP全满时,能够承受任何一次攻击并至少留下1点HP.此效果如同携带了气势披带,因此无法抵御连续攻击技能或后续攻击（例如“余震”、“雷召”）."
+6,0006,Damp,湿气,Makes foe Water-type on contact. Also works on offense.,使接触到的对手变为水属性.攻击时也生效.,特性重做，原版是防爆炸招式,"如果该宝可梦与另一只宝可梦发生接触（无论是攻击方还是防御方）,对方的属性会变为纯水属性.此效果在连续招式或优先度招式命中时立即发生,可以在对手的连续攻击过程中消除其本系加成."
+7,0007,Limber,柔软,"Para immune, takes half recoil, immune to self stat drops.","免疫麻痹,反伤减半,免疫自身能力降低.",较之原版多了受反伤伤害减半,"该宝可梦受到的所有反伤伤害减半；包括具有比例反伤的招式（如勇鸟猛攻）、具有撞伤风险的招式（如飞膝踢）、或固定反伤的招式（如钢炮光线）.麻痹状态无法影响该宝可梦,且获得此特性时,若已处于麻痹状态则会立刻治愈."
+8,0008,Sand Veil,沙隐,Evasion is boosted by 1.25x while a sandstorm is active.,"在沙暴中,闪避率提升1.25倍.",原版是1.2倍,"在沙暴中,对手的命中率变为原来的1/1.25,且自身免疫沙暴伤害.会被无防御或破格特性识破."
+9,0009,Static,静电,30% chance to paralyze on contact. Also works on offense.,"接触攻击有30%几率麻痹,非接触攻击有10%几率麻痹.",,"无论该宝可梦是攻击方还是被攻击方,都有几率使对手陷入麻痹.非接触攻击有10%几率麻痹,接触攻击有30%几率麻痹."
+10,000A,Volt Absorb,蓄电,Heals 25% of max HP when hit by an Electric-type move.,"受到电属性招式攻击时,恢复最大HP的25%.",,"该宝可梦能够吸收电属性招式,将其转化为能量,恢复其最大HP的25%.对电属性伤害及其附加效果（如电磁波的麻痹）完全免疫.对于水/飞行属性宝可梦来说,是消除4倍电系弱点的完美选择."
+11,000B,Water Absorb,储水,Heals 25% of max HP when hit by a Water-type move.,"受到水属性招式攻击时,恢复最大HP的25%.",,"该宝可梦免疫水属性招式,并且受到水属性招式攻击时会恢复其最大HP的25%."
+12,000C,Oblivious,迟钝,"Immune to infatuation, Scare, Intimidate and Taunt.",免疫着迷、惊吓、威吓和挑衅.,恐吓：特攻版威吓,"该宝可梦免疫着迷、惊吓、威吓和挑衅.在获得此特性时,如果已经处于上述任意状态,则会立刻解除."
+13,000D,Cloud Nine,无关天气,Clears weather and prevents its effects.,清除天气并阻止其效果产生.,,"上场时清除所有天气,并且在该宝可梦在场期间使所有天气效果（包括原始天气）失效.天气仍可以被设置,但在该宝可梦下场前,不会提供任何伤害加成或触发与天气相关的特性."
+14,000E,Compound Eyes,复眼,Grants a 1.3x accuracy boost.,获得1.3倍的命中率提升.,,该宝可梦的招式命中率变为1.3倍.
+15,000F,Insomnia,不眠,Cannot fall asleep. Rest fails if used.,不会陷入睡眠状态.使用睡觉会失败.,,"防止任何方式陷入睡眠状态,包括催眠招式、特性（如哈欠）以及其他可能导致睡眠的效果.使用招式睡觉将完全失败.若在获得此特性前已处于睡眠状态（例如通过烦恼种子或特性交换）,则会立刻醒来.可被破格等特性识破"
+16,0010,Color Change,变色,Changes type to a resist or an immunity before getting hit.,"受到攻击前,变为拥有抗性或免疫的属性.",改的极为变态，一般格斗毒幽灵地面电超能龙这几个属性招式，如果没有克制的特性直接无效,"受到伤害前,将自身转变为防御效果最佳的纯属性.优先考虑免疫而非抗性.每回合仅触发一次."
+17,0011,Immunity,免疫,Cannot be poisoned. Halves damage taken from Poison moves.,不会陷入中毒状态.受到的毒属性伤害减半.,较之原版多了受毒属性招式伤害减半,"防止中毒.所有毒属性伤害减半.与其他减伤效果乘法叠加.获得此特性时若已中毒,则立刻治愈."
+18,0012,Flash Fire,引火,Powers up Fire-type moves by 1.5x if hit by a Fire-type move.,"受到火属性招式攻击后,自身火属性招式威力提升至1.5倍.",,"引火特性使宝可梦完全免疫火属性招式.受到火属性攻击后,自身的火属性招式威力提升50%,直到下场为止.多次被火属性攻击命中不会使效果叠加."
+19,0013,Shield Dust,鳞粉,"Immune to added move effects, hazards, and powder moves.",免疫招式的追加效果、场地状态和粉末类招式.,较之原版多了入场时不受所有陷阱影响；陷阱指岩钉、黏黏网等在精灵入场时会发动的这一类效果。,"阻挡所有攻击招式的追加效果.免疫所有入场陷阱.免疫所有粉末类招式,包括催眠粉、麻痹粉、毒粉、蘑菇孢子、棉孢子、愤怒粉、粉末和魔法粉."
+20,0014,Own Tempo,我行我素,"Immune to confusion, Intimidate and Scare.",免疫混乱、威吓和惊吓.,,"免疫混乱、威吓和惊吓.获得此特性时若已混乱,则立刻解除混乱状态."
+21,0015,Suction Cups,吸盘,Cannot be forced to switch out by an enemy's move.,不会被对手的招式强制替换下场.,,防止被招式或红牌强制替换下场.
+22,0016,Intimidate,威吓,Lowers foes' Atk by one stage on entry.,"出场时,降低所有对手的攻击1级.",,"进入战斗时,降低所有对手宝可梦的攻击1级."
+23,0017,Shadow Tag,影子游戏,Opponents can't be switched out. Ghosts aren't affected.,对手无法替换下场.幽灵属性不受影响.,,"阻止所有不具有影子游戏特性或非幽灵属性的对手替换下场.携带逃脱按键或使用替换招式（如快速折返）的宝可梦可以逃脱如果在战斗中中途替换上场,效果将在下一回合生效."
+24,0018,Rough Skin,粗糙皮肤,Enemies lose 1/8 of max HP if they use a contact move.,使用接触类招式的敌人会损失1/8的最大HP.,,"对使用接触类招式的攻击者造成其最大HP1/8的伤害.对于连续攻击招式,每次命中都会触发."
+25,0019,Wonder Guard,神奇守护,Is only hit by Super-effective attacks or indirect damage.,仅会受到效果绝佳的攻击或间接伤害.,,只有效果绝佳的招式或间接伤害能够伤害到该宝可梦.其他所有直接攻击造成的伤害均为零.中毒或特性伤害等其他来源的伤害照常生效.
+26,001A,Levitate,飘浮,Immune to Ground-type moves. Ups own Flying moves by 1.25x.,免疫地面属性招式.自身飞行招式威力提升至1.25倍.,较之原版多了飞行属性招式1.25倍,"该宝可梦免疫地面属性招式以及其他地面效果,如撒菱和场地状态.飞行属性招式伤害提升25%."
+27,001B,Effect Spore,孢子,"30% chance to inflict SLP, PARA or PSN if hit by a contact move.","受到接触类招式攻击时,30%几率使攻击者陷入睡眠、麻痹或中毒状态.",,"受到接触类招式攻击时,有30%的几率使攻击者陷入睡眠、麻痹或中毒状态.状态类型随机选择."
+28,001C,Synchronize,同步,Enemies inflicting status on this Pokémon get same status.,受到异常状态时，使攻击者也获得相同的异常状态,,"当被施加非瞬间异常状态（睡眠除外）时,攻击者也会陷入相同的状态.此效果可穿透替身.若该宝可梦在被施加异常状态时能够治愈自身,则会在治愈前先将异常状态施加给攻击者."
+29,001D,Clear Body,恒净之躯,Immune to stat drops.,免疫能力降低.,原版只防对方的降能力，ER里自己降能力也免疫比如流星群,免疫所有由招式或特性引起的能力降低效果.包括因使用过热等招式导致的自身能力降低.
+30,001E,Natural Cure,自然回复,Heals status condition upon switching out.,"替换下场时,治愈异常状态.",,"替换下场时,治愈所有异常状态."
+31,001F,Lightning Rod,避雷针,"Redirects Electric moves. Absorbs them, ups highest Atk.",吸引电属性招式.并提升自身最高的攻击能力.,较之原版物攻特攻都好使,"该宝可梦会吸引电属性招式,并对其免疫.此外,受到电属性招式攻击后,自身最高的攻击能力提升1级."
+32,0020,Serene Grace,天恩,Doubles chance of secondary effects on its own moves.,自身招式的追加效果触发几率加倍.,,自身攻击招式的追加效果触发几率加倍.
+33,0021,Swift Swim,悠游自如,This Pokémon's Speed gets a 1.5x boost if rain is active.,"下雨天气时,该宝可梦的速度提升至1.5倍.",原版2倍,"下雨天气时,速度提升50%."
+34,0022,Chlorophyll,叶绿素,This Pokémon's Speed gets a 1.5x boost if sun is active.,"大晴天天气时,该宝可梦的速度提升至1.5倍.",原版2倍,"大晴天天气时,速度提升50%."
+35,0023,Illuminate,发光,Grants a 1.2x accuracy boost.,获得1.2倍的命中率提升.,原版是命中不会下降,"该宝可梦的招式命中率变为1.2倍.攻击命中时,移除目标的幽灵属性."
+36,0024,Trace,复制,Copies the foe's ability. Does not copy innates.,复制对手的特性.无法复制先天特性.,,"进入战斗时,复制一只对手宝可梦的特性,替换当前特性栏位中的特性.无法复制复制、神奇守护以及大多数与形态相关的特性.在双打对战中,随机选择首个符合条件的对手."
+37,0025,Huge Power,大力士,"Doubles own Attack stat. Boosts raw stat, not base stat.",自身的攻击能力加倍.提升最终能力值而非基础能力值.,,该宝可梦的攻击能力值变为2倍与其他伤害加成效果乘法叠加.
+38,0026,Poison Point,毒刺,30% chance to poison on contact. Also works on offense.,接触攻击有30%几率使目标中毒.攻击时也生效.,,"无论该宝可梦是攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒."
+39,0027,Inner Focus,精神力,"Blocks flinch, Intimidate, Scare. Focus Blast never misses.","不会陷入畏缩状态,免疫威吓和惊吓.真气弹必中.",较之原版多了不会被恐吓(特攻版威吓)，真气弹必中,真气弹必定命中.不受畏缩、威吓或惊吓的影响.
+40,0028,Magma Armor,熔岩铠甲,Frostbite-immune. Takes 30% less dmg from Water/Ice-type moves.,免疫冻伤.受到的水系和冰系招式伤害降低30%.,较之原版多了受到水冰属性伤害-30%,免疫冻伤状态.受到的水属性和冰属性招式伤害降低30%.与其他减伤效果乘法叠加.
+41,0029,Water Veil,水幕,Burn-immune. Casts Aqua Ring on entry.,免疫灼伤.出场时制造出水环.,较之原版多了入场时放水流环，而且ER里水流环是每回合回1/8HP,"出场时制造出水环,每回合回复1/16的HP.免疫灼伤状态,并在替换上场时解除灼伤状态."
+42,002A,Magnet Pull,磁力,Traps opposing Steel-types. Ghosts aren't affected.,钢属性宝可梦无法逃走幽灵属性不受影响.,,"在该宝可梦在场期间,阻止钢属性宝可梦替换下场.幽灵属性免疫此效果.携带逃脱按键或使用替换招式（如快速折返）的宝可梦可以逃脱如果在战斗中中途替换上场,效果将在下一回合生效."
+43,002B,Soundproof,隔音,Immune to sound-based moves.,免疫声音类招式.,,免疫声音类招式.以自身为目标的声音类招式不受影响.
+44,002C,Rain Dish,雨盘,Heals 1/8 of max HP every turn if rain is active.,"下雨天气时,每回合回复1/8的最大HP.",原版是1/16,"下雨天气时,每回合结束时回复1/8的最大HP."
+45,002D,Sand Stream,扬沙,Summons a sandstorm on entry. Lasts 8 turns.,"出场时引发沙暴,持续8回合.",,"出场时引发沙暴,持续8回合（携带光滑岩石时为12回合）.每回合对非岩石/地面/钢属性宝可梦造成1/16的HP伤害岩石属性宝可梦的特防提升50%.使与大晴天相关的招式效果减半"
+46,002E,Pressure,压迫感,Doubles foe's PP usage. Clears stat buffs on entry.,对手招式PP消耗翻倍.出场时清除对手的能力提升.,较之原版多了入场释放黑雾，再也不是白板特性了,"对手使用招式时,PP消耗加倍.出场时,清除所有对手的能力提升等级."
+47,002F,Thick Fat,厚脂肪,Takes 1/2 damage from Fire-type and Ice-type attacks.,受到的火属性和冰属性招式伤害减半.,,受到的火属性和冰属性招式伤害降低50%.与其他减伤效果乘法叠加.
+48,0030,Early Bird,早足,Awakens twice as fast from sleep.,从睡眠中醒来的速度加倍.,,该宝可梦从睡眠状态醒来的速度加倍.每回合减少2个睡眠计数而非1个.
+49,0031,Flame Body,火焰之躯,"30% chance to burn on contact, 20% non. Also works on offense.","接触攻击有30%几率灼伤,非接触20%.主动攻击时也生效.",,与该宝可梦发生接触有30%几率使对手灼伤.非接触攻击有20%几率.无论攻击方还是被攻击方均会生效.
+50,0032,Run Away,逃足,Guarantees fleeing. Raises Speed if stats lowered by an enemy.,"必定能逃离.能力被对手降低时,速度提升.",较之原版多了如果被对方下降能力，速度提升一段,"无论速度如何,必定能从野生宝可梦对战中成功逃离.当该宝可梦的任何能力被对手的招式或特性降低时,其速度提升2级."
+51,0033,Keen Eye,锐利目光,Immune to accuracy drops. Grants a 1.2x accuracy boost.,免疫命中率降低.获得1.2倍的命中率提升.,较之原版多了命中率1.2倍,防止命中率能力等级被降低.所有招式获得1.2倍的命中率提升.
+52,0034,Hyper Cutter,巨钳,Enemies can't lower Atk/SpAtk. Contact moves get +1 Crit.,无法降低自身的攻击或特攻.接触类招式易中要害.,较之原版多了接触类招式命中要害率+1,巨钳特性防止敌人通过招式或特性降低该宝可梦的攻击能力.该宝可梦使用的所有接触类招式的击中要害率提升1级.
+53,0035,Pickup,捡拾,Removes all hazards on entry. Not immune to hazards.,出场时移除所有场地状态.但不会免疫场地状态伤害.,特性重做；个人认为重做的最好的一个特性，强度适当，还很符合特性名,"进入战斗时,清除己方场地上所有入场陷阱.该宝可梦在清除陷阱时仍会受到它们的影响."
+54,0036,Truant,懒惰,Can't use attacking moves twice in a row.,无法连续使用攻击招式.,较之原版多了每回合都可以使用变化招式,"防止连续使用攻击招式.使用攻击招式后,下一回合必须偷懒,无法攻击.使用变化招式不受影响."
+55,0037,Hustle,活力,0.9x accuracy. Boosts damage by 1.4x.,命中率0.9倍.伤害提升至1.4倍.,原版是命中0.8倍，物攻1.5倍,"攻击招式威力提升40%,但命中率降低10%.仅影响非变化招式."
+56,0038,Cute Charm,迷人之躯,50% chance to attract on contact. Also works on offense.,接触时有50%几率使对手着迷.主动攻击时也生效.,原版着迷是50%概率不能动,"当通过接触受到攻击时（无论攻击方还是被攻击方）,有50%几率使攻击者陷入着迷状态（使其攻击和特攻减半）.此效果仅对异性宝可梦生效."
+57,0039,Plus,正电,Deals double damage if an ally Pokémon has Minus or Plus.,"如果同伴宝可梦具有负电或正电,造成双倍伤害.",原版只是特攻1.5倍,"当与具有负电或正电的同伴一起出战时,该宝可梦的输出威力加倍."
+58,003A,Minus,负电,Deals double damage if an ally Pokémon has Minus or Plus.,"如果同伴宝可梦具有负电或正电,造成双倍伤害.",原版只是特攻1.5倍,"当与具有负电或正电的同伴一起出战时,该宝可梦的输出威力加倍."
+59,003B,Forecast,天气预报,Changes form with the weather. Attacks when setting weather.,随天气改变形态.在设置天气时发动攻击.,,"根据当前的天气改变自身形态和属性.当使用改变天气的招式时,会紧接着使用气象球（威力100,特殊,类型与设置的天气一致）.在出场时、天气变化时以及回合结束时触发形态变化.此特性无法被压制,即使在破格等效果下也能生效."
+60,003C,Sticky Hold,黏着,Can't lose its item.,不会失去携带的物品.,,该宝可梦携带的物品不会被强制移除或偷走.
+61,003D,Shed Skin,蜕皮,30% chance to heal its status condition at the end of a turn.,"每回合结束时,有30%几率治愈自身的异常状态.",,"每回合结束时,该宝可梦有30%的几率治愈自身所受到的异常状态."
+62,003E,Guts,毅力,Ups Atk by 1.5x if suffering from a status condition.,"处于异常状态时,攻击提升至1.5倍.",,"处于任何异常状态时,攻击能力值提升50%.并且无视灼伤状态带来的攻击力降低效果."
+63,003F,Marvel Scale,神奇鳞片,Ups Def by 1.5x when statused.,"处于异常状态时,防御提升至1.5倍.",,"处于任何异常状态时,基础防御能力值提升50%."
+64,0040,Liquid Ooze,污泥浆,Draining causes harm to enemies instead of healing them.,吸取招式会对使用者造成伤害而非治疗.,,"污泥浆特性会反转所有吸取招式的治疗效果,使攻击者受到伤害.影响吸取拳、超级吸取、终极吸取、吸血以及类似的吸取类攻击伤害量等于原本应恢复的HP.完美克制依赖治疗的战术."
+65,0041,Overgrow,茂盛,"Boosts Grass-type moves by 1.2x, or 1.5x when under 1/3 HP.","草属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",较之原版所有“猛*”类特性都给了普通状态下1.2倍的伤害提升,"草属性招式威力提升20%,当HP低于1/3时提升50%."
+66,0042,Blaze,猛火,"Boosts Fire-type moves by 1.2x, or 1.5x when under 1/3 HP.","火属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"火属性招式威力提升20%,当HP低于1/3时提升50%."
+67,0043,Torrent,激流,"Boosts Water-type moves by 1.2x, or 1.5x when under 1/3 HP.","水属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"水属性招式威力提升20%,当HP低于1/3时提升50%."
+68,0044,Swarm,虫之预感,"Boosts Bug-type moves by 1.2x, or 1.5x when under 1/3 HP.","虫属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"虫属性招式威力提升20%,当HP低于1/3时提升50%."
+69,0045,Rock Head,坚硬脑袋,"Immune to recoil damage, but not immune to Explosion/crash dmg.","免疫反伤伤害,但不免疫大爆炸/撞击伤害.",,防止所有来自自身招式或特性的反伤伤害.同时免疫因愤怒产生的反伤伤害无法防止撞击伤害或大爆炸/自爆的伤害.
+70,0046,Drought,干旱,Summons sun on entry. Lasts 8 turns.,"出场时降下大晴天,持续8回合.",,"出场时引发大晴天,持续8回合（携带炎热岩石时为12回合）.火属性招式威力提升50%,水属性招式威力降低50%.并激活与大晴天相关的招式的额外效果."
+71,0047,Arena Trap,沙穴,Enemies can't flee. Ghosts and ungrounded Pokémon are immune.,敌人无法逃走.幽灵属性和飘浮状态的宝可梦免疫.,,"防止所有非飘浮状态或非幽灵属性的对手替换下场.携带逃脱按键或使用替换招式（如快速折返）的宝可梦可以逃脱如果在战斗中中途替换上场,效果将在下一回合生效."
+72,0048,Vital Spirit,干劲,Can't fall asleep. Fighting-type moves heal status.,不会陷入睡眠.使用格斗属性招式治愈异常状态.,较之原版多了使用格斗属性招式会治愈自身异常状态,"免疫睡眠状态.当该宝可梦使用格斗属性招式时在招式效果结束后立即治愈所有异常状态.获得此特性时若已睡眠,则立刻解除."
+73,0049,White Smoke,白烟,Sets Smokescreen for 3 turns on switch-in.,"替换上场时,设置烟幕,持续3回合.",较之原版多了对手命中-25%，但体感不止25%，经常来个miss恶心人,"出场时设置烟幕,持续3回合.烟幕使己方全队的闪避率提升25%."
+74,004A,Pure Power,瑜伽之力,"Doubles own Sp.Atk stat. Boosts raw stat, not base stat.","自身的特攻能力加倍.提升最终能力值,而非基础能力值.",,该宝可梦的攻击能力值变为2倍与其他伤害加成效果乘法叠加.
+75,004B,Shell Armor,硬壳盔甲,Immune to critical hits. Takes 20% less damage from attacks.,免疫击中要害.受到的招式伤害降低20%.,较之原版多了受到伤害-20%,"受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+76,004C,Air Lock,气闸,Cloud Nine + Air Blower.,无关天气 + 吹气筒.,,"出场时设置顺风,持续3回合,并清除所有天气效果.原始天气会被压制.在该宝可梦在场期间,天气仍可被设置,但不会产生任何效果,直到该宝可梦下场."
+77,004D,Tangled Feet,蹒跚,Uses Speed as defensive stat when confused or enraged.,"处于混乱或愤怒状态时,使用速度进行防御.",,"当该宝可梦处于混乱或愤怒状态时,在伤害计算中使用其速度能力值来代替防御或特防.讲究围巾的效果不会影响此特性"
+78,004E,Motor Drive,电气引擎,Boosts Speed instead of being hit by Electric-type moves.,"受到电属性招式攻击时,提升速度而非受到伤害.",,"免疫电属性招式,并且在受到电属性招式攻击时,速度提升1级.对于连续攻击招式,每次命中都会触发."
+79,004F,Rivalry,斗争心,Deals 1.25x to same gender. Takes .75x from opposite gender.,对同性对手造成1.25倍伤害.受到异性对手的伤害为0.75倍.,原版同性别要减少1/4，比原版多了受到不同性别伤害-25%,"该宝可梦对同性别的对手造成伤害提高25%,受到异性别的对手造成的伤害降低25%.对无性别的宝可梦无效."
+80,0050,Steadfast,不屈之心,Raises Speed by one stage if this Pokémon flinches.,"如果该宝可梦畏缩,速度提升1级.",,"当陷入畏缩状态时,速度提升1级."
+81,0051,Snow Cloak,雪隐,Evasion is boosted by 1.25x under hail.,"在冰雹中,闪避率提升至1.25倍.",原版1.2倍,"在冰雹中,闪避率提升至1.25倍."
+82,0052,Gluttony,贪吃鬼,Eats berries early. Berries also restore 1/3 of max HP.,提早吃树果.树果还会额外回复1/3的最大HP.,,"原本在HP低于1/4时发动的树果,改为在HP低于1/2时发动.此外,在消耗任何树果后,该宝可梦会额外回复1/3的最大HP.不包括通过啄食等招式消耗的树果."
+83,0053,Anger Point,愤怒穴位,Getting hit raises Atk by +1. Critical hits maximize Attack.,"受到攻击时,攻击提升1级.受到击中要害的攻击时提升至最大.",比原版多了受到伤害攻击+1,"受到攻击时,该宝可梦的攻击提升1级；若受到击中要害的攻击,则攻击能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+84,0054,Unburden,轻装,Consuming its held item doubles Speed until switched out.,"消耗掉携带的物品后,速度加倍直到下场.",,"当消耗或失去携带的物品时,该宝可梦的基础速度能力值变为2倍.当替换下场、获得新物品或失去此特性时,速度加成消失."
+85,0055,Heatproof,耐热,Halves damage taken from Fire-type moves. Takes no burn damage.,受到的火属性招式伤害减半.不会受到灼伤伤害.,原版是烧伤伤害也减半，这里免受烧伤伤害,受到的火属性招式伤害减半.免疫灼伤伤害以及灼伤状态带来的攻击力降低效果.
+86,0056,Simple,单纯,Doubles all stat changes on this Pokémon.,该宝可梦的能力变化效果翻倍.,,该宝可梦的能力变化效果翻倍.
+87,0057,Dry Skin,干燥皮肤,Water/Rain heals. Fire/Sun hurts.,水/雨天会回复.火/晴天会受伤.,,"受到水属性招式攻击时回复25%的HP,下雨天气时每回合回复12.5%的HP.受到火属性招式伤害增加25%,大晴天天气时每回合损失12.5%的HP."
+88,0058,Download,下载,Raises Atk/Sp. Atk by one stage depending on opponent.,"根据对手的防御和特防,提升自身的攻击或特攻1级.",,"替换上场时,如果对手的防御高于特防,则自身的特攻提升1级.如果对手的特防高于或等于防御则自身的攻击提升1级."
+89,0059,Iron Fist,铁拳,Boosts the power of punching moves by 1.3x.,拳类招式的威力提升至1.3倍.,原版是1.2倍,拳类招式的威力提升30%.
+90,005A,Poison Heal,毒疗,Restores 1/8 of max HP after each turn if poisoned.,"处于中毒状态时,每回合结束回复1/8的最大HP.",,"处于中毒状态时,每回合回复1/8的最大HP,而非受到伤害.对普通中毒和剧毒状态均有效.同时免疫剧毒地形的伤害."
+91,005B,Adaptability,适应力,Increases STAB from 1.5x to 2x.,本系加成从1.5倍提升至2倍.,,"使用与自身属性相同的招式时,伤害加成从1.5倍提升至2.0倍."
+92,005C,Skill Link,连续攻击,Multi-hit moves always hit the maximum number of times.,连续攻击招式总会打出最大次数.,,"使连续攻击招式必定打出5次.对于仅能攻击3次或使用大扫荡时,所有攻击进行一次命中判定,而非每次攻击单独判定."
+93,005D,Hydration,湿润之躯,Cures own status at the end of every turn in rain.,"下雨天气时,每回合结束时治愈自身异常状态.",,"下雨天气时,每回合结束时治愈所有异常状态"
+94,005E,Solar Power,太阳之力,Ups highest attacking stat by 1.5x in sun.,"大晴天时,自身最高的攻击能力提升至1.5倍.",较之原版首先不掉血而且不限制特攻还是物攻,"大晴天时,该宝可梦最高的攻击能力值提升50%."
+95,005F,Quick Feet,飞毛腿,Ups Speed by 1.5x if suffering from a status condition.,"处于异常状态时,速度提升至1.5倍.",,"处于任何异常状态时,速度能力值提升50%.并且无视麻痹状态带来的速度降低效果."
+96,0060,Normalize,一般皮肤,"Its moves become Normal-type, get 1.1x boost, ignore resists.","自身的招式变为一般属性,获得1.1倍威力提升,并无视抗性.",皮肤类特性都改为1.1倍，下面不再说明,"将所有攻击招式转变为一般属性,并给予10%的威力加成.一般属性招式可以无视属性抗性但无法无视属性免疫."
+97,0061,Sniper,狙击手,Critical hits have a 2.25x dmg multiplier instead of 1.5x.,击中要害时的伤害倍率从1.5倍提升至2.25倍.,,"击中要害时的伤害倍率从1.5倍提升至2.25倍,即额外增加50%的伤害加成."
+98,0062,Magic Guard,魔法防守,Only damaged by attacks.,仅受攻击伤害.,,"免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害."
+99,0063,No Guard,无防守,Attacks used by and on this Pokémon bypass accuracy checks.,该宝可梦使用或受到的招式必定命中.,,确保该宝可梦使用的所有招式以及所有对该宝可梦使用的招式必定命中.
+100,0064,Stall,后攻,Takes 30% less damage if it hasn't moved yet.,"如果还未行动,受到的伤害降低30%.",原版是后出手,"如果该宝可梦本回合还未行动,则受到的伤害降低30%.与其他减伤效果乘法叠加.当该宝可梦在回合中替换上场时也生效."
+101,0065,Technician,技术高手,Moves with 60 BP or less get a 1.5x boost.,威力小于等于60的招式威力提升至1.5倍.,,"威力小于等于60的招式威力提升1.5倍.对于基础威力可能超过60的招式（如复仇或毒击）,即使当前威力小于等于60,也不会获得提升."
+102,0066,Leaf Guard,叶子防守,Cures own status at the end of every turn in sun.,"大晴天时,每回合结束时治愈自身异常状态.",,"大晴天时,每回合结束时治愈所有异常状态"
+103,0067,Klutz,笨拙,Own held item has no effect. Mega Stones are unaffected.,自身携带的物品无效.超级石不受影响.,,"使所有携带物品的效果失效.物品仍可以被打落或偷走,但不会提供任何增益.投掷等依赖物品的招式会失败.超级石不受此限制."
+104,0068,Mold Breaker,破格,Moves hit through abilities. Also affects innates.,招式可穿透特性生效.同样影响先天特性.,对下面3个天性也生效,"允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过那些会修改基础能力值的特性,如草之皮毛."
+105,0069,Super Luck,超幸运,Raises critical-hit ratio of own moves by +1.,自身招式的击中要害率提升1级.,,该宝可梦所有攻击招式的击中要害率提升1级.
+106,006A,Aftermath,引爆,After fainting uses 100 BP Explosion or Outburst.,"濒死时,使用威力100的大爆炸或迸裂拳.",,"当该宝可梦被击倒时,使用威力100的大爆炸或迸裂拳（取两者中威力更高者）.使用爆炸类招式时,必定使目标畏缩."
+107,006B,Anticipation,危险预知,Senses Super-effective moves. Dodges one Super-effective hit.,预感到效果绝佳的招式.能闪避一次效果绝佳的招式攻击.,增加了一次免伤,"替换上场时,若对手拥有对自身效果绝佳的招式,则会收到警告.闪避战斗中受到的第一次效果绝佳的招式攻击."
+108,006C,Forewarn,预知梦,Casts an 80 BP Future Sight on entry.,"出场时,对对手施放威力80的预知未来.",特性重做，原版是看对方一个招式,"替换上场时,对目标对手施放一个威力80的预知未来.2回合后攻击,可穿透替身和其他保护效果.一旦施放必定命中,无视命中判定.无法对同一目标施放两次."
+109,006D,Unaware,纯朴,"Ignores foes' stat changes, both positive and negative ones.","无视对手的能力变化,无论是提升还是降低.",,"进行伤害计算时,完全无视对手的所有能力等级变化."
+110,006E,Tinted Lens,有色眼镜,Attacks deal double damage if resisted.,"攻击被抵抗时,造成双倍伤害.",,"攻击被抵抗时,伤害加倍.如果招式被抵抗（伤害减半或更低）,则最终伤害乘以2倍."
+111,006F,Filter,过滤,Takes 35% less damage from Super-effective moves.,"受到效果绝佳的招式攻击时,伤害降低35%.",较之原版减伤从25%变成35%,"受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+112,0070,Slow Start,慢启动,Halves Offenses and Speed during the first 5 turns out.,"出场后的前5回合,攻击、特攻和速度减半.",,"替换上场后的前5回合,攻击、特攻和速度能力值减半.每次替换下场后,回合计数会重置."
+113,0071,Scrappy,胆量,Normal/Fighting can hit Ghosts. Immune to Intimidate/Scare.,一般/格斗系招式可以命中幽灵系.免疫威吓和惊吓.,恐吓：特攻版威吓,该宝可梦使用的一般和格斗属性招式能够以普通效果击中幽灵属性宝可梦.免疫威吓和惊吓.
+114,0072,Storm Drain,引水,"Redirects Water moves. Absorbs them, ups highest Atk.",吸引水属性招式.并提升自身最高的攻击能力.,较之原版物攻特攻都好使,"该宝可梦会吸引水属性招式,并对其免疫.此外,受到水属性招式攻击后,自身最高的攻击能力提升1级."
+115,0073,Ice Body,冰冻之躯,Heals 1/8 of max HP every turn in hail.,"冰雹天气时,每回合回复1/8的最大HP.",原版是1/16,"冰雹天气时,每回合结束时回复1/8的最大HP.同时免疫冰雹伤害."
+116,0074,Solid Rock,坚硬岩石,Takes 35% less damage from Super-effective moves.,"受到效果绝佳的招式攻击时,伤害降低35%.",较之原版减伤从25%变成35%,"受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+117,0075,Snow Warning,降雪,Summons hail on entry. Lasts 8 turns.,"出场时引发冰雹,持续8回合.",,"出场时引发冰雹,持续8回合（携带冰冷岩石时为12回合）.每回合对非冰属性宝可梦造成1/16的HP伤害.冰属性宝可梦的防御提升50%.使与大晴天相关的招式效果减半."
+118,0076,Honey Gather,采蜜,Has a 50% chance to find Honey each turn.,每回合有50%几率获得甜甜蜜.,,"如果未携带物品,每回合有50%的几率获得甜甜蜜.甜甜蜜每回合可回复1/16的HP,并可在危急时食用以回复1/4的HP.即使该宝可梦最初未携带甜甜蜜作为物品,此效果也有效."
+119,0077,Frisk,察觉,Checks foes' item and disables their items for two turns.,"查看对手的物品,并使其物品失效2回合.",较之原版多了使道具两个回合内无效,"进入战斗时,揭示对手的物品,并使其效果失效2回合.此效果不会阻止超级石及其他类似物品的运作."
+120,0078,Reckless,舍身,Moves causing recoil damage deal 1.2x more damage.,会造成反伤伤害的招式威力提升至1.2倍.,,会造成反伤伤害的招式威力提升20%.此加成也适用于通过其他方式（如疯狂状态或特性）获得反伤效果的招式.
+121,0079,Multitype,多重属性,Held Plate item decides holder's type.,携带的石板决定持有者的属性.,,"该宝可梦根据其当前携带的石板的属性改变形态.石板无法被移除,并且多重属性特性无法以任何方式被覆盖、压制、交换或复制."
+122,007A,Flower Gift,花之礼,Increases the party's SpAtk and SpDef by 1.5x in Sun.,"在大晴天时,使己方全队的特攻和特防提升至1.5倍.",,"在大晴天时,该宝可梦及其所有同伴的基础特攻和特防提升50%."
+123,007B,Bad Dreams,梦魇,Sleeping Pokémon lose 1/4 of max HP at the end of each turn.,处于睡眠状态的对手每回合结束时损失1/4的最大HP.,较之原版伤害每回合1/8变为1/4,所有处于睡眠状态的对手每回合结束时损失25%的最大HP.
+124,007C,Pickpocket,顺手牵羊,Steals the foe's held item on contact.,通过接触招式偷走对手携带的物品.,,"如果该宝可梦当前未携带物品,通过接触招式攻击时,会偷走目标携带的物品.对超级石及其他类似物品无效."
+125,007D,Sheer Force,强行,Exchanges added effects on its moves for 1.3x more power.,"以牺牲招式的追加效果为代价,换取1.3倍的威力提升.",,"在攻击命中后,移除大部分有益的追加效果,以获得1.3倍的威力提升.使用此类招式时,显著特点是不会受到生命宝珠的反伤.可被移除的效果包括：降低目标能力、提升自身能力、施加异常状态以及造成畏缩."
+126,007E,Contrary,唱反调,Stat raises turn into stat drops for this Pokémon and vice versa.,"对该宝可梦的能力提升会变成降低,反之亦然.",,反转影响该宝可梦的所有能力变化.对自身引起的能力变化同样有效.
+127,007F,Unnerve,紧张感,Foes can't use consumable items.,对手无法使用消耗性物品.,,阻止所有对手宝可梦消耗其携带的物品.
+128,0080,Defiant,不服输,Raises Attack by two stages if stats are lowered by an enemy.,"能力被对手降低时,攻击提升2级.",,"当该宝可梦的能力被其他宝可梦降低时,其攻击能力提升2级."
+129,0081,Defeatist,受迫,Halves Atk and Sp. Atk stats if user is below 1/3 of max HP.,"当HP低于1/3时,攻击和特攻能力减半.",原版是半血以下就触发，这里加强到了1/3,"当HP低于最大值的33%时,攻击和特攻能力值减半.当HP回复至该阈值以上时,效果解除."
+130,0082,Cursed Body,诅咒之躯,30% chance to disable moves if enemy makes contact.,"受到接触招式攻击时,有30%几率使对手的招式陷入封印状态.",,"该宝可梦受到接触招式攻击时,有30%的几率使攻击者的该招式陷入封印状态,持续4回合.被封印的招式在效果结束前无法被选择."
+131,0083,Healer,治愈之心,30% chance to heal user or ally's status at the end of each turn.,"每回合结束时,有30%几率治愈自身或同伴的异常状态.",,"在双打对战中,每回合结束时,有30%的几率治愈自身和场上同伴的异常状态.对两只宝可梦分别进行几率判定."
+132,0084,Friend Guard,友情防守,Reduces damage that ally takes by 50% in double battles.,"在双打对战中,同伴受到的伤害降低50%.",原版是减少1/4,"在双打对战中,该宝可梦的同伴受到伤害降低50%.与其他减伤来源乘法叠加."
+133,0085,Weak Armor,碎裂铠甲,If hit by a contact attack: -1 Defense and +2 Speed.,"受到接触招式攻击时：防御降低1级,速度提升2级.",,"受到接触招式攻击时,该宝可梦的速度提升2级,防御降低1级.对于连续攻击招式,每次命中都会触发."
+134,0086,Heavy Metal,重金属,Doubles this Pokémon's weight.,受到的幽灵和恶属性伤害减半.,,"受到的幽灵和恶属性招式伤害减半.该宝可梦的重量加倍,影响部分招式."
+135,0087,Light Metal,轻金属,Boosts Speed by 1.3x and halves this Pokémon's weight.,"速度提升1.3倍,且该宝可梦的重量减半.",较之原版多了速度1.3倍,"轻金属使该宝可梦的重量减半,并且速度能力值提升30%.这使得基于重量的招式（如踢倒）对该宝可梦造成的伤害降低.但同时也会降低该宝可梦使用重磅冲撞等基于重量的招式造成的伤害."
+136,0088,Multiscale,多重鳞片,"At full HP, halves damage taken from attacks","HP全满时,受到的招式伤害减半.",,"当该宝可梦HP全满时,受到的所有伤害降低50%.与其他减伤效果乘法叠加."
+137,0089,Toxic Boost,中毒激升,Ups Atk by 1.5x if poisoned. Immune to Poison status damage.,"处于中毒状态时,攻击提升至1.5倍.免疫中毒状态造成的伤害.",较之原版多了免疫中毒伤害,"处于中毒状态（普通中毒或剧毒）时,该宝可梦的攻击能力值提升50%.在剧毒地形上,无论是否扎根,都会立刻让自己陷入中毒状态.无视中毒伤害."
+138,008A,Flare Boost,受热激升,Ups Sp. Atk by 1.5x if burned. Ignites in fog.,"处于灼伤状态时,特攻提升至1.5倍.在雾中会点燃自身.",较之原版多了免疫烧伤伤害,"处于灼伤状态时,该宝可梦的特攻能力值提升50%.无视灼伤伤害.在雾天时立刻让自己陷入灼伤状态."
+139,008B,Harvest,收获,"50% chance to recycle a used Berry every turn, 100% in sun.","每回合有50%几率回收已使用的树果,大晴天时100%回收.",,"每回合结束时,有50%几率回收已使用的树果大晴天时100%回收.包括用于投掷、自然恩惠或被吃掉的树果."
+140,008C,Telepathy,心灵感应,Protects team from friendly fire.,保护己方队伍免受友方伤害.,,"在双打对战中,保护该宝可梦免受其同伴使用的所有造成伤害的招式的影响."
+141,008D,Moody,心情不定,Sharply raises one stat and lowers another each turn.,"每回合随机一项能力大幅提升,另一项能力降低.",,"每回合结束时,随机选择一项能力提升2级,并随机选择另一项不同的能力降低1级."
+142,008E,Overcoat,防尘,Blocks weather dmg and powders. Takes -20% special damage.,免疫天气伤害和粉末类招式.受到的特殊伤害降低20%.,较之原版多了受到特殊伤害-20%,"免疫沙暴和冰雹的天气伤害,并阻挡所有粉末类招式,包括催眠粉、麻痹粉、毒粉、蘑菇孢子、棉孢子、愤怒粉、粉末和魔法粉.同时,受到的特殊伤害降低20%.与其他减伤来源乘法叠加."
+143,008F,Poison Touch,剧毒之触,30% chance to poison on contact. Also works on offense.,接触攻击有30%几率使目标中毒.攻击时也生效.,较之原版多了受到接触攻击时也生效,"无论该宝可梦是攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒."
+144,0090,Regenerator,再生力,Heals 1/3 of max HP upon switching out.,"替换下场时,回复1/3的最大HP.",,"替换下场时,回复33%的最大HP.此回复效果不受回复封锁影响."
+145,0091,Big Pecks,健壮胸肌,Boosts the power of contact moves by 1.3x.,接触类招式的威力提升至1.3倍.,特性重做，原版是防御不会下降,接触类招式的威力提升30%.
+146,0092,Sand Rush,挖沙,This Pokémon's Speed gets a 1.5x boost in a sandstorm.,"在沙暴中,宝可梦的速度提升至1.5倍.",原版是2倍,"在沙暴中,该宝可梦的速度能力值提升50%.同时免疫沙暴伤害."
+147,0093,Wonder Skin,奇迹皮肤,Blocks most damage boosting and multihit abilities.,阻挡大多数伤害增益和连续攻击特性.,实测挡不了伤害加成只能挡多头的多段攻击,"免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+148,0094,Analytic,分析,Attacks get a 1.3x power boost if it moves last.,"如果在目标之后行动,招式威力提升至1.3倍.",,"当该宝可梦在目标之后行动时,攻击威力提升30%."
+149,0095,Illusion,幻觉,Appears as last party slot and boosts power by 1.3x until hit.,"伪装成队伍中最后的宝可梦,在受到攻击前威力提升1.3倍.",,"使该宝可梦伪装成队伍中最后存活的同伴.在幻觉被打破前,该宝可梦造成的伤害提升30%."
+150,0096,Imposter,变身者,Transforms into the foe on entry.,"出场时,变身为对手.",,"替换上场时,该宝可梦变身为对手.复制其外形、能力值（HP除外）、属性、特性、招式以及能力变化.每个被复制的招式拥有5点PP如果目标有替身、已经变身、处于幻觉状态或处于部分无敌状态,则无法变身."
+151,0097,Infiltrator,穿透,Own moves bypass Substitutes and damage reduction screens.,自身的招式可以穿透替身和伤害减免屏障.,,允许招式穿透光墙、反射壁、神秘守护、白雾和替身的效果.
+152,0098,Mummy,木乃伊,"If hit, makes the attacker's ability Mummy.","受到接触攻击时,使攻击者的特性变为木乃伊.",,"当该宝可梦受到其他宝可梦的接触招式攻击时,如果对方不具有此特性,则对方的当前特性会被替换为木乃伊."
+153,0099,Moxie,自信过度,Dealing a KO raises Attack by one stage.,"击倒对手时,攻击提升1级.",,"每当该宝可梦通过直接攻击击倒对手时,其攻击能力值提升1级."
+154,009A,Justified,正义之心,Boosts Attack instead of being hit by Dark-type moves.,"免疫恶属性招式,受到恶属性招式攻击时,提升攻击能力.",,"免疫恶属性招式,并在受到恶属性招式攻击时,攻击能力值提升1级."
+155,009B,Rattled,胆小,"If hit by Bug, Dark or Ghost move, or flinches: +1 Speed.","受到虫、恶或幽灵招式攻击或畏缩时,速度提升1级.",多了一个畏缩也能速度+1,"受到虫、恶或幽灵属性招式攻击或陷入畏缩状态时,速度提升1级.对连续攻击招式可多次触发."
+156,009C,Magic Bounce,魔法镜,Bounces back the effect of status moves to their user.,将变化招式弹回给使用者.,,"在大部分变化招式生效前,将其反弹回原使用者.被反弹的招式无需额外命中判定直接作用于原使用者.无法反弹已被反弹的招式."
+157,009D,Sap Sipper,食草,"Redirects Grass moves. Absorbs them, ups highest Atk.","吸收草属性招式,提升自身最高的攻击能力.",较之原版物攻特攻都好使,"免疫草属性招式,并在受到草属性招式攻击时,自身最高的攻击能力值提升1级."
+158,009E,Prankster,恶作剧之心,Status moves have +1 priority but fail on opposing Dark-types.,"变化招式拥有+1优先度,但对恶属性对手失效.",,变化类招式获得+1优先度.当直接以恶属性宝可梦为目标时变化招式会失败.
+159,009F,Sand Force,沙之力,Ups highest attacking stat by 1.5x in sand.,"在沙暴中,自身最高的攻击能力提升至1.5倍.",,"在沙暴中,该宝可梦最高的攻击能力值提升50%.免疫沙暴伤害."
+160,00A0,Iron Barbs,铁棘,Enemies lose 1/8 of max HP if they use a contact move.,使用接触类招式的敌人损失1/8的最大HP.,,使用接触类招式的敌人损失1/8的最大HP.
+161,00A1,Zen Mode,禅境模式,Transforms into Zen Mode on entry until end of battle.,"出场时变为禅境模式,持续至战斗结束.",入场直接变,进入战斗时触发形态变化.
+162,00A2,Victory Star,胜利之星,Gives 1.2x accuracy boost to its own and its allies' moves.,为己方和同伴的招式提供1.2倍命中率提升.,原版是1.1倍,"在双打对战中,该宝可梦及其同伴的招式命中率提升1.2倍."
+163,00A3,Turboblaze,涡轮火焰,Moves hit through abilities. Adds Fire type to itself.,招式可穿透特性.为自身添加火属性.,较之原版多了使自身多一个火属性,"允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过会修改基础能力值的特性,如草之皮毛.为自身添加火属性.即使失去此特性,添加的火属性在替换下场前依然保留."
+164,00A4,Teravolt,兆级电压,Moves hit through abilities. Adds Electric type to itself.,招式可穿透特性.为自身添加电属性.,较之原版多了使自身多一个电属性,"允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过会修改基础能力值的特性,如草之皮毛.为自身添加电属性.即使失去此特性,添加的电属性在替换下场前依然保留."
+165,00A5,Aroma Veil,芳香幕,"Protects team from infatuation, heal block, and disabling.",保护己方队伍免受着迷、回复封锁和封印效果.,,保护该宝可梦及其同伴免受着迷、回复封锁效果以及封印类招式（包括封印、挑衅、再来一次和无理取闹）的影响.
+166,00A6,Flower Veil,花幕,Protects Grass-type allies from status and stat drops.,保护草属性的同伴免受异常状态和能力降低.,,防止草属性同伴陷入任何异常状态或能力降低.包括自身引起的能力降低.
+167,00A7,Cheek Pouch,颊囊,This ability has no effect.,此特性无效果.,原版食用树果时可触发原本的效果，同时额外恢复1/3HP,无效果.
+168,00A8,Protean,变幻自如,Changes type depending on the move it's about to use.,根据即将使用的招式改变自身属性.,没有原版触发一次限制，可多次触发,"每次攻击前,该宝可梦的属性会变为与所用招式相同的属性.每回合触发一次."
+169,00A9,Fur Coat,毛皮大衣,Halves damage taken by Physical moves. Does NOT double Defense.,受到的物理招式伤害减半.不会加倍防御.,,所有受到的物理攻击伤害减半.与其他减伤来源乘法叠加.
+170,00AA,Magician,魔术师,Steals the foe's held item after using a non-contact move.,"使用非接触类招式后,偷走对手携带的物品.",原版没有非接触招式的限制,"如果该宝可梦当前未携带物品,使用非接触类招式命中后,会偷走目标携带的物品.对超级石及其他类似物品无效."
+171,00AB,Bulletproof,防弹,"Immune to projectile, ball, or bomb-based moves.",免疫基于投射物、球或炸弹的招式.,,免疫球、炸弹和投射物类招式.包括酸液炸弹、岩石炮、花粉团和投球.
+172,00AC,Competitive,好胜,Raises Sp. Atk by two stages if stats are lowered by an enemy.,"能力被对手降低时,特攻提升2级.",,"当该宝可梦的能力被其他宝可梦降低时,其特攻能力提升2级."
+173,00AD,Strong Jaw,强壮之颚,Boosts the power of bite/fang moves by 1.3x.,啃咬类招式威力提升至1.3倍.,较之原版削弱为1.3倍,啃咬和颚类招式的威力提升30%.
+174,00AE,Refrigerate,冰冻皮肤,Normal moves become Ice. Ice moves are empowered.,一般属性招式变为冰属性.冰属性招式得到强化.,,"将该宝可梦的一般属性招式变为冰属性.如果该宝可梦是冰属性,其冰属性招式有10%的几率造成冻伤；否则,它获得冰属性的本系加成."
+175,00AF,Sweet Veil,甜幕,This Pokémon and its ally are immune to sleep.,该宝可梦及其同伴免疫睡眠.,,"在双打对战中,为该宝可梦及其同伴提供睡眠免疫."
+176,00B0,Stance Change,战斗切换,Turns into Blade or Shield form depending on move used.,根据使用的招式在刀剑形态和盾牌形态之间切换.,,根据使用的招式改变坚盾剑怪的形态.盾牌形态在使用攻击招式时切换为刀剑形态.刀剑形态在使用王者盾牌时切换为盾牌形态.终极形态根据招式类型在物理/特殊之间切换.此特性无法被压制.形态变化在招式执行前发生.
+177,00B1,Gale Wings,疾风之翼,Flying-type moves get +1 priority at full HP.,"HP全满时,飞行属性招式获得+1优先度.",,"当HP全满时,赋予飞行属性招式+1优先度."
+178,00B2,Mega Launcher,超级发射器,"Boosts Beam/Pump/Cannon/Shot/ Gun/Pulse, etc. moves by 1.3x.",波动、波导、脉冲类招式威力提升至1.3倍.,原版是1.5倍,脉冲、波导、波动和光环类招式威力提升30%.
+179,00B3,Grass Pelt,草之皮毛,This Pokémon's Defense gets a 1.5x boost in Grassy Terrain.,"在青草场地中,该宝可梦的防御提升至1.5倍.",,"在青草场地中,该宝可梦的防御能力值提升50%."
+180,00B4,Symbiosis,共生,Passes own item to its ally if said ally consumes its item.,"当同伴消耗其携带物品时,将自己的物品传递给同伴.",,"在同伴消耗或使用掉其携带的物品后,立即将持有者的物品传递给该同伴."
+181,00B5,Tough Claws,硬爪,Boosts the power of contact moves by 1.3x.,接触类招式的威力提升至1.3倍.,,接触类招式的威力提升30%.
+182,00B6,Pixilate,妖精皮肤,Normal moves become Fairy. Fairy moves are empowered.,一般属性招式变为妖精属性.妖精属性招式得到强化.,,"将该宝可梦的一般属性招式变为妖精属性.如果该宝可梦是妖精属性,其妖精属性招式有10%的几率造成着迷；否则,它获得妖精属性的本系加成."
+183,00B7,Gooey,黏滑,Lowers Speed of enemies that make contact with this Pokémon.,"与该宝可梦发生接触的敌人,其速度降低.",,"当该宝可梦受到接触招式攻击时,攻击者的速度降低1级.对于连续攻击招式,每次命中都会触发."
+184,00B8,Aerilate,飞行皮肤,Normal moves become Flying. Flying moves are empowered.,一般属性招式变为飞行属性.飞行属性招式得到强化.,,"将该宝可梦的一般属性招式变为飞行属性.如果该宝可梦是飞行属性,其飞行属性招式的速度提升10%；否则,它获得飞行属性的本系加成."
+185,00B9,Parental Bond,亲子爱,"Moves hit twice. 1st hit at 100% power, 2nd hit at 25%.","招式攻击两次.第一击威力100%,第二击威力25%.",,"使所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）.可穿透坚壁/奇迹皮肤."
+186,00BA,Dark Aura,暗黑气场,Boosts Dark moves by 1.33x for all while this Pokémon is out.,"在该宝可梦在场时,所有宝可梦的恶属性招式威力提升至1.33倍.",,使用者、其同伴以及对手的所有恶属性招式获得1.33倍的威力提升.此加成会被气场破坏反转.
+187,00BB,Fairy Aura,妖精气场,Boosts Fairy moves by 1.33x for all while this Pokémon is out.,"在该宝可梦在场时,所有宝可梦的妖精属性招式威力提升至1.33倍.",,使用者、其同伴以及对手的所有妖精属性招式获得1.33倍的威力提升.此加成会被气场破坏反转.
+188,00BC,Aura Break,气场破坏,Cancels aura abilities and makes them 25% weaker instead.,"取消气场特性,并使其效果变为降低25%的威力.",,"使暗黑气场和妖精气场的效果反转,将其对应属性的招式威力降低25%,而非提升33%."
+189,00BD,Primordial Sea,始源之海,Heavy Rain until switched out. Fire-type moves are unusable.,"制造终焉大雨,持续到下场.火属性招式无法使用.",,"创造终焉大雨,持续到使用者下场.完全无效所有造成伤害的火属性招式.水属性招式获得50%威力提升除其他原始天气外,无法被覆盖.激活与雨天相关招式的额外效果使与大晴天相关的招式效果减半."
+190,00BE,Desolate Land,终结之地,Intense Sun until switched out. Water-type moves are unusable.,"制造终焉大晴天,持续到下场.水属性招式无法使用.",,"创造终焉大晴天,持续到使用者下场.完全无效所有造成伤害的水属性招式.火属性招式获得50%威力提升除其他原始天气外,无法被覆盖.激活与大晴天相关招式的额外效果."
+191,00BF,Delta Stream,德尔塔气流,Strong Winds until switched out. Weather-based moves not usable.,"制造强风,持续到下场.基于天气的招式无法使用.",,"创造强风,持续到使用者下场.将场上所有飞行属性宝可梦受到的效果绝佳伤害变为普通伤害.阻止所有基于天气的招式命中对手.除其他原始天气外,无法被覆盖."
+192,00C0,Stamina,持久力,Getting hit raises Def by +1. Critical hits maximize Defense.,"受到攻击时,防御提升1级.受到击中要害的攻击时提升至最大.",,"受到攻击时,该宝可梦的防御提升1级；若受到击中要害的攻击,则防御能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+193,00C1,Wimp Out,跃跃欲逃,"At 1/2 of max HP or below, instantly switches out.","当HP首次降至1/2或以下时,立即替换下场.",,"当该宝可梦受到伤害,且HP在战斗中首次降至50%或以下时,它会替换下场以保安全.对于连续攻击招式,在最后一击后触发."
+194,00C2,Emergency Exit,遁走,"At 1/2 of max HP or below, instantly switches out.","当HP首次降至1/2或以下时,立即替换下场.",,"当该宝可梦受到伤害,且HP在战斗中首次降至50%或以下时,它会替换下场以保安全.对于连续攻击招式,在最后一击后触发."
+195,00C3,Water Compaction,遇水凝固,Takes 1/2 dmg from Water-type moves. +2 Def when hit by those.,"受到的水属性招式伤害减半.被水属性招式击中后,防御提升2级.",原版只有防御+2,"受到的水属性招式伤害降低50%,并且被水属性招式击中后,防御提升2级.与其他减伤来源乘法叠加.防御提升效果在攻击命中后生效对于连续攻击招式,每次命中都会触发."
+196,00C4,Merciless,不仁不义,"Always crits slowed, poisoned, paralyzed, or bleeding foes.","攻击处于减速、中毒、麻痹或流血状态的对手时,必定会心一击.",较之原版多了对麻痹和速度下降状态也能必定击中要害,"对处于中毒、麻痹、流血或速度降低状态的目标,必定造成击中要害."
+197,00C5,Shields Down,界限盾壳,"At 1/2 of max HP or below, transforms into Core form.","当HP降至1/2或以下时,变身为核心形态.",,"当小陨星的HP降至50%或以下时,从流星形态变身为核心形态.在流星形态下,免疫所有异常状态.使用破壳时,无论当前HP多少,立即变身为核心形态.在战斗中一旦变身,无法恢复为流星形态."
+198,00C6,Stakeout,蹲守,Deals double damage to opponents being switched in.,对刚替换上场的对手造成双倍伤害.,,对刚替换上场的对手造成双倍伤害.仅在对手替换上场后的第一回合内生效.
+199,00C7,Water Bubble,水泡,Halves Fire dmg taken. Doubles Water dmg dealt. No burns.,受到的火属性伤害减半.造成的水属性伤害加倍.不会灼伤.,,"水属性招式威力加倍,受到的火属性伤害降低50%.同时完全免疫灼伤,并在获得此特性时移除已有的灼伤状态."
+200,00C8,Steelworker,钢能力士,Normal moves become Steel. Steel resists Ghost and Dark.,一般属性招式变为钢属性.钢属性抵抗幽灵和恶属性.,原版是1.5倍,"将该宝可梦的一般属性招式变为钢属性.如果该宝可梦是钢属性,它获得对幽灵和恶属性的抗性；否则,它获得钢属性的本系加成."
+201,00C9,Berserk,怒火冲天,Boosts highest attack by +1 when at 1/2 of max HP or lower.,"当HP降至1/2或以下时,自身最高的攻击能力提升1级.",,"当该宝可梦因对手的攻击而使HP降至一半或以下时,其最高的攻击能力值提升1级.根据能力等级决定提升哪一项.每场战斗仅触发一次.其他伤害来源使HP降至一半或以下不会触发此特性."
+202,00CA,Slush Rush,拨雪,This Pokémon's Speed gets a 1.5x boost in hail.,"在冰雹中,该宝可梦的速度提升至1.5倍.",原版是2倍,"在冰雹中,该宝可梦的速度能力值提升50%.同时免疫冰雹伤害."
+203,00CB,Long Reach,远隔,Doesn't make contact. Boosts Phys. non-contact moves by 1.2x.,"物理招式获得1.2倍威力加成,且不会接触.",比原版多了1.2倍威力加成,"远隔特性防止该宝可梦在使用接触类招式时与目标发生接触.此外,物理招式获得1.2倍的伤害加成."
+204,00CC,Liquid Voice,湿润之声,Sound moves get a 1.2x boost and become Water if Normal.,"声音类招式获得1.2倍威力加成,若为一般属性则变为水属性.",比原版多了1.2倍威力加成,"湿润之声将一般属性的声音类招式转变为水属性,并将其威力提升20%."
+205,00CD,Triage,治愈之心,Moves that have a healing effect gain +3 priority.,具有回复效果的招式获得+3优先度.,,"治愈之心给予大多数回复类招式+3优先度.包括终极吸取等吸取类招式,以及祈愿等延迟回复招式.对水流环、青草场地、扎根、寄生种子、痛平分、礼物或花粉团无效."
+206,00CE,Galvanize,电气皮肤,Normal moves become Electric. Electric moves are empowered.,一般属性招式变为电属性.电属性招式得到强化.,,"将该宝可梦的一般属性招式变为电属性.如果该宝可梦是电属性,其电属性招式有10%的几率造成麻痹；否则,它获得电属性的本系加成."
+207,00CF,Surge Surfer,冲浪之尾,"If Electric Terrain is active, gets a 1.5x Speed boost.","在电气场地中,速度提升至1.5倍.",原版是2倍,"在电气场地生效时,该宝可梦的速度能力值提升50%.场地开始时立即生效,场地结束时加成消失."
+208,00D0,Schooling,鱼群,If Lv. 20 or more: changes into School form until 1/4 HP or less.,"等级20或以上时：变为鱼群形态,直到HP降至1/4或以下.",,"当等级达到20或以上时,变身为鱼群形态.当HP降至25%或以下时,恢复为单独形态.此形态变化在出场时和每回合结束时自动触发.无法以任何方式覆盖、压制、交换或复制."
+209,00D1,Disguise,画皮,Protects once against an attack. Restores protection in fog.,抵挡一次攻击.在雾中可恢复此保护效果.,,"画皮会抵挡第一个命中该宝可梦的造成伤害的招式,之后改变形态.仅能抵挡非变化招式.在雾中,每次替换上场或当雾重新出现时,画皮会立即恢复."
+210,00D2,Battle Bond,牵绊变身,Transforms into Battle Bond form after dealing a KO.,"击倒对手后,变身为牵绊形态.",,"当该宝可梦给予对手最后一击使其濒死时,立即触发形态变化.无法被复制."
+211,00D3,Power Construct,群聚变形,"At 1/2 of max HP or below, transforms into Complete form.","当HP降至1/2或以下时,变身为完全体形态.",,"群聚变形会在任何回合结束时,如果基格尔德50%或10%形态的HP降至50%或以下,则使其变身为完全体形态.完全体形态拥有高达216的HP（从108翻倍）,使其成为极其耐打的坦克.此形态变化在战斗中永久持续,且无法被压制."
+212,00D4,Corrosion,腐蚀,Poison is super effective vs Steel. Can poison any type.,毒属性招式对钢属性效果绝佳.可使任何属性的宝可梦中毒.,较之原版多了钢属性被毒属性效果拔群,"毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态."
+213,00D5,Comatose,绝对睡眠,"Can move, but is always asleep. Immune to status conditions.","可以行动,但始终处于睡眠状态.免疫异常状态.",,"绝对睡眠特性使该宝可梦在招式和状态判定中被视为处于睡眠状态.该宝可梦可以正常行动,并且免疫所有异常状态.此特性无法被复制或压制.使用招式睡觉会失败."
+214,00D6,Queenly Majesty,女王威严,Protects itself and ally from priority moves.,保护自身及同伴免受先制招式影响.,,女王威严防止该宝可梦及其同伴成为优先度大于0的先制招式的目标.
+215,00D7,Innards Out,甩不掉的,"If KO'd, deals as much damage as what the fatal attack dealt.","如果被击倒,对攻击者造成等同于致命一击伤害的伤害.",,"当该宝可梦被对手的攻击击倒时,会向攻击者返还与致命一击等量的伤害.对拥有魔法防守特性的攻击者无效."
+216,00D8,Dancer,舞者,Copies dance moves used by others.,模仿其他宝可梦使用的舞蹈招式.,,"当场上任何宝可梦使用舞蹈类招式后,该宝可梦会立即使用相同的招式每回合对每个招式触发一次."
+217,00D9,Battery,蓄电池,Grants a 1.3x power boost to ally's Special attacks.,使同伴的特殊攻击威力提升至1.3倍.,,"在双打对战中,蓄电池为同伴宝可梦的特殊攻击提供30%的威力提升.不影响使用者自身的招式."
+218,00DA,Fluffy,毛茸茸,Takes 1/2 dmg from contact moves but Fire moves hurt it 2x more.,"受到的接触类招式伤害减半,但火属性招式会造成2倍伤害.",,毛茸茸使受到的接触类招式伤害降低50%.火属性招式对该宝可梦造成双倍伤害.与其他减伤效果乘法叠加.
+219,00DB,Dazzling,棱镜装甲,Protects itself and ally from priority moves.,保护自身及同伴免受先制招式影响.,,棱镜装甲阻挡所有来自对手的、以该宝可梦或其同伴为目标的先制招式.
+220,00DC,Soul-Heart,魂心,KOs dealt anywhere on the field raise Sp. Atk by one stage.,"场上任何宝可梦被击倒时,特攻提升1级.",,"当战场上任何宝可梦（包括同伴和对手）濒死时,魂心特性会提升该宝可梦的特攻1级."
+221,00DD,Tangling Hair,卷发,Lowers Speed of enemies that make contact with this Pokémon.,"与该宝可梦发生接触的敌人,其速度降低.",,"当该宝可梦受到接触招式攻击时,攻击者的速度降低1级.对于连续攻击招式,每次命中都会触发."
+222,00DE,Receiver,接球手,"In Double Battles, copies its fainting partner's ability.","在双打对战中,复制濒死同伴的特性.",,"接球手会复制濒死同伴的特性,替换自身的接球手特性.此效果持续到替换下场."
+223,00DF,Power of Alchemy,化学之力,Transmutes berries on entry. Transmutes items when lost.,出场时转化树果.物品失去时转化物品.,特性重做，多次入场都是变黑色污泥，失去道具变金珠只能触发1次，也就是可以拍落2次,"出场时,将所有对手的树果转化为黑色污泥.战斗中任何宝可梦失去物品时,该物品会被黑色污泥取代.如果黑色污泥被移除,则会被大金珠取代."
+224,00E0,Beast Boost,异兽提升,Dealing a KO raises highest calculated stat by one stage.,"击倒对手后,自身最高的计算后能力值提升1级.",,"每当该宝可梦击倒一名对手时,其最高的计算后能力值提升1级被提升的能力基于不考虑当前能力等级变化的原始能力值决定."
+225,00E1,RKS System,AR系统,Held Memory determines its type. Also has Protean + Adaptability.,携带的记忆碟决定其属性.同时拥有变幻自在和适应力特性.,较之原版多了变换自如和适应力,"AR系统根据携带的记忆碟改变使用者的形态.每次攻击前,使用者的属性会变为与所用招式相同的属性.本系加成从1.5倍提升至2.0倍."
+226,00E2,Electro Surge,电气制造者,Casts Electric Terrain on entry. Lasts 8 turns.,"出场时制造电气场地,持续8回合.",,"出场时制造电气场地,持续8回合（携带场地制造机时为12回合）.地面上的宝可梦不会陷入睡眠,且电属性招式威力提升30%.激活时覆盖其他场地."
+227,00E3,Psychic Surge,精神制造者,Casts Psychic Terrain on entry. Lasts 8 turns.,"出场时制造精神场地,持续8回合.",,"出场时制造精神场地,持续8回合（携带场地制造机时为12回合）.地面上的宝可梦免疫对手的先制招式.超能力属性招式威力提升30%.广阔战场可以攻击所有对手且威力提升.自然之力变为精神强念.覆盖其他现有场地."
+228,00E4,Misty Surge,薄雾制造者,Casts Misty Terrain on entry. Lasts 8 turns.,"出场时制造薄雾场地,持续8回合.",,"出场时制造薄雾场地,持续8回合（携带场地制造机时为12回合）.薄雾场地防止地面上的宝可梦陷入任何异常状态,并使妖精属性招式威力提升30%.覆盖现有场地."
+229,00E5,Grassy Surge,青草制造者,Casts Grassy Terrain on entry. Lasts 8 turns.,"出场时制造青草场地,持续8回合.",,"出场时制造青草场地,持续8回合（携带场地制造机时为12回合）地面上的宝可梦每回合回复1/16的HP,且草属性招式威力提升30%.覆盖其他场地."
+230,00E6,Full Metal Body,金属防护,Immune to stat drops.,免疫能力降低.,原版只防对方的降能力，ER里自己降能力也免疫比如流星群,金属防护使该宝可梦免疫所有来自招式或特性的能力降低效果.包括因使用过热等招式导致的自身能力降低.
+231,00E7,Shadow Shield,幻影防守,"At full HP, halves damage taken from attacks","HP全满时,受到的招式伤害减半.",,"当HP全满时,幻影防守使受到的所有攻击伤害减半.与其他减伤来源乘法叠加."
+232,00E8,Prism Armor,棱镜装甲,Takes 35% less damage from Super-effective moves.,"受到效果绝佳的招式攻击时,伤害降低35%.",原版是25%,"受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+233,00E9,Neuroforce,脑核之力,Grants an additional 1.35x boost to Super-effective moves.,对效果绝佳的招式提供额外的1.35倍威力加成.,原版1.25，提升到了1.35,效果绝佳的攻击威力提升35%.
+234,00EA,Intrepid Sword,不挠之剑,"On entry, raises Attack by one stage.","出场时,攻击提升1级.",没有了入场一次的限制，和8代一样,"不挠之剑在替换上场时,使该宝可梦的攻击能力提升1级."
+235,00EB,Dauntless Shield,不屈之盾,"On entry, raises Defense by one stage.","出场时,防御提升1级.",没有了入场一次的限制，和8代一样,"不屈之盾在进入战斗时,立即将防御能力提升1级."
+236,00EC,Libero,自由者,"Before using a move, changes its type to the move's type.","使用招式前,将自身属性变为与招式相同的属性.",没有原版触发一次限制，可多次触发,"自由者在攻击前,会将使用者的属性覆盖为与所用招式相同的属性.挣扎招式无法触发此效果."
+237,00ED,Ball Fetch,拾球,No effect in battle.,对战斗无效果.,原版是没有携带道具时，会拾取第1个投出后捕捉失败的精灵球。,对战斗无效果.
+238,00EE,Cotton Down,棉絮,Lowers the Speed of all foes by one stage when hit.,"受到攻击时,降低所有对手的速度1级.",,"棉絮特性在该宝可梦受到任何攻击时触发,降低所有宝可梦的速度1级.对于连续攻击招式,每次命中都会触发."
+239,00EF,Propeller Tail,螺旋尾鳍,Swift Swim + Redirection Immunity.,悠游自如 + 免疫招式吸引.,,"螺旋尾鳍使该宝可梦在雨天时速度提升50%,并且免疫招式吸引效果.速度加成在所有形式的雨天中都有效."
+240,00F0,Mirror Armor,镜甲,Bounces back any stat drops inflicted by an enemy.,将敌人施加的任何能力降低效果反弹回去.,,镜甲将所有以该宝可梦为目标的降低能力效果反弹给攻击者.反弹效果无视免疫.
+241,00F1,Gulp Missile,一口导弹,"Gulps a prey after Dive/Surf. If hit, shoots prey at enemy.","使用潜水/冲浪后叼住猎物.受到攻击时,向敌人射出猎物.",,"当古月鸟使用冲浪、三重潜水或潜水时,它会叼住猎物：HP小于50%时为叼喙形态,HP大于50%时为吞喙形态.在任一形态下受到攻击时,会向攻击者吐出猎物,造成其最大HP25%的伤害,并返回普通形态.叼喙形态还会降低防御1级；吞喙形态会麻痹目标.此特性无法被压制等."
+242,00F2,Stalwart,坚毅,"Isn't affected by redirection, crits, or ability suppression.",不受招式吸引、击中要害或特性压制的影响.,,"招式不会被吸引,不会受到击中要害,且特性不会被压制.特性压制包括破格、化学变化气体和菌丝之力等效果."
+243,00F3,Steam Engine,蒸汽机,Maximizes Speed if hit by a Fire-type or Water-type attack.,"受到火属性或水属性招式攻击时,速度提升至最大.",,"受到任何火属性或水属性招式攻击后,蒸汽机特性立即将速度能力值提升至+6级.提升效果在受到伤害后生效."
+244,00F4,Punk Rock,庞克摇滚,Sound moves deal 1.3x more dmg. Takes -50% dmg from sound moves.,声音类招式造成1.3倍伤害.受到的声音类招式伤害降低50%.,,"庞克摇滚使该宝可梦的声音类招式威力提升30%,并且受到的声音类招式伤害降低50%.伤害减免与其他来源乘法叠加."
+245,00F5,Sand Spit,喷沙,Summons a sandstorm when hit. Attacker is then grounded.,受到攻击时引发沙暴.攻击者随后会接地.,,"受到攻击伤害时,如果场上没有沙暴,则会引发持续8回合的沙暴.如果沙暴被引发,攻击者会被拉至地面.该宝可梦免疫沙暴伤害.如果该宝可梦因该次攻击而濒死则不会触发此特性."
+246,00F6,Ice Scales,冰鳞粉,Halves damage taken by Special moves. Does NOT double SpDef.,受到的特殊招式伤害减半.不会加倍特防.,,所有受到的特殊攻击伤害减半.与其他减伤来源乘法叠加.
+247,00F7,Ripen,熟成,"Doubles resistance, healing and stat raises provided by Berries.",树果提供的抗性、回复和能力提升效果加倍.,,"熟成使所有树果的有益效果加倍回复类树果回复量加倍,提升能力的树果改为提升2级,抵抗树果将效果绝佳的伤害降低75%而非50%,回复PP的树果回复量加倍."
+248,00F8,Ice Face,结冻头,Protects once against an attack. Restores protection under hail.,抵挡一次攻击.在冰雹中可恢复此保护效果.,,"结冻头使哭哭面具在受到物理攻击后变身为无头形态,并抵消一次伤害.在无头形态下,如果场上出现冰雹或该宝可梦被替换上场,则恢复为结冻头形态.无法被复制或压制."
+249,00F9,Power Spot,能量点,Grants a 1.3x boost to ally's attacks.,使同伴的攻击威力提升至1.3倍.,,"在双打对战中,能量点使同伴的攻击威力提升30%.使用者自身不受此加成影响."
+250,00FA,Mimicry,拟态,Changes type depending on active Terrain.,根据当前场地改变自身属性.,,"拟态使该宝可梦的属性变为与当前场地一致：电气场地变为电属性,薄雾场地变为妖精属性,青草场地变为草属性,精神场地变为超能力属性.属性变化持续到场地结束或该宝可梦下场.保留通过浸水等招式改变的属性."
+251,00FB,Screen Cleaner,除障,Clears screens from both sides on entry. Can reset screens.,出场时清除双方场上的屏障.可以重置屏障.,,"除障特性在该宝可梦进入战斗时,移除双方场地上所有的防护屏障、反射壁、光墙、极光幕和烟幕它还允许该宝可梦在屏障已激活时重新设置它们,刷新其持续时间."
+252,00FC,Steely Spirit,钢魂,Boosts own & ally's Steel-type moves by 1.3x.,提升自身和同伴的钢属性招式威力至1.3倍.,,钢魂特性在战斗中使使用者及其同伴的钢属性招式威力提升30%.
+253,00FD,Perish Body,灭亡之躯,"If hit, casts Perish Song.","受到攻击时,发动灭亡之歌.",,"受到接触招式攻击时,灭亡之躯对使用者和攻击者发动灭亡之歌.除非替换下场,否则两只宝可梦将在3回合后濒死."
+254,00FE,WandrngSprit,游魂,Trades ability with attacker on contact.,"受到接触攻击时,与攻击者交换特性.",,"受到接触招式攻击时,游魂特性会与攻击者交换特性.两只宝可梦在替换下场后恢复各自原有的特性.无法与同样不能被复制或压制的特性交换."
+255,00FF,Gorilla Tactics,一猩一意,"Raises own Atk by 1.5x, but can only use the first chosen move.","自身攻击提升1.5倍,但只能使用最初选择的招式.",,"一猩一意使物理招式威力提升50%,但会锁定使用者只能使用首次选择的招式,直到替换下场."
+256,0100,Neutralizing Gas,化学变化气体,All abilities are nullified.,所有特性都失效.,,"用气体充满战场,完全压制除无法压制外的所有特性.效果在使用者在场时持续.在使用者尝试替换下场后,所有被压制的特性会重新触发其入场效果.无法被复制或交换."
+257,0101,Pastel Veil,粉彩护幕,Casts Safeguard on entry.,出场时施放神秘守护.,原版只守护中毒，神秘守护则是异常状态都守护,"粉彩护幕在该宝可梦进入战斗时,自动为其队伍设置神秘守护.神秘守护持续5回合,保护所有队友免受异常状态."
+258,0102,HungerSwitch,饱了又饿,Changes between Full and Hangry forms after each turn.,每回合结束后在吃饱形态和饥饿形态之间切换.,,每回合结束时自动在吃饱形态和饥饿形态之间切换.无法以任何方式覆盖、压制、交换或复制.
+259,0103,Quick Draw,速击,30% chance to move first.,30%几率先出手.,,"速击有30%的几率让使用者在当前优先度层级内率先行动.与先制之爪的效果乘法叠加,使总触发几率达到44%."
+260,0104,Unseen Fist,无形拳,Contact moves strike through protection.,接触类招式可以穿透保护效果.,,"无形拳允许所有接触类招式穿透保护类招式,并忽略与其相关的任何附加效果."
+261,0105,CuriusMedicn,怪药,Resets its ally's stat changes on entry.,出场时重置同伴的能力变化.,,"怪药在使用者出场时,移除同伴的所有正向和负向能力变化."
+262,0106,Transistor,电晶体,Boosts the power of Electric-type moves by 1.5x.,电属性招式威力提升至1.5倍.,,电晶体使所有电属性招式的威力提升50%.与其他伤害加成效果加法叠加.
+263,0107,Dragon's Maw,龙颚,Boosts the power of Dragon-type moves by 1.5x.,龙属性招式威力提升至1.5倍.,,龙颚使龙属性招式的威力提升50%.
+264,0108,ChillngNeigh,苍白嘶鸣,KOs raise Attack by one stage.,"击倒对手时,攻击提升1级.",,"当该宝可梦通过直接攻击击倒对手时,其攻击能力值提升1级."
+265,0109,Grim Neigh,漆黑嘶鸣,KOs raise Sp. Atk by one stage.,"击倒对手时,特攻提升1级.",,"漆黑嘶鸣特性在该宝可梦通过直接攻击使对手濒死时,提升其特攻能力值1级."
+266,010A,As One,人马一体,Unnerve + Chilling Neigh.,紧张感 + 苍白嘶鸣.,127+264,"阻止所有对手宝可梦消耗其携带的物品.当该宝可梦通过直接攻击击倒对手时,其攻击能力值提升1级."
+267,010B,As One,人马一体,Unnerve + Grim Neigh.,紧张感 + 漆黑嘶鸣.,127+265,"阻止所有对手宝可梦消耗其携带的物品.当该宝可梦通过直接攻击击倒对手时,其特攻能力值提升1级."
+268,010C,Chloroplast,叶绿体,"Weather Ball, Solar Beam/Blade, Growth act as if used in sun.",气象球、日光束/刃、生长视为在大晴天下使用.,,气象球威力加倍并变为火属性.日光类招式无需蓄力.生长使攻击和特攻提升2级.月光、晨光和光合作用回复2/3的最大HP.草之誓约和水之誓约组合分别产生火海或彩虹效果.
+269,010D,Whiteout,白茫茫,Ups highest attacking stat by 1.5x in hail.,"在冰雹中,自身最高的攻击能力提升至1.5倍.",,"白茫茫使该宝可梦在冰雹中时,其最高的攻击能力值提升50%.同时免疫冰雹伤害."
+270,010E,Pyromancy,火焰占卜,Moves inflict burn 5x as often.,招式的灼伤几率变为5倍.,,火焰占卜将所有招式的灼伤几率乘以5倍.与火焰之躯特性不叠加.
+271,010F,Keen Edge,锐利刀刃,Boosts the power of slashing moves by 1.3x.,劈开类招式的威力提升至1.3倍.,和锋锐差不多，加成的招式多一些,锐利刀刃使所有劈开类攻击的威力提升30%.
+272,0110,Prism Scales,棱镜鳞片,Takes 30% less damage from Special attacks.,受到的特殊攻击伤害降低30%.,,棱镜鳞片使受到的所有特殊攻击伤害降低30%.与其他减伤来源乘法叠加.
+273,0111,Power Fists,铁拳之力,Iron Fist moves target Special Defense and get a 1.3x boost.,"铁拳类招式攻击特防,并获得1.3倍威力加成.",类似精神冲击的机制，己方物攻对对方特防进行结算，剑舞有提升，诡计无提升,"拳类招式获得30%的伤害加成,并且伤害计算时目标改为特防而非防御."
+274,0112,Sand Song,沙之歌,Sound moves get a 1.2x boost and become Ground if Normal.,"声音类招式获得1.2倍威力加成,若为一般属性则变为地面属性.",,"沙之歌使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为地面属性."
+275,0113,Rampage,暴走,"No recharge after a KO, if it usually would need to recharge.","需要休息一回合的技能,在击倒对手后无需休息.",终极冲击破坏光线这一类,"暴走特性在该宝可梦通过直接攻击成功击倒对手时,消除其需要休息的回合."
+276,0114,Vengeance,复仇,"Boosts Ghost-type moves by 1.2x, or 1.5x when below 1/3 HP.","幽灵属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"幽灵属性招式威力提升20%,当HP低于1/3时提升50%."
+277,0115,Blitz Boxer,闪电拳手,"At full HP, gives +1 priority to this Pokémon's punching moves.","HP全满时,该宝可梦的拳类招式获得+1优先度.",,"闪电拳手在HP全满时,赋予所有拳类招式+1优先度."
+278,0116,Antarctic Bird,南极鸟,Ice-type and Flying-type moves get a 1.3x power boost.,冰属性和飞行属性招式威力提升至1.3倍.,,南极鸟使冰属性和飞行属性招式的威力提升30%.与其他伤害加成效果加法叠加.
+279,0117,Immolate,献祭,Normal moves become Fire. Fire moves are empowered.,一般属性招式变为火属性.火属性招式得到强化.,,"将该宝可梦的一般属性招式变为火属性.如果该宝可梦是火属性,其火属性招式有10%的几率造成灼伤；否则,它获得火属性的本系加成."
+280,0118,Crystallize,结晶,Rock-type moves become Ice and get a 1.1x boost.,"岩石属性招式变为冰属性,并获得1.1倍威力加成.",,"结晶将所有岩石属性招式转变为冰属性,并将其威力提升10%."
+281,0119,Electrocytes,电细胞,Boosts the power of Electric-type moves by 1.25x.,电属性招式威力提升至1.25倍.,,电细胞使电属性招式威力提升25%.
+282,011A,Aerodynamics,空气动力学,Boosts Speed instead of being hit by Flying-type moves.,"免疫飞行属性招式,并在受到攻击时提升速度.",,"当成为飞行属性招式的目标时,空气动力学吸收该攻击并使使用者的速度能力值提升1级."
+283,011B,Christmas Spirit,圣诞精神,Takes 50% less damage if hail is active.,"在冰雹中,受到的伤害降低50%.",,圣诞精神在冰雹天气时使受到的所有伤害降低50%.免疫冰雹伤害.与其他减伤来源乘法叠加.
+284,011C,Exploit Weakness,弱点利用,Targets lowest defense vs statused foes.,"攻击处于异常状态的对手时,针对其较低的防御能力.",,"当攻击处于异常状态的对手时,攻击目标改为其较低的防御能力值."
+285,011D,Ground Shock,大地冲击,Target Grounds aren't immune to Electric but resist it instead.,"使地面属性的目标不再免疫电属性,而是变为抵抗.",,"大地冲击允许电属性招式命中地面属性宝可梦,造成0.5倍伤害."
+286,011E,Ancient Idol,古代偶像,Uses Def and Sp. Def instead of Atk and Sp. Atk when attacking.,"攻击时,使用防御和特防代替攻击和特攻.",,物理招式使用使用者的防御能力值而非攻击能力值进行伤害计算特殊招式则使用使用者的特防能力值而非特攻能力值.
+287,011F,Mystic Power,神秘力量,All moves gain the 1.5x power boost from STAB.,所有招式获得1.5倍的本系加成.,,"神秘力量使所有招式获得1.5倍的本系加成,无论属性是否匹配.不会增强已经获得本系加成的招式."
+288,0120,Perfectionist,完美主义者,Move BP < 51 BP: +1 to crit rate. Move BP < 26 BP: +1 priority too.,威力小于51的招式：+1击中要害率.威力小于26的招式：获得+1优先度.,,"威力小于等于50的攻击招式,其击中要害率提升1级；威力小于等于25的招式,额外获得+1优先度."
+289,0121,Growing Tooth,不断生长的牙齿,Raises Attack by one stage after using a biting move.,"使用啃咬类招式后,攻击提升1级.",,"不断生长的牙齿特性在该宝可梦成功使用啃咬类招式命中后,其攻击能力值提升1级."
+290,0122,Inflatable,充气,Ups Def and Sp. Def by one stage if hit by Flying or Fire moves.,"受到飞行或火属性招式攻击时,防御和特防各提升1级.",,"受到任何火属性或飞行属性招式攻击时,防御和特防能力值各提升1级.对于连续攻击招式,每次命中都会触发.能力提升效果在攻击命中后生效."
+291,0123,Aurora Borealis,北极光,Ice-type moves gain STAB. Moves always benefit from hail.,冰属性招式获得本系加成.招式总能享受到冰雹的增益.,,"北极光使所有冰属性招式获得本系加成,无论该宝可梦的属性如何.气象球变为冰属性且威力加倍,极光幕无需冰雹即可生效,基于天气的冰属性招式（如暴风雪）必定命中."
+292,0124,Avenger,复仇者,"If a party Pokémon fainted last turn, next move gets 1.5x boost.","上一回合有同伴宝可梦濒死,下次招式威力提升1.5倍.",,"复仇者特性在任何同伴宝可梦濒死后的一回合内,使所有招式的威力提升50%."
+293,0125,Let's Roll,我们滚吧,Casts Defense Curl on entry.,出场时使用变圆.,常见于圆圆的精灵，其实还挺贴切的,"我们滚吧在进入战斗时自动将防御提升1级并附加变圆状态,使滚动等招式的威力加倍."
+294,0126,Aquatic,水生,Adds Water type on entry.,出场时添加水属性.,,"进入战斗时,为使用者的当前属性添加水属性即使失去此特性,添加的水属性在替换下场前依然保留."
+295,0127,Loud Bang,巨响,Sound-based moves have 50% chance to confuse the foe.,声音类招式有50%几率使对手混乱.,,"声音类攻击成功命中后,有50%的几率使目标陷入混乱状态."
+296,0128,Lead Coat,铅衣,Takes 40% less from Phys. moves. This Pokémon's Speed is 0.9x.,受到的物理招式伤害降低40%.该宝可梦的速度变为0.9倍.,,"铅衣使受到的物理伤害降低40%,但速度降低10%.同时使使用者的重量变为3倍.伤害减免与其他来源乘法叠加."
+297,0129,Amphibious,两栖,Water moves gain STAB. Can't become drenched.,水属性招式获得本系加成.不会被浸水.,,"使水属性招式获得本系加成,无论使用者的属性如何.同时免疫浸水状态."
+298,012A,Grounded,接地,Adds Ground type on entry.,出场时添加地面属性.,,"接地特性在出场时为该宝可梦添加地面属性.即使失去此特性,添加的地面属性在替换下场前依然保留."
+299,012B,Earthbound,大地束缚,"Boosts Ground-type moves by 1.2x, or 1.5x when under 1/3 HP.","地面属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"地面属性招式威力提升20%,当HP低于1/3时提升50%."
+300,012C,Fighting Spirit,斗争精神,Normal moves become Fighting. Fighting moves are empowered.,一般属性招式变为格斗属性.格斗属性招式得到强化.,,"将该宝可梦的一般属性招式变为格斗属性.如果该宝可梦是格斗属性,其格斗属性招式可以击破屏障；否则,它获得格斗属性的本系加成."
+301,012D,Cryptic Power,神秘力量,"Doubles own Sp. Atk stat. Boosts raw stat, not base stat.",自身的特攻能力加倍.提升最终能力值而非基础能力值.,特攻大力士，没有精灵有这个特性,神秘力量使该宝可梦的特攻能力值变为2倍.与其他伤害加成效果乘法叠加.
+302,012E,Coil Up,盘卷,"On entry, gives +1 priority once to the first biting move used.","出场时,使第一次使用的啃咬类招式获得+1优先度.",,"出场时,赋予第一次使用的啃咬类招式+1优先度.在使用任何啃咬类招式命中后,该优先度加成即被消耗."
+303,012F,Fossilized,化石,Halves dmg taken by Rock moves. Boosts own Rock moves by 1.2x.,受到的岩石属性伤害减半.自身的岩石属性招式威力提升1.2倍.,,"化石使受到的岩石属性伤害降低50%,并提升使用者自身的岩石属性招式威力20%.伤害减免与其他来源乘法叠加,威力加成与其他来源加法叠加."
+304,0130,Magical Dust,魔法粉,Makes foe Psychic-type on contact. Also works on offense.,使接触到的对手变为超能力属性.主动攻击时也生效.,,"如果该宝可梦与另一只宝可梦发生接触（无论是攻击方还是防御方）,对方的属性会变为纯超能力属性此效果在连续招式或优先度招式命中时立即发生,可以在对手的连续攻击过程中消除其本系加成."
+305,0131,Dreamcatcher,捕梦人,Doubles damage if an opponent is sleeping. Pursues sleeping foes.,"如果对手处于睡眠状态,造成双倍伤害.追击睡眠中的对手.",,"当场上任何对手处于睡眠状态时,捕梦人使该宝可梦的招式威力加倍.这包括使用者、同伴或对手造成的睡眠.攻击会对正在替换下场的睡眠中对手造成1倍伤害,在其离开前造成伤害.对绝对睡眠特性无效."
+306,0132,Nocturnal,夜行,Boosts own Dark moves by 1.25x. Takes -25% dmg from Dark/Fairy.,自身的恶属性招式威力提升1.25倍.受到的恶和妖精属性伤害降低25%.,,"恶属性招式获得25%威力提升,并且使用者受到的恶属性和妖精属性伤害降低25%.伤害减免与其他来源乘法叠加."
+307,0133,Self Sufficient,自给自足,Recovers 1/16 of max HP at the end of each turn.,每回合结束时回复1/16的最大HP.,,每回合结束时回复1/16的最大HP.
+308,0134,Tectonize,构造,Normal moves becomes Ground. Might ignore hazards.,一般属性招式变为地面属性.可以无视场地状态.,,"将该宝可梦的一般属性招式变为地面属性.如果该宝可梦是地面属性,它免疫隐形岩和撒菱；否则,它获得地面属性的本系加成."
+309,0135,Ice Age,冰河时代,Adds Ice type on entry.,出场时添加冰属性.,,"进入战斗时,为使用者的当前属性添加冰属性即使失去此特性,添加的冰属性在替换下场前依然保留."
+310,0136,Half Drake,半龙,Adds Dragon type on entry.,出场时添加龙属性.,,"进入战斗时,为使用者的当前属性添加龙属性即使失去此特性,添加的龙属性在替换下场前依然保留."
+311,0137,Liquified,液化,Takes 1/2 dmg from contact moves but Water moves hurt it 2x more.,"受到的接触类招式伤害减半,但受到的水属性招式会造成2倍伤害.",,"液化使受到的接触类招式伤害降低50%,但受到的水属性招式伤害变为2倍.与其他减伤来源乘法叠加."
+312,0138,Dragonfly,龙飞,Adds Dragon type on entry. Avoids Ground attacks.,出场时添加龙属性.回避地面属性攻击.,310,"进入战斗时,为使用者的当前属性添加龙属性即使失去此特性,添加的龙属性在替换下场前依然保留.同时使该宝可梦免疫地面属性攻击以及需要接地才能生效的场地效果."
+313,0139,Dragonslayer,屠龙者,Deals 1.5x damage to Dragons. Takes 0.5x damage from Dragons.,"对龙属性宝可梦造成1.5倍伤害.受到龙属性宝可梦攻击时,伤害减半.",,"对龙属性宝可梦造成1.5倍伤害,并且受到龙属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+314,013A,Mountaineer,登山者,Immune to Rock-type attacks and Stealth Rock damage.,免疫岩石属性攻击和隐形岩伤害.,,登山者特性使该宝可梦免疫所有岩石属性招式以及隐形岩的入场伤害.
+315,013B,Hydrate,水合,Normal moves become Water. Water moves are empowered.,一般属性招式变为水属性.水属性招式得到强化.,,"将该宝可梦的一般属性招式变为水属性.如果该宝可梦是水属性,其水属性招式有10%的几率造成浸水；否则,它获得水属性的本系加成."
+316,013C,Metallic,金属化,Adds Steel type on entry.,出场时添加钢属性.,,"进入战斗时,为使用者的当前属性添加钢属性即使失去此特性,添加的钢属性在替换下场前依然保留."
+317,013D,Permafrost,永冻土,Takes 35% less damage from Super-effective moves.,"受到效果绝佳的招式攻击时,伤害降低35%.",,"受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+318,013E,Primal Armor,原始铠甲,Takes 50% less damage from Super-effective moves.,"受到效果绝佳的招式攻击时,伤害降低50%.",,"受到效果绝佳的招式攻击时,伤害降低50%.与其他减伤效果乘法叠加."
+319,013F,Raging Boxer,狂暴拳手,"Punching moves hit twice. 1st hit at 100% power, 2nd hit at 40%.","拳类招式攻击两次.第一击威力100%,第二击威力40%.",,"狂暴拳手使拳类招式连续命中两次,第一击造成100%伤害,第二击造成40%伤害.两次攻击独立判定追加效果（畏缩除外）."
+320,0140,Air Blower,吹气筒,Casts a 3-turn Tailwind on entry.,"出场时制造顺风,持续3回合.",,"吹气筒在进入战斗时自动设置持续3回合的顺风,使使用者一方所有宝可梦的速度加倍.同时会触发乘风特性."
+321,0141,Juggernaut,主宰,Contact moves add 20% Def to attack. Paralysis-immune.,接触类招式将20%的防御加入攻击计算.免疫麻痹.,,"主宰特性增强接触类招式,将使用者20%的防御能力值加入攻击计算.防止麻痹状态,并在陷入麻痹时立即治愈."
+322,0142,Short Circuit,短路,"Boosts Elec.-type moves by 1.2x, or 1.5x when below 1/3 HP.","电属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"电属性招式威力提升20%,当HP低于1/3时提升50%."
+323,0143,Majestic Bird,华贵之鸟,"Boosts own Sp. Atk by 1.5x. Boosts raw stat, not base stat.","自身的特攻能力提升至1.5倍.提升最终能力值,而非基础能力值.",1.5倍版特攻大力士,华贵之鸟使该宝可梦的特攻能力值提升50%.与其他伤害加成效果乘法叠加.
+324,0144,Phantom,幻影,Adds Ghost type on entry.,出场时添加幽灵属性.,,"进入战斗时,为使用者的当前属性添加幽灵属性.即使失去此特性,添加的幽灵属性在替换下场前依然保留."
+325,0145,Intoxicate,醉人,Normal moves become Poison. Poison moves are empowered.,一般属性招式变为毒属性.毒属性招式得到强化.,,"将该宝可梦的一般属性招式变为毒属性.如果该宝可梦是毒属性,其毒属性招式有10%的几率造成剧毒；否则,它获得毒属性的本系加成."
+326,0146,Impenetrable,坚不可摧,Only damaged by attacks.,仅受攻击伤害.,,"坚不可摧特性使该宝可梦免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害."
+327,0147,Hypnotist,催眠师,Hypnosis accuracy is 90% when used by this Pokémon.,该宝可梦使用的催眠术命中率为90%.,,"将催眠术的命中率提升至90%.不锁定为90%,该招式仍会受到命中率/闪避率变化的影响."
+328,0148,Overwhelm,压制,Hits Fairies with Dragon moves. Immune to Intimidate and Scare.,龙属性招式可以命中妖精属性.免疫威吓和惊吓.,,"允许龙属性招式以普通效果命中妖精属性宝可梦,而非无效.此外,使用者免疫威吓和惊吓."
+329,0149,Scare,惊吓,Lowers foes' Sp. Atk by one stage on entry.,出场时，降低对方特攻一级.,特攻版威吓,"Upon enteringbattle,the userdropsthe Special Attack stat ofall opposing Pokemon by onestage."
+330,014A,Majestic Moth,华贵之蛾,"On entry, raises highest calculated stat by one stage.","出场时,自身最高的计算后能力值提升1级.",,"华贵之蛾在进入战斗时,使该宝可梦最高的计算后基础能力值提升1级."
+331,014B,Soul Eater,噬魂,Dealing a KO heals 1/4 of this Pokémon's max HP.,"击倒对手时,回复该宝可梦1/4的最大HP.",,"当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+332,014C,Soul Linker,灵魂链接,"Enemies take all the damage they deal, same for this Pokémon.","攻击者受到对自身造成的所有伤害,自身攻击时也受影响.",,"当使用者受到直接攻击时,对手受到等量伤害.当使用者造成直接攻击伤害时,自身也受到等量伤害.当任意一方濒死、通过痛平分受到伤害或对另一个拥有灵魂链接特性的宝可梦时,此特性不会触发."
+333,014D,Sweet Dreams,美梦,Heals 1/8 of max HP every turn if asleep. Immune to Bad Dreams.,"处于睡眠状态时,每回合回复1/8的最大HP.免疫梦魇.",,"美梦特性在使用者处于睡眠状态或拥有绝对睡眠特性时,每回合结束时回复1/8的最大HP.此外,它免疫梦魇特性的伤害."
+334,014E,Bad Luck,厄运,"Foes can't crit, deal min damage, 5% less acc, & no effect chance.","对手无法会心一击,命中率降低5%,且无法触发追加效果.",,"对手无法造成击中要害,总是造成最低伤害（85%而非85-100%）,无法触发非必定触发的追加效果,并且有5%的几率招式落空."
+335,014F,Haunted Spirit,作祟的魂魄,"When this Pokémon is KO'd, casts a Curse on the attacker.","当该宝可梦被击倒时,对攻击者施加诅咒.",每回合掉1/4血那个,"当被直接攻击击倒时,对攻击者施加诅咒.诅咒每回合造成其最大HP25%的伤害,直到被诅咒的宝可梦替换下场或濒死.幽灵属性的攻击者免疫此诅咒."
+336,0150,Electric Burst,电爆,Electric-type moves deal 1.35x damage but have 10% recoil.,"电属性招式造成1.35倍伤害,但有10%的反伤.",,"电爆使电属性招式威力提升35%,但会造成基于伤害值10%的反伤（最少1点HP）.反伤不会导致使用者濒死."
+337,0151,Raw Wood,原木,Halves dmg taken by Grass moves. Boosts own Grass moves by 1.2x.,受到的草属性伤害减半.自身的草属性招式威力提升1.2倍.,,"受到的草属性攻击伤害降低50%,同时使用者自身的草属性招式威力提升20%.伤害减免与其他来源乘法叠加."
+338,0152,Solenoglyphs,毒牙,Biting moves have a 50% chance to badly poison the target.,啃咬类招有50%几率使目标陷入剧毒状态.,,毒牙特性使所有啃咬类招式在命中时有50%的几率使目标陷入剧毒状态.
+339,0153,Spider Lair,蜘蛛巢,Casts Sticky Web on entry. Lasts 5 turns.,"出场时设置黏黏网,持续5回合.",,"使用者进入战斗时,在对手场上设置黏黏网.持续5回合,使任何替换上场的接地宝可梦速度降低1级.如果对手场上已有黏黏网,则无法激活."
+340,0154,Fatal Precision,致命精准,Super-effective moves never miss and always crit.,效果绝佳的招式必定命中且必定会心一击.,,"效果绝佳的攻击招式必定命中,并且必定造成击中要害."
+341,0155,Fort Knox,坚壁,Blocks most damage boosting and multihit abilities.,阻挡大多数伤害增益和连续攻击特性.,,"免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+342,0156,Seaweed,海草,Takes 1/2 dmg from Fire if Grass. Grass deals x2 dmg to Fire.,"如果自身是草属性,受到的火属性伤害减半.草属性招式对火属性造成2倍伤害.",,"如果使用者是草属性,其受到的火属性攻击伤害减半,并且使用草属性招式对火属性宝可梦造成2倍伤害.伤害减免与其他来源乘法叠加."
+343,0157,Psychic Mind,超能之心,"Boosts Psychic-type moves by 1.2x, or 1.5x when under 1/3 HP.","超能力属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"超能力属性招式威力提升20%,当HP低于1/3时提升50%."
+344,0158,Poison Absorb,毒吸收,"Redirects Poison moves. Absorbs them, healing 25% HP.","吸引毒属性招式.吸收后,回复25%的HP.",,"该宝可梦会吸引毒属性招式,并对其免疫,转而回复最大HP的1/4.此外,在剧毒地形上,每回合回复1/8的最大HP."
+345,0159,Scavenger,拾荒者,Dealing a KO heals 1/4 of this Pokémon's max HP.,"击倒对手时,回复该宝可梦1/4的最大HP.",同331,"当该宝可梦通过直接攻击击败对手时,立即恢复其最大HP的25%."
+346,015A,Twist. Dimension,扭曲空间,"Sets up Trick Room on entry, lasts 3 turns.","出场时设置戏法空间,持续3回合.",,"出场时设置戏法空间,持续3回合."
+347,015B,Multi Headed,多头龙,"Hits as many times, as it has heads.",根据拥有的头数进行多次攻击.,两个头的是1+0.25，三个头的是1+0.2+0.15,"根据头数,每次攻击2-3次.双头宝可梦攻击两次（第一击100%,第二击25%）,三头宝可梦攻击三次（第一击100%,第二击20%,第三击15%）.每次攻击独立判定追加效果（畏缩除外）.可穿透坚壁/奇迹皮肤."
+348,015C,North Wind,北风,3 turns Aurora Veil on entry. Immune to Hail damage.,出场时设置3回合的极光幕.免疫冰雹伤害.,,"进入战斗时设置极光幕,使己方全队受到的物理和特殊伤害减半.极光幕持续3回合,携带光之黏土时为5回合.使用者同时免疫冰雹伤害.如果极光幕已激活,则无法再次触发."
+349,015D,Overcharge,过载,Electric is super effective vs Electric. Can paralyze Electric.,电属性招式对电属性效果绝佳.可以使电属性宝可梦麻痹.,,"使用者的电属性招式对电属性宝可梦变得有效,造成2倍伤害而非0.5倍.同时允许使用者使电属性宝可梦陷入麻痹状态."
+350,015E,Violent Rush,狂暴突袭,Boosts Speed by 50% + Attack by 20% on first turn.,"上场的第一回合,速度提升50%,攻击提升20%.",,"使用者替换上场后的第一回合,获得50%的速度加成和20%的攻击加成."
+351,015F,Flaming Soul,烈焰之魂,Fire-type moves get +1 priority at max HP.,"HP全满时,火属性招式获得+1优先度.",,"当HP全满时,赋予火属性招式+1优先度."
+352,0160,Sage Power,贤者之力,Ups Special Attack by 50% and locks move.,"特攻提升50%,但锁定招式.",,"特攻能力值提升50%,但会将使用者锁定在首次选择的招式上,直到替换下场."
+353,0161,Bone Zone,骨区,Bone moves ignore immunities and deal 2x on not very effective.,"骨类招式无视免疫,且对效果不好的目标造成2倍伤害.",,"骨类招式可以穿透免疫造成正常伤害,而对被抵抗的目标则造成2倍伤害.普通/效果绝佳的伤害保持不变."
+354,0162,Weather Control,天气控制,Negates all weather based moves from enemies.,使来自敌人的所有基于天气的招式无效.,天气还在，但招式无效，比方说沙暴该砸还是砸，叶绿素速度照样加,免疫基于天气的招式：打雷、日光束/刃、暴风、暴风雪、银色旋风、气象球、所有风暴类招式（不包括岩浆风暴、飞叶风暴或钻石风暴）、绝对零度和誓约招式.不阻止天气的设置或其伤害.
+355,0163,Speed Force,速度之力,Contact moves use 20% of its Speed stat additionally.,接触类招式额外使用20%的速度能力值计算伤害.,围巾，顺风无法加成，高速移动可以加成,"使用接触类招式时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+356,0164,Sea Guardian,海洋守护者,Ups highest stat by +1 on entry when it rains.,"在雨天出场时,自身最高的能力值提升1级.",,"在雨天天气下进入战斗时,海洋守护者使你最高的能力值提升1级.适用于任何形式的雨天.每次替换上场触发一次."
+357,0165,Molten Down,熔解,Fire-type is super effective against Rock-type.,火属性招式对岩石属性效果绝佳.,,"熔解使火属性招式对岩石属性宝可梦变得效果绝佳,而非被抵抗."
+358,0166,Hyper Aggressive,极度好战,Moves hit twice. Second hit does 25% damage.,招式攻击两次.第二击造成25%伤害.,,"使所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）."
+359,0167,Flock,鸟群,"Boosts Flying-type moves by 1.2x, or 1.5x when below 1/3 HP.","飞行属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"飞行属性招式威力提升20%,当HP低于1/3时提升50%."
+360,0168,Field Explorer,旷野探险家,"Boosts field moves by 50%. Cut, Surf, Strength etc.",野外场地招式威力提升50%.如居合劈、冲浪、怪力等.,,将在野外可以使用的招式威力提升50%.包括所有秘传技招式、（意念头锤/）头锤、冰旋、觉醒力量/自然之力和挖洞.
+361,0169,Striker,前锋,Boosts the power of kicking moves by 1.3x.,踢腿类招式的威力提升至1.3倍.,,前锋使所有踢腿类招式的威力提升30%.包括火焰球.
+362,016A,Frozen Soul,冰霜之魂,Ice-type moves get +1 priority at max HP.,"HP全满时,冰属性招式获得+1优先度.",,"冰霜之魂在使用者HP全满时,赋予所有冰属性招式+1优先度."
+363,016B,Predator,掠食者,Dealing a KO heals 1/4 of this Pokémon's max HP.,"击倒对手时,回复该宝可梦1/4的最大HP.",同331,"当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+364,016C,Looter,掠夺者,Dealing a KO heals 1/4 of this Pokémon's max HP.,"击倒对手时,回复该宝可梦1/4的最大HP.",同331,"当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+365,016D,Lunar Eclipse,月食,Fairy & Dark gains STAB. Hypnosis has 1.5x accuracy.,妖精和恶属性招式获得本系加成.催眠术命中率提升至1.5倍.,,"月食使妖精属性和恶属性招式获得本系加成,无论使用者的属性如何.将催眠术的命中率提升至90%."
+366,016E,Solar Flare,太阳耀斑,Chloroplast + Immolate.,叶绿体 + 献祭.,268+279,"将一般属性招式转变为火属性并获得火属性本系加成.如果使用者是火属性,其火属性招式有10%的几率造成灼伤.此外,为使用者的招式激活所有与大晴天相关的效果."
+367,016F,Power Core,动力核心,The Pokémon uses +20% of its Defense or SpDef during moves.,"该宝可梦在使用招式时,额外使用20%的防御或特防.",突击背心无法加成,"计算伤害时,物理攻击额外增加20%的防御能力值,特殊攻击额外增加20%的特防能力值."
+368,0170,Sighting System,瞄准系统,Moves always hit. Moves last for moves less than 80% accuracy.,招式必定命中.基础命中率低于80%的招式优先度降低.,,"瞄准系统确保所有招式无视命中判定,必定命中.基础命中率低于80%的招式获得-3优先度."
+369,0171,Bad Company,坏伙伴,Not implemented right now. Has no effect.,目前未实装.无效果.,,未实装.
+370,0172,Opportunist,机会主义者,+1 priority vs foes below 1/2 max HP.,对HP低于1/2的对手获得+1优先度.,这特性和原版跟风同名，但效果完全不一样，原版跟风作者改了名见555,"当目标对手的HP为50%或以下时,赋予所有招式+1优先度."
+371,0173,Giant Wings,巨翼,"Boosts the power of wing, wind or air-based moves by 1.3x.",翅膀、风或空气类招式威力提升至1.3倍.,,巨翼使所有翅膀、风和空气类招式的威力提升30%.
+372,0174,Momentum,动量,Contact moves use the Speed stat for damage calculation.,接触类招式使用速度能力值进行伤害计算.,努力可以完全不加攻击，还不吃威吓恐吓。围巾，顺风无法加成，高速移动可以加成,接触类招式使用速度能力值而非攻击/特攻进行伤害计算.讲究围巾的效果不影响此特性.
+373,0175,Grip Pincer,钳制,50% chance to trap. Then ignores Defense & accuracy checks.,50%几率束缚对手.之后无视防御和命中判定.,,"接触类招式有50%几率束缚目标（如捆绑）,防止其逃跑或替换.对抗被束缚的目标时,使用者的招式无视其防御能力变化并必定命中.被束缚的目标每回合损失1/8的最大HP.束缚持续4-5回合（携带紧绑钩爪时为7回合）."
+374,0176,Big Leaves,大叶子,Chloroplast + Chlorophyll + Leaf Guard + Harvest + Solar Power.,叶绿体 + 叶绿素 + 叶子防守 + 收获 + 太阳之力.,5合1，突出一个多多益善,"为使用者的招式激活所有与大晴天相关的效果.在大晴天下速度提升50%.在大晴天下治愈异常状态.每回合结束时有50%几率回收树果,大晴天下为100%.在大晴天下,自身最高的攻击能力值提升50%."
+375,0177,Precise Fist,精密之拳,Punching moves get +1 crit and 5x effect chance.,"拳类招式+1击中要害率,且追加效果几率变为5倍.",,"拳类招式获得+1击中要害率,并且其原本的追加效果触发几率变为5倍."
+376,0178,Deadeye,神枪手,Arrow & cannon moves never miss. Crits hit weakest defense.,箭矢和炮类招式必定命中.会心一击攻击最弱的防御.,,"使用者无法miss箭矢类攻击和炮类招式（与超级发射器招式不同,包括被防弹阻挡的招式）.此外,当造成击中要害时,攻击目标改为对手较弱的防御能力值."
+377,0179,Artillery,炮术,Mega Launcher moves always hit and hit both foes.,"超级发射器类招式必定命中,且同时攻击双方.",,"超级发射器类招式必定命中,并同时攻击双方对手.所有脉冲、波导、波动、光环及其他爆裂相关招式无法miss."
+378,017A,Amplifier,扩音器,Ups sound moves by 30% and makes them hit both foes.,"声音类招式威力提升30%,并同时攻击双方.",,"扩音器使声音类招式威力提升30%.单体目标的声音类招式变为范围攻击,同时攻击双方对手.连续攻击招式不会变为范围攻击."
+379,017B,Ice Dew,冰露,"Redirects Ice moves. Absorbs them, ups highest Atk.",吸引冰属性招式.吸收后提升自身最高的攻击能力.,,"将所有冰属性招式吸引到该宝可梦身上并吸收.吸收冰属性招式时,提升攻击或特攻中较高的一项1级."
+380,017C,Sun Worship,太阳崇拜,Ups highest stat by +1 on entry when sunny.,"在大晴天出场时,自身最高的能力值提升1级.",,"在大晴天天气下进入战斗时,使使用者最高的能力值提升1级."
+381,017D,Pollinate,授粉,Normal moves becomes Bug. Immune to powder if Bug-type.,"一般属性招式变为虫属性.如果是虫属性,则免疫粉末类招式.",,"将该宝可梦的一般属性招式变为虫属性.如果该宝可梦是虫属性,它免疫粉末类招式；否则,它获得虫属性的本系加成."
+382,017E,Volcano Rage,火山之怒,Triggers 50 BP Eruption after using a Fire-type move.,"使用火属性招式后,触发威力50的喷火.",,"使用任何火属性招式后,火山之怒会触发一次后续的喷火攻击,基础威力为50.伤害根据使用者当前的HP比例变化,满HP时威力为50."
+383,017F,Cold Rebound,冰冷反击,Attacks with Icy Wind when hit by a contact move.,"受到接触招式攻击时,以冰息进行反击.",,"受到任何接触招式攻击时,冰冷反击会以冰息（60威力）进行反击,并降低攻击者的速度1级."
+384,0180,Low Blow,下流打击,Attacks with 40BP Feint Attack on switch-in.,"出场时,使用威力40的暗算.",60威力恶系招式,"下流打击在替换上场时,使用威力40的暗算攻击随机一名对手.暗算是恶属性物理攻击,必定命中."
+385,0181,Nosferatu,诺斯费拉图,Contact moves do +20% damage and heal 1/2 of damage dealt.,"接触类招式造成+20%伤害,并回复伤害量的一半HP.",,"造成接触的招式额外造成20%的伤害,并使使用者回复伤害量的一半HP.此回复在连续攻击的所有命中之后以及反伤结算之后生效."
+386,0182,Spectralize,幽灵魂,Normal moves become Ghost. Ghost moves are empowered.,幽灵魂化 + 30%几率使对手陷入剧毒.,393,"将使用者的一般属性招式变为幽灵属性.如果使用者是幽灵属性,其幽灵属性招式有10%的几率造成恐惧；否则,它获得幽灵属性的本系加成.其所有招式（包括变化招式）有30%的几率使目标陷入剧毒."
+387,0183,Spectral Shroud,自律,Spectralize + 30% chance to badly poison the foe.,可以在暴走时替换下场.不会混乱或被威吓.,逆鳞这一类,"使用任何电属性招式后,雷召会自动触发一次后续的天谴攻击,威力为20%（基础威力24）这个物理电属性攻击命中率为80%,有20%的几率使目标麻痹,并施加击落效果使飞行属性宝可梦接地."
+388,0184,Discipline,雷召,Can switch while rampaging. Can't be confused or intimidated.,"使用电属性招式时,以20%的威力触发天谴.",电力猛击120威力物理电属性招式，20%概率麻痹,"对水属性宝可梦造成1.5倍伤害,并穿透防御屏障（光墙、反射壁、极光幕）/替身."
+389,0185,Thundercall,海洋霸主,Triggers Smite at 20% power when using an Electric move.,对水属性宝可梦造成50%额外伤害 + 穿透特性.,151,强大之角使角类和钻类攻击的威力提升30%.
+390,0186,Marine Apex,强大之角,50% more damage to Water-types + Infiltrator.,角类和钻类招式威力提升至1.3倍.,,"每次成功的角类攻击命中后,使用者的攻击能力值提升1级."
+391,0187,Mighty Horn,硬化鞘,Boosts the power of horn and drill-based by 1.3x.,"使用角类招式时,攻击提升1级.",,使受到的物理和特殊伤害降低35%.与其他减伤来源乘法叠加.
+392,0188,Hardened Sheath,极地毛发,Ups Attack by +1 when using horn moves.,受到的物理和特殊招式伤害减弱35%.,,"将所有一般属性招式转变为幽灵属性,并为幽灵属性招式提供本系加成,无论使用者的属性如何."
+393,0189,Arctic Fur,幽灵魂化,Weakens incoming physical and special moves by 35%.,一般属性招式变为幽灵属性.幽灵属性招式得到强化.,,"将使用者的一般属性招式变为幽灵属性.如果使用者是幽灵属性,其幽灵属性招式有10%的几率造成恐惧；否则,它获得幽灵属性的本系加成."
+394,018A,Lethargy,昏昏欲睡,Damage drops 20% each turn to 20%. Resets on switch-in.,"每回合伤害降低20%,最多降至20%.替换上场时重置.",没有精灵有这个特性，明显的负面特性，以前版本作者设计给mega请假王的,"每回合开始时,使用者的总伤害降低20%,最多降低80%.替换后重置."
+395,018B,Iron Barrage,钢铁弹幕,Mega Launcher + Sighting System.,超级发射器 + 瞄准系统.,178+368,"使脉冲、波导、波动和光环类招式威力提升30%.确保所有招式无视命中判定,必定命中.基础命中率低于80%的招式获得-3优先度."
+396,018C,Steel Barrel,钢桶,"Immune to recoil damage, but not immune to Explosion/crash dmg.","免疫反伤伤害,但不免疫大爆炸/撞击伤害.",同69(坚硬脑袋),防止所有来自自身招式或特性的反伤伤害.同时免疫因愤怒产生的反伤伤害无法防止撞击伤害或大爆炸/自爆的伤害.
+397,018D,Pyro Shells,火焰弹,Triggers 50 BP Outburst after using a Mega Launcher move.,"使用超级发射器类招式后,触发威力50的迸裂拳.",迸发：250威力一般系特殊招式(特攻大爆炸)，当然这个特性不会自己给自己炸了,"火焰弹在任何超级发射器强化的招式后触发一个威力50的一般属性迸裂拳.迸裂拳没有追加效果,且攻击场上所有周围的宝可梦."
+398,018E,Fungal Infection,真菌感染,Contact moves inflict Leech Seed on the target.,接触类招式对目标施加寄生种子.,,"使用接触类招式时,对目标施加寄生种子,每回合结束时吸取目标1/8的最大HP."
+399,018F,Parry,招架,Counters contact with Mach Punch. Takes 20% less damage.,以音速拳反击接触攻击.受到的伤害降低20%.,,所有受到的伤害降低20%.与其他减伤来源乘法叠加.以威力20的音速拳反击接触类招式.
+400,0190,Scrapyard,废料场,Sets a layer of Spikes when hit (contact move).,"受到接触招式攻击时,设置一层撒菱.",,"当使用者成功被接触招式命中时,在对手场上设置一层撒菱.每层使替换上场的接地宝可梦分别损失最大HP的12.5%、16.7%或25%（对应1-3层）连续攻击招式的每一次命中都会设置一层."
+401,0191,Loose Quills,松散尖刺,Sets a layer of Spikes when hit (contact move).,"受到接触招式攻击时,设置一层撒菱.",,"当使用者成功被接触招式命中时,在对手场上设置一层撒菱.每层使替换上场的接地宝可梦分别损失最大HP的12.5%、16.7%或25%（对应1-3层）连续攻击招式的每一次命中都会设置一层."
+402,0192,Toxic Debris,毒棘,Sets a layer of Toxic Spikes when hit by contact moves.,"受到接触招式攻击时,设置一层毒菱.",,"毒棘特性在受到接触招式攻击时,自动在对手场上设置一层毒菱.每层会使替换上场的接地宝可梦中毒：一层为普通中毒,两层为剧毒.连续攻击招式的每一次命中都会设置一层."
+403,0193,Roundhouse,回旋踢,Kicks always hit. Damages foes' weaker defenses.,踢腿招式必定命中.攻击对手较弱的防御.,比方40物防50特防，就按40打物理伤害，反之打特殊伤害,"回旋踢使所有踢腿类招式必定命中,并且攻击目标改为对手较弱的防御能力值."
+404,0194,Mineralize,矿化,Normal moves become Rock. Rock moves are empowered.,一般属性招式变为岩石属性.岩石属性招式得到强化.,,"将使用者的一般属性招式变为岩石属性.如果使用者是岩石属性,其岩石属性招式有10%的几率造成流血；否则,它获得岩石属性的本系加成."
+405,0195,Loose Rocks,松散岩石,Deploys Stealth Rocks when hit by contact.,"受到接触攻击时,设置隐形岩.",,"当使用者受到任何接触招式攻击时,在对手场上设置隐形岩.隐形岩在对手替换上场时造成其最大HP1/8的伤害.视为岩石属性伤害,受属性相性影响."
+406,0196,Spinning Top,旋转陀螺,Fighting moves up speed +1 and clear hazards.,"使用格斗属性招式时,速度提升1级并清除场地状态.",,"旋转陀螺在使用格斗属性招式时,使使用者速度提升1级,并移除己方场上的所有入场陷阱."
+407,0197,Retribution Blow,报应打击,Uses Hyper Beam if any foe uses an stat boosting move.,"如果有对手使用能力提升招式,则使用破坏光线.",,"自动对提升能力的对手使用威力150的破坏光线.触发的破坏光线没有休息回合,允许下回合正常行动."
+408,0198,Fearmonger,恐惧散布者,Intimidate + Scare; 10% chance to fear with contact moves.,威吓 + 惊吓 + 接触类招式有10%几率造成恐惧.,得主动打对方才行,"恐惧散布者在出场时降低所有对手宝可梦的攻击和特攻1级.此外,使用接触类招式命中时,有10%的几率造成恐惧."
+409,0199,King's Wrath,王之怒,Lowering any stats on its side raises Atk and Def.,"己方场上任何能力被降低时,提升攻击和防御.",主动降属性不触发比如破壳,"王之怒在使用者或其同伴的能力被降低时触发,立即提升使用者的攻击和防御1级.不会因自身引起的能力降低而激活."
+410,019A,Queen's Mourning,后之哀,Lowering any stats on its side raises SpAtk and SpDef.,"己方场上任何能力被降低时,提升特攻和特防.",主动降属性不触发比如破壳,"后之哀在使用者或其同伴的能力被降低时触发,立即提升使用者的特攻和特防1级.不会因自身引起的能力降低而激活."
+411,019B,Toxic Spill,毒溢,Non-Poison-types take 1/8 dmg every turn when on field.,"在场时,非毒属性宝可梦每回合损失1/8的HP.",,"毒溢特性每回合伤害所有非毒属性宝可梦,造成其1/8的HP损失.拥有毒疗特性的宝可梦反而会回复.使用者下场时效果消失."
+412,019C,Desert Cloak,沙漠披风,Protects its side from status and secondary effects in sand.,"在沙暴中,保护己方不受异常状态和追加效果影响.",,"在沙暴生效时,所有同伴免疫异常状态和来自敌人的招式追加效果."
+413,019D,Draconize,龙化,Normal moves become Dragon. Dragon moves are empowered.,一般属性招式变为龙属性.龙属性招式得到强化.,,"将使用者的一般属性招式变为龙属性.如果使用者是龙属性,其龙属性招式对妖精属性造成普通伤害；否则,它获得龙属性的本系加成."
+414,019E,Pretty Princess,漂亮公主,Does 50% more damage if the target has any lowered stat.,"如果目标有任何能力降低,造成50%额外伤害.",,漂亮公主使使用者对拥有任何负向能力等级的目标造成50%额外伤害.
+415,019F,Self Repair,自我修复,Self Sufficient + Natural Cure.,自给自足 + 自然回复.,307+30,"每回合结束时回复1/16的最大HP,并且替换下场时治愈所有异常状态."
+416,01A0,Atomic Burst,原子爆炸,Electromorphosis + Galvanize.,电力转换 + 电气皮肤.,触发的破坏光线不会硬直一回合,"受到任何招式攻击时,使用者会进入充电状态,使下一次电属性招式威力加倍.将所有一般属性招式转变为电属性招式,并为电属性招式提供本系加成.如果使用者是电属性,其电属性招式有10%的几率造成麻痹."
+417,01A1,Hellblaze,地狱烈焰,"Boosts Fire-type moves by 1.3x, or 1.8x when below 1/3 HP.","火属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍.",,"火属性招式威力提升30%,当HP低于1/3时提升80%."
+418,01A2,Riptide,激流,"Boosts Water-type moves by 1.3x, or 1.8x when below 1/3 HP.","水属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍.",,"水属性招式威力提升30%,当HP低于1/3时提升80%."
+419,01A3,Forest Rage,森林之怒,"Boosts Grass-type moves by 1.3x, or 1.8x when below 1/3 HP.","草属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍.",,"草属性招式威力提升30%,当HP低于1/3时提升80%."
+420,01A4,Primal Maw,原始颚,Biting moves hit twice. 2nd hit does 0.4x damage.,啃咬类招式攻击两次.第二击造成0.4倍伤害.,,"原始颚使所有啃咬类招式攻击两次.第一击造成100%伤害,第二击造成40%伤害.每次攻击独立判定追加效果（畏缩除外）."
+421,01A5,Sweeping Edge,横扫利刃,Keen Edge moves always hit and hit both foes.,"锐利刀刃类招式必定命中,且同时攻击对方全体.",,"横扫利刃使所有锐利刀刃类招式必定命中,并在双打对战中同时攻击双方对手.连续攻击招式对每个目标只攻击一次."
+422,01A6,Gifted Mind,天赋异禀,Nulls Psychic weakness; status moves always hit.,"消除超能力弱点,变化招式必定命中.",,"天赋异禀使该宝可梦免疫恶、幽灵和虫属性招式,同时其使用的所有变化招式必定命中.此免疫效果无视奇妙空间."
+423,01A7,Hydro Circuit,水力循环,Electric moves +50%; Water moves siphon 25% damage.,"电属性招式+50%威力,水属性招式吸取25%的伤害.",,"水力循环使电属性招式威力提升50%,并使用水属性招式时,回复造成伤害25%的HP."
+424,01A8,Equinox,昼夜平分,Boosts Atk or SpAtk to match the higher value.,每次攻击使用攻击或特攻中较高的能力值.,比方100攻击20特攻，就变成都是100，只加一边努力也能完美双刀,"昼夜平分为每次攻击选择较高的进攻能力值.如果攻击较高,物理和特殊招式都使用攻击能力值；如果特攻较高,则都使用特攻能力值."
+425,01A9,Absorbant,吸收,Drain moves recover +50% HP & apply Leech Seed.,"吸取类招式回复量+50%,并施加寄生种子.",,"吸收特性使吸取类招式的HP回复量提升50%,并在命中时对目标施加寄生种子,每回合结束时吸取目标1/8的最大HP."
+426,01AA,Clueless,无知的,"Negates Weather, Rooms and Terrains.","在场时,无效化天气、房间和场地效果.",,"无知的特性在该宝可梦在场时,无效化所有天气、场地和房间效果."
+427,01AB,Cheating Death,逃过一死,Gets no damage for the first two hits.,前两次受到的伤害无效.,,"使前两次受到的伤害变为0.招式仍会连接且附加效果生效,但伤害变为0."
+428,01AC,Cheap Tactics,廉价战术,Attacks with Scratch on switch-in.,"出场时,使用抓进行攻击.",抓：40威力一般属性物理招式,"廉价战术在替换上场时,使用抓（40威力,一般属性物理招式）攻击随机一名对手."
+429,01AD,Coward,懦夫,Sets up Protect on switch-in. Only works once.,出场时设置保护.仅生效一次.,,懦夫特性在出场时自动激活保护每场战斗仅生效一次.
+430,01AE,Volt Rush,伏特冲击,"At full HP, gives +1 priority to its Electric-type moves.","HP全满时,电属性招式获得+1优先度.",,"伏特冲击在该宝可梦HP全满时,赋予所有电属性招式+1优先度."
+431,01AF,Dune Terror,沙丘恐惧,Sand reduces damage by 35%. Boosts Ground moves by 20%.,"在沙暴中,受到的伤害降低35%,地面属性招式威力提升20%.",,"沙丘恐惧在沙暴中使受到的伤害降低35%,并使地面属性招式威力提升20%.伤害减免与其他来源乘法叠加."
+432,01B0,Infernal Rage,地狱之怒,Fire-type moves are boosted by 35% with 5% recoil.,"火属性招式威力提升35%,但有5%的反伤.",,"地狱之怒使火属性招式威力提升35%,但使用后会造成5%的反伤.反伤基于造成的伤害量计算,最少损失1HP.此反伤不会导致使用者濒死."
+433,01B1,Dual Wield,双持,Mega Launcher and Keen Edge moves hit twice for 70% damage.,超级发射器和锐利刀刃类招式攻击两次并且每次造成70%伤害.,相当于+50%,"通常只命中一次的超级发射器和锐利刀刃类招式现在会攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+434,01B2,Elemental Charge,元素充能,20% chance to BRN/FRZ/PARA with respective types.,"根据招式属性,有20%几率造成灼伤/冻伤/麻痹.",,"元素充能使攻击招式有20%的几率根据招式属性施加异常状态：电属性招式造成麻痹,火属性招式造成灼伤,冰属性招式造成冻伤."
+435,01B3,Ambush,埋伏,Guaranteed critical hit on first turn.,上场的第一回合必定会心一击.,,"埋伏特性在使用者替换上场后或战斗开始的第一回合,必定造成击中要害."
+436,01B4,Atlas,阿特拉斯,Sets Gravity on entry for 8 turns.,"出场时设置重力,持续8回合.",,"阿特拉斯在进入战斗时设置重力,持续8回合.重力防止飞翔等飘浮招式,使所有宝可梦接地从而易受地面属性招式、沙穴和场地状态影响使重力苹果的伤害提升50%,并使招式命中率提升66%."
+437,01B5,Radiance,光辉,+20% accuracy; Dark moves fail when user is present.,"+20%命中率,该宝可梦在场时恶属性招式失效.",,"光辉使使用者的所有招式命中率提升20%,并使恶属性招式失效."
+438,01B6,Jaws of Carnage,杀戮之颚,Devours 1/2 of the foe when defeating it.,"击败对手时,吞噬其1/2的HP.",,"使用啃咬类招式击败对手时,回复50%最大HP；使用其他招式击败时,回复25%.仅当通过直接攻击击倒目标时触发."
+439,01B7,Angel's Wrath,天使之怒,Drastically alters all of the users moves.,大幅改变使用者的所有招式.,彩蛋精灵,"撞击进行再来一次+封印,吐丝设置所有场地状态,变硬全能力提升1级,铁壁变为王者盾牌并降低所有能力,电网束缚目标,虫咬回复造成的伤害,毒针造成剧毒且对钢属性效果绝佳.所有强化后的攻击获得大幅伤害加成."
+440,01B8,Prismatic Fur,棱彩毛发,Color Change + Protean + Fur Coat + Ice Scales.,变色 + 变幻自如 + 毛皮大衣 + 冰鳞粉.,彩蛋精灵 16+168+169+246,"受到攻击前变为抵抗的属性,攻击前变为与招式匹配的属性,物理伤害减半,特殊伤害减半.伤害减免与其他来源乘法叠加."
+441,01B9,Shocking Jaws,电击之颚,Biting moves have 50% chance to paralyze the target.,啃咬类招式有50%几率使目标麻痹.,,电击之颚使所有啃咬类招式在命中时有50%的几率使目标陷入麻痹状态.连续攻击的每一击都会独立判定.
+442,01BA,Fae Hunter,妖精猎人,Deals 1.5x damage to Fairy. Takes 0.5x damage from Fairy.,对妖精属性宝可梦造成1.5倍伤害.受到妖精属性宝可梦攻击伤害减半.,,"对妖精属性宝可梦造成1.5倍伤害,并且受到妖精属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+443,01BB,Gravity Well,引力井,Sets Gravity on entry for 5 turns.,"出场时设置重力,持续5回合.",,"在进入战斗时设置重力,持续5回合.重力防止飞翔等飘浮招式,使所有宝可梦接地从而易受地面属性招式、沙穴和场地状态影响,使重力苹果的伤害提升50%,并使招式命中率提升66%."
+444,01BC,Evaporate,蒸发,Takes no damage and sets Mist if hit by water.,受到水属性攻击时不受伤害并设置白雾.,,"蒸发特性使受到的水属性招式伤害无效,并在受到水属性招式攻击时,为己方场上设置持续5回合的白雾.白雾保护全队免受能力降低,包括自身引起的降低."
+445,01BD,Lumberjack,伐木工,Deals 1.5x damage to Grass. Takes 0.5x damage from Grass.,"对草属性宝可梦造成1.5倍伤害.受到草属性宝可梦攻击时,伤害减半.",,"对草属性宝可梦造成1.5倍伤害,并且受到草属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+446,01BE,Well Baked Body,好烤的身体,Boosts Defense sharply instead of being hit by Fire-type moves.,"受到火属性招式攻击时,大幅提升防御而非受到伤害.",,"好烤的身体使该宝可梦免疫火属性招式,并在受到火属性攻击时,防御能力值提升2级."
+447,01BF,Furnace,熔炉,User gains +2 Speed when when hit by rocks.,受到岩石属性招式或出场有隐形岩时速度提升2级.,,"熔炉特性在受到岩石属性招式攻击时,或在存在隐形岩的情况下替换上场时,速度能力值提升2级."
+448,01C0,Electromorphosis,电力转换,Charges up when getting hit.,受到攻击时进入充电状态.,,"受到任何招式攻击时,使用者会进入充电状态,使下一次电属性招式威力加倍.充电状态在使用一次电属性招式后消耗."
+449,01C1,Rocky Payload,岩石载荷,Boosts the power of Rock-type and throwing moves by 1.5x.,岩石属性和投掷类招式威力提升至1.5倍.,额外还加成了投类招式,岩石载荷使岩石属性和投掷类招式威力提升50%.投掷类招式包括投球、投蛋、岩崩、击落、投掷、岩石炮、重力苹果和星碎.
+450,01C2,Earth Eater,食土,Heals 25% of max HP when hit by a Ground move.,"受到地面属性招式攻击时,回复25%的最大HP.",,"食土特性在受到地面属性招式攻击时,为该宝可梦回复其最大HP的25%."
+451,01C3,Lingering Aroma,余香,"If hit, makes the attacker's ability Lingering Aroma.","受到接触攻击时,使攻击者的特性变为余香.",,"余香特性在受到接触招式攻击时,将攻击者的特性（非先天特性）改变为余香."
+452,01C4,Fairy Tale,童话,Adds Fairy type on entry.,出场时添加妖精属性.,,"进入战斗时,为使用者的当前属性添加妖精属性.即使失去此特性,添加的妖精属性在替换下场前依然保留."
+453,01C5,Raging Moth,暴怒飞蛾,"Fire moves hits twice, both hits at 70% power.","火属性招式攻击两次,每次造成70%伤害.",没有精灵有这个特性，可能作者最开始设计给火神虫，然后没用上,"火属性招式攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+454,01C6,Adrenaline Rush,肾上腺素冲击,KOs raise Speed by one stage.,"击倒对手时,速度提升1级.",,"每当使用者通过直接攻击击倒对手时,其速度能力值提升1级."
+455,01C7,Archmage,大法师,30% chance of adding a type related effect to each move.,30%几率给每个招式添加一个与属性相关的效果.,没有精灵有这个特性，感觉是作者造神的产物没用上,"30%几率添加基于属性的效果：毒系：剧毒,冰：冻伤,水：混乱,火：灼伤,电/超能力/妖精/草:设置对应场地,一般:再来一次,岩石:隐形岩,幽灵:封印,恶:流血,格斗:+特攻,飞行:+速度,龙:-攻击,地面:束缚,钢:+防御."
+456,01C8,Cryomancy,冰霜占卜,Moves inflict frostbite 5x as often.,招式的冻伤几率变为5倍.,,冰霜占卜将所有招式的冻伤几率乘以5倍.与冻结点特性不叠加.
+457,01C9,Phantom Pain,幻痛,Ghost-type moves deal normal damage to Normal.,幽灵属性招式对一般属性造成正常伤害.,,"幻痛特性移除一般属性对幽灵属性招式的免疫,允许幽灵属性攻击以1倍效果命中一般属性宝可梦."
+458,01CA,Purgatory,炼狱,"Boosts Ghost-type moves by 1.3x, or 1.8x when below 1/3 HP.","幽灵属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍.",,"幽灵属性招式威力提升30%,当HP低于1/3时提升80%."
+459,01CB,Emanate,散发,Normal moves become Psychic. Psychic moves are empowered.,一般属性招式变为超能力属性.超能力属性招式得到强化.,,"将使用者的一般属性招式变为超能力属性.如果使用者是超能力属性,其超能力属性招式有10%的几率造成混乱；否则,它获得超能力属性的本系加成."
+460,01CC,Kunoichi's Blade,忍者之刃,Technician + Skill Link.,技术高手 + 连续攻击.,没有精灵有这个特性，感觉是作者恶趣味或者小癖好,"使威力小于等于60的招式威力提升1.5倍.对于基础威力可能超过60的招式（如复仇或毒击）,即使当前威力小于等于60,也不会获得提升.使连续攻击招式必定打出5次.对于仅能攻击3次或使用大扫荡时,所有攻击进行一次命中判定."
+461,01CD,Monkey Business,猴子把戏,Uses Tickle on entry.,出场时使用挠痒.,挠痒：降低对方攻击和防御各一段,"猴子把戏在替换上场时自动使用挠痒,降低对手宝可梦的攻击和防御各1级."
+462,01CE,Combat Specialist,格斗专家,Boosts the power of punching and kicking moves by 1.3x.,拳类和踢腿类招式威力提升至1.3倍.,,格斗专家使拳类和踢腿类招式的威力提升30%.
+463,01CF,Jungle's Guard,丛林守卫,Protects Grass-type allies from status and stat drops.,保护草属性同伴不受异常状态和能力降低影响.,,"丛林守卫保护使用者和草属性同伴免受异常状态和能力降低影响,并在大晴天时每回合结束时治愈使用者的异常状态."
+464,01D0,Hunter's Horn,猎人之角,Boost horn moves and heals 1/4 HP when defeating an enemy.,"增强角类招式,击败敌人时回复1/4的HP.",没有精灵有这个特性，估计是作者废案,"使角和钻类攻击的威力提升30%.当使用者通过直接攻击击倒对手时,立即回复其最大HP的25%."
+465,01D1,Pixie Power,小精灵之力,1.2x accuracy. Boosts Fairy moves by 1.33x for all.,1.2倍命中率.所有宝可梦的妖精属性招式威力提升至1.33倍.,,使用者、其同伴以及对手的所有妖精属性招式获得1.33倍的威力提升.此加成会被气场破坏反转.所有招式获得1.2倍命中率提升.
+466,01D2,Plasma Lamp,等离子灯,Boost accuracy & power of Fire & Electric type moves by 1.2x.,火属性和电属性招式的命中率和威力提升1.2倍.,,等离子灯使火属性和电属性招式的威力和命中率各提升20%.
+467,01D3,Magma Eater,岩浆食者,Predator + Molten Down.,掠食者 + 熔解.,363+357,"当使用者通过直接攻击击倒对手时,立即回复其最大HP的25%.火属性招式对岩石属性宝可梦变得效果绝佳,而非被抵抗."
+468,01D4,Super Hot Goo,超热黏胶,Inflicts burn and lowers Speed on contact.,接触时造成灼伤并降低对手速度.,,"接触类招式有30%几率造成灼伤,并且使用者在受到接触类招式攻击时,降低攻击者的速度1级."
+469,01D5,Nika,尼卡,Iron fist + Water moves function normally under sun.,铁拳 + 水属性招式在大晴天下正常运作.,89，没有精灵有这个特性,拳类招式威力提升30%.水属性招式在大晴天时不受威力降低的惩罚.
+470,01D6,Archer,弓箭手,Boosts the power of arrow moves by 1.3x.,箭矢类招式威力提升至1.3倍.,,弓箭手使箭矢类招式的威力提升30%.
+471,01D7,Cold Plasma,冷等离子体,Electric type moves now inflict burn instead of paralysis.,电属性招式现在造成灼伤而非麻痹.,没有精灵有这个特性,"使电属性招式造成灼伤效果,而非麻痹."
+472,01D8,Super Slammer,超级重击者,Boosts the power of hammer and slamming moves by 1.3x.,锤类和重击类招式威力提升至1.3倍.,锤类，招式名有hammer的，撞类，招式名有slam的,超级重击者使锤类招式的威力提升30%.
+473,01D9,Inversion,反转,"Sets up Inverse Room on entry, lasts 3 turns.","出场时设置奇妙空间,持续3回合.",反转场地效果是反转对战；火克水，水克草这样,"出场时设置奇妙空间,持续3回合."
+474,01DA,Accelerate,加速,Moves that need a charge turn are now used instantly.,需要蓄力的招式现在可以立即使用.,,"加速特性消除了两回合招式的蓄力回合要求,使其可以立即使用."
+475,01DB,Frost Burn,霜焰,Triggers 40BP Ice Beam after using a Fire-type move.,"使用火属性招式后,触发威力40的冰冻光束.",没有精灵有这个特性,"使用任何火属性招式后,立即触发一次威力40的冰冻光束."
+476,01DC,Itchy Defense,发痒防御,Causes infestation when hit by a contact move.,"受到接触招式攻击时,引起纠缠不休.",纠缠不休：50(原版20)威力虫系物理招式，使目标束缚，持续4-5回合，不能换下每回合掉1/8HP,"发痒防御在使用者成功被接触招式命中时,以纠缠不休束缚攻击者.被束缚的对手每回合损失1/8的最大HP,持续4-5回合,且无法替换下场."
+477,01DD,Generator,发电机,Charges up once on entry or when electric terrain is active.,出场时或电气场地激活时进入充电状态.,,"发电机在替换上场时使使用者进入充电状态,下一次电属性招式威力加倍.在战斗中电气场地激活时再次充电.充电状态在替换下场或使用一次电属性招式后消失."
+478,01DE,Moon Spirit,月之魂,Fairy & Dark gains STAB. Moonlight recovers 75% HP.,妖精和恶属性招式获得本系加成.月光回复75%的HP.,月光：妖精属性回复招式根据天气不同回复量不一样,"月之魂使所有妖精和恶属性招式获得本系加成,无论使用者的属性如何.使用月光时,回复量提升至最大HP的75%,而非通常的50%或受天气影响的数值."
+479,01DF,Dust Cloud,尘云,Attacks with Sand Attack on switch-in.,出场时使用泼沙.,,"替换上场时对对手使用泼沙,降低其命中率1级."
+480,01E0,Berserker Rage,狂战士之怒,Tipping Point + Rampage.,临界点 + 暴走.,201+275,"受到攻击时,特攻提升1级；受到击中要害时,特攻提升至最大.击倒对手时,立即从休息状态中恢复,允许立即使用破坏光线等招式而无需等待."
+481,01E1,Trickster,诡计师,Uses Disable on switch-in.,出场时使用封印.,,"出场时使用封印.封印阻止目标使用其最后使用的招式,持续4回合.如果目标尚未行动,则失败."
+482,01E2,Sand Guard,沙之守卫,Blocks priority and reduces special damage by 1/2 in sand.,"在沙暴中,阻挡先制招式并使特殊伤害减半.",,"沙之守卫在沙暴中阻挡先制招式,并使特殊攻击伤害降低50%.与其他减伤来源乘法叠加."
+483,01E3,Natural Recovery,自然恢复,Natural Cure + Regenerator.,自然回复 + 再生力.,30+144,"替换下场时,治愈所有异常状态,并回复33%的最大HP."
+484,01E4,Wind Rider,乘风,Increases attack in tailwind or when hit by wind move.,"在顺风中出场或被风类招式命中时,提升攻击能力.",,"在顺风状态下进入战斗时,提升使用者最高的攻击能力值.受到风类招式攻击时,吸收该攻击并使最高的攻击能力值提升1级."
+485,01E5,Soothing Aroma,舒缓香气,Cures party status on entry.,出场时治愈全队的异常状态.,,"出场时,治愈使用者队伍中所有宝可梦（包括场上和后备）的异常状态."
+486,01E6,Prim and Proper,一本正经,Wonder Skin + Cute Charm.,奇迹皮肤 + 迷人之躯.,147+56,"受到接触攻击时（无论攻防）,有50%几率使攻击者着迷（将其攻击和特攻减半）.仅对异性宝可梦生效.免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+487,01E7,Super Strain,超负荷,KOs lower Attack by +1. Take 25% recoil damage.,击倒对手时攻击降低1级.承受25%的反伤.,mega请假王特有的负面特性,"使用者的招式会造成伤害量25%的反伤.当使用者通过直接攻击击倒对手时,其攻击能力值降低1级."
+488,01E8,Tipping Point,临界点,Getting hit raises SpAtk. Critical hits maximize SpAtk.,"受到攻击时,特攻提升1级.受到击中要害时提升至最大.",,"受到攻击时,该宝可梦的特攻提升1级；若受到击中要害的攻击,则特攻能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+489,01E9,Enlightened,开悟,Emanate + Inner Focus.,散发 + 精神力.,459+39,"将所有一般属性招式转变为超能力属性,并为超能力属性招式提供本系加成,无论使用者的属性如何.真气弹必定命中.不受畏缩、威吓或惊吓的影响."
+490,01EA,Peaceful Slumber,安眠,Sweet Dreams + Self Sufficient.,美梦 + 自给自足.,333+307,"美梦特性在使用者处于睡眠状态或拥有绝对睡眠特性时,每回合结束时回复1/8的最大HP.此外,它免疫梦魇特性的伤害.每回合结束时回复1/16的最大HP."
+491,01EB,Aftershock,余震,Triggers Magnitude 4-7 after using a damaging move.,"使用造成伤害的招式后,触发震级4-7.",震级威力：4(10)5(30)6(50)7(70),"在使用造成伤害的招式命中后,使用者紧接着使用震级,威力为10、30、50或70.攻击所有相邻的宝可梦."
+492,01EC,Freezing Point,冻结点,20% chance to get frostbitten on contact and 30% non-contact.,"接触攻击有20%几率造成冻伤,非接触招式30%概率.",,"与该宝可梦发生接触有20%几率造成冻伤.非接触攻击有30%几率.无论攻击方还是被攻击方均会生效.冻伤的宝可梦每回合损失1/8的最大HP,且特攻减半."
+493,01ED,Cryo Proficiency,低温熟练,Freezing Point + triggers hail when hit.,冻结点 + 受到攻击时引发冰雹.,,"与该宝可梦发生接触有30%几率造成冻伤.非接触攻击有20%几率.无论攻击方还是被攻击方均会生效.冻伤的宝可梦每回合损失1/8的最大HP,且特攻减半.受到攻击后设置冰雹.免疫冰雹伤害."
+494,01EE,Arcane Force,神秘力量,All moves gain STAB. Ups “supereffective” by 10%.,所有招式获得本系加成.效果绝佳的招式威力提升10%.,,"使所有招式获得1.5倍的本系加成,无论属性是否匹配.不会增强已经获得本系加成的招式.此外,效果绝佳的招式威力提升10%."
+495,01EF,Doombringer,末日使者,Uses Doom Desire on switch-in.,出场时使用破灭之愿.,破灭之愿：140威力钢属性特攻，未来攻击类型，两回合后生效,"出场时使用破灭之愿.破灭之愿是钢属性招式,基础威力140,两回合后攻击目标,可穿透替身和其他保护效果.一旦施放必定命中,无视命中判定.无法对同一目标施放两次."
+496,01F0,Wishmaker,许愿星,Uses Wish on switch-in. Three uses per battle.,出场时使用祈愿.每场战斗可使用3次.,,"出场时使用祈愿,设置延迟治疗,在下回合为当前同伴回复其最大HP的一半.每场战斗可激活3次."
+497,01F1,Yuki Onna,雪女,Scare + Intimidate. 30% chance to infatuate on hit.,惊吓 + 威吓.攻击时有30%几率造成着迷.,,"出场时降低所有对手宝可梦的攻击和特攻1级.此外,接触攻击时有30%几率使目标着迷（将其攻击和特攻减半）.无论攻击方还是被攻击方均会生效.仅对异性宝可梦生效."
+498,01F2,Suppress,压制,Casts Torment on entry.,出场时使用无理取闹.,无理取闹：阻止对手连续使用相同的招式,"出场时使用无理取闹,阻止对手连续使用相同的招式."
+499,01F3,Refrigerator,冷藏箱,Filter + Illuminate.,过滤 + 发光.,174+35,"受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤来源乘法叠加.使使用者的招式命中率提升1.2倍.攻击命中时,移除目标的幽灵属性."
+500,01F4,Heaven Asunder,天崩地裂,Spacial Rend always crits. Ups crit level by +1.,亚空裂斩必定会心一击.其他招式击中要害率+1.,亚空裂斩：龙属性100威力特殊攻击,"确保亚空裂斩总是造成击中要害,并使所有其他招式的击中要害率提升1级."
+501,01F5,Purifying Waters,净化之水,Hydration + Water Veil.,湿润之躯 + 水幕.,93+41,"出场时制造水流环,每回合回复1/16的HP.免疫灼伤状态,并在替换上场时解除灼伤.下雨天气时,每回合结束时治愈所有异常状态."
+502,01F6,Seaborne,海生,Drizzle + Swift Swim.,降雨 + 悠游自如.,2+33,"出场时降下雨水,持续8回合.下雨天气时,使用者的速度提升50%."
+503,01F7,High Tide,涨潮,Triggers 50 BP Surf after using a Water-type move.,"使用水属性招式后,触发威力50的冲浪.",2.0版本触发的冲浪不打队友，2.1会打队友,"在使用水属性攻击（包括浸水等变化招式）命中后,触发一次威力50的冲浪.冲浪攻击所有相邻的宝可梦."
+504,01F8,Change of Heart,变心,Uses Heart Swap on switch-in.,出场时使用心灵互换.,心灵互换：和对手交换全部的能力变化,出场时使用心灵互换.与正对面的宝可梦交换能力等级无视命中判定.
+505,01F9,Mystic Blades,神秘刀锋,Keen edge moves become special and deal 30% more damage.,"锐利刀刃类招式变为特殊,且伤害提高30%.",类似精神冲击的机制，己方物攻对对方特防进行结算，剑舞有提升，诡计无提升,"锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害."
+506,01FA,Determination,决心,Ups Special Attack by 50% if suffering.,"处于异常状态时,特攻提升50%.",,"当该宝可梦处于任何异常状态时,其特攻能力值提升50%.同时防止冻伤状态降低特攻."
+507,01FB,Fertilize,施肥,Normal moves become Grass. Grass moves are empowered.,一般属性招式变为草属性.草属性招式得到强化.,,"将使用者的一般属性招式变为草属性.如果使用者是草属性,其草属性招式会回复造成伤害10%的HP；否则,它获得草属性的本系加成."
+508,01FC,Pure Love,纯洁的爱,Cute Charm + heal 25% damage vs infatuated.,"迷人之躯 + 攻击着迷目标时,回复25%伤害量.",,"接触攻击时有50%几率使目标着迷（将其攻击和特攻减半）.攻击着迷的目标时,回复造成伤害25%的HP."
+509,01FD,Fighter,斗士,"Boosts Fight.-type moves by 1.2x, or 1.5x when below 1/3 HP.","格斗属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"格斗属性招式威力提升20%,当HP低于1/3时提升50%."
+510,01FE,Mycelium Might,菌丝之力,Status moves ignore immunities but go last.,"变化招式无视免疫,但必定后手.",允许对草系使用孢子，对钢系毒系点毒,"允许变化招式穿透所有免疫和属性抗性,但会强制其在当前优先度层级内最后行动."
+511,01FF,Telekinetic,念动力,Casts Telekinesis on entry.,出场时使用念动力.,意念移物：3回合内使目标进入意念移物状态，浮在空中，容易被击中。场上存在重力时无法点选此招式。此招式无视属性相性。,"出场时使用念动力.所有针对目标的招式无法miss,但目标会免疫地面属性招式和其他需要接地的效果.对扎根或携带黑色铁球的宝可梦无效.在重力下或被击落命中后失效.持续3回合."
+512,0200,Combustion,燃烧,Boosts the power of Fire-type moves by 1.5x.,火属性招式威力提升至1.5倍.,,燃烧使所有火属性招式的威力提升50%.
+513,0201,Blade's Essence,刀刃精华,Keen Edge + Mystic Blades.,锐利刀刃 + 神秘刀锋.,271+505,"锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害.并且为锐利刀刃类招式再提供30%威力加成."
+514,0202,Powder Burst,粉末爆炸,Casts Powder on entry.,出场时使用粉尘.,粉尘：使目标陷入粉尘状态，持续1回合，粉尘状态下使用火属性招式时，受到伤害且招式中止,"出场时使用粉尘,在本回合内覆盖目标.如果被覆盖的目标使用任何火属性招式,其损失25%的最大HP,且粉尘被消耗."
+515,0203,Retriever,寻回犬,Retrieves item on switch-out.,替换下场时取回物品.,,"替换下场时,如果未携带物品,则取回原本携带的物品.必须在未濒死时才能激活."
+516,0204,Monster Mash,怪物混音,Casts Trick-or-Treat on entry.,出场时使用不给糖就捣蛋.,万圣夜：为对方附加幽灵属性，已有则招式失败,"出场时使用不给糖就捣蛋,为目标添加幽灵属性.目标不会从雾中受益.效果持续到目标替换下场."
+517,0205,Two Step,两步,Triggers 50BP Revelation Dance after using a Dance move.,"使用舞蹈类招式后,触发威力50的启示之舞.",觉醒之舞：100(原版90)威力特攻，属性随使用者第一属性变化，不受皮肤特性影响,"在使用舞蹈类招式后,自动接续一次威力50的启示之舞.后续的启示之舞属性与使用者的首要属性一致."
+518,0206,Spiteful,怨恨,Reduces attacker's PP on contact.,"受到接触攻击时,减少攻击者的PP.",,"怨恨特性在受到接触招式攻击时,减少攻击者最后使用招式的PP4点.如果攻击者已无PP或尚未使用任何招式,则失败."
+519,0207,Fortitude,刚毅,Boosts SpDef +1 when hit. Maxes SpDef on crit.,"受到攻击时,特防提升1级.受到击中要害时,特防提升至最大.",,"受到攻击时,该宝可梦的特防提升1级；若受到击中要害的攻击,则特防能力值提升至最大.对于连续攻击招式,每次命中都会触发."
+520,0208,Devourer,吞噬者,Strong Jaw + Primal Maw.,强壮之颚 + 原始颚.,173+420,"使啃咬类招式威力提升30%.所有啃咬类招式攻击两次.第一击造成100%伤害,第二击造成40%伤害.每次攻击独立判定追加效果."
+521,0209,Phantom Thief,幽灵窃贼,Attacks with 40BP Spectral Thief on switch-in.,"出场时,使用威力40的幽灵窃贼进行攻击.",暗影偷盗：幽灵属性90威力物理招式，夺取对方全部属性强化并攻击对方,"替换上场时,使用威力40的幽灵窃贼（幽灵属性招式）攻击正对面的对手.窃取目标所有的正向能力提升（在造成伤害前）,并将其赋予使用者.必定命中且无视替身."
+522,020A,Early Grave,早夭,Ghost-type moves get +1 priority at max HP.,"HP全满时,幽灵属性招式获得+1优先度.",,"当HP全满时,幽灵属性招式获得+1优先度."
+523,020B,Grappler,擒拿手,Trapping moves last 6 turns. Trapping deals 1/6 HP.,"束缚类招式持续6回合,每回合造成1/6的HP伤害.",,"束缚类招式持续6回合而非4-5回合,并且每回合结束时的伤害提升至目标最大HP的1/6."
+524,020C,Bass Boosted,低音增强,Amplifier + Punk Rock.,扩音器 + 庞克摇滚.,378+244,"使声音类招式威力提升30%.单体目标的声音类招式变为范围攻击,同时攻击双方对手.连续攻击招式不会变为范围攻击同时使使用者的声音类招式再获得30%威力提升,并使受到的声音类招式伤害降低50%.伤害减免与其他来源乘法叠加."
+525,020D,Flaming Jaws,烈焰之颚,Biting moves have 50% chance to burn the target.,啃咬类招式有50%几率使目标灼伤.,,啃咬类招式在命中时有50%的几率使目标灼伤.连续攻击的每一击都会独立判定.
+526,020E,Monster Hunter,怪物猎人,Deals 1.5x damage to Dark. Takes 0.5x damage from Dark.,对恶属性宝可梦造成1.5倍伤害.受到恶属性宝可梦攻击伤害减半.,,"对恶属性宝可梦造成1.5倍伤害,并且受到恶属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+527,020F,Crowned Sword,冠之剑,Intrepid Sword + Anger Point.,不挠之剑 + 愤怒穴位.,234+83,"替换上场时,攻击提升1级.受到攻击时,攻击提升1级；受到击中要害时,攻击提升至最大.对于连续攻击招式,每次命中都会触发."
+528,0210,Crowned Shield,冠之盾,Dauntless Shield + Stamina.,不屈之盾 + 持久力.,235+192,"替换上场时,防御提升1级.受到攻击时,防御提升1级；受到击中要害时,防御提升至最大.对于连续攻击招式,每次命中都会触发."
+529,0211,Berserk DNA,狂暴DNA,Sharply ups highest attacking stat but enrages on entry.,"出场时大幅提升最高的攻击能力,但陷入愤怒.",,"出场时,使用者最高的攻击能力值提升2级,但会陷入愤怒,所有攻击附加33%的反伤.即使无法陷入愤怒,能力提升依然生效."
+530,0212,Crowned King,冠之王,Unnerve + Grim Neigh + Chilling Neigh.,紧张感 + 漆黑嘶鸣 +苍白嘶鸣.,127+264+265，不骑马=黑白马一起骑,"阻止所有对手宝可梦消耗其携带的物品.当使用者通过直接攻击击倒对手时,其攻击和特攻能力值各提升1级."
+531,0213,Clap Trap,夹子陷阱,Counters contact with 50BP Snap Trap.,以威力50的夹住反击接触攻击.,捕兽夹：100威力85命中钢属性招式(原版35威力100命中草属性)，使目标陷入束缚状态4-5回合,"当使用者受到接触招式攻击时,以威力50的夹住进行反击.这个钢属性招式会束缚对手4-5回合,每回合造成其1/8的最大HP伤害."
+532,0214,Permanence,恒久,Foes can't heal in any way.,对手无法以任何方式回复HP.,,"阻止所有对手宝可梦通过任何方式回复HP.阻挡回复类招式如自我再生,吸取类招式如吸取拳,剩饭等被动回复和再生力等特性,并阻止树果和其他物品的HP回复."
+533,0215,Hubris,傲慢,KOs raise SpAtk by one stage.,"击倒对手时,特攻提升1级.",,"每当使用者通过直接攻击击倒对手时,其特攻能力值提升1级."
+534,0216,Cosmic Daze,宇宙迷乱,Deals 2x damage vs confused and enraged foes.,对混乱或愤怒的对手造成2倍伤害.,,"对处于混乱或愤怒状态的目标,攻击造成双倍伤害.此外,混乱或愤怒的敌人因此状态伤害自身时,受到的伤害也加倍."
+535,0217,Mind's Eye,心眼,Hits Ghost-type Pokémon. Accuracy can't be lowered.,可以命中幽灵属性宝可梦.命中率不会被降低.,,"心眼允许一般属性和格斗属性招式以普通效果命中幽灵属性宝可梦.此外,此特性防止使用者的命中率被对手的招式或特性降低."
+536,0218,Blood Price,血价,Does 30% more damage but lose 10% HP when attacking.,"造成30%额外伤害,但攻击时损失10%的HP.",,"血价使所有攻击招式威力提升30%,但使用者在攻击命中时损失其最大HP的10%."
+537,0219,Spike Armor,尖刺盔甲,30% chance to bleed on contact or offense.,接触攻击有30%几率造成流血.主动攻击时也生效.,流血状态：每回合掉1/16HP，且造成伤害时不计算能力上升(类似对方纯朴)，剩饭草场之类的无法回复，使用回复类招式才能解除这个状态，且这个回复招式回不了血,"尖刺盔甲无论攻击方还是被攻击方,在使用接触类招式时有30%的几率造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+538,021A,Voodoo Power,巫毒之力,30% chance to bleed when hit by special attacks.,"受到特殊攻击时,有30%几率造成流血.",,"受到特殊攻击时,有30%几率造成流血."
+539,021B,Chrome Coat,铬涂层,"Reduces special damage taken by 40%, but decreases Speed by 10%.","受到的特殊伤害降低40%,但速度降低10%.",,"铬涂层使受到的特殊伤害降低40%,但速度降低10%.同时使使用者的重量变为3倍.伤害减免与其他来源乘法叠加."
+540,021C,Banshee,女妖,Sound moves get a 1.2x boost and become Ghost if Normal.,"声音类招式获得1.2倍威力加成,若为一般属性则变为幽灵属性.",,"使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为幽灵属性."
+541,021D,Web Spinner,吐丝者,Uses String Shot on switch-in.,出场时使用吐丝.,降两级速度还是挺有价值的,"替换上场时使用吐丝,大幅降低所有对手的速度2级."
+542,021E,Showdown Mode,决胜模式,Ambush + Violent Rush.,埋伏 + 狂暴突袭.,435+350,"替换上场后的一回合内,必定造成击中要害,同时攻击提升20%,速度提升50%."
+543,021F,Seed Sower,播种者,Sets Grassy Terrain when hit. Heals party status when it does.,受到攻击时设置青草场地.同时治愈全队异常状态.,额外治愈己方队伍状态,"当该宝可梦受到直接攻击伤害时,激活青草场地,持续5回合（携带场地制造机时为8回合）.同时治愈己方所有宝可梦的异常状态."
+544,0220,Airborne,空中,Boosts own & ally's Flying-type moves by 1.3x.,提升自身和同伴的飞行属性招式威力至1.3倍.,,在战斗中使使用者及其同伴的飞行属性招式威力提升30%.
+545,0221,Parroting,模仿,Copies sound moves used by others. Immune to sound.,模仿其他宝可梦使用的声音类招式.,声音版舞者，还附带送了个隔音,"当场上任何宝可梦使用声音类招式后,该宝可梦会立即使用相同的招式每回合对每个招式触发一次."
+546,0222,Salt Circle,盐圈,Prevents opposing pokemon from fleeing on entry.,出场时阻止对手宝可梦逃走.,等于踩影,"当使用者进入战斗时,阻止所有对手宝可梦逃跑或替换效果持续到使用者下场.强制替换和快速折返等替换招式仍然有效."
+547,0223,Purifying Salt,净化之盐,Immune to status conditions. Take 1/2 damage from Ghost.,免疫异常状态.受到的幽灵属性伤害减半.,,"免疫所有异常状态.此外,受到的幽灵属性伤害降低50%.如果在获得此特性时已处于异常状态,则立即治愈."
+548,0224,Protosynthesis,古代活性,Boosts highest stat in Sun or with Booster Energy.,"在大晴天或携带驱劲能量时,提升最高的能力.",,"在大晴天下,使用者最高的能力值提升（速度提升50%,其他提升30%）.大晴天结束时,如果携带驱劲能量则激活.此效果视为原始能力提升而非能力等级变化.除非被单纯光束或烦恼种子影响,否则无法被复制、压制或替换."
+549,0225,Quark Drive,夸克充能,Boosts highest stat in Electric Terrain or with Booster Energy.,"在电气场地或携带驱劲能量时,提升最高的能力.",,"在电气场地中,使用者最高的能力值提升（速度提升50%,其他提升30%）.场地结束时,如果携带驱劲能量则激活.此效果视为原始能力提升而非能力等级变化.除非被单纯光束或烦恼种子影响,否则无法被复制、压制或替换."
+550,0226,Wind Power,风力发电,Charges up when hit by wind moves or Tailwind starts.,受到风类招式或在顺风中出场时进入充电状态.,,"受到基于风的招式攻击或在顺风中进入战斗时,获得充电状态.充电状态使下一次电属性招式威力加倍,直到使用为止."
+551,0227,Impulse,脉冲,Non-contact moves use the Speed stat for damage.,非接触类招式使用速度能力值进行伤害计算.,努力可以完全不加攻击，还不吃威吓恐吓。围巾，顺风无法加成，高速移动可以加成,非接触类招式使用速度能力值而非攻击/特攻进行伤害计算.讲究围巾的效果不影响此特性.
+552,0228,Terminal Velocity,终端速度,Special moves use 20% of its Speed stat additionally.,特殊招式额外使用20%的速度能力值.,围巾，顺风无法加成，高速移动可以加成,"使用非接触类招式时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+553,0229,Guard Dog,看门狗,Can't be forced out. Inverts Intimidate effects.,不会被强制替换.反转威吓效果.,,"看门狗防止因招式或红牌被强制替换.受到威吓或惊吓影响时,改为提升相应能力1级而非降低."
+554,022A,Anger Shell,愤怒甲壳,Applies Shell Smash when reduced below 1/2 HP.,"当HP降至1/2以下时,触发破壳.",原版是攻击特攻速度上升一段，这里改成破壳是两段,"当HP降至50%以下时,使用者触发破壳效果：攻击、特攻和速度各提升2级,同时防御和特防各降低1级.每场战斗仅触发一次.在连续攻击的最后一击后触发."
+555,022B,Egoist,利己主义者,Raises its own stats when foes raise theirs.,"当对手提升能力时,自身也提升相同的能力.",原版跟风作者改了个名,"利己主义者复制敌人宝可梦获得的能力提升,并应用于自身.不会复制其他利己主义者的增益."
+556,022C,Subdue,压制,Doubles stat drop effects used by this pokemon.,该宝可梦造成的能力降低效果加倍.,,使招式造成的能力降低效果加倍不影响自身引起的能力降低或敌人的特性.
+557,022D,Readied Action,准备就绪,Doubles attack on first turn.,上场的第一回合攻击加倍.,,使用者的攻击能力值在上场的第一回合变为2倍.与其他伤害加成效果乘法叠加.替换下场后再次上场可重新触发.
+558,022E,Stygian Rush,冥河冲刺,Dark-type moves get +1 priority at max HP.,"HP全满时,恶属性招式获得+1优先度.",,"当HP全满时,赋予恶属性招式+1优先度."
+559,022F,Guilt Trip,愧疚,Sharply lowers attacker's Attack and SpAtk when fainting.,"濒死时,大幅降低攻击者的攻击和特攻.",相当于临别礼物,"给予使用者最后一击的攻击者,其攻击和特攻降低2级.仅当因直接伤害而濒死时生效."
+560,0230,Tidal Rush,潮汐冲击,Water-type moves get +1 priority at max HP.,"HP全满时,水属性招式获得+1优先度.",,"当HP全满时,赋予水属性招式+1优先度."
+561,0231,Zero To Hero,从零到英雄,Changes forms after switching out.,替换下场后改变形态.,,"替换下场后,再次上场时变身为英雄形态,持续到战斗结束.无法被压制、交换、复制或覆盖."
+562,0232,Costar,同台共演,Copies its ally's stat changes on switch-in.,出场时复制同伴的能力变化.,,"在双打对战中替换上场时,同台共演复制同伴的所有能力等级变化（包括正向和负向）."
+563,0233,Commander,指挥官,Hops inside an allied Dondozo. Boosts its ally but can't act.,"进入同伴吃吼霸体内,强化同伴但自身无法行动.",,"允许米立龙进入同伴吃吼霸体内并变得无法被选中.吃吼霸获得全能力+2,无法替换或被强制替换,同时米立龙变得无法使用.如果吃吼霸濒死,米立龙重新出现并可正常行动.无法被交换、复制或压制."
+564,0234,Tactical Retreat,战术撤退,Flees when stats are lowered.,能力被降低时逃走.,,"当使用者的任何能力被降低时（包括自身引起的能力降低）,自动替换下场.每场战斗触发一次."
+565,0235,Vengeful Spirit,复仇之魂,Haunted Spirit + Vengeance.,作祟的魂魄 + 复仇.,335+276,"当被直接攻击击倒时,对攻击者施加诅咒.诅咒每回合造成其最大HP25%的伤害,直到被诅咒的宝可梦替换下场或濒死.幽灵属性的攻击者免疫此诅咒.幽灵属性招式威力提升30%,当HP低于1/3时提升50%."
+566,0236,Cud Chew,反刍,Eats berries again at the end of the next turn.,"消耗树果后,在下一回合结束时再次食用.",,"消耗树果时,使用者在下一回合结束时再次食用该树果."
+567,0237,Armor Tail,尾甲,Protects itself and ally from priority moves.,保护自身及同伴免受先制招式影响.,,防止使用者和它的同伴成为优先度大于0的先制招式的目标.
+568,0238,Mind Crunch,精神咬碎,Biting moves use SpAtk and deal 30% more damage.,"啃咬类招式使用特攻,并造成30%额外伤害.",,"啃咬类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+569,0239,Supreme Overlord,至高之主,Each fainted ally increases Attack and SpAtk by 10%.,每只濒死的同伴使攻击和特攻提升10%.,,"己方每有一只濒死的同伴,攻击和特攻提升10%,最多5只同伴可使两项能力各提升50%.与其他伤害加成效果加法叠加."
+570,023A,Ill Will,恶意,Deletes the PP of the move that faints this Pokemon.,删除导致该宝可梦濒死的招式的PP.,,恶意特性会消耗击败使用者的招式的PP.必须是直接攻击.
+571,023B,Fire Scales,火鳞,Halves damage taken by Special moves. Does NOT double SpDef.,受到的特殊招式伤害减半.不会加倍特防.,冰鳞粉改了个名字,所有受到的特殊攻击伤害减半.与其他减伤来源乘法叠加.
+572,023C,Watch Your Step,注意脚下,Spreads two layers of Spikes on switch-in.,出场时撒下两层撒菱.,,出场时撒下两层撒菱.
+573,023D,Rapid Response,快速响应,Boosts Speed by 50% + SpAtk by 20% on first turn.,"上场的第一回合,速度提升50%,特攻提升20%.",,"使用者替换上场后的第一回合,获得50%的速度加成和20%的特攻加成."
+574,023E,Sharp Edges,锋利的边缘,1/6 HP damage when touched.,"受到接触时,攻击者损失1/6的HP.",,"对使用接触类招式的攻击者造成其最大HP1/6的伤害.对于连续攻击招式,每次命中都会触发."
+575,023F,Thermal Exchange,热交换,Ups Attack when hit by Fire. Immune to burn.,"受到火属性攻击时,攻击提升.免疫灼伤.",,"受到火属性招式攻击时,攻击提升1级,并且免疫灼伤状态.攻击提升在受到火属性攻击的伤害后立即生效.对于连续攻击招式,每次命中都会触发."
+576,0240,Good As Gold,黄金之躯,"Immune to all Status moves, unless whole field is affected.","免疫所有变化招式,除非影响全场.",,黄金之躯免疫所有直接以该宝可梦为目标的变化招式.但仍会受到影响全场的黑雾等变化招式影响.
+577,0241,Sharing Is Caring,分享即是关爱,Stat changes are shared between all battlers.,所有参战者的能力变化共享.,,场上所有宝可梦的能力变化（正向和负向）都会在彼此间共享.
+578,0242,Tablets Of Ruin,灾祸之简,Lowers the Attack of other Pokemon by 25%.,降低其他宝可梦的攻击25%.,,"在使用者在场时,降低所有其他宝可梦的攻击能力值25%.多个相同的灾祸特性效果不叠加与攻击降低效果乘法叠加."
+579,0243,Sword Of Ruin,灾祸之剑,Lowers the Defense of other Pokemon by 25%.,降低其他宝可梦的防御25%.,,"在使用者在场时,降低所有其他宝可梦的防御能力值25%.多个相同的灾祸特性效果不叠加与防御降低效果乘法叠加."
+580,0244,Vessel Of Ruin,灾祸之鼎,Lowers the Special Attack of other Pokemon by 25%.,降低其他宝可梦的特攻25%.,,"在使用者在场时,降低所有其他宝可梦的特攻能力值25%.多个相同的灾祸特性效果不叠加与特攻降低效果乘法叠加."
+581,0245,Beads Of Ruin,灾祸之珠,Lowers the Special Defense of other Pokemon by 25%.,降低其他宝可梦的特防25%.,,"在使用者在场时,降低所有其他宝可梦的特防能力值25%.多个相同的灾祸特性效果不叠加与特防降低效果乘法叠加."
+582,0246,Thick Skin,厚皮,Takes 35% less damage from Super-effective moves.,"受到效果绝佳的招式攻击时,伤害降低35%.",,"受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+583,0247,Gallantry,英勇,Gets no damage for first hit.,第一次受到的伤害无效.,,"使第一次受到的伤害变为0.招式仍会连接且附加效果生效,但伤害变为0."
+584,0248,Orichalcum Pulse,绯红脉动,Summons sun on entry. Raises Atk by 1.33x in sun.,"出场时降下大晴天.在大晴天下,攻击提升至1.33倍.",,"出场时降下大晴天,持续8回合（携带炎热岩石时为12回合）.在大晴天下,使用者的攻击能力值提升33%."
+585,0249,Sun Basking,沐日,Blocks priority and reduces physical damage by 1/2 in sun.,"在大晴天下,阻挡先制招式并使物理伤害减半.",,"在大晴天下阻挡先制招式,并使物理攻击伤害降低50%.与其他减伤来源乘法叠加."
+586,024A,Winged King,羽之王,Ups “supereffective” by 33%.,效果绝佳的招式威力提升33%.,,效果绝佳的攻击威力提升33%.
+587,024B,Hadron Engine,强子引擎,Field becomes Electric. +33% SpAtk in Electric Terrain.,"出场时制造电气场地.在电气场地上,特攻提升33%.",,"出场时制造电气场地,持续8回合（携带场地制造机时为12回合）.在电气场地上,使用者的特攻能力值提升33%."
+588,024C,Iron Serpent,钢之蛇,Ups “supereffective” by 33%.,效果绝佳的招式威力提升33%.,,效果绝佳的攻击威力提升33%.
+589,024D,Catastrophe,大灾变,Sun boosts Water. Rain boosts Fire.,"在大晴天下,水属性招式获得雨天加成.在雨天下,火属性招式获得晴天加成.",,"在大晴天下,水属性招式获得通常只在雨天才有的威力提升.在雨天下,火属性招式获得通常只在晴天才有的威力提升."
+590,024E,Blademaster,剑术大师,Sweeping Edge + Keen Edge.,横扫利刃 + 锐利刀刃.,421+271,"使所有锐利刀刃类招式必定命中,并在双打对战中同时攻击双方对手.连续攻击招式对每个目标只攻击一次.同时使锐利刀刃类招式威力提升30%."
+591,024F,Celestial Blessing,天之恩泽,Recovers 1/12 of its health each turn under Misty Terrain.,"在薄雾场地中,每回合回复1/12的HP.",,"在薄雾场地中,每回合结束时回复使用者最大HP的1/12."
+592,0250,Minion Control,仆从控制,Moves hit an extra time for each healthy party member.,"根据队伍中健康的成员数量,招式额外攻击数次.",,"招式每有一个健康的队伍成员（最多6次）,就额外攻击一次.处于濒死或异常状态的成员不计数.第一击造成全额伤害,每次额外攻击造成10%伤害.每次攻击独立判定追加效果."
+593,0251,Molten Blades,熔岩之刃,Keen Edge + Keen Edge moves have a 20% chance to burn.,锐利刀刃 + 锐利刀刃类招式有20%几率造成灼伤.,,"锐利刀刃类招式威力提升30%,并有20%的几率在命中时造成灼伤."
+594,0252,Haunting Frenzy,萦绕狂暴,20% chance to flinch the opponent. +1 speed on kill.,"20%几率使对手畏缩.击倒对手时,速度+1.",,"攻击有20%的几率造成畏缩.通过直接攻击击败敌人时,使用者获得+1速度."
+595,0253,Noise Cancel,噪音消除,Protects the party from sound-based moves.,保护己方队伍免受声音类招式影响.,大号隔音,防止使用者和它的同伴成为声音类招式的目标.
+596,0254,Radio Jam,无线电干扰,Sound-based moves have a 20% chance to inflict disable.,声音类招式有20%几率造成封印效果.,,"使用声音类招式命中后,有20%几率封印目标最后使用的招式,持续4回合."
+597,0255,Olé!,¡Olé!,20% chance to evade single-target moves.,20%几率闪避单体招式.,,使所有以使用者为目标的单体招式的命中率降低20%.热风等范围招式保持正常命中率.
+598,0256,Malicious,恶毒,Lowers the foe's highest Attack and Defense stat.,"出场时,降低对手最高的攻击和防御能力.",威吓promax版，针对性降攻降防,"替换上场时,降低所有对手宝可梦最高的进攻能力（攻击或特攻）和最高的防御能力（防御或特防）各1级."
+599,0257,Dead Power,死亡之力,1.5x Attack boost. 20% chance to curse on contact moves.,攻击提升1.5倍.接触类招式有20%几率施加诅咒.,,"使用者的攻击能力值提升50%,并且接触类招式有20%的几率施加诅咒.诅咒每回合造成目标最大HP25%的伤害,直到被诅咒的宝可梦替换下场或濒死.攻击提升与其他伤害加成效果乘法叠加."
+600,0258,Brawling Wyvern,搏斗飞龙,No guard + Dragon type moves become punching moves.,无防守 + 龙属性招式变为拳类招式.,99,确保该宝可梦使用的所有招式以及所有对该宝可梦使用的招式必定命中.龙属性招式被视为拳类招式.
+601,0259,Mythical Arrows,神话之箭,Arrow moves become special and deal 30% more damage.,"箭矢类招式变为特殊,且造成30%额外伤害.",类似精神冲击的机制，己方物攻对对方特防进行结算，剑舞有提升，诡计无提升,"箭矢类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害."
+602,025A,Lawnmower,割草机,Removes terrain on switch-in. Stat up if terrain removed.,"出场时移除当前场地.若移除场地,则能力提升.",这个Stat up不知道是啥，测试下来清不清除场地没啥区别,"替换上场时,移除任何激活的场地,并获得能力提升：移除青草或电气场地时,防御+1；移除薄雾、精神或剧毒场地时,特防+1."
+603,025B,Flourish,茂密丛林,Boosts Grass moves by 50% in grassy terrain.,"在青草场地中,草属性招式威力提升50%.",,"当青草场地激活时,草属性招式威力提升50%."
+604,025C,Desert Spirit,沙漠之魂,Summons sand on entry. Ground moves hit airborne in sand.,"出场时引发沙暴.在沙暴中,地面属性招式可以命中飘浮的宝可梦.",,"出场时引发沙暴,持续8回合（携带光滑岩石时为12回合）.在沙暴中,使用者的地面属性招式可以穿透免疫,以普通效果命中飘浮的宝可梦.使用者免疫沙暴伤害."
+605,025D,Contempt,蔑视,Unaware + Defiant.,纯朴 + 不服输.,纯朴+半个不服输,"进行伤害计算时,完全无视对手的所有能力等级变化.当该宝可梦的能力被其他宝可梦降低时,其攻击能力提升2级."
+606,025E,Aerialist,空中飞人,Levitate + Flock.,飘浮 + 鸟群.,26+359,"该宝可梦免疫地面属性招式以及其他地面效果,如撒菱和场地状态.飞行属性招式伤害提升25%.此外,飞行属性招式威力再提升20%,当HP低于1/3时提升50%."
+607,025F,Tera Shell,太晶甲壳,All hits will be not very effective while at full HP.,"HP全满时,所有攻击都将变得效果不好.",,"当HP全满时,所有对该宝可梦的攻击都将造成效果不好的伤害,无论属性相性如何.与其他类似特性不同,此效果在连续攻击的每次命中都会激活."
+608,0260,Toxic Chain,毒锁链,Moves have a 30% chance to badly poison the foe.,招式有30%几率使对手陷入剧毒.,,"使用者在使用任何招式命中后,有30%的几率使目标陷入剧毒连续攻击的每一击都会独立判定."
+609,0261,Parasitic Spores,寄生孢子,Deals 1/8 HP damage to non-Ghost. Spreads on contact.,每回合对非幽灵属性造成1/8HP伤害.接触时传播.,类似木乃伊,"出场时获得寄生孢子.每回合,受影响的宝可梦损失1/8最大HP（幽灵属性免疫）.使用接触招式时,将孢子传播给目标.孢子持续到替换下场."
+610,0262,Poison Puppeteer,毒操偶师,Poison also inflicts confusion.,施加中毒时也施加混乱.,,"当使用者施加中毒时,也同时施加混乱.不会因毒菱而触发."
+611,0263,Entrance,着迷,Confusion also inflicts infatuation.,施加混乱时也施加着迷.,,"当使用者使对手混乱时,如果对手是异性,则也使其着迷（将其攻击和特攻减半）."
+612,0264,Rejection,拒绝,Applies Quash on switch-in.,出场时使用延后.,,"出场时使用延后.延后使大多数改变速度的效果无效,包括顺风、戏法空间、正向优先度、速度能力提升等.负向优先度正常工作.持续5回合."
+613,0265,Apple Enlightenment,苹果启示,Fur coat + Magic Guard.,毛皮大衣 + 魔法防守.,169+98,"所有受到的物理攻击伤害减半.与其他减伤来源乘法叠加.同时免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害."
+614,0266,Balloon Bomb,气球炸弹,Aftermath + Inflatable,引爆 + 充气.,106+290没有精灵有这个特性,"当该宝可梦被击倒时,使用威力100的大爆炸或迸裂拳（取两者中威力更高者）.使用爆炸类招式时,必定使目标畏缩.受到任何火属性或飞行属性招式攻击时,防御和特防能力值各提升1级.对于连续攻击招式,每次命中都会触发.能力提升效果在攻击命中后生效."
+615,0267,Flaming Maw,烈焰之颚,Strong Jaw + Flaming Jaws,强壮之颚 + 烈焰之颚.,173+525没有精灵有这个特性,"啃咬类招式威力提升30%,并在命中时有50%的几率使目标灼伤.连续攻击的每一击都会独立判定."
+616,0268,Demolitionist,爆破专家,Readied Action + Ignores Protect + screens break on readied turn,准备就绪 + 无视保护 + 在准备回合击破屏障.,准备充分见557,"使用者的攻击能力值在一回合内变为2倍,击破屏障,并无视保护效果.与其他伤害加成效果乘法叠加.替换下场后再次上场可重新触发."
+617,0269,Rockhard Will,磐石意志,"Boosts Rock-type moves by 1.2x, or 1.5x when under 1/3 HP.","岩石属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"岩石属性招式威力提升20%,当HP低于1/3时提升50%."
+618,026A,Fragrant Daze,芳香迷乱,30% chance to confuse on contact.,接触攻击有30%几率造成混乱.,,"无论攻击方还是被攻击方,使用接触类招式时有30%的几率造成混乱."
+619,026B,Low Visibility,低能见度,Summons Eerie Fog on entry.,出场时召唤诡异迷雾.,,"出场时召唤诡异迷雾,持续8回合（携带烟雾球时为12回合）.迷雾每回合减少非幽灵/超能力属性宝可梦的1级能力提升,使基于天气的回复效果减半,给予幽灵/超能力属性宝可梦20%的伤害减免,并将所有诅咒转变为幽灵属性的诅咒."
+620,026C,Old Mariner,老水手,Seaweed + Water STAB.,海草 + 水系本系.,海草见342,"如果使用者是草属性,其受到的火属性攻击伤害减半,并且使用草属性招式对火属性宝可梦造成2倍伤害.伤害减免与其他来源乘法叠加.使水属性招式获得本系加成,无论使用者的属性如何.同时免疫浸水状态."
+621,026D,Ectoplasm,灵质,Ups highest attacking stat by 1.5x in fog.,"在雾中,自身最高的攻击能力提升至1.5倍.",,"在迷雾中时,该宝可梦最高的攻击能力值提升50%."
+622,026E,Beautiful Music,美妙音乐,"Sound moves have 50% chance to infatuate, ignoring gender.","声音类招式有50%几率造成着迷,无视性别.",,声音类招式在命中时有50%的几率使目标着迷（将其攻击和特攻减半）.
+623,026F,Surprise!,惊喜！,Astonishes enemy priority users in fog.,"在雾中,惊吓使用高优先度招式的使用者.",,"在迷雾中,以惊吓反击优先度招式.惊吓是威力40的幽灵属性攻击,拥有+3优先度且必定造成畏缩此能力会在对手的优先度招式使出前激活."
+624,0270,Snow Song,雪之歌,Sound moves get a 1.2x boost and become Ice if Normal.,"声音类招式获得1.2倍威力加成,若为一般属性则变为冰属性.",,"使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为冰属性."
+625,0271,Greater Spirit,崇高精神,Ups highest stat by +1 on entry in fog.,"在雾中出场时,自身最高的能力值提升1级.",,"在迷雾中进入战斗时,使使用者最高的能力值提升1级."
+626,0272,Resonance,共鸣,Sound moves have a 30% chance to cause bleeding.,声音类招式有50%几率造成流血.,,"声音类招式在命中时有50%的几率造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+627,0273,Ethereal Rush,飘渺冲刺,This Pokémon's Speed gets a 1.5x boost in fog.,"在雾中,速度提升至1.5倍.",,"在迷雾中,该宝可梦的速度能力值提升50%."
+628,0274,Pretty Privilege,漂亮特权,"At full HP, gives +1 priority to its Fairy-type moves.","HP全满时,妖精属性招式获得+1优先度.",,"当HP全满时,赋予妖精属性招式+1优先度."
+629,0275,Shallow Grave,浅坟,Revives at 25% HP once after fainting in fog.,"在雾中濒死后,复活一次,HP为25%.",,"在迷雾激活时濒死后,当派出下一只宝可梦时,使用者以25%的最大HP复活即使使用者是在迷雾的最后一回合濒死,此效果仍会激活."
+630,0276,Menacing Situation,威吓局势,20% chance to Fear on contact. Also works on offense.,接触攻击有30%几率造成恐惧.主动攻击时也生效.,恐惧状态fear：目标两回合不能换走，受到伤害+50%,"无论攻击方还是被攻击方,使用接触类招式时有30%的几率造成恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+631,0277,Shiny Lightning,闪光闪电,Grants a 1.2x accuracy boost. Thunder never misses.,获得1.2倍的命中率提升.打雷必定命中.,,"该宝可梦的招式命中率变为1.2倍,且打雷必定命中."
+632,0278,Terrify,恐怖,Lowers foes' Sp. Atk by two stages on entry.,"出场时,降低所有对手的特攻2级.",,"进入战斗时,降低所有对手宝可梦的特攻能力值2级."
+633,0279,Ice Downfall,冰崩,Counters contact with 60BP Icicle Crash.,以威力60的冰锥反击接触攻击.,,"受到接触招式攻击时,使用者以威力60的冰锥进行反击.冰锥有20%的几率造成畏缩."
+634,027A,Last Stand,背水一战,Def and SpDef increase as HP drops. Max 1.6x.,"防御和特防随HP降低而提升,最高1.6倍.",,"防御和特防能力值随HP降低线性提升.倍率从HP全满时的1.0倍提升至HP0%时的1.6倍.HP50%时提供1.3倍加成,HP25%时提供1.45倍加成."
+635,027B,Pyroclastic Flow,火山碎屑流,Molten Down + Corrosion.,熔解 + 腐蚀.,357+212,"使火属性招式对岩石属性宝可梦变得效果绝佳,而非被抵抗.使毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态."
+636,027C,Blood Bath,血浴,Immune to bleed. Inflict fear when inflicting bleed.,免疫流血.造成流血时施加恐惧.,,"免疫流血状态.当该宝可梦成功使对手流血时,也使其陷入恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+637,027D,Battle Aura,战斗气场,Boosts each battler's crit rate by +2.,使所有参战者的击中要害率提升2级.,,使每只宝可梦的击中要害率提升2级.包括同伴和对手.
+638,027E,Bloodlust,嗜血,Blood Bath + Soul Eater.,血浴 + 噬魂.,636+331,"免疫流血状态.当该宝可梦成功使对手流血时,也使其陷入恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧.通过直接攻击击倒对手时,回复25%的最大HP."
+639,027F,Piercing Solo,独奏穿刺,Sound moves cause bleeding.,声音类招式造成流血.,,"使用声音类招式命中时,使用者造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+640,0280,Rhythmic,韵律,Deals 10% more damage for each repeated move use.,"连续使用同一招式时,每次伤害提高10%.",,"连续使用同一招式,每次伤害提高10%.无上限.切换招式或招式失败时重置."
+641,0281,Chunky Bass Line,厚重低音,Triggers a 40BP Earthquake after using a sound move.,"使用声音类招式后,触发威力40的地震.",,"在使用任何声音类招式命中后,使用者紧接着使用威力40的地震,攻击所有相邻的宝可梦."
+642,0282,Jackhammer,手提钻,Super Slammer moves hit twice for 70% damage.,"锤类招式攻击两次,每次造成70%伤害.",撞类招式指名字里包含slam的,"锤类招式攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+643,0283,Denting Blows,凹陷打击,Hammer moves lower Defense.,锤类招式降低对手防御.,,"使用锤类攻击命中时,降低目标防御1级.每个目标每回合只能被影响一次防御降低在伤害之后生效."
+644,0284,Ice Cold Hunter,冰冷猎人,Ice-type moves hit twice in hail.,"在冰雹中,冰属性招式攻击两次.",,"在冰雹中,冰属性招式攻击两次,两次均造成全额伤害.使用者免疫冰雹伤害.两次攻击独立判定追加效果（畏缩除外）."
+645,0285,Soul Crusher,灵魂粉碎者,Hammer moves hit SpDef and get a 1.1x power boost.,"锤类招式攻击特防,并获得1.1倍威力加成.",,"锤类招式获得10%的伤害加成,并且伤害计算时目标改为特防而非防御."
+646,0286,Arc Flash,弧光闪烁,50% chance to burn when hit or paralyze when dealing damage.,"受到攻击时50%几率灼伤,造成伤害时50%几率麻痹.",,"当使用者攻击时,接触目标有50%的几率使其麻痹.当受到伤害时,有50%的几率使攻击者灼伤."
+647,0287,Unicorn,独角兽,Mighty Horn + Pixilate.,强大之角 + 妖精皮肤.,390+219,"使角和钻类攻击的威力提升30%.将一般属性招式转变为妖精属性并获得妖精属性本系加成.如果使用者是妖精属性,其妖精属性招式有10%的几率造成着迷."
+648,0288,On the Prowl,潜行,+1 priority for the first turn. Negative priority becomes +0.,上场的第一回合获得+1优先度.负向优先度变为0.,,"在使用者上场的第一回合,所有优先度为0或更高的招式获得+1优先度.负向优先度招式变为优先度0,而非获得+1."
+649,0289,Pretentious,自命不凡,Dealing a KO raises Crit by one stage.,"击倒对手时,击中要害率提升1级.",,"每当使用者通过直接攻击击倒对手时,其击中要害率提升1级."
+650,028A,Venoblaze Pincers,毒焰钳,1.2x boost to physical moves and 20% chance to Burn or Poison.,"物理招式威力提升1.2倍,并有20%几率造成灼伤或中毒.",,"所有物理招式威力提升20%,并且接触时有20%的几率造成灼伤或中毒."
+651,028B,Eternal Blessing,永恒祝福,Celestial Blessing + Regenerator.,天之恩泽 + 再生力.,591+144,"在薄雾场地中,每回合结束时回复使用者最大HP的1/12.替换下场时,回复33%的最大HP.此回复效果不受回复封锁影响."
+652,028C,Sugar Rush,糖分冲击,Unburden + Ripen,轻装 + 熟成.,贪吃鬼见82,"当消耗或失去携带的物品时,该宝可梦的基础速度能力值变为2倍.当替换下场、获得新物品或失去此特性时,速度加成消失.使所有树果的有益效果加倍."
+653,028D,Rest in Peace,安息,Heals 1/8 of max HP every turn in fog.,"在雾中,每回合回复1/8的最大HP.",,"在迷雾中时,每回合结束时回复使用者最大HP的1/8."
+654,028E,White Noise,白噪音,Static + Rest in Peace.,静电 + 安息.,9+653,"无论该宝可梦是攻击方还是被攻击方,都有几率使对手陷入麻痹.非接触攻击有10%几率麻痹,接触攻击有30%几率麻痹.在迷雾中时,每回合结束时回复使用者最大HP的1/8."
+655,028F,Smokey Maneuvers,烟雾机动,Evasion is boosted by 1.25x in fog.,"在雾中,闪避率提升至1.25倍.",,迷雾使以使用者为目标的招式命中率降低25%.
+656,0290,Tag,标签,Attacks switching opponents with a 20BP Pursuit.,"攻击替换下场的对手,使用威力20的追打.",,"当敌人试图替换下场时,自动触发威力20的追打以防止其离开."
+657,0291,Power Metal,力量金属,Sound moves get a 1.2x boost and become Steel if Normal.,"声音类招式获得1.2倍威力加成,若为一般属性则变为钢属性.",,"使所有声音类招式的威力提升20%,并将一般属性的声音类招式转变为钢属性."
+658,0292,Power Edge,力量之刃,Keen Edge moves target Special Defense and get a 1.3x boost.,"锐利刀刃类招式攻击特防,并获得1.3倍威力加成.",,"锐利刀刃类招式获得30%的伤害加成,并且伤害计算时目标改为特防而非防御."
+659,0293,Superconductor,超导体,Steel-type moves become Electric and get a 1.1x boost.,"钢属性招式变为电属性,并获得1.1倍威力加成.",,"所有钢属性招式转变为电属性,并获得10%的威力提升."
+660,0294,Ultra Instinct,自在极意功,Counters contact with 20BP Vacuum Wave. Takes .8x damage.,以威力20的真空波反击接触攻击.受到伤害x0.8.,,所有受到的伤害降低20%.与其他减伤来源乘法叠加.以威力20的真空波反击接触类招式.
+661,0295,Unlocked Potential,解锁潜力,Inner Focus + Berserk.,精神力 + 怒火冲天.,39+201,"真气弹必定命中.不受畏缩、威吓或惊吓的影响.当该宝可梦因对手的攻击而使HP降至一半或以下时,其最高的攻击能力值提升1级.每场战斗仅触发一次.其他伤害来源使HP降至一半或以下不会触发此特性."
+662,0296,Higher Rank,更高阶层,Priority moves get a 1.2x boost.,先制招式获得1.2倍威力加成.,,拥有提升优先度（+1或更高）的招式获得20%的伤害加成.
+663,0297,Funeral Pyre,火葬柴堆,Non-Ghost and Dark-types take 1/4 damage every turn.,非幽灵和恶属性宝可梦每回合损失1/4HP.,,非幽灵和恶属性宝可梦每回合损失1/4HP.
+664,0298,Flame Bubble,火焰气泡,Water Bubble + Flaming Soul.,水泡 + 烈焰之魂.,199+351,水泡 + 烈焰之魂.
+665,0299,Elemental Vortex,元素漩涡,Flash Fire + Water Absorb.,引火 + 储水.,18+11,"免疫火属性和水属性招式.受到火属性招式攻击时,自身该类招式威力提升50%,直到下场.受到水属性招式攻击时,回复最大HP的25%."
+666,029A,Snowy Wrath,雪之怒,Snow Warning + Cryomancy.,降雪 + 冰霜占卜.,117+269,"出场时引发冰雹,持续8回合（携带冰冷岩石时为12回合）.冰雹每回合对非冰属性宝可梦造成1/16的HP伤害,并使场上冰属性宝可梦的防御提升50%.所有招式的冻伤几率变为5倍.与冻结点特性不叠加."
+667,029B,Pattern Change,模式切换,Protean + Shed Skin,变幻自如 + 蜕皮.,,"每次攻击前,该宝可梦的属性会变为与所用招式相同的属性.每回合结束时,该宝可梦有30%的几率治愈自身所受到的异常状态."
+668,029C,No Turning Back,义无反顾,Boosts all stats but can't retreat when below 1/2 max HP.,"当HP低于1/2时,全能力提升,但无法撤退.",,"当HP首次降至一半或以下时,所有能力提升1级,且使用者无法替换或逃走.常规的绕过此效果的方式（如逃脱按键或逃脱按键）仍然允许替换."
+669,029D,Flammable Coat,易燃外套,Changes forms when using or hit by a Fire-type move.,使用或受到火属性招式时改变形态.,,"当受到火属性招式攻击或使用火属性招式时,将怠惰树懒变身为燃烧形态.无法被复制或压制."
+670,029E,Draco Morale,龙之士气,Uses Dragon Cheer on switch-in.,出场时使用龙之鼓舞.,,"进入战斗时,自动使用龙之鼓舞,为你和你的同伴提升1级击中要害率.龙属性宝可梦提升2级."
+671,029F,Bad Omen,恶兆,Foes min roll. Takes 1/4 damage from crits.,"对手总是造成最小伤害.受到击中要害时,伤害变为1/4.",,"对手攻击时总是造成最小伤害,强制造成85%伤害而非85-100%的浮动.对该宝可梦的击中要害伤害仅为其正常伤害的25%,而非150-200%."
+672,02A0,Mosh Pit,音乐节,Ally's attacks get a 1.25x boost. 1.5x if attack causes recoil.,"同伴的攻击获得1.25倍加成.如果技能会造成反伤,则加成1.5倍.",,"使同伴的攻击威力提升25%,如果该招式是反伤招式,则提升50%.使用者自身不受此加成."
+673,02A1,Blood Stain,血渍,Is always bleeding if not immune. Spreads on contact.,"如果不免疫,则始终处于流血状态.接触时传播.",,"拥有此特性的宝可梦获得一个无法移除的流血状态.当使用者与另一只不具有此特性的宝可梦发生接触时（无论攻防）,会将其当前特性替换为此特性并造成流血."
+674,02A2,Blood Stigma,血之烙印,Immune to status. Gets a 2x boost vs bleeding foes.,免疫异常状态.对流血的对手造成2倍伤害.,,"对处于流血状态的目标造成双倍伤害,并且使用者免疫异常状态."
+675,02A3,Max Acceleration,最大加速,Speed Boost + Slipstream.,加速 + 滑流.,没有精灵有这个特性,"该宝可梦每在场完成一个完整的回合,其速度在回合结束时提升1级.入场的当回合不会触发.使用攻击时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+676,02A4,Sidewinder,响尾蛇,First biting move each entry gets +1 priority. Resets on KO.,每次出场第一次使用的啃咬类招式获得+1优先度.击倒对手时重置.,,"出场时,赋予第一次使用的啃咬类招式+1优先度.在使用任何啃咬类招式命中后,该优先度加成即被消耗.通过直接攻击击倒对手后,重新获得优先度增益."
+677,02A5,Petrify,石化,Clears stat buffs then lowers speed by one stage on entry.,"出场时清除对手的能力提升,然后降低其速度1级.",,"移除对手宝可梦的能力提升,然后降低其速度1级."
+678,02A6,Fluffiest,最毛茸茸,Quarters contact damage taken. 4x weak to fire.,受到的接触类招式伤害降低75%.受到火属性招式造成4倍伤害.,,使受到的接触类招式伤害降低75%.火属性招式对该宝可梦造成4倍伤害.与其他减伤效果乘法叠加.
+679,02A7,Way of Precision,精密之道,Inner Focus + Precise Fist.,精神力 + 精密之拳.,39+375,"真气弹必定命中.不受畏缩、威吓或惊吓的影响.拳类招式获得+1击中要害率,并且其原本的追加效果触发几率变为5倍."
+680,02A8,Way of Swiftness,迅捷之道,Pretentious + Swift Swim.,自命不凡 + 悠游自如.,649+33,"每当使用者通过直接攻击击倒对手时,其击中要害率提升1级.下雨天气时,该宝可梦的速度提升50%."
+681,02A9,Atomic Punch,原子拳,Iron Fist + 30% Steel type damage.,铁拳 + 30%钢属性伤害.,89+200,铁拳 + 30%钢属性伤害.
+682,02AA,Iron Giant,铁巨人,Heatproof + Juggernaut.,耐热 + 主宰.,85+321,"受到的火属性招式伤害减半.免疫灼伤伤害以及灼伤状态带来的攻击力降低效果.接触类招式将20%的防御加入攻击计算.防止麻痹状态,并在陷入麻痹时立即治愈."
+683,02AB,Master Hand,大师之手,Mega Launcher + Rampage.,超级发射器 + 暴走.,178+275,"使脉冲、波导、波动和光环类招式威力提升30%.击倒对手时,立即从休息状态中恢复,允许立即使用破坏光线等招式而无需等待."
+684,02AC,Final Blow,最终一击,Unseen Fist + Fatal Precision.,无形拳 + 致命精准.,260+340,"允许所有接触类招式穿透保护类招式,并忽略与其相关的任何附加效果效果绝佳的攻击招式必定命中,并且必定造成击中要害."
+685,02AD,Hospitality,热情好客,Heals partner for 25% of its max HP on switch-in.,"替换上场时,为同伴回复其最大HP的25%.",,"当该宝可梦替换上场时,为同伴回复其最大HP的25%."
+686,02AE,Butter Up,奉承,Hospitality + Soothing Aroma,热情好客 + 舒缓香气.,685+485,"出场时,治愈使用者队伍中所有宝可梦（包括场上和后备）的异常状态,并为同伴回复其最大HP的25%."
+687,02AF,Vitality Strike,活力打击,Heals for 10% of the damage dealt by punching moves.,"使用拳类招式造成伤害时,回复伤害量10%的HP.",,"使用拳类招式造成伤害时,回复相当于伤害量10%的HP."
+688,02B0,Imposing Wings,威严之翼,Giant Wings + Levitate.,巨翼 + 飘浮.,371+26,"使所有翅膀、风和空气类招式的威力提升30%.该宝可梦免疫地面属性招式以及其他地面效果,如撒菱或场地状态,并使飞行属性招式伤害提升25%."
+689,02B1,Sword of Damnation,诅咒之剑,Unaware + Sword of Ruin.,纯朴 + 灾祸之剑.,109+579,"在使用者在场时,降低所有其他宝可梦的防御能力值25%.多个相同的灾祸特性效果不叠加进行伤害计算时,完全无视对手的所有能力等级变化."
+690,02B2,Restraining Order,限制令,"Forces the attacker out when hit, once each switch-in.","受到接触攻击时,迫使攻击者替换下场,每次上场仅触发一次.",,"当使用者受到接触招式攻击时,迫使攻击者替换下场为随机同伴每次上场仅触发一次."
+691,02B3,Assassin's Tools,刺客工具,"Contact moves have a 30% chance to PSN, PRLZ, or BLD.",接触类招式有30%几率造成中毒、麻痹或流血.,,"当使用者使用接触类招式命中时,有30%的几率随机使目标陷入中毒、麻痹或流血状态.连续攻击的每一击都会独立判定."
+692,02B4,Frostmaw,霜冻之颚,Biting moves have a 50% chance to inflict frostbite.,啃咬类招式有50%几率造成冻伤.,,啃咬类招式在命中时有50%的几率使目标灼伤.连续攻击的每一击都会独立判定.
+693,02B5,Patchwork,拼凑,Disguise + curses the opponent when its Disguise breaks.,画皮 + 画皮被打破时诅咒对手.,画皮209,"抵挡第一个命中该宝可梦的造成伤害的招式,之后改变形态.仅能抵挡非变化招式.在雾中,每次替换上场或当雾重新出现时,画皮会立即恢复.当画皮被打破时,攻击者被诅咒."
+694,02B6,Blind Rage,盲目狂怒,Scrappy + Mold Breaker.,胆量 + 破格.,113+104,"该宝可梦使用的一般和格斗属性招式能够以普通效果命中幽灵属性宝可梦.免疫威吓和惊吓.允许招式无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性.无法绕过会修改基础能力值的特性,如草之皮毛."
+695,02B7,Slipstream,滑流,Moves use 20% of its Speed stat additionally.,"使用攻击时,额外使用20%的速度能力值.",,"使用攻击时,将使用者20%的速度能力值加入伤害计算.讲究围巾的效果不影响此特性."
+696,02B8,Apex Predator,顶级掠食者,Tough Claws + Predator.,坚硬爪子 + 掠食者.,181+363,"接触类招式的威力提升30%.当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%."
+697,02B9,Dragon's Ritual,龙之仪式,Dealing a KO raises Attack and Speed by one stage.,"击倒对手时,攻击和速度各提升1级.",同454,"每当使用者通过直接攻击击倒对手时,其攻击和速度能力值各提升1级."
+698,02BA,Pinnacle Blade,巅峰之刃,Slashing moves always hit and break protection and barriers.,"劈开类招式必定命中,且能穿透保护和屏障.",,"所有锐利刀刃类招式必定命中,并且可以穿透保护类招式,忽略与其相关的任何附加效果."
+699,02BB,Energized,充能,Generator + charges up on KO with an Electric-type move.,发电机 + 使用电属性招式击倒对手时充电.,,"替换上场时使使用者进入充电状态,下一次电属性招式威力加倍.在战斗中电气场地激活时再次充电.充电状态在替换下场或使用一次电属性招式后消失.使用电属性招式直接击倒对手时重新充电."
+700,02BC,Color Spectrum,光谱,Same-type attacks get a 1.2x boost. Changes type each turn.,同属性攻击获得1.2倍加成.每回合改变属性.,花舞鸟的特性，属性并不限于火电超鬼四属性，其他属性也会出现,本系招式获得20%威力提升.使用者在每回合开始时随机变为一种纯属性.
+701,02BD,Steel Beetle,钢甲虫,Raging Boxer + Pollinate.,狂暴拳手 + 授粉.,319+381,"使拳类招式攻击两次,第一击造成100%伤害,第二击造成40%伤害.一般属性招式变为虫属性并获得本系加成.如果使用者是虫属性,则免疫粉末类招式."
+702,02BE,From the Shadows,来自暗影,Attacks trap and have a 20% flinch chance when moving first.,"先手攻击时,有20%几率造成畏缩并束缚目标.",这个束缚是没有固定伤害的，只是单纯不能换下,"当使用者在一回合中先出手时,攻击有20%的几率造成畏缩,并且在命中时束缚目标.束缚效果与畏缩是否成功无关.畏缩几率仅对连续攻击的第一击有效."
+703,02BF,Rage Point,怒穴,Gets a 1.5x boost while statused. Raises offenses when crit.,"处于异常状态时,获得1.5倍加成.受到击中要害时,提升进攻能力.",,"当使用者处于任何异常状态时,其攻击招式威力提升50%.当该宝可梦受到击中要害时,其攻击和特攻各提升1级.同时无视灼伤带来的攻击降低和冰冻带来的特攻降低."
+704,02C0,Hot Coals,热煤,Sets a trap that burns the next foe that switches in.,"设置一个陷阱,使下一个替换上场的对手灼伤.",,"使用者替换上场时,在对手场上设置一个灼伤陷阱.下一个替换上场的对手如果接地且可被灼伤,则会被灼伤.触发后陷阱消失.多个陷阱不会叠加."
+705,02C1,Terastal Treasure,太晶宝藏,"Reduces damage taken by 40%, but lowers speed by 20%.","受到的伤害降低40%,但速度降低20%.",,"受到的伤害降低40%,同时该宝可梦的速度降低20%.与其他减伤来源乘法叠加."
+706,02C2,Shocking Maw,电击之颚,Strong Jaw + Bite moves have 50% paralysis chance.,强壮之颚 + 啃咬类招式有50%几率造成麻痹.,强壮之颚见173,"使啃咬类招式威力提升30%,并在命中时有50%的几率使目标麻痹."
+707,02C3,Gleam Eyes,微光之眼,Frisk + Scare.,察觉 + 惊吓.,119+329,"进入战斗时,揭示对手的物品,并使其效果失效2回合,同时降低所有对手宝可梦的特攻1级.不会阻止超级石及其他类似物品的运作."
+708,02C4,Megabite,巨咬,Biting moves use SpAtk and deal 30% more damage.,"啃咬类招式使用特攻,并造成30%额外伤害.",,"啃咬类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+709,02C5,Dream State,梦境,Immune to critical hits. Takes 20% less damage from attacks.,免疫击中要害.受到的招式伤害降低20%.,,"受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+710,02C6,Dream Whimsy,梦幻奇想,Uses Yawn on switch-in.,出场时使用哈欠.,,"替换上场时使用哈欠,以对手宝可梦为目标.哈欠使目标陷入瞌睡,并在下一回合结束时睡眠.替换下场可以防止睡眠."
+711,02C7,Lunar Affinity,月之亲和,Copies lunar moves used by others.,模仿其他宝可梦使用的月亮相关招式.,mega皮皮的特性，月亮招式指招式名里有moon或者lunar这样的,"当其他宝可梦在战斗中使用月亮相关招式时,进行模仿.包括月光、月亮之力、月之舞和月之祝福.每回合对每个招式触发一次."
+712,02C8,Flame Shield,火焰盾,Takes 35% less damage from Super-effective moves.,"受到效果绝佳的招式攻击时,伤害降低35%.",,"受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤效果乘法叠加."
+713,02C9,Aquatic Dweller,水栖居民,Aquatic + Boosts the power of Water-type moves by 1.5x.,水生 + 水属性招式威力提升1.5倍.,,"进入战斗时,为使用者的当前属性添加水属性即使失去此特性,添加的水属性在替换下场前依然保留.同时水属性招式威力提升50%."
+714,02CA,Apple Pie,苹果派,Self Sufficient + Ripen.,自给自足 + 熟成.,307+247,"每回合结束时回复1/16的最大HP.熟成使所有树果的有益效果加倍回复类树果回复量加倍,提升能力的树果改为提升2级,抵抗树果将效果绝佳的伤害降低75%,回复PP的树果回复20 PP."
+715,02CB,Hover,悬浮,Adds Psychic type to itself. Avoids Ground attacks.,为自身添加超能力属性.回避地面属性攻击.,,"进入战斗时,为使用者的当前属性添加超能力属性.即使失去此特性,添加的超能力属性在替换下场前依然保留.使用者免疫地面属性招式以及撒菱和场地状态等其他地面效果."
+716,02CC,Depravity,堕落,Merciless + Overcharge.,不仁不义 + 过载.,196+349,"对处于中毒、麻痹、流血或速度降低状态的目标,必定造成击中要害.使用者的电属性招式对电属性宝可梦变得有效,造成2倍伤害而非0.5倍.同时允许使用者使电属性宝可梦陷入麻痹状态."
+717,02CD,Wildfire,野火,Attacks with Fire Spin on entry.,出场时使用火焰旋涡.,,"替换上场时使用火焰旋涡,威力50的火属性特殊招式,束缚对手4-5回合.目标每回合损失1/8最大HP,且在束缚结束前无法替换下场."
+718,02CE,Jumpscare,突然惊吓,Attacks with Astonish on first switch-in.,"首次替换上场时,使用惊吓进行攻击.",惊吓在ER里是鬼系击掌,"替换上场时使用惊吓,威力40的幽灵属性物理招式,拥有+3优先度且必定造成畏缩每场战斗仅触发一次."
+719,02CF,Tar Toss,焦油投掷,Uses Tar Shot on switch-in.,出场时使用掷焦油.,沥青射击：岩石系变化招式，使对方降速且弱火,"替换上场时使用掷焦油,降低目标速度1级,并使其受到的火属性伤害变为2倍.后续使用不会叠加火属性伤害的负面效果."
+720,02D0,Stun Shock,惊愕冲击,Attacks have a 60% chance to Paralyze or Poison.,攻击有60%几率造成麻痹或中毒.,,"当使用者攻击命中时,有60%的几率随机使目标陷入中毒或麻痹状态.连续攻击的每一击都会独立判定."
+721,02D1,Raging Goddess,狂怒女神,Rampage + Hyper Aggressive.,暴走 + 极度好战.,275+358,"击倒对手时,立即从休息状态中恢复.所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）."
+722,02D2,Whiplash,鞭打,Physical attacks lower defense.,物理攻击降低对手防御.,,"使用物理攻击命中时,降低目标防御1级.每个目标每回合只能被影响一次防御降低在伤害之后生效."
+723,02D3,Supersweet Syrup,超甜糖浆,Sticky Hold + Disables foe's item for 2 turns on contact.,黏着 + 接触时使对手物品失效2回合.,,"该宝可梦携带的物品不会被强制移除或偷走.发生接触时,对手的物品失效2回合."
+724,02D4,Lucky Halo,幸运光环,Negates self stat drops. Endures the a single KO.,无视自身能力降低.抵挡一次濒死攻击.,,"防止使用者自身引起的能力降低,并允许其承受一次会使其濒死的攻击,留下1点HP."
+725,02D5,Trash Heap,垃圾堆,Corrosion + Toxic Spill.,腐蚀 + 毒溢.,212+411,"毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态.每回合伤害所有非毒属性宝可梦,造成其1/8的HP损失.拥有毒疗特性的宝可梦反而会回复.使用者下场时效果消失."
+726,02D6,Sludgy Mix,污泥混合,Intoxicate + Punk Rock.,醉人 + 庞克摇滚.,325+244,"将所有一般属性招式转变为毒属性,并为毒属性招式提供本系加成.如果使用者是毒属性,其毒属性招式有10%的几率造成剧毒.使使用者的声音类招式威力提升30%,并使受到的声音类招式伤害降低50%.伤害减免与其他来源乘法叠加."
+727,02D7,Overwatch,守望,On the Prowl + Stakeout.,潜行 + 蹲守.,648+198,"在使用者上场的第一回合,所有优先度为0或更高的招式获得+1优先度.负向优先度招式变为优先度0,而非获得+1.对刚替换上场的对手造成双倍伤害.仅在对手替换上场后的第一回合内生效."
+728,02D8,Wind Rage,风怒,Uses Defog on switch-in. Air-based moves get a 1.3x boost.,出场时使用清除浓雾.空气类招式获得1.3倍威力加成.,,"替换上场时使用清除浓雾.降低对手闪避率1级,并清除所有入场陷阱、屏障、神秘守护和白雾.此外,所有空气类招式获得1.3倍伤害加成."
+729,02D9,Victory Bomb,胜利炸弹,Attacks with a 100BP Fire-type Explosion on fainting.,"濒死时,使用威力100的火属性大爆炸.",,"濒死时,以威力100的火属性大爆炸反击所有相邻的宝可梦.必定命中.无论使用者如何被击倒都会生效."
+730,02DA,Razor Sharp,削铁如泥,Critical hits also inflict bleeding.,击中要害时也造成流血.,,"造成击中要害时施加流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+731,02DB,To The Bone,至骨,Critical hits get a 1.5x boost and inflict bleeding.,"击中要害获得1.5倍加成,并造成流血.",,"击中要害获得1.5倍加成,并造成流血."
+732,02DC,Blade Dance,刀舞,Triggers 50 BP Leaf Blade after using a dance move.,"使用舞蹈类招式后,触发威力50的叶刃.",,"使用任何舞蹈类招式后,立即触发一次威力50的叶刃（草属性,物理）作为后续攻击."
+733,02DD,Taekkyeon,跆跟,All attacks are dances.,所有攻击都视为舞蹈.,,"使所有非变化招式都被视为舞蹈类招式,可以触发舞者等特性以及与舞蹈相关的效果."
+734,02DE,Ape Shift,猿之变,"Transforms below 50% HP, curing status and always critting.","HP低于50%时变身,治愈异常状态且攻击必定会心一击.",,"当HP降至50%或以下时变身,变身完成后自动治愈所有异常状态.变身后,所有攻击都变为击中要害.在出场时、战斗中及回合结束时均可触发."
+735,02DF,Know Your Place,识相点,Contact attacks make foes move last for 5 turns.,接触攻击使对手在5回合内最后行动.,这特性是不是有点过分,"使用接触类招式命中后,使目标在5回合内无论优先度、速度或其他效果如何,总是最后行动.效果不会叠加,也不会对已受影响的目标刷新."
+736,02E0,Deep Cuts,深割,Slashing moves have a 50% chance to inflict bleeding.,劈开类招式有50%几率造成流血.,,"锐利刀刃类招式命中时有50%的几率造成流血.流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血.连续攻击的每一击都会独立判定."
+737,02E1,Life Steal,生命偷取,Steals 1/10 HP from foes each turn.,每回合从对手吸取1/10的HP.,,"每回合结束时,从每个在场的对手吸取其最大HP的1/10,并回复给使用者.无视替身."
+738,02E2,Rude Awakening,粗暴唤醒,Raises all stats becomes immune to sleep after waking up.,"醒来后,全能力提升,并永久免疫睡眠.",,"从睡眠中醒来时,使用者永久获得睡眠免疫,且所有能力提升1级.每场战斗仅触发一次."
+739,02E3,Teraform Zero,太晶归零,Tera Shell + clears weather and terrain on first entry.,太晶甲壳 + 首次出场时清除天气和场地.,太晶甲壳见607,"当HP全满时,所有对该宝可梦的攻击都将造成效果不好的伤害,无论属性相性如何.与其他类似特性不同,此效果在连续攻击的每次命中都会激活.出场时清除普通天气和场地."
+740,02E4,Set Ablaze,点燃,Inflicting burn also inflicts fear.,造成灼伤时也施加恐惧.,,"当使用者施加灼伤时,也同时施加恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+741,02E5,Breakwater,防波堤,Swift Swim + Stall.,悠游自如 + 后攻.,33+100,"下雨天气时,速度提升50%.在对手之前行动时,受到的伤害降低30%.当该宝可梦在回合中替换上场时也生效."
+742,02E6,Magical Fists,魔法之拳,Punching moves use Special Attack and get a 1.3x boost.,"拳类招式使用特攻,并获得1.3倍威力加成.",,"拳类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+743,02E7,Cutthroat,凶手,The first slicing move used on each entry in gets +1 priority.,每次出场第一次使用的劈开类招式获得+1优先度.,,"出场时,赋予第一次使用的锐利刀刃类招式+1优先度.在使用任何锐利刀刃类招式命中后,该优先度加成即被消耗.使用磨砺可重置此特性."
+744,02E8,Sand Bender,沙之操控者,Sand Stream + Sand Force.,扬沙 + 沙之力.,45+159,"出场时引发沙暴,持续8回合（携带光滑岩石时为12回合）.在沙暴中,该宝可梦最高的攻击能力值提升50%.同时免疫沙暴伤害."
+745,02E9,Sand Pit,沙坑,Attacks with 20BP Sand Tomb on switch-in.,出场时使用威力20的沙穴.,感觉很有潜力的东西,"替换上场时使用威力20的沙穴攻击所有对手宝可梦,束缚它们4-5回合,使其每回合损失1/8最大HP必定命中,无视命中判定."
+746,02EA,Desolate Sun,荒芜太阳,Desolate Land + Earth Eater.,终结之地 + 食土.,190+450,"创造终焉大晴天,持续到使用者下场.具有标准晴天效果,并使所有水属性招式无效.此外,使用者受到地面属性招式攻击时,回复其最大HP的25%而非受到伤害."
+747,02EB,Daybreak,破晓,Burns the foe on contact. Also works on offense.,接触时使对手灼伤.攻击时也生效.,,使用者接触时使对手灼伤.无论攻击方还是被攻击方均会生效.
+748,02EC,Energy Siphon,能量虹吸,Heals the user for 1/4 of the damage they deal.,回复造成伤害的1/4.,,回复使用者对对手造成伤害的25%.回复在伤害造成后立即生效.最少回复1点HP.
+749,02ED,Reservoir,水库,Water Absorb + Storm Drain.,储水 + 引水.,11+114,"该宝可梦会吸引水属性招式,并对其免疫.此外,吸收水属性招式时,使用者最高的攻击能力值提升1级,并回复其最大HP的25%."
+750,02EE,Neurotoxin,神经毒素,"Inflicting poison also lowers Attack, SpAtk, and Speed.","造成中毒时,降低对手的攻击、特攻和速度.",,"当使对手中毒时,立即降低其攻击、特攻和速度各1级."
+751,02EF,Energy Horns,能量角,Mighty horn moves become special and deal 30% more damage.,"角类招式变为特殊技能,并造成30%额外伤害.",,"角类招式变为特殊（造成特殊伤害并使用特攻能力值）,并造成30%额外伤害."
+752,02F0,Rising Dough,生面团,Casts Sticky Web on entry. Lasts 7 turns.,"出场时设置黏黏网,持续7回合.",,"使用者进入战斗时,在对手场上设置黏黏网.持续7回合,使任何替换上场的接地宝可梦速度降低1级.如果对手场上已有黏黏网,则无法激活."
+753,02F1,Crust Coat,硬壳,Immune to critical hits. Takes 20% less damage from attacks.,免疫击中要害.受到的招式伤害降低20%.,,"受到的伤害降低20%（x0.8）,与其他减伤效果乘法叠加.此外,免疫击中要害,会心一击将作为普通攻击处理,并且不会触发攻击要害的效果（例如“至骨”的流血效果）."
+754,02F2,Puffy,蓬松,Takes 1/2 dmg from contact moves but Fire moves hurt it 2x more.,"受到的接触类招式伤害减半,但火属性招式会造成2倍伤害.",,使受到的接触类招式伤害降低50%.火属性招式对该宝可梦造成双倍伤害.与其他减伤效果乘法叠加.
+755,02F3,Balloon Blitz,气球突击,Inflatable + Hyper Aggressive.,充气 + 极度好战.,290+358,"受到任何火属性或飞行属性招式攻击时,防御和特防各提升1级.对于连续攻击招式,每次命中都会触发.能力提升效果在攻击命中后生效.所有攻击命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）."
+756,02F4,Twinkle Toes,纤巧脚尖,Boosts the power of kicking moves by 1.3x + Pixilate.,踢腿类招式威力提升1.3倍 + 妖精皮肤.,361+182,"使所有踢腿类招式的威力提升30%.一般属性招式变为妖精属性,使用者获得妖精属性本系加成.如果使用者是妖精属性,其妖精属性招式有10%的几率造成着迷."
+757,02F5,Doom Blast,末日爆裂,Dark-type moves deal 1.35x damage but have 10% recoil.,"恶属性招式造成1.35倍伤害,但有10%的反伤.",,"使恶属性招式威力提升35%,但会造成基于伤害值10%的反伤（最少1点HP）.反伤不会导致使用者濒死."
+758,02F6,Brute Force,蛮力,Rock Head + Reckless,坚硬脑袋 + 舍身.,69+120,"会造成反伤伤害的招式威力提升20%.处于愤怒状态时,此加成适用于所有招式.防止所有来自自身招式或特性的反伤伤害.同时免疫因愤怒产生的反伤伤害无法防止撞击伤害或大爆炸/自爆的伤害."
+759,02F7,Faraday Cage,法拉第笼,Shell Armor + 50BP Thunder Cage when hit by contact.,战斗盔甲 + 受到接触攻击时使用威力50的雷电笼.,硬壳盔甲见75，雷电囚笼：4-5回合内束缚且持续受到伤害,"受到的伤害降低20%,与其他减伤来源乘法叠加.免疫击中要害.受到接触招式攻击时,使用雷电笼进行反击,威力50的电属性特殊招式,束缚对手4-5回合.目标每回合损失1/8最大HP,且在束缚结束前无法替换下场."
+760,02F8,Acidic Slime,酸性黏液,Corrosion + Poison STAB.,腐蚀 + 毒属性本系.,腐蚀见212,"毒属性招式对钢属性宝可梦变得效果绝佳.此外,该宝可梦可以使任何属性的宝可梦陷入中毒状态.同时为毒属性招式提供本系加成."
+761,02F9,Rose Garden,玫瑰园,Spreads two layers of Toxic Spikes on switch-in.,出场时撒下两层毒菱.,,"出场时在对手场上撒下两层毒菱任何非毒或钢属性的接地敌人替换上场时,都会陷入剧毒."
+762,02FA,Qigong,气功,Always hits. Fighting Spirit + Rampage.,必定命中.斗争精神 + 暴走.,300+275,"使用者总是能命中目标.将所有一般属性招式转变为格斗属性招式,并为格斗属性攻击提供本系加成如果使用者是格斗属性,其格斗属性招式可以击破屏障.击倒对手时,立即从休息状态中恢复."
+763,02FB,Conjurer Of Deceit,欺诈魔术师,Magic Guard + Magic Bounce,魔法防守 + 魔法镜.,98+156,"免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害.在大部分变化招式生效前,将其反弹回原使用者.被反弹的招式作用于原使用者.无法反弹已被反弹的招式."
+764,02FC,Deep Freeze,深度冻结,Boosts Water and Ice by 1.25x. Halves Fire damage taken.,水和冰属性威力提升1.25倍.受到的火属性伤害减半.,,水属性和冰属性招式威力提升25%.受到的火属性招式伤害减半.与其他减伤来源乘法叠加.
+765,02FD,Soul Devourer,灵魂吞噬者,Soul Eater + Phantom Pain,噬魂 + 幻痛.,457+331,"当使用者通过直接攻击击倒对手时,立即恢复其最大HP的25%.移除一般属性对幽灵属性招式的免疫,允许幽灵属性攻击以1倍效果命中一般属性宝可梦."
+766,02FE,Champion's Entrance,冠军登场,Intimidate + Violent Rush,威吓 + 狂暴突袭.,22+350,"进入战斗时,降低所有对手宝可梦的攻击能力值1级.使用者替换上场后的第一回合,获得50%的速度加成和20%的攻击加成."
+767,02FF,Presto,急板,Sound moves get +1 priority at full HP.,"HP全满时,声音类招式获得+1优先度.",,"当HP全满时,赋予声音类招式+1优先度."
+768,0300,Samba,桑巴,Striker + Dancer,前锋 + 舞者.,361+216,"使所有踢腿类招式的威力提升30%.包括火焰球.当场上任何宝可梦使用舞蹈类招式后,该宝可梦会立即使用相同的招式每回合对每个招式触发一次."
+769,0301,JunshiSanda,拳跆双修,Punches and Kicks are both Punches and Kicks.,拳类和腿类招式同时被视为拳类和腿类.,,"拳类招式也被视为踢腿类招式,可从前锋类特性中受益.踢腿类招式也被视为拳类招式,可从铁拳类特性中受益."
+770,0302,Gladiator,角斗士,"Boosts Fighting-type moves by 1.3x, or 1.8x when below 1/3 HP.","格斗属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍.",,"格斗属性招式威力提升30%,当HP低于1/3时提升80%."
+771,0303,Forsaken Heart,弃心,KOs dealt anywhere on the field raise Attack by one stage.,"场上任何宝可梦被击倒时,攻击提升1级.",,"当战场上任何宝可梦（包括同伴和对手）濒死时,该宝可梦的攻击能力值提升1级."
+772,0304,Relentless,无情,Exploit Weakness + Merciless,弱点利用 + 不仁不义.,284+196,"当攻击处于异常状态的对手时,造成1.25倍伤害并自动针对其较低的防御能力值.对处于中毒、麻痹、流血或速度降低状态的目标,必定造成击中要害."
+773,0305,Soothsayer,预言家,Resists all attacks for three turns on first entry.,"首次出场时,三回合内所有攻击效果不好.",,"出场时,在3回合内,使用者受到的所有攻击都被视为效果不好.替换下场时效果解除."
+774,0306,Corrupted Mind,扭曲心灵,Psychic moves ignore resists and get 1.4x effect chance.,"超能力招式无视抗性,且追加效果几率提升40%.",,"超能力属性招式无视属性抗性和免疫,无论目标属性如何,至少造成普通伤害.此外,所有超能力招式的追加效果触发几率提升40%."
+775,0307,Flame Coat,火焰外套,Non-Fire-types take 1/8 dmg every turn when on field.,"在场时,非火属性宝可梦每回合损失1/8HP.",引火见18,"在场时,非火属性宝可梦每回合损失1/8HP."
+776,0308,Unown Power,未知之力,Mystic Power + Hidden and Secret Power hit Super-effectively.,神秘力量 + 觉醒力量/自然之力总是效果绝佳.,奇迹力量见287,"使所有招式获得1.5倍的本系加成,无论属性是否匹配.不会增强已经获得本系加成的招式.觉醒力量/自然之力总是效果绝佳（x2）.详细机制解释"
+777,0309,Super Scope,超级瞄准器,Mega Launcher + Artillery.,超级发射器 + 炮术.,178+377,"使脉冲、波导、波动和光环类招式威力提升30%.超级发射器类招式必定命中,并同时攻击双方对手.所有脉冲、波导、波动、光环及其他爆裂相关招式无法miss."
+778,030A,Venom Crown,毒冠,Poison Point + Mighty Horn.,毒刺 + 强大之角.,390+38,"无论攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒.使角和钻类攻击的威力提升30%."
+779,030B,Blight Scale,疫病鳞片,Multiscale + Poison Point,多重鳞片 + 毒刺.,136+38,"当该宝可梦HP全满时,受到的所有伤害降低50%.与其他减伤来源乘法叠加.无论攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒."
+780,030C,Gunman,枪手,Mega Launcher + Status moves are Mega Launcher moves.,超级发射器 + 变化招式被视为超级发射器招式.,,"使脉冲、波导、波动和光环类招式威力提升30%.此外,所有变化招式都被视为超级发射器招式,可从相关特性中获得加成."
+781,030D,Hunter's Mark,猎人印记,Ambush + Deadeye.,埋伏 + 神枪手.,,"在使用者替换上场后的第一回合或战斗开始时,必定造成击中要害.使用者无法miss箭矢类攻击和炮类招式（仅限被防弹阻挡的招式）.此外,造成击中要害时,攻击目标改为对手较弱的防御能力值."
+782,030E,Hemolysis,溶血,Poisoned foes lose all stat buffs and can't heal.,"中毒的对手失去所有能力提升,且无法回复.",,"当使用者使宝可梦中毒时,中毒的目标被清除所有能力提升,并且无法通过任何方式回复HP."
+783,030F,Caretaker,守护者,Healer + Friend Guard.,治愈之心 + 友情防守.,131+132,"在双打对战中,每回合结束时,有30%的几率治愈自身和场上同伴的异常状态.对两只宝可梦分别进行几率判定在双打对战中,该宝可梦的同伴受到的伤害降低50%.与其他减伤来源乘法叠加."
+784,0310,Poseidon's Dominion,波塞冬之域,Attacks with Whirlpool on entry.,出场时使用潮旋.,ER里潮旋50威力,"替换上场时使用潮旋,威力50的水属性特殊招式,束缚对手4-5回合.目标每回合损失1/8最大HP,且在束缚结束前无法替换下场."
+785,0311,Two-Faced,双面,Hunger Switch + Elec and Dark deal 1.35x with 10% recoil.,"饱了又饿 + 电和恶属性招式造成1.35倍伤害,但有10%反伤.",,"每回合结束时自动在吃饱形态和饥饿形态之间切换.电属性和恶属性招式威力提升35%,但会造成基于伤害值10%的反伤（最少1点HP）.反伤不会导致使用者濒死.无法以任何方式覆盖、压制、交换或复制."
+786,0312,Lullaby,摇篮曲,Sing accuracy is 90% when used by this Pokémon.,该宝可梦使用的唱歌命中率为90%.,,"将唱歌的命中率提升至90%.不锁定为90%,该招式仍会受到命中率/闪避率变化的影响."
+787,0313,Cryo Architect,冰晶建筑师,Boosts Attack and Def when hit by Water or Ice.,"受到水或冰属性攻击时,提升攻击和防御.",,"受到水属性攻击时,攻击提升1级,并在下一回合防御提升1级.受到冰属性攻击时,当回合攻击和防御各提升1级.对于连续攻击招式,每次命中都会触发."
+788,0314,Glacial Rage,冰川之怒,Triggers 50 BP Blizzard after using a Ice-type move.,"使用冰属性招式后,触发威力50的暴风雪.",,"使用冰属性招式后,使用者紧接着使用威力50的暴风雪（冰属性,85%命中率,攻击双方,20%冻伤几率,基于天气）."
+789,0315,Immovable Object,不动之物,Impenetrable + Sturdy.,坚不可摧 + 结实.,326+5,"免疫所有非攻击性的伤害来源,包括入场陷阱、天气伤害、异常状态以及反伤伤害.当HP全满时,该宝可梦能够承受任何一次攻击并至少留下1点HP."
+790,0316,Frenzied Phantom,狂乱魅影,Hyper Aggressive + Shadow Tag.,极度好战 + 影子游戏.,358+23,"所有攻击连续命中两次.第一击造成100%伤害,第二击造成25%伤害.每次攻击独立判定追加效果（畏缩除外）.阻止所有不具有影子游戏特性或非幽灵属性的对手替换下场.伏特替换等替换招式仍允许他们替换."
+791,0317,DNA Scramble,DNA重组,Changes forms based on the the move used.,根据使用的招式改变形态.,,"根据使用的招式改变代欧奇希斯的形态.攻击招式触发攻击形态,自我再生触发防御形态,其他变化招式触发速度形态.形态变化在攻击前发生."
+792,0318,Metallic Jaws,金属之颚,Metallic + Primal Maw.,金属化 + 原始颚.,316+420,"进入战斗时,为使用者的当前属性添加钢属性.即使失去此特性,添加的钢属性在替换下场前依然保留.所有啃咬类招式攻击两次.第一击造成100%伤害,第二击造成40%伤害.每次攻击独立判定追加效果（畏缩除外）."
+793,0319,Calculative,精于算计,Analytic + Neuroforce.,分析 + 脑核之力.,148+233,"当该宝可梦在目标之后行动时,攻击威力提升30%.效果绝佳的攻击威力提升35%."
+794,031A,Deadly Precision,致命精准,Super-effective moves never miss and ignore abilities.,"效果绝佳的招式必定命中,且无视特性.",,"总是能对对手命中效果绝佳的攻击.允许效果绝佳的攻击无视目标的特性和先天特性,包括那些会干扰效果或降低伤害的特性."
+795,031B,Embody Aspect,体现形态,+1 Speed on Entry.,出场时速度+1.,,"替换上场时,该宝可梦的速度能力值提升1级."
+796,031C,Embody Aspect,体现形态,+1 Attack on Entry.,出场时攻击+1.,,"替换上场时,该宝可梦的攻击能力值提升1级."
+797,031D,Embody Aspect,体现形态,+1 Defense on Entry.,出场时防御+1.,,"替换上场时,该宝可梦的防御能力值提升1级."
+798,031E,Embody Aspect,体现形态,+1 Spdef on Entry.,出场时特防+1.,,"替换上场时,该宝可梦的特防能力值提升1级."
+799,031F,We Will Rock You,我们将震撼你,"Boosts Rock-type moves by 1.3x, or 1.8x when below 1/3 HP.","岩石属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍.",,"岩石属性招式威力提升30%,当HP低于1/3时提升80%."
+800,0320,Deviate,偏离,Normal moves become Dark. Dark moves are empowered.,一般属性招式变为恶属性.恶属性招式得到强化.,,"将使用者的一般属性招式变为恶属性.如果使用者是恶属性,其恶属性招式有10%的几率造成愤怒；否则,它获得恶属性的本系加成."
+801,0321,Sun's Bounty,太阳的恩赐,Leaf Guard + Harvest.,叶子防守 + 收获.,102+139,"在大晴天下,每回合结束时治愈所有异常状态,并且每回合结束时有50%几率回收树果,大晴天下为100%.包括用于投掷、自然之恩或被吃掉的树果."
+802,0322,Rite Of Spring,春日仪式,Chlorophyll + Solar Power.,叶绿素 + 太阳之力.,34+94,"大晴天激活时,使用者的速度和最高的攻击能力值提升50%."
+803,0323,Headstrong,刚愎自用,+1 Spdef on entry.,出场时特防+1.,,"替换上场时,该宝可梦的特防能力值提升1级."
+804,0324,Firefighter,消防员,Deals 1.5x damage to Fire. Takes 0.5x damage from Fire.,"对火属性宝可梦造成1.5倍伤害.受到火属性宝可梦攻击时,伤害减半.",,"对火属性宝可梦造成1.5倍伤害,并且受到火属性宝可梦攻击时,伤害减半.此效果基于攻击方/防御方宝可梦的属性,而非招式属性.伤害减免与其他来源乘法叠加."
+805,0325,Sepia Lens,棕褐色镜片,Tinted Lens + Sand Guard.,有色眼镜 + 沙之守卫.,110+482,"结合有色眼镜和沙之守卫.攻击被抵抗时造成双倍伤害.在沙暴中,阻挡对手的先制招式,并使受到的特殊攻击伤害减半.同时像其他地面属性一样免疫沙暴伤害."
+806,0326,Super Sniper,超级狙击手,Sniper + Attacks hit switching foes with 1/2 Power.,"狙击手 + 攻击替换下场的对手,威力为1/2.",狙击手见97,"击中要害时的伤害倍率从1.5倍提升至2.25倍,即额外增加50%的伤害加成.在对手替换下场前以50%的威力攻击他们,在其离开前造成伤害."
+807,0327,Woodland Curse,林地诅咒,Uses Forest's Curse on Entry. Adds Grass type on contact.,出场时使用森林诅咒.接触时添加草属性.,,"进入战斗时,对随机一名对手使用森林诅咒,为其添加草属性.当对手与使用者发生接触时,他们也会被添加草属性作为额外属性.仅影响非草属性目标.效果持续到替换下场."
+808,0328,Malodor,恶臭,Suppresses attacker's abilities on contact.,接触时压制攻击者的特性.,,"受到接触招式攻击时,使用者压制攻击者的特性和先天特性,直到他们替换下场."
+809,0329,Blur,模糊,Uses Speed as defense stat when hit by contact.,"受到接触攻击时,使用速度进行防御.",,"当受到接触招式攻击时,该宝可梦使用其速度能力值而非防御或特防进行伤害计算.讲究围巾的效果不影响此特性."
+810,032A,Elude,规避,Uses Speed as defense stat when hit by non-contact.,"受到非接触攻击时,使用速度进行防御.",,"            .fullDescription =COMPOUND_STRING(""当受到非接触招式攻击时,该宝可梦使用其速度能力值而非防御或特防进行伤害计算.讲究围巾的效果不影响此特性."
+811,032B,Drake Of Rage,暴怒之龙,Tinted Lens + Rampage,有色眼镜 + 暴走.,110+275,"攻击被抵抗时,伤害加倍.如果招式被抵抗（0.5倍伤害或更低）,则最终伤害乘以2倍.当使用者通过直接攻击击倒对手时,立即从休息状态中恢复."
+812,032C,Reverberate,混响,Normal moves are Sound moves.,一般属性招式变为声音类招式.,,"将所有一般属性招式转变为声音类招式,使其能够受益于基于声音的特性和互动."
+813,032D,Mixed Martial Arts,综合格斗,Normal moves are flagged as Punch + Kick moves.,一般属性招式被视为拳和腿类招式.,,"将所有一般属性招式转变为铁拳和前锋类招式,使其能够受益于相关特性和互动."
+814,032E,Strategic Pause,战略停顿,+2 crit rate when moving last + Analytic.,后手攻击时+2击中要害率 + 分析.,分析见148,"当使用者后手攻击时,击中要害率提升2级,攻击威力提升30%."
+815,032F,Overrule,否决,Crits bypass abilities and do 2x damage vs resists.,"击中要害时无视特性,且对被抵抗的目标造成2倍伤害.",,"当该宝可梦的招式造成击中要害时,它们会无视通常会降低伤害的防御性特性,并且如果招式被抵抗,则造成双倍伤害.对于连续攻击招式,如果第一击是击中要害,则所有攻击都无视特性,否则都不无视."
+816,0330,Mental Pollution,精神污染,Suppresses others' abilities when it becomes confused.,"当自身混乱时,压制其他宝可梦的特性.",,"当它陷入混乱时,对其他宝可梦施加特性压制.压制效果在这些宝可梦在场期间持续.拥有精神污染特性的宝可梦不受影响."
+817,0331,Madness Enhancement,狂化增强,"Enrages in fog, halves damage when enraged.","在雾中陷入愤怒,愤怒时受到伤害减半.",,"进入迷雾时陷入愤怒.当使用者愤怒时,所有受到的伤害降低50%,且不会受到愤怒伤害."
+818,0332,Tentalock,触手束缚,Grappler + Serpent Bind.,擒拿手 + 蛇缚.,523+819,"束缚类招式持续6回合而非4-5回合,并且每回合结束时的伤害提升至目标最大HP的1/6.攻击有50%几率束缚目标6回合,防止逃跑或替换.一旦被束缚,目标每在场一回合速度降低1级."
+819,0333,Serpent Bind,蛇缚,"50% chance to trap, then drop the their speed by -1 each turn.","50%几率束缚,之后每回合速度降低1级.",,"攻击有50%几率束缚目标4-5回合,防止逃跑或替换.一旦被束缚,目标每在场一回合速度降低1级."
+820,0334,Soul Tap,灵魂之触,Drain 10% HP from foes at the end of each turn in fog.,"在雾中,每回合结束时从对手吸取10%的HP.",,"在迷雾激活时,每回合结束时,从每个在场的对手吸取其最大HP的1/10,并回复给使用者.无视替身."
+821,0335,Scarecrow,稻草人,Scare + Bad Luck.,惊吓 + 厄运.,329+334,"进入战斗时,降低所有对手宝可梦的特攻1级对手无法造成击中要害,总是造成最低伤害（85%而非85-100%）,无法触发非必定触发的追加效果,并且有5%的几率招式落空."
+822,0336,Ominous Shroud,不祥之幕,Phantom + Shadow Shield.,幻影 + 幻影防守.,324+231,"进入战斗时,为使用者的当前属性添加幽灵属性.即使失去此特性,添加的幽灵属性在替换下场前依然保留.当HP全满时,所有受到的攻击伤害减半.与其他减伤来源乘法叠加."
+823,0337,Chilling Presence,寒意逼人,10BP Icy Wind on entry.,出场时使用威力10的冰息.,,"出场时使用威力10的冰息（冰属性,特殊,空气类）,攻击所有对手并降低其速度1级."
+824,0338,Frostbind,冰封禁锢,Inflicting Frostbite also inflicts Disable.,造成冻伤时也施加封印.,,"当造成冻伤时,使用者也会施加封印.封印阻止目标使用其最后使用的招式,持续4回合.如果目标尚未行动,则失败."
+825,0339,Glacial Ghost,冰川鬼影,Slush Rush + Snow Cloak.,拨雪 + 雪隐.,,"在冰雹中,该宝可梦的速度提升50%,并且对手的命中率降低25%.免疫冰雹伤害."
+826,033A,Tender Affection,温柔爱意,Cute Charm + Fairy STAB,迷人之躯 + 妖精属性本系.,,"受到接触招式攻击时,有50%几率使攻击者着迷（将其攻击和特攻减半）.同时为妖精属性招式提供本系加成."
+827,033B,Wonder Scale,神奇鳞片,Shed Skin + Wonder Skin,蜕皮 + 奇迹皮肤.,,"每回合结束时,该宝可梦有30%的几率治愈自身所受到的异常状态.免疫对手所有提升伤害的特性效果,亲子爱和多头龙特性除外."
+828,033C,Overzealous (N),过度狂热 (N),User's super-effective moves have +1 prio.,使用者的效果绝佳招式拥有+1优先度.,,不会实装.
+829,033D,Stainless Steel,不锈钢,Fort Knox + Steelworker.,坚壁 + 钢能力士.,,"使用者无视大多数增加伤害或额外攻击次数的特性.将使用者的一般属性招式变为钢属性.如果使用者是钢属性,它抵抗幽灵和钢属性；否则,它获得钢属性的本系加成."
+830,033E,Temporal Rupture,时空断裂,Roar of Time is altered drastically.,时光咆哮被大幅改变.,,"时光咆哮变为威力100,优先度0的攻击,将目标的特性变为慢启动（攻击、特攻和速度减半5回合）,但不再强制目标替换."
+831,033F,Grass Flute,草笛,Sound moves inflict Fear.,声音类招式造成恐惧.,,"声音类招式命中时造成恐惧.恐惧束缚目标2回合,使其受到的伤害增加50%.如果被吹飞等招式强制替换,目标会摆脱恐惧."
+832,0340,Hemotoxin,溶血毒素,Supresses abilities of the target when they're poisoned.,"当目标中毒时,压制其特性.",,"当使用者成功使对手中毒时,压制对手的特性和先天特性.压制效果在他们替换下场后解除."
+833,0341,Harukaze,春风,Setting Grassy Terrain sets Tailwind and vice versa.,"设置青草场地时也设置顺风,反之亦然.",,"设置顺风时也会设置青草场地,设置青草场地时也会设置顺风.如果其中一种效果已激活,则不会刷新其持续时间."
+834,0342,Toxic Surge,毒沼制造者,sets Toxic Terrain on entry.,出场时设置剧毒场地.,,"替换上场时设置剧毒场地,持续8回合（携带场地制造机时为12回合）.激活时,非毒或钢属性的接地宝可梦每回合损失1/16最大HP,毒属性招式威力提升30%,撒菱会转变为毒菱."
+835,0343,Atlantic Ruler,大西洋统治者,Aquatic Dweller + Swift Swim.,水栖居民 + 悠游自如.,,"进入战斗时,为使用者的当前属性添加水属性即使失去此特性,添加的水属性在替换下场前依然保留.同时水属性招式威力提升50%.下雨天气时,速度提升50%."
+836,0344,Biofilm,生物膜,50% spdef boost under Toxic Terrain.,"在剧毒场地中,特防提升50%.",,"在剧毒场地中,使用者的特防能力值提升50%."
+837,0345,Chokehold,扼喉,Binding moves lower speed and paralyze.,束缚类招式降低对手速度并造成麻痹.,,"当使用者束缚目标时,它们造成麻痹,并且在被束缚期间每回合降低其速度1级."
+838,0346,Guardian Coat,守护者外套,Blocks weather dmg and powders. Takes -20% physical damage.,免疫天气伤害和粉末类招式.受到的物理伤害降低20%.,,"免疫沙暴和冰雹的天气伤害,并阻挡所有粉末类招式,包括催眠粉、麻痹粉、毒粉、蘑菇孢子、棉孢子、愤怒粉、粉末和魔法粉.同时,受到的物理伤害降低20%.与其他减伤来源乘法叠加."
+839,0347,Neutralizing Fog,中和雾气,Uses Defog on entry.,出场时使用清除浓雾.,,"替换上场时使用清除浓雾,清除所有入场陷阱、屏障、神秘守护和白雾.同时降低对手的闪避率1级."
+840,0348,Poison Quills,毒刺,Rough Skin + Poison Point.,粗糙皮肤 + 毒刺.,,"对使用接触类招式的攻击者造成其最大HP1/8的伤害.同时,无论攻击方还是被攻击方,使用接触类招式时有30%的几率使对手中毒.对于连续攻击招式,每次命中都会触发."
+841,0349,Draconic Might,龙之威仪,Draconize + Half Drake.,龙化 + 半龙.,,"将所有一般属性招式转变为龙属性招式,并为龙属性招式提供本系加成.如果使用者是龙属性,其龙属性招式对妖精属性造成普通伤害.出场时,为使用者的当前属性添加龙属性即使失去此特性,添加的龙属性在替换下场前依然保留."
+842,034A,Festivities,庆典,Sound moves become dance moves and vice versa.,"声音类招式被视为舞蹈类招式,反之亦然.",,"声音类招式也被视为舞蹈类招式,可从舞者类特性中受益.舞蹈类招式也被视为声音类招式,可从基于声音的特性中受益."
+843,034B,Fey Flight,妖精飞行,Adds Fairy-type and levitates.,添加妖精属性并飘浮.,,"进入战斗时,为使用者的当前属性添加妖精属性.即使失去此特性,添加的妖精属性在替换下场前依然保留.使用者免疫地面属性招式以及其他地面效果,如撒菱和场地状态.飞行属性招式伤害提升25%."
+844,034C,Best Offense,最佳攻势,Mystic blades + use 20% of spdef during moves.,神秘刀锋 + 攻击时使用20%的特防.,,"锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并在攻击计算中使用使用者20%的特防能力值."
+845,034D,Impaler,穿刺者,Mighty Horn + 30% Bleed chance on horn moves.,强大之角 + 角类招式有30%几率造成流血.,,"使角和钻类攻击的威力提升30%,并且有30%的几率使目标流血流血每回合造成1/16最大HP伤害,阻止回复,并使能力等级效果无效.岩石和幽灵属性免疫流血."
+846,034E,Magus Blades,魔导剑,Dual Wield + Best Offense.,双持 + 最佳攻势.,,"锐利刀刃类招式变为特殊（造成特殊伤害并使用特攻能力值）,并在攻击计算中使用使用者20%的特防能力值.同时,锐利刀刃类招式攻击两次,每次造成招式正常伤害的70%.追加效果在每次攻击中独立判定（畏缩除外）."
+847,034F,Lightning Born,闪电之躯,Adds Electric-type on entry.,出场时添加电属性.,,"进入战斗时,为使用者的当前属性添加电属性即使失去此特性,添加的电属性在替换下场前依然保留."
+848,0350,Superheavy,超重,Steadfast + blocks phasing moves.,不屈之心 + 阻挡强制替换招式.,,"当陷入畏缩状态时,速度提升1级.防止因招式或红牌被强制替换."
+849,0351,World Serpent,世界之蛇,Long Reach + Grip Pincer.,远隔 + 钳制.,,物理非接触类招式造成20%额外伤害.接触类招式有50%几率束缚目标4-5回合.
+850,0352,Lucky Wings,幸运之翼,Serene Grace + Giant Wings.,天恩 + 巨翼.,,自身招式的追加效果触发几率加倍.使所有翅膀、风和空气类招式的威力提升30%.
+851,0353,Komodo,科莫多,Adds Dragon-type + moves have 30% Bad Poison chance.,添加龙属性 + 招式有30%几率造成剧毒.,,"进入战斗时,为使用者的当前属性添加龙属性.即使失去此特性,添加的龙属性在替换下场前依然保留.使用者在使用任何招式命中后,有30%的几率使目标陷入剧毒连续攻击的每一击都会独立判定."
+852,0354,Envenom,施毒,Moves have a 30% chance to poison the target.,招式有30%几率使目标中毒.,,"使用者在使用任何招式命中后,有30%的几率使目标中毒.连续攻击的每一击都会独立判定."
+853,0355,Purple Haze,紫色迷雾,Triggers a 20BP Poison Gas after using a move.,"使用招式后,触发威力20的毒瓦斯.",,"使用招式后,紧接着使用威力20的毒瓦斯（毒属性,特殊,20%几率中毒,对飞行属性效果绝佳）."
+854,0356,Gnashing Cannon,咬牙加农,Mega Launcher + Mind Crunch.,超级发射器 + 精神咬碎.,,"使脉冲、波导、波动和光环类招式威力提升30%.啃咬类招式使用特攻能力值进行伤害计算（除非另有说明,否则仍攻击目标的防御）,并造成30%额外伤害."
+855,0357,Hyper Cleanse,超净,Immune to status. Halves poison damage taken.,免疫异常状态.受到的毒属性伤害减半.,,免疫异常状态.受到的毒属性伤害减半.
+856,0358,Molten Coat,熔岩外套,Mineralize + Rock moves have 50% burn chance.,矿化 + 岩石属性招式有50%几率造成灼伤.,,矿化 + 岩石属性招式有50%几率造成灼伤.
+857,0359,Royal Decree,王室敕令,Queenly Majesty + Glare on entry once per battle.,女王威严 + 出场时使用一次大蛇瞪眼.,,"防止使用者和它的同伴成为优先度大于0的先制招式的目标.出场时使用大蛇瞪眼,使目标麻痹.每场战斗仅触发一次."
+858,035A,Breezy Neigh,轻风嘶鸣,KOs raise Speed by one stage.,"击倒对手时,速度提升1级.",,"当该宝可梦通过直接攻击使对手濒死时,其速度能力值提升1级."
+859,035B,Dreamscape,梦境,Comatose + Dreamcatcher + Deal 20% more damage.,绝对睡眠 + 捕梦人 + 造成20%额外伤害.,,"该宝可梦在招式和状态判定中被视为处于睡眠状态.可以正常行动,并且免疫所有异常状态.当场上任何宝可梦处于睡眠时,招式威力加倍.攻击会对正在替换下场的睡眠中对手造成1倍伤害,在其离开前造成伤害.伤害提升20%."
+860,035C,Haste Makes Waste,欲速则不达,Stall + Analytic.,后攻 + 分析.,,"如果该宝可梦本回合还未行动,则受到的伤害降低30%.与其他减伤来源乘法叠加.当该宝可梦在回合中替换上场时也生效.如果目标本回合已行动,则造成的伤害提升30%."
+861,035D,Hungry Maws,饥饿之颚,Strong Jaw + Jaws of Carnage.,强壮之颚 + 杀戮之颚.,,"使啃咬和颚类招式威力提升30%.使用啃咬类招式击败对手时,回复50%最大HP；使用其他招式击败时,回复25%.仅当通过直接攻击击倒目标时触发."
+862,035E,Thermal Slide,热滑,Ups speed by 50% in sun or hail.,"在大晴天或冰雹中,速度提升50%.",,"在冰雹或大晴天下,该宝可梦的速度提升50%.同时免疫冰雹伤害."
+863,035F,Thermomancy,热力占卜,Pyromancy + Cryomancy.,火焰占卜 + 冰霜占卜.,,将所有招式的灼伤或冻伤几率乘以5倍.与火焰之躯或冻结点特性不叠加.
+864,0360,Chuckster,强投手,"Once per entry, take 1/2 damage and force-switch the target.","每次上场一次,受到伤害减半并强制替换目标.",,"每次上场,在受到接触招式攻击时,获得50%伤害减免并强制替换攻击者.与其他减伤来源乘法叠加."
+865,0361,Heat Sink,散热器,"Redirects Fire moves. Absorbs them, ups highest Atk.","吸引火属性招式.吸收后,提升自身最高的攻击能力.",,"吸引火属性招式并对其免疫.此外,受到火属性招式攻击后,自身最高的攻击能力值提升1级."
+866,0362,Relic Stone,遗石,Other battlers don't benefit from STAB.,其他参战者无法从本系加成中受益.,,"在使用者在场时,所有其他宝可梦无法从属性或特性中获得本系加成."
+867,0363,Supercell,超级单体,Drizzle + Electro Surge.,降雨 + 电气制造者.,,"出场时降下雨水并制造电气场地,持续8回合（携带潮湿岩石/场地制造机时为12回合）.水属性招式威力提升50%,火属性伤害降低50%.地面上的宝可梦不会陷入睡眠,且电属性招式威力提升30%."
+868,0364,Lightning Aspect,闪电形态,Absorbs electric moves then ups highest stat by +1.,"吸收电属性招式,然后最高的能力值提升1级.",,"吸收电属性招式以免疫,并提升较高的攻击能力值1级.比较攻击与特攻以决定提升目标非常适合在对抗电属性攻击时进行强化,同时提供防御免疫和进攻增益."
+869,0365,Fire Aspect,灼日,Absorbs fire moves and always burns with fire.,终结之地 + 吹气筒.,,"使用者免疫火属性招式,并在受到火属性招式攻击时回复其最大HP的25%.能够触发灼伤的招式使用时必定造成灼伤."
+870,0366,Ice Plumes,熔核,Halves damage taken by Special moves. Does NOT double SpDef.,熔炉 + 吸收岩石属性招式/隐形岩.,,"使用者的特攻能力值提升50%.与其他伤害加成效果乘法叠加.出场时设置极光幕,使同伴受到的物理和特殊伤害减半.持续5回合,携带光之黏土时为8回合.免疫冰雹伤害."
+871,0367,Blistering Sun,火焰形态,Desolate Land + Air Blower.,"吸收火属性招式,且火属性招式必定灼伤.",,"创造终焉大晴天,持续到使用者下场.使所有造成伤害的水属性招式无效.火属性招式获得50%威力提升.除其他原始天气外,无法被覆盖.激活与大晴天相关招式的额外效果.出场时设置3回合的顺风.使所有同伴速度加倍."
+872,0368,Molten Core,极光之风,Furnace + Absorbs Rock-moves/Stealth Rocks.,华贵之鸟 + 北风.,,所有受到的特殊攻击伤害减半.与其他减伤来源乘法叠加.
+873,0369,Aurora's Gale,冰羽,Majestic Bird + Aurora Veil.,受到的特殊招式伤害减半.不会加倍特防.,,"受到岩石属性招式攻击或在有隐形岩的情况下替换上场时,速度提升2级.同时,吸收任何岩石属性招式或隐形岩伤害,并回复其最大HP的25%."
+874,036A,Winter Throne,寒冬王座,1/8 Damage each turn to non-ice. Heals Ice 1/8 each turn.,每回合非冰属性损失1/8HP.冰属性每回合回复1/8HP.,,所有非冰属性宝可梦每回合结束时损失1/8的最大HP.每回合结束时为冰属性宝可梦回复1/8的最大HP.
+875,036B,Energy Tap,能量之触,Heals the user for 1/8 of the damage they deal.,回复造成伤害的1/8.,,回复使用者对对手造成伤害的1/8.回复在伤害造成后立即生效.最少回复1点HP.
+876,036C,Sludge Spit,污泥喷吐,follows up with 35BP Venom Bolt after using an attack.,"使用攻击后,紧接着使用威力35的毒液冲击.",,"使用攻击后,紧接着使用威力35的毒液冲击."
+877,036D,Swamp Thing,沼泽生物,Sets the Swamp Pledge effect on entry.,出场时设置沼泽誓约效果.,,出场时设置沼泽誓约效果.
+878,036E,Frosty Prescence,霜寒降临,Uses Mist on entry.,出场时使用白雾.,,出场时使用白雾.
+879,036F,Chilling Pellets,寒冰弹,Uses 13BP Icicle Spear when hit by contact.,"受到接触攻击时,使用威力13的冰锥.",看上去威力不大，但其实也是50%的伤害,"受到接触攻击时,使用威力13的冰锥."
+880,0370,Paint Shot,颜料射击,Mega launcher moves change the target's type to the move used.,超级发射器类招式将目标的属性改变为所用招式的属性.,,超级发射器类招式将目标的属性改变为所用招式的属性.
+881,0371,Stonecutter,石匠,Fossilized + Rock moves ignore abilities.,化石 + 岩石属性招式无视特性.,,化石 + 岩石属性招式无视特性.
+882,0372,Edgelord,边缘领主,First Keen Edge move each entry gets +1 priority. Resets on KO.,每次出场第一次使用的锐利刀刃类招式获得+1优先度.击倒对手时重置.,,每次出场第一次使用的锐利刀刃类招式获得+1优先度.击倒对手时重置.
+883,0373,Warmonger,战争贩子,"Boosts the user's rock, steel, and fighting moves by 30%.",使用者的岩石、钢和格斗属性招式威力提升30%.,,使用者的岩石、钢和格斗属性招式威力提升30%.
+884,0374,Locust Swarm,蝗群,Changes into Hivemind form until 1/4 HP or less.,"变身为蜂群形态,直到HP降至1/4或以下.",,"变身为蜂群形态,直到HP降至1/4或以下."
+885,0375,Revelation,天启,Changes into Revelation form until 1/4 HP or less.,"变身为天启形态,直到HP降至1/4或以下.",,"变身为天启形态,直到HP降至1/4或以下."
+886,0376,Curse of Famine,饥荒诅咒,"Eats terrain, restores hp, and boosts a defense.","吞噬场地,回复HP,并提升一项防御能力.",,"吞噬场地,回复HP,并提升一项防御能力."
+887,0377,Crystalline Armor,水晶铠甲,Reflects stat drops and immune to critical hits.,"反弹能力降低,并免疫击中要害.",,"反弹能力降低,并免疫击中要害."
+888,0378,Soul Harvest,灵魂收割,Fainted Pokemon increase your offenses and spdef by 5%.,每只濒死的宝可梦使你的进攻能力和特防提升5%.,,每只濒死的宝可梦使你的进攻能力和特防提升5%.
+889,0379,Thick Blubber,厚脂,Take 1/4 damage from fire and ice in return for having 1/2 speed.,"受到的火和冰属性伤害降低75%,但速度减半.",,"受到的火和冰属性伤害降低75%,但速度减半."
+890,037A,Craving,渴望,Eat a random berry at the end of the turn.,每回合结束时随机吃一个树果.,,每回合结束时随机吃一个以下树果：利木果、文柚果、枝荔果、龙晴果、沙鳞果、龙火果、杏仔果、兰萨果、星桃果、嘉珍果或随机一个危机回复树果.
+891,037B,Rat King,鼠王,Allies with a BST below 400 get their stats boosted by 50%.,"种族值总和低于400的同伴,其能力值提升50%.",,"种族值总和低于400的同伴,其能力值提升50%."
+892,037C,Crispy Cream,酥脆奶油,30% to inflict burn/frostbite when hit by contact.,"受到接触攻击时,有30%几率造成灼伤或冻伤.",,"受到接触攻击时,有30%几率造成灼伤或冻伤."
+893,037D,Deep Fried,油炸,Summons a sea of fire on entry.,出场时召唤一片火海.,,出场时召唤一片火海.
+894,037E,Food Lovers,美食家,Hospitality + Friend Guard.,热情好客 + 友情防守.,,热情好客 + 友情防守.
+895,037F,Lunar Wrath,月之怒,"After using a Ghost move, follow up with a 50BP Moongeist Beam.","使用幽灵属性招式后,紧接着使用威力50的暗影之光.",,"使用幽灵属性招式后,紧接着使用威力50的暗影之光."
+896,0380,Spyware,间谍软件,Sharply raises a stat based on foe's strong point.,"根据对手的强项,大幅提升一项能力.",,"根据对手的强项,大幅提升一项能力."
+897,0381,Virus,病毒,Electric moves have 30% chance to poison as well.,电属性招式有30%的几率同时造成中毒.,,电属性招式有30%的几率同时造成中毒.
+898,0382,Power Leak,电力泄漏,"When hit, set up Electric Terrain.","受到攻击时,设置电气场地.",,"受到攻击时,设置电气场地."
+899,0383,Backup Power,备用电源,Revives at 25% HP once after fainting in Electric Terrain.,"在电气场地中濒死后,复活一次,HP为25%.",,"在电气场地中濒死后,复活一次,HP为25%."
+900,0384,Sand Fiend,沙之魔,Sand Force + Sand Guard.,沙之力 + 沙之守卫.,,沙之力 + 沙之守卫.
+901,0385,Moustache,胡子,Tangling Hair + Stamina.,卷发 + 持久力.,,卷发 + 持久力.
+902,0386,Depth Explorer,深度探险家,Field Explorer + Illuminate.,旷野探险家 + 发光.,,旷野探险家 + 发光.
+903,0387,Dune Veil,沙丘帷幕,Sand Guard + Self Sufficient.,沙漠披风 + 自给自足.,,"在沙暴激活时,所有同伴免疫异常状态和来自敌人招式的追加效果.每回合结束时回复该宝可梦1/16的最大HP."
+904,0388,Strong Foundation,坚实基础,Takes 1/2 Water and Ground dmg and can't be forced out.,"受到的水和地面属性伤害减半,且不会被强制替换.",,"受到的水和地面属性伤害减半,且不会被强制替换."
+905,0389,Fog Machine,造雾机,"When hit, Set up Eerie Fog.","受到攻击时,设置诡异迷雾.",,"受到攻击时,设置诡异迷雾."
+906,038A,Drop Blocks,落块,"When hit, set up spikes.","受到攻击时,设置撒菱.",,"受到攻击时,设置撒菱."
+907,038B,Turf War,激光钻,Destroys terrain and boosts highest stat on entry.,角类招式有50%几率造成灼伤.,,角类招式有50%几率造成灼伤.
+908,038C,Greedy,光剑,Uses Thief when it loses an item.,添加火属性.锐利刀刃类招式有25%几率造成灼伤或麻痹.,,添加火属性.锐利刀刃类招式有25%几率造成灼伤或麻痹.
+909,038D,Lightsaber,松散荆棘,Adds Fire-type. Keen Edge moves have 25% burn or paralysis.,"受到接触攻击时,设置蔓延荆棘.",,"受到接触攻击时,设置蔓延荆棘."
+910,038E,Loose Thorns,地盘争夺,Sets Creeping Thorns when hit by contact.,出场时破坏场地并提升最高的能力值.,,出场时破坏场地并提升最高的能力值.
+911,038F,Musical Notes,贪婪,Status moves become sound-based.,失去物品时使用偷窃.,,失去物品时使用偷窃.
+912,0390,Laser Drill,音符,Horn moves have a 50% burn chance.,变化招式变为声音类.,,变化招式变为声音类.
+913,0391,Strikeout,三振出局,Forces the foe out if they don't attack for 3 turns.,"如果对手连续3回合不攻击,则强制其替换下场.",,"如果对手连续3回合不攻击,则强制其替换下场."
+914,0392,Home Run,本垒打,Landing a crit boosts your 3 lowest stats once per turn.,"造成击中要害时,每回合一次提升你最低的三项能力.",,"造成击中要害时,每回合一次提升你最低的三项能力."
+915,0393,Bruiser,壮汉,Adds Fighting type on entry.,出场时添加格斗属性.,,出场时添加格斗属性.
+916,0394,Narcissist,自恋者,"When a stat is lowered, sharply raise both offenses.","当一项能力被降低时,大幅提升双攻.",,"当一项能力被降低时,大幅提升双攻."
+917,0395,Let's Dance,来跳舞吧,"Uses Teeter Dance on entry, Confusing the field.","出场时使用摇摆舞,使全场混乱.",,"出场时使用摇摆舞,使全场混乱."
+918,0396,Dragonfruit,火龙果,Half Drake + Rough Skin.,半龙 + 粗糙皮肤.,,半龙 + 粗糙皮肤.
+919,0397,Rocky Exterior,铅爪,Adds Rock type on entry.,坚硬爪子 + 矿化.,,坚硬爪子 + 矿化.
+920,0398,Lead Claws,岩石外表,Tough Claws + Mineralize.,出场时添加岩石属性.,,出场时添加岩石属性.
+921,0399,Flawless Precision,无瑕精准,Fatal + Deadly Precision.,致命精准 + 致命精准.,,致命精准 + 致命精准.
+922,039A,Chainsaw,女皇,Keen edge attacks lower defense by -1.,女王威严 + 斗争心.,,女王威严 + 斗争心.
+923,039B,Galeforce Wings,土豆泥,Flying moves get +1 Priority.,"对敌人施加蜜糖炸弹效果,持续3回合.",,"对敌人施加蜜糖炸弹效果,持续3回合."
+924,039C,Empress,品味彩虹,Queenly Majesty + Rivalry.,出场时召唤彩虹誓约效果.,,出场时召唤彩虹誓约效果.
+925,039D,Mashed Potato,彩虹鳞,Syrup Bomb effect on the foe for 3 turns.,火鳞 + 品味彩虹.,,火鳞 + 品味彩虹.
+926,039E,Rainbow Scales,催眠之触,Fire Scales + Taste the Rainbow.,接触攻击有20%几率造成睡眠.攻击时也生效.,,接触攻击有20%几率造成睡眠攻击时也生效.
+927,039F,Taste the Rainbow,疫病之翼,Summons the Rainbow Pledge effect on entry.,"每次攻击有20%几率造成流血,10%几率施加诅咒.",,"每次攻击有20%几率造成流血,10%几率施加诅咒."
+928,03A0,Hypnotic Touch,九头蛇,20% chance to sleep on contact. Also works on offense.,多头龙 + 傲慢.,,"每当使用者通过直接攻击击倒对手时,其特攻能力值提升1级.根据头数,每次攻击2-3次.2头总倍率1.25倍,3头总倍率1.35倍."
+929,03A1,Hydra,圣代,Multiheaded + Beast Boost.,降雪 + 冰冻之躯.,,降雪 + 冰冻之躯.
+930,03A2,Wings of Pestilence,冰镐,Every attack has a 20% Bleed chance and 10% Curse chance.,坚硬爪子 + 拨雪.,,坚硬爪子 + 拨雪.
+931,03A3,Sundae,锤拳,Snow Warning + Ice Body.,拳类和锤类招式威力提升25%.,,拳类和锤类招式威力提升25%.
+932,03A4,Ice Picks,龙首藻,Tough Claws + Slush Rush.,"减弱受到的第一次攻击,并降低对手的攻击.",,"减弱受到的第一次攻击,并降低对手的攻击."
+933,03A5,Hammer Fist,极性,Boosts punch and hammer moves by 25%.,使己方队伍最高的能力值提升30%.,,使己方队伍最高的能力值提升30%.
+934,03A6,Mach 3,3马赫,Deadly Precision + Slipstream.,致命精准 + 滑流.,,致命精准 + 滑流.
+935,03A7,Raging Storm,暴风雨,Ups highest attacking stat by 1.5x in rain.,"在雨中,自身最高的攻击能力提升至1.5倍.",,"在雨中,自身最高的攻击能力提升至1.5倍."
+936,03A8,Sumo Guard,相扑守卫,Juggernaut + Thick Fat.,主宰 + 厚脂肪.,,主宰 + 厚脂肪.
+937,03A9,Sumo Wrestler,相扑手,Uses 20BP Circle Throw at the end of each 2nd turn.,"每两个回合结束时,使用威力20的巴投.",,"每两个回合结束时,使用威力20的巴投."
+938,03AA,Cosmic Wings,宇宙之翼,Flying moves become Fairy-type.,飞行属性招式变为妖精属性.,,飞行属性招式变为妖精属性.
+939,03AB,Cosmic Dust,宇宙尘埃,Magic Guard + Cosmic Daze.,魔法防守 + 宇宙迷乱.,,魔法防守 + 宇宙迷乱.
+940,03AC,Cool Exit,酷炫离场,Uses Chilly Reception at the end of your 2nd turn.,在你的第二个回合结束时使用冰冷欢迎.,,在你的第二个回合结束时使用冰冷欢迎.
+941,03AD,Devious Present,恶作剧礼物,Boosts Ice and throwing moves by 50%.,冰属性和投掷类招式威力提升50%.,,冰属性和投掷类招式威力提升50%.
+942,03AE,Christmas Nightmare,圣诞噩梦,Enemies take 1/8 damage when in hail.,"在冰雹中,敌人每回合损失1/8HP.",,"在冰雹中,敌人每回合损失1/8HP."
+943,03AF,Sap Trap,树液陷阱,Lowers foe's speed at the end of turns. At -3 they get trapped.,每回合结束时降低对手速度.降至-3时束缚目标.,,每回合结束时降低对手速度.降至-3时束缚目标.
+944,03B0,Dead Bark,枯树皮,Adds Ghost type. Takes 15% less damage. 30% less damage if SE.,"添加幽灵属性.受到的伤害降低15%.如果效果绝佳,则降低30%.",,"添加幽灵属性.受到的伤害降低15%.如果效果绝佳,则降低30%."
+945,03B1,Echolocation,链锯,"In fog, deal 20% more damage and never miss.",锐利刀刃攻击降低目标防御1级.,,锐利刀刃攻击降低目标防御1级.
+946,03B2,Massive Pelt,飓风之翼,Tangling Hair + Fluffy.,飞行属性招式获得+1优先度.,,飞行属性招式获得+1优先度.
+947,03B3,I Am Steve,回声定位,Uses No Retreat on entry.,"在雾中,造成20%额外伤害且必定命中.",,"在雾中,造成20%额外伤害且必定命中."
+948,03B4,Tangled Tails,厚重毛皮,Know Your Place + Grappler.,卷发 + 毛茸茸.,,卷发 + 毛茸茸.
+949,03B5,Foamy Web,我是史蒂夫,Casts an unremovable Sticky Web on entry. Lasts 5 turns.,出场时使用背水一战.,,出场时使用背水一战.
+950,03B6,Sharp Talons,缠尾,Kicking moves have a 50% Bleed chance.,识相点 + 擒拿手.,,"使用接触类招式命中后,使目标在5回合内无论优先度、速度或其他效果如何,总是最后行动.效果不会叠加,也不会对已受影响的目标刷新.束缚类招式持续6回合而非4-5回合,并且每回合结束时的伤害提升至目标最大HP的1/6."
+951,03B7,Zen Garden,泡沫网,Sets up Grassy or Psychic Terrain at random.,出场时设置无法移除的黏黏网.持续5回合.,,"使用者进入战斗时,在对手场上设置黏黏网.持续5回合,使任何替换上场的接地宝可梦速度降低1级.如果对手场上已有黏黏网,则无法激活."
+952,03B8,Tummyache,锐爪,Thick Fat + Corrosion.,踢腿类招式有50%几率造成流血.,,踢腿类招式有50%几率造成流血.
+953,03B9,Hypnotic Trance,禅意花园,Hypnosis never misses and also causes Confusion.,随机设置青草或精神场地.,,"出场时随机设置青草或精神场地,几率各50%.携带青草种子必定触发青草场地,携带精神种子必定触发精神场地."
+954,03BA,Brain Overload,胃痛,"When hit, sets up Psychic Terrain.",厚脂肪 + 腐蚀.,,厚脂肪 + 腐蚀.
+955,03BB,Brain Mass,催眠恍惚,Halves damage taken while at full HP.,"催眠术必定命中,且同时造成混乱.",,"催眠术必定命中,且同时造成混乱."
+956,03BC,Chestnut Shield,大脑过载,Impenetrable + Bulletproof,"受到攻击时,设置精神场地.",,"受到攻击时,设置精神场地."
+957,03BD,Chestnut Axe,脑容量,Keen edge + Grass moves become Keen Edge boosted.,"HP全满时,受到的伤害减半.",,"HP全满时,受到的伤害减半."
+958,03BE,Giant Shuriken,栗子盾,Water Shuriken hits once with 100BP and +1 crit.,坚不可摧 + 防弹.,,坚不可摧 + 防弹.
+959,03BF,Rain Shroud,栗子斧,Ups evasion by 30% in rain.,锐利刀刃 + 草属性招式获得锐利刀刃加成.,,锐利刀刃 + 草属性招式获得锐利刀刃加成.
+960,03C0,Witch Broom,巨型手里剑,Hyper Aggressive + Hover.,"水手里剑攻击一次,威力100,且+1击中要害率.",,"水手里剑攻击一次,威力100,且+1击中要害率."
+961,03C1,Angelic Wings,女巫扫帚,Prism Scales + Huge Wings.,极度好战 + 悬浮.,,极度好战 + 悬浮.
+962,03C2,Wrestle Showman,天使之翼,Flying Press gains +10BP and causes Taunt.,棱镜鳞片 + 巨翼.,,棱镜鳞片 + 巨翼.
+963,03C3,Fire Ruler,摔跤表演家,King's Wrath + Flame Body,"飞身重压威力+10,并造成挑衅效果.",,"飞身重压威力+10,并造成挑衅效果."
+964,03C4,Chandelier,自由式摔跤,Illuminate + Pyromancy.,棱镜装甲 + 不服输.,,棱镜装甲 + 不服输.
+965,03C5,Foggy Eye,火之统治者,"While in Fog, boost Ghost moves by 50% and resist Ghost moves.",王之怒 + 火焰盾.,,"当使用者或其同伴的能力被降低时,提升攻击和防御.受到效果绝佳的招式攻击时,伤害降低35%.与其他减伤来源乘法叠加."
+966,03C6,Toxic Shell,枝形吊灯,Shell Armor + Poison Point.,发光 + 火焰占卜.,,发光 + 火焰占卜.
+967,03C7,Hand Barnacles,雾眼,Multi-Headed + Water STAB.,"在雾中,幽灵属性招式威力提升50%,并且抵抗幽灵属性招式.",,"在雾中,幽灵属性招式威力提升50%,并且抵抗幽灵属性招式."
+968,03C8,Voltron,毒壳,Metallic + Battle Armor.,硬壳盔甲 + 毒刺.,316,硬壳盔甲 + 毒刺.
+969,03C9,Fire's Wrath,手藤壶,Intimidate + Scare; 10% burn chance on non contact moves.,多头龙 + 水属性本系.,,多头龙 + 水属性本系.
+970,03CA,Emperor's Wrath,战神金刚,King's Wrath + Queen's Mourning.,金属化 + 战斗盔甲.,,金属化 + 战斗盔甲.
+971,03CB,Lepidopteran,火之怒,Swarm + Unaware.,威吓 + 惊吓 + 非接触招式有10%灼伤几率.,,威吓 + 惊吓 + 非接触招式有10%灼伤几率.
+972,03CC,Break it Down,帝王之怒,"After using a dance move, follow up with a 20BP Rapid Spin.",王之怒 + 后之哀.,,王之怒 + 后之哀.
+973,03CD,Talon Trap,鳞翅目,50% chance to trap on contact. 100% if entered this turn.,虫之预感 + 纯朴.,,虫之预感 + 纯朴.
+974,03CE,Backstreet Boy,分解,Striker + Kicking moves are Dance moves and vise-versa.,"使用攻击后,紧接着使用威力20的急速轮转.",,"使用攻击后,紧接着使用威力20的急速轮转."
+975,03CF,Backflip,爪钩陷阱,"After using a Dance move, follow up with a 50BP Chip Away.","接触时有50%几率束缚目标.如果本回合刚上场,则几率为100%.",,"无论攻击方还是被攻击方,发生接触时有50%几率束缚对手,效果类似于夹住.如果使用者本回合刚替换上场或通过Mega进化等方式获得此特性,则几率提升至100%."
+976,03D0,Crushing Jaw,后街男孩,Strong Jaw + Biting moves have a 50% chance to lower defense.,"前锋 + 踢腿类招式被视为舞蹈类招式,反之亦然.",,"前锋 + 踢腿类招式被视为舞蹈类招式,反之亦然."
+977,03D1,Eternal Flower,后空翻,Reduces the stats of other Megas by 20%.,"使用舞蹈类招式后,紧接着使用威力50的逐步击破.",,"使用舞蹈类招式后,紧接着使用威力50的逐步击破."
+978,03D2,Nihil Blaster,粉碎之颚,Aura Break + Mega Launcher.,强壮之颚 + 啃咬类招式有50%几率降低防御.,,强壮之颚 + 啃咬类招式有50%几率降低防御.
+979,03D3,Hollow Ice Zone,永恒之花,Ice-type moves apply Ice Statue and then make the user switch.,使其他超级进化宝可梦的能力值降低20%.,,使其他超级进化宝可梦的能力值降低20%.
+980,03D4,Overcast,虚无一击,Low Visibility + Sets Mist on entry.,气场破坏 + 超级发射器.,,气场破坏 + 超级发射器.
+981,03D5,Cryostasis,冰窟地带,Cryomancy + Frostbite causes flinching.,"冰属性招式施加冰雕状态,然后使使用者替换下场.",,"使用者的冰属性招式对目标施加冰雕状态,使其变为冰属性,失去所有抗性和冻伤免疫.如果施加了冰雕状态,使用者会替换下场."
+982,03D6,Flower Necklace,低温休眠,This Pokémon's SpDef gets a 1.5x boost in Grassy Terrain.,冰霜占卜 + 冻伤造成畏缩.,,冰霜占卜 + 冻伤造成畏缩.
+983,03D7,Mega Drill,阴天,Mighty Horn + all Drill moves are 30% stronger.,低能见度 + 出场时设置白雾.,,低能见度 + 出场时设置白雾.
+984,03D8,Mucus Membrane,花项链,Takes 30% less damage from attacks + Gooey,"在青草场地中,该宝可梦的特防提升至1.5倍.",,"在青草场地中,该宝可梦的特防提升至1.5倍."
+985,03D9,Lucha Libre,巨型钻头,Dazzling + Defiant.,强大之角 + 所有钻类招式威力提升30%.,,强大之角 + 所有钻类招式威力提升30%.
+986,03DA,Curlipede,黏液膜,Let's Roll + Coil Up,受到的攻击伤害降低30% + 黏滑.,,受到的攻击伤害降低30% + 黏滑.
+987,03DB,Storm Cloud,雨幕,Summon rain on entry for 8 turns. Gain Electric-type STAB.,"在雨中,闪避率提升30%.",,"在雨中,闪避率提升30%."
+988,03DC,Waterborne,卷曲蜈蚣,Aquatic + Adaptability,我们滚吧 + 盘卷.,,我们滚吧 + 盘卷.
+989,03DD,Drakelp Head,积雨云,Weakens first move taken and drops opponent's attack.,"出场时降下雨水,持续8回合.获得电属性本系加成.",,"出场时降下雨水,持续8回合.获得电属性本系加成."
+990,03DE,Polarity,水传播,Increases the party's highest stat by 30%,水生 + 适应力.,,水生 + 适应力.
+991,03DF,Resilience,韧性,Heal 1/4 of max HP whenever below 1/2 health,"每当HP低于1/2时,回复1/4的最大HP.",,"每当HP低于1/2时,回复1/4的最大HP."
+992,03E0,Going Berserk,进入狂暴,Berserk + Rampage,怒火冲天 + 暴走.,,怒火冲天 + 暴走.
+993,03E1,Thunder Clouds,雷云,"After using a special move, launch a 35 BP Thunderbolt","使用特殊招式后,发射威力35的十万伏特.",,"使用特殊招式后,发射威力35的十万伏特."
+994,03E2,Unrelenting,不屈不挠,All attacking moves can hit 2-5 times,所有攻击招式可以攻击2-5次.,,所有攻击招式可以攻击2-5次.
+995,03E3,Elemental Aegis,元素庇护,"Takes 1/2 damage from Fire, Electric and Water-type attacks.",受到的火、电和水属性招式伤害减半.,,受到的火、电和水属性招式伤害减半.
+996,03E4,Aegis Ward,守护结界,"Takes 1/2 damage from Dark, Ghost and Psychic-type attacks.",受到的恶、幽灵和超能力属性招式伤害减半.,,受到的恶、幽灵和超能力属性招式伤害减半.
+997,03E5,Shattered Armor,破碎铠甲,Battle Armor + Scrapyard.,战斗盔甲 + 废料场.,,战斗盔甲 + 废料场.
+998,03E6,Acid Reflux,胃酸反流,Uses 20BP Acid when it takes damage.,"受到伤害时,使用威力20的溶解液.",,"受到伤害时,使用威力20的溶解液."
+999,03E7,Ghost Frenzy,幽灵狂乱,Hyper Aggressive + Soul Eater.,极度好战 + 噬魂.,,极度好战 + 噬魂.
+1000,03E8,Survivor Bias,幸存者偏差,Not very effective moves can't cause fainting.,效果不好的招式无法造成濒死.,,效果不好的招式无法造成濒死.
+1001,03E9,Bandit,强盗,Scavenger + Technician.,拾荒者 + 技术高手.,,拾荒者 + 技术高手.
+1002,03EA,Fortress,堡垒,Filter + Shell Armor.,过滤 + 战斗盔甲.,,过滤 + 战斗盔甲.
+1003,03EB,Bird of Prey,猛禽,Big Pecks + Scrappy.,健壮胸肌 + 胆量.,,健壮胸肌 + 胆量.
+1004,03EC,Feathercoat,羽衣,"Takes 10% less damage from attacks, 20% if resisted.",受到的所有攻击伤害降低10%.被抵抗时降低20%.,,受到的所有攻击伤害降低10%.被抵抗时降低20%.
+1005,03ED,Power Outage,停电,Boosts first Electric attack by 2x then loses Electric type.,"第一次电属性攻击威力提升2倍,之后失去电属性.",,"第一次电属性攻击威力提升2倍,之后失去电属性."
+1006,03EE,Electro Booster,电击助推器,Uses Magnet Rise on entry.,出场时使用电磁飘浮.,,出场时使用电磁飘浮.
+1007,03EF,Current Crash,电流冲击,Reckless + Thundercall.,舍身 + 雷召.,,舍身 + 雷召.
+1008,03F0,Daredevil,冒失鬼,+1 Atk after using recoil move. 1/2 recoil damage.,"使用反伤招式后,攻击+1.反伤伤害减半.",,"使用反伤招式后,攻击+1.反伤伤害减半."
+1009,03F1,Frost Dragon,霜龙,Triggers 50 BP Blizzard after using a Dragon or Ice-type move.,"使用龙或冰属性招式后,触发威力50的暴风雪.",,"使用龙或冰属性招式后,触发威力50的暴风雪."
+1010,03F2,Thermal Entropy,热熵,Thermal Exchange + Heatproof.,热交换 + 耐热.,,热交换 + 耐热.
+1011,03F3,Sinister Claws,阴险之爪,Mystic Blades + Keen Edge moves lower SpDef.,神秘刀锋 + 锐利刀刃类招式降低特防.,,"锐利刀刃类招式造成1.3倍伤害,变为特殊招式,使用特攻能力值并攻击特防.同时降低目标特防1级（每回合每个目标最多一次）."
+1012,03F4,Petal Shield,花瓣盾,Maxes Def on entry. -1 Def when hit.,出场时防御提升至最大.受到攻击时防御降低1级.,,出场时防御提升至+6级.受到攻击后防御降低1级.连续攻击会多次降低防御.
+1013,03F5,Mob Boss,黑帮老大,Terrify + Deviate.,恐怖 + 偏离.,,"出场时降低所有对手的特攻2级将使用者的一般属性招式变为恶属性.如果使用者是恶属性,其恶属性招式有10%的几率造成愤怒；否则,它获得恶属性的本系加成."
+1014,03F6,Ghost Pepper,幽灵辣椒,Grass moves have a 30% to cause burn.,草属性招式有30%几率造成灼伤.,,草属性招式有30%几率造成灼伤.
+1015,03F7,Droideka,毁灭者,Heatproof + Shell Armor.,耐热 + 战斗盔甲.,,耐热 + 战斗盔甲.
+1016,03F8,3 > 1,3 ョ 1,Multiheaded + Riptide,多头龙 + 激流.,,多头龙 + 激流.
+1017,03F9,Icicle Fist,冰柱拳,Iron Fist + 30% chance to cause frostbite with punches.,铁拳 + 拳类招式有30%几率造成冻伤.,,铁拳 + 拳类招式有30%几率造成冻伤.
+1018,03FA,Abominable Monster,可憎怪物,Ups SpDef by 1.5x in hail.,"在冰雹中,特防提升1.5倍.",,"在冰雹中,使用者的特防能力值提升50%.此提升适用于所有依赖防御的效果."
+1019,03FB,Wind Chimes,风铃,Amplifier + attacks with 30 BP Hyper Voice when hit.,扩音器 + 受到攻击时以威力30的高音反击.,,扩音器 + 受到攻击时以威力30的高音反击.
+1020,03FC,Unstable Core,不稳定核心,Power Core + Aftermath.,动力核心 + 引爆.,,动力核心 + 引爆.
+1021,03FD,Aura Armor,气场铠甲,Takes 35% reduced damage.,受到的伤害降低35%.,,受到的伤害降低35%.
+1022,03FE,Deflect,偏斜,Counters with 20 BP Vacuum Wave when hit. Takes 20% less damage.,受到攻击时以威力20的真空波反击.受到的伤害降低20%.,,受到攻击时以威力20的真空波反击.受到的伤害降低20%.
+1023,03FF,Overwhelming Mind,压倒性思维,"Boosts Psychic-type moves by 1.3x, or 1.8x when below 1/3 HP.","超能力属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍.",,"超能力属性招式威力提升至1.3倍,HP低于1/3时提升至1.8倍."
+1024,0400,Duality,二元性,Infiltrator + Competitive.,穿透 + 好胜.,,穿透 + 好胜.
+1025,0401,Reaper's Embarce,死神拥抱,Tough Claws + Foul Energy.,坚硬爪子 + 邪恶能量.,,坚硬爪子 + 邪恶能量.
+1026,0402,Foul Energy,邪恶能量,"Boosts Dark-type moves by 1.2x, or 1.5x when under 1/3 HP.","恶属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍.",,"恶属性招式威力提升至1.2倍,HP低于1/3时提升至1.5倍."
+1027,0403,Jungle Fever,丛林热,"If Grassy Terrain is active, gets a 1.5x Speed boost.","在青草场地中,该宝可梦的速度提升至1.5倍.",,"丛林热在青草场地激活时,该宝可梦的速度能力值提升50%.场地开始时立即生效,场地结束时加成消失."
+1028,0404,King of the Jungle,丛林之王,Infiltrator + deals 1.5x more damage to Grass-types.,穿透 + 对草属性宝可梦造成1.5倍伤害.,,穿透 + 对草属性宝可梦造成1.5倍伤害.
+1029,0405,Warrior's Spear,勇士之矛,Mighty Horn + Fighting Spirit,强大之角 + 斗争精神.,,强大之角 + 斗争精神.
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
