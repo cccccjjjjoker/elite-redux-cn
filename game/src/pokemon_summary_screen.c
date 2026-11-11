@@ -4534,7 +4534,7 @@ static void BufferMonPokemonExpandedAbilityAndInnates(void) {
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilityToShow].expandedDescription);
     else
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilityToShow].description);
-    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, (y + 20), 2, PSS_COLOR_BLACK_GRAY_SHADOW);
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, (y + 20), 6, PSS_COLOR_BLACK_GRAY_SHADOW);
 }
 
 // 特性面板排版参数。窗口 PSS_LABEL_PANE_RIGHT 从屏幕 y=16 起、高 20 tile（160px），
