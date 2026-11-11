@@ -3523,32 +3523,8 @@ static void PrintSmallTextOnWindow(u8 windowId, const u8* string, u8 x, u8 y, u8
     AddTextPrinterParameterized4(windowId, 8, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
 }
 
-static void PrintAbilityTitle(const u8* string, u8 x, s8 y) {
-    // GLYPH_COPY 的行参数为 u64：负 y 会回绕导致字形上半被整块跳过，标题禁止负坐标。
-    if (y < 0)
-        y = 0;
-    AddTextPrinterParameterized4Signed(PSS_LABEL_PANE_RIGHT, FONT_SMALL_NARROW,
-                                      x, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, string);
-}
-
 static void PrintSmallTextOnWindowNoRender(u8 windowId, const u8* string, u8 x, u8 y, u8 lineSpacing, u8 colorId) {
     AddTextPrinterParameterized4(windowId, 8, x, y, 0, lineSpacing, sTextColors[colorId], TEXT_SPEED_FF, string);
-}
-
-// 统计小字体文本的显示行数。charmap 里 0x01..0x1E 是双字节字符（假名/汉字）的首字节，
-// 其次字节也可能取到 0xFE，所以必须先跳过次字节，否则会把汉字末字节误当成换行。
-static u8 CountSmallTextLines(const u8* str) {
-    u8 n = 1;
-    while (*str != EOS) {
-        if (*str >= 0x01 && *str <= 0x1E && *str != 0x06 && *str != 0x1B && str[1] <= 0xF6) {
-            str += 2;
-            continue;
-        }
-        if (*str == CHAR_NEWLINE)
-            n++;
-        str++;
-    }
-    return n;
 }
 
 static void PrintTextOnWindowSigned(u8 windowId, const u8* string, u8 x, s8 y, u8 lineSpacing, u8 colorId) {
@@ -4542,29 +4518,15 @@ static void BufferMonPokemonExpandedAbilityAndInnates(void) {
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilityToShow].expandedDescription);
     else
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilityToShow].description);
-    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, (y + 20), 6, PSS_COLOR_BLACK_GRAY_SHADOW);
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, (y + 20), 2, PSS_COLOR_BLACK_GRAY_SHADOW);
 }
-
-// 特性面板排版参数。窗口 PSS_LABEL_PANE_RIGHT 从屏幕 y=16 起、高 20 tile（160px），
-// 屏幕只有 160px，因此窗口内可用高度为 144px。
-#define ABILITY_PANE_BOTTOM  144  // 窗口内可用下边界
-#define ABILITY_TITLE_H       14  // 标题行高（12px 字身 + 2px 与描述的间隙）
-#define ABILITY_LINE_H        12  // 小字体单行推进量
-#define ABILITY_MAX_BLOCK_GAP  8  // 块间距上限，避免行数少时被拉得过散
 
 static void BufferMonPokemonAbilityAndInnates(void) {
     struct PokeSummary* sum = &sMonSummaryScreen->summary;
     u8 level = sum->level;
-    u8 x, i;
+    u8 x, y, i;
     bool8 isEnemyMon = VarGet(VAR_BATTLE_CONTROLLER_PLAYER_F) == 2;  // checks if you are looking into the summary screen for the enemy
     AbilityEnum abilities[4] = {0};
-    u8 descLines[4] = {0};
-    u8 blockY[4] = {0};
-    u8 descOffset = ABILITY_TITLE_H;
-    u8 descGap = 1;
-    u8 blockGap = 0;
-    u8 blocks = 1;
-    u16 need;
 
     PopulateDisplayedAbilities(abilities);
 
@@ -4573,109 +4535,60 @@ static void BufferMonPokemonAbilityAndInnates(void) {
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sMemoMiscTextColor);
     BufferCharacteristicString();
 
-    // ---- 预排：先数清每块描述各占几行 ----
-    descLines[0] = CountSmallTextLines(gAbilities[abilities[0]].description);
-    if (abilities[1] != ABILITY_NONE) {
-        for (i = 0; i < NUM_INNATE_PER_SPECIES; i++) {
-            if (isEnemyMon || !CanDisableInnates() || level >= getInnateDisableLevel(i))
-                descLines[blocks] = CountSmallTextLines(gAbilities[abilities[i + 1]].description);
-            else
-                descLines[blocks] = 1;  // 未解锁时只显示一行「XX 级解锁」
-            blocks++;
-        }
-    }
-
-    // ---- 排版降级：行距 2 -> 1 -> 0，仍放不下才收窄描述前间隙 ----
-    descOffset = ABILITY_TITLE_H;
-    descGap = 2;
-    for (;;) {
-        need = 0;
-        for (i = 0; i < blocks; i++)
-            need += descOffset + descLines[i] * ABILITY_LINE_H + (descLines[i] - 1) * descGap;
-        if (need <= ABILITY_PANE_BOTTOM)
-            break;
-        if (descGap > 0)
-            descGap--;
-        else if (descOffset > ABILITY_LINE_H)
-            descOffset--;
-        else
-            break;
-    }
-
-    // ---- 剩余空间均分到各块之间 ----
-    if (blocks > 1 && need < ABILITY_PANE_BOTTOM) {
-        blockGap = (ABILITY_PANE_BOTTOM - need) / (blocks - 1);
-        if (blockGap > ABILITY_MAX_BLOCK_GAP)
-            blockGap = ABILITY_MAX_BLOCK_GAP;
-    }
-
-    // ---- 各块起点 ----
-    x = 63;
-    for (i = 0, need = 0; i < blocks; i++) {
-        blockY[i] = need;
-        need += descOffset + descLines[i] * ABILITY_LINE_H + (descLines[i] - 1) * descGap + blockGap;
-    }
-
-    // The font renders Chinese glyphs at 12px, while font 8 advances by 8px.
-    descGap += ABILITY_LINE_H - GetFontAttribute(FONT_SMALL_NARROW, FONTATTR_MAX_LETTER_HEIGHT);
-
-    // Draw the title bands at the same positions as their text.
-    LoadPalette(&gPlttBufferUnfaded[0x13], 0x2F, sizeof(u16));
-    for (i = 0; i < blocks; i++)
-        FillWindowPixelRect(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(15), 0, blockY[i], 152, descOffset);
+    x = 60;
+    y = 4;
 
     if (sMonSummaryScreen->ModifyMode) {
         if (!isEnemyMon) BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryAbilitySlider, (x - 8), 8, 96, 8);
 
-        BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryExpandedCursor, 0, blockY[sMonSummaryScreen->currentAbilityIndex], 56, 16);
+        BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryExpandedCursor, 0, (sMonSummaryScreen->currentAbilityIndex * 32) + 4, 56, 16);
     }
 
     // Main Ability
     if (!sMonSummaryScreen->ModifyMode || sMonSummaryScreen->currentAbilityIndex != 0) {
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_MainAbility);
-        PrintAbilityTitle(gStringVar4, 3, (s8)blockY[0] - 1);
+        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
     }
     // Name ---------------------------------------------------------------------------------------------------
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilities[0]].name);
-    PrintAbilityTitle(gStringVar4, x, (s8)blockY[0] - 1);
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
     // Description ---------------------------------------------------------------------------------------------------
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilities[0]].description);
-    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 3, (blockY[0] + descOffset - 1), descGap, PSS_COLOR_BLACK_GRAY_SHADOW);
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, (y + 12), 2, PSS_COLOR_BLACK_GRAY_SHADOW);
 
     // Innates
     for (i = 0; i < NUM_INNATE_PER_SPECIES; i++) {
         u8 innateNum = i + 1;
         u16 abilityId = abilities[innateNum];
-        const u8* abilityDesc;
         if (abilities[1] != ABILITY_NONE) {
-            abilityDesc = gAbilities[abilityId].description;
+            y += 32;
             if (isEnemyMon || !CanDisableInnates() || level >= getInnateDisableLevel(i)) {
                 // Innate is Enabled
                 //  Title
                 if (!sMonSummaryScreen->ModifyMode || sMonSummaryScreen->currentAbilityIndex != innateNum) {
                     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
-                    PrintAbilityTitle(gStringVar4, 3, (s8)blockY[innateNum] - 1);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
                 }
                 // Name ---------------------------------------------------------------------------------------------------
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilityId].name);
-                PrintAbilityTitle(gStringVar4, x, (s8)blockY[innateNum] - 1);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
                 // Description ---------------------------------------------------------------------------------------------------
-                DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, abilityDesc);
-                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 3, (blockY[innateNum] + descOffset - 1), descGap, PSS_COLOR_BLACK_GRAY_SHADOW);
+                DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilityId].description);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, (y + 12), 2, PSS_COLOR_BLACK_GRAY_SHADOW);
             } else {
                 // Innate is Disabled
                 //  Title
                 if (!sMonSummaryScreen->ModifyMode || sMonSummaryScreen->currentAbilityIndex != innateNum) {
                     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
-                    PrintAbilityTitle(gStringVar4, 3, (s8)blockY[innateNum] - 1);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
                 }
                 // Name ---------------------------------------------------------------------------------------------------
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilities[abilityId].name);
-                PrintAbilityTitle(gStringVar4, x, (s8)blockY[innateNum] - 1);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
                 // Unlock Level ---------------------------------------------------------------------------------------------------
                 ConvertIntToDecimalStringN(gStringVar1, getInnateDisableLevel(i), STR_CONV_MODE_LEFT_ALIGN, 3);
                 StringExpandPlaceholders(gStringVar4, sText_InnateUnlock);
-                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 3, (blockY[innateNum] + descOffset - 1), descGap, PSS_COLOR_BLACK_GRAY_SHADOW);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, (y + 12), 2, PSS_COLOR_BLACK_GRAY_SHADOW);
             }
         }
     }
