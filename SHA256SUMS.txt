@@ -1,9 +1,7 @@
 英文 ER 输入: 515089fc2587f4de5d52e0ea1263b4c0bd61cd94d2bacf09477dc30745777d48
-汉化结果: 63f5859049f57c604acce855b93ca3b066669eea3f0608789b5d978351c46046
-BPS 补丁: 0e1827eb5e6abceb0d99c49930a01f04094c6a9011a05e8f70209748ad719730
+汉化结果: 331876de2a583443ba145ad9ad2aa3c73029132d26a59e98c9b9ac716a3185a2
+BPS 补丁: 0809a61b2a9b8497fa67e6ac672dc55f95dc7fc9b3feba6da54d5ae4bf8d4021
 
 英文 ER 输入文件: Pokémon Elite Redux (2.65.5.2b).gba
 BPS 文件: patches/ER-2.65.5.2b-CN_from-ER-515089fc.preview.bps
-
-汉化源码构建包: 489b41b847c29ffc216c66dc10757338455d2e67cd809f68855540ae7a9e35ef
-源码包文件: source/ER-2.65.5.2b-CN-source-build.zip
+汉化源码: game/
