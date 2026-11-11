@@ -824,9 +824,9 @@ const u8 sText_TitleRibbons[] = _("奖章");
 const u8 sText_TitleIVs[] = _("个体值");
 const u8 sText_TitleEVs[] = _("努力值");
 const u8 sText_TitlePage[] = _("{DPAD_LEFTRIGHT}翻页");
-const u8 sText_TitlePageDetail[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Detail {R_BUTTON}Replace");
-const u8 sText_TitlePageDetail_Boxmon[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Detail");
-const u8 sText_TitlePickSwitch[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Switch {L_BUTTON}Details");
+const u8 sText_TitlePageDetail[] = _("{DPAD_LEFTRIGHT}翻页 {A_BUTTON}详情 {R_BUTTON}替换");
+const u8 sText_TitlePageDetail_Boxmon[] = _("{DPAD_LEFTRIGHT}翻页 {A_BUTTON}详情");
+const u8 sText_TitlePickSwitch[] = _("{DPAD_UPDOWN}选择 {A_BUTTON}切换 {L_BUTTON}详情");
 const u8 sText_TitlePageIVs[] = _("{DPAD_LEFTRIGHT}翻页 {A_BUTTON}修改");
 const u8 sText_TitlePageAbilityModify[] = _("{DPAD_LEFTRIGHT}翻页 {B_BUTTON}保存");
 const u8 sText_TitlePageEVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}EVs");
@@ -902,10 +902,10 @@ const u8 sText_HeldItem[] = _("携带道具");
 #endif
 
 const u8 sText_MainAbility[] = _("特性");
-const u8 sText_Innate1[] = _("固有");
-const u8 sText_Innate2[] = _("固有 2");
-const u8 sText_Innate3[] = _("固有 3");
-const u8 sText_InnateUnlock[] = _("Locked until level {STR_VAR_1}");
+const u8 sText_Innate1[] = _("天性");
+const u8 sText_Innate2[] = _("天性 2");
+const u8 sText_Innate3[] = _("天性 3");
+const u8 sText_InnateUnlock[] = _("{STR_VAR_1} 级解锁");
 
 #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
 static const u16 sSplitIcons_Pal[] = INCBIN_U16("graphics/summary_screen/split_icons.gbapal");
@@ -3524,6 +3524,9 @@ static void PrintSmallTextOnWindow(u8 windowId, const u8* string, u8 x, u8 y, u8
 }
 
 static void PrintAbilityTitle(const u8* string, u8 x, s8 y) {
+    // GLYPH_COPY 的行参数为 u64：负 y 会回绕导致字形上半被整块跳过，标题禁止负坐标。
+    if (y < 0)
+        y = 0;
     AddTextPrinterParameterized4Signed(PSS_LABEL_PANE_RIGHT, FONT_SMALL_NARROW,
                                       x, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, string);
 }

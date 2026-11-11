@@ -935,7 +935,7 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2) {
     static const u8 FullRandomizerModeText[] = _("Random Modes: Full Randomizer");
     static const u8 encounterRandomizerModeText[] = _("Encounter, ");
     static const u8 typeRandomizerModeText[] = _("Type, ");
-    static const u8 innateRandomizerModeText[] = _("固有");                  // Last
+    static const u8 innateRandomizerModeText[] = _("天性");                  // Last
     static const u8 abilityRandomizerModeText[] = _("特性");                // Last
     static const u8 innateabilityRandomizerModeText[] = _("Ability, Innate");  // Last
     static const u8 encounterRandomizerModeTextNo[] = _("Encounter");

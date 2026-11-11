@@ -1557,7 +1557,7 @@ static void PrintStatsTab() {
 }
 
 const u8 sText_PrintAbilityTab_Ability[] = _("特性");
-const u8 sText_PrintAbilityTab_Innate[] = _("固有");
+const u8 sText_PrintAbilityTab_Innate[] = _("天性");
 #define SPACE_BETWEEN_ABILITY_AND_NAME (8 * 8)
 #define SPACE_BETWEEN_ABILITIES 3
 static void GetBattlerDisplayedAbilities(u8 battlerId, AbilityEnum *abilities) {
